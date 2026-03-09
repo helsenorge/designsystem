@@ -71,7 +71,7 @@ const TimeInputInternal = ({
     }
   }, [value]);
 
-  const combinedValue = hh && mm ? `${hh}:${mm}` : '';
+  const combinedValue = hh || mm ? `${hh}:${mm}` : '';
 
   useEffect(() => {
     if (onChange) {

@@ -18,7 +18,6 @@ import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
-import LazyIcon from '../LazyIcon';
 import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
@@ -104,8 +103,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     zIndex = ZIndex.OverlayScreen,
     resources,
     isMobile,
-    withBackButton,
-    onRequestBack,
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledBy, fallbackId: titleId });
@@ -133,9 +130,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   };
 
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
-  const headerStyling = classNames(styles.drawer__header, headerClasses, {
-    [styles['drawer__header--no-close-button']]: noCloseButton,
-  });
+  const headerStyling = classNames(styles.drawer__header, headerClasses);
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
 
   useFocusTrap(containerRef, true);
@@ -253,17 +248,12 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
       >
         <div className={styles.drawer__container__inner}>
           <div className={headerStyling} ref={headerRef}>
-            {withBackButton && onRequestBack != undefined && (
-              <Button
-                ariaLabel={'Go back'} // fix this
-                href="https://www.helsenorge.no"
-                onClick={onRequestBack}
-                variant="borderless"
-              >
-                <LazyIcon iconName="ChevronLeft" />
-              </Button>
-            )}
-            <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
+            <Title
+              id={ariaLabelAttributes?.['aria-labelledby']}
+              className={styles['drawer__header__title']}
+              htmlMarkup={titleHtmlMarkup}
+              appearance="title3"
+            >
               {title}
             </Title>
             {!noCloseButton && onRequestClose != undefined && (

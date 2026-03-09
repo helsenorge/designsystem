@@ -28,7 +28,68 @@ export default meta;
 
 type Story = StoryObj;
 
-export const WithRHForm: Story = {
+export const DateWithRHForm: Story = {
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+
+);`,
+      },
+    },
+  },
+  render: args => {
+    const {
+      control,
+      handleSubmit,
+      formState: { errors },
+    } = useRHForm({
+      defaultValues: { avtale: new Date('2026-01-01') },
+      mode: 'onBlur',
+    });
+
+    const onSubmit = (data: any) => {
+      console.log('register submit: ', data);
+    };
+
+    const validateDate = (value: Date) => {
+      if (!value) {
+        return 'Må velge dato';
+      }
+      if (isBefore(value, new Date())) {
+        return 'Kan ikke velge dato i fortiden';
+      }
+      return true;
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <RHFController
+          name="avtale"
+          control={control}
+          rules={{
+            required: 'Feltet er påkrevd',
+            validate: value => validateDate(value),
+          }}
+          render={({ field }) => (
+            <Unsafe_DatePicker
+              {...args}
+              errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
+              value={field.value ?? undefined}
+              onChange={val => field.onChange(val)}
+              showGoToTodayButton
+            />
+          )}
+        />
+        <br />
+        <button type="submit">{'Submit'}</button>
+      </form>
+    );
+  },
+};
+
+export const ISOWithRHForm: Story = {
   parameters: {
     docs: {
       source: {
