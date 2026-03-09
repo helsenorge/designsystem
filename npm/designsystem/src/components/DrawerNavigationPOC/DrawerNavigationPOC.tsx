@@ -59,6 +59,11 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views, ...props }: Dra
 
   const navigate = { goBack, goToView, goToViewAndClearStack };
 
+  const handleClose = (): void => {
+    setViewStack(views[0] ? [views[0].id] : []); // initialiser stack på nytt
+    props.onCloseButton?.();
+  };
+
   return (
     // <TestDrawer
     //   isOpen={props.isOpen}
@@ -83,7 +88,7 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views, ...props }: Dra
       title={currentViewTitle}
       withBackButton={viewStack.length > 1}
       onRequestBack={goBack}
-      onRequestClose={props.onCloseButton}
+      onRequestClose={handleClose}
     >
       {CurrentView && <CurrentView {...(currentViewProps ?? {})} navigate={navigate} />}
     </Drawer>
