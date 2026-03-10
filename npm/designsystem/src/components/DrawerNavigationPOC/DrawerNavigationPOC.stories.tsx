@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import { Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import DrawerNavigationPOC, { NavigationProps, ViewConfig } from './DrawerNavigationPOC';
+import DrawerNavigationPOC, { DrawerNavigationCommonProps, ViewConfig } from './DrawerNavigationPOC';
 import Badge from '../Badge';
 import Button from '../Button';
 import LinkList from '../LinkList';
+import ViewOverview, { ViewOverviewConfig } from './ViewOverview';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/DrawerNavigationPOC',
@@ -34,7 +35,7 @@ export default meta;
 interface OverviewPageProps {
   badge: number;
 }
-const OverviewPage: React.FC<NavigationProps & OverviewPageProps> = ({ badge, navigate }) => (
+const OverviewPage: React.FC<DrawerNavigationCommonProps & OverviewPageProps> = ({ badge, navigate }) => (
   <div>
     <LinkList>
       <LinkList.Link onClick={() => navigate.goToView('one')} htmlMarkup="button" aria-label="Gå til side for å endre parameter 1">
@@ -47,8 +48,8 @@ const OverviewPage: React.FC<NavigationProps & OverviewPageProps> = ({ badge, na
     </LinkList>
   </div>
 );
-const TweakParameterOne: React.FC<NavigationProps> = () => <div>{'Parameter one'}</div>;
-const TweakParameterTwo: React.FC<NavigationProps> = ({ navigate }) => (
+const TweakParameterOne: React.FC<DrawerNavigationCommonProps> = () => <div>{'Parameter one'}</div>;
+const TweakParameterTwo: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => (
   <div>
     <p>{'Parameter two'}</p>
     <Button onClick={() => navigate.goToView('nested')} aria-label="Gå til side for nested parameter">
@@ -56,7 +57,7 @@ const TweakParameterTwo: React.FC<NavigationProps> = ({ navigate }) => (
     </Button>
   </div>
 );
-const NestedParameter: React.FC<NavigationProps> = ({ navigate }) => (
+const NestedParameter: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => (
   <div>
     <p>{'Nested parameter'}</p>
     <Button onClick={() => navigate.goToViewAndClearStack('overview')} aria-label="Gå tilbake til oversiktsside">
@@ -80,6 +81,79 @@ const parameterViews: AllConfigs[] = [
 export const Default = {
   args: { views: parameterViews },
   render: ({ views }: { views: AllConfigs[] }): JSX.Element => {
+    const [isOpen, setIsOpen] = useState(false);
+    return (
+      <div>
+        <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
+        <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+      </div>
+    );
+  },
+};
+
+const AgePageSimple: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello age page'}</div>;
+const GenderPageSimple: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello gender page'}</div>;
+const simpleOverviewViews: ViewOverviewConfig[] = [
+  {
+    id: 'overview',
+    title: 'Filtrer',
+    component: ViewOverview,
+    props: {
+      filters: [
+        { title: 'Alder', activeFilters: ['20-30 år'], viewId: 'age' },
+        { title: 'Kjønn', activeFilters: ['Mann', 'Kvinne'], viewId: 'gender' },
+      ],
+    },
+  },
+  {
+    id: 'age',
+    title: 'Alder',
+    component: AgePageSimple,
+  },
+  {
+    id: 'gender',
+    title: 'Kjønn',
+    component: GenderPageSimple,
+  },
+];
+
+export const OverviewWithJustProps = {
+  args: { views: simpleOverviewViews },
+  render: ({ views }: { views: ViewOverviewConfig[] }): JSX.Element => {
+    const [isOpen, setIsOpen] = useState(false);
+    return (
+      <div>
+        <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
+        <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+      </div>
+    );
+  },
+};
+
+const CustomOverview: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => (
+  <div>
+    <span>{'Alert message here'}</span>
+    <ViewOverview
+      filters={[
+        { title: 'Alder', activeFilters: ['20-30 år'], viewId: 'age' },
+        { title: 'Kjønn', activeFilters: ['Mann', 'Kvinne'], onClick: () => navigate.goToView('gender') },
+      ]}
+      navigate={navigate}
+    />
+  </div>
+);
+const AgePage: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello age page'}</div>;
+const GenderPage: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello gender page'}</div>;
+
+const customOverviewViews: ViewConfig[] = [
+  { id: 'overview', title: 'Filtrer', component: CustomOverview },
+  { id: 'age', title: 'Alder', component: AgePage },
+  { id: 'gender', title: 'Kjønn', component: GenderPage },
+];
+
+export const OverviewWithCustomComponent = {
+  args: { views: customOverviewViews },
+  render: ({ views }: { views: ViewConfig[] }): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     return (
       <div>

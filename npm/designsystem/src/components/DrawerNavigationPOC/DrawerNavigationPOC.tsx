@@ -8,14 +8,14 @@ interface NavigateProps {
   goBack: () => void;
   goToViewAndClearStack: (id: string) => void;
 }
-export interface NavigationProps {
+export interface DrawerNavigationCommonProps {
   navigate: NavigateProps;
 }
 
 export interface ViewConfig<P extends object = object> {
   id: string;
   title: string;
-  component: React.FC<NavigationProps & P>;
+  component: React.FC<DrawerNavigationCommonProps & P>;
   props?: P;
 }
 
