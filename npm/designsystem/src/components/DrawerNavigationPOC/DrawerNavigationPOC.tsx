@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 
 // import TestDrawer from './TestDrawer';
+import Button, { ButtonProps } from '../Button';
 import Drawer from '../Drawer/Drawer';
+
+import styles from './styles.module.scss';
 
 interface NavigateProps {
   goToView: (id: string) => void;
@@ -15,8 +18,10 @@ export interface DrawerNavigationCommonProps {
 export interface ViewConfig<P extends object = object> {
   id: string;
   title: string;
-  component: React.FC<DrawerNavigationCommonProps & P>;
+  component: (props: DrawerNavigationCommonProps & P) => React.ReactNode;
   props?: P;
+  nullstillButtonProps?: ButtonProps;
+  showResultButtonProps?: ButtonProps;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,13 +51,15 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views, ...props }: Dra
     }
   };
 
-  const { CurrentView, currentViewProps, currentViewTitle } = useMemo(() => {
+  const { CurrentView, currentViewProps, currentViewTitle, nullstillButtonProps, showResultButtonProps } = useMemo(() => {
     const currentViewId = viewStack[viewStack.length - 1];
     const currentViewObj = views.find(view => view.id === currentViewId);
     return {
       CurrentView: currentViewObj?.component,
       currentViewProps: currentViewObj?.props || {},
       currentViewTitle: currentViewObj?.title || 'Filter', // hva skal være fallback her?
+      nullstillButtonProps: currentViewObj?.nullstillButtonProps,
+      showResultButtonProps: currentViewObj?.showResultButtonProps,
       currentViewId,
     };
   }, [viewStack, views]);
@@ -64,31 +71,21 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views, ...props }: Dra
     props.onCloseButton?.();
   };
 
+  const renderFooterButtons = (
+    <div className={styles['drawer-footer']}>
+      {nullstillButtonProps ? <Button {...nullstillButtonProps} /> : <div />}
+      {showResultButtonProps && <Button {...showResultButtonProps} />}
+    </div>
+  );
+
   return (
-    // <TestDrawer
-    //   isOpen={props.isOpen}
-    //   title={currentViewTitle}
-    //   withBackButton={viewStack.length > 1}
-    //   previousViewTitle={viewStack.length > 1 ? views.find(v => v.id === viewStack[viewStack.length - 2])?.title : ''}
-    //   onBackButton={goBack}
-    //   onCloseButton={props.onCloseButton}
-    // >
-    //   <div>
-    //     {viewStack.map((viewId, idx) => (
-    //       <span key={idx}>
-    //         {viewId}
-    //         {idx < viewStack.length - 1 && ' → '}
-    //       </span>
-    //     ))}
-    //   </div>
-    //   {CurrentView && <CurrentView {...(currentViewProps ? currentViewProps : {})} navigate={navigate} />}
-    // </TestDrawer>
     <Drawer
       isOpen={props.isOpen}
       title={currentViewTitle}
       withBackButton={viewStack.length > 1}
       onRequestBack={goBack}
       onRequestClose={handleClose}
+      footerContent={renderFooterButtons}
     >
       {CurrentView && <CurrentView {...(currentViewProps ?? {})} navigate={navigate} />}
     </Drawer>

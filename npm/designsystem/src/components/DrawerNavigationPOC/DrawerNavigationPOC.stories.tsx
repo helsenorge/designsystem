@@ -93,38 +93,98 @@ export const Default = {
 
 const AgePageSimple: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello age page'}</div>;
 const GenderPageSimple: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello gender page'}</div>;
-const simpleOverviewViews: ViewOverviewConfig[] = [
-  {
-    id: 'overview',
-    title: 'Filtrer',
-    component: ViewOverview,
-    props: {
-      filters: [
-        { title: 'Alder', activeFilters: ['20-30 år'], viewId: 'age' },
-        { title: 'Kjønn', activeFilters: ['Mann', 'Kvinne'], viewId: 'gender' },
-      ],
-    },
-  },
-  {
-    id: 'age',
-    title: 'Alder',
-    component: AgePageSimple,
-  },
-  {
-    id: 'gender',
-    title: 'Kjønn',
-    component: GenderPageSimple,
-  },
-];
 
 export const OverviewWithJustProps = {
-  args: { views: simpleOverviewViews },
-  render: ({ views }: { views: ViewOverviewConfig[] }): JSX.Element => {
+  render: (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const views: ViewOverviewConfig[] = [
+      {
+        id: 'overview',
+        title: 'Filtrer',
+        component: ViewOverview,
+        props: {
+          filters: [
+            { title: 'Alder', activeFilters: ['20-30 år', '30-40 år'], viewId: 'age' },
+            { title: 'Kjønn', activeFilters: ['Kvinne'], viewId: 'gender' },
+          ],
+        },
+        nullstillButtonProps: {
+          children: 'Nullstill',
+          variant: 'borderless',
+          onClick: (): void => {
+            console.log('Cleared');
+          },
+        },
+        showResultButtonProps: {
+          children: `Vis ${3} treff`,
+          onClick: () => setIsOpen(false),
+        },
+      },
+      {
+        id: 'age',
+        title: 'Alder',
+        component: AgePageSimple,
+        showResultButtonProps: {
+          children: `Vis ${2} treff`,
+          onClick: () => setIsOpen(false),
+        },
+      },
+      {
+        id: 'gender',
+        title: 'Kjønn',
+        component: GenderPageSimple,
+        showResultButtonProps: {
+          children: `Vis ${1} treff`,
+          onClick: () => setIsOpen(false),
+        },
+      },
+    ];
+
     return (
       <div>
         <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
         <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+      </div>
+    );
+  },
+};
+
+export const OverviewWithJustPropsAlwaysOpen = {
+  render: (): JSX.Element => {
+    const views: ViewOverviewConfig[] = [
+      {
+        id: 'overview',
+        title: 'Filtrer',
+        component: ViewOverview,
+        props: {
+          filters: [
+            { title: 'Alder', activeFilters: ['20-30 år'], viewId: 'age' },
+            { title: 'Kjønn', activeFilters: ['Mann', 'Kvinne'], viewId: 'gender' },
+          ],
+        },
+        nullstillButtonProps: { children: 'Nullstill', variant: 'borderless', onClick: () => undefined },
+        showResultButtonProps: { children: 'Vis 3 treff', onClick: () => undefined },
+      },
+      {
+        id: 'age',
+        title: 'Alder',
+        component: AgePageSimple,
+        nullstillButtonProps: { children: 'Nullstill', variant: 'borderless', onClick: () => undefined },
+        showResultButtonProps: { children: 'Vis 4 treff', onClick: () => undefined },
+      },
+      {
+        id: 'gender',
+        title: 'Kjønn',
+        component: GenderPageSimple,
+        nullstillButtonProps: { children: 'Nullstill', variant: 'borderless', onClick: () => undefined },
+        showResultButtonProps: { children: 'Vis 5 treff', onClick: () => undefined },
+      },
+    ];
+
+    return (
+      <div>
+        <DrawerNavigationPOC views={views} isOpen={true} onCloseButton={() => null} />
       </div>
     );
   },

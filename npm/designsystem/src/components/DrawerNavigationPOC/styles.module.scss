@@ -1,3 +1,6 @@
-h2[tabindex='-1'] {
-  outline: none;
+.drawer-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
