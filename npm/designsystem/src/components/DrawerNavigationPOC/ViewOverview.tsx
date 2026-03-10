@@ -1,8 +1,5 @@
-import ElementHeader from '../ElementHeader';
-import LinkList from '../LinkList';
-import Tag from '../Tag';
-import TagList from '../TagList';
 import { DrawerNavigationCommonProps, ViewConfig } from './DrawerNavigationPOC';
+import FilterOverviewLinkList from './FilterOverviewLinkList';
 
 export interface DummyFilter {
   title: string;
@@ -20,24 +17,16 @@ export type ViewOverviewConfig = ViewConfig<ViewOverviewProps>;
 const ViewOverview: React.FC<DrawerNavigationCommonProps & ViewOverviewProps> = ({ filters, navigate }) => {
   return (
     <div>
-      <LinkList chevron>
+      <FilterOverviewLinkList>
         {filters.map(filter => (
-          <LinkList.Link
+          <FilterOverviewLinkList.Link
             key={filter.title}
+            title={filter.title}
+            chips={filter.activeFilters}
             onClick={() => (filter.onClick ? filter.onClick() : filter.viewId && navigate.goToView(filter.viewId))}
-          >
-            <ElementHeader>
-              <span>{filter.title}</span>
-              <br />
-              <TagList>
-                {filter.activeFilters.map(chipTitle => (
-                  <Tag key={chipTitle}>{chipTitle}</Tag>
-                ))}
-              </TagList>
-            </ElementHeader>
-          </LinkList.Link>
+          />
         ))}
-      </LinkList>
+      </FilterOverviewLinkList>
     </div>
   );
 };
