@@ -16,18 +16,16 @@ export type ViewOverviewConfig = ViewConfig<ViewOverviewProps>;
 
 const ViewOverview: React.FC<DrawerNavigationCommonProps & ViewOverviewProps> = ({ filters, navigate }) => {
   return (
-    <div>
-      <FilterOverviewLinkList>
-        {filters.map(filter => (
-          <FilterOverviewLinkList.Link
-            key={filter.title}
-            title={filter.title}
-            chips={filter.activeFilters}
-            onClick={() => (filter.onClick ? filter.onClick() : filter.viewId && navigate.goToView(filter.viewId))}
-          />
-        ))}
-      </FilterOverviewLinkList>
-    </div>
+    <FilterOverviewLinkList>
+      {filters.map(filter => (
+        <FilterOverviewLinkList.Link
+          key={filter.title}
+          title={filter.title}
+          chips={filter.activeFilters}
+          onClick={() => (filter.onClick ? filter.onClick() : filter.viewId && navigate.goToView(filter.viewId))}
+        />
+      ))}
+    </FilterOverviewLinkList>
   );
 };
 

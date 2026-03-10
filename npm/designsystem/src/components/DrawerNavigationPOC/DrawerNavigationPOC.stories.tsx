@@ -8,6 +8,8 @@ import Badge from '../Badge';
 import Button from '../Button';
 import LinkList from '../LinkList';
 import ViewOverview, { ViewOverviewConfig } from './ViewOverview';
+import Input from '../Input';
+import { ValidationErrors } from '../Validation/types';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/DrawerNavigationPOC',
@@ -215,6 +217,113 @@ export const OverviewWithCustomComponent = {
   args: { views: customOverviewViews },
   render: ({ views }: { views: ViewConfig[] }): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
+    return (
+      <div>
+        <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
+        <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+      </div>
+    );
+  },
+};
+
+interface ValidationInputPageProps {
+  inputRef: React.RefObject<HTMLInputElement>;
+  inputValue: string;
+  setInputValue: (value: string) => void;
+  errors: ValidationErrors;
+  clearErrors: () => void;
+}
+
+const ValidationInputPage: React.FC<DrawerNavigationCommonProps & ValidationInputPageProps> = ({
+  inputRef,
+  inputValue,
+  setInputValue,
+  errors,
+  clearErrors,
+}) => (
+  <div>
+    <Input
+      ref={inputRef}
+      label="Skriv inn verdi"
+      required
+      value={inputValue}
+      onChange={e => {
+        setInputValue(e.target.value);
+        if (Object.keys(errors).length > 0) {
+          clearErrors();
+        }
+      }}
+      error={Object.keys(errors).length > 0}
+      errorText={errors.input?.message as string}
+    />
+  </div>
+);
+
+export const WithValidation = {
+  render: () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [errors, setErrors] = useState<ValidationErrors>({});
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    const validate = (): boolean => {
+      if (!inputValue.trim()) {
+        setErrors({ input: { message: 'Du må fylle ut dette feltet', ref: inputRef.current ?? undefined } });
+        return false;
+      }
+      setErrors({});
+      return true;
+    };
+
+    const views = [
+      {
+        id: 'overview',
+        title: 'Filtrer',
+        component: ViewOverview,
+        props: {
+          filters: [{ title: 'Dato', activeFilters: [], viewId: 'date' }],
+        },
+        nullstillButtonProps: {
+          children: 'Nullstill',
+          onClick: (): void => {
+            setInputValue('');
+            setErrors({});
+          },
+        },
+        showResultButtonProps: {
+          children: `Vis ${3} treff`,
+          onClick: (): void => setIsOpen(false),
+        },
+      },
+      {
+        id: 'date',
+        title: 'Dato',
+        component: ValidationInputPage,
+        props: {
+          inputRef,
+          inputValue,
+          setInputValue,
+          errors,
+          clearErrors: (): void => setErrors({}),
+        },
+        nullstillButtonProps: {
+          children: 'Nullstill',
+          onClick: (): void => {
+            setInputValue('');
+            setErrors({});
+          },
+        },
+        showResultButtonProps: {
+          children: `Vis ${3} treff`,
+          onClick: (): void => {
+            if (validate()) {
+              setIsOpen(false);
+            }
+          },
+        },
+      },
+    ];
+
     return (
       <div>
         <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>

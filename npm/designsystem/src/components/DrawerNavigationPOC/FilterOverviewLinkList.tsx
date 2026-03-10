@@ -56,11 +56,13 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
       <button className={linkClasses} ref={refObject as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
         <div className={LinkListStyles['link-list__button__content']}>
           <span>{title}</span>
-          <TagList>
-            {chips.map(chip => (
-              <Tag key={chip}>{chip}</Tag>
-            ))}
-          </TagList>
+          {chips.length > 1 && (
+            <TagList>
+              {chips.map(chip => (
+                <Tag key={chip}>{chip}</Tag>
+              ))}
+            </TagList>
+          )}
         </div>
         <Icon svgIcon={ChevronRight} isHovered={isHovered} size={IconSize.XSmall} color={'var(--color-action-graphics-onlight)'} />
       </button>
