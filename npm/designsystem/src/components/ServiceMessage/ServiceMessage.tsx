@@ -12,7 +12,7 @@ import { breakpoints } from '../../theme/grid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
-import { renderElementHeader } from '../ElementHeader/ElementHeader';
+import { renderElementHeader } from '../ElementHeader/utils';
 import Icon, { IconSize } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';

@@ -5,8 +5,8 @@ import { useEffect, useRef } from 'react';
  * @param value Verdi du ønsker å ta vare på
  * @returns Forrige verdi
  */
-export const usePrevious = <T>(value: T): T | undefined => {
-  const ref = useRef<T>();
+export const usePrevious = <T>(value: T): T | null => {
+  const ref = useRef<T | null>(null);
 
   useEffect(() => {
     ref.current = value;

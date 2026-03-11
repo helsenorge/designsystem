@@ -1,9 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "vitest/jsdom", "node"]
   },
   "include": ["src"],
-  "exclude": ["**/*.test.snap.tsx", "**/*.stories.tsx"],
+  "exclude": ["**/*.test.snap.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

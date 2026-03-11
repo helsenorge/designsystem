@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 import {
   autoUpdate,
@@ -17,16 +17,11 @@ import {
 } from '@floating-ui/react';
 import classNames from 'classnames';
 
+import { PopOverVariant } from './utils';
 import { AnalyticsId, ZIndex } from '../../constants';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 
 import styles from './styles.module.scss';
-
-export enum PopOverVariant {
-  positionautomatic = 'positionautomatic',
-  positionbelow = 'positionbelow',
-  positionabove = 'positionabove',
-}
 
 export type PopOverRole = 'tooltip' | 'dialog' | 'group';
 
@@ -42,7 +37,7 @@ export interface PopOverProps {
   /** Content shown inside PopOver. Note that if role="tooltip", you must not include interactive/focusable elements. */
   children: React.ReactNode;
   /** Ref for the element the PopOver is placed upon */
-  controllerRef: React.RefObject<HTMLElement | SVGSVGElement>;
+  controllerRef: React.RefObject<HTMLElement | SVGSVGElement | null>;
   /** Show the popover. Only applies when role=tooltip. Default: false. */
   show?: boolean;
   /** Adds custom classes to the element. */
@@ -59,9 +54,11 @@ export interface PopOverProps {
   testId?: string;
   /** Overrides the default z-index of PopOver */
   zIndex?: number;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLDivElement | SVGSVGElement | HTMLElement | null>;
 }
 
-const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, PopOverProps>((props, ref) => {
+const PopOver: React.FC<PopOverProps> = props => {
   const {
     ariaLabel,
     ariaLabelledById,
@@ -75,6 +72,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, P
     testId,
     zIndex = ZIndex.PopOver,
     placement,
+    ref,
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
@@ -125,7 +123,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, P
       </div>
     </FloatingFocusManager>
   );
-});
+};
 
 PopOver.displayName = 'PopOver';
 

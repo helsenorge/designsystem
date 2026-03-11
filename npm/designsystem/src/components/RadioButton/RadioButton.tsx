@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import classNames from 'classnames';
+
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
@@ -8,8 +10,8 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
-import { getLabelText, renderLabelAsParent } from '../Label';
+import ErrorWrapper from '../ErrorWrapper';
+import { getLabelText, renderLabelAsParent } from '../Label/utils';
 
 import radioButtonStyles from './styles.module.scss';
 
@@ -40,26 +42,11 @@ export interface RadioButtonProps
   errorTextId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the input element */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
-export const getRadioLabelClasses = (
-  radioId: string,
-  onColor: FormOnColor,
-  large: boolean,
-  checkedRadioId?: string
-): string | undefined => {
-  const onCherry = onColor === 'oninvalid';
-  const checked = radioId === checkedRadioId;
-
-  return classNames({
-    [radioButtonStyles['radio-button-label__large--on-grey']]: large && onColor === 'ongrey' && !checked,
-    [radioButtonStyles['radio-button-label__large--on-blueberry']]: onColor === 'onblueberry' && !checked && large,
-    [radioButtonStyles['radio-button-label__large--selected']]: large && checked && !onCherry,
-    [radioButtonStyles['radio-button-label__large--selected-invalid']]: large && checked && onCherry,
-  });
-};
-
-export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React.Ref<HTMLInputElement>) => {
+export const RadioButton: React.FC<RadioButtonProps> = props => {
   const {
     className,
     defaultChecked,
@@ -78,6 +65,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     testId,
     required,
     labelClassNames,
+    ref,
     ...rest
   } = props;
   const invalid = error || onColor === FormOnColor.oninvalid;
@@ -148,22 +136,20 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
-        {renderLabelAsParent(
-          label,
-          getLabelContent(),
-          inputId,
-          onColor as FormOnColor,
-          radioButtonLabelClasses,
-          undefined,
-          radioButtonStyles['radiobutton-sublabel-wrapper'],
-          isLarge,
-          undefined,
-          radioButtonStyles['radiobutton-afterlabelchildren-wrapper']
-        )}
+        {renderLabelAsParent({
+          label: label,
+          children: getLabelContent(),
+          inputId: inputId,
+          onColor: onColor as FormOnColor,
+          labelClassName: radioButtonLabelClasses,
+          sublabelWrapperClassName: radioButtonStyles['radiobutton-sublabel-wrapper'],
+          large: isLarge,
+          afterLabelChildrenClassName: radioButtonStyles['radiobutton-afterlabelchildren-wrapper'],
+        })}
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 RadioButton.displayName = 'RadioButton';
 

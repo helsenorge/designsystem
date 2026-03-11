@@ -1,12 +1,14 @@
 import React from 'react';
 
+import type { DuolistGroupProps } from '../Duolist';
+
 import { isComponent } from '../../utils/component';
 import uuid from '../../utils/uuid';
-import { DuolistGroup, DuolistGroupProps } from '../Duolist';
+import { DuolistGroup } from '../Duolist';
 
 import styles from './styles.module.scss';
 
-interface HighlightProps {
+export interface HighlightProps {
   children?: React.ReactNode;
   searchText?: string;
 }
@@ -38,7 +40,8 @@ export const Highlighter = ({ children, searchText }: HighlightProps): React.Rea
     }
 
     if (React.isValidElement(node)) {
-      const { children: nodeChildren, ...props } = node.props;
+      const element = node as React.ReactElement<{ children?: React.ReactNode }>;
+      const { children: nodeChildren, ...props } = element.props;
 
       // Handle DuoList specifically
       if (isComponent<DuolistGroupProps>(node, DuolistGroup)) {

@@ -1,16 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
+
+const emptySubscribe = (): (() => void) => (): void => {};
+const getClientSnapshot = (): boolean => false;
+const getServerSnapshot = (): boolean => true;
 
 /**
- * Sjekk om React kjører på server, eller ikke. (useEffect kjører ikke på server)
+ * Sjekk om React kjører på server, eller ikke.
  *
  * @returns true dersom koden kjører på server
  */
 export const useIsServerSide = (): boolean => {
-  const [isServerSide, setIsServerSide] = useState(true);
-
-  useEffect(() => {
-    setIsServerSide(false);
-  }, []);
-
-  return isServerSide;
+  return useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot);
 };

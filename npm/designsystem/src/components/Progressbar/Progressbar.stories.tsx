@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import Progressbar, { Overlay, ProgressBarMode } from './Progressbar';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import { Overlay, ProgressBarMode } from './constants';
+import Progressbar from './Progressbar';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
 

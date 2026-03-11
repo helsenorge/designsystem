@@ -1,7 +1,6 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import NotificationPanel from './NotificationPanel';
 import { allTitleTags } from '../../../.storybook/knobs';
@@ -111,7 +110,7 @@ export const AllVariants: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
-              <AnchorLink href={'https://www.helsenorge.no'} target="_blank" rel="noopener noreferrer">
+              <AnchorLink href={'https://www.helsenorge.no'} target="_blank">
                 {'Les mer om dine rettigheter her (external).'}
               </AnchorLink>
             </div>

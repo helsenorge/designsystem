@@ -12,12 +12,14 @@ export interface HelpDetailsProps {
   /** Sets the text content of the HelpDetails. */
   children: React.ReactNode;
   /** Ref for the element the HelpDetails is placed upon */
-  controllerRef?: React.RefObject<HTMLButtonElement>;
+  controllerRef?: React.RefObject<HTMLButtonElement | null>;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
-
-const HelpDetails = React.forwardRef<HTMLDivElement, HelpDetailsProps>(({ children, controllerRef, testId }, ref) => {
+const HelpDetails: React.FC<HelpDetailsProps> = props => {
+  const { children, controllerRef, testId, ref } = props;
   const arrowRef = useRef(null);
   const [bubbleMinWidth, setBubbleMinWidth] = React.useState<number | null>(null);
   const [arrowYOffsetValue, setArrowYOffsetValue] = useState<number>();
@@ -74,7 +76,7 @@ const HelpDetails = React.forwardRef<HTMLDivElement, HelpDetailsProps>(({ childr
       <div className={contentClasses}>{children}</div>
     </div>
   );
-});
+};
 
 HelpDetails.displayName = 'HelpDetails';
 

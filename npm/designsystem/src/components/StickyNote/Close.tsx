@@ -1,5 +1,3 @@
-import React from 'react';
-
 import classNames from 'classnames';
 
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
@@ -17,6 +15,8 @@ export interface CloseProps {
   ariaLabel?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the button element */
+  ref?: React.Ref<HTMLButtonElement | null>;
 }
 
 /*
@@ -25,8 +25,8 @@ export interface CloseProps {
   Likt som i Figma.
  */
 
-const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, ref: React.ForwardedRef<HTMLButtonElement>) {
-  const { testId, ariaLabel = 'Lukk', onClick } = props;
+const Close: React.FC<CloseProps> = (props: CloseProps) => {
+  const { testId, ariaLabel = 'Lukk', onClick, ref } = props;
   const { refObject, isHovered } = usePseudoClasses();
 
   const iconSize = useIsMobileBreakpoint() ? 38 : 48;
@@ -47,6 +47,6 @@ const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, re
       </span>
     </button>
   );
-});
+};
 
 export default Close;

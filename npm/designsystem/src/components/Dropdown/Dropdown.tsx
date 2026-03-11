@@ -1,8 +1,16 @@
-import React, { useEffect, useRef, useId, ComponentType } from 'react';
+import type { ComponentType } from 'react';
+import React, { useEffect, useRef, useId } from 'react';
 
 import { autoUpdate, offset, shift, size, useFloating, flip } from '@floating-ui/react';
 import classNames from 'classnames';
 import { clamp } from 'motion/react';
+
+import type { SingleSelectItemProps } from './SingleSelect/SingleSelectItem';
+import type { HNDesignsystemDropdown } from '../../resources/Resources';
+import type { CheckboxProps } from '../Checkbox';
+import type { SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
+import type { LabelProps } from '../Label';
 
 import {
   AnalyticsId,
@@ -16,20 +24,18 @@ import {
   useToggle,
 } from '../..';
 import { getResources } from './resourceHelper';
-import { SingleSelectItem, SingleSelectItemProps } from './SingleSelect/SingleSelectItem';
+import { SingleSelectItem } from './SingleSelect/SingleSelectItem';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
-import { HNDesignsystemDropdown } from '../../resources/Resources';
+import { useLanguage } from '../../hooks/useLanguage';
 import { isComponent } from '../../utils/component';
-import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
-import Checkbox, { CheckboxProps } from '../Checkbox';
-import Icon, { SvgIcon } from '../Icon';
+import Checkbox from '../Checkbox';
+import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
-import { IconName } from '../Icons/IconNames';
 import PlusSmall from '../Icons/PlusSmall';
-import Label, { LabelProps } from '../Label';
+import Label from '../Label';
 import LazyIcon from '../LazyIcon';
 import { SingleSelect } from './SingleSelect/SingleSelect';
 
@@ -87,7 +93,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const optionsRef = useRef<HTMLUListElement>(null);
   const childrenRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const { isHovered } = usePseudoClasses<HTMLButtonElement>(buttonRef);
+  const { isHovered } = usePseudoClasses<HTMLButtonElement | null>(buttonRef);
   const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
   const isMobile = useIsMobileBreakpoint();
@@ -241,19 +247,17 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   useOutsideEvent(dropdownRef, () => isOpen && handleClose());
 
   const renderChildren = React.Children.map(children, (child, index) => {
+    const element = child as React.ReactElement<{ ref?: React.Ref<HTMLElement | null> }>;
+
     return (
       <li className={listItemClasses} id={`${optionIdPrefix}-${index}`}>
-        {React.isValidElement(child) && childrenRefList.current && childrenRefList.current[index]
+        {React.isValidElement(element) && childrenRefList.current && childrenRefList.current[index]
           ? ((): React.ReactElement => {
-              const baseProps: { ref: React.Ref<HTMLElement> } = {
-                ref: mergeRefs([child.props.ref, childrenRefList.current[index]]),
-              };
-
-              if (isMultiSelect) {
-                const label = (child.props as CheckboxProps).label as React.ReactNode;
+              if (isMultiSelect && isComponent<CheckboxProps>(element, Checkbox)) {
+                const label = element.props.label;
                 if (React.isValidElement(label) && isComponent<LabelProps>(label, Label)) {
-                  return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
-                    ...baseProps,
+                  return React.cloneElement(element, {
+                    ref: mergeRefs([element.props.ref, childrenRefList.current[index]]),
                     label: React.cloneElement(label, {
                       labelClassName: classNames((label.props as LabelProps)?.labelClassName, styles['dropdown__multiselect-item']),
                     }),
@@ -261,7 +265,9 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
                 }
               }
 
-              return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, baseProps);
+              return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
+                ref: mergeRefs([element.props.ref, childrenRefList.current[index]]),
+              });
             })()
           : child}
       </li>

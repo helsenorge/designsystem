@@ -3,10 +3,12 @@ import React, { useState, useEffect, useId } from 'react';
 import classNames from 'classnames';
 import { useAnimate } from 'motion/react';
 
+import { ToggleOnColor, TogglePosition } from './constants';
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 
 import styles from './styles.module.scss';
+
 import '../../scss/supernova/styles/colors.css';
 
 export type LabelText = {
@@ -18,17 +20,6 @@ export type StatusTextType = {
   checked: string;
   unchecked: string;
 };
-
-export enum TogglePosition {
-  left = 'left',
-  right = 'right',
-}
-
-export enum ToggleOnColor {
-  onwhite = 'onwhite',
-  onneutral = 'onneutral',
-  onblueberry = 'onblueberry',
-}
 
 export interface ToggleProps extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /**  Determines if the Toggle is checked */
@@ -71,6 +62,22 @@ const Toggle: React.FC<ToggleProps> = ({
   const showHoveredStyling = isHovered && !showToggleAnimation;
   const isOnWhite = onColor === ToggleOnColor.onwhite;
 
+  const getBackgroundColor = (): string => {
+    if (checkedState && isActive) {
+      return 'var(--core-color-blueberry-800)';
+    } else if (checkedState) {
+      return showHoveredStyling ? 'var(--color-action-graphics-onlight-hover)' : 'var(--color-action-graphics-onlight)';
+    } else if (isOnWhite && isActive) {
+      return 'var(--core-color-neutral-400)';
+    } else if (isOnWhite) {
+      return showHoveredStyling ? 'var(--core-color-neutral-200)' : 'var(--core-color-neutral-50)';
+    } else if (isActive) {
+      return 'var(--core-color-neutral-200)';
+    } else {
+      return showHoveredStyling ? 'var(--core-color-neutral-50)' : 'var(--core-color-white)';
+    }
+  };
+
   useEffect(() => {
     if (showToggleAnimation) {
       const timer = setTimeout(() => setShowToggleAnimation(false), 300);
@@ -93,22 +100,6 @@ const Toggle: React.FC<ToggleProps> = ({
     animate(toggleDotRef.current, { x: showHoveredStyling ? 9 : checkedState ? 18 : 0 }, { duration: 0.2, ease: 'easeInOut' });
     animate('svg', { opacity: checkedState ? 1 : 0 }, { duration: 0.2, ease: 'easeInOut' });
   }, [checkedState, showHoveredStyling, isActive]);
-
-  const getBackgroundColor = (): string => {
-    if (checkedState && isActive) {
-      return 'var(--core-color-blueberry-800)';
-    } else if (checkedState) {
-      return showHoveredStyling ? 'var(--color-action-graphics-onlight-hover)' : 'var(--color-action-graphics-onlight)';
-    } else if (isOnWhite && isActive) {
-      return 'var(--core-color-neutral-400)';
-    } else if (isOnWhite) {
-      return showHoveredStyling ? 'var(--core-color-neutral-200)' : 'var(--core-color-neutral-50)';
-    } else if (isActive) {
-      return 'var(--core-color-neutral-200)';
-    } else {
-      return showHoveredStyling ? 'var(--core-color-neutral-50)' : 'var(--core-color-white)';
-    }
-  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setCheckedState(event.target.checked);

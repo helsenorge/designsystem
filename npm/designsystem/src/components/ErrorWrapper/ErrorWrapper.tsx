@@ -1,5 +1,3 @@
-import React from 'react';
-
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
@@ -18,7 +16,7 @@ export interface ErrorWrapperProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** Adds a ref to the error message p tag */
-  errorMessageRef?: React.ForwardedRef<HTMLDivElement>;
+  errorMessageRef?: React.Ref<HTMLDivElement>;
   /** Renders the error component (Default: true) */
   renderError?: boolean;
   /** Sets the data-testid attribute. */

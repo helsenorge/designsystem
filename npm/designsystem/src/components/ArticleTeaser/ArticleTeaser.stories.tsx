@@ -1,10 +1,10 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
-import { useArgs } from 'storybook/internal/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
-import ArticleTeaser, { ArticleTeaserProps } from './ArticleTeaser';
+import type { ArticleTeaserProps } from './ArticleTeaser';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import ArticleTeaser from './ArticleTeaser';
 import Title from '../Title';
 
 const meta = {
@@ -20,6 +20,9 @@ const meta = {
   },
   args: {
     contentId: 'contentId',
+    expanded: false,
+    children: undefined,
+    onExpand: (): void => {},
   },
   argTypes: {
     heightCollapsed: {
@@ -34,7 +37,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const DummyContent = (props: { expanded: boolean }) => (
+const DummyContent = (props: { expanded: boolean }): React.JSX.Element => (
   <section>
     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
       <Title htmlMarkup="h2" appearance="title4">
@@ -55,11 +58,10 @@ const DummyContent = (props: { expanded: boolean }) => (
 );
 
 export const Default: Story = {
-  args: {},
   render: args => {
     const [{ expanded }, setExpanded] = useArgs<ArticleTeaserProps>();
 
-    const onExpand = () => {
+    const onExpand = (): void => {
       setExpanded({ expanded: !expanded });
     };
 

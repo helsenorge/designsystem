@@ -1,11 +1,10 @@
-import React from 'react';
-
 import classNames from 'classnames';
+
+import type { HNDesignsystemFormFieldTag } from '../../resources/Resources';
 
 import { getResources } from './resourceHelper';
 import { AnalyticsId, LanguageLocales } from '../../constants';
-import { HNDesignsystemFormFieldTag } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
+import { useLanguage } from '../../hooks/useLanguage';
 
 import styles from './styles.module.scss';
 

@@ -1,3 +1,5 @@
+/* This stylelint rule gets confused by global scss mixin+media query syntax, so we disable it for this file */
+/* stylelint-disable no-invalid-position-declaration */
 @use 'sass:map';
 @use './spacers' as spacers;
 @use './breakpoints' as breakpoints;

@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { SvgPathProps } from '../Icon';
+import type { SvgPathProps } from '../Icon';
 
 const Grain: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (

@@ -16,7 +16,12 @@ export default defineConfig({
     },
     rollupOptions: {
       preserveEntrySignatures: 'strict',
-      input: './src/index.ts',
+      input: {
+        index: './src/index.ts',
+        copy: './src/vite/copy.ts',
+      },
+      // Externalize Node.js built-ins for copy.ts
+      external: [/^node:/],
       output: {
         format: 'es',
         entryFileNames: '[name].js',

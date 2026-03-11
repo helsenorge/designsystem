@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
+
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { AnalyticsId, FormOnColor, FormSize, IconSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
@@ -9,10 +11,10 @@ import { getColor } from '../../theme/currys/color';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper from '../ErrorWrapper';
 import Icon from '../Icon';
 import Check from '../Icons/Check';
-import { getLabelText, renderLabelAsParent } from '../Label';
+import { getLabelText, renderLabelAsParent } from '../Label/utils';
 
 import checkboxStyles from './styles.module.scss';
 
@@ -41,9 +43,11 @@ export interface CheckboxProps
   errorTextId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
-export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<HTMLInputElement>) => {
+export const Checkbox: React.FC<CheckboxProps> = props => {
   const {
     className,
     checked = false,
@@ -61,6 +65,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     testId,
     required,
     onChange,
+    ref,
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
   const errorTextId = useIdWithFallback(errorTextIdProp);
@@ -158,23 +163,20 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
-        {renderLabelAsParent(
-          label,
-          getLabelContent(),
-          inputId,
-          onColor as FormOnColor,
-          checkboxLabelClasses,
-          labelTextClasses,
-          checkboxStyles['checkbox-sublabel-wrapper'],
-          large,
-          undefined,
-          checkboxStyles['checkbox-afterlabelchildren-wrapper']
-        )}
+        {renderLabelAsParent({
+          label: label,
+          children: getLabelContent(),
+          inputId: inputId,
+          onColor: onColor as FormOnColor,
+          labelClassName: checkboxLabelClasses,
+          labelTextClassName: labelTextClasses,
+          sublabelWrapperClassName: checkboxStyles['checkbox-sublabel-wrapper'],
+          large: large,
+          afterLabelChildrenClassName: checkboxStyles['checkbox-afterlabelchildren-wrapper'],
+        })}
       </div>
     </ErrorWrapper>
   );
-});
-
-Checkbox.displayName = 'Checkbox';
+};
 
 export default Checkbox;

@@ -1,7 +1,7 @@
-import React from 'react';
+import type { Palette } from './BabyMobile';
+import type { BaseSvgIllustrationProps } from '../Illustration';
 
-import { Palette } from './BabyMobile';
-import { BaseSvgIllustrationProps, ViewBoxSize } from '../Illustration';
+import { ViewBoxSize } from '../Illustration/utils';
 
 const BabyMobileMedium: React.FC<BaseSvgIllustrationProps> = ({ color, svgProperties, title }) => {
   const palette = ((): Palette => {

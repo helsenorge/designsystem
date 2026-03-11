@@ -1,21 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import cn from 'classnames';
 
 import type { HNDesignsystemInput } from '../../resources/Resources';
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import type { SvgIcon } from '../Icon';
 import type { IconName } from '../Icons/IconNames';
 
+import { InputTypes } from './constants';
 import { getResources } from './resourceHelper';
 import { FormOnColor, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, LanguageLocales } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
+import { useLanguage } from '../../hooks/useLanguage';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
-import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
-import Icon, { IconSize, type SvgIcon } from '../Icon';
-import { renderLabel } from '../Label';
+import ErrorWrapper from '../ErrorWrapper';
+import Icon, { IconSize } from '../Icon';
+import { renderLabel } from '../Label/utils';
 import LazyIcon from '../LazyIcon';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
@@ -63,9 +66,9 @@ export interface InputProps
   /** Places the icon to the right */
   iconRight?: boolean;
   /** Ref that is placed on the inputContainerRef */
-  inputContainerRef?: React.RefObject<HTMLDivElement>;
+  inputContainerRef?: React.RefObject<HTMLDivElement | null>;
   /** Ref that is placed on the inputWrapper */
-  inputWrapperRef?: React.RefObject<HTMLDivElement>;
+  inputWrapperRef?: React.RefObject<HTMLDivElement | null>;
   /** Changes the color profile of the input */
   onColor?: keyof typeof FormOnColor;
   /** Changes the visuals of the input */
@@ -86,22 +89,10 @@ export interface InputProps
   rightOfInput?: React.ReactNode;
   /** max character limit in input  */
   maxCharacters?: number;
-  /** @deprecated use resources instead. The text is displayed in the end of the text-counter */
-  maxText?: string;
   /** Resources for component */
   resources?: Partial<HNDesignsystemInput>;
-}
-
-export enum InputTypes {
-  text = 'text',
-  number = 'number',
-  email = 'email',
-  password = 'password',
-  search = 'search',
-  tel = 'tel',
-  url = 'url',
-  date = 'date',
-  time = 'time',
+  /** Ref passed to the input element */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
 const getInputMaxWidth = (characters: number, hasIcon: boolean, iconSize: number): string => {
@@ -112,7 +103,7 @@ const getInputMaxWidth = (characters: number, hasIcon: boolean, iconSize: number
   return `calc(${characters * AVERAGE_CHARACTER_WIDTH_PX}px + ${paddingWidth} + ${iconWidth} + ${borderWidth})`;
 };
 
-const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputElement>) => {
+const Input: React.FC<InputProps> = props => {
   const {
     className,
     defaultValue,
@@ -144,9 +135,9 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     onKeyDown,
     autoFocus,
     maxCharacters,
-    maxText,
     inputContainerRef,
     resources,
+    ref,
     ...rest
   } = props;
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
@@ -155,21 +146,22 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const mergedResources: HNDesignsystemInput = {
     ...defaultResources,
     ...resources,
-    characters: maxText || resources?.characters || defaultResources.characters,
   };
 
   const breakpoint = useBreakpoint();
   const inputContainerRefLocal = useRef<HTMLDivElement>(null);
   const inputId = useIdWithFallback(inputIdProp);
   const [input, setInput] = useState(defaultValue || '');
+  const [prevDefaultValue, setPrevDefaultValue] = useState(defaultValue);
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
   const numKeyPressed = useRef<boolean>(false);
   const errorTextId = useIdWithFallback(errorTextIdProp);
   const numRegex = /^[0-9]$/;
 
-  useEffect(() => {
+  if (defaultValue !== prevDefaultValue) {
+    setPrevDefaultValue(defaultValue);
     setInput(defaultValue || '');
-  }, [defaultValue]);
+  }
 
   const onDark = onColor === FormOnColor.ondark;
   const onBlueberry = onColor === FormOnColor.onblueberry;
@@ -263,7 +255,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
-        {renderLabel(label, inputId, onColor as FormOnColor)}
+        {renderLabel({ label: label, inputId: inputId, onColor: onColor as FormOnColor })}
         {/* input-elementet tillater keyboard-interaksjon */}
         <div className={styles['content-wrapper']}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
@@ -312,7 +304,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 Input.displayName = 'Input';
 

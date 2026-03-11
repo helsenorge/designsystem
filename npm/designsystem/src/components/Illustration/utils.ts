@@ -1,3 +1,7 @@
+export enum ViewBoxSize {
+  Medium = '0 0 512 512',
+  Small = '0 0 200 200',
+}
 interface IllustrationConfig<T> {
   size: number;
   large?: T;

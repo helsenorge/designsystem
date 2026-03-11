@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
+import type { IconName } from '../../Icons/IconNames';
+import type { TabProps } from '../Tab';
+import type { TabsColors } from '../Tabs';
+
 import { palette } from '../../../theme/palette';
 import Icon, { IconSize } from '../../Icon';
-import { IconName } from '../../Icons/IconNames';
 import LazyIcon from '../../LazyIcon';
-import { TabProps } from '../Tab';
-import { TabsColors } from '../Tabs';
 
 import styles from './styles.module.scss';
 
@@ -16,7 +17,7 @@ interface TabItemProps {
   index: number;
   color: TabsColors;
   selectedTab: number;
-  tabRefs: React.MutableRefObject<React.RefObject<HTMLButtonElement>[] | null | undefined>;
+  tabRefs: React.RefObject<React.RefObject<HTMLButtonElement | null>[] | null | undefined>;
   tabListVisible: boolean;
   onTabListClick: (index: number) => void;
 }

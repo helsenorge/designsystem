@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { TransformWrapper, TransformComponent, useTransformComponent, useControls } from 'react-zoom-pan-pinch';
 
+import type { HNDesignsystemLightBox } from '../../resources/Resources';
+
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import ChevronLeft from '@helsenorge/designsystem-react/components/Icons/ChevronLeft';
 import ChevronRight from '@helsenorge/designsystem-react/components/Icons/ChevronRight';
@@ -15,14 +17,12 @@ import { IconSize, KeyboardEventKey, LanguageLocales, ZIndex } from '@helsenorge
 import { useFocusTrap } from '@helsenorge/designsystem-react/hooks/useFocusTrap';
 import { useReturnFocusOnUnmount } from '@helsenorge/designsystem-react/hooks/useReturnFocusOnUnmount';
 import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
-import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 import { disableBodyScroll, enableBodyScroll } from '@helsenorge/designsystem-react/utils/scroll';
 
-import { useKeyboardEvent } from '@helsenorge/designsystem-react';
+import { useLanguage, useKeyboardEvent } from '@helsenorge/designsystem-react';
 
 import MiniSlider from './MiniSlider';
 import { getResources } from './resourceHelper';
-import { HNDesignsystemLightBox } from '../../resources/Resources';
 
 import styles from './styles.module.scss';
 
@@ -249,7 +249,7 @@ const Controls = ({
     updateStates(state.scale);
   });
   const { zoomIn, zoomOut, centerView } = useControls();
-  let centerTimeout: number;
+  const centerTimeout = useRef<number>(null);
 
   const calculateZoomCenter = (newScale: number): number[] => {
     const element = document.getElementsByClassName('react-transform-component')[0];
@@ -267,13 +267,13 @@ const Controls = ({
     const [x, y] = calculateZoomCenter(newScale);
     transform(x, y, newScale, 1);
 
-    if (centerTimeout) {
-      clearTimeout(centerTimeout);
+    if (centerTimeout.current) {
+      clearTimeout(centerTimeout.current);
     }
 
     // Starter sentrering timeout hvis det zoomes ut
     if (newScale - zoom < 0) {
-      centerTimeout = window.setTimeout(() => {
+      centerTimeout.current = window.setTimeout(() => {
         centerView();
       }, 160);
     }

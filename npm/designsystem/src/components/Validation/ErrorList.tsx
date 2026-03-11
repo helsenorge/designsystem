@@ -1,7 +1,6 @@
-import React from 'react';
+import type { ValidationErrors } from './types';
 
 import ErrorListItem from './ErrorListItem';
-import { ValidationErrors } from './types';
 import List from '../List';
 
 interface ErrorListProps {

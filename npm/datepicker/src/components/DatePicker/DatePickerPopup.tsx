@@ -1,10 +1,13 @@
 import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
-import { type Locale, format } from 'date-fns';
+import { format } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { DayPicker, type DayPickerProps, type PropsSingle, type Labels } from 'react-day-picker';
+import { DayPicker } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
+
+import type { Locale } from 'date-fns';
+import type { DayPickerProps, PropsSingle, Labels } from 'react-day-picker';
 
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import { useInterval } from '@helsenorge/designsystem-react/hooks/useInterval';
@@ -51,8 +54,8 @@ interface DatePickerPopupProps
     Pick<DayPickerProps, 'dir' | 'disabled' | 'footer' | 'startMonth' | 'initialFocus' | 'locale' | 'month' | 'onMonthChange' | 'endMonth'>,
     Pick<PropsSingle, 'selected' | 'onSelect'> {
   ariaLabels?: DatePickerAriaLabels;
-  datepickerWrapperRef: React.RefObject<HTMLDivElement>;
-  inputRef: React.RefObject<HTMLInputElement>;
+  datepickerWrapperRef: React.RefObject<HTMLDivElement | null>;
+  inputRef: React.RefObject<HTMLInputElement | null>;
   testId?: string;
   variant: keyof typeof PopOverVariant;
   zIndex?: number;

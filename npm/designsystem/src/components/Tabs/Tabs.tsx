@@ -2,15 +2,16 @@ import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
 
+import type { HNDesignsystemTabs } from '../../resources/Resources';
+import type { PaletteNames } from '../../theme/palette';
+
 import { getResources } from './resourceHelper';
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
 import { LanguageLocales } from '../../constants';
-import { HNDesignsystemTabs } from '../../resources/Resources';
+import { useLanguage } from '../../hooks/useLanguage';
 import designsystemlayout from '../../scss/layout.module.scss';
-import { PaletteNames } from '../../theme/palette';
-import { useLanguage } from '../../utils/language';
 
 import styles from './styles.module.scss';
 
@@ -34,10 +35,6 @@ export interface TabsProps {
   sticky?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** @deprecated Sets aria label on the "scroll to the right" button in TabList */
-  ariaLabelRightButton?: string;
-  /** @deprecated Sets aria label on the "scroll to the left" button in TabList */
-  ariaLabelLeftButton?: string;
   /** Resources for component */
   resources?: Partial<HNDesignsystemTabs>;
   /** Overrides the default z-index of the tabs header */
@@ -53,8 +50,6 @@ export const TabsRoot: React.FC<TabsProps> = ({
   onColor = 'onwhite',
   sticky = true,
   testId,
-  ariaLabelRightButton,
-  ariaLabelLeftButton,
   resources,
   zIndex,
 }) => {
@@ -69,8 +64,6 @@ export const TabsRoot: React.FC<TabsProps> = ({
   const mergedResources: HNDesignsystemTabs = {
     ...defaultResources,
     ...resources,
-    ariaLabelRightButton: ariaLabelRightButton || resources?.ariaLabelRightButton || defaultResources.ariaLabelRightButton,
-    ariaLabelLeftButton: ariaLabelLeftButton || resources?.ariaLabelLeftButton || defaultResources.ariaLabelLeftButton,
   };
 
   let onColorUsed: TabsOnColor = 'onwhite';

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { isValid } from 'date-fns';
 
@@ -81,27 +81,14 @@ const Unsafe_DateAndTime = ({
   // Only initialize with time if the value has a non-zero time
   const [internalTime, setInternalTime] = useState<string | undefined>(hasMeaningfulTime(value) ? toTimeString(value) : undefined);
 
-  // Track if we're currently typing in the time field
-  const isTypingTimeRef = useRef(false);
-  // Track if the user has explicitly entered a time (vs it being auto-filled)
-  const hasUserTimeRef = useRef(hasMeaningfulTime(value));
+  // Always let the latest prop value win
+  const nextTimeString = hasMeaningfulTime(value) ? toTimeString(value) : undefined;
 
-  // Sync time from value prop when it changes externally (not from our own typing)
-  useEffect(() => {
-    if (!isTypingTimeRef.current && hasUserTimeRef.current) {
-      // Only extract time from value if user has explicitly set a time
-      // This prevents "00:00" from appearing when user only selects a date
-      const newTimeString = toTimeString(value);
-      // Also check if the new time is meaningful (not 00:00)
-      if (hasMeaningfulTime(value)) {
-        setInternalTime(newTimeString);
-      }
-    }
-    isTypingTimeRef.current = false;
-  }, [value]);
+  if (internalTime !== nextTimeString) {
+    setInternalTime(nextTimeString);
+  }
 
   const handleDateChange = (newDate: Date | undefined): void => {
-    // Don't update hasUserTimeRef here - keep time empty if user hasn't entered one
     // Merge the new date with the current time string (from state, not value)
     // If time is undefined, the merged date will have 00:00 but we won't display it
     const merged = mergeDateAndTime(newDate, internalTime);
@@ -109,12 +96,9 @@ const Unsafe_DateAndTime = ({
   };
 
   const handleTimeChange = (newTime: string | undefined): void => {
-    // Mark that user has entered a time
-    hasUserTimeRef.current = !!newTime; // Only mark as true if there's actually a time value
-    // Mark that we're typing, so the useEffect doesn't overwrite our input
-    isTypingTimeRef.current = true;
     // Update internal time state immediately to allow free typing
     setInternalTime(newTime);
+
     // Merge the new time with the existing date from value prop
     const merged = mergeDateAndTime(value, newTime);
     onChange?.(merged);

@@ -1,7 +1,7 @@
-import React from 'react';
+import type { Palette } from './Support2';
+import type { BaseSvgIllustrationProps } from '../Illustration';
 
-import { Palette } from './Support2';
-import { BaseSvgIllustrationProps, ViewBoxSize } from '../Illustration';
+import { ViewBoxSize } from '../Illustration/utils';
 
 const Support2Medium: React.FC<BaseSvgIllustrationProps> = ({ color, svgProperties, title }) => {
   const palette = ((): Palette => {

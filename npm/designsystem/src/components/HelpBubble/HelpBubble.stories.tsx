@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
 import { useToggle } from '../../hooks/useToggle';
@@ -34,9 +35,6 @@ const meta = {
     showBubble: true,
   },
   argTypes: {
-    ariaLabel: {
-      control: 'text',
-    },
     ariaLabelledById: {
       control: 'text',
     },
@@ -48,7 +46,7 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: HelpBubbleVariant,
+      options: Object.values(HelpBubbleVariant),
     },
   },
 } satisfies Meta<typeof HelpBubble>;
@@ -182,25 +180,25 @@ export const HorizontalScroll: Story = {
         <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}>
           <TableHead category={HeaderCategory.normal}>
             <TableRow key="head">
-              <TableHeadCell>Fastlege</TableHeadCell>
-              <TableHeadCell>Alder</TableHeadCell>
-              <TableHeadCell>Kjønn</TableHeadCell>
-              <TableHeadCell>Fastlegekontor</TableHeadCell>
-              <TableHeadCell>Adresse</TableHeadCell>
-              <TableHeadCell>Ledige plasser</TableHeadCell>
-              <TableHeadCell>Antall på venteliste</TableHeadCell>
-              <TableHeadCell>Handlinger</TableHeadCell>
+              <TableHeadCell>{'Fastlege'}</TableHeadCell>
+              <TableHeadCell>{'Alder'}</TableHeadCell>
+              <TableHeadCell>{'Kjønn'}</TableHeadCell>
+              <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+              <TableHeadCell>{'Adresse'}</TableHeadCell>
+              <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+              <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
+              <TableHeadCell>{'Handlinger'}</TableHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-              <TableCell dataLabel="Alder">35 år</TableCell>
-              <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-              <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-              <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-              <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-              <TableCell dataLabel="Antall på venteliste">53</TableCell>
+              <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+              <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+              <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+              <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+              <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+              <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
               <TableCell dataLabel="Handlinger">
                 <HelpTriggerIcon ref={controllerRef} ariaLabel="Hjelp" />
                 <HelpBubble {...args} controllerRef={controllerRef}>
@@ -209,33 +207,33 @@ export const HorizontalScroll: Story = {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-              <TableCell dataLabel="Alder">35 år</TableCell>
-              <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-              <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-              <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-              <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-              <TableCell dataLabel="Antall på venteliste">53</TableCell>
+              <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+              <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+              <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+              <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+              <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+              <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
               <TableCell dataLabel="Handlinger">{''}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-              <TableCell dataLabel="Alder">35 år</TableCell>
-              <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-              <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-              <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-              <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-              <TableCell dataLabel="Antall på venteliste">53</TableCell>
+              <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+              <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+              <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+              <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+              <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+              <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
               <TableCell dataLabel="Handlinger">{''}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-              <TableCell dataLabel="Alder">35 år</TableCell>
-              <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-              <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-              <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-              <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-              <TableCell dataLabel="Antall på venteliste">53</TableCell>
+              <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+              <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+              <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+              <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+              <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+              <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
               <TableCell dataLabel="Handlinger">{''}</TableCell>
             </TableRow>
           </TableBody>
@@ -258,25 +256,25 @@ export const CenteredOverflow: Story = {
             <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'xl' }}>
               <TableHead category={HeaderCategory.normal}>
                 <TableRow key="head">
-                  <TableHeadCell>Fastlege</TableHeadCell>
-                  <TableHeadCell>Alder</TableHeadCell>
-                  <TableHeadCell>Kjønn</TableHeadCell>
-                  <TableHeadCell>Fastlegekontor</TableHeadCell>
-                  <TableHeadCell>Adresse</TableHeadCell>
-                  <TableHeadCell>Ledige plasser</TableHeadCell>
-                  <TableHeadCell>Antall på venteliste</TableHeadCell>
-                  <TableHeadCell>Handlinger</TableHeadCell>
+                  <TableHeadCell>{'Fastlege'}</TableHeadCell>
+                  <TableHeadCell>{'Alder'}</TableHeadCell>
+                  <TableHeadCell>{'Kjønn'}</TableHeadCell>
+                  <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+                  <TableHeadCell>{'Adresse'}</TableHeadCell>
+                  <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+                  <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
+                  <TableHeadCell>{'Handlinger'}</TableHeadCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-                  <TableCell dataLabel="Alder">35 år</TableCell>
-                  <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-                  <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-                  <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                  <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+                  <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+                  <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+                  <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+                  <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+                  <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+                  <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
                   <TableCell dataLabel="Handlinger">
                     <HelpTriggerIcon ref={controllerRef} ariaLabel="Hjelp" />
                     <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
@@ -285,33 +283,33 @@ export const CenteredOverflow: Story = {
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-                  <TableCell dataLabel="Alder">35 år</TableCell>
-                  <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-                  <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-                  <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                  <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+                  <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+                  <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+                  <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+                  <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+                  <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+                  <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
                   <TableCell dataLabel="Handlinger">{''}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-                  <TableCell dataLabel="Alder">35 år</TableCell>
-                  <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-                  <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-                  <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                  <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+                  <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+                  <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+                  <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+                  <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+                  <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+                  <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
                   <TableCell dataLabel="Handlinger">{''}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-                  <TableCell dataLabel="Alder">35 år</TableCell>
-                  <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-                  <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-                  <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                  <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+                  <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+                  <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+                  <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+                  <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+                  <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+                  <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
                   <TableCell dataLabel="Handlinger">{''}</TableCell>
                 </TableRow>
               </TableBody>

@@ -1,8 +1,8 @@
-import React from 'react';
+import type { SvgPathProps } from '../Icon';
 
-import { getIcon, SvgPathProps } from '../Icon';
+import { getIcon } from '../Icon/utils';
 
-const Vaccine: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const Vaccine: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.JSX.Element => {
   const normal = (
     <path
       fillRule="evenodd"

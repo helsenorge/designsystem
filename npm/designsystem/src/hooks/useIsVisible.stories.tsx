@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import { useIsVisible } from './useIsVisible';
 import Button from '../components/Button';
@@ -48,11 +48,10 @@ import HighlightPanel from '@helsenorge/designsystem-react/components/HighlightP
 import { longLoremText } from '@helsenorge/designsystem-react/utils/loremtext';
 
 const UseIsVisibleExample: React.FC<UseIsVisibleExampleProps> = props => {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLButtonElement>{'(null);
   const isVisible = useIsVisible(ref, props.threshold);
 
-  return (
-    <>
+  return ('}<>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
       <Button ref={ref} disabled={!isVisible}>

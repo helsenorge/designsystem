@@ -2,8 +2,10 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { ExpanderHierarchyCommonProps, ExpanderHierarchyProps } from './ExpanderHierarchy';
+
 import ExpanderButton from './ExpanderButton';
-import ExpanderHierarchy, { type ExpanderHierarchyCommonProps, type ExpanderHierarchyProps } from './ExpanderHierarchy';
+import ExpanderHierarchy from './ExpanderHierarchy';
 import { getHeadingTag } from './utils';
 import { isComponent } from '../../utils/component';
 
@@ -23,12 +25,12 @@ export interface ExpanderProps extends ExpanderHierarchyCommonProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** ref that is placed on the li element */
-  ref?: React.RefObject<HTMLLIElement>;
+  ref?: React.RefObject<HTMLLIElement | null>;
 }
 
-export type ExpanderType = React.FC<ExpanderProps>;
+export type ExpanderType = typeof Expander;
 
-const Expander: ExpanderType = ({
+const Expander: React.FC<ExpanderProps> = ({
   title,
   htmlMarkup = 'h2',
   level = 1,

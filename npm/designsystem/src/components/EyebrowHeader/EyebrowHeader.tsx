@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { AnalyticsId } from '../../constants';
 import Title from '../Title';
 

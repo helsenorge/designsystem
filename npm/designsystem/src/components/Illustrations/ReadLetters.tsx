@@ -1,6 +1,5 @@
-import React from 'react';
+import type { SvgIllustrationProps } from '../Illustration';
 
-import { SvgIllustrationProps } from '../Illustration';
 import ReadLettersMedium from './ReadLettersMedium';
 import { getIllustration } from '../Illustration/utils';
 

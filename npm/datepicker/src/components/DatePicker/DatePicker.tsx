@@ -1,9 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-import { type Locale, format, isValid, parse } from 'date-fns';
+import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 
+import type { DatePickerAriaLabels } from './DatePickerPopup';
 import type { HNDesignsystemDatePicker } from '../../resources/Resources';
+import type { Locale } from 'date-fns';
 import type { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
@@ -14,13 +16,13 @@ import Input from '@helsenorge/designsystem-react/components/Input';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import { KeyboardEventKey, LanguageLocales, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useKeyboardEvent } from '@helsenorge/designsystem-react/hooks/useKeyboardEvent';
+import { useLanguage } from '@helsenorge/designsystem-react/hooks/useLanguage';
 import { useOutsideEvent } from '@helsenorge/designsystem-react/hooks/useOutsideEvent';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
-import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
-import DatePickerPopup, { type DatePickerAriaLabels } from './DatePickerPopup';
+import DatePickerPopup from './DatePickerPopup';
 import { getResources } from './resourceHelper';
 
 import styles from './styles.module.scss';
@@ -83,9 +85,11 @@ export interface DatePickerProps
   variant?: keyof typeof PopOverVariant;
   /** Overrides the default z-index of DatePicker */
   zIndex?: number;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
-export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
+export const DatePicker: React.FC<DatePickerProps> = props => {
   const {
     className,
     dateButtonAriaLabel,
@@ -115,9 +119,9 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     autoComplete = 'off',
     variant = PopOverVariant.positionautomatic,
     zIndex = ZIndex.PopOver,
+    ref,
     ...rest
   } = props;
-
   const [dateState, setDateState] = useState<Date | undefined>(dateValue);
   const [inputValue, setInputValue] = useState<string>(dateState ? format(dateState, dateFormat) : '');
   const [month, setMonth] = useState<Date | undefined>(defaultMonth);
@@ -250,7 +254,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
 
   // We do this to make sure selecting from the DatePickerPopup triggers the onChange events properly, and works with react-hook-form
   const triggerSyntheticInputEvents = (
-    inputRef: React.RefObject<HTMLInputElement>,
+    inputRef: React.RefObject<HTMLInputElement | null>,
     value: string,
     date: Date,
     _onChange?: (event: React.ChangeEvent<HTMLInputElement>, date: Date) => void
@@ -413,8 +417,6 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       {isMobileUA() ? renderMobile : renderDesktop}
     </div>
   );
-});
-
-DatePicker.displayName = 'DatePicker';
+};
 
 export default DatePicker;

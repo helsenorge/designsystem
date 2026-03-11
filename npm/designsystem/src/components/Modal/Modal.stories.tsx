@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
-import Modal, { ModalSize, ModalVariants } from './Modal';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import Modal from './Modal';
 import { IconSize } from '../../constants';
 import ButtonWithModal from '../../docs/ButtonWithModal';
 import Button from '../Button';
@@ -13,6 +14,7 @@ import Icon from '../Icon';
 import Envelope from '../Icons/Envelope';
 import Label from '../Label';
 import Slider from '../Slider';
+import { ModalSize, ModalVariants } from './constants';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Modal',
@@ -137,8 +139,8 @@ export const ModalWithDisabledButton: Story = {
             <div>
               <Checkbox label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
               <Checkbox label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
-              <p>Vanlig tekst</p>
-              <Button disabled>Ok</Button>
+              <p>{'Vanlig tekst'}</p>
+              <Button disabled>{'Ok'}</Button>
             </div>
           </Modal>
         )}

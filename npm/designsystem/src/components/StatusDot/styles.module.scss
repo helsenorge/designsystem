@@ -27,12 +27,14 @@ $status-dot-size: 1rem;
     min-height: $status-dot-size;
 
     &--success,
-    &--active {
+    &--active,
+    &--ready {
       fill: var(--component-statusdot-graphics-kiwi-onlight);
     }
 
     &--success#{&}--on-dark,
-    &--active#{&}--on-dark {
+    &--active#{&}--on-dark,
+    &--ready#{&}--on-dark {
       fill: var(--component-statusdot-graphics-kiwi-ondark);
     }
 

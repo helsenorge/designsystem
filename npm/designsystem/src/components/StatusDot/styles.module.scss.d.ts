@@ -17,6 +17,7 @@ export type Styles = {
   'statusdot__dot--noaccess': string;
   'statusdot__dot--on-dark': string;
   'statusdot__dot--pending': string;
+  'statusdot__dot--ready': string;
   'statusdot__dot--recurring': string;
   'statusdot__dot--success': string;
   'statusdot__dot--transparent': string;

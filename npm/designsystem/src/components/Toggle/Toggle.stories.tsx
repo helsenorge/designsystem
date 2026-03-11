@@ -1,10 +1,10 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
-import Toggle, { TogglePosition } from './Toggle';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import { TogglePosition } from './constants';
+import Toggle from './Toggle';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Toggle',

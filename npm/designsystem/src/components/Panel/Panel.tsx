@@ -2,49 +2,28 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { PanelTitleProps } from './PanelTitle';
+import type { HNDesignsystemPanel } from '../../resources/Resources';
+import type { PaletteNames } from '../../theme/palette';
+
 import { LanguageLocales } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
-import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
-import PanelTitle, { PanelTitleProps } from './PanelTitle';
+import { PanelLayout, PanelStacking, PanelStatus, PanelVariant } from './constants';
+import PanelTitle from './PanelTitle';
 import { getResources } from './resourceHelper';
-import { HNDesignsystemPanel } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
+import { useLanguage } from '../../hooks/useLanguage';
+import { isComponent } from '../../utils/component';
 import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronRight from '../Icons/ChevronRight';
 import ChevronUp from '../Icons/ChevronUp';
-import { PanelListContext } from '../PanelList/PanelList';
+import { PanelListContext } from '../PanelList/utils';
 
 import styles from './styles.module.scss';
 
-export enum PanelLayout {
-  vertical = 'vertical',
-  horizontal = 'horizontal',
-  combined = 'combined',
-  bAsRightCol = 'bAsRightCol',
-}
-
 export type PanelColors = Extract<PaletteNames, 'white' | 'neutral'>;
-
-export enum PanelVariant {
-  fill = 'fill',
-  line = 'line',
-  outline = 'outline',
-}
-
-export enum PanelStacking {
-  default = 'default',
-  bFirst = 'bFirst',
-}
-
-export enum PanelStatus {
-  none = 'none',
-  new = 'new',
-  error = 'error',
-  draft = 'draft',
-}
 
 export interface PanelProps {
   /** Aria label on call to action button */
@@ -79,6 +58,8 @@ export interface PanelProps {
   resources?: Partial<HNDesignsystemPanel>;
   /** Highlights text in title and content. Used for search results */
   highlightText?: string;
+  /** Ref passed to the panel container */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
 
 const ExpandButton = ({
@@ -105,27 +86,25 @@ const ExpandButton = ({
     </Button>
   );
 };
-const PanelRoot = React.forwardRef(function PanelForwardedRef(
-  {
-    layout = PanelLayout.vertical,
-    variant = PanelVariant.fill,
-    color = 'neutral',
-    stacking = PanelStacking.default,
-    testId,
-    children,
-    expanded = false,
-    focusable,
-    status = PanelStatus.none,
-    buttonBottomAriaLabel,
-    buttonBottomOnClick,
-    buttonBottomText,
-    className,
-    resources,
-    onExpand,
-    highlightText,
-  }: PanelProps,
-  ref: React.ForwardedRef<HTMLDivElement>
-) {
+const PanelRoot: React.FC<PanelProps> = ({
+  layout = PanelLayout.vertical,
+  variant = PanelVariant.fill,
+  color = 'neutral',
+  stacking = PanelStacking.default,
+  testId,
+  children,
+  expanded = false,
+  focusable,
+  status = PanelStatus.none,
+  buttonBottomAriaLabel,
+  buttonBottomOnClick,
+  buttonBottomText,
+  className,
+  resources,
+  onExpand,
+  highlightText,
+  ref,
+}: PanelProps) => {
   const panelListContext = React.useContext(PanelListContext);
   const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
   const [title, setTitle] = React.useState<React.ReactNode[]>([]);
@@ -165,7 +144,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
 
         if (child.type === PreContainer) {
           newPreContainer.push(React.cloneElement(child, { key }));
-        } else if (child.type === PanelTitle) {
+        } else if (isComponent<PanelTitleProps>(child, PanelTitle)) {
           newTitle.push(
             React.cloneElement(child as React.ReactElement<PanelTitleProps>, {
               key,
@@ -294,7 +273,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
       </div>
     </div>
   );
-});
+};
 
 export interface ContentProps {
   /** Children elements to be rendered inside the content box */

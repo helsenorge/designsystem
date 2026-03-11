@@ -26,7 +26,7 @@ export default meta;
 
 type Story = StoryObj;
 
-const LocationDisplay = (): JSX.Element => {
+const LocationDisplay = (): React.JSX.Element => {
   const location = useLocation();
   return (
     <div style={{ marginTop: '1rem', padding: '1rem', background: '#f0f0f0' }}>

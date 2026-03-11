@@ -1,6 +1,6 @@
-import React from 'react';
+import type { SvgPathProps } from '../Icon';
 
-import { getIcon, SvgPathProps } from '../Icon';
+import { getIcon } from '../Icon/utils';
 
 const TriangleX: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (

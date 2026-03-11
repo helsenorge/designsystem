@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useId } from 'react';
 
 import classNames from 'classnames';
 
+import type { HNDesignsystemDropdown } from '../../resources/Resources';
+
+import { DropdownOldOnColor } from './constants';
 import {
   AnalyticsId,
   IconSize,
@@ -15,21 +18,13 @@ import {
   useToggle,
 } from '../..';
 import { getResources } from './resourceHelper';
-import { HNDesignsystemDropdown } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
+import { useLanguage } from '../../hooks/useLanguage';
 import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
 import Icon from '../Icon';
 import PlusSmall from '../Icons/PlusSmall';
 
 import styles from './styles.module.scss';
-
-export enum DropdownOldOnColor {
-  onwhite = 'onwhite',
-  ongrey = 'ongrey',
-  onblueberry = 'onblueberry',
-  oncherry = 'oncherry',
-}
 
 export interface DropdownOldProps {
   /** Label for dropdown. Visible for screen readers  */
@@ -185,11 +180,13 @@ const DropdownOld: React.FC<DropdownOldProps> = props => {
   const contentClasses = classNames(styles.dropdown__content, isOpen && styles['dropdown__content--open']);
 
   const renderChildren = React.Children.map(children, (child, index) => {
+    const element = child as React.ReactElement<{ children?: React.ReactNode; ref?: React.Ref<HTMLElement | null> }>;
+
     return (
       <li className={styles.dropdown__input} id={`${optionIdPrefix}-${index}`}>
-        {React.isValidElement(child) && inputRefList.current && inputRefList.current[index]
-          ? React.cloneElement(child as React.ReactElement, {
-              ref: mergeRefs([child.props.ref, inputRefList.current[index]]),
+        {React.isValidElement(element) && inputRefList.current && inputRefList.current[index]
+          ? React.cloneElement(element, {
+              ref: mergeRefs([element.props.ref, inputRefList.current[index]]),
             })
           : child}
       </li>

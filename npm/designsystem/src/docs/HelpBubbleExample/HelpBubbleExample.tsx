@@ -1,6 +1,8 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
-import HelpBubble, { HelpBubbleProps } from '../../components/HelpBubble';
+import type { HelpBubbleProps } from '../../components/HelpBubble';
+
+import HelpBubble from '../../components/HelpBubble';
 
 const HelpBubbleExample: React.FC<HelpBubbleProps> = props => {
   const controllerRef = useRef<HTMLSpanElement>(null);

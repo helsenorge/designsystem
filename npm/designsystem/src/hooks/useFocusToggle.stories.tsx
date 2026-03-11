@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useFocusToggle } from './useFocusToggle';
 import Button from '../components/Button';
@@ -21,7 +21,7 @@ const UseFocusToggleExample: React.FC = () => {
       <p>{`Fokus er ${allowFocus ? 'lov' : 'ikke lov'}`}</p>
       <Button onClick={toggleAllowFocus}>{'Slå av/på fokus'}</Button>
       <Spacer />
-      <HighlightPanel color="blueberry" size="fluid">
+      <HighlightPanel color="blueberry">
         <div ref={ref}>
           <div>
             <Button>{'Knapp 1'}</Button>

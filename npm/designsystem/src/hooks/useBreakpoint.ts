@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
 
 import { breakpoints, screen } from '../theme/grid';
 
@@ -11,11 +11,10 @@ export enum Breakpoint {
   xl = breakpoints.xl,
 }
 
+/** Sjekker nettleserens media queries fra største til minste; det høyeste treffet gjelder */
 function getCurrentBreakpoint(): Breakpoint {
-  // We read from largest -> smallest or vice versa
-  // so that the first match is the "highest" one that applies
   const mediaQueryList = Object.entries(screen)
-    .reverse() // e.g. check xl, lg, md, etc. in descending order
+    .reverse() // Sjekk xl, lg, md, osv. i synkende rekkefølge
     .map(([size, mediaQuery]) => {
       return {
         breakpoint: Breakpoint[size as keyof typeof Breakpoint],
@@ -27,41 +26,24 @@ function getCurrentBreakpoint(): Breakpoint {
   return matched?.breakpoint ?? Breakpoint.xxs;
 }
 
-export const useBreakpoint = (): Breakpoint => {
-  const [breakpoint, setBreakpoint] = useState<Breakpoint>(Breakpoint.xxs);
+/** Event listeners for media queries - dette varslet React ved endringer */
+function subscribeToBreakpointChanges(callback: () => void): () => void {
+  const mediaQueryList = Object.values(screen).map(mediaQuery => {
+    const mq = window.matchMedia(mediaQuery);
+    mq.addEventListener('change', callback);
+    return mq;
+  });
 
-  useEffect(() => {
-    // Oppdater breakpoint i useEffect for å støtte server side rendering
-    setBreakpoint(getCurrentBreakpoint());
-  }, []);
-
-  useEffect(() => {
-    const mediaQueryList = Object.values(screen).map(mediaQuery => {
-      const mq = window.matchMedia(mediaQuery);
-      // iOS <=13 har ikke støtte for addEventListener/removeEventListener på MediaQueryList,
-      // men har støtte for addListener
-      const handler = (): void => {
-        setBreakpoint(getCurrentBreakpoint());
-      };
-
-      if (mq.addEventListener) {
-        mq.addEventListener('change', handler);
-      } else if (mq.addListener) {
-        mq.addListener(handler);
-      }
-      return { mq, handler };
+  return (): void => {
+    mediaQueryList.forEach(mq => {
+      mq.removeEventListener('change', callback);
     });
+  };
+}
 
-    return (): void => {
-      mediaQueryList.forEach(({ mq, handler }) => {
-        if (mq.removeEventListener) {
-          mq.removeEventListener('change', handler);
-        } else if (mq.removeListener) {
-          mq.removeListener(handler);
-        }
-      });
-    };
-  }, []);
+/** Brukes ved server side rendering der window ikke finnes. Returnerer minste breakpoint som default */
+const getServerSnapshot = (): Breakpoint => Breakpoint.xxs;
 
-  return breakpoint;
+export const useBreakpoint = (): Breakpoint => {
+  return useSyncExternalStore(subscribeToBreakpointChanges, getCurrentBreakpoint, getServerSnapshot);
 };

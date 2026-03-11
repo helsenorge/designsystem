@@ -2,12 +2,14 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { TitleTags } from './../Title/Title';
+
 import { AnalyticsId } from '../../constants';
-import { TitleTags } from './../Title/Title';
 import { useBreakpoint, Breakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
+import { isComponent } from '../../utils/component';
 import { mergeRefs } from '../../utils/refs';
-import { IconSize } from '../Icon';
+import Icon, { IconSize, type IconProps } from '../Icon';
 
 import tileStyles from './styles.module.scss';
 
@@ -31,6 +33,8 @@ interface TileProps extends Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 
   variant?: TileVariants;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLAnchorElement | null>;
 }
 
 interface TileTitleProps {
@@ -39,14 +43,16 @@ interface TileTitleProps {
   htmlMarkup?: TitleTags;
   highlighted?: boolean;
   compact?: boolean;
+  /** Ref passed to the title element */
+  ref?: React.Ref<HTMLHeadingElement | null>;
 }
 
-export interface TileCompound extends React.ForwardRefExoticComponent<TileProps & React.RefAttributes<HTMLAnchorElement>> {
-  Title: React.ForwardRefExoticComponent<TileTitleProps & React.RefAttributes<HTMLHeadingElement>>;
+export interface TileCompound extends React.FC<TileProps> {
+  Title: React.FC<TileTitleProps>;
 }
 
-const Title = React.forwardRef<HTMLHeadingElement, TileTitleProps>((props, ref) => {
-  const { compact, children, className, htmlMarkup = 'span', highlighted } = props;
+const Title: React.FC<TileTitleProps> = props => {
+  const { compact, children, className, htmlMarkup = 'span', highlighted, ref } = props;
   const titleClasses = classNames(
     tileStyles['tile__title'],
     {
@@ -62,11 +68,11 @@ const Title = React.forwardRef<HTMLHeadingElement, TileTitleProps>((props, ref) 
       {children}
     </CustomTag>
   );
-});
+};
 
 Title.displayName = 'Title';
 
-export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) => {
+export const Tile: TileCompound = props => {
   const {
     children,
     icon,
@@ -81,6 +87,7 @@ export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) 
     variant = 'normal',
     href,
     onClick,
+    ref,
   } = props;
   const { refObject, isHovered } = usePseudoClasses<HTMLAnchorElement>();
   const breakpoint = useBreakpoint();
@@ -111,14 +118,15 @@ export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) 
       onClick={onClick}
     >
       <div className={tileTitleWrapperClasses}>
-        {React.cloneElement(icon, { size: mobile ? IconSize.Small : IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
-        {React.cloneElement(title, { highlighted: highlighted, compact: compact })}
+        {isComponent<IconProps>(icon, Icon) &&
+          React.cloneElement(icon, { size: mobile ? IconSize.Small : IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
+        {isComponent<TileTitleProps>(title, Tile.Title) && React.cloneElement(title, { highlighted: highlighted, compact: compact })}
       </div>
       {!compact && !mobile && <p className={tileStyles.tile__description}>{description}</p>}
       {children && <div className={tileStyles.tile__children}>{children}</div>}
     </a>
   );
-}) as TileCompound;
+};
 
 Tile.displayName = 'Tile';
 Tile.Title = Title;

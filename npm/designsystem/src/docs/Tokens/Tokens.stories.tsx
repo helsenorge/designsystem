@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import TokensExample from './TokensExample';
 
@@ -18,24 +19,10 @@ const meta = {
       },
     },
   },
-  args: {
-    children: 'Tekst',
-  },
   argTypes: {
-    children: {
-      control: 'text',
-    },
     color: {
       control: 'select',
       options: ['blueberry', 'cherry', 'neutral'],
-    },
-    type: {
-      control: 'select',
-      options: ['string', 'notification'],
-    },
-    notificationVariant: {
-      control: 'select',
-      options: ['success', 'warn', 'error', 'info'],
     },
   },
 } satisfies Meta<typeof TokensExample>;

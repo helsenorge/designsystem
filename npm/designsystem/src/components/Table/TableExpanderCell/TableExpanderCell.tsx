@@ -1,13 +1,11 @@
-import React from 'react';
-
 import classNames from 'classnames';
 
 import Button from '../../Button';
 import Icon from '../../Icon';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
+import { ModeType } from '../constants';
 import tableStyles from '../styles.module.scss';
-import { ModeType } from '../Table';
 
 export interface Props {
   /** Adds custom classes to the element. */

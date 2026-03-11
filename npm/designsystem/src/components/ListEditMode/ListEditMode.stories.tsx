@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import ListEditModeItem from './ListEditMode';
 import ExpanderList from '../ExpanderList';

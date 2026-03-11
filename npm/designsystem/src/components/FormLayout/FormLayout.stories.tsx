@@ -1,12 +1,12 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import FormLayout, { FormLayoutColumns } from './FormLayout';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import FormLayout from './FormLayout';
 import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
+import { FormLayoutColumns } from './constants';
 import RadioButton from '../RadioButton/RadioButton';
 
 const meta = {
@@ -25,7 +25,7 @@ const meta = {
   argTypes: {
     maxColumns: {
       control: 'select',
-      options: FormLayoutColumns,
+      options: Object.values(FormLayoutColumns),
     },
     colMinWidth: {
       control: 'number',

@@ -1,9 +1,9 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import Loader, { Overlay } from './Loader';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import { Overlay } from './constants';
+import Loader from './Loader';
 import { allPaletteNames } from '../../../.storybook/knobs';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
