@@ -1,9 +1,16 @@
 
-## 14.0.0-beta.9 (2026-02-25)
+## [14.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.9.0&targetVersion=GTv14.0.0) (2026-03-11)
+
+### Features
+
+* **helpexpander:**  ref blir nullable ([2bd75af](https://github.com/helsenorge/designsystem/commit/2bd75affe116883b10e50e2b5b8a9dd6dbbf0555)), closes [#371787](https://github.com/helsenorge/designsystem/issues/371787)
+* **icon:**  nye ikoner starstroke og starfill ([f4c9f7f](https://github.com/helsenorge/designsystem/commit/f4c9f7f57c7ce440aa2a564cf4a2f133c5c2f6d0)), closes [#370948](https://github.com/helsenorge/designsystem/issues/370948)
 
 ### Bug Fixes
 
 *  resources dts skal inkluderes i lib ([160ef18](https://github.com/helsenorge/designsystem/commit/160ef18da28abde5bd52f9914e3b27d9ee27aefd))
+*  stopper å sette state i useffect for å få færre rerenders ([6d66002](https://github.com/helsenorge/designsystem/commit/6d6600271241fd7498281a52ab5c6bc269e5faec)), closes [#371689](https://github.com/helsenorge/designsystem/issues/371689)
+* **icon:**  fiks ikonfiler etter major oppgradering ([8e65a7e](https://github.com/helsenorge/designsystem/commit/8e65a7e9b1ea24bfac5176a1b00517aee4726cb5)), closes [#373313](https://github.com/helsenorge/designsystem/issues/373313)
 
 ## 14.0.0-beta.8 (2026-02-25)
 
