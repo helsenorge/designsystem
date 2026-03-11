@@ -4,7 +4,7 @@ import type { SvgPathProps } from '../Icon';
 
 import { getIcon } from '../Icon';
 
-const StarFill: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const StarFill: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path d="M23.092 7.124a1 1 0 0 1 1.816 0l4.664 10.112a1 1 0 0 0 .79.574l11.059 1.311a1 1 0 0 1 .561 1.728l-8.176 7.56a1 1 0 0 0-.301.93l2.17 10.922a1 1 0 0 1-1.47 1.067l-9.717-5.44a1 1 0 0 0-.976 0l-9.718 5.44a1 1 0 0 1-1.469-1.068l2.17-10.922a1 1 0 0 0-.301-.929l-8.176-7.56a1 1 0 0 1 .561-1.728l11.058-1.31a1 1 0 0 0 .79-.575l4.665-10.112Z" />
   );

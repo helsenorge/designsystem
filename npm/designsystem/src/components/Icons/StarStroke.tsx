@@ -4,7 +4,7 @@ import type { SvgPathProps } from '../Icon';
 
 import { getIcon } from '../Icon';
 
-const StarStroke: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const StarStroke: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path d="M23.884 5.258c.453 0 .866.256 1.067.662l4.975 10.084 11.13 1.613a1.19 1.19 0 0 1 .657 2.028l-8.063 7.85 1.901 11.084a1.188 1.188 0 0 1-1.725 1.252l-9.93-5.233-9.954 5.234a1.19 1.19 0 0 1-1.725-1.253l1.9-11.085-8.062-7.849a1.19 1.19 0 0 1 .658-2.028l11.128-1.613L22.818 5.92l.085-.145c.22-.32.585-.517.981-.517Zm-4.787 11.365c-.204.413-.598.7-1.055.767L7.338 18.94l7.756 7.55a1.4 1.4 0 0 1 .404 1.24l-1.829 10.662 9.576-5.035a1.4 1.4 0 0 1 1.304.001l9.55 5.033L32.27 27.73a1.4 1.4 0 0 1 .403-1.239l7.756-7.55-10.703-1.551a1.401 1.401 0 0 1-1.055-.767l-4.787-9.701-4.787 9.701Z" />
   );
