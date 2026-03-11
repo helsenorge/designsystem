@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useImperativeHandle } from 'react';
 
 // import TestDrawer from './TestDrawer';
 import Button, { ButtonProps } from '../Button';
@@ -6,7 +6,7 @@ import Drawer from '../Drawer/Drawer';
 
 import styles from './styles.module.scss';
 
-interface NavigateProps {
+export interface NavigateProps {
   goToView: (id: string) => void;
   goBack: () => void;
   goToViewAndClearStack: (id: string) => void;
@@ -29,10 +29,11 @@ export interface DrawerNavigationPOCProps<V extends ViewConfig<any>> {
   views: V[];
   onCloseButton?: () => void;
   isOpen: boolean;
+  navigationRef?: React.Ref<NavigateProps>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DrawerNavigationPOC<V extends ViewConfig<any>>({ views, ...props }: DrawerNavigationPOCProps<V>): JSX.Element {
+function DrawerNavigationPOC<V extends ViewConfig<any>>({ views, navigationRef, ...props }: DrawerNavigationPOCProps<V>): JSX.Element {
   const [viewStack, setViewStack] = useState<string[]>(views[0] ? [views[0].id] : []);
 
   const goToView = (id: string): void => {
@@ -65,6 +66,8 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views, ...props }: Dra
   }, [viewStack, views]);
 
   const navigate = { goBack, goToView, goToViewAndClearStack };
+
+  useImperativeHandle(navigationRef, () => navigate);
 
   const handleClose = (): void => {
     setViewStack(views[0] ? [views[0].id] : []); // initialiser stack på nytt

@@ -9,6 +9,7 @@ import Button from '../Button';
 import LinkList from '../LinkList';
 import ViewOverview, { ViewOverviewConfig } from './ViewOverview';
 import Input from '../Input';
+import FinnFastLegeFlyt from './FinnFastlegeFlyt.example';
 import { ValidationErrors } from '../Validation/types';
 
 const meta = {
@@ -331,4 +332,8 @@ export const WithValidation = {
       </div>
     );
   },
+};
+
+export const FinnFastlege = {
+  render: () => <FinnFastLegeFlyt />,
 };

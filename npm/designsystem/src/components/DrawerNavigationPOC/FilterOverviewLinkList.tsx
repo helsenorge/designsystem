@@ -34,7 +34,7 @@ export type LinkProps = Modify<
   React.HTMLAttributes<HTMLButtonElement>,
   {
     title: string;
-    chips: string[];
+    chips?: string[];
     className?: string;
     href?: string;
     /** Ref for knapp */
@@ -56,7 +56,7 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
       <button className={linkClasses} ref={refObject as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
         <div className={LinkListStyles['link-list__button__content']}>
           <span>{title}</span>
-          {chips.length > 1 && (
+          {chips && chips.length > 0 && (
             <TagList>
               {chips.map(chip => (
                 <Tag key={chip}>{chip}</Tag>
