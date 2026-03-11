@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import DrawerNavigationPOC, { DrawerNavigationCommonProps, ViewConfig } from './DrawerNavigationPOC';
+import DrawerNavigationPOC, { createView, DrawerNavigationCommonProps, ViewConfig } from './DrawerNavigationPOC';
 import Badge from '../Badge';
 import Button from '../Button';
 import LinkList from '../LinkList';
@@ -38,7 +38,7 @@ export default meta;
 interface OverviewPageProps {
   badge: number;
 }
-const OverviewPage: React.FC<DrawerNavigationCommonProps & OverviewPageProps> = ({ badge, navigate }) => (
+const OverviewPage: React.FC<DrawerNavigationCommonProps<DefaultViewIds> & OverviewPageProps> = ({ badge, navigate }) => (
   <div>
     <LinkList>
       <LinkList.Link onClick={() => navigate.goToView('one')} htmlMarkup="button" aria-label="Gå til side for å endre parameter 1">
@@ -51,8 +51,8 @@ const OverviewPage: React.FC<DrawerNavigationCommonProps & OverviewPageProps> = 
     </LinkList>
   </div>
 );
-const TweakParameterOne: React.FC<DrawerNavigationCommonProps> = () => <div>{'Parameter one'}</div>;
-const TweakParameterTwo: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => (
+const TweakParameterOne: React.FC<DrawerNavigationCommonProps<DefaultViewIds>> = () => <div>{'Parameter one'}</div>;
+const TweakParameterTwo: React.FC<DrawerNavigationCommonProps<DefaultViewIds>> = ({ navigate }) => (
   <div>
     <p>{'Parameter two'}</p>
     <Button onClick={() => navigate.goToView('nested')} aria-label="Gå til side for nested parameter">
@@ -60,7 +60,7 @@ const TweakParameterTwo: React.FC<DrawerNavigationCommonProps> = ({ navigate }) 
     </Button>
   </div>
 );
-const NestedParameter: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => (
+const NestedParameter: React.FC<DrawerNavigationCommonProps<DefaultViewIds>> = ({ navigate }) => (
   <div>
     <p>{'Nested parameter'}</p>
     <Button onClick={() => navigate.goToViewAndClearStack('overview')} aria-label="Gå tilbake til oversiktsside">
@@ -69,85 +69,81 @@ const NestedParameter: React.FC<DrawerNavigationCommonProps> = ({ navigate }) =>
   </div>
 );
 
-type OverviewPageConfig = ViewConfig<OverviewPageProps>;
-type TweakParameterOneonfig = ViewConfig;
-type TweakParameterTwoConfig = ViewConfig;
-type AllConfigs = OverviewPageConfig | TweakParameterOneonfig | TweakParameterTwoConfig;
+type DefaultViewIds = 'overview' | 'one' | 'two' | 'nested';
 
-const parameterViews: AllConfigs[] = [
-  { id: 'overview', title: 'Overview', component: OverviewPage, props: { badge: 2 } },
-  { id: 'one', title: 'First parameter', component: TweakParameterOne },
-  { id: 'two', title: 'Second parameter', component: TweakParameterTwo },
-  { id: 'nested', title: 'Nested parameter', component: NestedParameter },
+const homeView = createView({ id: 'overview', title: 'Overview', component: OverviewPage, props: { badge: 2 } });
+const parameterViews = [
+  createView({ id: 'one', title: 'First parameter', component: TweakParameterOne }),
+  createView({ id: 'two', title: 'Second parameter', component: TweakParameterTwo }),
+  createView({ id: 'nested', title: 'Nested parameter', component: NestedParameter }),
 ];
 
 export const Default = {
-  args: { views: parameterViews },
-  render: ({ views }: { views: AllConfigs[] }): JSX.Element => {
+  render: (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     return (
       <div>
         <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
-        <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+        <DrawerNavigationPOC homeView={homeView} views={parameterViews} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
       </div>
     );
   },
 };
 
-const AgePageSimple: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello age page'}</div>;
-const GenderPageSimple: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello gender page'}</div>;
+type FilterViewId = 'overview' | 'age' | 'gender';
+
+const AgePageSimple: React.FC<DrawerNavigationCommonProps<FilterViewId>> = () => <div>{'Hello age page'}</div>;
+const GenderPageSimple: React.FC<DrawerNavigationCommonProps<FilterViewId>> = () => <div>{'Hello gender page'}</div>;
 
 export const OverviewWithJustProps = {
   render: (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const views: ViewOverviewConfig[] = [
-      {
-        id: 'overview',
-        title: 'Filtrer',
-        component: ViewOverview,
-        props: {
-          filters: [
-            { title: 'Alder', activeFilters: ['20-30 år', '30-40 år'], viewId: 'age' },
-            { title: 'Kjønn', activeFilters: ['Kvinne'], viewId: 'gender' },
-          ],
-        },
-        nullstillButtonProps: {
-          children: 'Nullstill',
-          variant: 'borderless',
-          onClick: (): void => {
-            console.log('Cleared');
-          },
-        },
-        showResultButtonProps: {
-          children: `Vis ${3} treff`,
-          onClick: () => setIsOpen(false),
+    const overviewHome: ViewOverviewConfig<FilterViewId> = {
+      id: 'overview',
+      title: 'Filtrer',
+      component: ViewOverview,
+      props: {
+        filters: [
+          { title: 'Alder', activeFilters: ['20-30 år', '30-40 år'], viewId: 'age' },
+          { title: 'Kjønn', activeFilters: ['Kvinne'], viewId: 'gender' },
+        ],
+      },
+      resetButtonProps: {
+        children: 'Nullstill',
+        variant: 'borderless',
+        onClick: (): void => {
+          console.log('Cleared');
         },
       },
+    };
+
+    const views: ViewOverviewConfig<FilterViewId>[] = [
       {
         id: 'age',
         title: 'Alder',
         component: AgePageSimple,
-        showResultButtonProps: {
-          children: `Vis ${2} treff`,
-          onClick: () => setIsOpen(false),
-        },
       },
       {
         id: 'gender',
         title: 'Kjønn',
         component: GenderPageSimple,
-        showResultButtonProps: {
-          children: `Vis ${1} treff`,
-          onClick: () => setIsOpen(false),
-        },
       },
     ];
 
     return (
       <div>
         <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
-        <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+        <DrawerNavigationPOC
+          homeView={overviewHome}
+          views={views}
+          isOpen={isOpen}
+          onCloseButton={() => setIsOpen(false)}
+          defaultResultButtonProps={{
+            children: `Vis ${3} treff`,
+            onClick: () => setIsOpen(false),
+          }}
+        />
       </div>
     );
   },
@@ -155,45 +151,49 @@ export const OverviewWithJustProps = {
 
 export const OverviewWithJustPropsAlwaysOpen = {
   render: (): JSX.Element => {
-    const views: ViewOverviewConfig[] = [
-      {
-        id: 'overview',
-        title: 'Filtrer',
-        component: ViewOverview,
-        props: {
-          filters: [
-            { title: 'Alder', activeFilters: ['20-30 år'], viewId: 'age' },
-            { title: 'Kjønn', activeFilters: ['Mann', 'Kvinne'], viewId: 'gender' },
-          ],
-        },
-        nullstillButtonProps: { children: 'Nullstill', variant: 'borderless', onClick: () => undefined },
-        showResultButtonProps: { children: 'Vis 3 treff', onClick: () => undefined },
+    const overviewHome: ViewOverviewConfig<FilterViewId> = {
+      id: 'overview',
+      title: 'Filtrer',
+      component: ViewOverview,
+      props: {
+        filters: [
+          { title: 'Alder', activeFilters: ['20-30 år'], viewId: 'age' },
+          { title: 'Kjønn', activeFilters: ['Mann', 'Kvinne'], viewId: 'gender' },
+        ],
       },
+    };
+
+    const views: ViewOverviewConfig<FilterViewId>[] = [
       {
         id: 'age',
         title: 'Alder',
         component: AgePageSimple,
-        nullstillButtonProps: { children: 'Nullstill', variant: 'borderless', onClick: () => undefined },
-        showResultButtonProps: { children: 'Vis 4 treff', onClick: () => undefined },
       },
       {
         id: 'gender',
         title: 'Kjønn',
         component: GenderPageSimple,
-        nullstillButtonProps: { children: 'Nullstill', variant: 'borderless', onClick: () => undefined },
-        showResultButtonProps: { children: 'Vis 5 treff', onClick: () => undefined },
       },
     ];
 
     return (
       <div>
-        <DrawerNavigationPOC views={views} isOpen={true} onCloseButton={() => null} />
+        <DrawerNavigationPOC
+          homeView={overviewHome}
+          views={views}
+          isOpen={true}
+          onCloseButton={() => null}
+          defaultResetButtonProps={{ children: 'Nullstill', variant: 'borderless', onClick: () => undefined }}
+          defaultResultButtonProps={{ children: 'Vis 3 treff', onClick: () => undefined }}
+        />
       </div>
     );
   },
 };
 
-const CustomOverview: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => (
+type CustomOverviewViewId = 'overview' | 'age' | 'gender';
+
+const CustomOverview: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>> = ({ navigate }) => (
   <div>
     <span>{'Alert message here'}</span>
     <ViewOverview
@@ -205,23 +205,31 @@ const CustomOverview: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => 
     />
   </div>
 );
-const AgePage: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello age page'}</div>;
-const GenderPage: React.FC<DrawerNavigationCommonProps> = () => <div>{'Hello gender page'}</div>;
+const AgePage: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>> = () => <div>{'Hello age page'}</div>;
+const GenderPage: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>> = () => <div>{'Hello gender page'}</div>;
 
-const customOverviewViews: ViewConfig[] = [
-  { id: 'overview', title: 'Filtrer', component: CustomOverview },
+const customOverviewHome: ViewConfig<CustomOverviewViewId> = {
+  id: 'overview',
+  title: 'Filtrer',
+  component: CustomOverview,
+};
+const customOverviewViews: ViewConfig<CustomOverviewViewId>[] = [
   { id: 'age', title: 'Alder', component: AgePage },
   { id: 'gender', title: 'Kjønn', component: GenderPage },
 ];
 
 export const OverviewWithCustomComponent = {
-  args: { views: customOverviewViews },
-  render: ({ views }: { views: ViewConfig[] }): JSX.Element => {
+  render: (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     return (
       <div>
         <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
-        <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+        <DrawerNavigationPOC
+          homeView={customOverviewHome}
+          views={customOverviewViews}
+          isOpen={isOpen}
+          onCloseButton={() => setIsOpen(false)}
+        />
       </div>
     );
   },
@@ -235,7 +243,9 @@ interface ValidationInputPageProps {
   clearErrors: () => void;
 }
 
-const ValidationInputPage: React.FC<DrawerNavigationCommonProps & ValidationInputPageProps> = ({
+type ValidationViewId = 'overview' | 'date';
+
+const ValidationInputPage: React.FC<DrawerNavigationCommonProps<ValidationViewId> & ValidationInputPageProps> = ({
   inputRef,
   inputValue,
   setInputValue,
@@ -276,28 +286,18 @@ export const WithValidation = {
       return true;
     };
 
+    const homeView = {
+      id: 'overview' as const,
+      title: 'Filtrer',
+      component: ViewOverview,
+      props: {
+        filters: [{ title: 'Dato', activeFilters: [], viewId: 'date' }],
+      },
+    };
+
     const views = [
       {
-        id: 'overview',
-        title: 'Filtrer',
-        component: ViewOverview,
-        props: {
-          filters: [{ title: 'Dato', activeFilters: [], viewId: 'date' }],
-        },
-        nullstillButtonProps: {
-          children: 'Nullstill',
-          onClick: (): void => {
-            setInputValue('');
-            setErrors({});
-          },
-        },
-        showResultButtonProps: {
-          children: `Vis ${3} treff`,
-          onClick: (): void => setIsOpen(false),
-        },
-      },
-      {
-        id: 'date',
+        id: 'date' as const,
         title: 'Dato',
         component: ValidationInputPage,
         props: {
@@ -307,14 +307,7 @@ export const WithValidation = {
           errors,
           clearErrors: (): void => setErrors({}),
         },
-        nullstillButtonProps: {
-          children: 'Nullstill',
-          onClick: (): void => {
-            setInputValue('');
-            setErrors({});
-          },
-        },
-        showResultButtonProps: {
+        resultButtonProps: {
           children: `Vis ${3} treff`,
           onClick: (): void => {
             if (validate()) {
@@ -328,7 +321,23 @@ export const WithValidation = {
     return (
       <div>
         <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
-        <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+        <DrawerNavigationPOC
+          homeView={homeView}
+          views={views}
+          isOpen={isOpen}
+          onCloseButton={() => setIsOpen(false)}
+          defaultResetButtonProps={{
+            children: 'Nullstill',
+            onClick: (): void => {
+              setInputValue('');
+              setErrors({});
+            },
+          }}
+          defaultResultButtonProps={{
+            children: `Vis ${3} treff`,
+            onClick: (): void => setIsOpen(false),
+          }}
+        />
       </div>
     );
   },

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 
 import Input from '../Input';
-import DrawerNavigationPOC, { DrawerNavigationCommonProps, NavigateProps } from './DrawerNavigationPOC';
+import DrawerNavigationPOC, { createView, DrawerNavigationCommonProps, NavigateProps } from './DrawerNavigationPOC';
 import FilterOverviewLinkList from './FilterOverviewLinkList';
 import ViewOverview from './ViewOverview';
 import Button from '../Button';
@@ -15,6 +15,8 @@ import { ValidationErrors } from '../Validation/types';
 
 import examplestyles from './FinnFastlegeFlyt.module.scss';
 
+type FinnFastlegeViewId = 'overview' | 'location' | 'name-doctor' | 'name-office' | 'oslo-view';
+
 interface ValidationInputPageProps {
   inputRef: React.RefObject<HTMLInputElement>;
   inputValue: string;
@@ -23,7 +25,7 @@ interface ValidationInputPageProps {
   clearErrors: () => void;
 }
 
-const LocationCountyView: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => (
+const LocationCountyView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId>> = ({ navigate }) => (
   <div>
     <FilterOverviewLinkList>
       <FilterOverviewLinkList.Link title={'Agder'} onClick={() => navigate.goToView('oslo-view')} />
@@ -35,7 +37,7 @@ const LocationCountyView: React.FC<DrawerNavigationCommonProps> = ({ navigate })
   </div>
 );
 
-const OsloView: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => {
+const OsloView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId>> = ({ navigate }) => {
   const bydeler = ['Alna', 'Bjerke', 'Frogner', 'Gamle Oslo', 'Grorud', 'Grünerløkka', 'Osv.'];
 
   const [selectedBydeler, setSelectedBydeler] = useState<string[]>([]);
@@ -84,7 +86,7 @@ const OsloView: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => {
   );
 };
 
-const NameDoctorView: React.FC<DrawerNavigationCommonProps & ValidationInputPageProps> = ({
+const NameDoctorView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId> & ValidationInputPageProps> = ({
   inputRef,
   inputValue,
   setInputValue,
@@ -114,7 +116,7 @@ const NameDoctorView: React.FC<DrawerNavigationCommonProps & ValidationInputPage
   </div>
 );
 
-const NameOfficeView: React.FC<DrawerNavigationCommonProps & ValidationInputPageProps> = ({
+const NameOfficeView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId> & ValidationInputPageProps> = ({
   inputRef,
   inputValue,
   setInputValue,
@@ -144,7 +146,7 @@ const NameOfficeView: React.FC<DrawerNavigationCommonProps & ValidationInputPage
   </div>
 );
 
-const CustomOverview: React.FC<DrawerNavigationCommonProps> = ({ navigate }) => (
+const CustomOverview: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId>> = ({ navigate }) => (
   <div>
     <NotificationPanel compactVariant="outline">
       {'Sted, navn på fastlegen eller legekontoret må være angitt for at vi skal kunne vise deg resultater'}
@@ -166,55 +168,43 @@ const FinnFastLegeFlyt = () => {
   const [inputValue, setInputValue] = useState('');
   const [errors, setErrors] = useState<ValidationErrors>({});
   const inputRef = useRef<HTMLInputElement>(null);
-  const drawerRef = useRef<NavigateProps>(null);
+  const drawerRef = useRef<NavigateProps<FinnFastlegeViewId>>(null);
 
-  const validate = (): boolean => {
-    if (!inputValue.trim()) {
-      setErrors({ input: { message: 'Du må fylle ut dette feltet', ref: inputRef.current ?? undefined } });
-      return false;
-    }
-    setErrors({});
-    return true;
-  };
-
-  const views = [
-    {
-      id: 'overview',
-      title: 'Filtrer',
-      component: CustomOverview,
-      nullstillButtonProps: {
-        children: 'Nullstill',
-        onClick: (): void => {
-          // eslint-disable-next-line no-console
-          console.log('nullstill alt');
-        },
-      },
-      showResultButtonProps: {
-        children: `Vis ${3} treff`,
-        onClick: (): void => setModalOpen(true),
+  const homeView = createView({
+    id: 'overview',
+    title: 'Filtrer',
+    component: CustomOverview,
+    resetButtonProps: {
+      children: 'Nullstill',
+      onClick: (): void => {
+        // eslint-disable-next-line no-console
+        console.log('nullstill alt');
       },
     },
-    {
+    resultButtonProps: {
+      children: `Vis ${3} treff`,
+      onClick: (): void => setModalOpen(true),
+    },
+  });
+
+  const views = [
+    createView({
       id: 'location',
       title: 'Fylke',
       component: LocationCountyView,
-      nullstillButtonProps: {
+      resetButtonProps: {
         children: 'Nullstill',
         onClick: (): void => {
           setInputValue('');
           setErrors({});
         },
       },
-      showResultButtonProps: {
+      resultButtonProps: {
         children: `Vis ${3} treff`,
-        onClick: (): void => {
-          if (validate()) {
-            setIsOpen(false);
-          }
-        },
+        onClick: (): void => setModalOpen(true),
       },
-    },
-    {
+    }),
+    createView({
       id: 'name-doctor',
       title: 'Navnet til fastlegen',
       component: NameDoctorView,
@@ -225,8 +215,8 @@ const FinnFastLegeFlyt = () => {
         errors,
         clearErrors: (): void => setErrors({}),
       },
-    },
-    {
+    }),
+    createView({
       id: 'name-office',
       title: 'Navnet på legekontoret',
       component: NameOfficeView,
@@ -237,8 +227,8 @@ const FinnFastLegeFlyt = () => {
         errors,
         clearErrors: (): void => setErrors({}),
       },
-    },
-    {
+    }),
+    createView({
       id: 'oslo-view',
       title: 'Bydel',
       component: OsloView,
@@ -249,13 +239,19 @@ const FinnFastLegeFlyt = () => {
         errors,
         clearErrors: (): void => setErrors({}),
       },
-    },
+    }),
   ];
 
   return (
     <div>
       <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
-      <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setModalOpen(true)} navigationRef={drawerRef} />
+      <DrawerNavigationPOC
+        homeView={homeView}
+        views={views}
+        isOpen={isOpen}
+        onCloseButton={() => setModalOpen(true)}
+        navigationRef={drawerRef}
+      />
       {modalOpen && (
         <Modal title="Du må angi sted eller navn for at vi skal kunne vise deg resultater" onClose={() => setModalOpen(false)}>
           <span>{'Velg et av alternativene'}</span>
