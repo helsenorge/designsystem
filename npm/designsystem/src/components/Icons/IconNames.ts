@@ -297,6 +297,8 @@ export const IconList = [
   'SortUp',
   'SpeechBubble',
   'Spray',
+  'StarFill',
+  'StarStroke',
   'STDs',
   'StickyNote',
   'StickyNotes',

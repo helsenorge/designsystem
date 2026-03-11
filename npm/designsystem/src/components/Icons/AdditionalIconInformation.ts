@@ -345,4 +345,6 @@ export default {
   feedback: { alternativeName: 'Tilbakemelding', categories: 'Generisk' },
   zoominleft: { alternativeName: 'Zoom Inn Venstre', categories: 'System, Generisk' },
   zoomoutleft: { alternativeName: 'Zoom Ut Venstre', categories: 'System, Generisk' },
+  starstroke: { alternativeName: '', categories: '' },
+  starfill: { alternativeName: '', categories: '' },
 };
