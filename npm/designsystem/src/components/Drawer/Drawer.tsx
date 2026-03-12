@@ -20,7 +20,8 @@ import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
-import LazyIcon from '../LazyIcon';
+import Icon from '../Icon';
+import ChevronLeft from '../Icons/ChevronLeft';
 import Title from '../Title';
 
 import styles from './styles.module.scss';
@@ -274,7 +275,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
                 variant="borderless"
                 wrapperClassName={styles['drawer__header__back-button']}
               >
-                <LazyIcon iconName="ChevronLeft" />
+                <Icon svgIcon={ChevronLeft} />
               </Button>
             )}
             {!noCloseButton && onRequestClose != undefined && (
