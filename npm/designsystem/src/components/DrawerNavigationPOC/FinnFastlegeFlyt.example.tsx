@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
 
+import type { ValidationErrors } from '../Validation/types';
+
 import Input from '../Input';
-import DrawerNavigationPOC, { createView, DrawerNavigationCommonProps, NavigateProps } from './DrawerNavigationPOC';
+import DrawerNavigationPOC, { createView, type DrawerNavigationCommonProps, type NavigateProps } from './DrawerNavigationPOC';
 import FilterOverviewLinkList from './FilterOverviewLinkList';
 import ViewOverview from './ViewOverview';
 import Button from '../Button';
@@ -11,14 +13,13 @@ import Label from '../Label';
 import Modal from '../Modal';
 import NotificationPanel from '../NotificationPanel';
 import Toggle from '../Toggle';
-import { ValidationErrors } from '../Validation/types';
 
 import examplestyles from './FinnFastlegeFlyt.module.scss';
 
 type FinnFastlegeViewId = 'overview' | 'location' | 'name-doctor' | 'name-office' | 'oslo-view';
 
 interface ValidationInputPageProps {
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement | null>;
   inputValue: string;
   setInputValue: (value: string) => void;
   errors: ValidationErrors;
@@ -162,7 +163,7 @@ const CustomOverview: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId>> 
   </div>
 );
 
-const FinnFastLegeFlyt = () => {
+const FinnFastLegeFlyt = (): React.ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -204,6 +205,7 @@ const FinnFastLegeFlyt = () => {
         onClick: (): void => setModalOpen(true),
       },
     }),
+    // eslint-disable-next-line react-hooks/refs
     createView({
       id: 'name-doctor',
       title: 'Navnet til fastlegen',
@@ -216,6 +218,7 @@ const FinnFastLegeFlyt = () => {
         clearErrors: (): void => setErrors({}),
       },
     }),
+    // eslint-disable-next-line react-hooks/refs
     createView({
       id: 'name-office',
       title: 'Navnet på legekontoret',
@@ -228,6 +231,7 @@ const FinnFastLegeFlyt = () => {
         clearErrors: (): void => setErrors({}),
       },
     }),
+    // eslint-disable-next-line react-hooks/refs
     createView({
       id: 'oslo-view',
       title: 'Bydel',

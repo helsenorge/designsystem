@@ -1,4 +1,5 @@
-import { DrawerNavigationCommonProps, ViewConfig } from './DrawerNavigationPOC';
+import type { DrawerNavigationCommonProps, ViewConfig } from './DrawerNavigationPOC';
+
 import FilterOverviewLinkList from './FilterOverviewLinkList';
 
 export interface DummyFilter {

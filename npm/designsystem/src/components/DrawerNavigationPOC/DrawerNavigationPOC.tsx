@@ -1,7 +1,7 @@
 import { useState, useMemo, useImperativeHandle } from 'react';
 
 // import TestDrawer from './TestDrawer';
-import Button, { ButtonProps } from '../Button';
+import Button, { type ButtonProps } from '../Button';
 import Drawer from '../Drawer/Drawer';
 
 import styles from './styles.module.scss';
@@ -18,12 +18,13 @@ export interface DrawerNavigationCommonProps<ViewId extends string = string> {
 export interface ViewConfig<ViewId extends string = string, P extends object = object> {
   id: ViewId;
   title: string;
-  component: (props: DrawerNavigationCommonProps<ViewId> & P) => React.ReactNode;
+  component: (props: DrawerNavigationCommonProps<ViewId> & P) => React.ReactNode | Promise<React.ReactNode>;
   props?: P;
   resetButtonProps?: ButtonProps;
   resultButtonProps?: ButtonProps;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function createView<ViewId extends string, P extends object = object>(config: ViewConfig<ViewId, P>): ViewConfig<ViewId, P> {
   return config;
 }
@@ -47,7 +48,7 @@ function DrawerNavigationPOC<ViewId extends string>({
   defaultResetButtonProps,
   defaultResultButtonProps,
   ...props
-}: DrawerNavigationPOCProps<ViewId>): JSX.Element {
+}: DrawerNavigationPOCProps<ViewId>): React.ReactNode {
   const allViews = useMemo(() => [homeView, ...additionalViews], [homeView, additionalViews]);
   const [viewStack, setViewStack] = useState<ViewId[]>([homeView.id]);
 

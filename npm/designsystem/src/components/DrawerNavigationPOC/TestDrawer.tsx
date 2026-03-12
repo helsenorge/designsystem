@@ -17,7 +17,7 @@ interface TestDrawerProps {
   onCloseButton?: () => void;
 }
 
-const TestDrawer = (props: TestDrawerProps) => {
+const TestDrawer = (props: TestDrawerProps): React.ReactNode => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 

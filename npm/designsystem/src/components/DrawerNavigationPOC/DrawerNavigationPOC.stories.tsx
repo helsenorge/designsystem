@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 
-import { Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import DrawerNavigationPOC, { createView, DrawerNavigationCommonProps, ViewConfig } from './DrawerNavigationPOC';
+import type { ValidationErrors } from '../Validation/types';
+import type { Meta } from '@storybook/react-vite';
+
+import DrawerNavigationPOC, { createView, type DrawerNavigationCommonProps, type ViewConfig } from './DrawerNavigationPOC';
 import Badge from '../Badge';
 import Button from '../Button';
 import LinkList from '../LinkList';
-import ViewOverview, { ViewOverviewConfig } from './ViewOverview';
+import ViewOverview, { type ViewOverviewConfig } from './ViewOverview';
 import Input from '../Input';
 import FinnFastLegeFlyt from './FinnFastlegeFlyt.example';
-import { ValidationErrors } from '../Validation/types';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/DrawerNavigationPOC',
@@ -79,7 +80,7 @@ const parameterViews = [
 ];
 
 export const Default = {
-  render: (): JSX.Element => {
+  render: (): React.JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     return (
       <div>
@@ -96,7 +97,7 @@ const AgePageSimple: React.FC<DrawerNavigationCommonProps<FilterViewId>> = () =>
 const GenderPageSimple: React.FC<DrawerNavigationCommonProps<FilterViewId>> = () => <div>{'Hello gender page'}</div>;
 
 export const OverviewWithJustProps = {
-  render: (): JSX.Element => {
+  render: (): React.JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
 
     const overviewHome: ViewOverviewConfig<FilterViewId> = {
@@ -150,7 +151,7 @@ export const OverviewWithJustProps = {
 };
 
 export const OverviewWithJustPropsAlwaysOpen = {
-  render: (): JSX.Element => {
+  render: (): React.JSX.Element => {
     const overviewHome: ViewOverviewConfig<FilterViewId> = {
       id: 'overview',
       title: 'Filtrer',
@@ -219,7 +220,7 @@ const customOverviewViews: ViewConfig<CustomOverviewViewId>[] = [
 ];
 
 export const OverviewWithCustomComponent = {
-  render: (): JSX.Element => {
+  render: (): React.JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     return (
       <div>
@@ -236,7 +237,7 @@ export const OverviewWithCustomComponent = {
 };
 
 interface ValidationInputPageProps {
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement | null>;
   inputValue: string;
   setInputValue: (value: string) => void;
   errors: ValidationErrors;
@@ -271,7 +272,7 @@ const ValidationInputPage: React.FC<DrawerNavigationCommonProps<ValidationViewId
 );
 
 export const WithValidation = {
-  render: () => {
+  render: (): React.ReactNode => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [errors, setErrors] = useState<ValidationErrors>({});
@@ -344,5 +345,5 @@ export const WithValidation = {
 };
 
 export const FinnFastlege = {
-  render: () => <FinnFastLegeFlyt />,
+  render: (): React.ReactNode => <FinnFastLegeFlyt />,
 };
