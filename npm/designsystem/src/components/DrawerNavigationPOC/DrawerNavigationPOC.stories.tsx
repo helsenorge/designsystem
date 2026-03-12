@@ -5,13 +5,11 @@ import { Docs } from 'frankenstein-build-tools';
 import type { ValidationErrors } from '../Validation/types';
 import type { Meta } from '@storybook/react-vite';
 
-import DrawerNavigationPOC, { createView, type DrawerNavigationCommonProps, type ViewConfig } from './DrawerNavigationPOC';
-import Badge from '../Badge';
-import Button from '../Button';
-import LinkList from '../LinkList';
-import ViewOverview, { type ViewOverviewConfig } from './ViewOverview';
-import Input from '../Input';
+import DrawerNavigationPOC, { createView, type DrawerNavigationCommonProps } from './DrawerNavigationPOC';
 import FinnFastLegeFlyt from './FinnFastlegeFlyt.example';
+import ViewOverview from './ViewOverview';
+import Input from '../Input';
+import NotificationPanel from '../NotificationPanel';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/DrawerNavigationPOC',
@@ -36,61 +34,6 @@ const meta = {
 
 export default meta;
 
-interface OverviewPageProps {
-  badge: number;
-}
-const OverviewPage: React.FC<DrawerNavigationCommonProps<DefaultViewIds> & OverviewPageProps> = ({ badge, navigate }) => (
-  <div>
-    <LinkList>
-      <LinkList.Link onClick={() => navigate.goToView('one')} htmlMarkup="button" aria-label="Gå til side for å endre parameter 1">
-        {'Parameter one '}
-        <Badge>{badge}</Badge>
-      </LinkList.Link>
-      <LinkList.Link onClick={() => navigate.goToView('two')} htmlMarkup="button" aria-label="Gå til side for å endre parameter 2">
-        {'Parameter two'}
-      </LinkList.Link>
-    </LinkList>
-  </div>
-);
-const TweakParameterOne: React.FC<DrawerNavigationCommonProps<DefaultViewIds>> = () => <div>{'Parameter one'}</div>;
-const TweakParameterTwo: React.FC<DrawerNavigationCommonProps<DefaultViewIds>> = ({ navigate }) => (
-  <div>
-    <p>{'Parameter two'}</p>
-    <Button onClick={() => navigate.goToView('nested')} aria-label="Gå til side for nested parameter">
-      {'Go to nested parameter'}
-    </Button>
-  </div>
-);
-const NestedParameter: React.FC<DrawerNavigationCommonProps<DefaultViewIds>> = ({ navigate }) => (
-  <div>
-    <p>{'Nested parameter'}</p>
-    <Button onClick={() => navigate.goToViewAndClearStack('overview')} aria-label="Gå tilbake til oversiktsside">
-      {'Go back to start'}
-    </Button>
-  </div>
-);
-
-type DefaultViewIds = 'overview' | 'one' | 'two' | 'nested';
-
-const homeView = createView({ id: 'overview', title: 'Overview', component: OverviewPage, props: { badge: 2 } });
-const parameterViews = [
-  createView({ id: 'one', title: 'First parameter', component: TweakParameterOne }),
-  createView({ id: 'two', title: 'Second parameter', component: TweakParameterTwo }),
-  createView({ id: 'nested', title: 'Nested parameter', component: NestedParameter }),
-];
-
-export const Default = {
-  render: (): React.JSX.Element => {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-      <div>
-        <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
-        <DrawerNavigationPOC homeView={homeView} views={parameterViews} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
-      </div>
-    );
-  },
-};
-
 type FilterViewId = 'overview' | 'age' | 'gender';
 
 const AgePageSimple: React.FC<DrawerNavigationCommonProps<FilterViewId>> = () => <div>{'Hello age page'}</div>;
@@ -100,8 +43,8 @@ export const OverviewWithJustProps = {
   render: (): React.JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const overviewHome: ViewOverviewConfig<FilterViewId> = {
-      id: 'overview',
+    const overviewHome = createView({
+      id: 'overview' as FilterViewId,
       title: 'Filtrer',
       component: ViewOverview,
       props: {
@@ -112,31 +55,22 @@ export const OverviewWithJustProps = {
       },
       resetButtonProps: {
         children: 'Nullstill',
-        variant: 'borderless',
         onClick: (): void => {
           console.log('Cleared');
         },
       },
-    };
+    });
 
-    const views: ViewOverviewConfig<FilterViewId>[] = [
-      {
-        id: 'age',
-        title: 'Alder',
-        component: AgePageSimple,
-      },
-      {
-        id: 'gender',
-        title: 'Kjønn',
-        component: GenderPageSimple,
-      },
+    const views = [
+      createView({ id: 'age' as FilterViewId, title: 'Alder', component: AgePageSimple }),
+      createView({ id: 'gender' as FilterViewId, title: 'Kjønn', component: GenderPageSimple }),
     ];
 
     return (
       <div>
         <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
         <DrawerNavigationPOC
-          homeView={overviewHome}
+          homeView={overviewHome} // mulig det er bedre om disse 2 slås sammen
           views={views}
           isOpen={isOpen}
           onCloseButton={() => setIsOpen(false)}
@@ -152,8 +86,8 @@ export const OverviewWithJustProps = {
 
 export const OverviewWithJustPropsAlwaysOpen = {
   render: (): React.JSX.Element => {
-    const overviewHome: ViewOverviewConfig<FilterViewId> = {
-      id: 'overview',
+    const overviewHome = createView({
+      id: 'overview' as FilterViewId,
       title: 'Filtrer',
       component: ViewOverview,
       props: {
@@ -162,19 +96,11 @@ export const OverviewWithJustPropsAlwaysOpen = {
           { title: 'Kjønn', activeFilters: ['Mann', 'Kvinne'], viewId: 'gender' },
         ],
       },
-    };
+    });
 
-    const views: ViewOverviewConfig<FilterViewId>[] = [
-      {
-        id: 'age',
-        title: 'Alder',
-        component: AgePageSimple,
-      },
-      {
-        id: 'gender',
-        title: 'Kjønn',
-        component: GenderPageSimple,
-      },
+    const views = [
+      createView({ id: 'age' as FilterViewId, title: 'Alder', component: AgePageSimple }),
+      createView({ id: 'gender' as FilterViewId, title: 'Kjønn', component: GenderPageSimple }),
     ];
 
     return (
@@ -196,7 +122,7 @@ type CustomOverviewViewId = 'overview' | 'age' | 'gender';
 
 const CustomOverview: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>> = ({ navigate }) => (
   <div>
-    <span>{'Alert message here'}</span>
+    <NotificationPanel variant="error">{'Alert message here'}</NotificationPanel> <br />
     <ViewOverview
       filters={[
         { title: 'Alder', activeFilters: ['20-30 år'], viewId: 'age' },
@@ -209,14 +135,14 @@ const CustomOverview: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>
 const AgePage: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>> = () => <div>{'Hello age page'}</div>;
 const GenderPage: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>> = () => <div>{'Hello gender page'}</div>;
 
-const customOverviewHome: ViewConfig<CustomOverviewViewId> = {
-  id: 'overview',
+const customOverviewHome = createView({
+  id: 'overview' as CustomOverviewViewId,
   title: 'Filtrer',
   component: CustomOverview,
-};
-const customOverviewViews: ViewConfig<CustomOverviewViewId>[] = [
-  { id: 'age', title: 'Alder', component: AgePage },
-  { id: 'gender', title: 'Kjønn', component: GenderPage },
+});
+const customOverviewViews = [
+  createView({ id: 'age' as CustomOverviewViewId, title: 'Alder', component: AgePage }),
+  createView({ id: 'gender' as CustomOverviewViewId, title: 'Kjønn', component: GenderPage }),
 ];
 
 export const OverviewWithCustomComponent = {
@@ -284,18 +210,18 @@ export const WithValidation = {
       return true;
     };
 
-    const homeView = {
-      id: 'overview' as const,
+    const homeView = createView({
+      id: 'overview' as ValidationViewId,
       title: 'Filtrer',
       component: ViewOverview,
       props: {
         filters: [{ title: 'Dato', activeFilters: [], viewId: 'date' }],
       },
-    };
+    });
 
     const views = [
-      {
-        id: 'date' as const,
+      createView({
+        id: 'date' as ValidationViewId,
         title: 'Dato',
         component: ValidationInputPage,
         props: {
@@ -312,7 +238,7 @@ export const WithValidation = {
             }
           },
         },
-      },
+      }),
     ];
 
     return (
