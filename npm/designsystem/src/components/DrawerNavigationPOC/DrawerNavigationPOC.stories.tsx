@@ -237,7 +237,6 @@ export const OverviewWithCustomComponent = {
 };
 
 interface ValidationInputPageProps {
-  inputRef: React.RefObject<HTMLInputElement | null>;
   inputValue: string;
   setInputValue: (value: string) => void;
   errors: ValidationErrors;
@@ -247,7 +246,6 @@ interface ValidationInputPageProps {
 type ValidationViewId = 'overview' | 'date';
 
 const ValidationInputPage: React.FC<DrawerNavigationCommonProps<ValidationViewId> & ValidationInputPageProps> = ({
-  inputRef,
   inputValue,
   setInputValue,
   errors,
@@ -255,7 +253,6 @@ const ValidationInputPage: React.FC<DrawerNavigationCommonProps<ValidationViewId
 }) => (
   <div>
     <Input
-      ref={inputRef}
       label="Skriv inn verdi"
       required
       value={inputValue}
@@ -302,7 +299,6 @@ export const WithValidation = {
         title: 'Dato',
         component: ValidationInputPage,
         props: {
-          inputRef,
           inputValue,
           setInputValue,
           errors,

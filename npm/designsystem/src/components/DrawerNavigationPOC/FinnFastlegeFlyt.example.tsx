@@ -19,7 +19,6 @@ import examplestyles from './FinnFastlegeFlyt.module.scss';
 type FinnFastlegeViewId = 'overview' | 'location' | 'name-doctor' | 'name-office' | 'oslo-view';
 
 interface ValidationInputPageProps {
-  inputRef: React.RefObject<HTMLInputElement | null>;
   inputValue: string;
   setInputValue: (value: string) => void;
   errors: ValidationErrors;
@@ -88,7 +87,6 @@ const OsloView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId>> = ({ n
 };
 
 const NameDoctorView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId> & ValidationInputPageProps> = ({
-  inputRef,
   inputValue,
   setInputValue,
   errors,
@@ -97,7 +95,6 @@ const NameDoctorView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId> &
 }) => (
   <div>
     <Input
-      ref={inputRef}
       label="Navnet til fastlegen"
       required
       value={inputValue}
@@ -118,7 +115,6 @@ const NameDoctorView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId> &
 );
 
 const NameOfficeView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId> & ValidationInputPageProps> = ({
-  inputRef,
   inputValue,
   setInputValue,
   errors,
@@ -127,7 +123,6 @@ const NameOfficeView: React.FC<DrawerNavigationCommonProps<FinnFastlegeViewId> &
 }) => (
   <div>
     <Input
-      ref={inputRef}
       label="Navnet på legekontoret"
       required
       value={inputValue}
@@ -168,7 +163,6 @@ const FinnFastLegeFlyt = (): React.ReactNode => {
   const [modalOpen, setModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [errors, setErrors] = useState<ValidationErrors>({});
-  const inputRef = useRef<HTMLInputElement>(null);
   const drawerRef = useRef<NavigateProps<FinnFastlegeViewId>>(null);
 
   const homeView = createView({
@@ -205,39 +199,33 @@ const FinnFastLegeFlyt = (): React.ReactNode => {
         onClick: (): void => setModalOpen(true),
       },
     }),
-    // eslint-disable-next-line react-hooks/refs
     createView({
       id: 'name-doctor',
       title: 'Navnet til fastlegen',
       component: NameDoctorView,
       props: {
-        inputRef,
         inputValue,
         setInputValue,
         errors,
         clearErrors: (): void => setErrors({}),
       },
     }),
-    // eslint-disable-next-line react-hooks/refs
     createView({
       id: 'name-office',
       title: 'Navnet på legekontoret',
       component: NameOfficeView,
       props: {
-        inputRef,
         inputValue,
         setInputValue,
         errors,
         clearErrors: (): void => setErrors({}),
       },
     }),
-    // eslint-disable-next-line react-hooks/refs
     createView({
       id: 'oslo-view',
       title: 'Bydel',
       component: OsloView,
       props: {
-        inputRef,
         inputValue,
         setInputValue,
         errors,
