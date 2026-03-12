@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
 import { action } from 'storybook/actions';
 
-import DropdownOld, { DropdownOldOnColor } from './DropdownOld';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import DropdownOld from './DropdownOld';
 import { LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
 import Button from '../Button';
@@ -13,6 +14,7 @@ import Checkbox from '../Checkbox';
 import Label, { Sublabel } from '../Label';
 import RadioButton from '../RadioButton';
 import Spacer from '../Spacer';
+import { DropdownOldOnColor } from './constants';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/DropdownOld',
@@ -181,10 +183,9 @@ import { LanguageLocales } from '@helsenorge/designsystem-react/constants'
 import LanguageProvider from '@helsenorge/designsystem-react/utils/language'
 ...
 
-const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+const [language, setLanguage] = useState<LanguageLocales>{'(LanguageLocales.ENGLISH);
 
-return (
-  <LanguageProvider<LanguageLocales> language={language}>
+return ('}<LanguageProvider<LanguageLocales> language={language}>
     <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} variant="outline">
       {'Bytt til bokmål'}
     </Button>

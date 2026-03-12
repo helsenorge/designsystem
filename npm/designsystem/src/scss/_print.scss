@@ -33,7 +33,7 @@
   pre,
   blockquote {
     border: 1px solid palette.$neutral500;
-    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   .table {
@@ -46,7 +46,7 @@
 
   tr,
   img {
-    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   p,
@@ -58,7 +58,7 @@
 
   h2,
   h3 {
-    page-break-after: avoid;
+    break-after: avoid;
   }
 
   .col-print-1 {

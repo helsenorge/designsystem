@@ -1,9 +1,9 @@
-import React from 'react';
+import type { HNDesignsystemInfoTeaser } from '../../resources/Resources';
+import type { InfoTeaserTags } from '../InfoTeaser';
+import type { TitleTags } from '../Title';
 
-import { HNDesignsystemInfoTeaser } from '../../resources/Resources';
 import HandWaving from '../Icons/HandWaving';
-import InfoTeaser, { InfoTeaserTags } from '../InfoTeaser';
-import { TitleTags } from '../Title';
+import InfoTeaser from '../InfoTeaser';
 
 import styles from './styles.module.scss';
 

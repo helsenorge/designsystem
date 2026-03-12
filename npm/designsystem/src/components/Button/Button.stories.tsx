@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from './Button';
 import { getColor } from '../../theme/currys/color';
@@ -56,13 +57,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const myRef1: React.RefObject<HTMLButtonElement> = React.createRef();
-const myRef2: React.RefObject<HTMLButtonElement> = React.createRef();
-const myRef3: React.RefObject<HTMLButtonElement> = React.createRef();
-const myRef4: React.RefObject<HTMLButtonElement> = React.createRef();
-const myRef5: React.RefObject<HTMLButtonElement> = React.createRef();
-const myRef6: React.RefObject<HTMLButtonElement> = React.createRef();
-const myRef7: React.RefObject<HTMLButtonElement> = React.createRef();
+const myRef1: React.RefObject<HTMLButtonElement | null> = React.createRef();
+const myRef2: React.RefObject<HTMLButtonElement | null> = React.createRef();
+const myRef3: React.RefObject<HTMLButtonElement | null> = React.createRef();
+const myRef4: React.RefObject<HTMLButtonElement | null> = React.createRef();
+const myRef5: React.RefObject<HTMLButtonElement | null> = React.createRef();
+const myRef6: React.RefObject<HTMLButtonElement | null> = React.createRef();
+const myRef7: React.RefObject<HTMLButtonElement | null> = React.createRef();
 
 export const Default: Story = {
   render: args => (

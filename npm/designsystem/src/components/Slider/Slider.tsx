@@ -1,6 +1,8 @@
-import React, { useEffect, useState, useRef, useId } from 'react';
+import { useEffect, useState, useRef, useId } from 'react';
 
 import classNames from 'classnames';
+
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { AnalyticsId } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
@@ -8,27 +10,38 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useSize } from '../../hooks/useSize';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
-import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper from '../ErrorWrapper';
 import Title from '../Title';
 
 import styles from './styles.module.scss';
 
 const useSafeNumberValue = (initial: number, min: number, max: number): [number, (value: number) => void] => {
   const [value, setValue] = useState(initial);
+  const [prevMin, setPrevMin] = useState(min);
+  const [prevMax, setPrevMax] = useState(max);
 
-  const setSafeValue = (newValue: number): void => {
+  const getSafeValue = (newValue: number): number => {
     if (newValue > max) {
-      setValue(max);
-    } else if (newValue < min) {
-      setValue(min);
-    } else {
-      setValue(newValue);
+      return max;
     }
+    if (newValue < min) {
+      return min;
+    }
+    return newValue;
   };
 
-  useEffect(() => {
-    setSafeValue(initial);
-  }, [min, max]);
+  const setSafeValue = (newValue: number): void => {
+    setValue(getSafeValue(newValue));
+  };
+
+  if (min !== prevMin || max !== prevMax) {
+    setPrevMin(min);
+    setPrevMax(max);
+    const safeValue = getSafeValue(initial);
+    if (safeValue !== value) {
+      setValue(safeValue);
+    }
+  }
 
   return [value, setSafeValue];
 };
@@ -70,9 +83,11 @@ export interface SliderProps
   testId?: string;
   /** Sets the value of the slider */
   value?: number;
+  /** Ref passed to component */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
-export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLInputElement>) => {
+export const Slider: React.FC<SliderProps> = props => {
   const {
     title,
     ariaLabel,
@@ -91,6 +106,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
     selected = true,
     testId,
     value,
+    ref,
     ...rest
   } = props;
 
@@ -395,7 +411,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 Slider.displayName = 'Slider';
 

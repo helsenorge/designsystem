@@ -1,18 +1,12 @@
-import React from 'react';
-
 import cn from 'classnames';
 
+import { AvatarSize } from './constants';
 import { AnalyticsId } from '../../constants';
 import { palette } from '../../theme/palette';
 import Icon, { IconSize } from '../Icon';
 import Check from '../Icons/Check';
 
 import styles from './styles.module.scss';
-
-export enum AvatarSize {
-  xsmall = 'xsmall',
-  small = 'small',
-}
 
 export interface AvatarProps {
   /** Name to display in the avatar. Will be truncated to the first two characters. */
@@ -29,10 +23,21 @@ export interface AvatarProps {
   className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the root element */
+  ref?: React.Ref<HTMLElement | null>;
 }
-export type AvatarType = React.ForwardRefExoticComponent<AvatarProps & React.RefAttributes<HTMLElement>>;
-const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', selected = false, color = 'blueberry', variant = 'square', size = AvatarSize.small, testId } = props;
+export type AvatarType = typeof Avatar;
+const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
+  const {
+    children,
+    className = '',
+    selected = false,
+    color = 'blueberry',
+    variant = 'square',
+    size = AvatarSize.small,
+    testId,
+    ref,
+  } = props;
   const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (
     <span
@@ -56,6 +61,6 @@ const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: A
       )}
     </span>
   );
-});
+};
 
 export default Avatar;

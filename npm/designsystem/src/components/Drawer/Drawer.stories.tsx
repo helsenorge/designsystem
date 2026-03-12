@@ -1,12 +1,12 @@
-import React from 'react';
-
 import { Source } from '@storybook/addon-docs/blocks';
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/preview-api';
 
-import Drawer, { DrawerProps } from './Drawer';
+import type { DrawerProps } from './Drawer';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import Drawer from './Drawer';
 import { allTitleTags } from '../../../.storybook/knobs';
 import longLoremText from '../../utils/loremtext';
 import Button from '../Button';
@@ -68,7 +68,6 @@ const meta = {
   },
   argTypes: {
     ariaLabel: { control: 'text' },
-    ariaLabelCloseBtn: { control: 'text' },
     ariaLabelledBy: { control: 'text' },
     children: { control: 'text' },
     desktopDirection: { control: 'select', options: ['left', 'right'] },

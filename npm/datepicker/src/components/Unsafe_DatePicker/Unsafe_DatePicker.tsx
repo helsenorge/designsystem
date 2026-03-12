@@ -11,10 +11,17 @@ import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Label, { type LabelProps } from '@helsenorge/designsystem-react/components/Label';
 import { isComponent } from '@helsenorge/designsystem-react/utils/component';
-import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 import { mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
-import { IconSize, KeyboardEventKey, LanguageLocales, useKeyboardEvent, useOutsideEvent, useToggle } from '@helsenorge/designsystem-react';
+import {
+  IconSize,
+  KeyboardEventKey,
+  LanguageLocales,
+  useKeyboardEvent,
+  useLanguage,
+  useOutsideEvent,
+  useToggle,
+} from '@helsenorge/designsystem-react';
 
 import BaseDayPicker, { type BaseDayPickerProps } from './BaseDayPicker/BaseDayPicker';
 import DateInputInternal from './DateInputInternal';
@@ -55,7 +62,7 @@ const Unsafe_DatePicker = ({
   ['aria-labelledby']: ariaLabelledBy,
   resources,
   ...baseDayPickerProps
-}: Unsafe_DatePickerProps): JSX.Element => {
+}: Unsafe_DatePickerProps): React.ReactNode => {
   const dateToString = (date: Date | undefined): string => {
     if (!isValid(date) || !date) {
       return '';

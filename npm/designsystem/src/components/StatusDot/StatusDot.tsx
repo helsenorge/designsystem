@@ -1,40 +1,12 @@
-import React from 'react';
-
 import classNames from 'classnames';
 
+import { StatusDotOnColor, StatusDotVariant } from './constants';
 import { IconSize } from '../..';
-import { AnalyticsId, FormOnColor } from '../../constants';
+import { AnalyticsId } from '../../constants';
 import { getColor } from '../../theme/currys';
 import { LazyIcon } from '../LazyIcon';
 
 import styles from './styles.module.scss';
-
-export enum StatusDotOnColor {
-  onwhite = FormOnColor.onwhite,
-  ondark = FormOnColor.ondark,
-}
-
-export enum StatusDotVariant {
-  success = 'success',
-  inprocess = 'inprocess',
-  exception = 'exception',
-  unknown = 'unknown',
-  inspected = 'inspected',
-  cancelled = 'cancelled',
-  alert = 'alert',
-  transparent = 'transparent',
-  info = 'info',
-  group = 'group',
-  recurring = 'recurring',
-  noaccess = 'noaccess',
-  draft = 'draft',
-  hidden = 'hidden',
-  login = 'login',
-  attachment = 'attachment',
-  active = 'active',
-  pending = 'pending',
-  inactive = 'inactive',
-}
 
 export interface StatusDotIconProps {
   /** Defines the color of the icon */
@@ -57,43 +29,45 @@ const StatusDotIcon: React.FC<StatusDotIconProps> = ({ onColor, variant = 'info'
 
   switch (variant) {
     case StatusDotVariant.success:
-      return <LazyIcon {...iconProps} iconName={'DotSuccess'} />;
+      return <LazyIcon {...iconProps} iconName={'DotCheckmark'} />;
     case StatusDotVariant.inprocess:
       return <LazyIcon {...iconProps} iconName={'DotHalfDisc'} />;
     case StatusDotVariant.exception:
-      return <LazyIcon {...iconProps} iconName={'DotWarningTriangle'} />;
+      return <LazyIcon {...iconProps} iconName={'DotTriangle'} />;
     case StatusDotVariant.unknown:
       return <LazyIcon {...iconProps} iconName={'DotQuestionMark'} />;
     case StatusDotVariant.inspected:
       return <LazyIcon {...iconProps} iconName={'DotLookingGlass'} />;
     case StatusDotVariant.cancelled:
-      return <LazyIcon {...iconProps} iconName={'DotCancelled'} />;
+      return <LazyIcon {...iconProps} iconName={'DotX'} />;
     case StatusDotVariant.alert:
-      return <LazyIcon {...iconProps} iconName={'DotAlert'} />;
+      return <LazyIcon {...iconProps} iconName={'DotExclamationMark'} />;
     case StatusDotVariant.transparent:
-      return <LazyIcon {...iconProps} iconName={'DotTransparent'} />;
+      return <LazyIcon {...iconProps} iconName={'DotOutline'} />;
     case StatusDotVariant.info:
       return <LazyIcon {...iconProps} iconName={'DotInfo'} />;
     case StatusDotVariant.group:
-      return <LazyIcon {...iconProps} iconName={'Group'} />;
+      return <LazyIcon {...iconProps} iconName={'DotGroup'} />;
     case StatusDotVariant.recurring:
-      return <LazyIcon {...iconProps} iconName={'Change'} />;
+      return <LazyIcon {...iconProps} iconName={'DotCircleArrows'} />;
     case StatusDotVariant.noaccess:
-      return <LazyIcon {...iconProps} iconName={'NoAccess'} />;
+      return <LazyIcon {...iconProps} iconName={'DotNoAccess'} />;
     case StatusDotVariant.draft:
-      return <LazyIcon {...iconProps} iconName={'Pencil'} />;
+      return <LazyIcon {...iconProps} iconName={'DotPencil'} />;
     case StatusDotVariant.hidden:
-      return <LazyIcon {...iconProps} iconName={'NoEye'} />;
+      return <LazyIcon {...iconProps} iconName={'DotNoEye'} />;
     case StatusDotVariant.login:
-      return <LazyIcon {...iconProps} iconName={'Login'} />;
+      return <LazyIcon {...iconProps} iconName={'DotLogin'} />;
     case StatusDotVariant.attachment:
-      return <LazyIcon {...iconProps} iconName={'Attachment'} />;
+      return <LazyIcon {...iconProps} iconName={'DotAttachment'} />;
     case StatusDotVariant.active:
-      return <LazyIcon {...iconProps} iconName={'DotActive'} />;
+      return <LazyIcon {...iconProps} iconName={'DotFill'} />;
     case StatusDotVariant.pending:
-      return <LazyIcon {...iconProps} iconName={'DotPending'} />;
+      return <LazyIcon {...iconProps} iconName={'DotDot'} />;
     case StatusDotVariant.inactive:
-      return <LazyIcon {...iconProps} iconName={'DotInactive'} />;
+      return <LazyIcon {...iconProps} iconName={'DotOutline'} />;
+    case StatusDotVariant.ready:
+      return <LazyIcon {...iconProps} iconName={'DotOutline'} />;
   }
 
   return null;
@@ -112,15 +86,13 @@ export interface StatusDotProps {
   className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the root element */
+  ref?: React.Ref<HTMLElement | null>;
 }
 
-export type StatusDotType = React.ForwardRefExoticComponent<StatusDotProps & React.RefAttributes<HTMLElement>>;
-const StatusDot: StatusDotType = React.forwardRef(function StatusDotForwardedRef(
-  props: StatusDotProps,
-  ref: React.ForwardedRef<HTMLElement>
-) {
-  const { id, onColor = StatusDotOnColor.onwhite, variant = StatusDotVariant.info, text, className, testId } = props;
-
+export type StatusDotType = typeof StatusDot;
+const StatusDot: React.FC<StatusDotProps> = (props: StatusDotProps) => {
+  const { id, onColor = StatusDotOnColor.onwhite, variant = StatusDotVariant.info, text, className, testId, ref } = props;
   const statusDotClasses = classNames(styles['statusdot'], className);
   const labelClasses = classNames(styles['statusdot__label'], {
     [styles['statusdot__label--on-dark']]: onColor === StatusDotOnColor.ondark,
@@ -134,6 +106,6 @@ const StatusDot: StatusDotType = React.forwardRef(function StatusDotForwardedRef
       <span className={labelClasses}>{text}</span>
     </span>
   );
-});
+};
 
 export default StatusDot;

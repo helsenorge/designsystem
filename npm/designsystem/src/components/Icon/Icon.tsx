@@ -2,8 +2,10 @@ import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormOnColor, IconSize } from '../../constants';
-import { StatusDotOnColor } from '../StatusDot';
+import type { FormOnColor } from '../../constants';
+import type { StatusDotOnColor } from '../StatusDot';
+
+import { AnalyticsId, IconSize } from '../../constants';
 
 export type SvgIcon = React.FC<SvgPathProps>;
 
@@ -24,6 +26,8 @@ export interface BaseIconProps {
   onColor?: keyof typeof FormOnColor | StatusDotOnColor;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<SVGSVGElement>;
 }
 
 export interface IconProps extends BaseIconProps {
@@ -37,7 +41,7 @@ export interface SvgPathProps {
   onColor?: keyof typeof FormOnColor | StatusDotOnColor;
 }
 
-interface IconConfig {
+export interface IconConfig {
   size: IconSize;
   isHovered: boolean;
   normal: React.ReactElement;
@@ -48,27 +52,7 @@ interface IconConfig {
   xxSmallHover?: React.ReactElement;
 }
 
-export const getIcon = ({
-  size,
-  isHovered,
-  normal,
-  normalHover,
-  xSmall,
-  xSmallHover,
-  xxSmall,
-  xxSmallHover,
-}: IconConfig): React.ReactElement => {
-  if (size <= IconSize.XXSmall && xxSmall && xxSmallHover) {
-    return isHovered ? xxSmallHover : xxSmall;
-  }
-  if (size <= IconSize.XSmall && xSmall && xSmallHover) {
-    return isHovered ? xSmallHover : xSmall;
-  }
-
-  return isHovered ? normalHover : normal;
-};
-
-export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGElement>) => {
+export const Icon: React.FC<IconProps> = props => {
   const {
     svgIcon,
     ariaLabel,
@@ -79,9 +63,9 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
     isHovered = false,
     onColor,
     testId,
+    ref,
     ...other
   } = props;
-
   const svgRaw = React.createElement(svgIcon, {
     size,
     isHovered,
@@ -113,7 +97,7 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
       {svgRaw}
     </svg>
   );
-});
+};
 
 Icon.displayName = 'Icon';
 

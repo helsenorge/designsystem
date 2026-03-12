@@ -1,8 +1,7 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Select from './Select';
 import { palette } from '../../theme/palette';
@@ -18,7 +17,7 @@ const meta = {
       ),
       description: {
         component:
-          'Som innbygger vil jeg kunne se hva som er valgt av et liste med skjulte valgalternativer, og åpne den skjulte listen og gjøre andre valg dersom jeg ønsker det, slik at jeg kan løse mine oppgaver. <br><br>Nytteverdi: Lar innbygger velge ETT blant flere alternativer <br>Bruksområde: Brukes når innbygger skal kunne velge ett enkelt valg under en etikett, men plassen som er til rådighet for kontrollen bare rommer ett valg. ',
+          'Som innbygger vil jeg kunne se hva som er valgt av et liste med skjulte valgalternativer, og åpne den skjulte listen og gjøre andre valg dersom jeg ønsker det, slik at jeg kan løse mine oppgaver. <br><br>Nytteverdi: Lar innbygger velge ETT blant flere alternativer<br>Bruksområde: Brukes når innbygger skal kunne velge ett enkelt valg under en etikett, men plassen som er til rådighet for kontrollen bare rommer ett valg. ',
       },
     },
   },
@@ -173,7 +172,7 @@ export const WithPlaceholderText: Story = {
     <>
       <Select
         {...args}
-        label={<Label labelTexts={[{ text: 'Velg et alternativ:', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg et alternativ:' }]} />}
         name={'select name 1'}
         onChange={() => null}
         defaultValue={''}

@@ -3,10 +3,12 @@ import React, { useState, useEffect, useId } from 'react';
 import classNames from 'classnames';
 import { useAnimate } from 'motion/react';
 
+import { ToggleOnColor, TogglePosition } from './constants';
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 
 import styles from './styles.module.scss';
+
 import '../../scss/supernova/styles/colors.css';
 
 export type LabelText = {
@@ -18,17 +20,6 @@ export type StatusTextType = {
   checked: string;
   unchecked: string;
 };
-
-export enum TogglePosition {
-  left = 'left',
-  right = 'right',
-}
-
-export enum ToggleOnColor {
-  onwhite = 'onwhite',
-  onneutral = 'onneutral',
-  onblueberry = 'onblueberry',
-}
 
 export interface ToggleProps extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /**  Determines if the Toggle is checked */
@@ -71,6 +62,22 @@ const Toggle: React.FC<ToggleProps> = ({
   const showHoveredStyling = isHovered && !showToggleAnimation;
   const isOnWhite = onColor === ToggleOnColor.onwhite;
 
+  const getBackgroundColor = (): string => {
+    if (checkedState && isActive) {
+      return 'var(--core-color-blueberry-800)';
+    } else if (checkedState) {
+      return showHoveredStyling ? 'var(--color-action-graphics-onlight-hover)' : 'var(--color-action-graphics-onlight)';
+    } else if (isOnWhite && isActive) {
+      return 'var(--core-color-neutral-400)';
+    } else if (isOnWhite) {
+      return showHoveredStyling ? 'var(--core-color-neutral-200)' : 'var(--core-color-neutral-50)';
+    } else if (isActive) {
+      return 'var(--core-color-neutral-200)';
+    } else {
+      return showHoveredStyling ? 'var(--core-color-neutral-50)' : 'var(--core-color-white)';
+    }
+  };
+
   useEffect(() => {
     if (showToggleAnimation) {
       const timer = setTimeout(() => setShowToggleAnimation(false), 300);
@@ -90,25 +97,9 @@ const Toggle: React.FC<ToggleProps> = ({
       { background: checkedState ? 'var(--color-action-graphics-ondark)' : 'var(--core-color-neutral-700)' },
       { duration: 0.2, ease: 'easeInOut' }
     );
-    animate(toggleDotRef.current, { x: showHoveredStyling ? 9 : checkedState ? 18 : 0 }, { duration: 0.2, ease: 'easeInOut' });
+    animate(toggleDotRef.current, { x: checkedState ? 16 : 0 }, { duration: 0.2, ease: 'easeInOut' });
     animate('svg', { opacity: checkedState ? 1 : 0 }, { duration: 0.2, ease: 'easeInOut' });
   }, [checkedState, showHoveredStyling, isActive]);
-
-  const getBackgroundColor = (): string => {
-    if (checkedState && isActive) {
-      return 'var(--core-color-blueberry-800)';
-    } else if (checkedState) {
-      return showHoveredStyling ? 'var(--color-action-graphics-onlight-hover)' : 'var(--color-action-graphics-onlight)';
-    } else if (isOnWhite && isActive) {
-      return 'var(--core-color-neutral-400)';
-    } else if (isOnWhite) {
-      return showHoveredStyling ? 'var(--core-color-neutral-200)' : 'var(--core-color-neutral-50)';
-    } else if (isActive) {
-      return 'var(--core-color-neutral-200)';
-    } else {
-      return showHoveredStyling ? 'var(--core-color-neutral-50)' : 'var(--core-color-white)';
-    }
-  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setCheckedState(event.target.checked);
@@ -152,13 +143,14 @@ const Toggle: React.FC<ToggleProps> = ({
         <span id={toggleId} ref={toggleRef} className={toggleClassNames} aria-hidden="true">
           <span ref={toggleDotRef} className={toggleDotClassNames} aria-hidden="true">
             <svg
-              width="17"
-              height="13"
-              viewBox="0 0 17 13"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles['toggle-container__toggle__dot__icon']}
             >
-              <path d="M15 2L6.80839 10.548L2 5.53145" fill="none" strokeWidth="3" />
+              <path d="M11 2.65247L4.69877 9.34741L1 5.41836" strokeWidth="2.2" />
             </svg>
           </span>
         </span>

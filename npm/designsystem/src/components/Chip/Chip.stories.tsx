@@ -1,9 +1,9 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
-import Chip, { ChipAction, ChipSize, ChipVariant } from './Chip';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import Chip from './Chip';
+import { ChipAction, ChipSize, ChipVariant } from './constants';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Chip',
@@ -27,7 +27,7 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: ChipSize,
+      options: Object.values(ChipSize),
     },
     color: {
       control: 'select',
@@ -35,11 +35,11 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: ChipVariant,
+      options: Object.values(ChipVariant),
     },
     action: {
       control: 'select',
-      options: ChipAction,
+      options: Object.values(ChipAction),
     },
   },
 } satisfies Meta<typeof Chip>;

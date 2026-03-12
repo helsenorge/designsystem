@@ -1,5 +1,5 @@
 /**
- * Slår sammen refs fra forwardRef og useRef slik at begge deler kan brukes
+ * Slår sammen to refs, typisk ref via prop og useRef slik at begge deler kan brukes som en felles ref
  * Fra https://github.com/gregberge/react-merge-refs
  * @param refs array med refs som skal slås sammen
  * @returns refcallback som kan brukes på komponent
@@ -21,6 +21,6 @@ export const mergeRefs = <T>(refs: Array<React.MutableRefObject<T> | React.Legac
  * @param ref
  * @returns type predicate
  */
-export const isMutableRefObject = <T>(ref: React.ForwardedRef<T>): ref is React.MutableRefObject<T> => {
-  return typeof ref !== 'function' && ref !== null;
+export const isMutableRefObject = <T>(ref: React.Ref<T> | undefined): ref is React.MutableRefObject<T> => {
+  return !!ref && typeof ref !== 'function' && 'current' in ref;
 };

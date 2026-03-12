@@ -11,17 +11,17 @@ import { usePrevious } from './usePrevious';
  */
 export const useToggle = (initialValue: boolean, callback?: (value: boolean) => void): { value: boolean; toggleValue: () => void } => {
   const [value, setValue] = useState(initialValue);
+  const [prevInitialValue, setPrevInitialValue] = useState(initialValue);
   const previousValue = usePrevious(value);
+
+  if (initialValue !== prevInitialValue) {
+    setPrevInitialValue(initialValue);
+    setValue(initialValue);
+  }
 
   const toggleValue = (): void => {
     setValue(!value);
   };
-
-  useEffect(() => {
-    if (initialValue !== value) {
-      setValue(initialValue);
-    }
-  }, [initialValue]);
 
   useEffect(() => {
     if (callback && value !== !!previousValue) {

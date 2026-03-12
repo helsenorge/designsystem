@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useRovingFocus } from './useRovingFocus';
 
 const UseRovingFocusExample: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const refArray = useRef<Array<React.RefObject<HTMLButtonElement>>>([
+  const refArray = useRef<Array<React.RefObject<HTMLButtonElement | null>>>([
     useRef<HTMLButtonElement>(null),
     useRef<HTMLButtonElement>(null),
     useRef<HTMLButtonElement>(null),
@@ -43,18 +43,17 @@ import { useRovingFocus } from '@helsenorge/designsystem-react/hooks/useRovingFo
 
 const UseRovingFocusExample: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const refArray = useRef<Array<React.RefObject<HTMLButtonElement>>>([
-    useRef<HTMLButtonElement>(null),
-    useRef<HTMLButtonElement>(null),
-    useRef<HTMLButtonElement>(null),
+  const refArray = useRef<Array<React.RefObject<HTMLButtonElement>{'>>([
+    useRef'}<HTMLButtonElement>{'(null),
+    useRef'}<HTMLButtonElement>{'(null),
+    useRef'}<HTMLButtonElement>{'(null),
   ]);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef'}<HTMLDivElement>{'(null);
   const leftRightNavigation = false;
 
   useRovingFocus(setActiveIndex, refArray, containerRef, leftRightNavigation);
 
-  return (
-    <div ref={containerRef}>
+  return ('}<div ref={containerRef}>
       <div>{'Focused button:' + activeIndex}</div>
       {refArray.current.map((ref, index) => (
         <button key={index} ref={ref}>
@@ -80,9 +79,9 @@ export const Default: Story = { render: () => <UseRovingFocusExample /> };
 const WithLeftRightNavigationRender: React.FC = () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
 
-  const buttonRefs = React.useMemo(() => Array.from({ length: 3 }, () => React.createRef<HTMLButtonElement>()), []);
-  const refArray = React.useRef<React.RefObject<HTMLButtonElement>[]>(buttonRefs);
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const buttonRefs = React.useMemo(() => Array.from({ length: 3 }, () => React.createRef<HTMLButtonElement | null>()), []);
+  const refArray = React.useRef<React.RefObject<HTMLButtonElement | null>[]>(buttonRefs);
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
 
   useRovingFocus(setActiveIndex, refArray, containerRef, true);
 

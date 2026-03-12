@@ -1,10 +1,10 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
-import Slider, { SliderStep } from './Slider';
+import type { SliderStep } from './Slider';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import Slider from './Slider';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Slider',

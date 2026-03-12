@@ -1,11 +1,11 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
-import { useArgs } from 'storybook/internal/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
-import HelpDrawer, { HelpDrawerProps } from './HelpDrawer';
+import type { HelpDrawerProps } from './HelpDrawer';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import HelpDrawer from './HelpDrawer';
 import { allTitleTags } from '../../../.storybook/knobs';
 import Button from '../Button';
 
@@ -27,8 +27,6 @@ const meta = {
     title: 'Hvorfor må jeg oppgi årsak for å få dekket reise under 10 km?',
   },
   argTypes: {
-    ariaLabel: { control: 'text' },
-    ariaLabelCloseBtn: { control: 'text' },
     ariaLabelledBy: { control: 'text' },
     children: { control: 'text' },
     isOpen: { control: 'boolean' },

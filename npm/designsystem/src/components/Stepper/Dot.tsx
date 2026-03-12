@@ -1,5 +1,3 @@
-import React from 'react';
-
 import classNames from 'classnames';
 
 import { STEPPER_PADDING_X_PX } from './utils';

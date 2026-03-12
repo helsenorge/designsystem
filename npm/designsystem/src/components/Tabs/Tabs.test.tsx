@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 
 import Tabs from './index';
 
-const TestTabs = (): JSX.Element => (
+const TestTabs = (): React.JSX.Element => (
   <Tabs>
     <Tabs.Tab testId="tab1" title="Tab 1">
       {'Content 1'}

@@ -1,14 +1,9 @@
 import React, { useId } from 'react';
 
-import { getIllustration } from './utils';
+import { getIllustration, ViewBoxSize } from './utils';
 import { AnalyticsId } from '../../constants';
 
 export type IllustrationColor = 'neutral' | 'cherry' | 'blueberry';
-
-export enum ViewBoxSize {
-  Medium = '0 0 512 512',
-  Small = '0 0 200 200',
-}
 
 export interface BaseSvgIllustrationProps {
   color: IllustrationColor;
@@ -37,10 +32,12 @@ export interface BaseIllustrationProps {
 export interface IllustrationProps extends BaseIllustrationProps {
   /* Sets which illustration should be displayed. */
   illustration: SvgIllustration;
+  /** Ref passed to the component */
+  ref?: React.Ref<SVGSVGElement | null>;
 }
 
-export const Illustration = React.forwardRef<SVGSVGElement, IllustrationProps>((props, ref) => {
-  const { illustration, ariaLabel, className = '', size = 512, color = 'neutral', testId, ...other } = props;
+export const Illustration: React.FC<IllustrationProps> = props => {
+  const { illustration, ariaLabel, className = '', size = 512, color = 'neutral', testId, ref, ...other } = props;
 
   const titleId = useId();
   const viewBox = getIllustration({ size, medium: ViewBoxSize.Medium, small: ViewBoxSize.Small });
@@ -70,7 +67,7 @@ export const Illustration = React.forwardRef<SVGSVGElement, IllustrationProps>((
   });
 
   return svgElement;
-});
+};
 
 Illustration.displayName = 'Illustration';
 

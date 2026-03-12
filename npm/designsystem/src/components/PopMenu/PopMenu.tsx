@@ -2,32 +2,25 @@ import React, { useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import type { SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
+import type { LinkListProps, LinkProps } from '../LinkList';
+
 import { AnalyticsId, IconSize } from '../../constants';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { isComponent } from '../../utils/component';
 import Button from '../Button';
-import Icon, { SvgIcon } from '../Icon';
-import { IconName } from '../Icons/IconNames';
+import Icon from '../Icon';
 import VerticalDots from '../Icons/VerticalDots';
 import X from '../Icons/X';
 import LazyIcon from '../LazyIcon';
-import LinkList, { LinkListProps, LinkProps } from '../LinkList';
+import LinkList from '../LinkList';
 import PopOver from '../PopOver';
+import { PopMenuLabelPosition, type PopMenuVariant } from './constants';
 
 import styles from './styles.module.scss';
-
-export enum PopMenuVariant {
-  onWhite = 'on-white',
-  onGray = 'on-gray',
-  onBlueberry = 'on-blueberry',
-}
-
-export enum PopMenuLabelPosition {
-  right = 'right',
-  left = 'left',
-}
 
 export interface PopMenuProps {
   /** Content shown inside PopOver. Can only be a LinkList */

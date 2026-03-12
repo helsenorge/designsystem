@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Input, { InputTypes } from './Input';
+import { InputTypes } from './constants';
+import Input from './Input';
 import { FormOnColor } from '../../constants';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label';

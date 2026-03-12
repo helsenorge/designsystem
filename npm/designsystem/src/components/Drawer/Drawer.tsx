@@ -3,23 +3,25 @@ import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { AnimatePresence, useAnimate, usePresence } from 'motion/react';
 
+import type { HNDesignsystemDrawer } from '../../resources/Resources';
+import type { TitleTags } from '../Title';
+
 import { getResources } from './resourceHelper';
 import { AnalyticsId, KeyboardEventKey, LanguageLocales, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
+import { useLanguage } from '../../hooks/useLanguage';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
-import { HNDesignsystemDrawer } from '../../resources/Resources';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { useLanguage } from '../../utils/language';
 import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
 import LazyIcon from '../LazyIcon';
-import Title, { TitleTags } from '../Title';
+import Title from '../Title';
 
 import styles from './styles.module.scss';
 
@@ -35,8 +37,6 @@ export interface InnerDrawerProps {
   ariaLabel?: string;
   /** Sets the aria-labelledby of the drawer */
   ariaLabelledBy?: string;
-  /** @deprecated Close button aria-label */
-  ariaLabelCloseBtn?: string;
   /** Sets the style of the Drawer Close button. Meant for use by HelpDrawer */
   closeColor?: 'blueberry' | 'plum';
   /** Direction of the drawer on desktop. Default: left */
@@ -86,7 +86,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const {
     ariaLabel,
     ariaLabelledBy,
-    ariaLabelCloseBtn,
     children,
     closeColor = 'blueberry',
     desktopDirection = 'left',
@@ -130,7 +129,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const mergedResources: HNDesignsystemDrawer = {
     ...defaultResources,
     ...resources,
-    ariaLabelCloseBtn: ariaLabelCloseBtn || resources?.ariaLabelCloseBtn || defaultResources.ariaLabelCloseBtn,
   };
 
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
@@ -145,6 +143,39 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     if (onRequestClose) onRequestClose();
   });
   useKeyboardEvent(containerRef, () => onRequestClose && onRequestClose(), [KeyboardEventKey.Escape]);
+
+  // Close animasjon, vi kaller `onClose()` til slutt
+  const closeDrawer = (): void => {
+    if (!overlayRef.current || !containerRef.current) return;
+
+    animate(overlayRef.current, { opacity: 0, pointerEvents: 'none' }, { duration: 0.3, ease: 'easeInOut' });
+
+    if (isMobile) {
+      animate(
+        containerRef.current,
+        { y: '100%' },
+        {
+          duration: 0.3,
+          ease: 'easeInOut',
+          onComplete: () => {
+            if (safeToRemove) safeToRemove();
+          },
+        }
+      );
+    } else {
+      animate(
+        containerRef.current,
+        { x: desktopDirection === 'left' ? '-100%' : '100%' },
+        {
+          duration: 0.3,
+          ease: 'easeInOut',
+          onComplete: () => {
+            if (safeToRemove) safeToRemove();
+          },
+        }
+      );
+    }
+  };
 
   useEffect(() => {
     containerRef.current?.focus();
@@ -199,39 +230,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
 
     animate(overlayRef.current, { opacity: 1, pointerEvents: 'auto' }, { duration: 0.3, ease: 'easeInOut' });
   }, [isPresent]);
-
-  // Close animasjon, vi kaller `onClose()` til slutt
-  const closeDrawer = (): void => {
-    if (!overlayRef.current || !containerRef.current) return;
-
-    animate(overlayRef.current, { opacity: 0, pointerEvents: 'none' }, { duration: 0.3, ease: 'easeInOut' });
-
-    if (isMobile) {
-      animate(
-        containerRef.current,
-        { y: '100%' },
-        {
-          duration: 0.3,
-          ease: 'easeInOut',
-          onComplete: () => {
-            if (safeToRemove) safeToRemove();
-          },
-        }
-      );
-    } else {
-      animate(
-        containerRef.current,
-        { x: desktopDirection === 'left' ? '-100%' : '100%' },
-        {
-          duration: 0.3,
-          ease: 'easeInOut',
-          onComplete: () => {
-            if (safeToRemove) safeToRemove();
-          },
-        }
-      );
-    }
-  };
 
   const handleCTA = (callback?: () => void): void => {
     if (callback) {

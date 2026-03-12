@@ -1,7 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
-import FavoriteButton, { FavoriteButtonProps } from './FavoriteButton';
+import type { FavoriteButtonProps } from './FavoriteButton';
+
+import FavoriteButton from './FavoriteButton';
 
 describe('Gitt at FavoriteButton skal vises', () => {
   const defaultProps: FavoriteButtonProps = {

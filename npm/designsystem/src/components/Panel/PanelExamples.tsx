@@ -1,8 +1,8 @@
-import React from 'react';
+/* eslint-disable react-refresh/only-export-components */
 
 import { action } from 'storybook/actions';
 
-import Panel, { PanelVariant, PanelLayout, PanelStatus } from './Panel';
+import Panel from './Panel';
 import AnchorLink from '../AnchorLink/AnchorLink';
 import Badge from '../Badge';
 import Button from '../Button';
@@ -15,6 +15,7 @@ import PdfFile from '../Icons/PdfFile';
 import Referral from '../Icons/Referral';
 import TrashCan from '../Icons/TrashCan';
 import StatusDot from '../StatusDot';
+import { PanelLayout, PanelStatus, PanelVariant } from './constants';
 
 export const MedisinskFødselsregister: React.FC = () => {
   return (

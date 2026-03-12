@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { enGB, nb, nn, se } from 'date-fns/locale';
-import { Modifiers } from 'react-day-picker';
+
+import type { Unsafe_DatePickerStandaloneProps } from './index';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+import type { Modifiers } from 'react-day-picker';
 
 import Title from '@helsenorge/designsystem-react/components/Title';
 
-import { Unsafe_DatePickerStandalone, Unsafe_DatePickerStandaloneProps } from './index';
+import { Unsafe_DatePickerStandalone } from './index';
 
 const meta = {
   title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_DatePickerStandalone',
@@ -170,7 +172,7 @@ export const AriaLabels: Story = {
       labelDayButton: (date: Date, modifiers: Modifiers) =>
         `Dato ${date.toISOString()} ${modifiers?.selected ? ', er valgt' : ', ikke valgt'}`,
       labelGrid: (date: Date) => `Måned ${date.getMonth() + 1} År ${date.getFullYear()}`,
-      labelGridcell: (date: Date, modifiers?: Modifiers) => `Dato ${date.getDate()}`,
+      labelGridcell: (date: Date, _modifiers?: Modifiers) => `Dato ${date.getDate()}`,
       labelMonthDropdown: () => 'Velg måned',
       labelNext: () => 'Neste måned',
       labelPrevious: () => 'Forrige måned',

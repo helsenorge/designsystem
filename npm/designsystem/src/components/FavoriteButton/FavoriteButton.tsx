@@ -1,14 +1,16 @@
-import React, { AriaAttributes } from 'react';
+import type { AriaAttributes } from 'react';
 
 import classNames from 'classnames';
 
+import type { HTMLButtonProps } from '../../constants';
+import type { HNDesignsystemFavoriteButton } from '../../resources/Resources';
+
 import { getResources } from './resourceHelper';
 import { starIconHoverDesktop, starIconHoverMobile, starIconNormalDesktop, starIconNormalMobile } from './StarIcon';
-import { AnalyticsId, HTMLButtonProps, LanguageLocales } from '../../constants';
+import { AnalyticsId, LanguageLocales } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useLanguage } from '../../hooks/useLanguage';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { HNDesignsystemFavoriteButton } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
 import { isMutableRefObject } from '../../utils/refs';
 
 import styles from './styles.module.scss';
@@ -26,13 +28,12 @@ export interface FavoriteButtonProps extends Omit<HTMLButtonProps, 'type'>, Aria
   tabIndex?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the button element */
+  ref?: React.Ref<HTMLButtonElement | null>;
 }
 
-export const FavoriteButton = React.forwardRef(function FavoriteButtonForwardedRef(
-  props: FavoriteButtonProps,
-  ref: React.ForwardedRef<HTMLButtonElement>
-) {
-  const { checked, id, onClick, resources, tabIndex, testId, ...other } = props;
+export const FavoriteButton: React.FC<FavoriteButtonProps> = (props: FavoriteButtonProps) => {
+  const { checked, id, onClick, resources, tabIndex, testId, ref, ...other } = props;
 
   const buttonWrapperClasses = classNames(styles.favoritebutton);
   const { refObject, isHovered, isActive } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
@@ -84,7 +85,7 @@ export const FavoriteButton = React.forwardRef(function FavoriteButtonForwardedR
       </svg>
     </button>
   );
-});
+};
 
 FavoriteButton.displayName = 'FavoriteButton';
 

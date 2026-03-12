@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { nb } from 'date-fns/locale';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 
@@ -15,6 +16,11 @@ const meta = {
   argTypes: {
     from: { control: 'object' },
     to: { control: 'object' },
+  },
+  args: {
+    from: <></>,
+    to: <></>,
+    onRangeChange: undefined,
   },
 } satisfies Meta<typeof Unsafe_RangeDatePickers>;
 

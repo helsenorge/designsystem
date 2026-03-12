@@ -3,14 +3,13 @@
 	@author Gaël Poupard
 		@note Based on Yahoo!'s technique
 		@author Thierry Koblentz
-		@see https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html
+		@see https://www.cssmojo.com/hide-content-from-sighted-users/
 	* 1.
-		@note `clip` is deprecated but works everywhere
-		@see https://developer.mozilla.org/en-US/docs/Web/CSS/clip
+		@note Use to only display content when it's focused, or one of its child elements is focused
+		@see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
+		@note Based on a HTML5 Boilerplate technique, included in Bootstrap
 	* 2.
-		@note `clip-path` is the future-proof version, but not very well supported yet
-		@see https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path
-		@see http://caniuse.com/#search=clip-path
+		@note `clip-path` shortest syntax
 		@author Yvain Liechti
 		@see https://twitter.com/ryuran78/status/778943389819604992
 	* 3.
@@ -29,15 +28,14 @@
 
 @mixin sr-only() {
   border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
-  clip-path: inset(50%) !important; /* 2 */
+  clip-path: inset(50%) !important; // 2
   height: 1px !important;
   margin: -1px !important;
   overflow: hidden !important;
   padding: 0 !important;
   position: absolute !important;
   width: 1px !important;
-  white-space: nowrap !important; /* 3 */
+  white-space: nowrap !important; // 3
 }
 
 /*
@@ -45,14 +43,10 @@
 	@note Useful for skip links 
 	@see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
 	@note Based on a HTML5 Boilerplate technique, included in Bootstrap
-	@note Fixed a bug with position: static on iOS 10.0.2 + VoiceOver
-		@author Sylvain Pigeard
-		@see https://github.com/twbs/bootstrap/issues/20732
 */
 @mixin sr-only-focusable() {
   &:active,
   &:focus {
-    clip: auto !important;
     clip-path: none !important;
     height: auto !important;
     margin: auto !important;

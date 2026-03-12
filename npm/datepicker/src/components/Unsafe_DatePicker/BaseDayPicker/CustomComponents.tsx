@@ -1,7 +1,10 @@
-import React, { ButtonHTMLAttributes, useRef } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
+import React, { useRef } from 'react';
 
 import classNames from 'classnames';
-import { CaptionLabel, CaptionLabelProps, DropdownProps, useDayPicker } from 'react-day-picker';
+import { CaptionLabel, useDayPicker } from 'react-day-picker';
+
+import type { CaptionLabelProps, DropdownProps } from 'react-day-picker';
 
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import ChevronDown from '@helsenorge/designsystem-react/components/Icons/ChevronDown';
@@ -55,7 +58,7 @@ export const CustomDropdown = (props: DropdownProps): React.JSX.Element => {
   const { options, classNames: rdpClassnameProp, ...dropdownProps } = props;
   const { components, classNames: rdpClassnames } = useDayPicker();
   const ref = useRef<HTMLSpanElement>(null);
-  const { isHovered } = usePseudoClasses<HTMLSpanElement>(ref);
+  const { isHovered } = usePseudoClasses<HTMLSpanElement | null>(ref);
 
   const selectedOption = options?.find(({ value }) => value === dropdownProps.value);
   return (

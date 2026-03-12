@@ -1,6 +1,5 @@
-import React from 'react';
+import type { IconSize } from '../../constants';
 
-import { IconSize } from '../../constants';
 import { palette } from '../../theme/palette';
 import Icon from '../Icon';
 import CheckFill from '../Icons/CheckFill';

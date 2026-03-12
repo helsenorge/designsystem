@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { formatISO, isValid } from 'date-fns';
 
-import Unsafe_DatePicker, { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
+import type { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
+
+import Unsafe_DatePicker from './Unsafe_DatePicker';
 
 export interface ISODateInputProps extends Omit<Unsafe_DatePickerProps, 'value' | 'onChange'> {
   /** Currently given date, given as ISO string  */
@@ -11,9 +13,19 @@ export interface ISODateInputProps extends Omit<Unsafe_DatePickerProps, 'value' 
   onChange?: (dateValue: string) => void;
 }
 
-const Unsafe_ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODateInputProps): JSX.Element => {
-  const defaultDate = value ? new Date(value) : undefined;
-  const [internalDate, setInternalDate] = useState<Date | undefined>(defaultDate);
+const Unsafe_ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODateInputProps): React.ReactNode => {
+  const isoToDate = (iso: string | undefined): Date | undefined => {
+    if (!iso) {
+      return undefined;
+    }
+
+    const date = new Date(iso);
+
+    if (!isValid(date)) {
+      return undefined;
+    }
+    return date;
+  };
 
   const dateToIso = (date: Date | undefined): string => {
     if (!isValid(date) || !date) {
@@ -22,32 +34,19 @@ const Unsafe_ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODat
     return formatISO(date, { representation: 'date' });
   };
 
-  const isoToDate = (iso: string): Date | undefined => {
-    const date = new Date(iso);
-    if (!isValid(date)) {
-      return undefined;
-    }
-    return date;
+  const [internalDate, setInternalDate] = useState<Date | undefined>(isoToDate(value));
+  const nextDateFromProp = isoToDate(value);
+
+  if ((internalDate?.getTime() ?? undefined) !== (nextDateFromProp?.getTime() ?? undefined)) {
+    setInternalDate(nextDateFromProp);
+  }
+
+  const handleDateChange = (newDate: Date | undefined): void => {
+    setInternalDate(newDate);
+    onChange?.(dateToIso(newDate));
   };
 
-  useEffect(() => {
-    if (value) {
-      setInternalDate(isoToDate(value));
-    } else {
-      setInternalDate(undefined);
-    }
-  }, [value]);
-
-  useEffect(() => {
-    if (!internalDate) {
-      onChange?.('');
-      return;
-    }
-    const iso = dateToIso(internalDate);
-    onChange?.(iso);
-  }, [internalDate]);
-
-  return <Unsafe_DatePicker {...baseDateInputProps} value={internalDate} onChange={setInternalDate} />;
+  return <Unsafe_DatePicker {...baseDateInputProps} value={internalDate} onChange={handleDateChange} />;
 };
 
 export default Unsafe_ISODatePicker;

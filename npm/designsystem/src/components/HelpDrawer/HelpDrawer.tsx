@@ -1,26 +1,16 @@
-import type React from 'react';
-
 import type { HNDesignsystemHelpDrawer } from '../../resources/Resources';
+import type { DrawerProps } from '../Drawer';
 
 import { getResources } from './resourceHelper';
 import { LanguageLocales } from '../../constants';
-import { useLanguage } from '../../utils/language';
-import Drawer, { type DrawerProps } from '../Drawer';
+import { useLanguage } from '../../hooks/useLanguage';
+import Drawer from '../Drawer';
 
 import styles from './styles.module.scss';
 
 export interface HelpDrawerProps extends Pick<
   DrawerProps,
-  | 'ariaLabel'
-  | 'ariaLabelledBy'
-  | 'ariaLabelCloseBtn'
-  | 'children'
-  | 'isOpen'
-  | 'onRequestClose'
-  | 'title'
-  | 'titleHtmlMarkup'
-  | 'titleId'
-  | 'zIndex'
+  'ariaLabelledBy' | 'children' | 'isOpen' | 'onRequestClose' | 'title' | 'titleHtmlMarkup' | 'titleId' | 'zIndex'
 > {
   /** Resources for the component */
   resources?: Partial<HNDesignsystemHelpDrawer>;
@@ -35,7 +25,7 @@ const HelpDrawer: React.FC<HelpDrawerProps> = props => {
   const mergedResources: HNDesignsystemHelpDrawer = {
     ...defaultResources,
     ...resources,
-    ariaLabel: props.ariaLabel ?? props.resources?.ariaLabel ?? defaultResources.ariaLabel,
+    ariaLabel: props.resources?.ariaLabel ?? defaultResources.ariaLabel,
   };
 
   return (

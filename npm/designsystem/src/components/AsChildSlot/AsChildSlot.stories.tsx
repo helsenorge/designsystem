@@ -1,10 +1,12 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
-import AsChildSlot, { AsChildSlotHandle } from './AsChildSlot';
+import type { AsChildSlotHandle } from './AsChildSlot';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import AsChildSlot from './AsChildSlot';
 
 const meta = {
   title: '@helsenorge/designsystem-react/_Internal/AsChildSlot',

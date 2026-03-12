@@ -1,8 +1,9 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Modal, { ModalVariants } from './Modal';
+import Modal from './Modal';
 import Button from '../Button';
+import { ModalVariants } from './constants';
 
 describe('Gitt at en modal skal vises ', (): void => {
   describe('Når en modal skal vise kun tittel og lukkeknapp', (): void => {

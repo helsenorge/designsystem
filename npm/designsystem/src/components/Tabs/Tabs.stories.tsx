@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Tabs, { TabsRoot } from './Tabs';
 import { LanguageLocales } from '../../constants';

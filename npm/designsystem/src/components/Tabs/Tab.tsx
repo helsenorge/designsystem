@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { SvgIcon } from '../Icon';
-import { IconName } from '../Icons/IconNames';
+import type { SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
 
 export interface TabProps {
   /** Sets the tab panel content */

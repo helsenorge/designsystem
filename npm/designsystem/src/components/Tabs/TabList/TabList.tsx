@@ -2,13 +2,15 @@ import React, { useRef } from 'react';
 
 import classNames from 'classnames';
 
+import type { TabProps } from '../Tab';
+import type { TabsColors, TabsOnColor } from '../Tabs';
+
+import TabChevron from './TabChevron';
 import TabItem from './TabItem';
 import { useIsVisible } from '../../../hooks/useIsVisible';
 import { useRovingFocus } from '../../../hooks/useRovingFocus';
 import { isComponent } from '../../../utils/component';
-import Tab, { TabProps } from '../Tab';
-import { TabsColors, TabsOnColor } from '../Tabs';
-import TabChevron from './TabChevron';
+import Tab from '../Tab';
 
 import styles from './styles.module.scss';
 interface TabListProps {

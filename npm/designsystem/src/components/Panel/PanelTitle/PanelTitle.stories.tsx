@@ -1,7 +1,6 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import PanelTitle from './PanelTitle';
 import { allTitleTags } from '../../../../.storybook/knobs';
