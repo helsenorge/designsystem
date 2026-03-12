@@ -15,6 +15,7 @@ export default defineConfig({
       entryRoot: 'src',
       insertTypesEntry: false,
       rollupTypes: false,
+      copyDtsFiles: true,
       include: ['src/components/**/*.{ts,tsx}', 'src/resources/**/*.{ts,json}', 'src/__mocks__/**/*.{ts,tsx}'],
       exclude: ['**/__snapshots__/**', '**/*.stories.*', '**/*.test.*'],
       aliasesExclude: [/@helsenorge\/designsystem-react/],
