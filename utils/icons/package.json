@@ -5,19 +5,12 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "confluence:icons": "node utils/IconGenerator/index.js",
-    "generate:icons": "node scripts/iconGenerator.js generate"
+    "confluence:icons": "node utils/IconGenerator/index.js"
   },
   "author": "Helsenorge",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@svgr/core": "^6.5.1",
-    "@svgr/hast-util-to-babel-ast": "^6.5.1",
-    "async": "^3.2.6",
-    "fs-extra": "^10.1.0",
-    "playwright": "^1.57.0",
-    "svg-parser": "^2.0.4",
-    "yargs": "^17.7.2"
+    "playwright": "^1.57.0"
   }
 }
