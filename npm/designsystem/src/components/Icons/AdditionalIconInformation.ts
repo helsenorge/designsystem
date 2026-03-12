@@ -347,4 +347,5 @@ export default {
   zoomoutleft: { alternativeName: 'Zoom Ut Venstre', categories: 'System, Generisk' },
   starstroke: { alternativeName: '', categories: '' },
   starfill: { alternativeName: '', categories: '' },
+  measuringtape: { alternativeName: '', categories: '' },
 };

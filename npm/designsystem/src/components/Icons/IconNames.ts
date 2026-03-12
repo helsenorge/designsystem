@@ -203,6 +203,7 @@ export const IconList = [
   'MaleDoctorCompact',
   'MaleDoctorCompactFill',
   'MaleGenitalia',
+  'MeasuringTape',
   'Medicine',
   'MedicineWarning',
   'MentalHealthAdult',
