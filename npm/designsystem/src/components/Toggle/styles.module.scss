@@ -100,8 +100,8 @@
   &__toggle {
     position: relative;
     display: inline-block;
-    width: 3.125rem;
-    height: 2rem;
+    width: 2.75rem;
+    height: 1.75rem;
     background-color: var(--color-base-background-white);
     border-radius: 60px;
     border: 2px solid var(--color-base-border-onlight-emphasized);
@@ -117,8 +117,8 @@
     &__dot {
       content: '';
       position: absolute;
-      width: 1.375rem;
-      height: 1.375rem;
+      width: 1.125rem;
+      height: 1.125rem;
       left: 3px;
       bottom: 3px;
       background-color: var(--brandcolor-neutral-dark);

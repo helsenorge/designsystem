@@ -97,7 +97,7 @@ const Toggle: React.FC<ToggleProps> = ({
       { background: checkedState ? 'var(--color-action-graphics-ondark)' : 'var(--core-color-neutral-700)' },
       { duration: 0.2, ease: 'easeInOut' }
     );
-    animate(toggleDotRef.current, { x: showHoveredStyling ? 9 : checkedState ? 18 : 0 }, { duration: 0.2, ease: 'easeInOut' });
+    animate(toggleDotRef.current, { x: checkedState ? 16 : 0 }, { duration: 0.2, ease: 'easeInOut' });
     animate('svg', { opacity: checkedState ? 1 : 0 }, { duration: 0.2, ease: 'easeInOut' });
   }, [checkedState, showHoveredStyling, isActive]);
 
@@ -143,13 +143,14 @@ const Toggle: React.FC<ToggleProps> = ({
         <span id={toggleId} ref={toggleRef} className={toggleClassNames} aria-hidden="true">
           <span ref={toggleDotRef} className={toggleDotClassNames} aria-hidden="true">
             <svg
-              width="17"
-              height="13"
-              viewBox="0 0 17 13"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles['toggle-container__toggle__dot__icon']}
             >
-              <path d="M15 2L6.80839 10.548L2 5.53145" fill="none" strokeWidth="3" />
+              <path d="M11 2.65247L4.69877 9.34741L1 5.41836" strokeWidth="2.2" />
             </svg>
           </span>
         </span>
