@@ -85,10 +85,14 @@ function DrawerNavigationPOC<ViewId extends string>({
 
   useImperativeHandle(navigationRef, () => navigate);
 
-  const handleClose = (): void => {
-    setViewStack([homeView.id]);
-    props.onCloseButton?.();
-  };
+  const [prevIsOpen, setPrevIsOpen] = useState(props.isOpen);
+  if (prevIsOpen !== props.isOpen) {
+    setPrevIsOpen(props.isOpen);
+    if (!props.isOpen) {
+      // reset til homeview når drawer lukker seg
+      setViewStack([homeView.id]);
+    }
+  }
 
   const renderFooterButtons = (
     <div className={styles['drawer-footer']}>
@@ -103,7 +107,7 @@ function DrawerNavigationPOC<ViewId extends string>({
       title={currentViewTitle}
       withBackButton={viewStack.length > 1}
       onRequestBack={goBack}
-      onRequestClose={handleClose}
+      onRequestClose={props.onCloseButton}
       footerContent={renderFooterButtons}
     >
       {CurrentView && <CurrentView {...(currentViewProps ?? {})} navigate={navigate} />}
