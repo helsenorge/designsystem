@@ -7,7 +7,7 @@ import type { Meta } from '@storybook/react-vite';
 
 import DrawerNavigationPOC, { createView, type DrawerNavigationCommonProps } from './DrawerNavigationPOC';
 import FinnFastLegeFlyt from './FinnFastlegeFlyt.example';
-import ViewOverview from './ViewOverview';
+import ViewOverview, { type ViewOverviewConfig } from './ViewOverview';
 import Input from '../Input';
 import NotificationPanel from '../NotificationPanel';
 
@@ -43,8 +43,8 @@ export const OverviewWithJustProps = {
   render: (): React.JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const overviewHome = createView({
-      id: 'overview' as FilterViewId,
+    const overviewHome: ViewOverviewConfig<FilterViewId> = {
+      id: 'overview',
       title: 'Filtrer',
       component: ViewOverview,
       props: {
@@ -59,11 +59,11 @@ export const OverviewWithJustProps = {
           console.log('Cleared');
         },
       },
-    });
+    };
 
     const views = [
-      createView({ id: 'age' as FilterViewId, title: 'Alder', component: AgePageSimple }),
-      createView({ id: 'gender' as FilterViewId, title: 'Kjønn', component: GenderPageSimple }),
+      createView<FilterViewId>({ id: 'age', title: 'Alder', component: AgePageSimple }),
+      createView<FilterViewId>({ id: 'gender', title: 'Kjønn', component: GenderPageSimple }),
     ];
 
     return (
@@ -86,8 +86,8 @@ export const OverviewWithJustProps = {
 
 export const OverviewWithJustPropsAlwaysOpen = {
   render: (): React.JSX.Element => {
-    const overviewHome = createView({
-      id: 'overview' as FilterViewId,
+    const overviewHome: ViewOverviewConfig<FilterViewId> = {
+      id: 'overview',
       title: 'Filtrer',
       component: ViewOverview,
       props: {
@@ -96,11 +96,11 @@ export const OverviewWithJustPropsAlwaysOpen = {
           { title: 'Kjønn', activeFilters: ['Mann', 'Kvinne'], viewId: 'gender' },
         ],
       },
-    });
+    };
 
     const views = [
-      createView({ id: 'age' as FilterViewId, title: 'Alder', component: AgePageSimple }),
-      createView({ id: 'gender' as FilterViewId, title: 'Kjønn', component: GenderPageSimple }),
+      createView<FilterViewId>({ id: 'age', title: 'Alder', component: AgePageSimple }),
+      createView<FilterViewId>({ id: 'gender', title: 'Kjønn', component: GenderPageSimple }),
     ];
 
     return (
@@ -135,14 +135,14 @@ const CustomOverview: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>
 const AgePage: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>> = () => <div>{'Hello age page'}</div>;
 const GenderPage: React.FC<DrawerNavigationCommonProps<CustomOverviewViewId>> = () => <div>{'Hello gender page'}</div>;
 
-const customOverviewHome = createView({
-  id: 'overview' as CustomOverviewViewId,
+const customOverviewHome = createView<CustomOverviewViewId>({
+  id: 'overview',
   title: 'Filtrer',
   component: CustomOverview,
 });
 const customOverviewViews = [
-  createView({ id: 'age' as CustomOverviewViewId, title: 'Alder', component: AgePage }),
-  createView({ id: 'gender' as CustomOverviewViewId, title: 'Kjønn', component: GenderPage }),
+  createView<CustomOverviewViewId>({ id: 'age', title: 'Alder', component: AgePage }),
+  createView<CustomOverviewViewId>({ id: 'gender', title: 'Kjønn', component: GenderPage }),
 ];
 
 export const OverviewWithCustomComponent = {
@@ -210,18 +210,18 @@ export const WithValidation = {
       return true;
     };
 
-    const homeView = createView({
-      id: 'overview' as ValidationViewId,
+    const homeView: ViewOverviewConfig<ValidationViewId> = {
+      id: 'overview',
       title: 'Filtrer',
       component: ViewOverview,
       props: {
         filters: [{ title: 'Dato', activeFilters: [], viewId: 'date' }],
       },
-    });
+    };
 
     const views = [
-      createView({
-        id: 'date' as ValidationViewId,
+      createView<ValidationViewId, ValidationInputPageProps>({
+        id: 'date',
         title: 'Dato',
         component: ValidationInputPage,
         props: {

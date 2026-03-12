@@ -165,7 +165,7 @@ const FinnFastLegeFlyt = (): React.ReactNode => {
   const [errors, setErrors] = useState<ValidationErrors>({});
   const drawerRef = useRef<NavigateProps<FinnFastlegeViewId>>(null);
 
-  const homeView = createView({
+  const homeView = createView<FinnFastlegeViewId>({
     id: 'overview',
     title: 'Filtrer',
     component: CustomOverview,
@@ -183,7 +183,7 @@ const FinnFastLegeFlyt = (): React.ReactNode => {
   });
 
   const views = [
-    createView({
+    createView<FinnFastlegeViewId>({
       id: 'location',
       title: 'Fylke',
       component: LocationCountyView,
@@ -199,7 +199,7 @@ const FinnFastLegeFlyt = (): React.ReactNode => {
         onClick: (): void => setModalOpen(true),
       },
     }),
-    createView({
+    createView<FinnFastlegeViewId, ValidationInputPageProps>({
       id: 'name-doctor',
       title: 'Navnet til fastlegen',
       component: NameDoctorView,
@@ -210,7 +210,7 @@ const FinnFastLegeFlyt = (): React.ReactNode => {
         clearErrors: (): void => setErrors({}),
       },
     }),
-    createView({
+    createView<FinnFastlegeViewId, ValidationInputPageProps>({
       id: 'name-office',
       title: 'Navnet på legekontoret',
       component: NameOfficeView,
@@ -221,7 +221,7 @@ const FinnFastLegeFlyt = (): React.ReactNode => {
         clearErrors: (): void => setErrors({}),
       },
     }),
-    createView({
+    createView<FinnFastlegeViewId>({
       id: 'oslo-view',
       title: 'Bydel',
       component: OsloView,
