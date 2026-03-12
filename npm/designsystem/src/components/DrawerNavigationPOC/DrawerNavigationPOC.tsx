@@ -83,7 +83,7 @@ function DrawerNavigationPOC<ViewId extends string>({
 
   const navigate: NavigateProps<ViewId> = { goBack, goToView, goToViewAndClearStack };
 
-  useImperativeHandle(navigationRef, () => navigate);
+  useImperativeHandle(navigationRef, () => navigate); // dersom man trenger navigate funksjonene utenfor komponenten (edge case fastlege)
 
   const [prevIsOpen, setPrevIsOpen] = useState(props.isOpen);
   if (prevIsOpen !== props.isOpen) {
@@ -96,8 +96,8 @@ function DrawerNavigationPOC<ViewId extends string>({
 
   const renderFooterButtons = (
     <div className={styles['drawer-footer']}>
-      {resetButtonProps ? <Button {...resetButtonProps} /> : <div />}
-      {resultButtonProps && <Button {...resultButtonProps} />}
+      {resetButtonProps ? <Button {...resetButtonProps} variant="borderless" /> : <div />}
+      {resultButtonProps && <Button {...resultButtonProps} variant="fill" />}
     </div>
   );
 
