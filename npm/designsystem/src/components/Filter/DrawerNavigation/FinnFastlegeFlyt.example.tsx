@@ -203,7 +203,7 @@ const NavigationModal = ({ onClose }: { onClose: () => void }): React.ReactNode 
   );
 };
 
-const FinnFastLegeFlytExample = (): React.ReactNode => {
+const FinnFastlegeFlytExample = (): React.ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -234,4 +234,4 @@ const FinnFastLegeFlytExample = (): React.ReactNode => {
   );
 };
 
-export default FinnFastLegeFlytExample;
+export default FinnFastlegeFlytExample;

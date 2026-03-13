@@ -6,7 +6,7 @@ import { Docs } from 'frankenstein-build-tools';
 import type { Meta } from '@storybook/react-vite';
 
 import DrawerNavigation from './DrawerNavigation';
-import FinnFastLegeFlytExample from './FinnFastlegeFlyt.example';
+import FinnFastlegeFlytExample from './FinnFastlegeFlyt.example';
 import { useDrawerNavigation } from './useDrawerNavigation';
 import Button from '../../Button';
 
@@ -94,8 +94,8 @@ export const Default = {
   },
 };
 
-export const FinnFastLegeFlyt = {
+export const FinnFastlegeFlyt = {
   render: (): ReactElement => {
-    return <FinnFastLegeFlytExample />;
+    return <FinnFastlegeFlytExample />;
   },
 };
