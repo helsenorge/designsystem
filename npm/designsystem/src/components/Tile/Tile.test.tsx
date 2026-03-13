@@ -6,6 +6,7 @@ import { IconSize } from '../../constants';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import Eye from '../Icons/Eye';
+import LazyIcon from '../LazyIcon';
 import SharingStatus from '../SharingStatus';
 
 describe('Gitt at Tile skal vises', (): void => {
@@ -89,6 +90,22 @@ describe('Gitt at Tile skal vises', (): void => {
       const description = screen.queryByText('Description');
       expect(tile).toHaveClass('tile tile--compact');
       expect(description).not.toBeInTheDocument();
+    });
+  });
+  describe('Når icon er LazyIcon', () => {
+    test('Så skal Tile rendres med LazyIcon', async () => {
+      render(
+        <Tile
+          icon={<LazyIcon iconName={'AlarmClock'} size={IconSize.Medium} />}
+          title={<Tile.Title>{'Lenketekst'}</Tile.Title>}
+          description={'Description'}
+          testId="lazy-icon-tile"
+          href="#"
+        />
+      );
+
+      const component = screen.getByTestId('lazy-icon-tile');
+      expect(component).toBeVisible();
     });
   });
 });
