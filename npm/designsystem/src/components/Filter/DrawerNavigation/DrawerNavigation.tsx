@@ -19,7 +19,7 @@ function DrawerView<ViewId extends string>(_props: DrawerViewProps<ViewId>): Rea
 }
 
 export interface DrawerNavigationProps {
-  children: React.ReactElement<DrawerViewProps> | React.ReactElement<DrawerViewProps>[];
+  children: React.ReactNode;
   isOpen: boolean;
   onCloseButton?: () => void;
 }
@@ -31,8 +31,9 @@ interface ParsedView {
   children: React.ReactNode;
 }
 
-function parseViews(children: React.ReactNode): ParsedView[] {
+function parseChildren(children: React.ReactNode): { views: ParsedView[]; other: React.ReactNode[] } {
   const views: ParsedView[] = [];
+  const other: React.ReactNode[] = [];
   Children.forEach(children, child => {
     if (isValidElement<DrawerViewProps>(child) && child.type === DrawerView) {
       views.push({
@@ -41,13 +42,16 @@ function parseViews(children: React.ReactNode): ParsedView[] {
         home: child.props.home,
         children: child.props.children,
       });
+    } else {
+      other.push(child);
     }
   });
-  return views;
+  return { views, other };
 }
 
 function DrawerNavigation({ children, isOpen, onCloseButton }: DrawerNavigationProps): React.ReactNode {
-  const views = parseViews(children);
+  // åpnet for andre children for å støtte Modal med tilgang til navigate-funksjoner for finn fastlege-flyt
+  const { views, other } = parseChildren(children);
 
   const homeView = views.find(v => v.home) ?? views[0];
   const [viewStack, setViewStack] = useState<string[]>([homeView?.id]);
@@ -92,6 +96,7 @@ function DrawerNavigation({ children, isOpen, onCloseButton }: DrawerNavigationP
       >
         {currentView?.children}
       </Drawer>
+      {other}
     </DrawerNavigationContext.Provider>
   );
 }

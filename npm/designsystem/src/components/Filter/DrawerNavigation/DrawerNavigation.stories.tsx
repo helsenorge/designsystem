@@ -1,11 +1,12 @@
 import type React from 'react';
-import { useState } from 'react';
+import { useState, type ReactElement } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 
 import type { Meta } from '@storybook/react-vite';
 
 import DrawerNavigation from './DrawerNavigation';
+import FinnFastLegeFlytExample from './FinnFastlegeFlyt.example';
 import { useDrawerNavigation } from './useDrawerNavigation';
 import Button from '../../Button';
 
@@ -52,7 +53,7 @@ const DetailsView = (): React.JSX.Element => {
 };
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/Filter/DrawerNavigation',
+  title: '@helsenorge/designsystem-react/Components/Filter/DrawerNavigationWithContext',
   component: DrawerNavigation,
   tags: ['new'],
   parameters: {
@@ -71,7 +72,7 @@ const meta = {
 export default meta;
 
 export const Default = {
-  render: (): React.JSX.Element => {
+  render: (): ReactElement => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -90,5 +91,11 @@ export const Default = {
         </DrawerNavigation>
       </div>
     );
+  },
+};
+
+export const FinnFastLegeFlyt = {
+  render: (): ReactElement => {
+    return <FinnFastLegeFlytExample />;
   },
 };
