@@ -124,6 +124,11 @@ export const WithFilterOverviewView = {
     return (
       <div>
         <Button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</Button>
+        <p>
+          {
+            'FilterOverviewView er en komponent som tar i bruk FilterLinkList, men istedenfor at man må ta i bruk navigate-funksjonene selv kan man bare sende inn filters med id og activeFilters så lages det en linklist med navigasjon'
+          }
+        </p>
         <DrawerNavigation isOpen={isOpen} onCloseButton={() => setIsOpen(false)}>
           <DrawerNavigation.View<FilterViews> id="overview" title="Hjem" home>
             <FilterOverviewView filters={filters} />
