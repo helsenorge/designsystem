@@ -3,9 +3,11 @@ import { useState, type ReactElement } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 
+import type { DummyFilter } from './utils';
 import type { Meta } from '@storybook/react-vite';
 
 import DrawerNavigation from './DrawerNavigation';
+import FilterOverviewView from './FilterOverviewView';
 import FinnFastlegeFlytExample from './FinnFastlegeFlyt.example';
 import { useDrawerNavigation } from './useDrawerNavigation';
 import Button from '../../Button';
@@ -97,5 +99,43 @@ export const Default = {
 export const FinnFastlegeFlyt = {
   render: (): ReactElement => {
     return <FinnFastlegeFlytExample />;
+  },
+};
+
+export const WithFilterOverviewView = {
+  render: (): ReactElement => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    type FilterViews = 'overview' | 'age' | 'gender';
+
+    const filters: DummyFilter<FilterViews>[] = [
+      {
+        title: 'Alder',
+        id: 'age',
+        activeFilters: [],
+      },
+      {
+        title: 'Kjønn',
+        id: 'gender',
+        activeFilters: ['Spiller ingen rolle så lenge du er kul'],
+      },
+    ];
+
+    return (
+      <div>
+        <Button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</Button>
+        <DrawerNavigation isOpen={isOpen} onCloseButton={() => setIsOpen(false)}>
+          <DrawerNavigation.View<FilterViews> id="overview" title="Hjem" home>
+            <FilterOverviewView filters={filters} />
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<FilterViews> id="age" title="Alder">
+            <div>{'En side her'}</div>
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<FilterViews> id="gender" title="Kjønn">
+            <div>{'En side der'}</div>
+          </DrawerNavigation.View>
+        </DrawerNavigation>
+      </div>
+    );
   },
 };
