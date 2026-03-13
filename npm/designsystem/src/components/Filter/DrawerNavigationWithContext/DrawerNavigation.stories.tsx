@@ -12,10 +12,10 @@ import FinnFastlegeFlytExample from './FinnFastlegeFlyt.example';
 import { useDrawerNavigation } from './useDrawerNavigation';
 import Button from '../../Button';
 
-type ViewId = 'home' | 'category' | 'details';
+type DefaultStoryViewId = 'home' | 'category' | 'details';
 
 const HomeView = (): React.JSX.Element => {
-  const { goToView } = useDrawerNavigation<ViewId>();
+  const { goToView } = useDrawerNavigation<DefaultStoryViewId>();
   return (
     <div>
       <p>{'Velkommen til din drawer. Hva vil du gjøre nå?'}</p>
@@ -30,7 +30,7 @@ interface CategoryViewProps {
 }
 
 const CategoryView = ({ chosenCategory }: CategoryViewProps): React.JSX.Element => {
-  const { goToView, goBack } = useDrawerNavigation<ViewId>();
+  const { goToView, goBack } = useDrawerNavigation<DefaultStoryViewId>();
   return (
     <div>
       <p>{'Dette er valgt kategori akkurat nå: ' + chosenCategory}</p>
@@ -43,7 +43,7 @@ const CategoryView = ({ chosenCategory }: CategoryViewProps): React.JSX.Element 
 };
 
 const DetailsView = (): React.JSX.Element => {
-  const { goToViewAndClearStack } = useDrawerNavigation<ViewId>();
+  const { goToViewAndClearStack } = useDrawerNavigation<DefaultStoryViewId>();
   return (
     <div>
       <p>{'Detaljer kommer her.'}</p>
@@ -81,13 +81,13 @@ export const Default = {
       <div>
         <Button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</Button>
         <DrawerNavigation isOpen={isOpen} onCloseButton={() => setIsOpen(false)}>
-          <DrawerNavigation.View<ViewId> id="home" title="Hjem" home>
+          <DrawerNavigation.View<DefaultStoryViewId> id="home" title="Hjem" home>
             <HomeView />
           </DrawerNavigation.View>
-          <DrawerNavigation.View<ViewId> id="category" title="Kategori">
+          <DrawerNavigation.View<DefaultStoryViewId> id="category" title="Kategori">
             <CategoryView chosenCategory="dokumenter" />
           </DrawerNavigation.View>
-          <DrawerNavigation.View<ViewId> id="details" title="Detaljer">
+          <DrawerNavigation.View<DefaultStoryViewId> id="details" title="Detaljer">
             <DetailsView />
           </DrawerNavigation.View>
         </DrawerNavigation>
@@ -138,6 +138,33 @@ export const WithFilterOverviewView = {
           </DrawerNavigation.View>
           <DrawerNavigation.View<FilterViews> id="gender" title="Kjønn">
             <div>{'En side der'}</div>
+          </DrawerNavigation.View>
+        </DrawerNavigation>
+      </div>
+    );
+  },
+};
+
+export const WithFooterButton = {
+  render: (): ReactElement => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div>
+        <Button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</Button>
+        <DrawerNavigation
+          isOpen={isOpen}
+          onCloseButton={() => setIsOpen(false)}
+          footer={<Button onClick={() => setIsOpen(false)}>{'Lukk'}</Button>}
+        >
+          <DrawerNavigation.View<DefaultStoryViewId> id="home" title="Hjem" home>
+            <HomeView />
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<DefaultStoryViewId> id="category" title="Kategori">
+            <CategoryView chosenCategory="dokumenter" />
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<DefaultStoryViewId> id="details" title="Detaljer">
+            <DetailsView />
           </DrawerNavigation.View>
         </DrawerNavigation>
       </div>

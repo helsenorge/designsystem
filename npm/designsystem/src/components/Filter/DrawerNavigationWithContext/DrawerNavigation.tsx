@@ -22,6 +22,7 @@ export interface DrawerNavigationProps {
   children: React.ReactNode;
   isOpen: boolean;
   onCloseButton?: () => void;
+  footer?: React.ReactNode;
 }
 
 interface ParsedView {
@@ -49,7 +50,7 @@ function parseChildren(children: React.ReactNode): { views: ParsedView[]; other:
   return { views, other };
 }
 
-function DrawerNavigation({ children, isOpen, onCloseButton }: DrawerNavigationProps): React.ReactNode {
+function DrawerNavigation({ children, isOpen, onCloseButton, footer }: DrawerNavigationProps): React.ReactNode {
   // åpnet for andre children for å støtte Modal med tilgang til navigate-funksjoner for finn fastlege-flyt
   const { views, other } = parseChildren(children);
 
@@ -93,6 +94,7 @@ function DrawerNavigation({ children, isOpen, onCloseButton }: DrawerNavigationP
         withBackButton={viewStack.length > 1}
         onRequestBack={goBack}
         onRequestClose={onCloseButton}
+        footerContent={footer}
       >
         {currentView?.children}
       </Drawer>
