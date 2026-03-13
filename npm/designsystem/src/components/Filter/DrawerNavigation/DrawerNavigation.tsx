@@ -1,42 +1,59 @@
-import { useMemo, useState } from 'react';
+import type React from 'react';
+import { Children, isValidElement, useState } from 'react';
 
+import { type NavigateProps, DrawerNavigationContext } from './useDrawerNavigation';
 import Drawer from '../../Drawer';
 
-export interface NavigateProps<ViewId extends string = string> {
-  goToView: (id: ViewId) => void;
-  goBack: () => void;
-  goToViewAndClearStack: (id: ViewId) => void;
-}
 export interface DrawerViewProps<ViewId extends string = string> {
-  navigate: NavigateProps<ViewId>;
-}
-
-export interface ViewConfig<ViewId extends string = string, P extends object = object> {
   id: ViewId;
   title: string;
-  component: (props: DrawerViewProps<ViewId> & P) => React.ReactNode | Promise<React.ReactNode>;
-  props?: P;
+  /** Mark this view as the home/default view */
+  home?: boolean;
+  children: React.ReactNode;
 }
 
-export interface DrawerNavigationProps<ViewId extends string = string> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  homeView: ViewConfig<ViewId, any>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  views?: ViewConfig<ViewId, any>[];
-  onCloseButton?: () => void;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function DrawerView<ViewId extends string>(_props: DrawerViewProps<ViewId>): React.ReactNode {
+  // DrawerView is never rendered directly — DrawerNavigation reads its props
+  return null;
+}
+
+export interface DrawerNavigationProps {
+  children: React.ReactElement<DrawerViewProps> | React.ReactElement<DrawerViewProps>[];
   isOpen: boolean;
+  onCloseButton?: () => void;
 }
 
-function DrawerNavigation<ViewId extends string>({
-  homeView,
-  views: additionalViews = [],
-  ...props
-}: DrawerNavigationProps<ViewId>): React.ReactNode {
-  const allViews = useMemo(() => [homeView, ...additionalViews], [homeView, additionalViews]);
-  const [viewStack, setViewStack] = useState<ViewId[]>([homeView.id]);
+interface ParsedView {
+  id: string;
+  title: string;
+  home?: boolean;
+  children: React.ReactNode;
+}
 
-  const goToView = (id: ViewId): void => {
-    if (allViews.some(v => v.id === id)) {
+function parseViews(children: React.ReactNode): ParsedView[] {
+  const views: ParsedView[] = [];
+  Children.forEach(children, child => {
+    if (isValidElement<DrawerViewProps>(child) && child.type === DrawerView) {
+      views.push({
+        id: child.props.id,
+        title: child.props.title,
+        home: child.props.home,
+        children: child.props.children,
+      });
+    }
+  });
+  return views;
+}
+
+function DrawerNavigation({ children, isOpen, onCloseButton }: DrawerNavigationProps): React.ReactNode {
+  const views = parseViews(children);
+
+  const homeView = views.find(v => v.home) ?? views[0];
+  const [viewStack, setViewStack] = useState<string[]>([homeView?.id]);
+
+  const goToView = (id: string): void => {
+    if (views.some(v => v.id === id)) {
       setViewStack(stack => [...stack, id]);
     }
   };
@@ -45,45 +62,40 @@ function DrawerNavigation<ViewId extends string>({
     setViewStack(stack => (stack.length > 1 ? stack.slice(0, -1) : stack));
   };
 
-  const goToViewAndClearStack = (id: ViewId): void => {
-    if (allViews.some(v => v.id === id)) {
-      setViewStack(id === homeView.id ? [homeView.id] : [homeView.id, id]);
+  const goToViewAndClearStack = (id: string): void => {
+    if (views.some(v => v.id === id)) {
+      setViewStack(id === homeView?.id ? [homeView.id] : [homeView?.id, id]);
     }
   };
 
-  const { CurrentView, currentViewProps, currentViewTitle } = useMemo(() => {
-    const currentViewId = viewStack[viewStack.length - 1];
-    const currentViewObj = allViews.find(view => view.id === currentViewId);
-    return {
-      CurrentView: currentViewObj?.component,
-      currentViewProps: currentViewObj?.props || {},
-      currentViewTitle: currentViewObj?.title || 'Filter',
-      currentViewId,
-    };
-  }, [viewStack, allViews]);
+  const currentViewId = viewStack[viewStack.length - 1];
+  const currentView = views.find(v => v.id === currentViewId);
 
-  const navigate: NavigateProps<ViewId> = { goBack, goToView, goToViewAndClearStack };
+  const navigate: NavigateProps = { goBack, goToView, goToViewAndClearStack };
 
-  const [prevIsOpen, setPrevIsOpen] = useState(props.isOpen);
-  if (prevIsOpen !== props.isOpen) {
-    setPrevIsOpen(props.isOpen);
-    if (!props.isOpen) {
-      // reset til homeview når drawer lukker seg
-      setViewStack([homeView.id]);
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (prevIsOpen !== isOpen) {
+    setPrevIsOpen(isOpen);
+    if (!isOpen) {
+      setViewStack([homeView?.id]);
     }
   }
 
   return (
-    <Drawer
-      isOpen={props.isOpen}
-      title={currentViewTitle}
-      withBackButton={viewStack.length > 1}
-      onRequestBack={goBack}
-      onRequestClose={props.onCloseButton}
-    >
-      {CurrentView && <CurrentView {...(currentViewProps ?? {})} navigate={navigate} />}
-    </Drawer>
+    <DrawerNavigationContext.Provider value={navigate}>
+      <Drawer
+        isOpen={isOpen}
+        title={currentView?.title ?? 'Filter'}
+        withBackButton={viewStack.length > 1}
+        onRequestBack={goBack}
+        onRequestClose={onCloseButton}
+      >
+        {currentView?.children}
+      </Drawer>
+    </DrawerNavigationContext.Provider>
   );
 }
+
+DrawerNavigation.View = DrawerView;
 
 export default DrawerNavigation;

@@ -5,41 +5,51 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { Meta } from '@storybook/react-vite';
 
-import DrawerNavigation, { type DrawerViewProps, type ViewConfig } from './DrawerNavigation';
+import DrawerNavigation from './DrawerNavigation';
+import { useDrawerNavigation } from './useDrawerNavigation';
 import Button from '../../Button';
 
 type ViewId = 'home' | 'category' | 'details';
 
-const HomeView = ({ navigate }: DrawerViewProps<ViewId>): React.JSX.Element => (
-  <div>
-    <p>{'Velkommen til din drawer. Hva vil du gjøre nå?'}</p>
-    <Button onClick={() => navigate.goToView('category')}>{'Gå til kategori'}</Button>
-    <Button onClick={() => navigate.goToView('details')}>{'Gå til detaljer'}</Button>
-  </div>
-);
+const HomeView = (): React.JSX.Element => {
+  const { goToView } = useDrawerNavigation<ViewId>();
+  return (
+    <div>
+      <p>{'Velkommen til din drawer. Hva vil du gjøre nå?'}</p>
+      <Button onClick={() => goToView('category')}>{'Gå til kategori'}</Button>
+      <Button onClick={() => goToView('details')}>{'Gå til detaljer'}</Button>
+    </div>
+  );
+};
 
-interface CategoryViewCustomProps {
+interface CategoryViewProps {
   chosenCategory: string;
 }
 
-const CategoryView = ({ navigate, chosenCategory }: DrawerViewProps<ViewId> & CategoryViewCustomProps): React.JSX.Element => (
-  <div>
-    <p>{'Dette er valgt kategori akkurat nå: ' + chosenCategory}</p>
-    <Button onClick={() => navigate.goToView('details')}>{'Gå videre til detaljer'}</Button>
-    <Button variant="borderless" onClick={() => navigate.goBack()}>
-      {'Tilbake'}
-    </Button>
-  </div>
-);
+const CategoryView = ({ chosenCategory }: CategoryViewProps): React.JSX.Element => {
+  const { goToView, goBack } = useDrawerNavigation<ViewId>();
+  return (
+    <div>
+      <p>{'Dette er valgt kategori akkurat nå: ' + chosenCategory}</p>
+      <Button onClick={() => goToView('details')}>{'Gå videre til detaljer'}</Button>
+      <Button variant="borderless" onClick={() => goBack()}>
+        {'Tilbake'}
+      </Button>
+    </div>
+  );
+};
 
-const DetailsView = ({ navigate }: DrawerViewProps<ViewId>): React.JSX.Element => (
-  <div>
-    <p>{'Detaljer kommer her.'}</p>
-    <Button variant="borderless" onClick={() => navigate.goToViewAndClearStack('home')}>
-      {'Tilbake til startsiden'}
-    </Button>
-  </div>
-);
+const DetailsView = (): React.JSX.Element => {
+  const { goToViewAndClearStack } = useDrawerNavigation<ViewId>();
+  return (
+    <div>
+      <p>{'Detaljer kommer her.'}</p>
+      <Button variant="borderless" onClick={() => goToViewAndClearStack('home')}>
+        {'Tilbake til startsiden'}
+      </Button>
+    </div>
+  );
+};
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/DrawerNavigation',
@@ -64,31 +74,20 @@ export const Default = {
   render: (): React.JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const homeView: ViewConfig<ViewId> = {
-      id: 'home',
-      title: 'Hjem',
-      component: HomeView,
-    };
-
-    const categoryView: ViewConfig<ViewId, CategoryViewCustomProps> = {
-      id: 'category',
-      title: 'Kategori',
-      component: CategoryView,
-      props: { chosenCategory: 'dokumenter' },
-    };
-
-    const detailsView: ViewConfig<ViewId> = {
-      id: 'details',
-      title: 'Detaljer',
-      component: DetailsView,
-    };
-
-    const views = [categoryView, detailsView];
-
     return (
       <div>
         <Button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</Button>
-        <DrawerNavigation homeView={homeView} views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+        <DrawerNavigation isOpen={isOpen} onCloseButton={() => setIsOpen(false)}>
+          <DrawerNavigation.View<ViewId> id="home" title="Hjem" home>
+            <HomeView />
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<ViewId> id="category" title="Kategori">
+            <CategoryView chosenCategory="dokumenter" />
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<ViewId> id="details" title="Detaljer">
+            <DetailsView />
+          </DrawerNavigation.View>
+        </DrawerNavigation>
       </div>
     );
   },
