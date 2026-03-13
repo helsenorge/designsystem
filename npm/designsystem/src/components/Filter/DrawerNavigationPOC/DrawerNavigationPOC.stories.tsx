@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 
-import type { ValidationErrors } from '../Validation/types';
+import type { ValidationErrors } from '../../Validation/types';
 import type { Meta } from '@storybook/react-vite';
 
 import DrawerNavigationPOC, { createView, type DrawerNavigationCommonProps } from './DrawerNavigationPOC';
 import FinnFastLegeFlyt from './FinnFastlegeFlyt.example';
 import ViewOverview, { type ViewOverviewConfig } from './ViewOverview';
-import Input from '../Input';
-import NotificationPanel from '../NotificationPanel';
+import Input from '../../Input';
+import NotificationPanel from '../../NotificationPanel';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/DrawerNavigationPOC',

@@ -2,12 +2,12 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import { AnalyticsId, IconSize } from '../../constants';
-import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import Icon from '../Icon';
-import ChevronRight from '../Icons/ChevronRight';
-import Tag from '../Tag';
-import TagList from '../TagList';
+import { AnalyticsId, IconSize } from '../../../constants';
+import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
+import Icon from '../../Icon';
+import ChevronRight from '../../Icons/ChevronRight';
+import Tag from '../../Tag';
+import TagList from '../../TagList';
 
 import LinkListStyles from './FilterOverviewLinkList.module.scss';
 

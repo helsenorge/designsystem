@@ -1,18 +1,18 @@
 import { useRef, useState } from 'react';
 
-import type { ValidationErrors } from '../Validation/types';
+import type { ValidationErrors } from '../../Validation/types';
 
-import Input from '../Input';
 import DrawerNavigationPOC, { createView, type DrawerNavigationCommonProps, type NavigateProps } from './DrawerNavigationPOC';
 import FilterOverviewLinkList from './FilterOverviewLinkList';
 import ViewOverview from './ViewOverview';
-import Button from '../Button';
-import Checkbox from '../Checkbox';
-import FormGroup from '../FormGroup';
-import Label from '../Label';
-import Modal from '../Modal';
-import NotificationPanel from '../NotificationPanel';
-import Toggle from '../Toggle';
+import Button from '../../Button';
+import Checkbox from '../../Checkbox';
+import FormGroup from '../../FormGroup';
+import Input from '../../Input';
+import Label from '../../Label';
+import Modal from '../../Modal';
+import NotificationPanel from '../../NotificationPanel';
+import Toggle from '../../Toggle';
 
 import examplestyles from './FinnFastlegeFlyt.module.scss';
 

@@ -1,8 +1,8 @@
 import { useState, useMemo, useImperativeHandle } from 'react';
 
 // import TestDrawer from './TestDrawer';
-import Button, { type ButtonProps } from '../Button';
-import Drawer from '../Drawer/Drawer';
+import Button, { type ButtonProps } from '../../Button';
+import Drawer from '../../Drawer/Drawer';
 
 import styles from './styles.module.scss';
 

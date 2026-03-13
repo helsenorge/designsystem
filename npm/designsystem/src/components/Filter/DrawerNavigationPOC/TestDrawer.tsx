@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 
-import { KeyboardEventKey } from '../../constants';
-import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
-import { useOutsideEvent } from '../../hooks/useOutsideEvent';
-import Button from '../Button';
+import { KeyboardEventKey } from '../../../constants';
+import { useKeyboardEvent } from '../../../hooks/useKeyboardEvent';
+import { useOutsideEvent } from '../../../hooks/useOutsideEvent';
+import Button from '../../Button';
 
 import styles from './styles.module.scss';
 
