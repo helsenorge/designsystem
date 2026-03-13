@@ -18,9 +18,13 @@ const HomeView = ({ navigate }: DrawerViewProps<ViewId>): React.JSX.Element => (
   </div>
 );
 
-const CategoryView = ({ navigate }: DrawerViewProps<ViewId>): React.JSX.Element => (
+interface CategoryViewCustomProps {
+  chosenCategory: string;
+}
+
+const CategoryView = ({ navigate, chosenCategory }: DrawerViewProps<ViewId> & CategoryViewCustomProps): React.JSX.Element => (
   <div>
-    <p>{'Her kan du velge kategori.'}</p>
+    <p>{'Dette er valgt kategori akkurat nå: ' + chosenCategory}</p>
     <Button onClick={() => navigate.goToView('details')}>{'Gå videre til detaljer'}</Button>
     <Button variant="borderless" onClick={() => navigate.goBack()}>
       {'Tilbake'}
@@ -30,7 +34,7 @@ const CategoryView = ({ navigate }: DrawerViewProps<ViewId>): React.JSX.Element 
 
 const DetailsView = ({ navigate }: DrawerViewProps<ViewId>): React.JSX.Element => (
   <div>
-    <p>{'Detaljer for valgt filter.'}</p>
+    <p>{'Detaljer kommer her.'}</p>
     <Button variant="borderless" onClick={() => navigate.goToViewAndClearStack('home')}>
       {'Tilbake til startsiden'}
     </Button>
@@ -66,18 +70,20 @@ export const Default = {
       component: HomeView,
     };
 
-    const views: ViewConfig<ViewId>[] = [
-      {
-        id: 'category',
-        title: 'Kategori',
-        component: CategoryView,
-      },
-      {
-        id: 'details',
-        title: 'Detaljer',
-        component: DetailsView,
-      },
-    ];
+    const categoryView: ViewConfig<ViewId, CategoryViewCustomProps> = {
+      id: 'category',
+      title: 'Kategori',
+      component: CategoryView,
+      props: { chosenCategory: 'dokumenter' },
+    };
+
+    const detailsView: ViewConfig<ViewId> = {
+      id: 'details',
+      title: 'Detaljer',
+      component: DetailsView,
+    };
+
+    const views = [categoryView, detailsView];
 
     return (
       <div>
