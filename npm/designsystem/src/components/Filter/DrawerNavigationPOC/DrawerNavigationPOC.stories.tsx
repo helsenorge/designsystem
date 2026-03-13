@@ -12,7 +12,7 @@ import Input from '../../Input';
 import NotificationPanel from '../../NotificationPanel';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/DrawerNavigationPOC',
+  title: '@helsenorge/designsystem-react/Components/Filter/DrawerNavigationPOC',
   component: DrawerNavigationPOC,
   tags: ['new'],
   parameters: {
