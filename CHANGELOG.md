@@ -1,3 +1,10 @@
+## [13.9.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.9.0&targetVersion=GTv13.9.1) (2026-03-16)
+
+
+### Features
+
+* **icon:**  nytt ikon measuringtape ([5e06f41](https://github.com/helsenorge/designsystem/commit/5e06f41a29cf7953eb91b728050b759161d3a0bc)), closes [#373613](https://github.com/helsenorge/designsystem/issues/373613)
+
 ## [13.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.8.0&targetVersion=GTv13.9.0) (2026-03-09)
 
 
