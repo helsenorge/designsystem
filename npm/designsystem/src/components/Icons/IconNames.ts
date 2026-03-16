@@ -294,6 +294,7 @@ export const IconList = [
   'Skin',
   'Snake',
   'Snapchat',
+  'Sort',
   'SortDown',
   'SortUp',
   'SpeechBubble',
