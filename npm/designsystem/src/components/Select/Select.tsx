@@ -98,7 +98,8 @@ export const Select: React.FC<SelectProps> = props => {
   const selectInnerWrapperClasses = classNames(
     selectStyles['select-inner-wrapper'],
     {
-      [selectStyles['select-inner-wrapper--transparent']]: concept === 'transparent' || concept === 'borderless',
+      [selectStyles['select-inner-wrapper--transparent']]: concept === 'transparent',
+      [selectStyles['select-inner-wrapper--borderless']]: concept === 'borderless',
       [selectStyles['select-inner-wrapper--on-blueberry']]: onBlueberry,
       [selectStyles['select-inner-wrapper--invalid']]: invalid,
       [selectStyles['select-inner-wrapper--disabled']]: disabled,

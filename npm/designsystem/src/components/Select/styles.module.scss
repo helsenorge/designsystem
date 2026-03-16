@@ -26,6 +26,18 @@
     background: palette.$neutral50;
   }
 
+  &--borderless {
+    background: transparent;
+
+    &:hover {
+      background: var(--core-color-neutral-100);
+    }
+
+    &:active {
+      background: var(--core-color-neutral-200);
+    }
+  }
+
   &--on-blueberry {
     &:hover {
       background-color: palette.$blueberry50;
@@ -82,10 +94,6 @@
 
   &--borderless {
     outline: none;
-
-    &:hover {
-      // background-color: grey; // todo: få svar
-    }
   }
 
   :hover > & {

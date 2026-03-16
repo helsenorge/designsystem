@@ -5,6 +5,7 @@ export type Styles = {
   'select--on-blueberry': string;
   'select-arrow': string;
   'select-inner-wrapper': string;
+  'select-inner-wrapper--borderless': string;
   'select-inner-wrapper--disabled': string;
   'select-inner-wrapper--invalid': string;
   'select-inner-wrapper--on-blueberry': string;
