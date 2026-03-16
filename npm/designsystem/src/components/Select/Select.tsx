@@ -13,7 +13,7 @@ import { renderLabel } from '../Label/utils';
 
 import selectStyles from './styles.module.scss';
 
-type SelectConcept = 'normal' | 'transparent';
+type SelectConcept = 'normal' | 'transparent' | 'borderless';
 
 export interface SelectProps
   extends
@@ -98,7 +98,7 @@ export const Select: React.FC<SelectProps> = props => {
   const selectInnerWrapperClasses = classNames(
     selectStyles['select-inner-wrapper'],
     {
-      [selectStyles['select-inner-wrapper--transparent']]: concept === 'transparent',
+      [selectStyles['select-inner-wrapper--transparent']]: concept === 'transparent' || concept === 'borderless',
       [selectStyles['select-inner-wrapper--on-blueberry']]: onBlueberry,
       [selectStyles['select-inner-wrapper--invalid']]: invalid,
       [selectStyles['select-inner-wrapper--disabled']]: disabled,
@@ -109,6 +109,7 @@ export const Select: React.FC<SelectProps> = props => {
   const selectClasses = classNames(selectStyles.select, {
     [selectStyles['select--on-blueberry']]: onBlueberry,
     [selectStyles['select--invalid']]: invalid,
+    [selectStyles['select--borderless']]: concept === 'borderless',
   });
 
   const selectWrapperClasses = classNames(selectStyles['select-wrapper'], wrapperClassName);

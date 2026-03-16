@@ -89,6 +89,18 @@ export const Concepts: Story = {
         <option value={'Option 2'}>{'Option 2'}</option>
         <option value={'Option 3'}>{'Option 3'}</option>
       </Select>
+
+      <Select
+        {...args}
+        concept={'borderless'}
+        label={<Label labelTexts={[{ text: 'Velg noe' }]} />}
+        name={'select name 1'}
+        onChange={action('onChange called')}
+      >
+        <option value={'Option 1'}>{'Option 1'}</option>
+        <option value={'Option 2'}>{'Option 2'}</option>
+        <option value={'Option 3'}>{'Option 3'}</option>
+      </Select>
     </div>
   ),
 };

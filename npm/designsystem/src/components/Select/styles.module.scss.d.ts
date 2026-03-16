@@ -1,5 +1,6 @@
 export type Styles = {
   select: string;
+  'select--borderless': string;
   'select--invalid': string;
   'select--on-blueberry': string;
   'select-arrow': string;

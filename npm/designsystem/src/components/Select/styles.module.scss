@@ -80,6 +80,14 @@
     outline-color: palette.$cherry600;
   }
 
+  &--borderless {
+    outline: none;
+
+    &:hover {
+      // background-color: grey; // todo: få svar
+    }
+  }
+
   :hover > & {
     outline-width: 3px;
     outline-offset: -1px;
