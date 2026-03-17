@@ -6,7 +6,11 @@ import { useFilter } from './useFilter';
 describe('Gitt at Filter skal vises', (): void => {
   describe('Når Filter vises', (): void => {
     test('Så vises Filter', (): void => {
-      render(<Filter testId="filter-test">{'Innhold'}</Filter>);
+      render(
+        <Filter activeFilters={[]} testId="filter-test">
+          {'Innhold'}
+        </Filter>
+      );
       expect(screen.getByTestId('filter-test')).toBeInTheDocument();
     });
   });

@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 
+import type { UseFilterReturn } from './useFilter';
+import type { FilterOption } from './utils';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '../Button';
@@ -10,22 +12,101 @@ import Drawer from '../Drawer';
 import RadioButton from '../RadioButton';
 import Filter from './Filter';
 import { useFilter } from './useFilter';
+import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter } from './utils';
+
+type ExampleFilterType = {
+  categories: string[];
+  status: string;
+  eResept: boolean;
+};
 
 const categoryOptions = [
-  { value: 'fruits', label: 'Frukt' },
-  { value: 'vegetables', label: 'Grønnsaker' },
-  { value: 'dairy', label: 'Meieri' },
+  { value: 'oslo_universitetssykehus', label: 'Oslo universitetssykehus' },
+  { value: 'haukeland', label: 'Haukeland universitetssjukehus' },
+  { value: 'st_olavs', label: 'St. Olavs hospital' },
 ];
 
 const statusOptions = [
-  { value: 'available', label: 'Tilgjengelig' },
-  { value: 'sold_out', label: 'Utsolgt' },
+  { value: 'resept', label: 'Reseptbelagt' },
+  { value: 'reseptfri', label: 'Reseptfri' },
 ];
 
-const labelsConfig = {
-  categories: Object.fromEntries(categoryOptions.map(o => [o.value, o.label])),
-  status: Object.fromEntries(statusOptions.map(o => [o.value, o.label])),
+const eReseptOptions: FilterOption<boolean>[] = [{ value: true, label: 'E-resept' }];
+
+interface Medisin {
+  navn: string;
+  sykehus: string;
+  status: string;
+  eResept: boolean;
+}
+
+const medisinerMockData: Medisin[] = [
+  // TODO: Hvis feks dataen ikke har et felt som filtreres på, så kan consumeren noen ganger trenge å filtrere mot et annet felt for dette
+  { navn: 'Paracet 500mg', sykehus: 'oslo_universitetssykehus', status: 'resept', eResept: true },
+  { navn: 'Ibux 400mg', sykehus: 'haukeland', status: 'reseptfri', eResept: false },
+  { navn: 'Voltaren 50mg', sykehus: 'st_olavs', status: 'resept', eResept: true },
+  { navn: 'Zyrtec 10mg', sykehus: 'oslo_universitetssykehus', status: 'reseptfri', eResept: false },
+  { navn: 'Metformin 500mg', sykehus: 'haukeland', status: 'resept', eResept: true },
+  { navn: 'Paralgin Forte', sykehus: 'st_olavs', status: 'resept', eResept: false },
+];
+
+// Definerer hvordan hvert filter skal matche mot dataene.
+// Hver nøkkel tilsvarer et filter i ExampleFilterType, og funksjonen avgjør om et dataelement matcher filterverdien.
+// Sendes til filter-utils/filterItems() for å filtrere data basert på aktive filtre.
+const filterMatchers = {
+  categories: matchFilter.arrayIncludes<Medisin>(m => m.sykehus),
+  status: matchFilter.exactMatch<Medisin>(m => m.status),
+  eResept: matchFilter.booleanToggle<Medisin>(m => m.eResept),
 };
+
+const FiltrertDataExample: React.FC<{ items: Medisin[] }> = ({ items }) => (
+  <>
+    <ul>
+      {items.map(data => (
+        <li key={data.navn}>{`${data.navn} — ${data.sykehus} — ${data.status}${data.eResept ? ' (e-resept)' : ''}`}</li>
+      ))}
+    </ul>
+    {items.length === 0 && <p>{'Ingen medisiner matcher valgte filtre.'}</p>}
+  </>
+);
+
+const FilterDrawerContent: React.FC<{
+  filter: UseFilterReturn<ExampleFilterType>;
+}> = ({ filter }) => (
+  <>
+    <div>
+      <h3>{'Sykehus (checkbox)'}</h3>
+      {categoryOptions.map(opt => (
+        <Checkbox
+          key={opt.value}
+          label={opt.label}
+          checked={(filter.filters.categories ?? []).includes(opt.value)}
+          onChange={(): void => toggleArrayFilter(filter, 'categories', opt.value)}
+        />
+      ))}
+    </div>
+    <div style={{ marginTop: '1rem' }}>
+      <h3>{'Medisintype (radio)'}</h3>
+      {statusOptions.map(opt => (
+        <RadioButton
+          key={opt.value}
+          label={opt.label}
+          name="status"
+          checked={filter.filters.status === opt.value}
+          onChange={(): void => filter.setFilter('status', opt.value)}
+        />
+      ))}
+    </div>
+    <div style={{ marginTop: '1rem' }}>
+      <h3>{'E-resept (boolean)'}</h3>
+      <Checkbox
+        label={'Kun e-resept'}
+        checked={filter.filters.eResept === true}
+        onChange={(): void => filter.setFilter('eResept', filter.filters.eResept ? undefined : true)}
+      />
+    </div>
+  </>
+);
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter',
@@ -33,7 +114,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Filter POC - demonstrerer bruk av useFilter hook med Checkbox, RadioButton, Chip og Drawer',
+        component: 'Filter POC - demonstrerer bruk av useFilter hook med filter-utils for filtrering',
       },
       page: (): React.JSX.Element => <Docs component={Filter} />,
       story: { inline: false, iframeHeight: '40rem' },
@@ -48,66 +129,49 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const LiveFiltering: Story = {
+  args: { activeFilters: [] },
   render: () => {
-    const filter = useFilter<{ categories: string[]; status: string }>({ labels: labelsConfig });
+    const filter = useFilter<ExampleFilterType>(
+      createFilterConfig<ExampleFilterType>({
+        categories: { options: categoryOptions, defaultValue: ['haukeland'] },
+        status: { options: statusOptions },
+        eResept: { options: eReseptOptions, defaultValue: true },
+      })
+    );
     const [drawerOpen, setDrawerOpen] = useState(false);
-
-    // TODO: Prøv å introdusere dette som en del av hooken
-    // TODO: Behold den enkle hooken, også kan resten være opt-in
-    // TODO: Behold det enkle forholdet mellom hooken og komponente, komponenten eier fortsatt ingen state og rendrer bare
-    const handleCheckboxChange = (optionValue: string): void => {
-      const current = filter.filters.categories ?? [];
-      const updated = current.includes(optionValue) ? current.filter(v => v !== optionValue) : [...current, optionValue];
-      filter.setFilter('categories', updated.length > 0 ? updated : undefined);
-    };
+    // TODO: Se på å åpne opp for backup keys slik som eksempelet i filter-utils viser
+    const filtered = filterItems(medisinerMockData, filter.filters, filterMatchers);
 
     return (
-      <Filter>
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
-        </div>
-        // TODO: Gjør dette i filter
-        <Filter.Chips activeFilters={filter.activeFilters} />
-        <p>
-          {'Aktive filter (live): '}
-          <code>{JSON.stringify(filter.filters)}</code>
-        </p>
-        <Drawer isOpen={drawerOpen} title="Filter" onRequestClose={() => setDrawerOpen(false)}>
-          <div>
-            <h3>{'Kategorier (checkbox)'}</h3>
-            // TODO: taglist
-            {categoryOptions.map(opt => (
-              <Checkbox
-                key={opt.value}
-                label={opt.label}
-                checked={(filter.filters.categories ?? []).includes(opt.value)}
-                onChange={() => handleCheckboxChange(opt.value)}
-              />
-            ))}
+      <>
+        <Filter activeFilters={filter.activeFilters}>
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
           </div>
-          <div style={{ marginTop: '1rem' }}>
-            <h3>{'Status (radio)'}</h3>
-            {statusOptions.map(opt => (
-              <RadioButton
-                key={opt.value}
-                label={opt.label}
-                name="status"
-                checked={filter.filters.status === opt.value}
-                onChange={() => filter.setFilter('status', opt.value)}
-              />
-            ))}
-          </div>
-        </Drawer>
-      </Filter>
+          <Drawer isOpen={drawerOpen} title="Filter" onRequestClose={() => setDrawerOpen(false)}>
+            <FilterDrawerContent filter={filter} />
+          </Drawer>
+        </Filter>
+        <FiltrertDataExample items={filtered} />
+      </>
     );
   },
 };
 
 export const DelayedFiltering: Story = {
+  args: { activeFilters: [] },
   render: () => {
-    const filter = useFilter<{ categories: string[]; status: string }>({ labels: labelsConfig });
+    const filter = useFilter<ExampleFilterType>({
+      ...createFilterConfig<ExampleFilterType>({
+        categories: { options: categoryOptions },
+        status: { options: statusOptions },
+        eResept: { options: eReseptOptions },
+      }),
+      removable: false,
+    });
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [draftFilters, setDraftFilters] = useState(filter.filters);
+    const filtered = filterItems(medisinerMockData, filter.filters, filterMatchers);
 
     const openDrawer = (): void => {
       setDraftFilters({ ...filter.filters });
@@ -123,56 +187,60 @@ export const DelayedFiltering: Story = {
       setDrawerOpen(false);
     };
 
-    const handleCheckboxChange = (optionValue: string): void => {
-      const current = draftFilters.categories ?? [];
-      const updated = current.includes(optionValue) ? current.filter(v => v !== optionValue) : [...current, optionValue];
-      setDraftFilters(prev => ({ ...prev, categories: updated.length > 0 ? updated : undefined }));
-    };
-
     return (
-      <Filter>
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <Button onClick={openDrawer}>{'Åpne filter'}</Button>
-        </div>
-        <Filter.Tags activeFilters={filter.activeFilters} />
-        <p>
-          {'Aktive filter (oppdateres ved "Bruk filter"): '}
-          <code>{JSON.stringify(filter.filters)}</code>
-        </p>
-        <Drawer
-          isOpen={drawerOpen}
-          title="Filter (delayed)"
-          onRequestClose={discardFilters}
-          primaryActionText="Bruk filter"
-          onPrimaryAction={applyFilters}
-          secondaryActionText="Avbryt"
-          onSecondaryAction={discardFilters}
-        >
-          <div>
-            <h3>{'Kategorier (checkbox)'}</h3>
-            {categoryOptions.map(opt => (
+      <>
+        <Filter activeFilters={filter.activeFilters}>
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Button onClick={openDrawer}>{'Åpne filter'}</Button>
+          </div>
+          <Drawer
+            isOpen={drawerOpen}
+            title="Filter (delayed)"
+            onRequestClose={discardFilters}
+            primaryActionText="Bruk filter"
+            onPrimaryAction={applyFilters}
+            secondaryActionText="Avbryt"
+            onSecondaryAction={discardFilters}
+          >
+            <div>
+              <h3>{'Sykehus (checkbox)'}</h3>
+              {categoryOptions.map(opt => (
+                <Checkbox
+                  key={opt.value}
+                  label={opt.label}
+                  checked={(draftFilters.categories ?? []).includes(opt.value)}
+                  onChange={(): void => {
+                    const current = draftFilters.categories ?? [];
+                    const updated = current.includes(opt.value) ? current.filter(v => v !== opt.value) : [...current, opt.value];
+                    setDraftFilters(prev => ({ ...prev, categories: updated.length > 0 ? updated : undefined }));
+                  }}
+                />
+              ))}
+            </div>
+            <div style={{ marginTop: '1rem' }}>
+              <h3>{'Medisintype (radio)'}</h3>
+              {statusOptions.map(opt => (
+                <RadioButton
+                  key={opt.value}
+                  label={opt.label}
+                  name="status-delayed"
+                  checked={draftFilters.status === opt.value}
+                  onChange={(): void => setDraftFilters(prev => ({ ...prev, status: opt.value }))}
+                />
+              ))}
+            </div>
+            <div style={{ marginTop: '1rem' }}>
+              <h3>{'E-resept (boolean)'}</h3>
               <Checkbox
-                key={opt.value}
-                label={opt.label}
-                checked={(draftFilters.categories ?? []).includes(opt.value)}
-                onChange={() => handleCheckboxChange(opt.value)}
+                label={'Kun e-resept'}
+                checked={draftFilters.eResept === true}
+                onChange={(): void => setDraftFilters(prev => ({ ...prev, eResept: prev.eResept ? undefined : true }))}
               />
-            ))}
-          </div>
-          <div style={{ marginTop: '1rem' }}>
-            <h3>{'Status (radio)'}</h3>
-            {statusOptions.map(opt => (
-              <RadioButton
-                key={opt.value}
-                label={opt.label}
-                name="status-delayed"
-                checked={draftFilters.status === opt.value}
-                onChange={() => setDraftFilters(prev => ({ ...prev, status: opt.value }))}
-              />
-            ))}
-          </div>
-        </Drawer>
-      </Filter>
+            </div>
+          </Drawer>
+        </Filter>
+        <FiltrertDataExample items={filtered} />
+      </>
     );
   },
 };
