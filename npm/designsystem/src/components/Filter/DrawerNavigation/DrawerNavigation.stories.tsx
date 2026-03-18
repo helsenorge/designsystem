@@ -160,7 +160,14 @@ export const WithFooterButton = {
           <DrawerNavigation.View<DefaultStoryViewId> id="home" title="Hjem" home>
             <HomeView />
           </DrawerNavigation.View>
-          <DrawerNavigation.View<DefaultStoryViewId> id="category" title="Kategori">
+          <DrawerNavigation.View<DefaultStoryViewId>
+            id="category"
+            title="Kategori"
+            onCloseButton={() => {
+              alert('Du lukket på kategori-siden. Bra for deg!');
+              setIsOpen(false);
+            }}
+          >
             <CategoryView chosenCategory="dokumenter" />
           </DrawerNavigation.View>
           <DrawerNavigation.View<DefaultStoryViewId> id="details" title="Detaljer" footer={<span>{'Custom footer på detaljside'}</span>}>
