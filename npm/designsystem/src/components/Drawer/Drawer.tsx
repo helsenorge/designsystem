@@ -267,7 +267,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             >
               {title}
             </Title>
-            {withBackButton && onRequestBack != undefined && (
+            {withBackButton && onRequestBack !== undefined && (
               <Button
                 ariaLabel={mergedResources.ariaLabelBackButton}
                 onClick={onRequestBack}

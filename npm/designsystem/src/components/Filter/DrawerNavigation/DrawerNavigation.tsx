@@ -1,5 +1,5 @@
 import type React from 'react';
-import { Children, isValidElement, useState } from 'react';
+import { Children, isValidElement, useCallback, useMemo, useState } from 'react';
 
 import { type NavigateProps, DrawerNavigationContext } from './useDrawerNavigation';
 import Drawer from '../../Drawer';
@@ -58,31 +58,37 @@ function parseChildren(children: React.ReactNode): { views: DrawerViewProps[]; o
 }
 
 function DrawerNavigation({ children, isOpen, onCloseButton, footer }: DrawerNavigationProps): React.ReactNode {
-  const { views, other } = parseChildren(children);
+  const { views, other } = useMemo(() => parseChildren(children), [children]);
 
   const homeView = views.find(v => v.home) ?? views[0];
   const [viewStack, setViewStack] = useState<string[]>([homeView?.id]);
 
-  const goToView = (id: string): void => {
-    if (views.some(v => v.id === id)) {
-      setViewStack(stack => [...stack, id]);
-    }
-  };
+  const goToView = useCallback(
+    (id: string): void => {
+      if (views.some(v => v.id === id)) {
+        setViewStack(stack => [...stack, id]);
+      }
+    },
+    [views]
+  );
 
-  const goBack = (): void => {
+  const goBack = useCallback((): void => {
     setViewStack(stack => (stack.length > 1 ? stack.slice(0, -1) : stack));
-  };
+  }, []);
 
-  const goToViewAndClearStack = (id: string): void => {
-    if (views.some(v => v.id === id)) {
-      setViewStack(id === homeView?.id ? [homeView.id] : [homeView?.id, id]);
-    }
-  };
+  const goToViewAndClearStack = useCallback(
+    (id: string): void => {
+      if (views.some(v => v.id === id)) {
+        setViewStack(id === homeView?.id ? [homeView.id] : [homeView?.id, id]);
+      }
+    },
+    [views, homeView]
+  );
 
   const currentViewId = viewStack[viewStack.length - 1];
   const currentView = views.find(v => v.id === currentViewId);
 
-  const navigate: NavigateProps = { goBack, goToView, goToViewAndClearStack };
+  const navigate = useMemo<NavigateProps>(() => ({ goBack, goToView, goToViewAndClearStack }), [goBack, goToView, goToViewAndClearStack]);
 
   const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
   if (prevIsOpen !== isOpen) {

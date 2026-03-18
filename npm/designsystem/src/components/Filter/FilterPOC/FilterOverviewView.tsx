@@ -13,7 +13,7 @@ const FilterOverviewView = <ViewId extends string = string>(props: FilterOvervie
   return (
     <FilterLinkList>
       {filters.map(filter => (
-        <FilterLinkList.Link title={filter.title} chips={filter.activeFilters} onClick={() => goToView(filter.id)} />
+        <FilterLinkList.Link key={filter.id} title={filter.title} chips={filter.activeFilters} onClick={() => goToView(filter.id)} />
       ))}
     </FilterLinkList>
   );
