@@ -88,6 +88,10 @@ export type HNDesignsystemDrawer = {
    * Lukk
    */
   ariaLabelCloseBtn: string;
+  /**
+   * Gå tilbake
+   */
+  ariaLabelBackButton: string;
 };
 
 export type HNDesignsystemFormFieldTag = {
