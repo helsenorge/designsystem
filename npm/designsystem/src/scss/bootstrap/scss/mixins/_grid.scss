@@ -28,7 +28,8 @@
     }
   }
 
-  @include deprecate('The `make-container-max-widths` mixin', 'v4.5.2', 'v5');
+  // fjerner denne i vår kopi
+  // @include deprecate('The `make-container-max-widths` mixin', 'v4.5.2', 'v5');
 }
 
 @mixin make-col-ready($gutter: $grid-gutter-width) {

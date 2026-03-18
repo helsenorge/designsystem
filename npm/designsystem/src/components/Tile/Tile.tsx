@@ -2,6 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { LazyIconProps } from '../LazyIcon';
 import type { TitleTags } from './../Title/Title';
 
 import { AnalyticsId } from '../../constants';
@@ -9,7 +10,8 @@ import { useBreakpoint, Breakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { isComponent } from '../../utils/component';
 import { mergeRefs } from '../../utils/refs';
-import Icon, { IconSize, type IconProps } from '../Icon';
+import Icon, { IconSize, type BaseIconProps, type IconProps } from '../Icon';
+import LazyIcon from '../LazyIcon';
 
 import tileStyles from './styles.module.scss';
 
@@ -118,8 +120,12 @@ export const Tile: TileCompound = props => {
       onClick={onClick}
     >
       <div className={tileTitleWrapperClasses}>
-        {isComponent<IconProps>(icon, Icon) &&
-          React.cloneElement(icon, { size: mobile ? IconSize.Small : IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
+        {(isComponent<IconProps>(icon, Icon) || isComponent<LazyIconProps>(icon, LazyIcon)) &&
+          React.cloneElement(icon as React.ReactElement<BaseIconProps>, {
+            size: mobile ? IconSize.Small : IconSize.Medium,
+            isHovered,
+            color: highlighted ? 'white' : 'black',
+          })}
         {isComponent<TileTitleProps>(title, Tile.Title) && React.cloneElement(title, { highlighted: highlighted, compact: compact })}
       </div>
       {!compact && !mobile && <p className={tileStyles.tile__description}>{description}</p>}

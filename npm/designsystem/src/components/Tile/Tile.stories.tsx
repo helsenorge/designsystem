@@ -7,6 +7,7 @@ import Tile from './Tile';
 import Icon from '../Icon';
 import Eye from '../Icons/Eye';
 import Medicine from '../Icons/Medicine';
+import LazyIcon from '../LazyIcon';
 import SharingStatus from '../SharingStatus';
 
 const meta = {
@@ -215,4 +216,11 @@ export const ReactChildren: Story = {
       </SharingStatus>
     </Tile>
   ),
+};
+
+export const WithLazyIcon: Story = {
+  args: {
+    icon: <LazyIcon iconName={'Medicine'} />,
+  },
+  render: args => <Tile {...args} />,
 };

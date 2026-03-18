@@ -1,3 +1,4 @@
 {
-  "ariaLabelCloseBtn": "Close"
+  "ariaLabelCloseBtn": "Close",
+  "ariaLabelBackButton": "Go back"
 }

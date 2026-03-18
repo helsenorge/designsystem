@@ -16,6 +16,7 @@ export default defineConfig({
       entryRoot: 'src',
       insertTypesEntry: false,
       rollupTypes: false,
+      copyDtsFiles: true,
       include: [
         'src/components/**/*.{ts,tsx}',
         'src/hooks/**/*.{ts,tsx}',
