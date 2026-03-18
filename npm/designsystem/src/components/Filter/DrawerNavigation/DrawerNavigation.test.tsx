@@ -13,8 +13,8 @@ const NavigateButtons = (): React.JSX.Element => {
     <div>
       <Button onClick={() => goToView('second')}>{'Gå til andre'}</Button>
       <Button onClick={() => goToView('third')}>{'Gå til tredje'}</Button>
-      <Button onClick={() => goBack()}>{'Tilbake'}</Button>
-      <Button onClick={() => goToViewAndClearStack('home')}>{'Tilbake til start'}</Button>
+      <Button onClick={() => goBack()}>{'Forrige view'}</Button>
+      <Button onClick={() => goToViewAndClearStack('home')}>{'Gå hjem'}</Button>
     </div>
   );
 };
@@ -89,7 +89,7 @@ describe('Gitt at goBack brukes for navigasjon', (): void => {
       await userEvent.click(screen.getByRole('button', { name: /Gå til andre/i }));
       expect(screen.getByText('Andre innhold')).toBeVisible();
 
-      await userEvent.click(screen.getByRole('button', { name: /Tilbake$/i }));
+      await userEvent.click(screen.getByRole('button', { name: /Forrige view/i }));
       expect(screen.getByText('Hjemmeinnhold')).toBeVisible();
     });
   });
@@ -98,7 +98,7 @@ describe('Gitt at goBack brukes for navigasjon', (): void => {
     test('Så forblir man på home-viewet', async (): Promise<void> => {
       renderDrawerNavigation();
 
-      await userEvent.click(screen.getByRole('button', { name: /Tilbake$/i }));
+      await userEvent.click(screen.getByRole('button', { name: /Forrige view/i }));
       expect(screen.getByText('Hjemmeinnhold')).toBeVisible();
     });
   });
@@ -113,11 +113,11 @@ describe('Gitt at goToViewAndClearStack brukes for navigasjon', (): void => {
       await userEvent.click(screen.getByRole('button', { name: /Gå til tredje/i }));
       expect(screen.getByText('Tredje innhold')).toBeVisible();
 
-      await userEvent.click(screen.getByRole('button', { name: /Tilbake til start/i }));
+      await userEvent.click(screen.getByRole('button', { name: /Gå hjem/i }));
       expect(screen.getByText('Hjemmeinnhold')).toBeVisible();
 
       // goBack should stay on home since stack is cleared
-      await userEvent.click(screen.getByRole('button', { name: /Tilbake$/i }));
+      await userEvent.click(screen.getByRole('button', { name: /Forrige view/i }));
       expect(screen.getByText('Hjemmeinnhold')).toBeVisible();
     });
   });
