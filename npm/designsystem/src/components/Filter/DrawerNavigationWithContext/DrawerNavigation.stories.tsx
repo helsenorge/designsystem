@@ -163,7 +163,7 @@ export const WithFooterButton = {
           <DrawerNavigation.View<DefaultStoryViewId> id="category" title="Kategori">
             <CategoryView chosenCategory="dokumenter" />
           </DrawerNavigation.View>
-          <DrawerNavigation.View<DefaultStoryViewId> id="details" title="Detaljer">
+          <DrawerNavigation.View<DefaultStoryViewId> id="details" title="Detaljer" footer={<span>{'Custom footer på detaljside'}</span>}>
             <DetailsView />
           </DrawerNavigation.View>
         </DrawerNavigation>

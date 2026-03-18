@@ -5,11 +5,18 @@ import { type NavigateProps, DrawerNavigationContext } from './useDrawerNavigati
 import Drawer from '../../Drawer';
 
 export interface DrawerViewProps<ViewId extends string = string> {
+  /** Id for the view. Important for navigation */
   id: ViewId;
+  /** Title used for Drawer in current view */
   title: string;
   /** Mark this view as the home/default view */
   home?: boolean;
+  /** Content inside the drawer for this view */
   children: React.ReactNode;
+  /** Default onClose callback for drawer. Will override onCloseButton on parent */
+  onCloseButton?: () => void;
+  /** Content sent to footer section of Drawer. Will override footer on parent */
+  footer?: React.ReactNode;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -19,21 +26,18 @@ function DrawerView<ViewId extends string>(_props: DrawerViewProps<ViewId>): Rea
 }
 
 export interface DrawerNavigationProps {
+  /** Views and other children components inside the Drawer navigation. Views are put in stack */
   children: React.ReactNode;
+  /** Is drawer open or closed */
   isOpen: boolean;
+  /** Default onClose callback for drawer. View onCloseButton callback will override this. */
   onCloseButton?: () => void;
+  /** Content sent to footer section of Drawer. View footer will override this */
   footer?: React.ReactNode;
 }
 
-interface ParsedView {
-  id: string;
-  title: string;
-  home?: boolean;
-  children: React.ReactNode;
-}
-
-function parseChildren(children: React.ReactNode): { views: ParsedView[]; other: React.ReactNode[] } {
-  const views: ParsedView[] = [];
+function parseChildren(children: React.ReactNode): { views: DrawerViewProps[]; other: React.ReactNode[] } {
+  const views: DrawerViewProps[] = [];
   const other: React.ReactNode[] = [];
   Children.forEach(children, child => {
     if (isValidElement<DrawerViewProps>(child) && child.type === DrawerView) {
@@ -42,8 +46,11 @@ function parseChildren(children: React.ReactNode): { views: ParsedView[]; other:
         title: child.props.title,
         home: child.props.home,
         children: child.props.children,
+        onCloseButton: child.props.onCloseButton,
+        footer: child.props.footer,
       });
     } else {
+      /** Added possibility of other children to support Modals that need navigation context */
       other.push(child);
     }
   });
@@ -51,7 +58,6 @@ function parseChildren(children: React.ReactNode): { views: ParsedView[]; other:
 }
 
 function DrawerNavigation({ children, isOpen, onCloseButton, footer }: DrawerNavigationProps): React.ReactNode {
-  // åpnet for andre children for å støtte Modal med tilgang til navigate-funksjoner for finn fastlege-flyt
   const { views, other } = parseChildren(children);
 
   const homeView = views.find(v => v.home) ?? views[0];
@@ -93,8 +99,8 @@ function DrawerNavigation({ children, isOpen, onCloseButton, footer }: DrawerNav
         title={currentView?.title ?? 'Filter'}
         withBackButton={viewStack.length > 1}
         onRequestBack={goBack}
-        onRequestClose={onCloseButton}
-        footerContent={footer}
+        onRequestClose={currentView?.onCloseButton ?? onCloseButton}
+        footerContent={currentView?.footer ?? footer}
       >
         {currentView?.children}
       </Drawer>
