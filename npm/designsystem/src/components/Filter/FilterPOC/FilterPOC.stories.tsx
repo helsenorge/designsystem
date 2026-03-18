@@ -3,21 +3,21 @@ import { useState } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 
-import type { DummyFilter as DummyFilterWithContext } from '../DrawerNavigationWithContext/utils';
+import type { DummyFilter as DummyFilterWithContext } from '../DrawerNavigation/utils';
 import type { Meta } from '@storybook/react-vite';
 
-import FilterPOCWithContext from './FilterPOCWithContext';
+import FilterPOC from './FilterPOC';
 import Button from '../../Button';
-import { default as DrawerNavigationWithContext } from '../DrawerNavigationWithContext';
-import { useDrawerNavigation } from '../DrawerNavigationWithContext/useDrawerNavigation';
+import DrawerNavigation from '../DrawerNavigation';
+import { useDrawerNavigation } from '../DrawerNavigation/useDrawerNavigation';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterPOC',
-  component: DrawerNavigationWithContext,
+  component: DrawerNavigation,
   tags: ['new'],
   parameters: {
     docs: {
-      page: (): React.ReactNode => <Docs component={DrawerNavigationWithContext} />,
+      page: (): React.ReactNode => <Docs component={DrawerNavigation} />,
       story: {
         inline: false,
         iframeHeight: '40rem',
@@ -26,7 +26,7 @@ const meta = {
   },
   args: {},
   argTypes: {},
-} satisfies Meta<typeof DrawerNavigationWithContext>;
+} satisfies Meta<typeof DrawerNavigation>;
 
 export default meta;
 
@@ -41,18 +41,18 @@ export const FilterWithContext = {
     return (
       <>
         <Button onClick={() => setIsOpen(true)}>{'Åpne filter'}</Button>
-        <FilterPOCWithContext isOpen={isOpen} onCloseButton={() => setIsOpen(false)} filters={filters}>
-          <DrawerNavigationWithContext.View<FilterId> id="age" title="Alder">
+        <FilterPOC isOpen={isOpen} onCloseButton={() => setIsOpen(false)} filters={filters}>
+          <DrawerNavigation.View<FilterId> id="age" title="Alder">
             <div>
               <p>{'View med parameter for alder her'}</p>
             </div>
-          </DrawerNavigationWithContext.View>
-          <DrawerNavigationWithContext.View<FilterId> id="gender" title="Kjønn">
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<FilterId> id="gender" title="Kjønn">
             <div>
               <p>{'View med parameter for kjønn her'}</p>
             </div>
-          </DrawerNavigationWithContext.View>
-        </FilterPOCWithContext>
+          </DrawerNavigation.View>
+        </FilterPOC>
       </>
     );
   },
@@ -81,24 +81,24 @@ export const FilterWithContextCustomOverview = {
     return (
       <>
         <Button onClick={() => setIsOpen(true)}>{'Åpne filter'}</Button>
-        <FilterPOCWithContext
+        <FilterPOC
           isOpen={isOpen}
           onCloseButton={() => setIsOpen(false)}
           filters={filters}
           overviewTitle="Min tilpassede oversikt"
           overviewContent={<CustomOverview />}
         >
-          <DrawerNavigationWithContext.View<FilterId> id="age" title="Alder">
+          <DrawerNavigation.View<FilterId> id="age" title="Alder">
             <div>
               <p>{'View med parameter for alder her'}</p>
             </div>
-          </DrawerNavigationWithContext.View>
-          <DrawerNavigationWithContext.View<FilterId> id="gender" title="Kjønn">
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<FilterId> id="gender" title="Kjønn">
             <div>
               <p>{'View med parameter for kjønn her'}</p>
             </div>
-          </DrawerNavigationWithContext.View>
-        </FilterPOCWithContext>
+          </DrawerNavigation.View>
+        </FilterPOC>
       </>
     );
   },

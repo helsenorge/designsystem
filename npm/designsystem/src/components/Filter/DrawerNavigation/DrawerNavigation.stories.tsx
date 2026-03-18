@@ -7,10 +7,10 @@ import type { DummyFilter } from './utils';
 import type { Meta } from '@storybook/react-vite';
 
 import DrawerNavigation from './DrawerNavigation';
-import FilterOverviewView from './FilterOverviewView';
 import FinnFastlegeFlytExample from './FinnFastlegeFlyt.example';
 import { useDrawerNavigation } from './useDrawerNavigation';
 import Button from '../../Button';
+import FilterOverviewView from '../FilterPOC/FilterOverviewView';
 
 type DefaultStoryViewId = 'home' | 'category' | 'details';
 

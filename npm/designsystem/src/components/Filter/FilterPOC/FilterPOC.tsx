@@ -1,10 +1,10 @@
-import type { DummyFilter } from '../DrawerNavigationWithContext/utils';
+import type { DummyFilter } from '../DrawerNavigation/utils';
 
 import Button from '../../Button';
-import DrawerNavigation from '../DrawerNavigationWithContext';
-import FilterOverviewView from '../DrawerNavigationWithContext/FilterOverviewView';
+import DrawerNavigation from '../DrawerNavigation';
+import FilterOverviewView from './FilterOverviewView';
 
-interface FilterPOCWithContextProps {
+interface FilterPOCProps {
   isOpen: boolean;
   onCloseButton: () => void;
   filters: DummyFilter[];
@@ -14,14 +14,14 @@ interface FilterPOCWithContextProps {
   overviewContent?: React.ReactNode;
 }
 
-const FilterPOCWithContext = ({
+const FilterPOC = ({
   isOpen,
   onCloseButton,
   filters,
   children,
   overviewTitle = 'Filter',
   overviewContent,
-}: FilterPOCWithContextProps): React.ReactNode => {
+}: FilterPOCProps): React.ReactNode => {
   const footerButtons = (
     <div>
       <Button onClick={onCloseButton} variant="borderless">
@@ -41,4 +41,4 @@ const FilterPOCWithContext = ({
   );
 };
 
-export default FilterPOCWithContext;
+export default FilterPOC;

@@ -1,6 +1,6 @@
-import type { DummyFilter } from './utils';
+import type { DummyFilter } from '../DrawerNavigation/utils';
 
-import { useDrawerNavigation } from './useDrawerNavigation';
+import { useDrawerNavigation } from '../DrawerNavigation/useDrawerNavigation';
 import FilterLinkList from '../FilterLinkList/FilterLinkList';
 
 interface FilterOverviewViewProps<ViewId extends string = string> {
