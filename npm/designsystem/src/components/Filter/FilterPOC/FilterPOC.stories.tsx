@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 
-import type { DummyFilter as DummyFilterWithContext } from '../DrawerNavigation/utils';
+import type { DummyFilter } from '../DrawerNavigation/utils';
 import type { Meta } from '@storybook/react-vite';
 
 import FilterPOC from './FilterPOC';
@@ -30,11 +30,11 @@ const meta = {
 
 export default meta;
 
-export const FilterWithContext = {
+export const Default = {
   render: (): React.ReactNode => {
     const [isOpen, setIsOpen] = useState(true);
     type FilterId = 'age' | 'gender';
-    const filters: DummyFilterWithContext<FilterId>[] = [
+    const filters: DummyFilter<FilterId>[] = [
       { title: 'Alder', id: 'age', activeFilters: ['20-30 år'] },
       { title: 'Kjønn', id: 'gender', activeFilters: [] },
     ];
@@ -58,11 +58,11 @@ export const FilterWithContext = {
   },
 };
 
-export const FilterWithContextCustomOverview = {
+export const FilterWithCustomOverview = {
   render: (): React.ReactNode => {
     const [isOpen, setIsOpen] = useState(true);
     type FilterId = 'age' | 'gender';
-    const filters: DummyFilterWithContext<FilterId>[] = [
+    const filters: DummyFilter<FilterId>[] = [
       { title: 'Alder', id: 'age', activeFilters: ['20-30 år'] },
       { title: 'Kjønn', id: 'gender', activeFilters: [] },
     ];

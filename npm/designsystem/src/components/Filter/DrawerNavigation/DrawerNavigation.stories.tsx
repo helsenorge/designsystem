@@ -55,7 +55,7 @@ const DetailsView = (): React.JSX.Element => {
 };
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/Filter/DrawerNavigationWithContext',
+  title: '@helsenorge/designsystem-react/Components/Filter/DrawerNavigation',
   component: DrawerNavigation,
   tags: ['new'],
   parameters: {
