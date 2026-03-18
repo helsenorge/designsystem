@@ -72,7 +72,9 @@ export interface InnerDrawerProps {
   resources?: Partial<HNDesignsystemDrawer>;
   /** Sets mobile styling and animation from outer level Drawer */
   isMobile?: boolean;
+  /** Shows a back button to the left of title */
   withBackButton?: boolean;
+  /** Callback for the back button */
   onRequestBack?: () => void;
 }
 
@@ -133,9 +135,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   };
 
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
-  const headerStyling = classNames(styles.drawer__header, headerClasses, {
-    [styles['drawer__header--no-close-button']]: noCloseButton,
-  });
+  const headerStyling = classNames(styles.drawer__header, headerClasses);
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
 
   useFocusTrap(containerRef, true);
@@ -269,8 +269,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             </Title>
             {withBackButton && onRequestBack != undefined && (
               <Button
-                ariaLabel={'Go back'} // fix this
-                href="https://www.helsenorge.no"
+                ariaLabel={mergedResources.ariaLabelBackButton}
                 onClick={onRequestBack}
                 variant="borderless"
                 wrapperClassName={styles['drawer__header__back-button']}
