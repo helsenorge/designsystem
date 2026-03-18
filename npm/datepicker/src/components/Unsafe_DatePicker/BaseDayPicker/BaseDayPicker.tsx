@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import classNames from 'classnames';
-import { isSameDay, type Locale } from 'date-fns';
+import { format, isSameDay, type Locale } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import {
   // CalendarDay,
@@ -94,10 +94,9 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
     ...resources,
   };
 
-  const mergedLabels = {
+  const mergedLabels: Partial<Labels> = {
     labelNext: (): string => mergedResources.nextMonth,
     labelPrevious: (): string => mergedResources.previousMonth,
-    labelDayButton: (): string => mergedResources.dayButtonBase,
     labelMonthDropdown: (): string => mergedResources.monthDropdown,
     labelYearDropdown: (): string => mergedResources.yearDropdown,
     ...labelsForCalendar,
@@ -257,6 +256,22 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
             // }
           };
 
+          const ariaLabel = (): string => {
+            const dateString = format(day.date, 'PPPP', { locale: localeForCalendar });
+
+            let label = mergedResources.dayButtonBase.replace('{date}', dateString);
+
+            if (modifiers.today && mergedResources.dayButtonToday) {
+              label = mergedResources.dayButtonToday.replace('{date}', dateString);
+            }
+
+            if (modifiers.selected && mergedResources.dayButtonSelected) {
+              label = mergedResources.dayButtonSelected.replace('{date}', dateString);
+            }
+
+            return label;
+          };
+
           React.useEffect(() => {
             if (modifiers.focused) {
               buttonRef.current?.focus();
@@ -272,6 +287,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
                 className={classNames(rdpClassnames['day_button'], customstyles['custom_day_button'])}
                 ref={buttonRef}
                 onClick={handleClick}
+                aria-label={ariaLabel()}
                 // aria-haspopup={popoverText ? 'dialog' : false}
                 // aria-controls={helpBubbleId} // @todo: mulig noe må gjøres her for skjermlesere
               />
