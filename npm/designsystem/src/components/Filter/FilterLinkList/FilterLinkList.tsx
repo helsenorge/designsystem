@@ -33,11 +33,15 @@ type Modify<T, R> = Omit<T, keyof R> & R;
 export type LinkProps = Modify<
   React.HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>,
   {
+    /** If needed children will be content instead of title and chips. Use only in edge cases */
     children?: React.ReactNode;
+    /** Title text on link element */
     title?: string;
+    /** Texts rendered inside non-interactive chips on link element */
     chips?: string[];
+    /** Custom classname for link element */
     className?: string;
-    /** Ref for lenke/knapp */
+    /** Ref for button */
     linkRef?: React.RefObject<HTMLButtonElement | null>;
     /** Sets the data-testid attribute. */
     testId?: string;
