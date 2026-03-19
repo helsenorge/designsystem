@@ -1,5 +1,6 @@
 export type Styles = {
   select: string;
+  'select__label--left': string;
   'select--borderless': string;
   'select--invalid': string;
   'select--on-blueberry': string;
@@ -11,6 +12,8 @@ export type Styles = {
   'select-inner-wrapper--on-blueberry': string;
   'select-inner-wrapper--transparent': string;
   'select-wrapper': string;
+  'select-wrapper--label-left': string;
+  'select-wrapper--label-left--borderless': string;
 };
 
 export type ClassNames = keyof Styles;

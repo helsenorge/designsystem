@@ -1,0 +1,14 @@
+@use '../../scss/spacers' as spacers;
+
+.select {
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: spacers.getSpacer(4xs);
+  }
+
+  &__label {
+    margin-bottom: 0;
+  }
+}

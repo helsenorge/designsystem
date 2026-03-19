@@ -30,6 +30,8 @@ export interface SelectProps
   concept?: SelectConcept;
   /** The label text above the select */
   label?: React.ReactNode;
+  /** Classname forwarded to the Label */
+  labelClassName?: string;
   /** Renders label to the left of select instead of above. Intended for use in filter */
   showLabelLeft?: boolean;
   /** Changes the visuals of the component */
@@ -77,6 +79,7 @@ export const Select: React.FC<SelectProps> = props => {
     selectId: selectIdProp,
     errorWrapperClassName,
     label,
+    labelClassName,
     showLabelLeft = false,
     name = props.selectId,
     onColor = FormOnColor.onwhite,
@@ -121,12 +124,12 @@ export const Select: React.FC<SelectProps> = props => {
     [selectStyles['select-wrapper--label-left--borderless']]: showLabelLeft && concept === 'borderless',
   });
 
-  const labelClassName = classNames({ [selectStyles['select__label--left']]: showLabelLeft });
+  const labelClassNames = classNames(labelClassName, { [selectStyles['select__label--left']]: showLabelLeft });
 
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectWrapperClasses} style={{ maxWidth }}>
-        {renderLabel({ label: label, inputId: selectId, onColor: onColor as FormOnColor, className: labelClassName })}
+        {renderLabel({ label: label, inputId: selectId, onColor: onColor as FormOnColor, className: labelClassNames })}
         <div className={selectInnerWrapperClasses} data-testid={testId + '-inner-wrapper'}>
           <Icon
             className={selectStyles['select-arrow']}
