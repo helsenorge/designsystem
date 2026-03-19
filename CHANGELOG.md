@@ -1,3 +1,10 @@
+## [13.9.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.9.1&targetVersion=GTv13.9.2) (2026-03-19)
+
+
+### Bug Fixes
+
+* **datepicker:**  label på knapper i kalender får dynamisk tekst ([ee40264](https://github.com/helsenorge/designsystem/commit/ee402647a590f55bc0472193fdcedab65b8eb456)), closes [#374082](https://github.com/helsenorge/designsystem/issues/374082)
+
 ## [13.9.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.9.0&targetVersion=GTv13.9.1) (2026-03-16)
 
 
