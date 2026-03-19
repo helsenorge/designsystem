@@ -224,8 +224,8 @@ export const CustomLabelTilFilter: Story = {
 export const EksempelFilter: Story = {
   render: args => (
     <div>
-      <div style={{ display: 'flex', flexFlow: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ textWrapMode: 'nowrap' }}>{'37 verktøy'}</span>
+      <div style={{ display: 'flex', flexFlow: 'row', flexWrap: 'wrap', justifyContent: 'flex-end', alignItems: 'center' }}>
+        <span style={{ textWrapMode: 'nowrap', flexGrow: '1' }}>{'37 verktøy'}</span>
         <Select
           {...args}
           concept={'borderless'}
