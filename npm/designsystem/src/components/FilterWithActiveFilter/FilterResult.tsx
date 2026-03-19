@@ -17,7 +17,7 @@ export interface FilterProps {
   testId?: string;
 }
 
-const Filter: React.FC<FilterProps> = ({ activeFilters, children, onRemove, testId }) => {
+const FilterResult: React.FC<FilterProps> = ({ activeFilters, children, onRemove, testId }) => {
   return (
     <div className={styles.filter} data-testid={testId}>
       {activeFilters.length > 0 && (
@@ -44,4 +44,4 @@ const Filter: React.FC<FilterProps> = ({ activeFilters, children, onRemove, test
   );
 };
 
-export default Filter;
+export default FilterResult;

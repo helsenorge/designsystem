@@ -1,23 +1,5 @@
 import type { FilterValues, LabelResolver, UseFilterOptions, UseFilterReturn } from './useFilter';
 
-/** En filteroppføring som representerer en aktiv filterverdi med rendering-info.
- * Brukes både til filtrering og chip/tag-rendering — ett konsept for begge formål. */
-interface FilterEntry {
-  /** Key of the filter category in the filter state */
-  filterKey: string;
-  /** The filter option value */
-  value: unknown;
-  /** Display text for the chip/tag */
-  label: string;
-  /** Remove this entry. When provided, the filter renders as a removable Chip. When omitted, it renders as a Tag. */
-  remove?: () => void;
-}
-
-/** Filter state: each key maps to its active FilterEntry items. */
-export type Filters<T extends FilterValues> = {
-  [K in keyof T]?: FilterEntry[];
-};
-
 /** Et filtervalg med verdi og visningstekst */
 export interface FilterOption<V = string> {
   value: V;
@@ -111,35 +93,14 @@ export const matchFilter = {
  *     eResept: (doc, value) => !value || doc.eResept === true,
  *   });
  */
-/** Extracts raw values from a Filters structure for use with matchers. */
-export const getRawFilters = <T extends FilterValues>(enrichedFilters: Filters<T>): Partial<T> => {
-  const raw = {} as Partial<T>;
-  for (const key in enrichedFilters) {
-    const entries = enrichedFilters[key];
-    if (!entries || entries.length === 0) {
-      continue;
-    }
-    // If the original type was array-like (multiple entries or array values), collect values as array
-    // If single entry, return the scalar value
-    if (entries.length === 1 && !Array.isArray(entries[0].value)) {
-      raw[key] = entries[0].value as T[typeof key];
-    } else {
-      raw[key] = entries.map(e => e.value) as T[typeof key];
-    }
-  }
-  return raw;
-};
-
-// TODO: Se på å åpne opp for backup keys slik som eksempelet i filter-utils viser
 export const filterItems = <TItem, T extends FilterValues>(
   items: TItem[],
-  filters: Filters<T>,
+  filters: Partial<T>,
   matchers: { [K in keyof T]?: (item: TItem, value: NonNullable<T[K]>) => boolean }
 ): TItem[] => {
-  const raw = getRawFilters(filters);
   return items.filter(item => {
     for (const key in matchers) {
-      const value = raw[key];
+      const value = filters[key];
       if (value === undefined) {
         continue;
       }
@@ -162,64 +123,58 @@ export const toggleArrayFilter = <T extends FilterValues, K extends keyof T>(
   filterKey: K,
   value: T[K] extends (infer U)[] | undefined ? U : never
 ): void => {
-  const entries = filter.filters[filterKey] ?? [];
-  const currentValues = entries.map(e => e.value);
-  const updated = currentValues.includes(value) ? currentValues.filter(v => v !== value) : [...currentValues, value];
+  const current = (filter.filters[filterKey] ?? []) as unknown[];
+  const updated = current.includes(value) ? current.filter(v => v !== value) : [...current, value];
   filter.setFilter(filterKey, (updated.length > 0 ? updated : undefined) as T[K] | undefined);
 };
 
-/** Flattens filters into a single array for chip/tag rendering. */
-export const flattenFilters = <T extends FilterValues>(filters: Filters<T>): FilterEntry[] => {
-  return Object.values(filters).flat().filter(Boolean) as FilterEntry[];
-};
-
-// ─── Før/etter-eksempler: slik gjør consumere det i dag vs. med våre helpers ───
-//
-// 1. Toggle verdi i array-filter (DeltHelseOpplysninger)
+// Sånn gjør consumere det i dag vs. med våre helpers
+// DeltHelseOpplysninger - toggle person i array-filter:
 //
 // FØR (manuelt):
-//   const toggleSykehusFilter = (sykehus: string) => {
-//     const isSelected = searchFilters.sykehus.includes(sykehus);
-//     const updated = isSelected
-//       ? searchFilters.sykehus.filter(s => s !== sykehus)
-//       : [...searchFilters.sykehus, sykehus];
-//     dispatch(setSearchFilters({ sykehus: updated }));
+//   const togglePersonFilter = (person: FilterPerson) => {
+//     const isPersonInFilter = searchFilters.personer.some(p => p.id === person.id);
+//     const personerFilter = isPersonInFilter
+//       ? searchFilters.personer.filter(p => p.id !== person.id)
+//       : [...searchFilters.personer, person];
+//     dispatch(setSearchFilters({ personer: personerFilter }));
 //   };
 //
 // NÅ (med toggleArrayFilter):
-//   toggleArrayFilter(filter, 'sykehus', sykehus);
-//
-//
-// 2. Oppsett av filter med options, labels og default values (Pasientjournal)
+//   toggleArrayFilter(filter, 'personer', person);
+
+// Pasientjournal - sette default filter fra URL-params:
 //
 // FØR (manuelt):
-//   const defaultValues: Record<string, { value: string; displayText: string }> = {};
 //   if (fromDate) {
 //     defaultValues.fromDate = { value: fromDate, displayText: getDatoDisplayText(resources.filterDateFrom, fromDate) };
 //   }
 //   if (toDate) {
 //     defaultValues.toDate = { value: toDate, displayText: getDatoDisplayText(resources.filterDateTo, toDate) };
 //   }
-//   kategorier.forEach(kategori => {
-//     defaultValues[`${kategoriKey}-${kategori}`] = { value: kategori, displayText: getKategoriLabel(kategori, resources) };
-//   });
+//   if (kategorier) {
+//     kategorier.forEach(kategori => {
+//       defaultValues[`${kategoriKey}-${kategori}`] = { value: `${kategori}`, displayText: getKategoriLabel(kategori, resources) };
+//     });
+//   }
 //
-// NÅ (med createFilterConfig + useFilter):
-//   const config = createFilterConfig<MyFilters>({
-//     sykehus: { options: sykehusOptions, defaultValue: ['haukeland'] },
-//     reseptstatus: { options: reseptStatusOptions },
-//     eResept: { options: eReseptOptions, defaultValue: true },
+// NÅ (med createFilterConfig):
+//   const config = createFilterConfig<JournalFilters>({
+//     fromDate: { options: [], defaultValue: fromDate },
+//     toDate: { options: [], defaultValue: toDate },
+//     kategorier: { options: kategoriOptions, defaultValue: kategorier },
 //   });
 //   const filter = useFilter(config);
-//
-//
-// 3. Frontend filtrering av data (Pasientjournal)
+
+// Pasientjournal - frontend filtrering:
 //
 // FØR (manuelt):
 //   const onFiltersSubmit = (): void => {
-//     const kategorier = getFilterKategorier(activeFilters ?? [], kategoriKey);
-//     const fraDato = filters?.fromDate?.value instanceof Date ? filters.fromDate.value : undefined;
-//     const tilDato = filters?.toDate?.value instanceof Date ? filters.toDate.value : undefined;
+//     const kategorier: Array<XcaDokumentKategori> = getFilterKategorier(activeFilters ?? [], kategoriKey);
+//     const filterFraDato = filters?.fromDate?.value;
+//     const fraDato = filterFraDato instanceof Date ? filterFraDato : undefined;
+//     const filterTilDato = filters?.toDate?.value;
+//     const tilDato = filterTilDato instanceof Date ? filterTilDato : undefined;
 //     if (komplett) {
 //       dispatch(localFilterDokumentListe(fraDato, tilDato, kategorier));
 //     } else {
@@ -227,29 +182,12 @@ export const flattenFilters = <T extends FilterValues>(filters: Filters<T>): Fil
 //     }
 //   };
 //
-// NÅ (med filterItems + matchFilter):
-//   const filterMatchers = {
-//     sykehus: matchFilter.arrayIncludes<Medisin>(m => m.sykehus),
-//     reseptstatus: matchFilter.exactMatch<Medisin>(m => m.reseptstatus),
-//     eResept: matchFilter.booleanToggle<Medisin>(m => m.eResept),
-//   };
-//   const filtered = filterItems(medisiner, filter.filters, filterMatchers);
-//
-//
-// 4. Rendering av aktive filtre som chips/tags
-//
-// FØR (manuelt):
-//   {Object.entries(activeFilters).map(([key, value]) => (
-//     <button onClick={() => removeFilter(key)}>
-//       {value.displayText} ✕
-//     </button>
-//   ))}
-//
-// NÅ (med FilterResult-komponenten):
-//   <FilterResult filters={filter.filters}>
-//     <Button onClick={openDrawer}>Åpne filter</Button>
-//   </FilterResult>
-//   // Chips med remove-knapp rendres automatisk fra enriched filters
+// NÅ (med filterItems):
+//   const filtered = filterItems(dokumenter, filter.filters, {
+//     kategorier: (dok, value) => value.includes(dok.kategori),
+//     fromDate: (dok, value) => dok.dato >= value,
+//     toDate: (dok, value) => dok.dato <= value,
+//   });
 
 // TODO: Eksempel på filtrering på en key med backup key tilfelle det ikke er treff på den første
 // Undersøk om vi kan tilby dette, eller la consumerne bruke vårt filter + legge på sitt eget som backup?

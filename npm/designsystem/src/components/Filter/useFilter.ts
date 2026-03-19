@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import type { Filters } from './utils';
+
 // Key er string men value kan være hva som helst og er ukjent for oss internt i useFilter. Den er typesikker for consumer.
 // Dette mønsteret lar oss ha ulike typer i samme objekt.
 export type FilterValues = Record<string, unknown>;
@@ -7,21 +9,6 @@ export type FilterValues = Record<string, unknown>;
 // Bestemmer teksten som vises i chip/tag for en filtervalue.
 // Et objekt med { value: 'visningstekst' }.
 export type LabelResolver = Record<string, string>;
-
-// TODO: Sett opp useFilter uten activeFilter fra oss
-// ActiveFilter brukes til å rendre chips og tags i Filter komponenten
-export interface ActiveFilter {
-  /** Key of the filter in the filter state */
-  filterKey: string;
-  /** The filter option value - type is defined by consumer */
-  value: unknown;
-  // TODO: displayText istedet?
-  // TODO: Er det noen grunn til at useFilter trenger å vite om label lenger?
-  /** Display text for the chip */
-  label: string;
-  /** Remove this filter. When provided, the filter renders as a removable Chip. When omitted, it renders as a Tag. */
-  remove?: () => void;
-}
 
 export interface UseFilterOptions<T extends FilterValues> {
   /** Initial filter values */
@@ -33,22 +20,79 @@ export interface UseFilterOptions<T extends FilterValues> {
 }
 
 export interface UseFilterReturn<T extends FilterValues> {
-  /** Current committed filter values */
-  filters: Partial<T>;
+  /** Current filter state with label/remove info — use for both filtering and chip rendering */
+  filters: Filters<T>;
   /** Update a single filter. Pass undefined to remove it. */
   setFilter: <K extends keyof T>(name: K, value: T[K] | undefined) => void;
   /** Replace all filters at once (useful for applying draft/delayed filters) */
   setFilters: (filters: Partial<T>) => void;
   /** Remove a filter entirely, or a specific value from an array filter */
   removeFilter: (filterKey: keyof T, optionValue?: string) => void;
-  /** Active filters derived from current state, ready for chip rendering */
-  activeFilters: ActiveFilter[];
   /** Reset filters to default values */
   resetFilters: () => void;
 }
 
 export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>): UseFilterReturn<T> => {
-  const [filters, setFiltersState] = useState<Partial<T>>(options?.defaultValues ?? {});
+  // Slå opp label for en filterverdi fra labels-configen.
+  const resolveLabel = (filterKey: string, value: unknown): string => {
+    const resolver = options?.labels?.[filterKey];
+    const str = String(value);
+    return resolver?.[str] ?? str;
+  };
+
+  // Konverter en rå verdi til filter items.
+  const toItems = (filterKey: string, value: unknown): NonNullable<Filters<T>[keyof T]> => {
+    const removable = options?.removable ?? true;
+    if (Array.isArray(value)) {
+      return value.filter(Boolean).map(v => ({
+        filterKey,
+        value: v,
+        label: resolveLabel(filterKey, v),
+        ...(removable && { remove: (): void => removeFilter(filterKey as keyof T, String(v)) }),
+      }));
+    }
+    return [
+      {
+        filterKey,
+        value,
+        label: resolveLabel(filterKey, value),
+        ...(removable && { remove: (): void => removeFilter(filterKey as keyof T) }),
+      },
+    ];
+  };
+
+  // Konverter rå filterverdier til Filters<T>.
+  const fromRawValues = (raw: Partial<T>): Filters<T> => {
+    const result = {} as Filters<T>;
+    for (const [key, value] of Object.entries(raw)) {
+      if (value === undefined || value === '') continue;
+      result[key as keyof T] = toItems(key, value);
+    }
+    return result;
+  };
+
+  const [filters, setFiltersState] = useState<Filters<T>>(() => fromRawValues(options?.defaultValues ?? {}));
+
+  // Fjern et filter helt, eller fjern en spesifikk verdi.
+  // Bruker setState(prev => ...) så closures aldri blir stale.
+  const removeFilter = (filterKey: keyof T, optionValue?: string): void => {
+    setFiltersState(prev => {
+      const items = prev[filterKey];
+      if (!items) return prev;
+      if (optionValue) {
+        const updated = items.filter(item => String(item.value) !== optionValue);
+        if (updated.length === 0) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { [filterKey as string]: _removed, ...rest } = prev;
+          return rest as Filters<T>;
+        }
+        return { ...prev, [filterKey]: updated };
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { [filterKey as string]: _removed, ...rest } = prev;
+      return rest as Filters<T>;
+    });
+  };
 
   // Sett en filtervalue. Send inn undefined for å fjerne filteret.
   const setFilter = <K extends keyof T>(name: K, value: T[K] | undefined): void => {
@@ -56,71 +100,18 @@ export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>)
       removeFilter(name);
       return;
     }
-    setFiltersState(prev => ({ ...prev, [name]: value }));
+    setFiltersState(prev => ({ ...prev, [name]: toItems(String(name), value) }));
   };
 
-  // Erstatt alle filtre på én gang (f.eks. ved "Bruk filter" i delayed modus).
+  // Erstatt alle filtre på en gang (f.eks. ved "Bruk filter" i delayed filtrering).
   const setFilters = (newFilters: Partial<T>): void => {
-    setFiltersState(newFilters);
+    setFiltersState(fromRawValues(newFilters));
   };
-
-  // Fjern et filter helt, eller fjern en value fra filter array.
-  const removeFilter = (filterKey: keyof T, optionValue?: string): void => {
-    setFiltersState(prev => {
-      const current = prev[filterKey];
-      if (Array.isArray(current) && optionValue) {
-        const updated = current.filter(v => v !== optionValue);
-        if (updated.length === 0) {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { [filterKey as string]: _removed, ...rest } = prev;
-          return rest as Partial<T>;
-        }
-        return { ...prev, [filterKey]: updated };
-      }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { [filterKey as string]: _removed, ...rest } = prev;
-      return rest as Partial<T>;
-    });
-  };
-
-  // Slår opp visningsteksten for en filtervalue. Bruker labels fra config hvis de finnes.
-  const resolveLabel = (filterKey: string, value: unknown): string => {
-    const resolver = options?.labels?.[filterKey];
-    const stringValue = String(value);
-    if (resolver) {
-      return resolver[stringValue] ?? stringValue;
-    }
-    return stringValue;
-  };
-
-  // Bygger listen over aktive filtre for chip/tag rendering.
-  const activeFilters: ActiveFilter[] = Object.entries(filters).flatMap(([name, value]) => {
-    if (value === undefined || value === '') {
-      return [];
-    }
-    const removable = options?.removable ?? true;
-    if (Array.isArray(value)) {
-      return value.filter(Boolean).map(v => ({
-        filterKey: name,
-        value: v,
-        label: resolveLabel(name, v),
-        ...(removable && { remove: () => removeFilter(name as keyof T, String(v)) }),
-      }));
-    }
-    return [
-      {
-        filterKey: name,
-        value: value,
-        label: resolveLabel(name, value),
-        ...(removable && { remove: () => removeFilter(name as keyof T) }),
-      },
-    ];
-  });
 
   // Resetter alle filtre til default values.
   const resetFilters = (): void => {
-    setFiltersState(options?.defaultValues ?? {});
+    setFiltersState(fromRawValues(options?.defaultValues ?? {}));
   };
 
-  return { filters, setFilter, setFilters, removeFilter, activeFilters, resetFilters };
+  return { filters, setFilter, setFilters, removeFilter, resetFilters };
 };

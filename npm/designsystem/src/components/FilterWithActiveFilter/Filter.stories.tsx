@@ -10,27 +10,23 @@ import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Drawer from '../Drawer';
 import RadioButton from '../RadioButton';
-import Spacer from '../Spacer';
-import TagList from '../TagList';
 import FilterResult from './FilterResult';
 import { useFilter } from './useFilter';
-import { createFilterConfig, filterItems, getRawFilters, matchFilter, toggleArrayFilter } from './utils';
-import Tag from '../Tag';
-import Title from '../Title';
+import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter } from './utils';
 
 type ExampleFilterType = {
-  sykehus: string[];
-  reseptstatus: string;
+  categories: string[];
+  status: string;
   eResept: boolean;
 };
 
-const sykehusOptions = [
+const categoryOptions = [
   { value: 'oslo_universitetssykehus', label: 'Oslo universitetssykehus' },
   { value: 'haukeland', label: 'Haukeland universitetssjukehus' },
   { value: 'st_olavs', label: 'St. Olavs hospital' },
 ];
 
-const reseptStatusOptions = [
+const statusOptions = [
   { value: 'resept', label: 'Reseptbelagt' },
   { value: 'reseptfri', label: 'Reseptfri' },
 ];
@@ -40,18 +36,18 @@ const eReseptOptions: FilterOption<boolean>[] = [{ value: true, label: 'E-resept
 interface Medisin {
   navn: string;
   sykehus: string;
-  reseptstatus: string;
+  status: string;
   eResept: boolean;
 }
 
 const medisinerMockData: Medisin[] = [
   // TODO: Hvis feks dataen ikke har et felt som filtreres på, så kan consumeren noen ganger trenge å filtrere mot et annet felt for dette
-  { navn: 'Paracet 500mg', sykehus: 'oslo_universitetssykehus', reseptstatus: 'resept', eResept: true },
-  { navn: 'Ibux 400mg', sykehus: 'haukeland', reseptstatus: 'reseptfri', eResept: false },
-  { navn: 'Voltaren 50mg', sykehus: 'st_olavs', reseptstatus: 'resept', eResept: true },
-  { navn: 'Zyrtec 10mg', sykehus: 'oslo_universitetssykehus', reseptstatus: 'reseptfri', eResept: false },
-  { navn: 'Metformin 500mg', sykehus: 'haukeland', reseptstatus: 'resept', eResept: true },
-  { navn: 'Paralgin Forte', sykehus: 'st_olavs', reseptstatus: 'resept', eResept: false },
+  { navn: 'Paracet 500mg', sykehus: 'oslo_universitetssykehus', status: 'resept', eResept: true },
+  { navn: 'Ibux 400mg', sykehus: 'haukeland', status: 'reseptfri', eResept: false },
+  { navn: 'Voltaren 50mg', sykehus: 'st_olavs', status: 'resept', eResept: true },
+  { navn: 'Zyrtec 10mg', sykehus: 'oslo_universitetssykehus', status: 'reseptfri', eResept: false },
+  { navn: 'Metformin 500mg', sykehus: 'haukeland', status: 'resept', eResept: true },
+  { navn: 'Paralgin Forte', sykehus: 'st_olavs', status: 'resept', eResept: false },
 ];
 
 // Definerer hvordan hvert filter skal matche mot dataene.
@@ -59,7 +55,7 @@ const medisinerMockData: Medisin[] = [
 // Sendes til filter-utils/filterItems() for å filtrere data basert på aktive filtre.
 const filterMatchers = {
   categories: matchFilter.arrayIncludes<Medisin>(m => m.sykehus),
-  status: matchFilter.exactMatch<Medisin>(m => m.reseptstatus),
+  status: matchFilter.exactMatch<Medisin>(m => m.status),
   eResept: matchFilter.booleanToggle<Medisin>(m => m.eResept),
 };
 
@@ -67,40 +63,10 @@ const FiltrertDataExample: React.FC<{ items: Medisin[] }> = ({ items }) => (
   <>
     <ul>
       {items.map(data => (
-        <li key={data.navn}>{`${data.navn} — ${data.sykehus} — ${data.reseptstatus}${data.eResept ? ' (e-resept)' : ''}`}</li>
+        <li key={data.navn}>{`${data.navn} — ${data.sykehus} — ${data.status}${data.eResept ? ' (e-resept)' : ''}`}</li>
       ))}
     </ul>
     {items.length === 0 && <p>{'Ingen medisiner matcher valgte filtre.'}</p>}
-  </>
-);
-
-const categoryLabels: Record<keyof ExampleFilterType, string> = {
-  sykehus: 'Sykehus',
-  reseptstatus: 'Medisintype',
-  eResept: 'E-resept',
-};
-
-const SelectedChips: React.FC<{ filter: UseFilterReturn<ExampleFilterType> }> = ({ filter }) => (
-  <>
-    {(Object.keys(categoryLabels) as (keyof ExampleFilterType)[]).map(key => {
-      const entries = filter.filters[key];
-
-      return (
-        <div key={key} style={{ marginTop: '1rem' }}>
-          <Title htmlMarkup="h3" appearance="title3">
-            {categoryLabels[key]}
-          </Title>
-          <Spacer />
-          {entries && entries.length > 0 && (
-            <TagList>
-              {entries.map(entry => (
-                <Tag key={`${entry.filterKey}-${entry.value}`}>{entry.label}</Tag>
-              ))}
-            </TagList>
-          )}
-        </div>
-      );
-    })}
   </>
 );
 
@@ -108,27 +74,26 @@ const FilterDrawerContent: React.FC<{
   filter: UseFilterReturn<ExampleFilterType>;
 }> = ({ filter }) => (
   <>
-    <SelectedChips filter={filter} />
-    <div style={{ marginTop: '1rem' }}>
+    <div>
       <h3>{'Sykehus (checkbox)'}</h3>
-      {sykehusOptions.map(opt => (
+      {categoryOptions.map(opt => (
         <Checkbox
           key={opt.value}
           label={opt.label}
-          checked={(filter.filters.sykehus ?? []).some(e => e.value === opt.value)}
-          onChange={(): void => toggleArrayFilter(filter, 'sykehus', opt.value)}
+          checked={(filter.filters.categories ?? []).includes(opt.value)}
+          onChange={(): void => toggleArrayFilter(filter, 'categories', opt.value)}
         />
       ))}
     </div>
     <div style={{ marginTop: '1rem' }}>
       <h3>{'Medisintype (radio)'}</h3>
-      {reseptStatusOptions.map(opt => (
+      {statusOptions.map(opt => (
         <RadioButton
           key={opt.value}
           label={opt.label}
-          name="reseptstatus"
-          checked={(filter.filters.reseptstatus ?? []).some(e => e.value === opt.value)}
-          onChange={(): void => filter.setFilter('reseptstatus', opt.value)}
+          name="status"
+          checked={filter.filters.status === opt.value}
+          onChange={(): void => filter.setFilter('status', opt.value)}
         />
       ))}
     </div>
@@ -136,7 +101,7 @@ const FilterDrawerContent: React.FC<{
       <h3>{'E-resept (boolean)'}</h3>
       <Checkbox
         label={'Kun e-resept'}
-        checked={(filter.filters.eResept ?? []).some(e => e.value === true)}
+        checked={filter.filters.eResept === true}
         onChange={(): void => filter.setFilter('eResept', filter.filters.eResept ? undefined : true)}
       />
     </div>
@@ -144,7 +109,7 @@ const FilterDrawerContent: React.FC<{
 );
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/Filter',
+  title: '@helsenorge/designsystem-react/Components/FilterWithActiveFilter',
   component: FilterResult,
   parameters: {
     docs: {
@@ -158,26 +123,28 @@ const meta = {
   args: {},
   argTypes: {},
 } satisfies Meta<typeof FilterResult>;
+
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const LiveFiltering: Story = {
-  args: { filters: {} },
+  args: { activeFilters: [] },
   render: () => {
-    const config = createFilterConfig<ExampleFilterType>({
-      sykehus: { options: sykehusOptions, defaultValue: ['haukeland'] },
-      reseptstatus: { options: reseptStatusOptions },
-      eResept: { options: eReseptOptions, defaultValue: true },
-    });
-    const filter = useFilter<ExampleFilterType>(config);
+    const filter = useFilter<ExampleFilterType>(
+      createFilterConfig<ExampleFilterType>({
+        categories: { options: categoryOptions, defaultValue: ['haukeland'] },
+        status: { options: statusOptions },
+        eResept: { options: eReseptOptions, defaultValue: true },
+      })
+    );
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const filtered = filterItems(medisinerMockData, filter.filters, filterMatchers);
 
     return (
       <>
-        <FilterResult filters={filter.filters}>
+        <FilterResult activeFilters={filter.activeFilters}>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
           </div>
@@ -192,23 +159,22 @@ export const LiveFiltering: Story = {
 };
 
 export const DelayedFiltering: Story = {
-  args: { filters: {} },
+  args: { activeFilters: [] },
   render: () => {
-    const config = createFilterConfig<ExampleFilterType>({
-      sykehus: { options: sykehusOptions },
-      reseptstatus: { options: reseptStatusOptions },
-      eResept: { options: eReseptOptions },
-    });
     const filter = useFilter<ExampleFilterType>({
-      ...config,
+      ...createFilterConfig<ExampleFilterType>({
+        categories: { options: categoryOptions },
+        status: { options: statusOptions },
+        eResept: { options: eReseptOptions },
+      }),
       removable: false,
     });
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [draftFilters, setDraftFilters] = useState<Partial<ExampleFilterType>>({});
+    const [draftFilters, setDraftFilters] = useState(filter.filters);
     const filtered = filterItems(medisinerMockData, filter.filters, filterMatchers);
 
     const openDrawer = (): void => {
-      setDraftFilters(getRawFilters(filter.filters));
+      setDraftFilters({ ...filter.filters });
       setDrawerOpen(true);
     };
 
@@ -223,7 +189,7 @@ export const DelayedFiltering: Story = {
 
     return (
       <>
-        <FilterResult filters={filter.filters}>
+        <FilterResult activeFilters={filter.activeFilters}>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <Button onClick={openDrawer}>{'Åpne filter'}</Button>
           </div>
@@ -236,31 +202,30 @@ export const DelayedFiltering: Story = {
             secondaryActionText="Avbryt"
             onSecondaryAction={discardFilters}
           >
-            <SelectedChips filter={filter} />
             <div>
               <h3>{'Sykehus (checkbox)'}</h3>
-              {sykehusOptions.map(opt => (
+              {categoryOptions.map(opt => (
                 <Checkbox
                   key={opt.value}
                   label={opt.label}
-                  checked={(draftFilters.sykehus ?? []).includes(opt.value)}
+                  checked={(draftFilters.categories ?? []).includes(opt.value)}
                   onChange={(): void => {
-                    const current = draftFilters.sykehus ?? [];
+                    const current = draftFilters.categories ?? [];
                     const updated = current.includes(opt.value) ? current.filter(v => v !== opt.value) : [...current, opt.value];
-                    setDraftFilters(prev => ({ ...prev, sykehus: updated.length > 0 ? updated : undefined }));
+                    setDraftFilters(prev => ({ ...prev, categories: updated.length > 0 ? updated : undefined }));
                   }}
                 />
               ))}
             </div>
             <div style={{ marginTop: '1rem' }}>
               <h3>{'Medisintype (radio)'}</h3>
-              {reseptStatusOptions.map(opt => (
+              {statusOptions.map(opt => (
                 <RadioButton
                   key={opt.value}
                   label={opt.label}
                   name="status-delayed"
-                  checked={draftFilters.reseptstatus === opt.value}
-                  onChange={(): void => setDraftFilters(prev => ({ ...prev, reseptstatus: opt.value }))}
+                  checked={draftFilters.status === opt.value}
+                  onChange={(): void => setDraftFilters(prev => ({ ...prev, status: opt.value }))}
                 />
               ))}
             </div>
