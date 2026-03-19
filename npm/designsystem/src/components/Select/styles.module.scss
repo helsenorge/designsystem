@@ -7,6 +7,16 @@
 .select-wrapper {
   display: flex;
   flex-direction: column;
+
+  &--label-left {
+    flex-direction: row;
+    align-items: center;
+    gap: spacers.getSpacer(2xs);
+
+    &--borderless {
+      gap: spacers.getSpacer(4xs);
+    }
+  }
 }
 
 .select-inner-wrapper {
@@ -119,6 +129,10 @@
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       font-size: font-settings.$font-size-md;
     }
+  }
+
+  &__label--left {
+    margin-bottom: 0;
   }
 }
 

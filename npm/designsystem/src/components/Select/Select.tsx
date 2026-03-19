@@ -30,6 +30,8 @@ export interface SelectProps
   concept?: SelectConcept;
   /** The label text above the select */
   label?: React.ReactNode;
+  /** Renders label to the left of select instead of above. Intended for use in filter */
+  showLabelLeft?: boolean;
   /** Changes the visuals of the component */
   onColor?: keyof typeof FormOnColor;
   /** Activates Error style for the select component - This is can be true while errorText is empty, when in a FormGroup */
@@ -75,6 +77,7 @@ export const Select: React.FC<SelectProps> = props => {
     selectId: selectIdProp,
     errorWrapperClassName,
     label,
+    showLabelLeft = false,
     name = props.selectId,
     onColor = FormOnColor.onwhite,
     testId,
@@ -113,12 +116,17 @@ export const Select: React.FC<SelectProps> = props => {
     [selectStyles['select--borderless']]: concept === 'borderless',
   });
 
-  const selectWrapperClasses = classNames(selectStyles['select-wrapper'], wrapperClassName);
+  const selectWrapperClasses = classNames(selectStyles['select-wrapper'], wrapperClassName, {
+    [selectStyles['select-wrapper--label-left']]: showLabelLeft,
+    [selectStyles['select-wrapper--label-left--borderless']]: showLabelLeft && concept === 'borderless',
+  });
+
+  const labelClassName = classNames({ [selectStyles['select__label--left']]: showLabelLeft });
 
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectWrapperClasses} style={{ maxWidth }}>
-        {renderLabel({ label: label, inputId: selectId, onColor: onColor as FormOnColor })}
+        {renderLabel({ label: label, inputId: selectId, onColor: onColor as FormOnColor, className: labelClassName })}
         <div className={selectInnerWrapperClasses} data-testid={testId + '-inner-wrapper'}>
           <Icon
             className={selectStyles['select-arrow']}

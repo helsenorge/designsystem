@@ -94,12 +94,13 @@ export const Concepts: Story = {
         {...args}
         concept={'borderless'}
         label={<Label labelTexts={[{ text: 'Velg noe' }]} />}
+        showLabelLeft
         name={'select name 1'}
         onChange={action('onChange called')}
       >
-        <option value={'Option 1'}>{'Option 1'}</option>
-        <option value={'Option 2'}>{'Option 2'}</option>
-        <option value={'Option 3'}>{'Option 3'}</option>
+        <option value={'Option 1'}>{'Et valg her'}</option>
+        <option value={'Option 2'}>{'Valg med litt lenger tekst'}</option>
+        <option value={'Option 3'}>{'Kort'}</option>
       </Select>
     </div>
   ),
