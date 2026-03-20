@@ -48,6 +48,7 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
     ...textareaProps
   } = props;
   const errorTextId = useIdWithFallback(errorTextIdProp);
+  const showErrorStyling = error || !!errorText;
   const stickynoteRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { isFocused: isTextareaFocused } = usePseudoClasses<HTMLTextAreaElement | null>(textareaRef);
@@ -98,7 +99,7 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
           [styles['sticky-note--focused']]: isTextareaFocused,
           [styles['sticky-note--active']]: isActive,
           [styles['sticky-note--hovered']]: isHovered && !isTextareaFocused && !textareaProps.disabled,
-          [styles['sticky-note--error']]: error,
+          [styles['sticky-note--error']]: showErrorStyling,
         })}
         onClick={handleWrapperClick}
         role="textbox"
@@ -123,10 +124,10 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
         <Close onClick={onXButtonClick} ariaLabel={arialabelXButton} testId="closeButton" />
         <div className={classNames(styles['sticky-note__footer'])}>{footerText && <span>{footerText}</span>}</div>
         <div className={classNames(styles['sticky-note__triangle'])}>
-          <Triangle isHover={isHovered} isActive={isActive} isFocus={isTextareaFocused} isError={!!error} />
+          <Triangle isHover={isHovered} isActive={isActive} isFocus={isTextareaFocused} isError={showErrorStyling} />
         </div>
       </div>
-      {error && (
+      {errorText && (
         <p className={styles['sticky-note__error-text']} id={errorTextId}>
           {errorText}
         </p>
