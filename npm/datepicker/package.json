@@ -2,7 +2,7 @@
   "name": "@helsenorge/datepicker",
   "sideEffects": false,
   "private": false,
-  "version": "13.9.2",
+  "version": "13.9.3",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",

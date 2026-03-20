@@ -1,3 +1,5 @@
+## [13.9.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.9.2&targetVersion=GTv13.9.3) (2026-03-20)
+
 ## [13.9.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.9.1&targetVersion=GTv13.9.2) (2026-03-19)
 
 
