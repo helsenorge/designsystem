@@ -7,13 +7,14 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import { LanguageLocales } from '../../constants';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
+import Chip from '../Chip';
 import Drawer from '../Drawer';
 import RadioButton from '../RadioButton';
 import Spacer from '../Spacer';
 import TagList from '../TagList';
 import FilterResult from './FilterResult';
 import { useFilter } from './useFilter';
-import { createFilterConfig, createLabelMap, filterItems, flattenFilters, getRawFilters, matchFilter, toggleArrayFilter } from './utils';
+import { createFilterConfig, createLabelMap, filterItems, matchFilter, toggleArrayFilter } from './utils';
 import EmptyState from '../EmptyState';
 import Input from '../Input';
 import Label from '../Label';
@@ -86,10 +87,22 @@ const categoryLabels: Record<keyof ExampleFilterType, string> = {
   eResept: 'E-resept',
 };
 
+// Label maps for looking up display text from options
+const sykehusLabelMap = createLabelMap(sykehusOptions);
+const reseptStatusLabelMap = createLabelMap(reseptStatusOptions);
+const eReseptLabelMap = createLabelMap(eReseptOptions);
+
+const allLabelMaps: Record<keyof ExampleFilterType, Map<unknown, string>> = {
+  sykehus: sykehusLabelMap,
+  reseptstatus: reseptStatusLabelMap,
+  eResept: eReseptLabelMap,
+};
+
 const SelectedChips: React.FC<{ filter: UseFilterReturn<ExampleFilterType> }> = ({ filter }) => (
   <>
     {(Object.keys(categoryLabels) as (keyof ExampleFilterType)[]).map(key => {
-      const entries = filter.filters[key];
+      const raw = filter.filters[key];
+      const values = raw === undefined ? [] : Array.isArray(raw) ? raw : [raw];
 
       return (
         <div key={key} style={{ marginTop: '1rem' }}>
@@ -97,10 +110,10 @@ const SelectedChips: React.FC<{ filter: UseFilterReturn<ExampleFilterType> }> = 
             {categoryLabels[key]}
           </Title>
           <Spacer />
-          {entries && entries.length > 0 && (
+          {values.length > 0 && (
             <TagList>
-              {entries.map(entry => (
-                <Tag key={`${entry.filterKey}-${entry.value}`}>{entry.label}</Tag>
+              {values.map(v => (
+                <Tag key={`${key}-${v}`}>{allLabelMaps[key]?.get(v) ?? String(v)}</Tag>
               ))}
             </TagList>
           )}
@@ -121,7 +134,7 @@ const FilterDrawerContent: React.FC<{
         <Checkbox
           key={opt.value}
           label={opt.label}
-          checked={(filter.filters.sykehus ?? []).some(e => e.value === opt.value)}
+          checked={(filter.filters.sykehus ?? []).includes(opt.value)}
           onChange={(): void => toggleArrayFilter(filter, 'sykehus', opt.value)}
         />
       ))}
@@ -133,7 +146,7 @@ const FilterDrawerContent: React.FC<{
           key={opt.value}
           label={opt.label}
           name="reseptstatus"
-          checked={(filter.filters.reseptstatus ?? []).some(e => e.value === opt.value)}
+          checked={filter.filters.reseptstatus === opt.value}
           onChange={(): void => filter.setFilter('reseptstatus', opt.value)}
         />
       ))}
@@ -142,7 +155,7 @@ const FilterDrawerContent: React.FC<{
       <h3>{'E-resept (boolean)'}</h3>
       <Checkbox
         label={'Kun e-resept'}
-        checked={(filter.filters.eResept ?? []).some(e => e.value === true)}
+        checked={filter.filters.eResept === true}
         onChange={(): void => filter.setFilter('eResept', filter.filters.eResept ? undefined : true)}
       />
     </div>
@@ -180,7 +193,18 @@ export const LiveFiltering: Story = {
 
     return (
       <>
-        <FilterResult filters={filter.filters} canRemoveChips={true} filterOnRemove={filter.removeFilter}>
+        <FilterResult>
+          <TagList>
+            {Object.entries(filter.filters).flatMap(([key, raw]) => {
+              const values = raw === undefined ? [] : Array.isArray(raw) ? raw : [raw];
+              const labelMap = allLabelMaps[key as keyof ExampleFilterType];
+              return values.map(v => (
+                <Chip key={`${key}-${v}`} action="remove" onClick={() => filter.removeFilter(key, String(v))}>
+                  {labelMap?.get(v) ?? String(v)}
+                </Chip>
+              ));
+            })}
+          </TagList>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
           </div>
@@ -210,7 +234,7 @@ export const DelayedFiltering: Story = {
     const filtered = filterItems(medisinerMockData, filter.filters, filterMatchers);
 
     const openDrawer = (): void => {
-      setDraftFilters(getRawFilters(filter.filters));
+      setDraftFilters({ ...filter.filters });
       setDrawerOpen(true);
     };
 
@@ -225,7 +249,14 @@ export const DelayedFiltering: Story = {
 
     return (
       <>
-        <FilterResult filters={filter.filters} canRemoveChips={false}>
+        <FilterResult>
+          <TagList>
+            {Object.entries(filter.filters).flatMap(([key, raw]) => {
+              const values = raw === undefined ? [] : Array.isArray(raw) ? raw : [raw];
+              const labelMap = allLabelMaps[key as keyof ExampleFilterType];
+              return values.map(v => <Tag key={`${key}-${v}`}>{labelMap?.get(v) ?? String(v)}</Tag>);
+            })}
+          </TagList>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <Button onClick={openDrawer}>{'Åpne filter'}</Button>
           </div>
@@ -396,6 +427,14 @@ export const VerktoyExample: Story = {
     const filtered = filterItems(verktoyMockData, filter.filters, filterMatchers);
 
     const omradeLabelMap = createLabelMap(omradeOptions);
+    const passerForLabelMap = createLabelMap(passerForOptions);
+    const typeLabelMap = createLabelMap(typeOptions);
+
+    const allVerktoyLabelMaps: Record<string, Map<unknown, string>> = {
+      omrade: omradeLabelMap,
+      passerFor: passerForLabelMap,
+      type: typeLabelMap,
+    };
 
     const verktoyFilterLabels: Record<keyof VerktoyFilterType, string> = {
       omrade: resources.filterOptionTitles_omrade,
@@ -417,14 +456,18 @@ export const VerktoyExample: Story = {
           </Button>
           <br />
           <TagList>
-            {flattenFilters(filter.filters).map(entry => (
-              <Tag key={`${entry.filterKey}-${entry.value}`}>{entry.label}</Tag>
-            ))}
+            {Object.entries(filter.filters).flatMap(([key, raw]) => {
+              const values = raw === undefined ? [] : Array.isArray(raw) ? raw : [raw];
+              const labelMap = allVerktoyLabelMaps[key];
+              return values.map(v => <Tag key={`${key}-${v}`}>{labelMap?.get(v) ?? String(v)}</Tag>);
+            })}
           </TagList>
         </div>
         <Drawer isOpen={drawerOpen} title="Filter" onRequestClose={() => setDrawerOpen(false)}>
           {(Object.keys(verktoyFilterLabels) as (keyof VerktoyFilterType)[]).map(key => {
-            const entries = filter.filters[key];
+            const raw = filter.filters[key];
+            const values = raw === undefined ? [] : Array.isArray(raw) ? raw : [raw];
+            const labelMap = allVerktoyLabelMaps[key];
 
             return (
               <div key={key} style={{ marginTop: '1rem' }}>
@@ -432,10 +475,10 @@ export const VerktoyExample: Story = {
                   {verktoyFilterLabels[key]}
                 </Title>
                 <Spacer />
-                {entries && entries.length > 0 && (
+                {values.length > 0 && (
                   <TagList>
-                    {entries.map(entry => (
-                      <Tag key={`${entry.filterKey}-${entry.value}`}>{entry.label}</Tag>
+                    {values.map(v => (
+                      <Tag key={`${key}-${v}`}>{labelMap?.get(v) ?? String(v)}</Tag>
                     ))}
                   </TagList>
                 )}
@@ -448,7 +491,7 @@ export const VerktoyExample: Story = {
               <Checkbox
                 key={opt.value}
                 label={opt.label}
-                checked={(filter.filters.omrade ?? []).some(e => e.value === opt.value)}
+                checked={(filter.filters.omrade ?? []).includes(opt.value)}
                 onChange={(): void => toggleArrayFilter(filter, 'omrade', opt.value)}
               />
             ))}
@@ -459,7 +502,7 @@ export const VerktoyExample: Story = {
               <Checkbox
                 key={opt.value}
                 label={opt.label}
-                checked={(filter.filters.passerFor ?? []).some(e => e.value === opt.value)}
+                checked={(filter.filters.passerFor ?? []).includes(opt.value)}
                 onChange={(): void => toggleArrayFilter(filter, 'passerFor', opt.value)}
               />
             ))}
@@ -470,7 +513,7 @@ export const VerktoyExample: Story = {
               <Checkbox
                 key={opt.value}
                 label={opt.label}
-                checked={(filter.filters.type ?? []).some(e => e.value === opt.value)}
+                checked={(filter.filters.type ?? []).includes(opt.value)}
                 onChange={(): void => toggleArrayFilter(filter, 'type', opt.value)}
               />
             ))}
@@ -478,7 +521,7 @@ export const VerktoyExample: Story = {
           <div style={{ marginTop: '1rem' }}>
             <h3>{verktoyFilterLabels.fritekst}</h3>
             <Input
-              value={(filter.filters.fritekst?.[0]?.value as string) ?? ''}
+              value={(filter.filters.fritekst as string) ?? ''}
               onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
               label={<Label labelTexts={[{ text: 'Søk' }]} />}
             />

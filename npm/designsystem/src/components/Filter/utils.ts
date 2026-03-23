@@ -1,20 +1,4 @@
-import type { FilterValues, LabelResolver, UseFilterOptions, UseFilterReturn } from './useFilter';
-
-/** En filteroppføring som representerer en aktiv filterverdi med rendering-info.
- * Brukes både til filtrering og chip/tag-rendering — ett konsept for begge formål. */
-interface FilterEntry {
-  /** Key of the filter category in the filter state */
-  filterKey: string;
-  /** The filter option value */
-  value: unknown;
-  /** Display text for the chip/tag */
-  label: string;
-}
-
-/** Filter state: each key maps to its active FilterEntry items. */
-export type Filters<T extends FilterValues> = {
-  [K in keyof T]?: FilterEntry[];
-};
+import type { FilterValues, UseFilterOptions, UseFilterReturn } from './useFilter';
 
 /** Et filtervalg med verdi og visningstekst */
 export interface FilterOption<V = string> {
@@ -28,27 +12,20 @@ export interface FilterOption<V = string> {
 // Eksempel: FilterCategoryConfig<string[]> → options er FilterOption<string>[], ikke FilterOption<string[]>[]
 type OptionValue<V> = V extends (infer U)[] ? U : V;
 
-/** Konfigurasjon for en filterkategori. For filter array er options per element i arrayet.
- *
- * `options` kan være hvilken som helst form — bare oppgi `getOptionLabel` for å hente visningsteksten.
- * Standard: `(o) => o.label`. Hvis options ikke trengs (f.eks. fritekstsøk), utelat hele kategorien fra config.
- */
+/** Konfigurasjon for en filterkategori. */
 export interface FilterCategoryConfig<V = unknown> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options?: ({ value: OptionValue<V> } & { [key: string]: any })[];
-  /** Henter visningstekst fra et option-objekt. Standard: `(o) => o.label` */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getOptionLabel?: (option: any) => string;
   defaultValue?: V;
 }
 
 /**
  * Lager UseFilterOptions fra et oppsett av filterkategorier.
- * Samler defaultValues og labels automatisk, så consumer slipper å gjøre det manuelt.
+ * Samler defaultValues automatisk fra config.
  *
  * Eksempel:
  *   const config = createFilterConfig<MyFilters>({
- *     categories: { options: categoryOptions, defaultValue: ['oslo'] },
+ *     sykehus: { options: sykehusOptions, defaultValue: ['haukeland'] },
  *     status: { options: statusOptions },
  *     eResept: { options: [{ value: true, label: 'E-resept' }] },
  *   });
@@ -57,24 +34,16 @@ export interface FilterCategoryConfig<V = unknown> {
 export const createFilterConfig = <T extends FilterValues>(categories: {
   [K in keyof T]?: FilterCategoryConfig<T[K]>;
 }): UseFilterOptions<T> => {
-  const labels = {} as Record<keyof T, LabelResolver>;
   const defaultValues = {} as Partial<T>;
 
   for (const key in categories) {
     const category = categories[key];
-    if (category) {
-      if (category.options) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const getLabel = category.getOptionLabel ?? ((o: any): string => String(o.label ?? o.value));
-        labels[key] = Object.fromEntries(category.options.map(o => [String(o.value), getLabel(o)]));
-      }
-      if (category.defaultValue !== undefined) {
-        defaultValues[key] = category.defaultValue as T[typeof key];
-      }
+    if (category?.defaultValue !== undefined) {
+      defaultValues[key] = category.defaultValue as T[typeof key];
     }
   }
 
-  return { labels, defaultValues };
+  return { defaultValues };
 };
 
 // TODO: Flere varianter her?
@@ -135,44 +104,24 @@ export const matchFilter = {
  * Hvert filter som er satt må matche for at et item skal inkluderes (AND-logikk).
  *
  * Eksempel:
- *   const filtered = filterItems(documents, filter.filters, {
- *     categories: (doc, value) => value.includes(doc.category),
- *     status: (doc, value) => doc.status === value,
- *     eResept: (doc, value) => !value || doc.eResept === true,
+ *   const filtered = filterItems(medisiner, filter.filters, {
+ *     sykehus: matchFilter.arrayIncludes<Medisin>(m => m.sykehus),
+ *     reseptstatus: matchFilter.exactMatch<Medisin>(m => m.reseptstatus),
+ *     eResept: matchFilter.booleanToggle<Medisin>(m => m.eResept),
  *   });
  */
-/** Extracts raw values from a Filters structure for use with matchers. */
-export const getRawFilters = <T extends FilterValues>(enrichedFilters: Filters<T>): Partial<T> => {
-  const raw = {} as Partial<T>;
-  for (const key in enrichedFilters) {
-    const entries = enrichedFilters[key];
-    if (!entries || entries.length === 0) {
-      continue;
-    }
-    // If the original type was array-like (multiple entries or array values), collect values as array
-    // If single entry, return the scalar value
-    if (entries.length === 1 && !Array.isArray(entries[0].value)) {
-      raw[key] = entries[0].value as T[typeof key];
-    } else {
-      raw[key] = entries.map(e => e.value) as T[typeof key];
-    }
-  }
-  return raw;
-};
 
 /** Type for matcher-objektet som sendes til filterItems. Sikrer at keys matcher filtertypen. */
 export type FilterMatchers<TItem, T extends FilterValues> = { [K in keyof T]?: (item: TItem, value: NonNullable<T[K]>) => boolean };
 
-// TODO: Se på å åpne opp for backup keys slik som eksempelet i filter-utils viser
 export const filterItems = <TItem, T extends FilterValues>(
   items: TItem[],
-  filters: Filters<T>,
+  filters: Partial<T>,
   matchers: FilterMatchers<TItem, T>
 ): TItem[] => {
-  const raw = getRawFilters(filters);
   return items.filter(item => {
     for (const key in matchers) {
-      const value = raw[key];
+      const value = filters[key];
       if (value === undefined) {
         continue;
       }
@@ -195,22 +144,9 @@ export const toggleArrayFilter = <T extends FilterValues, K extends keyof T>(
   filterKey: K,
   value: T[K] extends (infer U)[] | undefined ? U : never
 ): void => {
-  const entries = filter.filters[filterKey] ?? [];
-  const currentValues = entries.map(e => e.value);
-  const updated = currentValues.includes(value) ? currentValues.filter(v => v !== value) : [...currentValues, value];
+  const current = (filter.filters[filterKey] ?? []) as unknown[];
+  const updated = current.includes(value) ? current.filter(v => v !== value) : [...current, value];
   filter.setFilter(filterKey, (updated.length > 0 ? updated : undefined) as T[K] | undefined);
-};
-
-/** Flattens filters into a single array for chip/tag rendering.
- *  Optionally exclude certain filter keys (e.g. free text search).
- *
- * Eksempel:
- *   const tags = flattenFilters(filter.filters, { exclude: ['fritekst'] });
- */
-export const flattenFilters = <T extends FilterValues>(filters: Filters<T>, options?: { exclude?: (keyof T)[] }): FilterEntry[] => {
-  return Object.entries(filters)
-    .filter(([key]) => !options?.exclude?.includes(key as keyof T))
-    .flatMap(([, entries]) => (entries ?? []) as FilterEntry[]);
 };
 
 /** Bygger en Map fra value → label fra en options-liste. Nyttig for å slå opp labels utenfor filterstate.
