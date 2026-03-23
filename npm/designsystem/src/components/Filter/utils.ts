@@ -9,8 +9,6 @@ interface FilterEntry {
   value: unknown;
   /** Display text for the chip/tag */
   label: string;
-  /** Remove this entry. When provided, the filter renders as a removable Chip. When omitted, it renders as a Tag. */
-  remove?: () => void;
 }
 
 /** Filter state: each key maps to its active FilterEntry items. */

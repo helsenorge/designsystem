@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import { Docs } from 'frankenstein-build-tools';
-
 import type { UseFilterReturn } from './useFilter';
 import type { FilterOption } from './utils';
 import type { StoryObj, Meta } from '@storybook/react-vite';
@@ -66,8 +64,8 @@ const medisinerMockData: Medisin[] = [
 // Hver nøkkel tilsvarer et filter i ExampleFilterType, og funksjonen avgjør om et dataelement matcher filterverdien.
 // Sendes til filter-utils/filterItems() for å filtrere data basert på aktive filtre.
 const filterMatchers = {
-  categories: matchFilter.arrayIncludes<Medisin>(m => m.sykehus),
-  status: matchFilter.exactMatch<Medisin>(m => m.reseptstatus),
+  sykehus: matchFilter.arrayIncludes<Medisin>(m => m.sykehus),
+  reseptstatus: matchFilter.exactMatch<Medisin>(m => m.reseptstatus),
   eResept: matchFilter.booleanToggle<Medisin>(m => m.eResept),
 };
 
@@ -153,13 +151,11 @@ const FilterDrawerContent: React.FC<{
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter',
-  component: FilterResult,
   parameters: {
     docs: {
       description: {
         component: 'Filter POC - demonstrerer bruk av useFilter hook med filter-utils for filtrering',
       },
-      page: (): React.JSX.Element => <Docs component={FilterResult} />,
       story: { inline: false, iframeHeight: '40rem' },
     },
   },
@@ -171,7 +167,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const LiveFiltering: Story = {
-  args: { filters: {} },
   render: () => {
     const config = createFilterConfig<ExampleFilterType>({
       sykehus: { options: sykehusOptions, defaultValue: ['haukeland'] },
@@ -185,7 +180,7 @@ export const LiveFiltering: Story = {
 
     return (
       <>
-        <FilterResult filters={filter.filters}>
+        <FilterResult filters={filter.filters} canRemoveChips={true} filterOnRemove={filter.removeFilter}>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
           </div>
@@ -209,7 +204,6 @@ export const DelayedFiltering: Story = {
     });
     const filter = useFilter<ExampleFilterType>({
       ...config,
-      // removable: false,
     });
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [draftFilters, setDraftFilters] = useState<Partial<ExampleFilterType>>({});
@@ -231,7 +225,7 @@ export const DelayedFiltering: Story = {
 
     return (
       <>
-        <FilterResult filters={filter.filters}>
+        <FilterResult filters={filter.filters} canRemoveChips={false}>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <Button onClick={openDrawer}>{'Åpne filter'}</Button>
           </div>

@@ -13,17 +13,20 @@ export interface FilterProps<T extends FilterValues = FilterValues> {
   filters: Filters<T>;
   /** Content of the filter */
   children?: React.ReactNode;
-  /** Called when a chip is removed. If provided, replaces the default filter.remove() behavior. */
-  onRemove?: (filterKey: string, value: unknown) => void;
+  /** Called when a parameter is removed. */
+  filterOnRemove?: (filterKey: keyof T, value?: string) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Creates chips or tags depending on wether they should be removable */
+  canRemoveChips?: boolean;
 }
 
 const FilterResult = <T extends FilterValues = FilterValues>({
   filters,
   children,
-  onRemove,
+  filterOnRemove,
   testId,
+  canRemoveChips = true,
 }: FilterProps<T>): React.ReactElement | null => {
   const entries = flattenFilters(filters);
 
@@ -33,11 +36,11 @@ const FilterResult = <T extends FilterValues = FilterValues>({
         <div className={styles['filter-active-filters']}>
           <TagList>
             {entries.map(entry =>
-              entry.remove ? (
+              canRemoveChips ? (
                 <Chip
                   key={`${entry.filterKey}-${entry.value}`}
                   action="remove"
-                  onClick={() => (onRemove ? onRemove(entry.filterKey, entry.value) : entry.remove!())}
+                  onClick={() => filterOnRemove?.(entry.filterKey as keyof T, String(entry.value))}
                 >
                   {entry.label}
                 </Chip>
