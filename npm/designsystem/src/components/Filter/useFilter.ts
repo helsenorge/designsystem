@@ -7,8 +7,6 @@ export type FilterValues = Record<string, unknown>;
 export interface UseFilterOptions<T extends FilterValues> {
   /** Initial filter values */
   defaultValues?: Partial<T>;
-  /** Look up the display label for a filter value (built by createFilterConfig) */
-  getLabel?: (key: keyof T, value: unknown) => string;
 }
 
 export interface UseFilterReturn<T extends FilterValues> {
@@ -24,8 +22,6 @@ export interface UseFilterReturn<T extends FilterValues> {
   resetFilters: () => void;
   /** Resets to empty filter */
   resetFiltersToEmpty: () => void;
-  /** Look up the display label for a filter value */
-  getLabel: (key: keyof T, value: unknown) => string;
 }
 
 export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>): UseFilterReturn<T> => {
@@ -73,7 +69,5 @@ export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>)
     setFiltersState({});
   };
 
-  const getLabel = options?.getLabel ?? ((_key: keyof T, value: unknown): string => String(value));
-
-  return { filters, setFilter, setFilters, removeFilter, resetFilters, resetFiltersToEmpty, getLabel };
+  return { filters, setFilter, setFilters, removeFilter, resetFilters, resetFiltersToEmpty };
 };

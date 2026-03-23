@@ -22,22 +22,28 @@ export interface FilterCategoryConfig<V = unknown> {
   getLabel?: (option: any) => string;
 }
 
+export interface FilterConfigResult<T extends FilterValues> {
+  /** Options for useFilter (defaultValues) */
+  filterOptions: UseFilterOptions<T>;
+  /** Look up the display label for a filter value */
+  getLabel: (key: keyof T, value: unknown) => string;
+}
+
 /**
  * Lager UseFilterOptions fra et oppsett av filterkategorier.
  * Samler defaultValues og label-oppslag automatisk fra config.
  *
  * Eksempel:
- *   const config = createFilterConfig<MyFilters>({
- *     sykehus: { options: sykehusOptions, defaultValue: ['haukeland'] },
- *     status: { options: statusOptions },
- *     eResept: { options: [{ value: true, label: 'E-resept' }] },
+ *   const { filterOptions, getLabel } = createFilterConfig<MyFilters>({
+ *     sykehus: { options: sykehusOptions, defaultValue: ['haukeland'], getLabel: o => o.label },
+ *     status: { options: statusOptions, getLabel: o => o.displayText },
  *   });
- *   const filter = useFilter(config);
- *   filter.getLabel('sykehus', 'haukeland') // → 'Haukeland universitetssjukehus'
+ *   const filter = useFilter(filterOptions);
+ *   getLabel('sykehus', 'haukeland') // → 'Haukeland universitetssjukehus'
  */
 export const createFilterConfig = <T extends FilterValues>(categories: {
   [K in keyof T]?: FilterCategoryConfig<T[K]>;
-}): UseFilterOptions<T> => {
+}): FilterConfigResult<T> => {
   const defaultValues = {} as Partial<T>;
   const labelMaps = new Map<string, Map<unknown, string>>();
 
@@ -60,7 +66,7 @@ export const createFilterConfig = <T extends FilterValues>(categories: {
     return labelMaps.get(key as string)?.get(value) ?? String(value);
   };
 
-  return { defaultValues, getLabel };
+  return { filterOptions: { defaultValues }, getLabel };
 };
 
 // TODO: Flere varianter her?

@@ -87,7 +87,10 @@ const categoryLabels: Record<keyof ExampleFilterType, string> = {
   eResept: 'E-resept',
 };
 
-const SelectedChips: React.FC<{ filter: UseFilterReturn<ExampleFilterType> }> = ({ filter }) => (
+const SelectedChips: React.FC<{
+  filter: UseFilterReturn<ExampleFilterType>;
+  getLabel: (key: keyof ExampleFilterType, value: unknown) => string;
+}> = ({ filter, getLabel }) => (
   <>
     {(Object.keys(categoryLabels) as (keyof ExampleFilterType)[]).map(key => {
       const raw = filter.filters[key];
@@ -102,7 +105,7 @@ const SelectedChips: React.FC<{ filter: UseFilterReturn<ExampleFilterType> }> = 
           {values.length > 0 && (
             <TagList>
               {values.map(v => (
-                <Tag key={`${key}-${v}`}>{filter.getLabel(key, v) ?? String(v)}</Tag>
+                <Tag key={`${key}-${v}`}>{getLabel(key, v)}</Tag>
               ))}
             </TagList>
           )}
@@ -114,9 +117,10 @@ const SelectedChips: React.FC<{ filter: UseFilterReturn<ExampleFilterType> }> = 
 
 const FilterDrawerContent: React.FC<{
   filter: UseFilterReturn<ExampleFilterType>;
-}> = ({ filter }) => (
+  getLabel: (key: keyof ExampleFilterType, value: unknown) => string;
+}> = ({ filter, getLabel }) => (
   <>
-    <SelectedChips filter={filter} />
+    <SelectedChips filter={filter} getLabel={getLabel} />
     <div style={{ marginTop: '1rem' }}>
       <h3>{'Sykehus (checkbox)'}</h3>
       {sykehusOptions.map(opt => (
@@ -170,12 +174,12 @@ type Story = StoryObj<typeof meta>;
 
 export const LiveFiltering: Story = {
   render: () => {
-    const config = createFilterConfig<ExampleFilterType>({
+    const { filterOptions, getLabel } = createFilterConfig<ExampleFilterType>({
       sykehus: { options: sykehusOptions, defaultValue: ['haukeland'], getLabel: o => o.label },
       reseptstatus: { options: reseptStatusOptions, getLabel: o => o.label },
       eResept: { options: eReseptOptions, defaultValue: true, getLabel: o => o.label },
     });
-    const filter = useFilter<ExampleFilterType>(config);
+    const filter = useFilter<ExampleFilterType>(filterOptions);
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const filtered = filterItems(medisinerMockData, filter.filters, filterMatchers);
@@ -188,7 +192,7 @@ export const LiveFiltering: Story = {
               const values = raw === undefined ? [] : Array.isArray(raw) ? raw : [raw];
               return values.map(v => (
                 <Chip key={`${key}-${v}`} action="remove" onClick={() => filter.removeFilter(key, String(v))}>
-                  {filter.getLabel(key as keyof ExampleFilterType, v) ?? String(v)}
+                  {getLabel(key as keyof ExampleFilterType, v)}
                 </Chip>
               ));
             })}
@@ -197,7 +201,7 @@ export const LiveFiltering: Story = {
             <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
           </div>
           <Drawer isOpen={drawerOpen} title="Filter" onRequestClose={() => setDrawerOpen(false)}>
-            <FilterDrawerContent filter={filter} />
+            <FilterDrawerContent filter={filter} getLabel={getLabel} />
           </Drawer>
         </FilterResult>
         <FiltrertDataExample items={filtered} />
@@ -209,14 +213,12 @@ export const LiveFiltering: Story = {
 export const DelayedFiltering: Story = {
   args: { filters: {} },
   render: () => {
-    const config = createFilterConfig<ExampleFilterType>({
+    const { filterOptions, getLabel } = createFilterConfig<ExampleFilterType>({
       sykehus: { options: sykehusOptions, getLabel: o => o.label },
       reseptstatus: { options: reseptStatusOptions, getLabel: o => o.label },
       eResept: { options: eReseptOptions, getLabel: o => o.label },
     });
-    const filter = useFilter<ExampleFilterType>({
-      ...config,
-    });
+    const filter = useFilter<ExampleFilterType>(filterOptions);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [draftFilters, setDraftFilters] = useState<Partial<ExampleFilterType>>({});
     const filtered = filterItems(medisinerMockData, filter.filters, filterMatchers);
@@ -241,7 +243,7 @@ export const DelayedFiltering: Story = {
           <TagList>
             {Object.entries(filter.filters).flatMap(([key, raw]) => {
               const values = raw === undefined ? [] : Array.isArray(raw) ? raw : [raw];
-              return values.map(v => <Tag key={`${key}-${v}`}>{filter.getLabel(key as keyof ExampleFilterType, v) ?? String(v)}</Tag>);
+              return values.map(v => <Tag key={`${key}-${v}`}>{getLabel(key as keyof ExampleFilterType, v)}</Tag>);
             })}
           </TagList>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
@@ -256,7 +258,7 @@ export const DelayedFiltering: Story = {
             secondaryActionText="Avbryt"
             onSecondaryAction={discardFilters}
           >
-            <SelectedChips filter={filter} />
+            <SelectedChips filter={filter} getLabel={getLabel} />
             <div>
               <h3>{'Sykehus (checkbox)'}</h3>
               {sykehusOptions.map(opt => (
@@ -393,12 +395,12 @@ export const VerktoyExample: Story = {
       { value: VerktoyType.Weblosning, label: resources.typeOptions_web },
     ];
 
-    const config = createFilterConfig<VerktoyFilterType>({
+    const { filterOptions, getLabel } = createFilterConfig<VerktoyFilterType>({
       omrade: { options: omradeOptions, defaultValue: [FagomradeType.PSYKISK_HELSE], getLabel: o => o.label },
       passerFor: { options: passerForOptions, getLabel: o => o.label },
       type: { options: typeOptions, getLabel: o => o.label },
     });
-    const filter = useFilter<VerktoyFilterType>(config);
+    const filter = useFilter<VerktoyFilterType>(filterOptions);
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const filterMatchers: FilterMatchers<Verktoy, VerktoyFilterType> = {
@@ -435,7 +437,7 @@ export const VerktoyExample: Story = {
           <TagList>
             {Object.entries(filter.filters).flatMap(([key, raw]) => {
               const values = raw === undefined ? [] : Array.isArray(raw) ? raw : [raw];
-              return values.map(v => <Tag key={`${key}-${v}`}>{filter.getLabel(key as keyof VerktoyFilterType, v)}</Tag>);
+              return values.map(v => <Tag key={`${key}-${v}`}>{getLabel(key as keyof VerktoyFilterType, v)}</Tag>);
             })}
           </TagList>
         </div>
@@ -453,7 +455,7 @@ export const VerktoyExample: Story = {
                 {values.length > 0 && (
                   <TagList>
                     {values.map(v => (
-                      <Tag key={`${key}-${v}`}>{filter.getLabel(key, v) ?? String(v)}</Tag>
+                      <Tag key={`${key}-${v}`}>{getLabel(key, v)}</Tag>
                     ))}
                   </TagList>
                 )}
@@ -510,7 +512,7 @@ export const VerktoyExample: Story = {
                 <Panel.A>
                   <TagList>
                     {verktoy.omrade.map(o => (
-                      <Tag key={o}>{filter.getLabel('omrade', o)}</Tag>
+                      <Tag key={o}>{getLabel('omrade', o)}</Tag>
                     ))}
                   </TagList>
                 </Panel.A>
