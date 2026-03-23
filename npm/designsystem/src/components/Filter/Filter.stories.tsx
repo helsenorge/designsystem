@@ -384,10 +384,10 @@ export const VerktoyExample: Story = {
     ];
 
     const passerForOptions = [
-      { value: MalgruppeType.Barn, label: resources.passerForOptions_barn },
-      { value: MalgruppeType.Ungdom, label: resources.passerForOptions_ungdom },
-      { value: MalgruppeType.Voksne, label: resources.passerForOptions_voksne },
-      { value: MalgruppeType.Eldre, label: resources.passerForOptions_eldre },
+      { value: MalgruppeType.Barn, text: resources.passerForOptions_barn },
+      { value: MalgruppeType.Ungdom, text: resources.passerForOptions_ungdom },
+      { value: MalgruppeType.Voksne, text: resources.passerForOptions_voksne },
+      { value: MalgruppeType.Eldre, text: resources.passerForOptions_eldre },
     ];
 
     const typeOptions = [
@@ -397,9 +397,11 @@ export const VerktoyExample: Story = {
 
     const { filterOptions, getLabel } = createFilterConfig<VerktoyFilterType>({
       omrade: { options: omradeOptions, defaultValue: [FagomradeType.PSYKISK_HELSE], getLabel: o => o.label },
-      passerFor: { options: passerForOptions, getLabel: o => o.label },
+      passerFor: { options: passerForOptions, getLabel: o => o.text },
       type: { options: typeOptions, getLabel: o => o.label },
     });
+    // todo: lag en story som ikke bruker config
+
     const filter = useFilter<VerktoyFilterType>(filterOptions);
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -478,7 +480,7 @@ export const VerktoyExample: Story = {
             {passerForOptions.map(opt => (
               <Checkbox
                 key={opt.value}
-                label={opt.label}
+                label={opt.text}
                 checked={(filter.filters.passerFor ?? []).includes(opt.value)}
                 onChange={(): void => toggleArrayFilter(filter, 'passerFor', opt.value)}
               />

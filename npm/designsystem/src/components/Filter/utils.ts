@@ -63,7 +63,7 @@ export const createFilterConfig = <T extends FilterValues>(categories: {
   }
 
   const getLabel = (key: keyof T, value: unknown): string => {
-    return labelMaps.get(key as string)?.get(value) ?? String(value);
+    return labelMaps.get(key as string)?.get(value) ?? String(value); // todo: fallback til .displaytext om det ikke er sendt inn noe, og String(value) om .label ikke finnes
   };
 
   return { filterOptions: { defaultValues }, getLabel };
