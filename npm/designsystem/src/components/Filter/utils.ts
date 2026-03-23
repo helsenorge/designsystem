@@ -51,20 +51,21 @@ export interface FilterCategoryConfig<V = unknown> {
 export const createFilterConfig = <T extends FilterValues>(categories: {
   [K in keyof T]?: FilterCategoryConfig<T[K]>;
 }): UseFilterOptions<T> => {
-  const labels = {} as Record<keyof T, LabelResolver>;
+  // const labels = {} as Record<keyof T, LabelResolver>;
   const defaultValues = {} as Partial<T>;
 
   for (const key in categories) {
     const category = categories[key];
     if (category) {
-      labels[key] = Object.fromEntries((category.options as FilterOption[]).map(o => [String(o.value), o.label]));
+      // labels[key] = Object.fromEntries((category.options as FilterOption[]).map(o => [String(o.value), o.label]));
       if (category.defaultValue !== undefined) {
         defaultValues[key] = category.defaultValue as T[typeof key];
       }
     }
   }
 
-  return { labels, defaultValues };
+  // return { labels, defaultValues };
+  return { defaultValues };
 };
 
 // TODO: Flere varianter her?
@@ -81,23 +82,35 @@ export const createFilterConfig = <T extends FilterValues>(categories: {
  *   };
  */
 export const matchFilter = {
-  /** Array-filter: matcher hvis item-verdien finnes i filterverdien (OR-logikk) */
+  /** Array-filter: matcher hvis det er overlapp mellom filterverdier og item-verdier (OR-logikk). */
   arrayIncludes:
-    <TItem>(accessor: (item: TItem) => string) =>
-    (item: TItem, value: string[]): boolean =>
-      value.includes(accessor(item)),
+    <TItem>(accessor: (item: TItem) => unknown) =>
+    (item: TItem, value: unknown): boolean => {
+      const filterValues = Array.isArray(value) ? value : [value];
+      const itemValue = accessor(item);
+      if (Array.isArray(itemValue)) {
+        return itemValue.some(v => filterValues.includes(v));
+      }
+      return filterValues.includes(itemValue);
+    },
 
-  /** Eksakt match: matcher hvis item-verdien er lik filterverdien */
+  /** Eksakt match: matcher hvis item-verdien er lik én av filterverdiene */
   exactMatch:
-    <TItem>(accessor: (item: TItem) => string) =>
-    (item: TItem, value: string): boolean =>
-      accessor(item) === value,
+    <TItem>(accessor: (item: TItem) => unknown) =>
+    (item: TItem, value: unknown): boolean => {
+      if (Array.isArray(value)) {
+        return value.includes(accessor(item));
+      }
+      return accessor(item) === value;
+    },
 
   /** Boolean toggle: når filterverdien er true, inkluder kun items der accessor returnerer true */
   booleanToggle:
     <TItem>(accessor: (item: TItem) => boolean) =>
-    (item: TItem, value: boolean): boolean =>
-      !value || accessor(item),
+    (item: TItem, value: unknown): boolean => {
+      const active = Array.isArray(value) ? value.includes(true) : value === true;
+      return !active || accessor(item);
+    },
 };
 
 /**

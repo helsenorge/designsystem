@@ -14,9 +14,9 @@ export interface UseFilterOptions<T extends FilterValues> {
   /** Initial filter values */
   defaultValues?: Partial<T>;
   /** Map of filterKey → label resolver. Et objekt med { value: 'visningstekst' }. */
-  labels?: Partial<Record<keyof T, LabelResolver>>;
+  // labels?: Partial<Record<keyof T, LabelResolver>>;
   /** When true, active filters include a remove function and render as removable Chips. Defaults to true. */
-  removable?: boolean;
+  // removable?: boolean;
 }
 
 export interface UseFilterReturn<T extends FilterValues> {
@@ -30,6 +30,8 @@ export interface UseFilterReturn<T extends FilterValues> {
   removeFilter: (filterKey: keyof T, optionValue?: string) => void;
   /** Reset filters to default values */
   resetFilters: () => void;
+  /** Resets to empty filter */
+  resetFiltersToEmpty: () => void;
 }
 
 export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>): UseFilterReturn<T> => {
@@ -42,13 +44,13 @@ export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>)
 
   // Konverter en rå verdi til filter items.
   const toItems = (filterKey: string, value: unknown): NonNullable<Filters<T>[keyof T]> => {
-    const removable = options?.removable ?? true;
+    // const removable = options?.removable ?? true;
     if (Array.isArray(value)) {
       return value.filter(Boolean).map(v => ({
         filterKey,
         value: v,
         label: resolveLabel(filterKey, v),
-        ...(removable && { remove: (): void => removeFilter(filterKey as keyof T, String(v)) }),
+        // ...(removable && { remove: (): void => removeFilter(filterKey as keyof T, String(v)) }),
       }));
     }
     return [
@@ -56,7 +58,7 @@ export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>)
         filterKey,
         value,
         label: resolveLabel(filterKey, value),
-        ...(removable && { remove: (): void => removeFilter(filterKey as keyof T) }),
+        // ...(removable && { remove: (): void => removeFilter(filterKey as keyof T) }),
       },
     ];
   };
@@ -109,9 +111,15 @@ export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>)
   };
 
   // Resetter alle filtre til default values.
+  // @@todo: trengs nok både en funksjon som nullstiller helt og
+  // defaultValues vil nok brukes mye til query params og da er det fint å kunne nullstille helt
   const resetFilters = (): void => {
     setFiltersState(fromRawValues(options?.defaultValues ?? {}));
   };
 
-  return { filters, setFilter, setFilters, removeFilter, resetFilters };
+  const resetFiltersToEmpty = (): void => {
+    setFiltersState({} as Filters<T>);
+  };
+
+  return { filters, setFilter, setFilters, removeFilter, resetFilters, resetFiltersToEmpty };
 };

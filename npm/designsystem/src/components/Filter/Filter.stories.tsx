@@ -6,6 +6,7 @@ import type { UseFilterReturn } from './useFilter';
 import type { FilterOption } from './utils';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
+import { LanguageLocales } from '../../constants';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Drawer from '../Drawer';
@@ -15,8 +16,13 @@ import TagList from '../TagList';
 import FilterResult from './FilterResult';
 import { useFilter } from './useFilter';
 import { createFilterConfig, filterItems, getRawFilters, matchFilter, toggleArrayFilter } from './utils';
+import EmptyState from '../EmptyState';
+import Panel from '../Panel';
 import Tag from '../Tag';
 import Title from '../Title';
+import { getResources } from './resourcesMock';
+import LanguageProvider from '../../utils/language';
+import PanelList from '../PanelList';
 
 type ExampleFilterType = {
   sykehus: string[];
@@ -201,7 +207,7 @@ export const DelayedFiltering: Story = {
     });
     const filter = useFilter<ExampleFilterType>({
       ...config,
-      removable: false,
+      // removable: false,
     });
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [draftFilters, setDraftFilters] = useState<Partial<ExampleFilterType>>({});
@@ -276,6 +282,235 @@ export const DelayedFiltering: Story = {
         </FilterResult>
         <FiltrertDataExample items={filtered} />
       </>
+    );
+  },
+};
+
+enum FagomradeType {
+  PSYKISK_HELSE = 1,
+  SYKDOM_OG_SKADER = 2,
+  LIVSSTIL_OG_TRENING = 3,
+  TANKER_OG_FOLELSER = 4,
+  GRAVIDITET_OG_FODSEL = 5,
+  RAAD_OG_TIPS_I_HVERDAGEN = 6,
+}
+
+enum MalgruppeType {
+  Barn = 1,
+  Ungdom = 2,
+  Voksne = 3,
+  Eldre = 4,
+}
+
+enum VerktoyType {
+  App = 1,
+  Weblosning = 2,
+}
+
+type VerktoyFilterType = {
+  omrade: FagomradeType[];
+  passerFor: MalgruppeType[];
+  type: VerktoyType[];
+  fritekst: string;
+};
+
+export const VerktoyExample: Story = {
+  args: { filters: {} },
+  render: () => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+    const resources = getResources(language);
+
+    interface Verktoy {
+      navn: string;
+      omrade: FagomradeType[];
+      ingress?: string;
+      passerFor: MalgruppeType[];
+      type: VerktoyType;
+      lenke?: string;
+      lenkeTekst?: string;
+      logoSrc?: string;
+    }
+
+    const verktoyMockData: Verktoy[] = [
+      {
+        navn: resources.verktoydata_aa_name,
+        ingress: resources.verktoydata_aa_ingress,
+        omrade: [FagomradeType.SYKDOM_OG_SKADER],
+        passerFor: [MalgruppeType.Barn, MalgruppeType.Ungdom, MalgruppeType.Voksne, MalgruppeType.Eldre],
+        type: VerktoyType.Weblosning,
+      },
+      {
+        navn: resources.verktoydata_grubl_name,
+        ingress: resources.verktoydata_grubl_ingress,
+        omrade: [FagomradeType.LIVSSTIL_OG_TRENING, FagomradeType.TANKER_OG_FOLELSER],
+        passerFor: [MalgruppeType.Ungdom, MalgruppeType.Voksne],
+        type: VerktoyType.App,
+      },
+      {
+        navn: resources.verktoydata_mm_name,
+        ingress: resources.verktoydata_mm_ingress,
+        omrade: [FagomradeType.PSYKISK_HELSE, FagomradeType.GRAVIDITET_OG_FODSEL],
+        passerFor: [MalgruppeType.Voksne],
+        type: VerktoyType.App,
+      },
+    ];
+
+    const omradeOptions = [
+      { value: FagomradeType.PSYKISK_HELSE, label: resources.omradeOptions_psykiskhelse },
+      { value: FagomradeType.GRAVIDITET_OG_FODSEL, label: resources.omradeOptions_graviditet },
+      { value: FagomradeType.LIVSSTIL_OG_TRENING, label: resources.omradeOptions_livsstil },
+      { value: FagomradeType.SYKDOM_OG_SKADER, label: resources.omradeOptions_sykdom },
+      { value: FagomradeType.RAAD_OG_TIPS_I_HVERDAGEN, label: resources.omradeOptions_rad },
+      { value: FagomradeType.TANKER_OG_FOLELSER, label: resources.omradeOptions_tanker },
+    ];
+
+    const passerForOptions = [
+      { value: MalgruppeType.Barn, label: resources.passerForOptions_barn },
+      { value: MalgruppeType.Ungdom, label: resources.passerForOptions_ungdom },
+      { value: MalgruppeType.Voksne, label: resources.passerForOptions_voksne },
+      { value: MalgruppeType.Eldre, label: resources.passerForOptions_eldre },
+    ];
+
+    const typeOptions = [
+      { value: VerktoyType.App, label: resources.typeOptions_app },
+      { value: VerktoyType.Weblosning, label: resources.typeOptions_web },
+    ];
+
+    const getLabel = <T extends number>(options: { value: T; label: string }[], value: T): string =>
+      options.find(o => o.value === value)?.label ?? String(value);
+
+    const categories = {
+      // her hvis man bruker "default" skjer det ingenting, mens defaultValue er riktig. Hvordan gjøre dette tydeligere?
+      omrade: { options: omradeOptions, defaultValue: [FagomradeType.GRAVIDITET_OG_FODSEL] },
+      passerFor: { options: passerForOptions },
+      type: { options: typeOptions },
+      // fritekst: {}
+    };
+
+    const config = createFilterConfig<VerktoyFilterType>(categories);
+    const filter = useFilter<VerktoyFilterType>(config);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
+    const filterMatchers = {
+      omrade: matchFilter.arrayIncludes<Verktoy>(m => m.omrade),
+      passerFor: matchFilter.arrayIncludes<Verktoy>(m => m.passerFor),
+      type: matchFilter.exactMatch<Verktoy>(m => m.type),
+      // fritekst: (v: Verktoy): boolean => { // todo: hvordan støtte fritekst inn i oppsett
+      //   return !!(v.navn?.includes(filter.filters.fritekst) || v.ingress?.includes(filter.filters.fritekst));
+      // },
+    };
+
+    const filtered = filterItems(verktoyMockData, filter.filters, filterMatchers);
+
+    const verktoyFilterLabels: Record<keyof VerktoyFilterType, string> = {
+      omrade: resources.filterOptionTitles_omrade,
+      passerFor: resources.filterOptionTitles_passerfor,
+      type: resources.filterOptionTitles_type,
+      fritekst: 'Fritekstsøk',
+    };
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <div>
+          <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>{'Bokmål'}</Button>
+          <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
+        </div>
+        <div>
+          <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
+          <Button onClick={() => filter.resetFiltersToEmpty()} variant="borderless">
+            {'Nullstill filter'}
+          </Button>
+          <br />
+          <TagList>
+            {Object.entries(filter.filters).flatMap(([key, entries]) =>
+              (entries ?? []).map(entry => (
+                <Tag key={`${entry.filterKey}-${entry.value}`}>
+                  {key in categories ? getLabel(categories[key as keyof typeof categories].options, entry.value as number) : entry.label}
+                </Tag>
+              ))
+            )}
+          </TagList>
+        </div>
+        <Drawer isOpen={drawerOpen} title="Filter" onRequestClose={() => setDrawerOpen(false)}>
+          {(Object.keys(verktoyFilterLabels) as (keyof VerktoyFilterType)[]).map(key => {
+            const entries = filter.filters[key];
+
+            return (
+              <div key={key} style={{ marginTop: '1rem' }}>
+                <Title htmlMarkup="h3" appearance="title3">
+                  {verktoyFilterLabels[key]}
+                </Title>
+                <Spacer />
+                {entries && entries.length > 0 && (
+                  <TagList>
+                    {entries.map(entry => (
+                      <Tag key={`${entry.filterKey}-${entry.value}`}>
+                        {key in categories
+                          ? getLabel(categories[key as keyof typeof categories].options, entry.value as number)
+                          : entry.label}
+                      </Tag>
+                    ))}
+                  </TagList>
+                )}
+              </div>
+            );
+          })}
+          <div style={{ marginTop: '1rem' }}>
+            <h3>{verktoyFilterLabels.omrade}</h3>
+            {omradeOptions.map(opt => (
+              <Checkbox
+                key={opt.value}
+                label={opt.label}
+                checked={(filter.filters.omrade ?? []).some(e => e.value === opt.value)}
+                onChange={(): void => toggleArrayFilter(filter, 'omrade', opt.value)}
+              />
+            ))}
+          </div>
+          <div style={{ marginTop: '1rem' }}>
+            <h3>{verktoyFilterLabels.passerFor}</h3>
+            {passerForOptions.map(opt => (
+              <Checkbox
+                key={opt.value}
+                label={opt.label}
+                checked={(filter.filters.passerFor ?? []).some(e => e.value === opt.value)}
+                onChange={(): void => toggleArrayFilter(filter, 'passerFor', opt.value)}
+              />
+            ))}
+          </div>
+          <div style={{ marginTop: '1rem' }}>
+            <h3>{verktoyFilterLabels.type}</h3>
+            {typeOptions.map(opt => (
+              <Checkbox
+                key={opt.value}
+                label={opt.label}
+                checked={(filter.filters.type ?? []).some(e => e.value === opt.value)}
+                onChange={(): void => toggleArrayFilter(filter, 'type', opt.value)}
+              />
+            ))}
+          </div>
+        </Drawer>
+        {filtered.length > 0 ? (
+          <PanelList>
+            {filtered.map(verktoy => (
+              <Panel>
+                <Panel.Title title={verktoy.navn} />
+                <Panel.A>
+                  <TagList>
+                    {verktoy.omrade.map(o => (
+                      <Tag key={o}>{getLabel(omradeOptions, o)}</Tag>
+                    ))}
+                  </TagList>
+                </Panel.A>
+                <Panel.B>
+                  <span>{verktoy.ingress}</span>
+                </Panel.B>
+              </Panel>
+            ))}
+          </PanelList>
+        ) : (
+          <EmptyState title={'Ingen verktøy som matcher filtrering funnet'} />
+        )}
+      </LanguageProvider>
     );
   },
 };
