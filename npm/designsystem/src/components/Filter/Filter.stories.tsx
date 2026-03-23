@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import type { UseFilterReturn } from './useFilter';
-import type { FilterOption } from './utils';
+import type { FilterMatchers, FilterOption } from './utils';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import { LanguageLocales } from '../../constants';
@@ -63,7 +63,7 @@ const medisinerMockData: Medisin[] = [
 // Definerer hvordan hvert filter skal matche mot dataene.
 // Hver nøkkel tilsvarer et filter i ExampleFilterType, og funksjonen avgjør om et dataelement matcher filterverdien.
 // Sendes til filter-utils/filterItems() for å filtrere data basert på aktive filtre.
-const filterMatchers = {
+const filterMatchers: FilterMatchers<Medisin, ExampleFilterType> = {
   sykehus: matchFilter.arrayIncludes<Medisin>(m => m.sykehus),
   reseptstatus: matchFilter.exactMatch<Medisin>(m => m.reseptstatus),
   eResept: matchFilter.booleanToggle<Medisin>(m => m.eResept),
@@ -383,7 +383,7 @@ export const VerktoyExample: Story = {
     const filter = useFilter<VerktoyFilterType>(config);
     const [drawerOpen, setDrawerOpen] = useState(false);
 
-    const filterMatchers = {
+    const filterMatchers: FilterMatchers<Verktoy, VerktoyFilterType> = {
       omrade: matchFilter.arrayIncludes<Verktoy>(m => m.omrade),
       passerFor: matchFilter.arrayIncludes<Verktoy>(m => m.passerFor),
       type: matchFilter.exactMatch<Verktoy>(m => m.type),

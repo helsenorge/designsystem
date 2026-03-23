@@ -160,11 +160,14 @@ export const getRawFilters = <T extends FilterValues>(enrichedFilters: Filters<T
   return raw;
 };
 
+/** Type for matcher-objektet som sendes til filterItems. Sikrer at keys matcher filtertypen. */
+export type FilterMatchers<TItem, T extends FilterValues> = { [K in keyof T]?: (item: TItem, value: NonNullable<T[K]>) => boolean };
+
 // TODO: Se på å åpne opp for backup keys slik som eksempelet i filter-utils viser
 export const filterItems = <TItem, T extends FilterValues>(
   items: TItem[],
   filters: Filters<T>,
-  matchers: { [K in keyof T]?: (item: TItem, value: NonNullable<T[K]>) => boolean }
+  matchers: FilterMatchers<TItem, T>
 ): TItem[] => {
   const raw = getRawFilters(filters);
   return items.filter(item => {
