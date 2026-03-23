@@ -340,6 +340,7 @@ export const VerktoyExample: Story = {
         omrade: [FagomradeType.SYKDOM_OG_SKADER],
         passerFor: [MalgruppeType.Barn, MalgruppeType.Ungdom, MalgruppeType.Voksne, MalgruppeType.Eldre],
         type: VerktoyType.Weblosning,
+        logoSrc: 'https://placehold.co/48x48',
       },
       {
         navn: resources.verktoydata_grubl_name,
@@ -347,6 +348,7 @@ export const VerktoyExample: Story = {
         omrade: [FagomradeType.LIVSSTIL_OG_TRENING, FagomradeType.TANKER_OG_FOLELSER, FagomradeType.PSYKISK_HELSE],
         passerFor: [MalgruppeType.Ungdom, MalgruppeType.Voksne],
         type: VerktoyType.App,
+        logoSrc: 'https://placehold.co/48x48',
       },
       {
         navn: resources.verktoydata_mm_name,
@@ -354,6 +356,7 @@ export const VerktoyExample: Story = {
         omrade: [FagomradeType.PSYKISK_HELSE, FagomradeType.GRAVIDITET_OG_FODSEL],
         passerFor: [MalgruppeType.Voksne],
         type: VerktoyType.App,
+        logoSrc: 'https://placehold.co/48x48',
       },
     ];
 
@@ -491,7 +494,7 @@ export const VerktoyExample: Story = {
           <PanelList>
             {filtered.map(verktoy => (
               <Panel>
-                <Panel.Title title={verktoy.navn} />
+                <Panel.Title title={verktoy.navn} icon={<img src={verktoy.logoSrc} alt="logo" />} />
                 <Panel.A>
                   <TagList>
                     {verktoy.omrade.map(o => (
