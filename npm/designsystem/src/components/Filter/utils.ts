@@ -17,11 +17,14 @@ export interface FilterCategoryConfig<V = unknown> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options?: ({ value: OptionValue<V> } & { [key: string]: any })[];
   defaultValue?: V;
+  /** Hent visningstekst fra et option-objekt. Hvis ikke satt, brukes String(value). */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getLabel?: (option: any) => string;
 }
 
 /**
  * Lager UseFilterOptions fra et oppsett av filterkategorier.
- * Samler defaultValues automatisk fra config.
+ * Samler defaultValues og label-oppslag automatisk fra config.
  *
  * Eksempel:
  *   const config = createFilterConfig<MyFilters>({
@@ -30,20 +33,34 @@ export interface FilterCategoryConfig<V = unknown> {
  *     eResept: { options: [{ value: true, label: 'E-resept' }] },
  *   });
  *   const filter = useFilter(config);
+ *   filter.getLabel('sykehus', 'haukeland') // → 'Haukeland universitetssjukehus'
  */
 export const createFilterConfig = <T extends FilterValues>(categories: {
   [K in keyof T]?: FilterCategoryConfig<T[K]>;
 }): UseFilterOptions<T> => {
   const defaultValues = {} as Partial<T>;
+  const labelMaps = new Map<string, Map<unknown, string>>();
 
   for (const key in categories) {
     const category = categories[key];
     if (category?.defaultValue !== undefined) {
       defaultValues[key] = category.defaultValue as T[typeof key];
     }
+    if (category?.options) {
+      const resolve = category.getLabel ?? ((o: { value: unknown }): string => String(o.value));
+      const map = new Map<unknown, string>();
+      for (const opt of category.options) {
+        map.set(opt.value, resolve(opt));
+      }
+      labelMaps.set(key, map);
+    }
   }
 
-  return { defaultValues };
+  const getLabel = (key: keyof T, value: unknown): string => {
+    return labelMaps.get(key as string)?.get(value) ?? String(value);
+  };
+
+  return { defaultValues, getLabel };
 };
 
 // TODO: Flere varianter her?
@@ -147,19 +164,6 @@ export const toggleArrayFilter = <T extends FilterValues, K extends keyof T>(
   const current = (filter.filters[filterKey] ?? []) as unknown[];
   const updated = current.includes(value) ? current.filter(v => v !== value) : [...current, value];
   filter.setFilter(filterKey, (updated.length > 0 ? updated : undefined) as T[K] | undefined);
-};
-
-/** Bygger en Map fra value → label fra en options-liste. Nyttig for å slå opp labels utenfor filterstate.
- *
- * Eksempel:
- *   const labelMap = createLabelMap(omradeOptions);
- *   labelMap.get(FagomradeType.PSYKISK_HELSE) // → 'Psykisk helse'
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const createLabelMap = <V>(options: { value: V; [key: string]: any }[], getLabel?: (o: any) => string): Map<V, string> => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const resolve = getLabel ?? ((o: any): string => String(o.label ?? o.value));
-  return new Map(options.map(o => [o.value, resolve(o)]));
 };
 
 // ─── Før/etter-eksempler: slik gjør consumere det i dag vs. med våre helpers ───
