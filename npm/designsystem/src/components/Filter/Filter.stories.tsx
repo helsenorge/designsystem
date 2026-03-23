@@ -15,8 +15,10 @@ import Spacer from '../Spacer';
 import TagList from '../TagList';
 import FilterResult from './FilterResult';
 import { useFilter } from './useFilter';
-import { createFilterConfig, filterItems, getRawFilters, matchFilter, toggleArrayFilter } from './utils';
+import { createFilterConfig, createLabelMap, filterItems, flattenFilters, getRawFilters, matchFilter, toggleArrayFilter } from './utils';
 import EmptyState from '../EmptyState';
+import Input from '../Input';
+import Label from '../Label';
 import Panel from '../Panel';
 import Tag from '../Tag';
 import Title from '../Title';
@@ -317,7 +319,7 @@ type VerktoyFilterType = {
 export const VerktoyExample: Story = {
   args: { filters: {} },
   render: () => {
-    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
     const resources = getResources(language);
 
     interface Verktoy {
@@ -342,7 +344,7 @@ export const VerktoyExample: Story = {
       {
         navn: resources.verktoydata_grubl_name,
         ingress: resources.verktoydata_grubl_ingress,
-        omrade: [FagomradeType.LIVSSTIL_OG_TRENING, FagomradeType.TANKER_OG_FOLELSER],
+        omrade: [FagomradeType.LIVSSTIL_OG_TRENING, FagomradeType.TANKER_OG_FOLELSER, FagomradeType.PSYKISK_HELSE],
         passerFor: [MalgruppeType.Ungdom, MalgruppeType.Voksne],
         type: VerktoyType.App,
       },
@@ -376,18 +378,11 @@ export const VerktoyExample: Story = {
       { value: VerktoyType.Weblosning, label: resources.typeOptions_web },
     ];
 
-    const getLabel = <T extends number>(options: { value: T; label: string }[], value: T): string =>
-      options.find(o => o.value === value)?.label ?? String(value);
-
-    const categories = {
-      // her hvis man bruker "default" skjer det ingenting, mens defaultValue er riktig. Hvordan gjøre dette tydeligere?
-      omrade: { options: omradeOptions, defaultValue: [FagomradeType.GRAVIDITET_OG_FODSEL] },
+    const config = createFilterConfig<VerktoyFilterType>({
+      omrade: { options: omradeOptions, defaultValue: [FagomradeType.PSYKISK_HELSE] },
       passerFor: { options: passerForOptions },
       type: { options: typeOptions },
-      // fritekst: {}
-    };
-
-    const config = createFilterConfig<VerktoyFilterType>(categories);
+    });
     const filter = useFilter<VerktoyFilterType>(config);
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -395,12 +390,15 @@ export const VerktoyExample: Story = {
       omrade: matchFilter.arrayIncludes<Verktoy>(m => m.omrade),
       passerFor: matchFilter.arrayIncludes<Verktoy>(m => m.passerFor),
       type: matchFilter.exactMatch<Verktoy>(m => m.type),
-      // fritekst: (v: Verktoy): boolean => { // todo: hvordan støtte fritekst inn i oppsett
-      //   return !!(v.navn?.includes(filter.filters.fritekst) || v.ingress?.includes(filter.filters.fritekst));
-      // },
+      fritekst: matchFilter.textSearch<Verktoy>(
+        v => v.navn,
+        v => v.ingress
+      ),
     };
 
     const filtered = filterItems(verktoyMockData, filter.filters, filterMatchers);
+
+    const omradeLabelMap = createLabelMap(omradeOptions);
 
     const verktoyFilterLabels: Record<keyof VerktoyFilterType, string> = {
       omrade: resources.filterOptionTitles_omrade,
@@ -422,13 +420,9 @@ export const VerktoyExample: Story = {
           </Button>
           <br />
           <TagList>
-            {Object.entries(filter.filters).flatMap(([key, entries]) =>
-              (entries ?? []).map(entry => (
-                <Tag key={`${entry.filterKey}-${entry.value}`}>
-                  {key in categories ? getLabel(categories[key as keyof typeof categories].options, entry.value as number) : entry.label}
-                </Tag>
-              ))
-            )}
+            {flattenFilters(filter.filters).map(entry => (
+              <Tag key={`${entry.filterKey}-${entry.value}`}>{entry.label}</Tag>
+            ))}
           </TagList>
         </div>
         <Drawer isOpen={drawerOpen} title="Filter" onRequestClose={() => setDrawerOpen(false)}>
@@ -444,11 +438,7 @@ export const VerktoyExample: Story = {
                 {entries && entries.length > 0 && (
                   <TagList>
                     {entries.map(entry => (
-                      <Tag key={`${entry.filterKey}-${entry.value}`}>
-                        {key in categories
-                          ? getLabel(categories[key as keyof typeof categories].options, entry.value as number)
-                          : entry.label}
-                      </Tag>
+                      <Tag key={`${entry.filterKey}-${entry.value}`}>{entry.label}</Tag>
                     ))}
                   </TagList>
                 )}
@@ -488,6 +478,14 @@ export const VerktoyExample: Story = {
               />
             ))}
           </div>
+          <div style={{ marginTop: '1rem' }}>
+            <h3>{verktoyFilterLabels.fritekst}</h3>
+            <Input
+              value={(filter.filters.fritekst?.[0]?.value as string) ?? ''}
+              onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
+              label={<Label labelTexts={[{ text: 'Søk' }]} />}
+            />
+          </div>
         </Drawer>
         {filtered.length > 0 ? (
           <PanelList>
@@ -497,7 +495,7 @@ export const VerktoyExample: Story = {
                 <Panel.A>
                   <TagList>
                     {verktoy.omrade.map(o => (
-                      <Tag key={o}>{getLabel(omradeOptions, o)}</Tag>
+                      <Tag key={o}>{omradeLabelMap.get(o) ?? ''}</Tag>
                     ))}
                   </TagList>
                 </Panel.A>

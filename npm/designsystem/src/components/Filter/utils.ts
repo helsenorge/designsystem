@@ -30,9 +30,17 @@ export interface FilterOption<V = string> {
 // Eksempel: FilterCategoryConfig<string[]> → options er FilterOption<string>[], ikke FilterOption<string[]>[]
 type OptionValue<V> = V extends (infer U)[] ? U : V;
 
-/** Konfigurasjon for en filterkategori. For filter array er options per element i arrayet. */
+/** Konfigurasjon for en filterkategori. For filter array er options per element i arrayet.
+ *
+ * `options` kan være hvilken som helst form — bare oppgi `getOptionLabel` for å hente visningsteksten.
+ * Standard: `(o) => o.label`. Hvis options ikke trengs (f.eks. fritekstsøk), utelat hele kategorien fra config.
+ */
 export interface FilterCategoryConfig<V = unknown> {
-  options: FilterOption<OptionValue<V>>[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  options?: ({ value: OptionValue<V> } & { [key: string]: any })[];
+  /** Henter visningstekst fra et option-objekt. Standard: `(o) => o.label` */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getOptionLabel?: (option: any) => string;
   defaultValue?: V;
 }
 
@@ -51,21 +59,24 @@ export interface FilterCategoryConfig<V = unknown> {
 export const createFilterConfig = <T extends FilterValues>(categories: {
   [K in keyof T]?: FilterCategoryConfig<T[K]>;
 }): UseFilterOptions<T> => {
-  // const labels = {} as Record<keyof T, LabelResolver>;
+  const labels = {} as Record<keyof T, LabelResolver>;
   const defaultValues = {} as Partial<T>;
 
   for (const key in categories) {
     const category = categories[key];
     if (category) {
-      // labels[key] = Object.fromEntries((category.options as FilterOption[]).map(o => [String(o.value), o.label]));
+      if (category.options) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const getLabel = category.getOptionLabel ?? ((o: any): string => String(o.label ?? o.value));
+        labels[key] = Object.fromEntries(category.options.map(o => [String(o.value), getLabel(o)]));
+      }
       if (category.defaultValue !== undefined) {
         defaultValues[key] = category.defaultValue as T[typeof key];
       }
     }
   }
 
-  // return { labels, defaultValues };
-  return { defaultValues };
+  return { labels, defaultValues };
 };
 
 // TODO: Flere varianter her?
@@ -110,6 +121,14 @@ export const matchFilter = {
     (item: TItem, value: unknown): boolean => {
       const active = Array.isArray(value) ? value.includes(true) : value === true;
       return !active || accessor(item);
+    },
+
+  /** Fritekstsøk: matcher hvis søketeksten finnes i ett eller flere felt (case-insensitive) */
+  textSearch:
+    <TItem>(...accessors: ((item: TItem) => string | undefined)[]) =>
+    (item: TItem, value: unknown): boolean => {
+      const search = String(value).toLowerCase();
+      return accessors.some(accessor => accessor(item)?.toLowerCase().includes(search));
     },
 };
 
@@ -181,9 +200,29 @@ export const toggleArrayFilter = <T extends FilterValues, K extends keyof T>(
   filter.setFilter(filterKey, (updated.length > 0 ? updated : undefined) as T[K] | undefined);
 };
 
-/** Flattens filters into a single array for chip/tag rendering. */
-export const flattenFilters = <T extends FilterValues>(filters: Filters<T>): FilterEntry[] => {
-  return Object.values(filters).flat().filter(Boolean) as FilterEntry[];
+/** Flattens filters into a single array for chip/tag rendering.
+ *  Optionally exclude certain filter keys (e.g. free text search).
+ *
+ * Eksempel:
+ *   const tags = flattenFilters(filter.filters, { exclude: ['fritekst'] });
+ */
+export const flattenFilters = <T extends FilterValues>(filters: Filters<T>, options?: { exclude?: (keyof T)[] }): FilterEntry[] => {
+  return Object.entries(filters)
+    .filter(([key]) => !options?.exclude?.includes(key as keyof T))
+    .flatMap(([, entries]) => (entries ?? []) as FilterEntry[]);
+};
+
+/** Bygger en Map fra value → label fra en options-liste. Nyttig for å slå opp labels utenfor filterstate.
+ *
+ * Eksempel:
+ *   const labelMap = createLabelMap(omradeOptions);
+ *   labelMap.get(FagomradeType.PSYKISK_HELSE) // → 'Psykisk helse'
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const createLabelMap = <V>(options: { value: V; [key: string]: any }[], getLabel?: (o: any) => string): Map<V, string> => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const resolve = getLabel ?? ((o: any): string => String(o.label ?? o.value));
+  return new Map(options.map(o => [o.value, resolve(o)]));
 };
 
 // ─── Før/etter-eksempler: slik gjør consumere det i dag vs. med våre helpers ───

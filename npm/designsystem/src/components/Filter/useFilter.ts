@@ -14,9 +14,7 @@ export interface UseFilterOptions<T extends FilterValues> {
   /** Initial filter values */
   defaultValues?: Partial<T>;
   /** Map of filterKey → label resolver. Et objekt med { value: 'visningstekst' }. */
-  // labels?: Partial<Record<keyof T, LabelResolver>>;
-  /** When true, active filters include a remove function and render as removable Chips. Defaults to true. */
-  // removable?: boolean;
+  labels?: Partial<Record<keyof T, LabelResolver>>;
 }
 
 export interface UseFilterReturn<T extends FilterValues> {
