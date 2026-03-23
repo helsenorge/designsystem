@@ -42,13 +42,11 @@ export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>)
 
   // Konverter en rå verdi til filter items.
   const toItems = (filterKey: string, value: unknown): NonNullable<Filters<T>[keyof T]> => {
-    // const removable = options?.removable ?? true;
     if (Array.isArray(value)) {
       return value.filter(Boolean).map(v => ({
         filterKey,
         value: v,
         label: resolveLabel(filterKey, v),
-        // ...(removable && { remove: (): void => removeFilter(filterKey as keyof T, String(v)) }),
       }));
     }
     return [
@@ -56,7 +54,6 @@ export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>)
         filterKey,
         value,
         label: resolveLabel(filterKey, value),
-        // ...(removable && { remove: (): void => removeFilter(filterKey as keyof T) }),
       },
     ];
   };
