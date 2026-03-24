@@ -1,4 +1,10 @@
 
+## [14.2.1](https://github.com/helsenorge/designsystem/compare/v14.2.0...v14.2.1) (2026-03-24)
+
+### Bug Fixes
+
+*  overstyr farge på knapper igjen ([59d0a7c](https://github.com/helsenorge/designsystem/commit/59d0a7ccb98bb6034ba7d674fd46afcd071effc5)), closes [#374489](https://github.com/helsenorge/designsystem/issues/374489)
+
 ## [14.2.0](https://github.com/helsenorge/designsystem/compare/v14.1.0...v14.2.0) (2026-03-20)
 
 ### Features
@@ -24,26 +30,17 @@
 * **bootstrap:**  fjern deprecation warning ([38e0178](https://github.com/helsenorge/designsystem/commit/38e017841630d8f3b6f170373f64432a6e86b01c)), closes [#373746](https://github.com/helsenorge/designsystem/issues/373746)
 * **tile:**  lazyicon vises ikke ([f7cec5f](https://github.com/helsenorge/designsystem/commit/f7cec5f381c4d49b8ecc1e7e58451a8710cff877)), closes [#373723](https://github.com/helsenorge/designsystem/issues/373723)
 
-## [14.0.0](https://github.com/helsenorge/designsystem/compare/v13.8.0...v14.0.0) (2026-03-11)
+## [14.0.0](https://github.com/helsenorge/designsystem/compare/v13.9.0...v14.0.0) (2026-03-11)
 
 ### Features
 
 * **helpexpander:**  ref blir nullable ([2bd75af](https://github.com/helsenorge/designsystem/commit/2bd75affe116883b10e50e2b5b8a9dd6dbbf0555)), closes [#371787](https://github.com/helsenorge/designsystem/issues/371787)
 * **icon:**  nye ikoner starstroke og starfill ([f4c9f7f](https://github.com/helsenorge/designsystem/commit/f4c9f7f57c7ce440aa2a564cf4a2f133c5c2f6d0)), closes [#370948](https://github.com/helsenorge/designsystem/issues/370948)
-* **illustration:**  nye illustrasjoner stork og thinking ([26d4edc](https://github.com/helsenorge/designsystem/commit/26d4edce1606559c4017b74097513b090dd3cb0e)), closes [#372380](https://github.com/helsenorge/designsystem/issues/372380)
-* **servicemessage:**  ny prop messageRole ([ee8ac9f](https://github.com/helsenorge/designsystem/commit/ee8ac9f084ec3e51904b0a58ff9bb0ccd5f45542)), closes [#372043](https://github.com/helsenorge/designsystem/issues/372043)
 
 ### Bug Fixes
 
-*  generer ider til svger istedenfor hardkodede ([ea0cccf](https://github.com/helsenorge/designsystem/commit/ea0cccf37a31a817940b36f78b73af7303accb1b)), closes [#372412](https://github.com/helsenorge/designsystem/issues/372412)
 *  stopper å sette state i useffect for å få færre rerenders ([6d66002](https://github.com/helsenorge/designsystem/commit/6d6600271241fd7498281a52ab5c6bc269e5faec)), closes [#371689](https://github.com/helsenorge/designsystem/issues/371689)
-* **button:**  ikke vis hoverfarge på små skjermer for disabled buttons ([9a6a451](https://github.com/helsenorge/designsystem/commit/9a6a451fefaaf181858a282ca467bfdf176ec6f7)), closes [#372696](https://github.com/helsenorge/designsystem/issues/372696)
-* **datepicker:**  legg på outline ved hover på kalenderknapp ([b0c1a4e](https://github.com/helsenorge/designsystem/commit/b0c1a4e0025c1d7dfa69ab7cf08f00cb790cb0a0)), closes [#345238](https://github.com/helsenorge/designsystem/issues/345238)
-* **datepicker:**  småfikser rundt validering ([cd06bee](https://github.com/helsenorge/designsystem/commit/cd06beed0212d3d82fb67165722f5f740367255b)), closes [#372577](https://github.com/helsenorge/designsystem/issues/372577) [#373156](https://github.com/helsenorge/designsystem/issues/373156)
-* **drawer:**  flytt lukkekryss tilbake til flexbox ([f0f3c6f](https://github.com/helsenorge/designsystem/commit/f0f3c6f0c2f8d5c6b615c1ac7dbf6aab997b2e73)), closes [#373141](https://github.com/helsenorge/designsystem/issues/373141)
-* **helptriggerinline:**  tekst er nå left aligned ([ea0deeb](https://github.com/helsenorge/designsystem/commit/ea0deebe9a2ee373766a5ac6e4500fc581b0ee97)), closes [#372216](https://github.com/helsenorge/designsystem/issues/372216)
 * **icon:**  fiks ikonfiler etter major oppgradering ([8e65a7e](https://github.com/helsenorge/designsystem/commit/8e65a7e9b1ea24bfac5176a1b00517aee4726cb5)), closes [#373313](https://github.com/helsenorge/designsystem/issues/373313)
-* **unsafe_datepicker:**  bruk resources i labels fra react-day-picker ([0958b64](https://github.com/helsenorge/designsystem/commit/0958b64f730776a515917e5dcd44392e5d19ab50)), closes [#345238](https://github.com/helsenorge/designsystem/issues/345238) [#372577](https://github.com/helsenorge/designsystem/issues/372577)
 
 ## 14.0.0-beta.9 (2026-02-25)
 
@@ -114,6 +111,23 @@
 *  oppdater med react 19 endringer for nye komponenter ([14dc0d3](https://github.com/helsenorge/designsystem/commit/14dc0d3c427d60caef55af0b13bce9f76f05e1a3))
 *  ts feilmeldinger under bygg og runtime ([0688fb9](https://github.com/helsenorge/designsystem/commit/0688fb98634de41b75c3c172831634e6b57b2901)), closes [#368806](https://github.com/helsenorge/designsystem/issues/368806)
 * **panel:**  fiks feil import ([b952624](https://github.com/helsenorge/designsystem/commit/b952624923ef37e2f0b88efe659a8a0117c94201))
+
+## [13.9.0](https://github.com/helsenorge/designsystem/compare/v13.8.0...v13.9.0) (2026-03-09)
+
+### Features
+
+* **illustration:**  nye illustrasjoner stork og thinking ([26d4edc](https://github.com/helsenorge/designsystem/commit/26d4edce1606559c4017b74097513b090dd3cb0e)), closes [#372380](https://github.com/helsenorge/designsystem/issues/372380)
+* **servicemessage:**  ny prop messageRole ([ee8ac9f](https://github.com/helsenorge/designsystem/commit/ee8ac9f084ec3e51904b0a58ff9bb0ccd5f45542)), closes [#372043](https://github.com/helsenorge/designsystem/issues/372043)
+
+### Bug Fixes
+
+*  generer ider til svger istedenfor hardkodede ([ea0cccf](https://github.com/helsenorge/designsystem/commit/ea0cccf37a31a817940b36f78b73af7303accb1b)), closes [#372412](https://github.com/helsenorge/designsystem/issues/372412)
+* **button:**  ikke vis hoverfarge på små skjermer for disabled buttons ([9a6a451](https://github.com/helsenorge/designsystem/commit/9a6a451fefaaf181858a282ca467bfdf176ec6f7)), closes [#372696](https://github.com/helsenorge/designsystem/issues/372696)
+* **datepicker:**  legg på outline ved hover på kalenderknapp ([b0c1a4e](https://github.com/helsenorge/designsystem/commit/b0c1a4e0025c1d7dfa69ab7cf08f00cb790cb0a0)), closes [#345238](https://github.com/helsenorge/designsystem/issues/345238)
+* **datepicker:**  småfikser rundt validering ([cd06bee](https://github.com/helsenorge/designsystem/commit/cd06beed0212d3d82fb67165722f5f740367255b)), closes [#372577](https://github.com/helsenorge/designsystem/issues/372577) [#373156](https://github.com/helsenorge/designsystem/issues/373156)
+* **drawer:**  flytt lukkekryss tilbake til flexbox ([f0f3c6f](https://github.com/helsenorge/designsystem/commit/f0f3c6f0c2f8d5c6b615c1ac7dbf6aab997b2e73)), closes [#373141](https://github.com/helsenorge/designsystem/issues/373141)
+* **helptriggerinline:**  tekst er nå left aligned ([ea0deeb](https://github.com/helsenorge/designsystem/commit/ea0deebe9a2ee373766a5ac6e4500fc581b0ee97)), closes [#372216](https://github.com/helsenorge/designsystem/issues/372216)
+* **unsafe_datepicker:**  bruk resources i labels fra react-day-picker ([0958b64](https://github.com/helsenorge/designsystem/commit/0958b64f730776a515917e5dcd44392e5d19ab50)), closes [#345238](https://github.com/helsenorge/designsystem/issues/345238) [#372577](https://github.com/helsenorge/designsystem/issues/372577)
 
 ## [13.8.0](https://github.com/helsenorge/designsystem/compare/v13.7.0...v13.8.0) (2026-02-24)
 
