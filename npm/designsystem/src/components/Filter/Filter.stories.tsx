@@ -19,6 +19,7 @@ import DrawerNavigation, { useDrawerNavigation } from './DrawerNavigation';
 import FilterButton from './FilterButton/FilterButton';
 import FilterLinkList from './FilterLinkList/FilterLinkList';
 import FilterResultTopBar from './FilterResultTopBar/FilterResultTopBar';
+import FilterSearch from './FilterSearch/FilterSearch';
 import FilterSort from './FilterSort/FilterSort';
 import { useFilter } from './FiltreringsPOC/useFilter';
 import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './FiltreringsPOC/utils';
@@ -273,7 +274,7 @@ export const Default: Story = {
         />
 
         <DrawerNavigation isOpen={drawerOpen} onCloseButton={() => setDrawerOpen(false)} footer={footerButtons}>
-          <DrawerNavigation.View<FilterViews> id="overview" title={'Filter'} home>
+          <DrawerNavigation.View<FilterViews> id="overview" title={'Finn ...'} home>
             <div>
               <FilterLinkListComp />
               <Input
@@ -348,6 +349,38 @@ export const Default: Story = {
           <EmptyState title={'Ingen verktøy som matcher filtrering funnet'} />
         )}
       </LanguageProvider>
+    );
+  },
+};
+
+export const FilterSortComponent: Story = {
+  render: () => (
+    <FilterSort>
+      <option value={'Option 1'}>{'Nyeste'}</option>
+      <option value={'Option 2'}>{'Eldste'}</option>
+      <option value={'Option 3'}>{'Alfabetisk A-Å'}</option>
+    </FilterSort>
+  ),
+};
+
+export const FilterSearchComponent: Story = {
+  render: () => {
+    const [searchValue, setSearchValue] = useState<string>('');
+
+    return (
+      <FilterSearch
+        value={searchValue}
+        inputProps={{
+          name: 'search',
+          onChange: e => setSearchValue((e.target as HTMLInputElement).value),
+        }}
+        buttonProps={{
+          onClick: () => alert(`Søker etter: ${searchValue}`),
+        }}
+        clearButtonProps={{
+          onClick: () => setSearchValue(''),
+        }}
+      />
     );
   },
 };

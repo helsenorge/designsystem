@@ -1,0 +1,86 @@
+@import '../../../../scss/supernova/styles/spacers.css';
+
+.filter-search {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+  }
+
+  &__input {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    height: 2.75rem;
+    border-radius: 100px 0 0 100px;
+    border: 2px solid var(--color-base-border-onlight-emphasized);
+    padding: 0.375rem 1rem;
+    padding-right: 2.75rem;
+
+    &::placeholder {
+      color: var(--color-base-text-onlight);
+    }
+
+    &:hover,
+    &:active {
+      outline: 1px solid var(--color-base-border-onlight-emphasized);
+      background-color: var(--core-color-neutral-50);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-action-border-onlight-focus);
+      outline: 2px solid var(--color-action-border-onlight-focus);
+    }
+  }
+
+  &__search-button,
+  &__clear-button {
+    outline: unset;
+    border: unset;
+    background-color: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      fill: var(--color-action-graphics-onlight);
+    }
+
+    &:hover {
+      background-color: var(--core-color-neutral-50);
+    }
+  }
+
+  &__search-button {
+    grid-column: 3;
+    grid-row: 1;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 2px solid var(--color-base-border-onlight-emphasized);
+    border-radius: 0 100px 100px 0;
+    margin-left: -2px;
+
+    &:focus-visible {
+      border-color: var(--color-action-border-onlight-focus);
+      outline: 2px solid var(--color-action-border-onlight-focus);
+    }
+
+    &:hover,
+    &:active {
+      outline: 1px solid var(--color-base-border-onlight-emphasized);
+      background-color: var(--core-color-neutral-50);
+    }
+  }
+
+  &__clear-button {
+    grid-column: 2;
+    grid-row: 1;
+    width: 2rem;
+    height: 2rem;
+    margin: 0.375rem;
+    border-radius: 100%;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-action-border-onlight-focus);
+    }
+  }
+}
