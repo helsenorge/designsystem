@@ -1,0 +1,17 @@
+.filter-result-top-bar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--core-space-xs);
+
+  &__count {
+    text-wrap: nowrap;
+    line-height: 3rem;
+    flex-shrink: 0;
+  }
+
+  &__sort {
+    flex: 1 1 0;
+  }
+}

@@ -4,7 +4,7 @@ import type { FilterMatchers, FilterOption } from './utils';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import FilterResult from './FilterResult';
-import { getResources } from './resourcesMock';
+import { getResources } from '../resourcesMock';
 import { useFilter, type UseFilterReturn } from './useFilter';
 import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter } from './utils';
 import { LanguageLocales } from '../../../constants';

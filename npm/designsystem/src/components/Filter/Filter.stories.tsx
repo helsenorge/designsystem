@@ -2,9 +2,8 @@ import { useState, type ReactNode } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
-
 import { LanguageLocales } from '../../constants';
+import LanguageProvider from '../../utils/language';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Chip from '../Chip';
@@ -18,9 +17,11 @@ import Tag from '../Tag';
 import TagList from '../TagList';
 import DrawerNavigation, { useDrawerNavigation } from './DrawerNavigation';
 import FilterLinkList from './FilterLinkList/FilterLinkList';
-import { getResources } from './FiltreringsPOC/resourcesMock';
+import FilterResultTopBar from './FilterResultTopBar/FilterResultTopBar';
+import FilterSort from './FilterSort/FilterSort';
 import { useFilter } from './FiltreringsPOC/useFilter';
 import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './FiltreringsPOC/utils';
+import { getResources } from './resourcesMock';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterMerge',
@@ -259,9 +260,17 @@ export const Default: Story = {
             })}
           </TagList>
         </div>
-        <div style={{ marginTop: '1rem' }}>
-          <span>{`${filtered.length} verktøy`}</span>
-        </div>
+        <FilterResultTopBar
+          countText={`${filtered.length} verktøy`}
+          sortComponent={
+            <FilterSort>
+              <option value={'Option 1'}>{'Nyeste'}</option>
+              <option value={'Option 2'}>{'Eldste'}</option>
+              <option value={'Option 3'}>{'Alfabetisk A-Å'}</option>
+            </FilterSort>
+          }
+        />
+
         <DrawerNavigation isOpen={drawerOpen} onCloseButton={() => setDrawerOpen(false)} footer={footerButtons}>
           <DrawerNavigation.View<FilterViews> id="overview" title={'Filter'} home>
             <div>

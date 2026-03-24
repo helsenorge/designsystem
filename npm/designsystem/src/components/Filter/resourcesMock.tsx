@@ -45,6 +45,7 @@ export const getResources = (language: LanguageLocales) => {
         filterOption_omrade_legend: 'Choose whatever fits',
         filterOption_passerFor_legend: 'Choose whatever fits',
         filterOption_type_legend: 'Choose whatever fits',
+        sort_label: 'Sorting',
       };
     case LanguageLocales.NORWEGIAN:
     default:
@@ -90,6 +91,7 @@ export const getResources = (language: LanguageLocales) => {
         filterOption_omrade_legend: 'Velg det som passer',
         filterOption_passerFor_legend: 'Velg det som passer',
         filterOption_type_legend: 'Velg det som passer',
+        sort_label: 'Sortering',
       };
   }
 };

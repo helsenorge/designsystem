@@ -1,0 +1,21 @@
+@import '../../../../scss/supernova/styles/spacers.css';
+
+.select {
+  select {
+    outline: none;
+    text-align: right;
+    color: var(--color-action-text-onlight);
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--core-space-4xs);
+  }
+
+  &__label {
+    margin-bottom: 0;
+  }
+}
