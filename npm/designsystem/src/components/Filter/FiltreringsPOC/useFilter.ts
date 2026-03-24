@@ -17,7 +17,7 @@ export interface UseFilterReturn<T extends FilterValues> {
   /** Replace all filters at once (useful for applying draft/delayed filters) */
   setFilters: (filters: Partial<T>) => void;
   /** Remove a filter entirely, or a specific value from an array filter */
-  removeFilter: (filterKey: keyof T | string, optionValue?: string) => void;
+  removeFilter: (filterKey: keyof T | string, optionValue?: unknown) => void;
   /** Reset filters to default values */
   resetFilters: () => void;
   /** Resets to empty filter */
@@ -28,12 +28,12 @@ export const useFilter = <T extends FilterValues>(options?: UseFilterOptions<T>)
   const [filters, setFiltersState] = useState<Partial<T>>(() => ({ ...options?.defaultValues }) as Partial<T>);
 
   // Fjern et filter helt, eller fjern en spesifikk verdi fra et array-filter.
-  const removeFilter = (filterKey: keyof T, optionValue?: string): void => {
+  const removeFilter = (filterKey: keyof T, optionValue?: unknown): void => {
     setFiltersState(prev => {
       const current = prev[filterKey];
       if (current === undefined) return prev;
-      if (optionValue && Array.isArray(current)) {
-        const updated = current.filter(v => String(v) !== optionValue);
+      if (optionValue !== undefined && Array.isArray(current)) {
+        const updated = current.filter(v => v !== optionValue);
         if (updated.length === 0) {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { [filterKey as string]: _removed, ...rest } = prev;
