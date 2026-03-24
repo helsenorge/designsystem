@@ -155,7 +155,7 @@ const FilterDrawerContent: React.FC<{
 );
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/Filter',
+  title: '@helsenorge/designsystem-react/Components/FilteringPOC',
   parameters: {
     docs: {
       description: {

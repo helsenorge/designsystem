@@ -1,0 +1,343 @@
+import { useState, type ReactNode } from 'react';
+
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
+
+import { LanguageLocales } from '../../constants';
+import Button from '../Button';
+import Checkbox from '../Checkbox';
+import Chip from '../Chip';
+import EmptyState from '../EmptyState';
+import FormGroup from '../FormGroup';
+import Input from '../Input';
+import Label from '../Label';
+import Panel from '../Panel';
+import PanelList from '../PanelList';
+import Tag from '../Tag';
+import TagList from '../TagList';
+import DrawerNavigation, { useDrawerNavigation } from './DrawerNavigation';
+import FilterLinkList from './FilterLinkList/FilterLinkList';
+import { getResources } from './FiltreringsPOC/resourcesMock';
+import { useFilter } from './FiltreringsPOC/useFilter';
+import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './FiltreringsPOC/utils';
+
+const meta = {
+  title: '@helsenorge/designsystem-react/Components/Filter/FilterMerge',
+  parameters: {
+    docs: {
+      description: {
+        component: 'Filter POC - demonstrerer bruk av useFilter hook og UI komponenter',
+      },
+      story: { inline: false, iframeHeight: '40rem' },
+    },
+  },
+  args: {},
+  argTypes: {},
+} satisfies Meta;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: () => {
+    enum FagomradeType {
+      PSYKISK_HELSE = 1,
+      SYKDOM_OG_SKADER = 2,
+      LIVSSTIL_OG_TRENING = 3,
+      TANKER_OG_FOLELSER = 4,
+      GRAVIDITET_OG_FODSEL = 5,
+      RAAD_OG_TIPS_I_HVERDAGEN = 6,
+    }
+
+    enum MalgruppeType {
+      Barn = 1,
+      Ungdom = 2,
+      Voksne = 3,
+      Eldre = 4,
+    }
+
+    enum VerktoyType {
+      App = 1,
+      Weblosning = 2,
+    }
+
+    type VerktoyFilterType = {
+      omrade: FagomradeType[];
+      passerFor: MalgruppeType[];
+      type: VerktoyType[];
+      fritekst: string;
+    };
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
+    const resources = getResources(language);
+
+    interface Verktoy {
+      navn: string;
+      omrade: FagomradeType[];
+      ingress?: string;
+      passerFor: MalgruppeType[];
+      type: VerktoyType;
+      lenke?: string;
+      lenkeTekst?: string;
+      logoSrc?: string;
+    }
+
+    const verktoyMockData: Verktoy[] = [
+      {
+        navn: resources.verktoydata_aa_name,
+        ingress: resources.verktoydata_aa_ingress,
+        omrade: [FagomradeType.SYKDOM_OG_SKADER],
+        passerFor: [MalgruppeType.Barn, MalgruppeType.Ungdom, MalgruppeType.Voksne, MalgruppeType.Eldre],
+        type: VerktoyType.Weblosning,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+      {
+        navn: resources.verktoydata_grubl_name,
+        ingress: resources.verktoydata_grubl_ingress,
+        omrade: [FagomradeType.LIVSSTIL_OG_TRENING, FagomradeType.TANKER_OG_FOLELSER, FagomradeType.PSYKISK_HELSE],
+        passerFor: [MalgruppeType.Ungdom, MalgruppeType.Voksne],
+        type: VerktoyType.App,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+      {
+        navn: resources.verktoydata_mm_name,
+        ingress: resources.verktoydata_mm_ingress,
+        omrade: [FagomradeType.PSYKISK_HELSE, FagomradeType.GRAVIDITET_OG_FODSEL],
+        passerFor: [MalgruppeType.Voksne],
+        type: VerktoyType.App,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+      {
+        navn: resources.verktoydata_hverdagshjelpen_name,
+        ingress: resources.verktoydata_hverdagshjelpen_ingress,
+        omrade: [FagomradeType.RAAD_OG_TIPS_I_HVERDAGEN, FagomradeType.LIVSSTIL_OG_TRENING],
+        passerFor: [MalgruppeType.Voksne, MalgruppeType.Eldre],
+        type: VerktoyType.Weblosning,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+      {
+        navn: resources.verktoydata_ungmestring_name,
+        ingress: resources.verktoydata_ungmestring_ingress,
+        omrade: [FagomradeType.PSYKISK_HELSE, FagomradeType.TANKER_OG_FOLELSER],
+        passerFor: [MalgruppeType.Ungdom],
+        type: VerktoyType.App,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+      {
+        navn: resources.verktoydata_bevegelsesglede_name,
+        ingress: resources.verktoydata_bevegelsesglede_ingress,
+        omrade: [FagomradeType.LIVSSTIL_OG_TRENING],
+        passerFor: [MalgruppeType.Barn, MalgruppeType.Ungdom],
+        type: VerktoyType.Weblosning,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+      {
+        navn: resources.verktoydata_tryggfodsel_name,
+        ingress: resources.verktoydata_tryggfodsel_ingress,
+        omrade: [FagomradeType.GRAVIDITET_OG_FODSEL, FagomradeType.RAAD_OG_TIPS_I_HVERDAGEN],
+        passerFor: [MalgruppeType.Voksne],
+        type: VerktoyType.App,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+      {
+        navn: resources.verktoydata_skadekompasset_name,
+        ingress: resources.verktoydata_skadekompasset_ingress,
+        omrade: [FagomradeType.SYKDOM_OG_SKADER, FagomradeType.RAAD_OG_TIPS_I_HVERDAGEN],
+        passerFor: [MalgruppeType.Barn, MalgruppeType.Ungdom, MalgruppeType.Voksne, MalgruppeType.Eldre],
+        type: VerktoyType.Weblosning,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+      {
+        navn: resources.verktoydata_seniorbalanse_name,
+        ingress: resources.verktoydata_seniorbalanse_ingress,
+        omrade: [FagomradeType.LIVSSTIL_OG_TRENING, FagomradeType.SYKDOM_OG_SKADER],
+        passerFor: [MalgruppeType.Eldre],
+        type: VerktoyType.App,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+      {
+        navn: resources.verktoydata_tankevenn_name,
+        ingress: resources.verktoydata_tankevenn_ingress,
+        omrade: [FagomradeType.TANKER_OG_FOLELSER, FagomradeType.PSYKISK_HELSE],
+        passerFor: [MalgruppeType.Voksne, MalgruppeType.Eldre],
+        type: VerktoyType.Weblosning,
+        logoSrc: 'https://placehold.co/48x48',
+      },
+    ];
+
+    const omradeOptions = [
+      { value: FagomradeType.PSYKISK_HELSE, label: resources.omradeOptions_psykiskhelse },
+      { value: FagomradeType.GRAVIDITET_OG_FODSEL, label: resources.omradeOptions_graviditet },
+      { value: FagomradeType.LIVSSTIL_OG_TRENING, label: resources.omradeOptions_livsstil },
+      { value: FagomradeType.SYKDOM_OG_SKADER, label: resources.omradeOptions_sykdom },
+      { value: FagomradeType.RAAD_OG_TIPS_I_HVERDAGEN, label: resources.omradeOptions_rad },
+      { value: FagomradeType.TANKER_OG_FOLELSER, label: resources.omradeOptions_tanker },
+    ];
+
+    const passerForOptions = [
+      { value: MalgruppeType.Barn, text: resources.passerForOptions_barn },
+      { value: MalgruppeType.Ungdom, text: resources.passerForOptions_ungdom },
+      { value: MalgruppeType.Voksne, text: resources.passerForOptions_voksne },
+      { value: MalgruppeType.Eldre, text: resources.passerForOptions_eldre },
+    ];
+
+    const typeOptions = [
+      { value: VerktoyType.App, label: resources.typeOptions_app },
+      { value: VerktoyType.Weblosning, label: resources.typeOptions_web },
+    ];
+
+    const { filterOptions, getLabel } = createFilterConfig<VerktoyFilterType>({
+      omrade: { options: omradeOptions, defaultValue: [FagomradeType.PSYKISK_HELSE], getLabel: o => o.label },
+      passerFor: { options: passerForOptions, getLabel: o => o.text },
+      type: { options: typeOptions, getLabel: o => o.label },
+    });
+
+    const filter = useFilter<VerktoyFilterType>(filterOptions);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
+    const filterMatchers: FilterMatchers<Verktoy, VerktoyFilterType> = {
+      omrade: matchFilter.arrayIncludes<Verktoy>(m => m.omrade),
+      passerFor: matchFilter.arrayIncludes<Verktoy>(m => m.passerFor),
+      type: matchFilter.exactMatch<Verktoy>(m => m.type),
+      fritekst: matchFilter.textSearch<Verktoy>(
+        v => v.navn,
+        v => v.ingress
+      ),
+    };
+
+    const filtered = filterItems(verktoyMockData, filter.filters, filterMatchers);
+
+    const verktoyFilterLabels: Record<keyof VerktoyFilterType, string> = {
+      omrade: resources.filterOptionTitles_omrade,
+      passerFor: resources.filterOptionTitles_passerfor,
+      type: resources.filterOptionTitles_type,
+      fritekst: 'Fritekstsøk',
+    };
+
+    type FilterViews = 'overview' | 'helseområde' | 'passerfor' | 'type';
+
+    const FilterLinkListComp = (): ReactNode => {
+      const { goToView } = useDrawerNavigation<FilterViews>();
+      const omradeChips = (filter.filters.omrade ?? []).map(v => getLabel('omrade', v));
+      const passerforChips = (filter.filters.passerFor ?? []).map(v => getLabel('passerFor', v));
+      const typeChips = (filter.filters.type ?? []).map(v => getLabel('type', v));
+      return (
+        <FilterLinkList>
+          <FilterLinkList.Link title={verktoyFilterLabels.omrade} chips={omradeChips} onClick={() => goToView('helseområde')} />
+          <FilterLinkList.Link title={verktoyFilterLabels.passerFor} chips={passerforChips} onClick={() => goToView('passerfor')} />
+          <FilterLinkList.Link title={verktoyFilterLabels.type} chips={typeChips} onClick={() => goToView('type')} />
+        </FilterLinkList>
+      );
+    };
+
+    const footerButtons = (
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+        <Button onClick={() => filter.resetFiltersToEmpty()} variant="borderless">
+          {'Nullstill filter'}
+        </Button>
+        <Button onClick={() => setDrawerOpen(false)}>{`Vis ${filtered.length} treff`}</Button>
+      </div>
+    );
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <div style={{ marginBottom: '1rem' }}>
+          <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>{'Bokmål'}</Button>
+          <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
+        </div>
+        <div>
+          <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
+          <span style={{ display: 'inline-block', width: '1rem' }} />
+          <TagList>
+            {Object.entries(filter.filters).flatMap(([key, raw]) => {
+              const values = [raw ?? []].flat();
+              return values.map(v => (
+                <Chip key={`${key}-${v}`} action="remove" onClick={() => filter.removeFilter(key, v)}>
+                  {getLabel(key as keyof VerktoyFilterType, v)}
+                </Chip>
+              ));
+            })}
+          </TagList>
+        </div>
+        <div style={{ marginTop: '1rem' }}>
+          <span>{`${filtered.length} verktøy`}</span>
+        </div>
+        <DrawerNavigation isOpen={drawerOpen} onCloseButton={() => setDrawerOpen(false)} footer={footerButtons}>
+          <DrawerNavigation.View<FilterViews> id="overview" title={'Filter'} home>
+            <div>
+              <FilterLinkListComp />
+              <Input
+                value={(filter.filters.fritekst as string) ?? ''}
+                onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
+                label={<Label labelTexts={[{ text: 'Søk i listen' }]} />}
+              />
+            </div>
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<FilterViews> id="helseområde" title={verktoyFilterLabels.omrade}>
+            <div>
+              <FormGroup legend={resources.filterOption_omrade_legend}>
+                {omradeOptions.map(opt => (
+                  <Checkbox
+                    key={opt.value}
+                    label={opt.label}
+                    checked={(filter.filters.omrade ?? []).includes(opt.value)}
+                    onChange={(): void => toggleArrayFilter(filter, 'omrade', opt.value)}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<FilterViews> id="passerfor" title={verktoyFilterLabels.passerFor}>
+            <div>
+              <FormGroup legend={resources.filterOption_passerFor_legend}>
+                {passerForOptions.map(opt => (
+                  <Checkbox
+                    key={opt.value}
+                    label={opt.text}
+                    checked={(filter.filters.passerFor ?? []).includes(opt.value)}
+                    onChange={(): void => toggleArrayFilter(filter, 'passerFor', opt.value)}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<FilterViews> id="type" title={verktoyFilterLabels.type}>
+            <div>
+              <FormGroup legend={resources.filterOption_type_legend}>
+                {typeOptions.map(opt => (
+                  <Checkbox
+                    key={opt.value}
+                    label={opt.label}
+                    checked={(filter.filters.type ?? []).includes(opt.value)}
+                    onChange={(): void => toggleArrayFilter(filter, 'type', opt.value)}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          </DrawerNavigation.View>
+        </DrawerNavigation>
+        {filtered.length > 0 ? (
+          <PanelList>
+            {filtered.map(verktoy => (
+              <Panel>
+                <Panel.Title title={verktoy.navn} icon={<img src={verktoy.logoSrc} alt="logo" />} />
+                <Panel.A>
+                  <TagList>
+                    {verktoy.omrade.map(o => (
+                      <Tag key={o}>{getLabel('omrade', o)}</Tag>
+                    ))}
+                  </TagList>
+                </Panel.A>
+                <Panel.B>
+                  <span>{verktoy.ingress}</span>
+                </Panel.B>
+              </Panel>
+            ))}
+          </PanelList>
+        ) : (
+          <EmptyState title={'Ingen verktøy som matcher filtrering funnet'} />
+        )}
+      </LanguageProvider>
+    );
+  },
+};
