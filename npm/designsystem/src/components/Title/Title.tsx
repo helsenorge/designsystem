@@ -20,6 +20,8 @@ export interface TitleProps {
   htmlMarkup?: TitleTags;
   /** Changes the appearance of the title. */
   appearance?: TitleAppearances;
+  /** Sets the tabIndex. Use this with caution. */
+  tabIndex?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Ref passed to the heading element */
@@ -27,7 +29,7 @@ export interface TitleProps {
 }
 
 export const Title: React.FC<TitleProps> = (props: TitleProps) => {
-  const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0, testId, ref } = props;
+  const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0, tabIndex, testId, ref } = props;
   const titleClasses = classNames(
     titleStyles.title,
     {
@@ -48,7 +50,15 @@ export const Title: React.FC<TitleProps> = (props: TitleProps) => {
     : { marginTop: `${margin}rem`, marginBottom: `${margin}rem` };
 
   return (
-    <CustomTag id={id} className={titleClasses} style={inlineStyle} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Title}>
+    <CustomTag
+      id={id}
+      className={titleClasses}
+      style={inlineStyle}
+      ref={ref}
+      data-testid={testId}
+      data-analyticsid={AnalyticsId.Title}
+      tabIndex={tabIndex}
+    >
       {children}
     </CustomTag>
   );
