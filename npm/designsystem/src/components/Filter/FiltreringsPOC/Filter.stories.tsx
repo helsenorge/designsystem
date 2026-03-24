@@ -1,29 +1,28 @@
 import { useState } from 'react';
 
-import type { UseFilterReturn } from './useFilter';
 import type { FilterMatchers, FilterOption } from './utils';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import { LanguageLocales } from '../../constants';
-import Button from '../Button';
-import Checkbox from '../Checkbox';
-import Chip from '../Chip';
-import Drawer from '../Drawer';
-import RadioButton from '../RadioButton';
-import Spacer from '../Spacer';
-import TagList from '../TagList';
 import FilterResult from './FilterResult';
-import { useFilter } from './useFilter';
-import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter } from './utils';
-import EmptyState from '../EmptyState';
-import Input from '../Input';
-import Label from '../Label';
-import Panel from '../Panel';
-import Tag from '../Tag';
-import Title from '../Title';
 import { getResources } from './resourcesMock';
-import LanguageProvider from '../../utils/language';
-import PanelList from '../PanelList';
+import { useFilter, type UseFilterReturn } from './useFilter';
+import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter } from './utils';
+import { LanguageLocales } from '../../../constants';
+import LanguageProvider from '../../../utils/language';
+import Button from '../../Button';
+import Checkbox from '../../Checkbox';
+import Chip from '../../Chip';
+import Drawer from '../../Drawer';
+import EmptyState from '../../EmptyState';
+import Input from '../../Input';
+import Label from '../../Label';
+import Panel from '../../Panel';
+import PanelList from '../../PanelList';
+import RadioButton from '../../RadioButton';
+import Spacer from '../../Spacer';
+import Tag from '../../Tag';
+import TagList from '../../TagList';
+import Title from '../../Title';
 
 type ExampleFilterType = {
   sykehus: string[];
