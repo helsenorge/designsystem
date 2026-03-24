@@ -16,6 +16,7 @@ import PanelList from '../PanelList';
 import Tag from '../Tag';
 import TagList from '../TagList';
 import DrawerNavigation, { useDrawerNavigation } from './DrawerNavigation';
+import FilterButton from './FilterButton/FilterButton';
 import FilterLinkList from './FilterLinkList/FilterLinkList';
 import FilterResultTopBar from './FilterResultTopBar/FilterResultTopBar';
 import FilterSort from './FilterSort/FilterSort';
@@ -247,7 +248,7 @@ export const Default: Story = {
           <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
         </div>
         <div>
-          <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
+          <FilterButton onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</FilterButton>
           <span style={{ display: 'inline-block', width: '1rem' }} />
           <TagList>
             {Object.entries(filter.filters).flatMap(([key, raw]) => {

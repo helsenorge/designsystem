@@ -1,0 +1,13 @@
+@import '../../../../scss/supernova/styles/spacers.css';
+
+.filter-button {
+  &__wrapper {
+    color: red;
+  }
+
+  &__inner {
+    color: blue;
+    border-radius: 100px;
+    height: 2rem;
+  }
+}
