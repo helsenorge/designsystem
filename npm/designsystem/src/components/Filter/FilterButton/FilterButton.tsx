@@ -1,15 +1,17 @@
-import type { ButtonProps } from '../../Button';
+import { useRef } from 'react';
 
-import { LanguageLocales } from '../../../constants';
+import classNames from 'classnames';
+
+import { IconSize, LanguageLocales } from '../../../constants';
 import { useLanguage } from '../../../hooks/useLanguage';
-import Button from '../../Button';
+import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
 import Icon from '../../Icon';
 import Filter from '../../Icons/Filter';
 import { getResources } from '../resourcesMock';
 
 import styles from './styles.module.scss';
 
-export interface FilterButtonProps extends ButtonProps {
+export interface FilterButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Texts if overriding SOT */
   resources?: Partial<unknown>;
 }
@@ -25,11 +27,20 @@ const FilterButton: React.FC<FilterButtonProps> = props => {
     ...resources,
   };
 
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const { isHovered } = usePseudoClasses(buttonRef);
+
   return (
-    <Button {...props} variant="fill" className={styles['filter-button__inner']} wrapperClassName={styles['filter-button__wrapper']}>
-      <Icon svgIcon={Filter} />
-      {mergedResources.filterbutton_text}
-    </Button>
+    <button {...props} className={styles['filter-button']} ref={buttonRef}>
+      <div
+        className={classNames(styles['filter-button__inner'], {
+          [styles['filter-button__inner--hovered']]: isHovered,
+        })}
+      >
+        <Icon svgIcon={Filter} isHovered={isHovered} size={IconSize.XSmall} className={styles['filter-button__icon']} />
+        <span className={styles['filter-button__text']}>{mergedResources.filterbutton_text}</span>
+      </div>
+    </button>
   );
 };
 

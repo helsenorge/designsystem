@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from 'react';
 
+import { action } from 'storybook/actions';
+
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { LanguageLocales } from '../../constants';
@@ -363,7 +365,7 @@ export const FilterSortComponent: Story = {
   ),
 };
 
-export const FilterSearchComponent: Story = {
+export const FilterButtonComponent: Story = {
   render: () => {
     const [searchValue, setSearchValue] = useState<string>('');
 
@@ -382,5 +384,11 @@ export const FilterSearchComponent: Story = {
         }}
       />
     );
+  },
+};
+
+export const FilterSearchComponent: Story = {
+  render: () => {
+    return <FilterButton onClick={() => action('Clicked')} />;
   },
 };
