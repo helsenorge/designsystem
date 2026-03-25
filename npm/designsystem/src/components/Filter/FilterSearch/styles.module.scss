@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use '../../../scss/breakpoints' as breakpoints;
 @use '../../../scss/screen-reader' as sr;
-@import '../../../../scss/supernova/styles/spacers.css';
+@import '../../../scss/supernova/styles/spacers.css';
 
 .filter-search {
   &__wrapper {
