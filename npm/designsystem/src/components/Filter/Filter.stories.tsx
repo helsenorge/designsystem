@@ -248,13 +248,13 @@ export const Default: Story = {
           <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>{'Bokmål'}</Button>
           <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
         </div>
-        <div style={{ display: 'flex', flexFlow: 'row wrap', gap: '8px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexFlow: 'row wrap', columnGap: '8px', alignItems: 'center' }}>
           <FilterButton onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</FilterButton>
 
           {Object.entries(filter.filters).flatMap(([key, raw]) => {
             const values = [raw ?? []].flat();
             return values.map(v => (
-              <Chip key={`${key}-${v}`} action="remove" onClick={() => filter.removeFilter(key, v)}>
+              <Chip key={`${key}-${v}`} onCloseClick={() => filter.removeFilter(key, v)}>
                 {getLabel(key as keyof VerktoyFilterType, v)}
               </Chip>
             ));
