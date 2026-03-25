@@ -49,6 +49,7 @@ export const getResources = (language: LanguageLocales) => {
         filterbutton_text: 'Find ...',
         filtersearch_placeholder: 'Search in list',
         filtersearch_button_arialabel: 'Search',
+        filtersearch_clearButton_arialabel: 'Clear input',
       };
     case LanguageLocales.NORWEGIAN:
     default:
@@ -98,6 +99,7 @@ export const getResources = (language: LanguageLocales) => {
         filterbutton_text: 'Finn ...',
         filtersearch_placeholder: 'Søk i listen',
         filtersearch_button_arialabel: 'Søk',
+        filtersearch_clearButton_arialabel: 'Nullstill',
       };
   }
 };
