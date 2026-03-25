@@ -11,8 +11,6 @@ import Checkbox from '../Checkbox';
 import Chip from '../Chip';
 import EmptyState from '../EmptyState';
 import FormGroup from '../FormGroup';
-import Input from '../Input';
-import Label from '../Label';
 import Panel from '../Panel';
 import PanelList from '../PanelList';
 import Tag from '../Tag';
@@ -279,10 +277,9 @@ export const Default: Story = {
           <DrawerNavigation.View<FilterViews> id="overview" title={'Finn ...'} home>
             <div>
               <FilterLinkListComp />
-              <Input
+              <FilterSearch
                 value={(filter.filters.fritekst as string) ?? ''}
                 onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
-                label={<Label labelTexts={[{ text: 'Søk i listen' }]} />}
               />
             </div>
           </DrawerNavigation.View>

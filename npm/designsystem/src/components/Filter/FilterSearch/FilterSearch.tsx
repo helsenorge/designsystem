@@ -17,6 +17,8 @@ import styles from './styles.module.scss';
 export interface FilterSearchProps {
   /** The value given by the user in the input field */
   value: string | undefined;
+  /** onChange handler for the input field */
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   /** Props for the input field */
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   /** Props for the search button */
@@ -28,7 +30,7 @@ export interface FilterSearchProps {
 }
 
 const FilterSearch: React.FC<FilterSearchProps> = props => {
-  const { value, resources, inputProps, buttonProps, clearButtonProps } = props;
+  const { value, onChange, resources, inputProps, buttonProps, clearButtonProps } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
   const inputWrapperRef = useRef<HTMLLabelElement>(null);
@@ -60,6 +62,7 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
           {...inputProps}
           ref={inputRef}
           value={value}
+          onChange={onChange}
           className={classNames(styles['filter-search__input'], inputProps?.className, {
             [styles['filter-search__input--hovered']]: isWrapperHovered,
           })}
