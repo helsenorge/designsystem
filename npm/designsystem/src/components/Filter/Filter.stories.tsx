@@ -365,7 +365,7 @@ export const FilterSortComponent: Story = {
   ),
 };
 
-export const FilterButtonComponent: Story = {
+export const FilterSearchComponent: Story = {
   render: () => {
     const [searchValue, setSearchValue] = useState<string>('');
 
@@ -387,7 +387,7 @@ export const FilterButtonComponent: Story = {
   },
 };
 
-export const FilterSearchComponent: Story = {
+export const FilterButtonComponent: Story = {
   render: () => {
     return <FilterButton onClick={() => action('Clicked')} />;
   },

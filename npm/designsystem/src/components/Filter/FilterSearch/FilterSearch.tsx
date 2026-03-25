@@ -2,6 +2,8 @@ import { useRef } from 'react';
 
 import classNames from 'classnames';
 
+import { useIsMobileBreakpoint } from '@helsenorge/designsystem-react/hooks/useIsMobileBreakpoint';
+
 import { IconSize, LanguageLocales } from '../../../constants';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
@@ -28,12 +30,15 @@ export interface FilterSearchProps {
 const FilterSearch: React.FC<FilterSearchProps> = props => {
   const { value, resources, inputProps, buttonProps, clearButtonProps } = props;
 
+  const inputRef = useRef<HTMLInputElement>(null);
   const inputWrapperRef = useRef<HTMLLabelElement>(null);
   const { isHovered: isWrapperHovered } = usePseudoClasses(inputWrapperRef);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { isHovered: isButtonHovered, isActive: isButtonActive, isFocused: isButtonFocused } = usePseudoClasses(buttonRef);
   const clearButtonRef = useRef<HTMLButtonElement>(null);
   const { isHovered: isClearButtonHovered } = usePseudoClasses(clearButtonRef);
+
+  const isMobile = useIsMobileBreakpoint();
 
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
@@ -53,6 +58,7 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
         </span>
         <input
           {...inputProps}
+          ref={inputRef}
           value={value}
           className={classNames(styles['filter-search__input'], inputProps?.className, {
             [styles['filter-search__input--hovered']]: isWrapperHovered,
@@ -65,10 +71,14 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
           type="button"
           aria-label={mergedResources.filtersearch_clearButton_arialabel}
           {...clearButtonProps}
+          onClick={e => {
+            clearButtonProps?.onClick?.(e);
+            inputRef.current?.focus();
+          }}
           ref={clearButtonRef}
           className={classNames(styles['filter-search__clear-button'], clearButtonProps?.className)}
         >
-          <Icon svgIcon={X} size={IconSize.XXSmall} isHovered={isClearButtonHovered} />
+          <Icon svgIcon={X} size={IconSize.XXSmall} isHovered={!isMobile && isClearButtonHovered} />
         </button>
       )}
       <button
