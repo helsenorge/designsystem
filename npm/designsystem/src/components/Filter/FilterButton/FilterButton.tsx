@@ -37,7 +37,7 @@ const FilterButton: React.FC<FilterButtonProps> = props => {
           [styles['filter-button__inner--hovered']]: isHovered,
         })}
       >
-        <Icon svgIcon={Filter} isHovered={isHovered} size={IconSize.XSmall} className={styles['filter-button__icon']} />
+        <Icon svgIcon={Filter} isHovered={isHovered} size={IconSize.XSmall} />
         <span className={styles['filter-button__text']}>{mergedResources.filterbutton_text}</span>
       </div>
     </button>
