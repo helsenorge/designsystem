@@ -1,3 +1,5 @@
+@use 'sass:map';
+@use '../../../scss/breakpoints' as breakpoints;
 @import '../../../scss/supernova/styles/spacers.css';
 
 .select {
@@ -5,6 +7,12 @@
     outline: none;
     text-align: right;
     color: var(--color-action-text-onlight);
+    padding-right: 3rem;
+    height: 2.75rem;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      height: 3rem;
+    }
   }
 
   &__wrapper {

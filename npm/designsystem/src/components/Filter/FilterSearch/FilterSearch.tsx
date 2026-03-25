@@ -98,7 +98,7 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
             [styles['filter-search__search-button--inner--focused']]: isButtonFocused,
           })}
         >
-          <Icon svgIcon={Search} size={IconSize.XSmall} isHovered={isButtonHovered} />
+          <Icon svgIcon={Search} size={isMobile ? IconSize.XXSmall : IconSize.XSmall} isHovered={isButtonHovered} />
         </div>
       </button>
     </div>
