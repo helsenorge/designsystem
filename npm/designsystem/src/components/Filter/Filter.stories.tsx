@@ -197,6 +197,12 @@ export const Default: Story = {
 
     const filter = useFilter<VerktoyFilterType>(filterOptions);
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [drawerInitialView, setDrawerInitialView] = useState<FilterViews | undefined>(undefined);
+
+    const openDrawer = (view?: FilterViews): void => {
+      setDrawerInitialView(view);
+      setDrawerOpen(true);
+    };
 
     const filterMatchers: FilterMatchers<Verktoy, VerktoyFilterType> = {
       omrade: matchFilter.arrayIncludes<Verktoy>(m => m.omrade),
@@ -217,7 +223,7 @@ export const Default: Story = {
       fritekst: 'Fritekstsøk',
     };
 
-    type FilterViews = 'overview' | 'helseområde' | 'passerfor' | 'type';
+    type FilterViews = 'overview' | 'omrade' | 'passerFor' | 'type';
 
     const FilterLinkListComp = (): ReactNode => {
       const { goToView } = useDrawerNavigation<FilterViews>();
@@ -226,8 +232,8 @@ export const Default: Story = {
       const typeChips = (filter.filters.type ?? []).map(v => getLabel('type', v));
       return (
         <FilterLinkList>
-          <FilterLinkList.Link title={verktoyFilterLabels.omrade} chips={omradeChips} onClick={() => goToView('helseområde')} />
-          <FilterLinkList.Link title={verktoyFilterLabels.passerFor} chips={passerforChips} onClick={() => goToView('passerfor')} />
+          <FilterLinkList.Link title={verktoyFilterLabels.omrade} chips={omradeChips} onClick={() => goToView('omrade')} />
+          <FilterLinkList.Link title={verktoyFilterLabels.passerFor} chips={passerforChips} onClick={() => goToView('passerFor')} />
           <FilterLinkList.Link title={verktoyFilterLabels.type} chips={typeChips} onClick={() => goToView('type')} />
         </FilterLinkList>
       );
@@ -249,12 +255,19 @@ export const Default: Story = {
           <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
         </div>
         <div style={{ display: 'flex', flexFlow: 'row wrap', columnGap: '8px', alignItems: 'center' }}>
-          <FilterButton onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</FilterButton>
+          <FilterButton onClick={() => openDrawer()}>{'Åpne filter'}</FilterButton>
 
           {Object.entries(filter.filters).flatMap(([key, raw]) => {
             const values = [raw ?? []].flat();
             return values.map(v => (
-              <Chip key={`${key}-${v}`} onCloseClick={() => filter.removeFilter(key, v)}>
+              <Chip
+                onChipClick={() => {
+                  openDrawer(key as FilterViews);
+                  console.log('key: ', key);
+                }}
+                key={`${key}-${v}`}
+                onCloseClick={() => filter.removeFilter(key, v)}
+              >
                 {getLabel(key as keyof VerktoyFilterType, v)}
               </Chip>
             ));
@@ -271,7 +284,12 @@ export const Default: Story = {
           }
         />
 
-        <DrawerNavigation isOpen={drawerOpen} onCloseButton={() => setDrawerOpen(false)} footer={footerButtons}>
+        <DrawerNavigation
+          isOpen={drawerOpen}
+          initialView={drawerInitialView}
+          onCloseButton={() => setDrawerOpen(false)}
+          footer={footerButtons}
+        >
           <DrawerNavigation.View<FilterViews> id="overview" title={'Finn ...'} home>
             <div>
               <FilterLinkListComp />
@@ -281,7 +299,7 @@ export const Default: Story = {
               />
             </div>
           </DrawerNavigation.View>
-          <DrawerNavigation.View<FilterViews> id="helseområde" title={verktoyFilterLabels.omrade}>
+          <DrawerNavigation.View<FilterViews> id="omrade" title={verktoyFilterLabels.omrade}>
             <div>
               <FormGroup legend={resources.filterOption_omrade_legend}>
                 {omradeOptions.map(opt => (
@@ -295,7 +313,7 @@ export const Default: Story = {
               </FormGroup>
             </div>
           </DrawerNavigation.View>
-          <DrawerNavigation.View<FilterViews> id="passerfor" title={verktoyFilterLabels.passerFor}>
+          <DrawerNavigation.View<FilterViews> id="passerFor" title={verktoyFilterLabels.passerFor}>
             <div>
               <FormGroup legend={resources.filterOption_passerFor_legend}>
                 {passerForOptions.map(opt => (

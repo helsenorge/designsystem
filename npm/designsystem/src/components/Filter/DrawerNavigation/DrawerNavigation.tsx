@@ -30,6 +30,8 @@ export interface DrawerNavigationProps {
   children: React.ReactNode;
   /** Is drawer open or closed */
   isOpen: boolean;
+  /** Navigate to this view when the drawer opens. Defaults to home view. */
+  initialView?: string;
   /** Default onClose callback for drawer. View onCloseButton callback will override this. */
   onCloseButton?: () => void;
   /** Content sent to footer section of Drawer. View footer will override this */
@@ -57,7 +59,7 @@ function parseChildren(children: React.ReactNode): { views: DrawerViewProps[]; o
   return { views, other };
 }
 
-function DrawerNavigation({ children, isOpen, onCloseButton, footer }: DrawerNavigationProps): React.ReactNode {
+function DrawerNavigation({ children, isOpen, initialView, onCloseButton, footer }: DrawerNavigationProps): React.ReactNode {
   const { views, other } = useMemo(() => parseChildren(children), [children]);
 
   const homeView = views.find(v => v.home) ?? views[0];
@@ -95,6 +97,8 @@ function DrawerNavigation({ children, isOpen, onCloseButton, footer }: DrawerNav
     setPrevIsOpen(isOpen);
     if (!isOpen) {
       setViewStack([homeView?.id]);
+    } else if (initialView && views.some(v => v.id === initialView)) {
+      setViewStack(initialView === homeView?.id ? [homeView.id] : [homeView?.id, initialView]);
     }
   }
 
