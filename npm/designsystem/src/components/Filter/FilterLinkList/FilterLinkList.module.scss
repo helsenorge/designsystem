@@ -52,4 +52,24 @@
       gap: 0.625rem;
     }
   }
+
+  &__chip-list {
+    display: flex;
+    flex-flow: row wrap;
+    column-gap: 0.5rem;
+  }
+
+  &__chip {
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
+    background-color: var(--core-color-blueberry-50);
+    border: 1px solid var(--core-color-blueberry-500);
+    border-radius: 100px;
+    padding: 0.4688rem 0.75rem;
+    color: var(--core-color-blueberry-800);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-wrap: none;
+  }
 }

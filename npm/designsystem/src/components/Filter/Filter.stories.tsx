@@ -293,10 +293,12 @@ export const Default: Story = {
           <DrawerNavigation.View<FilterViews> id="overview" title={'Finn ...'} home>
             <div>
               <FilterLinkListComp />
-              <FilterSearch
-                value={(filter.filters.fritekst as string) ?? ''}
-                onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
-              />
+              {/* <div style={{ padding: '1rem' }}>
+                <FilterSearch
+                  value={(filter.filters.fritekst as string) ?? ''}
+                  onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
+                />
+              </div> */}
             </div>
           </DrawerNavigation.View>
           <DrawerNavigation.View<FilterViews> id="omrade" title={verktoyFilterLabels.omrade}>
