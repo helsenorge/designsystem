@@ -60,6 +60,7 @@
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         padding-top: 0.25rem;
+        font-size: 1rem;
       }
 
       &--without-close {
