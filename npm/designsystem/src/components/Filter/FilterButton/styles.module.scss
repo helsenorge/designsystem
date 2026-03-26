@@ -4,6 +4,7 @@
 
 .filter-button {
   height: 2.75rem;
+  padding: 0;
   background-color: transparent;
   border: none;
   outline: none;
@@ -14,20 +15,11 @@
     padding-right: 4px;
   }
 
-  &:focus-visible {
-    outline: 4px solid var(--color-action-border-onlight-focus);
-    outline-offset: -5px;
-
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      outline-offset: -3px;
-    }
-  }
-
   &__inner {
     border-radius: 100px;
     height: 2rem;
     background-color: var(--color-action-graphics-onlight);
-    border: none;
+    border: 1px solid transparent;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -48,7 +40,8 @@
     }
 
     .filter-button:focus-visible & {
-      outline: 1px solid var(--color-action-border-ondark-focus);
+      outline: 4px solid var(--color-action-border-onlight-focus);
+      border-color: var(--color-action-border-ondark-focus);
     }
 
     svg {
