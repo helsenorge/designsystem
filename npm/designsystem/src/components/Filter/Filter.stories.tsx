@@ -387,9 +387,9 @@ export const FilterSearchComponent: Story = {
     return (
       <FilterSearch
         value={searchValue}
+        onChange={e => setSearchValue((e.target as HTMLInputElement).value)}
         inputProps={{
           name: 'search',
-          onChange: e => setSearchValue((e.target as HTMLInputElement).value),
         }}
         buttonProps={{
           onClick: () => alert(`Søker etter: ${searchValue}`),
