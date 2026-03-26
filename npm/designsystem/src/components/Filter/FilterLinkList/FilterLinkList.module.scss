@@ -63,9 +63,9 @@
 
   &__chip {
     box-sizing: border-box;
-    height: 1.5rem;
-    margin-top: 0.625rem;
-    margin-bottom: 0.625rem;
+    height: 1.625rem;
+    margin-top: 0.5625rem;
+    margin-bottom: 0.5625rem;
     background-color: var(--core-color-blueberry-50);
     border: 1px solid var(--core-color-blueberry-500);
     color: var(--core-color-blueberry-800);
@@ -80,10 +80,10 @@
     padding-right: 0.75rem;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      height: 1.75rem;
+      height: 1.875rem;
       padding-top: 0.25rem;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
+      margin-top: 0.4375rem;
+      margin-bottom: 0.4375rem;
     }
   }
 }
