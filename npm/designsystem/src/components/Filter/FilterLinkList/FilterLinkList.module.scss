@@ -1,3 +1,5 @@
+@use 'sass:map';
+@use '../../../scss/breakpoints' as breakpoints;
 @import '../../../scss/supernova/styles/colors.css';
 
 .link-list {
@@ -60,16 +62,26 @@
   }
 
   &__chip {
+    box-sizing: border-box;
+    height: 1.5rem;
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
     background-color: var(--core-color-blueberry-50);
     border: 1px solid var(--core-color-blueberry-500);
-    border-radius: 100px;
-    padding: 0.4688rem 0.75rem;
     color: var(--core-color-blueberry-800);
+    border-radius: 100px;
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
     text-wrap: none;
+    line-height: 1.25rem;
+    padding-top: 0.1875rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      height: 1.75rem;
+      padding-top: 0.25rem;
+    }
   }
 }
