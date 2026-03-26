@@ -10,11 +10,6 @@
   outline: none;
   border-radius: 100px;
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-    padding-left: 4px;
-    padding-right: 4px;
-  }
-
   &__inner {
     border-radius: 100px;
     height: 2rem;
