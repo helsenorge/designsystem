@@ -82,6 +82,8 @@
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       height: 1.75rem;
       padding-top: 0.25rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
     }
   }
 }
