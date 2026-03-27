@@ -269,7 +269,6 @@ export const VerktoyExample: Story = {
               <Chip
                 onChipClick={() => {
                   openDrawer(key as FilterViews);
-                  console.log('key: ', key);
                 }}
                 key={`${key}-${v}`}
                 onCloseClick={() => filter.removeFilter(key, v)}
@@ -461,6 +460,180 @@ export const DokumenterExample: Story = {
         innholdstype: [InnholdType.egenkartlegging],
         kommerFra: [KontekstType.skjemautfyller],
       },
+      {
+        navn: 'Epikrise kirurgisk avdeling',
+        beskrivelse: 'Haukeland, 20.03.2026',
+        innholdstype: [InnholdType.epikriseSammenfatning],
+        kommerFra: [KontekstType.pasientjournal],
+      },
+      {
+        navn: 'Blodprøvesvar mars 2026',
+        beskrivelse: 'Laboratoriet, 18.03.2026',
+        innholdstype: [InnholdType.provesvar],
+        kommerFra: [KontekstType.provesvar],
+      },
+      {
+        navn: 'Journalnotat fastlege',
+        beskrivelse: 'Dr. Hansen, 15.03.2026',
+        innholdstype: [InnholdType.notat],
+        kommerFra: [KontekstType.pasientjournal],
+      },
+      {
+        navn: 'Brev fra spesialist',
+        beskrivelse: 'Rikshospitalet, 12.03.2026',
+        innholdstype: [InnholdType.brevOgKorrespondanse],
+        kommerFra: [KontekstType.pasientjournal],
+      },
+      {
+        navn: 'Vaksinebevis COVID-19',
+        beskrivelse: 'FHI, 10.03.2026',
+        innholdstype: [InnholdType.vaksinebevis],
+        kommerFra: [KontekstType.helseregistre],
+      },
+      {
+        navn: 'Innsynsrapport kjernejournal',
+        beskrivelse: 'Kjernejournal, 08.03.2026',
+        innholdstype: [InnholdType.innsynsrapport],
+        kommerFra: [KontekstType.helseregistre],
+      },
+      {
+        navn: 'Enkeltvedtak om egenandel',
+        beskrivelse: 'Helfo, 05.03.2026',
+        innholdstype: [InnholdType.enkeltvedtak],
+        kommerFra: [KontekstType.fastlegetjenester],
+      },
+      {
+        navn: 'Sammenfatning poliklinikk',
+        beskrivelse: 'St. Olavs, 01.03.2026',
+        innholdstype: [InnholdType.epikriseSammenfatning],
+        kommerFra: [KontekstType.pasientjournal],
+      },
+      {
+        navn: 'Journalsammendrag 2025',
+        beskrivelse: 'Fastlege, 28.02.2026',
+        innholdstype: [InnholdType.journalsammendrag],
+        kommerFra: [KontekstType.pasientjournal],
+      },
+      {
+        navn: 'Svar på henvendelse',
+        beskrivelse: 'Helsenorge, 25.02.2026',
+        innholdstype: [InnholdType.brevOgKorrespondanse],
+        kommerFra: [KontekstType.henvendelse],
+      },
+      {
+        navn: 'Urinprøvesvar',
+        beskrivelse: 'Laboratoriet, 22.02.2026',
+        innholdstype: [InnholdType.provesvar],
+        kommerFra: [KontekstType.provesvar],
+      },
+      {
+        navn: 'Smertekartlegging',
+        beskrivelse: 'Skjemautfyller, 20.02.2026',
+        innholdstype: [InnholdType.egenkartlegging],
+        kommerFra: [KontekstType.skjemautfyller],
+      },
+      {
+        navn: 'Notat fysioterapeut',
+        beskrivelse: 'Fysioterapi AS, 18.02.2026',
+        innholdstype: [InnholdType.notat],
+        kommerFra: [KontekstType.pasientjournal],
+      },
+      {
+        navn: 'Reiseregning godkjent',
+        beskrivelse: 'Pasientreiser, 15.02.2026',
+        innholdstype: [InnholdType.enkeltvedtak],
+        kommerFra: [KontekstType.pasientreiser],
+      },
+      {
+        navn: 'Behandlingsplan diabetes',
+        beskrivelse: 'Fastlege, 12.02.2026',
+        innholdstype: [InnholdType.notat],
+        kommerFra: [KontekstType.behandlingsplan],
+      },
+      {
+        navn: 'Vaksinebevis influensa',
+        beskrivelse: 'Apotek, 10.02.2026',
+        innholdstype: [InnholdType.vaksinebevis],
+        kommerFra: [KontekstType.helseregistre],
+      },
+      {
+        navn: 'Røntgensvar hofte',
+        beskrivelse: 'Radiologisk avd., 08.02.2026',
+        innholdstype: [InnholdType.provesvar],
+        kommerFra: [KontekstType.provesvar],
+      },
+      {
+        navn: 'Epikrise rehabilitering',
+        beskrivelse: 'Sunnaas, 05.02.2026',
+        innholdstype: [InnholdType.epikriseSammenfatning],
+        kommerFra: [KontekstType.pasientjournal],
+      },
+      {
+        navn: 'Koronasertifikat',
+        beskrivelse: 'FHI, 01.02.2026',
+        innholdstype: [InnholdType.vaksinebevis],
+        kommerFra: [KontekstType.koronasertifikat],
+      },
+      {
+        navn: 'Brev fra fastlege',
+        beskrivelse: 'Dr. Berg, 28.01.2026',
+        innholdstype: [InnholdType.brevOgKorrespondanse],
+        kommerFra: [KontekstType.fastlegetjenester],
+      },
+      {
+        navn: 'Svangerskapskontroll',
+        beskrivelse: 'Jordmor, 25.01.2026',
+        innholdstype: [InnholdType.notat],
+        kommerFra: [KontekstType.gravid],
+      },
+      {
+        navn: 'Journalsammendrag spesialist',
+        beskrivelse: 'OUS, 22.01.2026',
+        innholdstype: [InnholdType.journalsammendrag],
+        kommerFra: [KontekstType.pasientjournal],
+      },
+      {
+        navn: 'Innsynsrapport reseptregisteret',
+        beskrivelse: 'E-resept, 20.01.2026',
+        innholdstype: [InnholdType.innsynsrapport],
+        kommerFra: [KontekstType.helseregistre],
+      },
+      {
+        navn: 'Ekstern rapport tannlege',
+        beskrivelse: 'Tannklinikken, 18.01.2026',
+        innholdstype: [InnholdType.notat],
+        kommerFra: [KontekstType.ekstern],
+      },
+      {
+        navn: 'Søvnkartlegging',
+        beskrivelse: 'Skjemautfyller, 15.01.2026',
+        innholdstype: [InnholdType.egenkartlegging],
+        kommerFra: [KontekstType.skjemautfyller],
+      },
+      {
+        navn: 'MR-svar kne',
+        beskrivelse: 'Radiologisk avd., 12.01.2026',
+        innholdstype: [InnholdType.provesvar],
+        kommerFra: [KontekstType.provesvar],
+      },
+      {
+        navn: 'Vedtak om frikort',
+        beskrivelse: 'Helfo, 10.01.2026',
+        innholdstype: [InnholdType.enkeltvedtak],
+        kommerFra: [KontekstType.fastlegetjenester],
+      },
+      {
+        navn: 'Korrespondanse NAV',
+        beskrivelse: 'NAV, 08.01.2026',
+        innholdstype: [InnholdType.brevOgKorrespondanse],
+        kommerFra: [KontekstType.ekstern],
+      },
+      {
+        navn: 'Epikrise øyeavdeling',
+        beskrivelse: 'Ullevål, 05.01.2026',
+        innholdstype: [InnholdType.epikriseSammenfatning],
+        kommerFra: [KontekstType.pasientjournal],
+      },
     ];
 
     const innholdTypeOptions = [
@@ -549,7 +722,6 @@ export const DokumenterExample: Story = {
               <Chip
                 onChipClick={() => {
                   openDrawer(key as DokumentFilterViews);
-                  console.log('key: ', key);
                 }}
                 key={`${key}-${v}`}
                 onCloseClick={() => filter.removeFilter(key, v)}
@@ -751,7 +923,6 @@ export const LoggOverBrukExample: Story = {
               <Chip
                 onChipClick={() => {
                   openDrawer(key as LogginnslagFilterViews);
-                  console.log('key: ', key);
                 }}
                 key={`${key}-${v}`}
                 onCloseClick={() => filter.removeFilter(key, v)}
@@ -888,8 +1059,7 @@ export const KunHurtigfilter: Story = {
             <FilterSort>
               <option value={'Option 1'}>{'Standard sortering'}</option>
               <option value={'Option 2'}>{'Navn'}</option>
-              <option value={'Option 3'}>{'Rekvirert dato'}</option>
-              <option value={'Option 4'}>{'Gyldig til'}</option>
+              <option value={'Option 3'}>{'Rekvirert dato'}</option>x<option value={'Option 4'}>{'Gyldig til'}</option>
             </FilterSort>
           }
         />
