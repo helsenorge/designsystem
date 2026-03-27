@@ -1,0 +1,8 @@
+@import '../../../scss/supernova/styles/spacers.css';
+
+.filter-chip-bar {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: var(--core-space-xs);
+  align-items: center;
+}

@@ -1,38 +1,38 @@
 import { useState, type ReactNode } from 'react';
 
-import { action } from 'storybook/actions';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
-import Chip from '../Chip';
 import EmptyState from '../EmptyState';
 import FormGroup from '../FormGroup';
 import Icon from '../Icon';
+import File from '../Icons/File';
 import Panel, { PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
+import RadioButton from '../RadioButton';
+import StatusDot from '../StatusDot';
+import Table, { TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
 import Tag from '../Tag';
 import TagList from '../TagList';
-import DrawerNavigation, { useDrawerNavigation } from './DrawerNavigation';
-import StatusDot from '../StatusDot';
+import Toggle from '../Toggle';
+import ActiveFilters from './ActiveFilters/ActiveFilters';
+import { useDrawerNavigation } from './DrawerNavigation';
 import FilterButton from './FilterButton/FilterButton';
+import FilterButtonAndActiveFiltersWrapper from './FilterButtonAndActiveFiltersWrapper/FilterButtonAndActiveFiltersWrapper';
+import FilterDrawer from './FilterDrawer/FilterDrawer';
 import FilterLinkList from './FilterLinkList/FilterLinkList';
 import FilterResultTopBar from './FilterResultTopBar/FilterResultTopBar';
-import FilterSearch from './FilterSearch/FilterSearch';
 import FilterSort from './FilterSort/FilterSort';
 import { useFilter } from './FiltreringsPOC/useFilter';
 import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './FiltreringsPOC/utils';
 import { getResources } from './resourcesMock';
-import File from '../Icons/File';
-import RadioButton from '../RadioButton';
-import Table, { TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
-import Toggle from '../Toggle';
+import { useFilterDrawer } from './useFilterDrawer';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/Filter/FilterMerge',
+  title: '@helsenorge/designsystem-react/Components/Filter',
   parameters: {
     docs: {
       description: {
@@ -202,13 +202,7 @@ export const VerktoyExample: Story = {
     });
 
     const filter = useFilter<VerktoyFilterType>(filterOptions);
-    const [drawerOpen, setDrawerOpen] = useState(false);
-    const [drawerInitialView, setDrawerInitialView] = useState<FilterViews | undefined>(undefined);
-
-    const openDrawer = (view?: FilterViews): void => {
-      setDrawerInitialView(view);
-      setDrawerOpen(true);
-    };
+    const drawer = useFilterDrawer<FilterViews>();
 
     const filterMatchers: FilterMatchers<Verktoy, VerktoyFilterType> = {
       omrade: matchFilter.arrayIncludes<Verktoy>(m => m.omrade),
@@ -245,39 +239,16 @@ export const VerktoyExample: Story = {
       );
     };
 
-    const footerButtons = (
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-        <Button onClick={() => filter.resetFiltersToEmpty()} variant="borderless">
-          {'Nullstill filter'}
-        </Button>
-        <Button onClick={() => setDrawerOpen(false)}>{`Vis ${filtered.length} treff`}</Button>
-      </div>
-    );
-
     return (
       <LanguageProvider<LanguageLocales> language={language}>
         <div style={{ marginBottom: '1rem' }}>
           <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>{'Bokmål'}</Button>
           <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
         </div>
-        <div style={{ display: 'flex', flexFlow: 'row wrap', columnGap: '8px', alignItems: 'center' }}>
-          <FilterButton onClick={() => openDrawer()} />
-
-          {Object.entries(filter.filters).flatMap(([key, raw]) => {
-            const values = [raw ?? []].flat();
-            return values.map(v => (
-              <Chip
-                onChipClick={() => {
-                  openDrawer(key as FilterViews);
-                }}
-                key={`${key}-${v}`}
-                onCloseClick={() => filter.removeFilter(key, v)}
-              >
-                {getLabel(key as keyof VerktoyFilterType, v)}
-              </Chip>
-            ));
-          })}
-        </div>
+        <FilterButtonAndActiveFiltersWrapper>
+          <FilterButton onClick={() => drawer.open()} />
+          <ActiveFilters filter={filter} getLabel={getLabel} onChipClick={key => drawer.open(key as FilterViews)} />
+        </FilterButtonAndActiveFiltersWrapper>
         <FilterResultTopBar
           countText={`${filtered.length} verktøy`}
           sortComponent={
@@ -289,24 +260,13 @@ export const VerktoyExample: Story = {
           }
         />
 
-        <DrawerNavigation
-          isOpen={drawerOpen}
-          initialView={drawerInitialView}
-          onCloseButton={() => setDrawerOpen(false)}
-          footer={footerButtons}
-        >
-          <DrawerNavigation.View<FilterViews> id="overview" title={'Finn ...'} home>
+        <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} verktøy`}>
+          <FilterDrawer.Overview title={'Finn ...'}>
             <div>
               <FilterLinkListComp />
-              {/* <div style={{ padding: '1rem' }}>
-                <FilterSearch
-                  value={(filter.filters.fritekst as string) ?? ''}
-                  onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
-                />
-              </div> */}
             </div>
-          </DrawerNavigation.View>
-          <DrawerNavigation.View<FilterViews> id="omrade" title={verktoyFilterLabels.omrade}>
+          </FilterDrawer.Overview>
+          <FilterDrawer.View id="omrade" title={verktoyFilterLabels.omrade}>
             <div>
               <FormGroup legend={resources.filterOption_omrade_legend}>
                 {omradeOptions.map(opt => (
@@ -319,8 +279,8 @@ export const VerktoyExample: Story = {
                 ))}
               </FormGroup>
             </div>
-          </DrawerNavigation.View>
-          <DrawerNavigation.View<FilterViews> id="passerFor" title={verktoyFilterLabels.passerFor}>
+          </FilterDrawer.View>
+          <FilterDrawer.View id="passerFor" title={verktoyFilterLabels.passerFor}>
             <div>
               <FormGroup legend={resources.filterOption_passerFor_legend}>
                 {passerForOptions.map(opt => (
@@ -333,8 +293,8 @@ export const VerktoyExample: Story = {
                 ))}
               </FormGroup>
             </div>
-          </DrawerNavigation.View>
-          <DrawerNavigation.View<FilterViews> id="type" title={verktoyFilterLabels.type}>
+          </FilterDrawer.View>
+          <FilterDrawer.View id="type" title={verktoyFilterLabels.type}>
             <div>
               <FormGroup legend={resources.filterOption_type_legend}>
                 {typeOptions.map(opt => (
@@ -347,8 +307,8 @@ export const VerktoyExample: Story = {
                 ))}
               </FormGroup>
             </div>
-          </DrawerNavigation.View>
-        </DrawerNavigation>
+          </FilterDrawer.View>
+        </FilterDrawer>
         {filtered.length > 0 ? (
           <PanelList>
             {filtered.map(verktoy => (
@@ -372,44 +332,6 @@ export const VerktoyExample: Story = {
         )}
       </LanguageProvider>
     );
-  },
-};
-
-export const FilterSortComponent: Story = {
-  render: () => (
-    <FilterSort>
-      <option value={'Option 1'}>{'Nyeste'}</option>
-      <option value={'Option 2'}>{'Eldste'}</option>
-      <option value={'Option 3'}>{'Alfabetisk A-Å'}</option>
-    </FilterSort>
-  ),
-};
-
-export const FilterSearchComponent: Story = {
-  render: () => {
-    const [searchValue, setSearchValue] = useState<string>('');
-
-    return (
-      <FilterSearch
-        value={searchValue}
-        onChange={e => setSearchValue((e.target as HTMLInputElement).value)}
-        inputProps={{
-          name: 'search',
-        }}
-        buttonProps={{
-          onClick: () => alert(`Søker etter: ${searchValue}`),
-        }}
-        clearButtonProps={{
-          onClick: () => setSearchValue(''),
-        }}
-      />
-    );
-  },
-};
-
-export const FilterButtonComponent: Story = {
-  render: () => {
-    return <FilterButton onClick={() => action('Clicked')} />;
   },
 };
 
@@ -668,13 +590,7 @@ export const DokumenterExample: Story = {
     });
 
     const filter = useFilter<DokumenterFilterType>(filterOptions);
-    const [drawerOpen, setDrawerOpen] = useState(false);
-    const [drawerInitialView, setDrawerInitialView] = useState<DokumentFilterViews | undefined>(undefined);
-
-    const openDrawer = (view?: DokumentFilterViews): void => {
-      setDrawerInitialView(view);
-      setDrawerOpen(true);
-    };
+    const drawer = useFilterDrawer<DokumentFilterViews>();
 
     const filterMatchers: FilterMatchers<Dokument, DokumenterFilterType> = {
       innhold: matchFilter.arrayIncludes<Dokument>(m => m.innholdstype),
@@ -702,35 +618,12 @@ export const DokumenterExample: Story = {
       );
     };
 
-    const footerButtons = (
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-        <Button onClick={() => filter.resetFiltersToEmpty()} variant="borderless">
-          {'Nullstill filter'}
-        </Button>
-        <Button onClick={() => setDrawerOpen(false)}>{`Vis ${filtered.length} treff`}</Button>
-      </div>
-    );
-
     return (
       <>
-        <div style={{ display: 'flex', flexFlow: 'row wrap', columnGap: '8px', alignItems: 'center' }}>
-          <FilterButton onClick={() => openDrawer()} />
-
-          {Object.entries(filter.filters).flatMap(([key, raw]) => {
-            const values = [raw ?? []].flat();
-            return values.map(v => (
-              <Chip
-                onChipClick={() => {
-                  openDrawer(key as DokumentFilterViews);
-                }}
-                key={`${key}-${v}`}
-                onCloseClick={() => filter.removeFilter(key, v)}
-              >
-                {getLabel(key as keyof DokumenterFilterType, v)}
-              </Chip>
-            ));
-          })}
-        </div>
+        <FilterButtonAndActiveFiltersWrapper>
+          <FilterButton onClick={() => drawer.open()} />
+          <ActiveFilters filter={filter} getLabel={getLabel} onChipClick={key => drawer.open(key as DokumentFilterViews)} />
+        </FilterButtonAndActiveFiltersWrapper>
         <FilterResultTopBar
           countText={`${filtered.length} dokumenter`}
           sortComponent={
@@ -743,18 +636,13 @@ export const DokumenterExample: Story = {
           }
         />
 
-        <DrawerNavigation
-          isOpen={drawerOpen}
-          initialView={drawerInitialView}
-          onCloseButton={() => setDrawerOpen(false)}
-          footer={footerButtons}
-        >
-          <DrawerNavigation.View<DokumentFilterViews> id="overview" title={'Finn ...'} home>
+        <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} treff`}>
+          <FilterDrawer.Overview title={'Finn ...'}>
             <div>
               <FilterLinkListComp />
             </div>
-          </DrawerNavigation.View>
-          <DrawerNavigation.View<DokumentFilterViews> id="innhold" title={dokumentFilterLabels.innhold}>
+          </FilterDrawer.Overview>
+          <FilterDrawer.View id="innhold" title={dokumentFilterLabels.innhold}>
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {innholdTypeOptions.map(opt => (
@@ -767,8 +655,8 @@ export const DokumenterExample: Story = {
                 ))}
               </FormGroup>
             </div>
-          </DrawerNavigation.View>
-          <DrawerNavigation.View<DokumentFilterViews> id="kommerFra" title={dokumentFilterLabels.kommerFra}>
+          </FilterDrawer.View>
+          <FilterDrawer.View id="kommerFra" title={dokumentFilterLabels.kommerFra}>
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {kommerFraOptions.map(opt => (
@@ -781,8 +669,8 @@ export const DokumenterExample: Story = {
                 ))}
               </FormGroup>
             </div>
-          </DrawerNavigation.View>
-        </DrawerNavigation>
+          </FilterDrawer.View>
+        </FilterDrawer>
         {filtered.length > 0 ? (
           <PanelList variant={PanelVariant.outline}>
             {filtered.map(dokument => (
@@ -868,13 +756,7 @@ export const LoggOverBrukExample: Story = {
     type LogginnslagFilterViews = 'overview' | 'who' | 'where';
 
     const filter = useFilter<LoggFilterType>(filterOptions);
-    const [drawerOpen, setDrawerOpen] = useState(false);
-    const [drawerInitialView, setDrawerInitialView] = useState<LogginnslagFilterViews | undefined>(undefined);
-
-    const openDrawer = (view?: LogginnslagFilterViews): void => {
-      setDrawerInitialView(view);
-      setDrawerOpen(true);
-    };
+    const drawer = useFilterDrawer<LogginnslagFilterViews>();
 
     const filterMatchers: FilterMatchers<Logginnslag, LoggFilterType> = {
       who: (item, value) => {
@@ -903,49 +785,21 @@ export const LoggOverBrukExample: Story = {
       );
     };
 
-    const footerButtons = (
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-        <Button onClick={() => filter.resetFiltersToEmpty()} variant="borderless">
-          {'Nullstill filter'}
-        </Button>
-        <Button onClick={() => setDrawerOpen(false)}>{`Vis ${filtered.length} treff`}</Button>
-      </div>
-    );
-
     return (
       <>
-        <div style={{ display: 'flex', flexFlow: 'row wrap', columnGap: '8px', alignItems: 'center' }}>
-          <FilterButton onClick={() => openDrawer()} />
-
-          {Object.entries(filter.filters).flatMap(([key, raw]) => {
-            const values = [raw ?? []].flat();
-            return values.map(v => (
-              <Chip
-                onChipClick={() => {
-                  openDrawer(key as LogginnslagFilterViews);
-                }}
-                key={`${key}-${v}`}
-                onCloseClick={() => filter.removeFilter(key, v)}
-              >
-                {getLabel(key as keyof LoggFilterType, v)}
-              </Chip>
-            ));
-          })}
-        </div>
+        <FilterButtonAndActiveFiltersWrapper>
+          <FilterButton onClick={() => drawer.open()} />
+          <ActiveFilters filter={filter} getLabel={getLabel} onChipClick={key => drawer.open(key as LogginnslagFilterViews)} />
+        </FilterButtonAndActiveFiltersWrapper>
         <FilterResultTopBar countText={`${filtered.length} logginnslag`} />
 
-        <DrawerNavigation
-          isOpen={drawerOpen}
-          initialView={drawerInitialView}
-          onCloseButton={() => setDrawerOpen(false)}
-          footer={footerButtons}
-        >
-          <DrawerNavigation.View<LogginnslagFilterViews> id="overview" title={'Finn ...'} home>
+        <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} treff`}>
+          <FilterDrawer.Overview title={'Finn ...'}>
             <div>
               <FilterLinkListComp />
             </div>
-          </DrawerNavigation.View>
-          <DrawerNavigation.View<LogginnslagFilterViews> id="who" title={logginnslagFilterLabels.who}>
+          </FilterDrawer.Overview>
+          <FilterDrawer.View id="who" title={logginnslagFilterLabels.who}>
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {whoOptions.map(opt => (
@@ -958,8 +812,8 @@ export const LoggOverBrukExample: Story = {
                 ))}
               </FormGroup>
             </div>
-          </DrawerNavigation.View>
-          <DrawerNavigation.View<LogginnslagFilterViews> id="where" title={logginnslagFilterLabels.where}>
+          </FilterDrawer.View>
+          <FilterDrawer.View id="where" title={logginnslagFilterLabels.where}>
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {whereOptions.map(opt => (
@@ -973,8 +827,8 @@ export const LoggOverBrukExample: Story = {
                 ))}
               </FormGroup>
             </div>
-          </DrawerNavigation.View>
-        </DrawerNavigation>
+          </FilterDrawer.View>
+        </FilterDrawer>
         {filtered.length > 0 ? (
           <Table>
             <TableHead>
@@ -1059,7 +913,8 @@ export const KunHurtigfilter: Story = {
             <FilterSort>
               <option value={'Option 1'}>{'Standard sortering'}</option>
               <option value={'Option 2'}>{'Navn'}</option>
-              <option value={'Option 3'}>{'Rekvirert dato'}</option>x<option value={'Option 4'}>{'Gyldig til'}</option>
+              <option value={'Option 3'}>{'Rekvirert dato'}</option>
+              <option value={'Option 4'}>{'Gyldig til'}</option>
             </FilterSort>
           }
         />
