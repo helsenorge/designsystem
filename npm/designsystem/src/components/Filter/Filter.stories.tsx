@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
@@ -19,11 +19,10 @@ import Tag from '../Tag';
 import TagList from '../TagList';
 import Toggle from '../Toggle';
 import ActiveFilters from './ActiveFilters/ActiveFilters';
-import { useDrawerNavigation } from './DrawerNavigation';
 import FilterButton from './FilterButton/FilterButton';
 import FilterButtonAndActiveFiltersWrapper from './FilterButtonAndActiveFiltersWrapper/FilterButtonAndActiveFiltersWrapper';
 import FilterDrawer from './FilterDrawer/FilterDrawer';
-import FilterLinkList from './FilterLinkList/FilterLinkList';
+import FilterOverviewLinkList from './FilterOverviewLinkList/FilterOverviewLinkList';
 import FilterResultTopBar from './FilterResultTopBar/FilterResultTopBar';
 import FilterSort from './FilterSort/FilterSort';
 import { useFilter } from './FiltreringsPOC/useFilter';
@@ -225,20 +224,6 @@ export const VerktoyExample: Story = {
 
     type FilterViews = 'overview' | 'omrade' | 'passerFor' | 'type';
 
-    const FilterLinkListComp = (): ReactNode => {
-      const { goToView } = useDrawerNavigation<FilterViews>();
-      const omradeChips = (filter.filters.omrade ?? []).map(v => getLabel('omrade', v));
-      const passerforChips = (filter.filters.passerFor ?? []).map(v => getLabel('passerFor', v));
-      const typeChips = (filter.filters.type ?? []).map(v => getLabel('type', v));
-      return (
-        <FilterLinkList>
-          <FilterLinkList.Link title={verktoyFilterLabels.omrade} chips={omradeChips} onClick={() => goToView('omrade')} />
-          <FilterLinkList.Link title={verktoyFilterLabels.passerFor} chips={passerforChips} onClick={() => goToView('passerFor')} />
-          <FilterLinkList.Link title={verktoyFilterLabels.type} chips={typeChips} onClick={() => goToView('type')} />
-        </FilterLinkList>
-      );
-    };
-
     return (
       <LanguageProvider<LanguageLocales> language={language}>
         <div style={{ marginBottom: '1rem' }}>
@@ -262,9 +247,15 @@ export const VerktoyExample: Story = {
 
         <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} verktøy`}>
           <FilterDrawer.Overview title={'Finn ...'}>
-            <div>
-              <FilterLinkListComp />
-            </div>
+            <FilterOverviewLinkList
+              filter={filter}
+              getLabel={getLabel}
+              links={[
+                { filterKey: 'omrade', title: verktoyFilterLabels.omrade },
+                { filterKey: 'passerFor', title: verktoyFilterLabels.passerFor },
+                { filterKey: 'type', title: verktoyFilterLabels.type },
+              ]}
+            />
           </FilterDrawer.Overview>
           <FilterDrawer.View id="omrade" title={verktoyFilterLabels.omrade}>
             <div>
@@ -606,18 +597,6 @@ export const DokumenterExample: Story = {
 
     type DokumentFilterViews = 'overview' | 'innhold' | 'kommerFra';
 
-    const FilterLinkListComp = (): ReactNode => {
-      const { goToView } = useDrawerNavigation<DokumentFilterViews>();
-      const innholdChips = (filter.filters.innhold ?? []).map(v => getLabel('innhold', v));
-      const kommerFraChips = (filter.filters.kommerFra ?? []).map(v => getLabel('kommerFra', v));
-      return (
-        <FilterLinkList>
-          <FilterLinkList.Link title={dokumentFilterLabels.innhold} chips={innholdChips} onClick={() => goToView('innhold')} />
-          <FilterLinkList.Link title={dokumentFilterLabels.kommerFra} chips={kommerFraChips} onClick={() => goToView('kommerFra')} />
-        </FilterLinkList>
-      );
-    };
-
     return (
       <>
         <FilterButtonAndActiveFiltersWrapper>
@@ -638,9 +617,14 @@ export const DokumenterExample: Story = {
 
         <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} treff`}>
           <FilterDrawer.Overview title={'Finn ...'}>
-            <div>
-              <FilterLinkListComp />
-            </div>
+            <FilterOverviewLinkList
+              filter={filter}
+              getLabel={getLabel}
+              links={[
+                { filterKey: 'innhold', title: dokumentFilterLabels.innhold },
+                { filterKey: 'kommerFra', title: dokumentFilterLabels.kommerFra },
+              ]}
+            />
           </FilterDrawer.Overview>
           <FilterDrawer.View id="innhold" title={dokumentFilterLabels.innhold}>
             <div>
@@ -773,18 +757,6 @@ export const LoggOverBrukExample: Story = {
       where: 'Hvor',
     };
 
-    const FilterLinkListComp = (): ReactNode => {
-      const { goToView } = useDrawerNavigation<LogginnslagFilterViews>();
-      const whoChips = (filter.filters.who ?? []).map(v => getLabel('who', v));
-      const whereChips = filter.filters.where ? [getLabel('where', filter.filters.where)] : [];
-      return (
-        <FilterLinkList>
-          <FilterLinkList.Link title={logginnslagFilterLabels.who} chips={whoChips} onClick={() => goToView('who')} />
-          <FilterLinkList.Link title={logginnslagFilterLabels.where} chips={whereChips} onClick={() => goToView('where')} />
-        </FilterLinkList>
-      );
-    };
-
     return (
       <>
         <FilterButtonAndActiveFiltersWrapper>
@@ -795,9 +767,14 @@ export const LoggOverBrukExample: Story = {
 
         <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} treff`}>
           <FilterDrawer.Overview title={'Finn ...'}>
-            <div>
-              <FilterLinkListComp />
-            </div>
+            <FilterOverviewLinkList
+              filter={filter}
+              getLabel={getLabel}
+              links={[
+                { filterKey: 'who', title: logginnslagFilterLabels.who },
+                { filterKey: 'where', title: logginnslagFilterLabels.where },
+              ]}
+            />
           </FilterDrawer.Overview>
           <FilterDrawer.View id="who" title={logginnslagFilterLabels.who}>
             <div>
