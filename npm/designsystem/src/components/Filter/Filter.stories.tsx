@@ -26,6 +26,8 @@ import { useFilter } from './FiltreringsPOC/useFilter';
 import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './FiltreringsPOC/utils';
 import { getResources } from './resourcesMock';
 import File from '../Icons/File';
+import RadioButton from '../RadioButton';
+import Table, { TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterMerge',
@@ -44,7 +46,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const VerktoyExample: Story = {
   render: () => {
     enum FagomradeType {
       PSYKISK_HELSE = 1,
@@ -556,7 +558,7 @@ export const DokumenterExample: Story = {
           })}
         </div>
         <FilterResultTopBar
-          countText={`${filtered.length} verktøy`}
+          countText={`${filtered.length} dokumenter`}
           sortComponent={
             <FilterSort>
               <option value={'Option 1'}>{'Eldste-Nyeste'}</option>
@@ -625,6 +627,202 @@ export const DokumenterExample: Story = {
               </Panel>
             ))}
           </PanelList>
+        ) : (
+          <EmptyState title={'Ingen dokumenter ble funnet med valgt filter. Prøv å endre filteret for å se flere dokumenter.'} />
+        )}
+      </>
+    );
+  },
+};
+
+export const LoggOverBrukExample: Story = {
+  render: () => {
+    type Clients = 'Alle' | 'Helsenorge' | 'Helsenorge mobilapp' | 'Doctrin';
+
+    interface Logginnslag {
+      when: string;
+      who: string;
+      isYou: boolean;
+      what: string;
+      where: Clients;
+    }
+
+    const dokumentMockData: Logginnslag[] = [
+      { when: '27.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Helsekontakter', where: 'Helsenorge' },
+      { when: '26.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Timeavtaler', where: 'Helsenorge mobilapp' },
+      { when: '25.03.2026', who: 'Dr. Hansen', isYou: false, what: 'Journalnotat', where: 'Helsenorge' },
+      { when: '24.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Meldinger', where: 'Helsenorge' },
+      { when: '23.03.2026', who: 'Sykehuset Innlandet', isYou: false, what: 'Prøvesvar', where: 'Helsenorge' },
+      { when: '22.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Resepter', where: 'Helsenorge mobilapp' },
+      { when: '21.03.2026', who: 'Dr. Olsen', isYou: false, what: 'Epikrise', where: 'Doctrin' },
+      { when: '20.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Vaksiner', where: 'Helsenorge' },
+      { when: '19.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Bytte fastlege', where: 'Helsenorge mobilapp' },
+      { when: '18.03.2026', who: 'Fastlege Johansen', isYou: false, what: 'Henvisning', where: 'Helsenorge' },
+      { when: '17.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Dokumenter', where: 'Helsenorge' },
+      { when: '16.03.2026', who: 'Haukeland sykehus', isYou: false, what: 'Innkalling', where: 'Helsenorge' },
+      { when: '15.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Egenkartlegging', where: 'Doctrin' },
+      { when: '14.03.2026', who: 'Dr. Berg', isYou: false, what: 'Medisinliste', where: 'Helsenorge mobilapp' },
+      { when: '13.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Helseregistre', where: 'Helsenorge' },
+      { when: '12.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Pasientreiser', where: 'Helsenorge' },
+      { when: '11.03.2026', who: 'St. Olavs hospital', isYou: false, what: 'Prøvesvar', where: 'Helsenorge' },
+      { when: '10.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Kjernejournal', where: 'Helsenorge mobilapp' },
+      { when: '09.03.2026', who: 'Dr. Nilsen', isYou: false, what: 'Sykmelding', where: 'Doctrin' },
+      { when: '08.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Behandlingsplan', where: 'Helsenorge' },
+    ];
+
+    type LoggFilterType = {
+      who: string[];
+      where: Clients;
+    };
+
+    const whoOptions = [
+      { value: 'you', displaytext: 'Deg selv' },
+      { value: 'others', displaytext: 'Andre' },
+    ];
+    const whereOptions: { value: Clients }[] = [
+      { value: 'Alle' },
+      { value: 'Helsenorge' },
+      { value: 'Helsenorge mobilapp' },
+      { value: 'Doctrin' },
+    ];
+
+    const { filterOptions, getLabel } = createFilterConfig<LoggFilterType>({
+      who: { options: whoOptions, getLabel: o => o.displaytext },
+      where: { options: whereOptions, getLabel: o => o.value },
+    });
+
+    type LogginnslagFilterViews = 'overview' | 'who' | 'where';
+
+    const filter = useFilter<LoggFilterType>(filterOptions);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [drawerInitialView, setDrawerInitialView] = useState<LogginnslagFilterViews | undefined>(undefined);
+
+    const openDrawer = (view?: LogginnslagFilterViews): void => {
+      setDrawerInitialView(view);
+      setDrawerOpen(true);
+    };
+
+    const filterMatchers: FilterMatchers<Logginnslag, LoggFilterType> = {
+      who: (item, value) => {
+        const values = Array.isArray(value) ? value : [value];
+        return values.some(v => (v === 'you' && item.isYou) || (v === 'others' && !item.isYou));
+      },
+      where: (item, value) => value === 'Alle' || item.where === value,
+    };
+
+    const filtered = filterItems(dokumentMockData, filter.filters, filterMatchers);
+
+    const logginnslagFilterLabels: Record<keyof LoggFilterType, string> = {
+      who: 'Hvem',
+      where: 'Hvor',
+    };
+
+    const FilterLinkListComp = (): ReactNode => {
+      const { goToView } = useDrawerNavigation<LogginnslagFilterViews>();
+      const whoChips = (filter.filters.who ?? []).map(v => getLabel('who', v));
+      const whereChips = filter.filters.where ? [getLabel('where', filter.filters.where)] : [];
+      return (
+        <FilterLinkList>
+          <FilterLinkList.Link title={logginnslagFilterLabels.who} chips={whoChips} onClick={() => goToView('who')} />
+          <FilterLinkList.Link title={logginnslagFilterLabels.where} chips={whereChips} onClick={() => goToView('where')} />
+        </FilterLinkList>
+      );
+    };
+
+    const footerButtons = (
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+        <Button onClick={() => filter.resetFiltersToEmpty()} variant="borderless">
+          {'Nullstill filter'}
+        </Button>
+        <Button onClick={() => setDrawerOpen(false)}>{`Vis ${filtered.length} treff`}</Button>
+      </div>
+    );
+
+    return (
+      <>
+        <div style={{ display: 'flex', flexFlow: 'row wrap', columnGap: '8px', alignItems: 'center' }}>
+          <FilterButton onClick={() => openDrawer()} />
+
+          {Object.entries(filter.filters).flatMap(([key, raw]) => {
+            const values = [raw ?? []].flat();
+            return values.map(v => (
+              <Chip
+                onChipClick={() => {
+                  openDrawer(key as LogginnslagFilterViews);
+                  console.log('key: ', key);
+                }}
+                key={`${key}-${v}`}
+                onCloseClick={() => filter.removeFilter(key, v)}
+              >
+                {getLabel(key as keyof LoggFilterType, v)}
+              </Chip>
+            ));
+          })}
+        </div>
+        <FilterResultTopBar countText={`${filtered.length} logginnslag`} />
+
+        <DrawerNavigation
+          isOpen={drawerOpen}
+          initialView={drawerInitialView}
+          onCloseButton={() => setDrawerOpen(false)}
+          footer={footerButtons}
+        >
+          <DrawerNavigation.View<LogginnslagFilterViews> id="overview" title={'Finn ...'} home>
+            <div>
+              <FilterLinkListComp />
+            </div>
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<LogginnslagFilterViews> id="who" title={logginnslagFilterLabels.who}>
+            <div>
+              <FormGroup legend={'Velg en eller flere'}>
+                {whoOptions.map(opt => (
+                  <Checkbox
+                    key={opt.value}
+                    label={opt.displaytext}
+                    checked={(filter.filters.who ?? []).includes(opt.value)}
+                    onChange={(): void => toggleArrayFilter(filter, 'who', opt.value)}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<LogginnslagFilterViews> id="where" title={logginnslagFilterLabels.where}>
+            <div>
+              <FormGroup legend={'Velg en eller flere'}>
+                {whereOptions.map(opt => (
+                  <RadioButton
+                    key={opt.value}
+                    label={opt.value}
+                    name="where"
+                    checked={filter.filters.where === opt.value}
+                    onChange={(): void => filter.setFilter('where', opt.value)}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          </DrawerNavigation.View>
+        </DrawerNavigation>
+        {filtered.length > 0 ? (
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableHeadCell>{'Når'}</TableHeadCell>
+                <TableHeadCell>{'Hvem'}</TableHeadCell>
+                <TableHeadCell>{'Hva'}</TableHeadCell>
+                <TableHeadCell>{'Hvor'}</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filtered.map(logg => (
+                <TableRow key={logg.when + logg.what}>
+                  <TableCell>{logg.when}</TableCell>
+                  <TableCell>{logg.who}</TableCell>
+                  <TableCell>{logg.what}</TableCell>
+                  <TableCell>{logg.where}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         ) : (
           <EmptyState title={'Ingen dokumenter ble funnet med valgt filter. Prøv å endre filteret for å se flere dokumenter.'} />
         )}
