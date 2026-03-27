@@ -17,6 +17,7 @@ import PanelList from '../PanelList';
 import Tag from '../Tag';
 import TagList from '../TagList';
 import DrawerNavigation, { useDrawerNavigation } from './DrawerNavigation';
+import StatusDot from '../StatusDot';
 import FilterButton from './FilterButton/FilterButton';
 import FilterLinkList from './FilterLinkList/FilterLinkList';
 import FilterResultTopBar from './FilterResultTopBar/FilterResultTopBar';
@@ -28,6 +29,7 @@ import { getResources } from './resourcesMock';
 import File from '../Icons/File';
 import RadioButton from '../RadioButton';
 import Table, { TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
+import Toggle from '../Toggle';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterMerge',
@@ -825,6 +827,99 @@ export const LoggOverBrukExample: Story = {
           </Table>
         ) : (
           <EmptyState title={'Ingen dokumenter ble funnet med valgt filter. Prøv å endre filteret for å se flere dokumenter.'} />
+        )}
+      </>
+    );
+  },
+};
+
+export const KunHurtigfilter: Story = {
+  render: () => {
+    type ResepterFilterType = {
+      kunAktive: boolean;
+      kunRefusjon: boolean;
+    };
+
+    const filter = useFilter<ResepterFilterType>();
+
+    interface Resept {
+      navn: string;
+      virkestoff: string;
+      aktiv: boolean;
+      medRefusjon: boolean;
+    }
+
+    const filterMatchers: FilterMatchers<Resept, ResepterFilterType> = {
+      kunAktive: matchFilter.booleanToggle<Resept>(m => m.aktiv),
+      kunRefusjon: matchFilter.booleanToggle<Resept>(m => m.medRefusjon),
+    };
+
+    const reseptMockData: Resept[] = [
+      { navn: 'Accolate Tab 20 mg', virkestoff: 'Zafirlukast', aktiv: true, medRefusjon: true },
+      { navn: 'Ibux Gel 50 mg/g', virkestoff: 'Ibuprofen', aktiv: true, medRefusjon: false },
+      { navn: 'Paracet Tab 500 mg', virkestoff: 'Paracetamol', aktiv: false, medRefusjon: false },
+      { navn: 'Metformin Tab 500 mg', virkestoff: 'Metformin', aktiv: true, medRefusjon: true },
+      { navn: 'Atorvastatin Tab 20 mg', virkestoff: 'Atorvastatin', aktiv: true, medRefusjon: true },
+      { navn: 'Ventoline Inh 0,1 mg/dose', virkestoff: 'Salbutamol', aktiv: false, medRefusjon: true },
+      { navn: 'Zoloft Tab 50 mg', virkestoff: 'Sertralin', aktiv: false, medRefusjon: false },
+      { navn: 'Marevan Tab 2,5 mg', virkestoff: 'Warfarin', aktiv: true, medRefusjon: true },
+      { navn: 'Somac Tab 20 mg', virkestoff: 'Pantoprazol', aktiv: false, medRefusjon: false },
+      { navn: 'Aerius Tab 5 mg', virkestoff: 'Desloratadin', aktiv: true, medRefusjon: false },
+    ];
+
+    const filtered = filterItems(reseptMockData, filter.filters, filterMatchers);
+
+    return (
+      <>
+        <div>{'Her vises kun aktive resepter og resepter med utleveringer siste 12 måneder.'}</div>
+        <div>
+          <Toggle
+            label={[{ text: 'Vis kun aktive resepter', type: 'subdued' }]}
+            onChange={() => filter.setFilter('kunAktive', !filter.filters.kunAktive)}
+          />
+          <Toggle
+            label={[{ text: 'Vis kun resepter med refusjon', type: 'subdued' }]}
+            onChange={() => filter.setFilter('kunRefusjon', !filter.filters.kunRefusjon)}
+          />
+        </div>
+        <FilterResultTopBar
+          countText={`${filtered.length} resepter`}
+          sortComponent={
+            <FilterSort>
+              <option value={'Option 1'}>{'Standard sortering'}</option>
+              <option value={'Option 2'}>{'Navn'}</option>
+              <option value={'Option 3'}>{'Rekvirert dato'}</option>
+              <option value={'Option 4'}>{'Gyldig til'}</option>
+            </FilterSort>
+          }
+        />
+        {filtered.length > 0 ? (
+          <PanelList>
+            {filtered.map(resept => (
+              <Panel>
+                {resept.aktiv && (
+                  <Panel.PreContainer>
+                    <StatusDot text="Aktiv" variant="active" />
+                  </Panel.PreContainer>
+                )}
+                <Panel.Title title={resept.navn} />
+                <Panel.A>
+                  <span>
+                    {'Virkestoff: '}
+                    {resept.virkestoff}
+                  </span>
+                </Panel.A>
+                <Panel.B>
+                  <span>
+                    {'Refusjon: '}
+                    {resept.medRefusjon ? 'Ja' : 'Nei'}
+                  </span>
+                </Panel.B>
+              </Panel>
+            ))}
+          </PanelList>
+        ) : (
+          <EmptyState title={'Ingen resepter ble funnet med valgt filter.'} />
         )}
       </>
     );
