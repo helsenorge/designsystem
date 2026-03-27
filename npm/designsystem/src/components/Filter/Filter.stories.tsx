@@ -11,7 +11,8 @@ import Checkbox from '../Checkbox';
 import Chip from '../Chip';
 import EmptyState from '../EmptyState';
 import FormGroup from '../FormGroup';
-import Panel from '../Panel';
+import Icon from '../Icon';
+import Panel, { PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
 import Tag from '../Tag';
 import TagList from '../TagList';
@@ -24,6 +25,7 @@ import FilterSort from './FilterSort/FilterSort';
 import { useFilter } from './FiltreringsPOC/useFilter';
 import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './FiltreringsPOC/utils';
 import { getResources } from './resourcesMock';
+import File from '../Icons/File';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterMerge',
@@ -255,7 +257,7 @@ export const Default: Story = {
           <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
         </div>
         <div style={{ display: 'flex', flexFlow: 'row wrap', columnGap: '8px', alignItems: 'center' }}>
-          <FilterButton onClick={() => openDrawer()}>{'Åpne filter'}</FilterButton>
+          <FilterButton onClick={() => openDrawer()} />
 
           {Object.entries(filter.filters).flatMap(([key, raw]) => {
             const values = [raw ?? []].flat();
@@ -405,5 +407,228 @@ export const FilterSearchComponent: Story = {
 export const FilterButtonComponent: Story = {
   render: () => {
     return <FilterButton onClick={() => action('Clicked')} />;
+  },
+};
+
+export const DokumenterExample: Story = {
+  render: () => {
+    enum InnholdType {
+      notat = 1,
+      epikriseSammenfatning = 2,
+      journalsammendrag = 3,
+      brevOgKorrespondanse = 4,
+      provesvar = 5,
+      egenkartlegging = 6,
+      ikkeIBruk2 = 7,
+      innsynsrapport = 8,
+      vaksinebevis = 9,
+      enkeltvedtak = 10,
+    }
+    enum KontekstType {
+      pasientjournal = 1,
+      helseregistre = 2,
+      skjemautfyller = 3,
+      provesvar = 4,
+      koronasertifikat = 5,
+      fastlegetjenester = 6,
+      ekstern = 7,
+      henvendelse = 8,
+      pasientreiser = 9,
+      behandlingsplan = 10,
+      gravid = 11,
+    }
+
+    type DokumenterFilterType = {
+      innhold: InnholdType[];
+      kommerFra: KontekstType[];
+    };
+
+    interface Dokument {
+      navn: string;
+      innholdstype: InnholdType[];
+      beskrivelse?: string;
+      kommerFra: KontekstType[];
+    }
+
+    const dokumentMockData: Dokument[] = [
+      {
+        navn: 'Allergi (Egenkartlegging)',
+        beskrivelse: 'Skjemautfyller, arkivert 26.03.2026',
+        innholdstype: [InnholdType.egenkartlegging],
+        kommerFra: [KontekstType.skjemautfyller],
+      },
+    ];
+
+    const innholdTypeOptions = [
+      { value: InnholdType.notat, displaytext: 'Notat' },
+      { value: InnholdType.epikriseSammenfatning, displaytext: 'Epikrise, sammenfatning' },
+      { value: InnholdType.journalsammendrag, displaytext: 'Journalsammendrag' },
+      { value: InnholdType.brevOgKorrespondanse, displaytext: 'Brev og korrespondanse' },
+      { value: InnholdType.provesvar, displaytext: 'Prøvesvar' },
+      { value: InnholdType.egenkartlegging, displaytext: 'Egenkartlegging' },
+      { value: InnholdType.innsynsrapport, displaytext: 'Innsynsrapport' },
+      { value: InnholdType.vaksinebevis, displaytext: 'Vaksinebevis' },
+      { value: InnholdType.enkeltvedtak, displaytext: 'Enkeltvedtak' },
+    ];
+
+    const kommerFraOptions = [
+      { value: KontekstType.pasientjournal, displaytext: 'Pasientjournal' },
+      { value: KontekstType.helseregistre, displaytext: 'Helseregistre' },
+      { value: KontekstType.skjemautfyller, displaytext: 'Skjemautfyller' },
+      { value: KontekstType.provesvar, displaytext: 'Prøvesvar' },
+      { value: KontekstType.koronasertifikat, displaytext: 'Koronasertifikat' },
+      { value: KontekstType.fastlegetjenester, displaytext: 'Fastlegetjenester' },
+      { value: KontekstType.ekstern, displaytext: 'Ekstern' },
+      { value: KontekstType.henvendelse, displaytext: 'Henvendelse' },
+      { value: KontekstType.pasientreiser, displaytext: 'Pasientreiser' },
+      { value: KontekstType.behandlingsplan, displaytext: 'Behandlingsplan' },
+      { value: KontekstType.gravid, displaytext: 'Gravid' },
+    ];
+
+    const { filterOptions, getLabel } = createFilterConfig<DokumenterFilterType>({
+      innhold: { options: innholdTypeOptions, getLabel: o => o.displaytext },
+      kommerFra: { options: kommerFraOptions, getLabel: o => o.displaytext },
+    });
+
+    const filter = useFilter<DokumenterFilterType>(filterOptions);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [drawerInitialView, setDrawerInitialView] = useState<DokumentFilterViews | undefined>(undefined);
+
+    const openDrawer = (view?: DokumentFilterViews): void => {
+      setDrawerInitialView(view);
+      setDrawerOpen(true);
+    };
+
+    const filterMatchers: FilterMatchers<Dokument, DokumenterFilterType> = {
+      innhold: matchFilter.arrayIncludes<Dokument>(m => m.innholdstype),
+      kommerFra: matchFilter.arrayIncludes<Dokument>(m => m.kommerFra),
+    };
+
+    const filtered = filterItems(dokumentMockData, filter.filters, filterMatchers);
+
+    const dokumentFilterLabels: Record<keyof DokumenterFilterType, string> = {
+      innhold: 'Innholdstype',
+      kommerFra: 'Kommer fra',
+    };
+
+    type DokumentFilterViews = 'overview' | 'innhold' | 'kommerFra';
+
+    const FilterLinkListComp = (): ReactNode => {
+      const { goToView } = useDrawerNavigation<DokumentFilterViews>();
+      const innholdChips = (filter.filters.innhold ?? []).map(v => getLabel('innhold', v));
+      const kommerFraChips = (filter.filters.kommerFra ?? []).map(v => getLabel('kommerFra', v));
+      return (
+        <FilterLinkList>
+          <FilterLinkList.Link title={dokumentFilterLabels.innhold} chips={innholdChips} onClick={() => goToView('innhold')} />
+          <FilterLinkList.Link title={dokumentFilterLabels.kommerFra} chips={kommerFraChips} onClick={() => goToView('kommerFra')} />
+        </FilterLinkList>
+      );
+    };
+
+    const footerButtons = (
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+        <Button onClick={() => filter.resetFiltersToEmpty()} variant="borderless">
+          {'Nullstill filter'}
+        </Button>
+        <Button onClick={() => setDrawerOpen(false)}>{`Vis ${filtered.length} treff`}</Button>
+      </div>
+    );
+
+    return (
+      <>
+        <div style={{ display: 'flex', flexFlow: 'row wrap', columnGap: '8px', alignItems: 'center' }}>
+          <FilterButton onClick={() => openDrawer()} />
+
+          {Object.entries(filter.filters).flatMap(([key, raw]) => {
+            const values = [raw ?? []].flat();
+            return values.map(v => (
+              <Chip
+                onChipClick={() => {
+                  openDrawer(key as DokumentFilterViews);
+                  console.log('key: ', key);
+                }}
+                key={`${key}-${v}`}
+                onCloseClick={() => filter.removeFilter(key, v)}
+              >
+                {getLabel(key as keyof DokumenterFilterType, v)}
+              </Chip>
+            ));
+          })}
+        </div>
+        <FilterResultTopBar
+          countText={`${filtered.length} verktøy`}
+          sortComponent={
+            <FilterSort>
+              <option value={'Option 1'}>{'Eldste-Nyeste'}</option>
+              <option value={'Option 2'}>{'Nyeste-Eldste'}</option>
+              <option value={'Option 3'}>{'A-Å'}</option>
+              <option value={'Option 4'}>{'Å-A'}</option>
+            </FilterSort>
+          }
+        />
+
+        <DrawerNavigation
+          isOpen={drawerOpen}
+          initialView={drawerInitialView}
+          onCloseButton={() => setDrawerOpen(false)}
+          footer={footerButtons}
+        >
+          <DrawerNavigation.View<DokumentFilterViews> id="overview" title={'Finn ...'} home>
+            <div>
+              <FilterLinkListComp />
+            </div>
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<DokumentFilterViews> id="innhold" title={dokumentFilterLabels.innhold}>
+            <div>
+              <FormGroup legend={'Velg en eller flere'}>
+                {innholdTypeOptions.map(opt => (
+                  <Checkbox
+                    key={opt.value}
+                    label={opt.displaytext}
+                    checked={(filter.filters.innhold ?? []).includes(opt.value)}
+                    onChange={(): void => toggleArrayFilter(filter, 'innhold', opt.value)}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          </DrawerNavigation.View>
+          <DrawerNavigation.View<DokumentFilterViews> id="kommerFra" title={dokumentFilterLabels.kommerFra}>
+            <div>
+              <FormGroup legend={'Velg en eller flere'}>
+                {kommerFraOptions.map(opt => (
+                  <Checkbox
+                    key={opt.value}
+                    label={opt.displaytext}
+                    checked={(filter.filters.kommerFra ?? []).includes(opt.value)}
+                    onChange={(): void => toggleArrayFilter(filter, 'kommerFra', opt.value)}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          </DrawerNavigation.View>
+        </DrawerNavigation>
+        {filtered.length > 0 ? (
+          <PanelList variant={PanelVariant.outline}>
+            {filtered.map(dokument => (
+              <Panel>
+                <Panel.Title title={dokument.navn} icon={<Icon svgIcon={File} />} />
+                <Panel.A>
+                  <span>{dokument.beskrivelse}</span>
+                </Panel.A>
+                <Panel.B>
+                  <TagList>
+                    {dokument.innholdstype.map(o => (
+                      <Tag key={o}>{getLabel('innhold', o)}</Tag>
+                    ))}
+                  </TagList>
+                </Panel.B>
+              </Panel>
+            ))}
+          </PanelList>
+        ) : (
+          <EmptyState title={'Ingen dokumenter ble funnet med valgt filter. Prøv å endre filteret for å se flere dokumenter.'} />
+        )}
+      </>
+    );
   },
 };
