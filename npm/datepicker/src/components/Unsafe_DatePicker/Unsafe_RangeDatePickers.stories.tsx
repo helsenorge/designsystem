@@ -77,6 +77,15 @@ export const Default: Story = {
         console.log('Ugyldig datointervall');
       }
     };
-    return <Unsafe_RangeDatePickers from={fromComponent} to={toComponent} onRangeChange={handleRangeChange} />;
+    return (
+      <>
+        <Unsafe_RangeDatePickers from={fromComponent} to={toComponent} onRangeChange={handleRangeChange} />
+        <span>
+          {from?.toString()}
+          {'-'}
+          {to?.toString()}
+        </span>
+      </>
+    );
   },
 };
