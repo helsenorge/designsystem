@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
@@ -24,15 +24,16 @@ export interface Unsafe_DateRangeSelectorProps {
 const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props => {
   // Start with nothing selected
   const [selected, setSelected] = useState<string>('');
-  const [customStartDate, setCustomStartDate] = useState<Date | undefined>();
-  const [customEndDate, setCustomEndDate] = useState<Date | undefined>();
+  const [customStartDate, setCustomStartDate] = useState<Date | undefined>(undefined);
+  const [customEndDate, setCustomEndDate] = useState<Date | undefined>(undefined);
+
+  // Ref to track how many picker changes to ignore after preset selection
+  const ignorePickerChanges = useRef(0);
 
   const showCustom = selected === 'custom';
   const pickerStart = customStartDate;
   const pickerEnd = customEndDate;
 
-  // Helper to check if a preset is selected
-  const presetSelected = selected && selected !== 'custom';
   return (
     <div>
       {props.options.map(option => (
@@ -46,6 +47,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             // Set pickers to preset range when preset is selected
             if (option.value !== 'custom' && option.dateRange && typeof option.dateRange === 'object') {
               const range = option.dateRange as { from?: Date; to?: Date };
+              ignorePickerChanges.current = 2;
               setCustomStartDate(range.from);
               setCustomEndDate(range.to);
             } else {
@@ -81,8 +83,9 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             showGoToTodayButton
             value={pickerStart}
             onChange={date => {
-              // Only switch to custom if a preset was selected
-              if (presetSelected) {
+              if (ignorePickerChanges.current > 0) {
+                ignorePickerChanges.current--;
+              } else if (selected !== 'custom') {
                 setSelected('custom');
               }
               setCustomStartDate(date);
@@ -97,14 +100,14 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
                 sublabel={<Sublabel sublabelTexts={[{ text: 'dd.mm.yyyy', type: 'subdued' }]} id={'sublabel-sluttdato'} />}
               />
             }
-            endMonth={new Date()}
             aria-describedby="sublabel-sluttdato"
             captionLayout="dropdown"
             showGoToTodayButton
             value={pickerEnd}
             onChange={date => {
-              // Only switch to custom if a preset was selected
-              if (presetSelected) {
+              if (ignorePickerChanges.current > 0) {
+                ignorePickerChanges.current--;
+              } else if (selected !== 'custom') {
                 setSelected('custom');
               }
               setCustomEndDate(date);
