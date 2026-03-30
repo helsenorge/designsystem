@@ -375,6 +375,9 @@ export const DokumenterExample: Story = {
     const filter = useFilter<DokumenterFilterType>(filterOptions);
     const drawer = useFilterDrawer<DokumentFilterViews>();
 
+    // Sorting state
+    const [sortOption, setSortOption] = React.useState<'date-desc' | 'date-asc' | 'name-asc' | 'name-desc'>('date-desc');
+
     // Custom date range state
     const [customStartDate, setCustomStartDate] = React.useState<Date | undefined>();
     const [customEndDate, setCustomEndDate] = React.useState<Date | undefined>();
@@ -417,7 +420,25 @@ export const DokumenterExample: Story = {
       },
     };
 
+    // Filtering
     const filtered = filterItems(dokumentMockData, filter.filters, filterMatchers);
+
+    // Sorting
+    const sorted = React.useMemo(() => {
+      const arr = [...filtered];
+      switch (sortOption) {
+        case 'date-desc':
+          return arr.sort((a, b) => (b.arkivertDato?.getTime() ?? 0) - (a.arkivertDato?.getTime() ?? 0));
+        case 'date-asc':
+          return arr.sort((a, b) => (a.arkivertDato?.getTime() ?? 0) - (b.arkivertDato?.getTime() ?? 0));
+        case 'name-asc':
+          return arr.sort((a, b) => a.navn.localeCompare(b.navn, 'nb'));
+        case 'name-desc':
+          return arr.sort((a, b) => b.navn.localeCompare(a.navn, 'nb'));
+        default:
+          return arr;
+      }
+    }, [filtered, sortOption]);
 
     const dokumentFilterLabels: Record<keyof DokumenterFilterType, string> = {
       innhold: 'Innholdstype',
@@ -440,13 +461,13 @@ export const DokumenterExample: Story = {
           />
         </FilterButtonAndActiveFiltersWrapper>
         <FilterResultTopBar
-          countText={`${filtered.length} dokumenter`}
+          countText={`${sorted.length} dokumenter`}
           sortComponent={
-            <FilterSort>
-              <option value={'Option 1'}>{'Eldste-Nyeste'}</option>
-              <option value={'Option 2'}>{'Nyeste-Eldste'}</option>
-              <option value={'Option 3'}>{'A-Å'}</option>
-              <option value={'Option 4'}>{'Å-A'}</option>
+            <FilterSort value={sortOption} onChange={e => setSortOption(e.target.value as any)}>
+              <option value="date-desc">{'Nyeste-Eldste'}</option>
+              <option value="date-asc">{'Eldste-Nyeste'}</option>
+              <option value="name-asc">{'A-Å'}</option>
+              <option value="name-desc">{'Å-A'}</option>
             </FilterSort>
           }
         />
@@ -563,9 +584,9 @@ export const DokumenterExample: Story = {
             </div>
           </FilterDrawer.View>
         </FilterDrawer>
-        {filtered.length > 0 ? (
+        {sorted.length > 0 ? (
           <PanelList variant={PanelVariant.outline}>
-            {filtered.map(dokument => (
+            {sorted.map(dokument => (
               <Panel>
                 <Panel.Title title={dokument.navn} icon={<Icon svgIcon={HTMLFile} />} />
                 <Panel.A>
