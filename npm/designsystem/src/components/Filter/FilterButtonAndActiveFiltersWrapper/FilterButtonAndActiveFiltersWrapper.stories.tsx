@@ -49,7 +49,12 @@ export const Default = {
     return (
       <FilterButtonAndActiveFiltersWrapper>
         <FilterButton onClick={() => action('Open filter')} />
-        <ActiveFilters filter={dummyFilter} getLabel={getDummyLabels} onChipClick={() => action('chip clicked')} />
+        <ActiveFilters
+          filter={dummyFilter}
+          getLabel={getDummyLabels}
+          onChipClick={() => action('chip clicked')}
+          onOverflowChipClick={() => action('overflow chip clicked')}
+        />
       </FilterButtonAndActiveFiltersWrapper>
     );
   },

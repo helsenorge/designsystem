@@ -31,6 +31,7 @@ const meta = {
       resetFilters: () => {},
       resetFiltersToEmpty: () => {},
     },
+    onOverflowChipClick: () => {},
     getLabel: () => 'Tekst',
   },
   argTypes: {},

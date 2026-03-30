@@ -232,7 +232,12 @@ export const VerktoyExample: Story = {
         </div>
         <FilterButtonAndActiveFiltersWrapper>
           <FilterButton onClick={() => drawer.open()} />
-          <ActiveFilters filter={filter} getLabel={getLabel} onChipClick={key => drawer.open(key as FilterViews)} />
+          <ActiveFilters
+            filter={filter}
+            getLabel={getLabel}
+            onChipClick={key => drawer.open(key as FilterViews)}
+            onOverflowChipClick={() => drawer.open()}
+          />
         </FilterButtonAndActiveFiltersWrapper>
         <FilterResultTopBar
           countText={`${filtered.length} verktøy`}
@@ -601,7 +606,12 @@ export const DokumenterExample: Story = {
       <>
         <FilterButtonAndActiveFiltersWrapper>
           <FilterButton onClick={() => drawer.open()} />
-          <ActiveFilters filter={filter} getLabel={getLabel} onChipClick={key => drawer.open(key as DokumentFilterViews)} />
+          <ActiveFilters
+            filter={filter}
+            getLabel={getLabel}
+            onChipClick={key => drawer.open(key as DokumentFilterViews)}
+            onOverflowChipClick={() => drawer.open()}
+          />
         </FilterButtonAndActiveFiltersWrapper>
         <FilterResultTopBar
           countText={`${filtered.length} dokumenter`}
@@ -761,7 +771,12 @@ export const LoggOverBrukExample: Story = {
       <>
         <FilterButtonAndActiveFiltersWrapper>
           <FilterButton onClick={() => drawer.open()} />
-          <ActiveFilters filter={filter} getLabel={getLabel} onChipClick={key => drawer.open(key as LogginnslagFilterViews)} />
+          <ActiveFilters
+            filter={filter}
+            getLabel={getLabel}
+            onChipClick={key => drawer.open(key as LogginnslagFilterViews)}
+            onOverflowChipClick={() => drawer.open()}
+          />
         </FilterButtonAndActiveFiltersWrapper>
         <FilterResultTopBar countText={`${filtered.length} logginnslag`} />
 
