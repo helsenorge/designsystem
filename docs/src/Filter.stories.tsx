@@ -349,7 +349,7 @@ export const DokumenterExample: Story = {
     const { filterOptions, getLabel: baseGetLabel } = createFilterConfig<DokumenterFilterType>({
       innhold: { options: innholdTypeOptions, getLabel: o => o.displaytext },
       kommerFra: { options: kommerFraOptions, getLabel: o => o.displaytext },
-      dateRange: { options: dateRangeOptions, getLabel: o => o.displayText },
+      dateRange: { options: dateRangeOptions, getLabel: o => o.displayText, defaultValue: 'last12Months' },
     });
 
     const formatDate = (date?: Date): string =>
@@ -435,6 +435,7 @@ export const DokumenterExample: Story = {
             filter={filter}
             getLabel={getLabel}
             onChipClick={key => drawer.open(key === 'dateRange' ? 'periode' : (key as DokumentFilterViews))}
+            willShowCloseButton={key => (key === 'dateRange' ? false : true)}
             onOverflowChipClick={() => drawer.open()}
           />
         </FilterButtonAndActiveFiltersWrapper>

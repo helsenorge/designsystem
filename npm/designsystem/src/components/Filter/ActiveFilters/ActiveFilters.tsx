@@ -13,6 +13,8 @@ export interface ActiveFiltersProps<T extends FilterValues> {
   onChipRemove?: (key: keyof T, value: unknown) => void;
   /** Called when the overflow chip is clicked */
   onOverflowChipClick: () => void;
+  /** Function for mapping if close button is shown on chip or not */
+  willShowCloseButton?: (key: keyof T, value?: unknown) => boolean;
 }
 
 function ActiveFilters<T extends FilterValues>({
@@ -21,6 +23,7 @@ function ActiveFilters<T extends FilterValues>({
   onChipClick,
   onChipRemove,
   onOverflowChipClick,
+  willShowCloseButton,
 }: ActiveFiltersProps<T>): React.ReactNode {
   const maxVisible = 5;
 
@@ -45,6 +48,7 @@ function ActiveFilters<T extends FilterValues>({
               filter.removeFilter(key, v);
             }
           }}
+          withCloseButton={willShowCloseButton?.(key, v)}
         >
           {getLabel(key as keyof T, v)}
         </Chip>
