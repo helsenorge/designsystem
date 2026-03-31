@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 
 import type { Unsafe_DatePickerProps } from '../Unsafe_DatePicker';
-import type { ReadableRangeOption } from './constants';
+import type { DateRange, ReadableRangeOption } from './constants';
 import type { DateRangePreset } from './utils';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
@@ -17,7 +17,9 @@ export interface Unsafe_DateRangeSelectorProps {
   /** Options for radiobuttongroup */
   options: ReadableRangeOption[];
   /** The currently selected value */
-  value?: string;
+  value: string;
+  /** The currently selected range */
+  selectedRange: DateRange;
   /** Callback when the selected value changes */
   onChange?: (value: string) => void;
   /** Overrides the text for the custom value radiobutton option */
@@ -39,6 +41,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
     name,
     options,
     value,
+    selectedRange,
     onChange,
     customValueDisplayText,
     onPresetSelected,
@@ -47,8 +50,8 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
     datePickerPropsFrom,
     datePickerPropsTo,
   } = props;
-  const [customStartDate, setCustomStartDate] = useState<Date | undefined>(undefined);
-  const [customEndDate, setCustomEndDate] = useState<Date | undefined>(undefined);
+  const [customStartDate, setCustomStartDate] = useState<Date | undefined>(selectedRange.from);
+  const [customEndDate, setCustomEndDate] = useState<Date | undefined>(selectedRange.to);
 
   // Ref to track how many picker changes to ignore after preset selection
   const ignorePickerChanges = useRef(0);
