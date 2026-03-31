@@ -20,7 +20,11 @@
     "baseUrl": ".",
     "paths": {
       "@helsenorge/designsystem-react": ["npm/designsystem/src/index.ts"],
-      "@helsenorge/designsystem-react/*": ["npm/designsystem/src/*"]
+      "@helsenorge/designsystem-react/*": ["npm/designsystem/src/*"],
+      "@helsenorge/datepicker": ["npm/datepicker/src/index.ts"],
+      "@helsenorge/datepicker/*": ["npm/datepicker/src/*"],
+      "@helsenorge/lightbox": ["npm/lightbox/src/index.ts"],
+      "@helsenorge/lightbox/*": ["npm/lightbox/src/*"]
     },
 
     /* Linting */

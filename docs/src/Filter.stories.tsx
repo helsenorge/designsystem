@@ -29,7 +29,8 @@ import PanelList from '@helsenorge/designsystem-react/components/PanelList';
 import Tag from '@helsenorge/designsystem-react/components/Tag';
 import TagList from '@helsenorge/designsystem-react/components/TagList';
 
-import Unsafe_DateRangeSelector, { DateRangePresets } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector';
+import Unsafe_DateRangeSelector from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector';
+import { DateRangePresets, getDateRangeLabel } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils';
 
 const meta: Meta = {
   title: 'Documentation/Examples/Filter',
@@ -349,35 +350,22 @@ export const DokumenterExample: Story = {
       dateRange: { options: dateRangeOptions, getLabel: o => o.displayText, defaultValue: DateRangePresets.Last12Months.value },
     });
 
-    const formatDate = (date?: Date): string =>
-      date ? date.toLocaleDateString('nb-NO', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '';
+    // Sorting state
+    const [sortOption, setSortOption] = React.useState<'date-desc' | 'date-asc' | 'name-asc' | 'name-desc'>('date-desc');
+
+    // Custom date range state
+    const [selectedRange, setSelectedRange] = React.useState(DateRangePresets.Last12Months.dateRange);
 
     // Custom getLabel for dateRange chips
     const getLabel: typeof baseGetLabel = (key, value) => {
       if (key === 'dateRange' && value === 'custom') {
-        if (customStartDate && customEndDate) {
-          return `${formatDate(customStartDate)}-${formatDate(customEndDate)}`;
-        }
-        if (customStartDate) {
-          return `${formatDate(customStartDate)}->`;
-        }
-        if (customEndDate) {
-          return `<-${formatDate(customEndDate)}`;
-        }
-        return 'Egendefinert periode';
+        return getDateRangeLabel(selectedRange);
       }
       return baseGetLabel(key, value);
     };
 
     const filter = useFilter<DokumenterFilterType>(filterOptions);
     const drawer = useFilterDrawer<DokumentFilterViews>();
-
-    // Sorting state
-    const [sortOption, setSortOption] = React.useState<'date-desc' | 'date-asc' | 'name-asc' | 'name-desc'>('date-desc');
-
-    // Custom date range state
-    const [customStartDate, setCustomStartDate] = React.useState<Date | undefined>();
-    const [customEndDate, setCustomEndDate] = React.useState<Date | undefined>();
 
     const filterMatchers: FilterMatchers<Dokument, DokumenterFilterType> = {
       innhold: matchFilter.arrayIncludes<Dokument>(d => d.innholdstype),
@@ -386,34 +374,7 @@ export const DokumenterExample: Story = {
         if (!selected) return true;
         const docDate = dokument.arkivertDato;
         if (!docDate) return false;
-        const today = new Date();
-        if (selected === 'custom') {
-          if (!customStartDate && !customEndDate) {
-            return true;
-          }
-          if (customStartDate && customEndDate) {
-            return docDate >= customStartDate && docDate <= customEndDate;
-          }
-          if (customStartDate) {
-            return docDate >= customStartDate;
-          }
-          if (customEndDate) {
-            return docDate <= customEndDate;
-          }
-          return true;
-        }
-        let startDate: Date | undefined;
-        if (selected === 'lastMonth') {
-          startDate = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-        } else if (selected === 'last6Months') {
-          startDate = new Date(today.getFullYear(), today.getMonth() - 6, today.getDate());
-        } else if (selected === 'last12Months') {
-          startDate = new Date(today.getFullYear(), today.getMonth() - 12, today.getDate());
-        } else if (selected === 'fullYear') {
-          startDate = new Date(today.getFullYear(), 0, 1);
-        }
-        if (!startDate) return true;
-        return docDate >= startDate;
+        return docDate >= selectedRange.from && docDate <= selectedRange.to;
       },
     };
 
@@ -460,7 +421,10 @@ export const DokumenterExample: Story = {
         <FilterResultTopBar
           countText={`${sorted.length} dokumenter`}
           sortComponent={
-            <FilterSort value={sortOption} onChange={e => setSortOption(e.target.value as any)}>
+            <FilterSort
+              value={sortOption}
+              onChange={e => setSortOption(e.target.value as 'date-desc' | 'date-asc' | 'name-asc' | 'name-desc')}
+            >
               <option value="date-desc">{'Nyeste-Eldste'}</option>
               <option value="date-asc">{'Eldste-Nyeste'}</option>
               <option value="name-asc">{'A-Å'}</option>
@@ -515,16 +479,18 @@ export const DokumenterExample: Story = {
                 <Unsafe_DateRangeSelector
                   name="periode"
                   options={dateRangeOptions}
-                  value={filter.filters.dateRange}
+                  value={filter.filters.dateRange ?? DateRangePresets.Last12Months.value}
+                  selectedRange={selectedRange}
                   onChange={(value: string) => filter.setFilter('dateRange', value)}
                   customValueDisplayText="Egendefinert periode/dato"
                   onPresetSelected={(preset: typeof DateRangePresets.LastMonth) => {
-                    setCustomStartDate(preset.dateRange.from);
-                    setCustomEndDate(preset.dateRange.to);
+                    filter.setFilter('dateRange', preset.value);
+                    setSelectedRange(preset.dateRange);
                   }}
                   onRangeChange={(from: Date | undefined, to: Date | undefined) => {
-                    setCustomStartDate(from);
-                    setCustomEndDate(to);
+                    if (from && to) {
+                      setSelectedRange({ from, to });
+                    }
                   }}
                 />
                 {/* Legger til space til kalender popup */}

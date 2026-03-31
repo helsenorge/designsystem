@@ -1,8 +1,7 @@
-import { useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import type { Unsafe_DatePickerProps } from '../Unsafe_DatePicker';
-import type { DateRange, ReadableRangeOption } from './constants';
-import type { DateRangePreset } from './utils';
+import type { DateRange, DateRangePreset, ReadableRangeOption } from './constants';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import type { RadioButtonProps } from '@helsenorge/designsystem-react/components/RadioButton';
@@ -50,16 +49,16 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
     datePickerPropsFrom,
     datePickerPropsTo,
   } = props;
-  const [customStartDate, setCustomStartDate] = useState<Date | undefined>(selectedRange.from);
-  const [customEndDate, setCustomEndDate] = useState<Date | undefined>(selectedRange.to);
-
-  // Ref to track how many picker changes to ignore after preset selection
-  const ignorePickerChanges = useRef(0);
+  const ignorePickerChanges = useRef(2);
 
   const selected = value ?? '';
   const showCustom = selected === 'custom';
-  const pickerStart = customStartDate;
-  const pickerEnd = customEndDate;
+  const pickerStart = selectedRange.from;
+  const pickerEnd = selectedRange.to;
+
+  useEffect(() => {
+    ignorePickerChanges.current = 2;
+  }, [selectedRange]);
 
   return (
     <div>
@@ -78,13 +77,8 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
                 onChange(option.value);
               }
               if (option.value !== 'custom' && option.dateRange && typeof option.dateRange === 'object') {
-                const range = option.dateRange as { from?: Date; to?: Date };
+                // Set ignore counter so date pickers don't trigger 'custom' selection
                 ignorePickerChanges.current = 2;
-                setCustomStartDate(range.from);
-                setCustomEndDate(range.to);
-              } else {
-                setCustomStartDate(undefined);
-                setCustomEndDate(undefined);
               }
               if (onPresetSelected) {
                 onPresetSelected(option);
@@ -106,15 +100,12 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
           if (onChange) {
             onChange('custom');
           }
-          setCustomStartDate(undefined);
-          setCustomEndDate(undefined);
           if (customRadioButtonProps?.onChange) {
             customRadioButtonProps?.onChange(e);
           }
         }}
       />
       <Unsafe_RangeDatePickers
-        onRangeChange={onRangeChange}
         from={
           <Unsafe_DatePicker
             label={
@@ -134,7 +125,9 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
               } else if (selected !== 'custom' && onChange) {
                 onChange('custom');
               }
-              setCustomStartDate(date);
+              if (onRangeChange) {
+                onRangeChange(date, pickerEnd);
+              }
             }}
           />
         }
@@ -157,7 +150,9 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
               } else if (selected !== 'custom' && onChange) {
                 onChange('custom');
               }
-              setCustomEndDate(date);
+              if (onRangeChange) {
+                onRangeChange(pickerStart, date);
+              }
             }}
           />
         }
