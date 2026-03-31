@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 
 import type { Unsafe_DatePickerProps } from '../Unsafe_DatePicker';
+import type { DateRangePreset } from './utils';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import type { RadioButtonProps } from '@helsenorge/designsystem-react/components/RadioButton';
@@ -9,30 +10,36 @@ import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
 import Unsafe_DatePicker from '../Unsafe_DatePicker';
 import Unsafe_RangeDatePickers from '../Unsafe_RangeDatePickers';
 
-export interface ReadableRangeOption {
-  value: string;
-  displayText: string;
-  dateRange: unknown;
+export interface DateRange {
+  from: Date;
+  to: Date;
 }
 
+export type ReadableRangeOption = DateRangePreset & {
+  /** Optional extra props for the radiobutton */
+  radioButtonProps?: Partial<RadioButtonProps>;
+};
+
 export interface Unsafe_DateRangeSelectorProps {
+  /** Name for the radiobuttongroup */
   name: string;
+  /** Options for radiobuttongroup */
   options: ReadableRangeOption[];
-  customValueDisplayText: string;
+  /** Overrides the text for the custom value radiobutton option */
+  customValueDisplayText?: string;
   /** Callback when the date range changes with validation result */
   onRangeChange?: (from: Date | undefined, to: Date | undefined, isValid: boolean) => void;
+  /** Extra props for the custom value radiobutton option */
+  customRadioButtonProps?: Partial<RadioButtonProps>;
   /** Extra props for the 'from' date picker */
   datePickerPropsFrom?: Partial<Unsafe_DatePickerProps>;
   /** Extra props for the 'to' date picker */
   datePickerPropsTo?: Partial<Unsafe_DatePickerProps>;
-  /** Extra props for all radio buttons */
-  radioButtonProps?: Partial<RadioButtonProps>;
   /** Extra props for specific radio buttons by value */
   radioButtonPropsByValue?: Record<string, Partial<RadioButtonProps>>;
 }
 
 const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props => {
-  // Start with nothing selected
   const [selected, setSelected] = useState<string>('');
   const [customStartDate, setCustomStartDate] = useState<Date | undefined>(undefined);
   const [customEndDate, setCustomEndDate] = useState<Date | undefined>(undefined);
@@ -47,17 +54,16 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
   return (
     <div>
       {props.options.map(option => {
-        const extraRadioProps = props.radioButtonPropsByValue?.[option.value] || {};
-        const { onChange: extraOnChange, ...restExtraProps } = extraRadioProps;
         return (
           <RadioButton
             name={props.name}
             key={option.value}
             value={option.value}
             checked={selected === option.value}
+            label={<Label labelTexts={[{ text: option.displayText, type: 'subdued' }]} />}
+            {...option.radioButtonProps}
             onChange={e => {
               setSelected(option.value);
-              // Set pickers to preset range when preset is selected
               if (option.value !== 'custom' && option.dateRange && typeof option.dateRange === 'object') {
                 const range = option.dateRange as { from?: Date; to?: Date };
                 ignorePickerChanges.current = 2;
@@ -67,44 +73,28 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
                 setCustomStartDate(undefined);
                 setCustomEndDate(undefined);
               }
-              if (extraOnChange) {
-                extraOnChange(e);
-              }
-              if (props.radioButtonProps?.onChange && !extraOnChange) {
-                props.radioButtonProps.onChange(e);
+              if (option.radioButtonProps?.onChange) {
+                option.radioButtonProps?.onChange(e);
               }
             }}
-            label={<Label labelTexts={[{ text: option.displayText, type: 'subdued' }]} />}
-            {...props.radioButtonProps}
-            {...restExtraProps}
           />
         );
       })}
-      {((): React.ReactElement => {
-        const customExtraProps = props.radioButtonPropsByValue?.custom || {};
-        const { onChange: customOnChange, ...restCustomProps } = customExtraProps;
-        return (
-          <RadioButton
-            name={props.name}
-            value="custom"
-            checked={showCustom}
-            onChange={e => {
-              setSelected('custom');
-              setCustomStartDate(undefined);
-              setCustomEndDate(undefined);
-              if (customOnChange) {
-                customOnChange(e);
-              }
-              if (props.radioButtonProps?.onChange && !customOnChange) {
-                props.radioButtonProps.onChange(e);
-              }
-            }}
-            label={<Label labelTexts={[{ text: props.customValueDisplayText, type: 'subdued' }]} />}
-            {...props.radioButtonProps}
-            {...restCustomProps}
-          />
-        );
-      })()}
+      <RadioButton
+        name={props.name}
+        value="custom"
+        checked={showCustom}
+        label={<Label labelTexts={[{ text: props.customValueDisplayText ?? 'Egendefinert periode/dato', type: 'subdued' }]} />}
+        {...props.customRadioButtonProps}
+        onChange={e => {
+          setSelected('custom');
+          setCustomStartDate(undefined);
+          setCustomEndDate(undefined);
+          if (props.customRadioButtonProps?.onChange) {
+            props.customRadioButtonProps?.onChange(e);
+          }
+        }}
+      />
       <Unsafe_RangeDatePickers
         from={
           <Unsafe_DatePicker
@@ -118,6 +108,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             captionLayout="dropdown"
             showGoToTodayButton
             value={pickerStart}
+            {...props.datePickerPropsFrom}
             onChange={date => {
               if (ignorePickerChanges.current > 0) {
                 ignorePickerChanges.current--;
@@ -126,7 +117,6 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
               }
               setCustomStartDate(date);
             }}
-            {...props.datePickerPropsFrom}
           />
         }
         to={
@@ -141,6 +131,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             captionLayout="dropdown"
             showGoToTodayButton
             value={pickerEnd}
+            {...props.datePickerPropsTo}
             onChange={date => {
               if (ignorePickerChanges.current > 0) {
                 ignorePickerChanges.current--;
@@ -149,7 +140,6 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
               }
               setCustomEndDate(date);
             }}
-            {...props.datePickerPropsTo}
           />
         }
       />

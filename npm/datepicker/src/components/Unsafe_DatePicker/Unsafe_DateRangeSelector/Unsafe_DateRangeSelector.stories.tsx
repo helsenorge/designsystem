@@ -19,11 +19,7 @@ export const Default: Story = {
     options: [
       DateRangePresets.LastMonth,
       DateRangePresets.Last6Months,
-      {
-        value: DateRangePresets.Last12Months.value,
-        displayText: 'Next 12 months', // bare for å vise custom
-        dateRange: DateRangePresets.Last12Months.dateRange,
-      },
+      DateRangePresets.Last12Months,
       DateRangePresets.FullYear,
       DateRangePresets.NextMonth,
       DateRangePresets.Next6Months,
@@ -43,6 +39,9 @@ export const CustomProps: Story = {
         value: DateRangePresets.Last12Months.value,
         displayText: 'Custom text for 12 months',
         dateRange: DateRangePresets.Last12Months.dateRange,
+        radioButtonProps: {
+          onChange: () => console.log('last 12 months selected'),
+        },
       },
       DateRangePresets.FullYear,
     ],
@@ -51,17 +50,6 @@ export const CustomProps: Story = {
     },
     datePickerPropsTo: {
       id: 'custom-to-date',
-    },
-    radioButtonPropsByValue: {
-      [DateRangePresets.LastMonth.value]: {
-        onChange: () => console.log('Last month selected!'),
-      },
-      [DateRangePresets.Last12Months.value]: {
-        onChange: () => console.log('12 months selected!'),
-      },
-      custom: {
-        onChange: () => console.log('Custom radio selected!'),
-      },
     },
   },
   render: args => <Unsafe_DateRangeSelector {...args} />,

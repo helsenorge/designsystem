@@ -1,7 +1,17 @@
-export const DateRangePresets = (() => {
+export type DateRangePreset = {
+  readonly value: string;
+  readonly displayText: string;
+  readonly dateRange: { readonly from: Date; readonly to: Date };
+};
+
+export type DateRangePresetsType = {
+  readonly [key: string]: DateRangePreset;
+};
+
+export const DateRangePresets = ((): DateRangePresetsType => {
   const today = new Date();
-  const safeDay = (year: number, month: number, day: number) => Math.min(day, new Date(year, month + 1, 0).getDate());
-  const addMonths = (date: Date, months: number) => {
+  const safeDay = (year: number, month: number, day: number): number => Math.min(day, new Date(year, month + 1, 0).getDate());
+  const addMonths = (date: Date, months: number): Date => {
     const y = date.getFullYear();
     const m = date.getMonth() + months;
     const d = date.getDate();
@@ -66,5 +76,5 @@ export const DateRangePresets = (() => {
         to: addMonths(today, 12),
       },
     },
-  };
+  } as const;
 })();
