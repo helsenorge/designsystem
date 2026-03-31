@@ -23,15 +23,13 @@ import { useFilterDrawer } from '@helsenorge/designsystem-react/components/Filte
 import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import HTMLFile from '@helsenorge/designsystem-react/components/Icons/HTMLFile';
-import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import Panel from '@helsenorge/designsystem-react/components/Panel';
 import { PanelVariant } from '@helsenorge/designsystem-react/components/Panel/constants';
 import PanelList from '@helsenorge/designsystem-react/components/PanelList';
-import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
 import Tag from '@helsenorge/designsystem-react/components/Tag';
 import TagList from '@helsenorge/designsystem-react/components/TagList';
 
-import Unsafe_DatePicker from '@helsenorge/datepicker/components/Unsafe_DatePicker';
+import Unsafe_DateRangeSelector, { DateRangePresets } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector';
 
 const meta: Meta = {
   title: 'Documentation/Examples/Filter',
@@ -339,17 +337,16 @@ export const DokumenterExample: Story = {
     ];
 
     const dateRangeOptions = [
-      { value: 'lastMonth', displayText: 'Siste måned' },
-      { value: 'last6Months', displayText: 'Siste 6 måneder' },
-      { value: 'last12Months', displayText: 'Siste 12 måneder' },
-      { value: 'fullYear', displayText: new Date().getFullYear().toString() },
-      { value: 'custom', displayText: 'Egendefinert periode/dato' },
+      DateRangePresets.LastMonth,
+      DateRangePresets.Last6Months,
+      DateRangePresets.Last12Months,
+      DateRangePresets.FullYear,
     ];
 
     const { filterOptions, getLabel: baseGetLabel } = createFilterConfig<DokumenterFilterType>({
       innhold: { options: innholdTypeOptions, getLabel: o => o.displaytext },
       kommerFra: { options: kommerFraOptions, getLabel: o => o.displaytext },
-      dateRange: { options: dateRangeOptions, getLabel: o => o.displayText, defaultValue: 'last12Months' },
+      dateRange: { options: dateRangeOptions, getLabel: o => o.displayText, defaultValue: DateRangePresets.Last12Months.value },
     });
 
     const formatDate = (date?: Date): string =>
@@ -515,67 +512,19 @@ export const DokumenterExample: Story = {
           <FilterDrawer.View id="periode" title={dokumentFilterLabels.dateRange}>
             <div>
               <FormGroup legend={'Velg periode'}>
-                <RadioButton
+                <Unsafe_DateRangeSelector
                   name="periode"
-                  label={'Siste måned'}
-                  checked={filter.filters.dateRange === 'lastMonth'}
-                  onChange={(): void => filter.setFilter('dateRange', 'lastMonth')}
-                />
-                <RadioButton
-                  name="periode"
-                  label={'Siste 6 måneder'}
-                  checked={filter.filters.dateRange === 'last6Months'}
-                  onChange={(): void => filter.setFilter('dateRange', 'last6Months')}
-                />
-                <RadioButton
-                  name="periode"
-                  label={'Siste 12 måneder'}
-                  checked={filter.filters.dateRange === 'last12Months'}
-                  onChange={(): void => filter.setFilter('dateRange', 'last12Months')}
-                />
-                <RadioButton
-                  name="periode"
-                  label={new Date().getFullYear().toString()}
-                  checked={filter.filters.dateRange === 'fullYear'}
-                  onChange={(): void => filter.setFilter('dateRange', 'fullYear')}
-                />
-                <RadioButton
-                  name="periode"
-                  label={'Egendefinert periode/dato'}
-                  checked={filter.filters.dateRange === 'custom'}
-                  onChange={(): void => filter.setFilter('dateRange', 'custom')}
-                />
-                <Unsafe_DatePicker
-                  label={
-                    <Label
-                      labelTexts={[{ text: 'Startdato' }]}
-                      sublabel={<Sublabel sublabelTexts={[{ text: 'dd.mm.yyyy', type: 'subdued' }]} id={'sublabel-startdato'} />}
-                    />
-                  }
-                  aria-describedby="sublabel-startdato"
-                  captionLayout="dropdown"
-                  showGoToTodayButton
-                  value={customStartDate}
-                  onChange={date => {
-                    setCustomStartDate(date);
-                    if (date) filter.setFilter('dateRange', 'custom');
+                  options={dateRangeOptions}
+                  value={filter.filters.dateRange}
+                  onChange={(value: string) => filter.setFilter('dateRange', value)}
+                  customValueDisplayText="Egendefinert periode/dato"
+                  onPresetSelected={(preset: typeof DateRangePresets.LastMonth) => {
+                    setCustomStartDate(preset.dateRange.from);
+                    setCustomEndDate(preset.dateRange.to);
                   }}
-                />
-                <Unsafe_DatePicker
-                  label={
-                    <Label
-                      labelTexts={[{ text: 'Sluttdato' }]}
-                      sublabel={<Sublabel sublabelTexts={[{ text: 'dd.mm.yyyy', type: 'subdued' }]} id={'sublabel-sluttdato'} />}
-                    />
-                  }
-                  endMonth={new Date()}
-                  aria-describedby="sublabel-sluttdato"
-                  captionLayout="dropdown"
-                  showGoToTodayButton
-                  value={customEndDate}
-                  onChange={date => {
-                    setCustomEndDate(date);
-                    if (date) filter.setFilter('dateRange', 'custom');
+                  onRangeChange={(from: Date | undefined, to: Date | undefined) => {
+                    setCustomStartDate(from);
+                    setCustomEndDate(to);
                   }}
                 />
                 {/* Legger til space til kalender popup */}
