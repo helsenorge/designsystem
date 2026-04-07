@@ -86,10 +86,10 @@ export const getDateRangeLabel = (selectedRange: { from: Date; to: Date }, local
     return `${formatDate(selectedRange.from)}-${formatDate(selectedRange.to)}`;
   }
   if (selectedRange.from) {
-    return `${formatDate(selectedRange.from)}->`;
+    return `${formatDate(selectedRange.from)}-`;
   }
   if (selectedRange.to) {
-    return `<-${formatDate(selectedRange.to)}`;
+    return `-${formatDate(selectedRange.to)}`;
   }
   return 'Egendefinert periode';
 };
