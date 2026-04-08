@@ -32,6 +32,7 @@ export const Default: Story = {
   render: () => {
     const [from, setFrom] = useState<Date | undefined>(new Date());
     const [to, setTo] = useState<Date | undefined>();
+    const [errorText, setErrorText] = useState<string | undefined>();
 
     const fromComponent = (
       <Unsafe_DatePicker
@@ -44,6 +45,7 @@ export const Default: Story = {
             sublabel={<Sublabel id="sublabel-from" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
           />
         }
+        errorText={errorText}
         value={from}
         onChange={date => {
           setFrom(date);
@@ -62,6 +64,7 @@ export const Default: Story = {
             sublabel={<Sublabel id="sublabel-to" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
           />
         }
+        errorText={errorText}
         value={to}
         onChange={date => {
           setTo(date);
@@ -70,11 +73,13 @@ export const Default: Story = {
       />
     );
 
-    const handleRangeChange = (from: Date | undefined, to: Date | undefined, isValid: boolean) => {
+    const handleRangeChange = (from: Date | undefined, to: Date | undefined, isValid: boolean): void => {
       setFrom(from);
       setTo(to);
       if (!isValid) {
-        console.log('Ugyldig datointervall');
+        setErrorText('Ugyldig datointervall');
+      } else {
+        setErrorText('');
       }
     };
     return (
