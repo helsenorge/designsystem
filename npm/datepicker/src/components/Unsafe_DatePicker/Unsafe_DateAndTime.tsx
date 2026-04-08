@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { isValid } from 'date-fns';
 
@@ -18,7 +18,9 @@ export interface Unsafe_DateAndTimeProps {
   legend?: React.ReactNode;
   /** Errortext for validation errors */
   errorText?: string;
+  /** Props sent to the DatePicker */
   datepickerProps?: Unsafe_DatePickerProps;
+  /** Props sent to TimeInput */
   timeInputProps?: Unsafe_TimeInputProps;
 }
 
@@ -45,11 +47,21 @@ const mergeDateAndTime = (date: Date | undefined, time: string | undefined): Dat
   }
 
   const [hoursStr, minutesStr] = time.split(':');
-  const hours = parseInt(hoursStr, 10);
-  const minutes = parseInt(minutesStr, 10);
+  const hours = hoursStr ? parseInt(hoursStr, 10) : 0;
+  const minutes = minutesStr ? parseInt(minutesStr, 10) : 0;
 
-  if (isNaN(hours) || isNaN(minutes)) {
-    // If time is invalid, reset to 00:00
+  // If either part is invalid (but not just empty), reset to 00:00
+  if ((hoursStr && isNaN(hours)) || (minutesStr && isNaN(minutes))) {
+    merged.setHours(0, 0, 0, 0);
+    return merged;
+  }
+
+  // Validate ranges
+  if (hoursStr && (hours < 0 || hours >= 24)) {
+    merged.setHours(0, 0, 0, 0);
+    return merged;
+  }
+  if (minutesStr && (minutes < 0 || minutes >= 60)) {
     merged.setHours(0, 0, 0, 0);
     return merged;
   }
@@ -81,17 +93,12 @@ const Unsafe_DateAndTime = ({
   // Only initialize with time if the value has a non-zero time
   const [internalTime, setInternalTime] = useState<string | undefined>(hasMeaningfulTime(value) ? toTimeString(value) : undefined);
 
-  // Always let the latest prop value win
-  const nextTimeString = hasMeaningfulTime(value) ? toTimeString(value) : undefined;
-
-  if (internalTime !== nextTimeString) {
-    setInternalTime(nextTimeString);
-  }
+  // Track the last value we sent via onChange to detect external changes
+  const lastSentValueTime = useRef<number | undefined>(undefined);
 
   const handleDateChange = (newDate: Date | undefined): void => {
-    // Merge the new date with the current time string (from state, not value)
-    // If time is undefined, the merged date will have 00:00 but we won't display it
     const merged = mergeDateAndTime(newDate, internalTime);
+    lastSentValueTime.current = merged?.getTime();
     onChange?.(merged);
   };
 
@@ -101,6 +108,7 @@ const Unsafe_DateAndTime = ({
 
     // Merge the new time with the existing date from value prop
     const merged = mergeDateAndTime(value, newTime);
+    lastSentValueTime.current = merged?.getTime();
     onChange?.(merged);
   };
 
