@@ -1,17 +1,13 @@
 import type { DateRangePresetsType } from './constants';
 
 export const DateRangePresets = ((): DateRangePresetsType => {
-  const today = new Date();
-  const safeDay = (year: number, month: number, day: number): number => Math.min(day, new Date(year, month + 1, 0).getDate());
+  const now = new Date();
+  const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
   const addMonths = (date: Date, months: number): Date => {
-    const y = date.getFullYear();
-    const m = date.getMonth() + months;
-    const d = date.getDate();
-    const newY = y + Math.floor(m / 12);
-    const newM = ((m % 12) + 12) % 12;
-    return new Date(newY, newM, safeDay(newY, newM, d));
+    const result = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + months, date.getUTCDate()));
+    return result;
   };
-  const todaysYear = today.getFullYear();
+  const todaysYear = today.getUTCFullYear();
   return {
     LastMonth: {
       value: 'lastMonth',
@@ -41,8 +37,8 @@ export const DateRangePresets = ((): DateRangePresetsType => {
       value: 'fullYear',
       displayText: todaysYear.toString(),
       dateRange: {
-        from: new Date(todaysYear, 0, 1),
-        to: new Date(todaysYear, 11, 31),
+        from: new Date(Date.UTC(todaysYear, 0, 1)),
+        to: new Date(Date.UTC(todaysYear, 11, 31)),
       },
     },
     NextMonth: {

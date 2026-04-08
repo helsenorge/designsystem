@@ -78,7 +78,11 @@ const Unsafe_DatePicker = ({
 
   // Sync external value changes to internal state
   useEffect(() => {
-    if (!internalChangeRef.current) {
+    // Always sync if the external value differs from our internal state
+    // This ensures prop changes always take effect, even if internalChangeRef was set by a previous onChange
+    const valueTime = value?.getTime();
+    const statetime = dateDate?.getTime();
+    if (valueTime !== statetime) {
       setDateString(dateToString(value) || '');
       setDateDate(value || undefined);
     }

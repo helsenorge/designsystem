@@ -53,8 +53,6 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
 
   const selected = value ?? '';
   const showCustom = selected === 'custom';
-  const pickerStart = selectedRange.from;
-  const pickerEnd = selectedRange.to;
 
   useEffect(() => {
     ignorePickerChanges.current = 2;
@@ -117,16 +115,18 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             aria-describedby="sublabel-startdato"
             captionLayout="dropdown"
             showGoToTodayButton
-            value={pickerStart}
+            value={selectedRange.from}
             {...datePickerPropsFrom}
             onChange={date => {
               if (ignorePickerChanges.current > 0) {
                 ignorePickerChanges.current--;
-              } else if (selected !== 'custom' && onChange) {
-                onChange('custom');
-              }
-              if (onRangeChange) {
-                onRangeChange(date, pickerEnd);
+              } else {
+                if (selected !== 'custom' && onChange) {
+                  onChange('custom');
+                }
+                if (onRangeChange) {
+                  onRangeChange(date, selectedRange.to);
+                }
               }
             }}
           />
@@ -142,16 +142,18 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             aria-describedby="sublabel-sluttdato"
             captionLayout="dropdown"
             showGoToTodayButton
-            value={pickerEnd}
+            value={selectedRange.to}
             {...datePickerPropsTo}
             onChange={date => {
               if (ignorePickerChanges.current > 0) {
                 ignorePickerChanges.current--;
-              } else if (selected !== 'custom' && onChange) {
-                onChange('custom');
-              }
-              if (onRangeChange) {
-                onRangeChange(pickerStart, date);
+              } else {
+                if (selected !== 'custom' && onChange) {
+                  onChange('custom');
+                }
+                if (onRangeChange) {
+                  onRangeChange(selectedRange.from, date);
+                }
               }
             }}
           />
