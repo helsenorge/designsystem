@@ -307,7 +307,7 @@ export const DokumenterExample: Story = {
         beskrivelse: 'Skjemautfyller',
         innholdstype: [InnholdType.egenkartlegging],
         kommerFra: [KontekstType.skjemautfyller],
-        arkivertDato: new Date(),
+        arkivertDato: new Date(2026, 3, 8),
       },
     ];
 
@@ -354,9 +354,24 @@ export const DokumenterExample: Story = {
     const [sortOption, setSortOption] = React.useState<'date-desc' | 'date-asc' | 'name-asc' | 'name-desc'>('date-desc');
 
     // Custom date range state
+    const [dateRangeValue, setDateRangeValue] = React.useState(DateRangePresets.Last12Months.value);
     const [selectedRange, setSelectedRange] = React.useState(DateRangePresets.Last12Months.dateRange);
 
-    // Custom getLabel for dateRange chips
+    const handleDateRangeChange = React.useCallback((value: string) => {
+      setDateRangeValue(value);
+    }, []);
+
+    const handlePresetSelected = React.useCallback((preset: typeof DateRangePresets.LastMonth) => {
+      setDateRangeValue(preset.value);
+      setSelectedRange(preset.dateRange);
+    }, []);
+
+    const handleRangeChange = React.useCallback((from: Date | undefined, to: Date | undefined) => {
+      if (from && to) {
+        setSelectedRange({ from, to });
+      }
+    }, []);
+
     const getLabel: typeof baseGetLabel = (key, value) => {
       if (key === 'dateRange' && value === 'custom') {
         return getDateRangeLabel(selectedRange);
@@ -366,6 +381,10 @@ export const DokumenterExample: Story = {
 
     const filter = useFilter<DokumenterFilterType>(filterOptions);
     const drawer = useFilterDrawer<DokumentFilterViews>();
+
+    React.useEffect(() => {
+      filter.setFilter('dateRange', dateRangeValue);
+    }, [dateRangeValue]);
 
     const filterMatchers: FilterMatchers<Dokument, DokumenterFilterType> = {
       innhold: matchFilter.arrayIncludes<Dokument>(d => d.innholdstype),
@@ -433,7 +452,15 @@ export const DokumenterExample: Story = {
           }
         />
 
-        <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} treff`}>
+        <FilterDrawer
+          drawer={drawer}
+          onReset={() => {
+            filter.resetFiltersToEmpty();
+            setDateRangeValue(DateRangePresets.Last12Months.value);
+            setSelectedRange(DateRangePresets.Last12Months.dateRange);
+          }}
+          showResultButtonText={`Vis ${filtered.length} treff`}
+        >
           <FilterDrawer.Overview title={'Finn ...'}>
             <FilterOverviewLinkList
               filter={filter}
@@ -477,21 +504,15 @@ export const DokumenterExample: Story = {
             <div>
               <FormGroup legend={'Velg periode'}>
                 <Unsafe_DateRangeSelector
+                  key={dateRangeValue}
                   name="periode"
                   options={dateRangeOptions}
-                  value={filter.filters.dateRange ?? DateRangePresets.Last12Months.value}
+                  value={dateRangeValue}
                   selectedRange={selectedRange}
-                  onChange={(value: string) => filter.setFilter('dateRange', value)}
+                  onChange={handleDateRangeChange}
                   customValueDisplayText="Egendefinert periode/dato"
-                  onPresetSelected={(preset: typeof DateRangePresets.LastMonth) => {
-                    filter.setFilter('dateRange', preset.value);
-                    setSelectedRange(preset.dateRange);
-                  }}
-                  onRangeChange={(from: Date | undefined, to: Date | undefined) => {
-                    if (from && to) {
-                      setSelectedRange({ from, to });
-                    }
-                  }}
+                  onPresetSelected={handlePresetSelected}
+                  onRangeChange={handleRangeChange}
                 />
                 {/* Legger til space til kalender popup */}
                 <div style={{ height: '23rem', width: '1px' }} />
