@@ -354,8 +354,8 @@ export const DokumenterExample: Story = {
     const [sortOption, setSortOption] = React.useState<'date-desc' | 'date-asc' | 'name-asc' | 'name-desc'>('date-desc');
 
     // Custom date range state
-    const [dateRangeValue, setDateRangeValue] = React.useState(DateRangePresets.Last12Months.value);
-    const [selectedRange, setSelectedRange] = React.useState(DateRangePresets.Last12Months.dateRange);
+    const [dateRangeValue, setDateRangeValue] = React.useState<string | undefined>(DateRangePresets.Last12Months.value);
+    const [selectedRange, setSelectedRange] = React.useState<{ from: Date; to: Date }>(DateRangePresets.Last12Months.dateRange);
 
     const handleDateRangeChange = React.useCallback((value: string) => {
       setDateRangeValue(value);
@@ -458,8 +458,7 @@ export const DokumenterExample: Story = {
           drawer={drawer}
           onReset={() => {
             filter.resetFiltersToEmpty();
-            setDateRangeValue(DateRangePresets.Last12Months.value);
-            setSelectedRange(DateRangePresets.Last12Months.dateRange);
+            setDateRangeValue(undefined);
           }}
           showResultButtonText={`Vis ${filtered.length} treff`}
         >

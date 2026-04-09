@@ -16,7 +16,7 @@ export interface Unsafe_DateRangeSelectorProps {
   /** Options for radiobuttongroup */
   options: ReadableRangeOption[];
   /** The currently selected value */
-  value: string;
+  value: string | undefined;
   /** The currently selected range */
   selectedRange: DateRange;
   /** Callback when the selected value changes */
