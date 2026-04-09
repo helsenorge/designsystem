@@ -49,14 +49,18 @@ function FilterDrawer<ViewId extends string>({
 
   const processedChildren = Children.map(children, child => {
     if (isValidElement<Omit<DrawerViewProps, 'id' | 'home'>>(child) && child.type === FilterDrawerOverview) {
-      return <DrawerNavigation.View id="overview" home {...child.props} />;
+      return <DrawerNavigation.View id="overview" home {...child.props} drawerContentClassname={styles['filter-drawer__view']} />;
     }
-    return child;
+    if (isValidElement<DrawerViewProps>(child)) {
+      return <DrawerNavigation.View {...child?.props} drawerContentClassname={styles['filter-drawer__view']} />;
+    } else {
+      return child;
+    }
   });
 
   const defaultFooter =
     onReset || showResultButtonText ? (
-      <div className={styles['filter-drawer-footer']}>
+      <div className={styles['filter-drawer__footer']}>
         {onReset && (
           <Button onClick={onReset} variant="borderless">
             {resetText}

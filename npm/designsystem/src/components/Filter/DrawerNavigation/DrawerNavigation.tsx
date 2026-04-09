@@ -17,6 +17,8 @@ export interface DrawerViewProps<ViewId extends string = string> {
   onCloseButton?: () => void;
   /** Content sent to footer section of Drawer. Will override footer on parent */
   footer?: React.ReactNode;
+  /** Classname set on the content inside Drawer */
+  drawerContentClassname?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,6 +52,7 @@ function parseChildren(children: React.ReactNode): { views: DrawerViewProps[]; o
         children: child.props.children,
         onCloseButton: child.props.onCloseButton,
         footer: child.props.footer,
+        drawerContentClassname: child.props.drawerContentClassname,
       });
     } else {
       /** Added possibility of other children to support Modals that need navigation context */
@@ -111,6 +114,7 @@ function DrawerNavigation({ children, isOpen, initialView, onCloseButton, footer
         onRequestBack={goBack}
         onRequestClose={currentView?.onCloseButton ?? onCloseButton}
         footerContent={currentView?.footer ?? footer}
+        contentClassName={currentView?.drawerContentClassname}
       >
         {currentView?.children}
       </Drawer>

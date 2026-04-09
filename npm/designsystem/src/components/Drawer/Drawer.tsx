@@ -76,6 +76,8 @@ export interface InnerDrawerProps {
   withBackButton?: boolean;
   /** Callback for the back button */
   onRequestBack?: () => void;
+  /** Sets classname for content part in Drawer */
+  contentClassName?: string;
 }
 
 const Drawer: React.FC<DrawerProps> = props => {
@@ -108,6 +110,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     isMobile,
     withBackButton,
     onRequestBack,
+    contentClassName,
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledBy, fallbackId: titleId });
@@ -134,6 +137,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     ...resources,
   };
 
+  // eslint-disable-next-line react-hooks/refs
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
   const headerStyling = classNames(styles.drawer__header, headerClasses);
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
@@ -294,7 +298,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             }}
           />
           <div
-            className={styles.drawer__content}
+            className={classNames(styles.drawer__content, contentClassName)}
             tabIndex={contentIsScrollable ? 0 : undefined}
             role={contentIsScrollable ? 'region' : undefined}
             {...(contentIsScrollable ? ariaLabelAttributes : {})}
