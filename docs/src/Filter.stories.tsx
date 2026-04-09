@@ -427,30 +427,32 @@ export const DokumenterExample: Story = {
 
     return (
       <>
-        <FilterButtonAndActiveFiltersWrapper>
-          <FilterButton onClick={() => drawer.open()} />
-          <ActiveFilters
-            filter={filter}
-            getLabel={getLabel}
-            onChipClick={key => drawer.open(key === 'dateRange' ? 'periode' : (key as DokumentFilterViews))}
-            willShowCloseButton={key => (key === 'dateRange' ? false : true)}
-            onOverflowChipClick={() => drawer.open()}
+        <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+          <FilterButtonAndActiveFiltersWrapper>
+            <FilterButton onClick={() => drawer.open()} />
+            <ActiveFilters
+              filter={filter}
+              getLabel={getLabel}
+              onChipClick={key => drawer.open(key === 'dateRange' ? 'periode' : (key as DokumentFilterViews))}
+              willShowCloseButton={key => (key === 'dateRange' ? false : true)}
+              onOverflowChipClick={() => drawer.open()}
+            />
+          </FilterButtonAndActiveFiltersWrapper>
+          <FilterResultTopBar
+            countText={`${sorted.length} dokumenter`}
+            sortComponent={
+              <FilterSort
+                value={sortOption}
+                onChange={e => setSortOption(e.target.value as 'date-desc' | 'date-asc' | 'name-asc' | 'name-desc')}
+              >
+                <option value="date-desc">{'Nyeste-Eldste'}</option>
+                <option value="date-asc">{'Eldste-Nyeste'}</option>
+                <option value="name-asc">{'A-Å'}</option>
+                <option value="name-desc">{'Å-A'}</option>
+              </FilterSort>
+            }
           />
-        </FilterButtonAndActiveFiltersWrapper>
-        <FilterResultTopBar
-          countText={`${sorted.length} dokumenter`}
-          sortComponent={
-            <FilterSort
-              value={sortOption}
-              onChange={e => setSortOption(e.target.value as 'date-desc' | 'date-asc' | 'name-asc' | 'name-desc')}
-            >
-              <option value="date-desc">{'Nyeste-Eldste'}</option>
-              <option value="date-asc">{'Eldste-Nyeste'}</option>
-              <option value="name-asc">{'A-Å'}</option>
-              <option value="name-desc">{'Å-A'}</option>
-            </FilterSort>
-          }
-        />
+        </div>
 
         <FilterDrawer
           drawer={drawer}

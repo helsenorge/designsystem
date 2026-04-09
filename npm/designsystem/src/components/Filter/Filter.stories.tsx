@@ -228,25 +228,28 @@ export const VerktoyExample: Story = {
           <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>{'Bokmål'}</Button>
           <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
         </div>
-        <FilterButtonAndActiveFiltersWrapper>
-          <FilterButton onClick={() => drawer.open()} />
-          <ActiveFilters
-            filter={filter}
-            getLabel={getLabel}
-            onChipClick={key => drawer.open(key as FilterViews)}
-            onOverflowChipClick={() => drawer.open()}
+
+        <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+          <FilterButtonAndActiveFiltersWrapper>
+            <FilterButton onClick={() => drawer.open()} />
+            <ActiveFilters
+              filter={filter}
+              getLabel={getLabel}
+              onChipClick={key => drawer.open(key as FilterViews)}
+              onOverflowChipClick={() => drawer.open()}
+            />
+          </FilterButtonAndActiveFiltersWrapper>
+          <FilterResultTopBar
+            countText={`${filtered.length} verktøy`}
+            sortComponent={
+              <FilterSort>
+                <option value={'Option 1'}>{'Nyeste'}</option>
+                <option value={'Option 2'}>{'Eldste'}</option>
+                <option value={'Option 3'}>{'Alfabetisk A-Å'}</option>
+              </FilterSort>
+            }
           />
-        </FilterButtonAndActiveFiltersWrapper>
-        <FilterResultTopBar
-          countText={`${filtered.length} verktøy`}
-          sortComponent={
-            <FilterSort>
-              <option value={'Option 1'}>{'Nyeste'}</option>
-              <option value={'Option 2'}>{'Eldste'}</option>
-              <option value={'Option 3'}>{'Alfabetisk A-Å'}</option>
-            </FilterSort>
-          }
-        />
+        </div>
 
         <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} verktøy`}>
           <FilterDrawer.Overview title={'Finn ...'}>
@@ -407,16 +410,18 @@ export const LoggOverBrukExample: Story = {
 
     return (
       <>
-        <FilterButtonAndActiveFiltersWrapper>
-          <FilterButton onClick={() => drawer.open()} />
-          <ActiveFilters
-            filter={filter}
-            getLabel={getLabel}
-            onChipClick={key => drawer.open(key as LogginnslagFilterViews)}
-            onOverflowChipClick={() => drawer.open()}
-          />
-        </FilterButtonAndActiveFiltersWrapper>
-        <FilterResultTopBar countText={`${filtered.length} logginnslag`} />
+        <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+          <FilterButtonAndActiveFiltersWrapper>
+            <FilterButton onClick={() => drawer.open()} />
+            <ActiveFilters
+              filter={filter}
+              getLabel={getLabel}
+              onChipClick={key => drawer.open(key as LogginnslagFilterViews)}
+              onOverflowChipClick={() => drawer.open()}
+            />
+          </FilterButtonAndActiveFiltersWrapper>
+          <FilterResultTopBar countText={`${filtered.length} logginnslag`} />
+        </div>
 
         <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} treff`}>
           <FilterDrawer.Overview title={'Finn ...'}>
