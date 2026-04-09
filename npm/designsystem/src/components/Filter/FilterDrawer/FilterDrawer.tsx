@@ -24,6 +24,15 @@ export interface FilterDrawerProps<ViewId extends string = string> {
   children: React.ReactNode;
 }
 
+export interface FilterDrawerViewProps extends DrawerViewProps {
+  /** Hide reset button for view */
+  noResetButton?: boolean;
+  /** View specific close handler */
+  onClose?: () => void;
+  /** View specific reset handler */
+  onReset?: () => void;
+}
+
 /**
  * Never rendered directly — FilterDrawer reads its props and creates a DrawerNavigation.View
  * with id="overview" and home=true.
@@ -33,42 +42,100 @@ function FilterDrawerOverview(_props: Omit<DrawerViewProps, 'id' | 'home'>): Rea
   return null;
 }
 
+/**
+ * Never rendered directly — FilterDrawer reads its props and creates a FilterDrawerView
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function FilterDrawerView(_props: FilterDrawerViewProps): React.ReactNode {
+  // DrawerView is never rendered directly — DrawerNavigation reads its props
+  return null;
+}
+
 function FilterDrawer<ViewId extends string>({
   drawer,
   onClose,
   footer,
   onReset,
-  resetText = 'Nullstill filter',
+  resetText = 'Nullstill',
   showResultButtonText,
   children,
 }: FilterDrawerProps<ViewId>): React.ReactNode {
   const handleClose = (): void => {
-    drawer.close();
-    onClose?.();
+    if (onClose) {
+      onClose();
+    } else {
+      drawer.close();
+    }
   };
 
-  const processedChildren = Children.map(children, child => {
-    if (isValidElement<Omit<DrawerViewProps, 'id' | 'home'>>(child) && child.type === FilterDrawerOverview) {
-      return <DrawerNavigation.View id="overview" home {...child.props} drawerContentClassname={styles['filter-drawer__view']} />;
-    }
-    if (isValidElement<DrawerViewProps>(child)) {
-      return <DrawerNavigation.View {...child?.props} drawerContentClassname={styles['filter-drawer__view']} />;
-    } else {
-      return child;
-    }
-  });
+  const defaultResetButton = onReset && (
+    <Button onClick={onReset} variant="borderless">
+      {resetText}
+    </Button>
+  );
+  const defaultShowResultsButton = showResultButtonText && <Button onClick={handleClose}>{showResultButtonText}</Button>;
 
   const defaultFooter =
     onReset || showResultButtonText ? (
       <div className={styles['filter-drawer__footer']}>
-        {onReset && (
-          <Button onClick={onReset} variant="borderless">
-            {resetText}
-          </Button>
-        )}
-        {showResultButtonText && <Button onClick={handleClose}>{showResultButtonText}</Button>}
+        {defaultResetButton}
+        {defaultShowResultsButton}
       </div>
     ) : undefined;
+
+  const fallbackFooter = footer ?? defaultFooter;
+
+  const generateViewFooter = (viewOnReset?: () => void, viewOnClose?: () => void, noResetButton?: boolean): React.ReactNode => {
+    if (!viewOnReset && !viewOnClose && !noResetButton) {
+      return undefined;
+    }
+
+    return (
+      <div className={styles['filter-drawer__footer']}>
+        {!noResetButton &&
+          (viewOnReset ? (
+            <Button onClick={viewOnReset} variant="borderless">
+              {resetText}
+            </Button>
+          ) : (
+            defaultResetButton
+          ))}
+        {viewOnClose ? <Button onClick={viewOnClose}>{showResultButtonText ?? 'Vis resultat'}</Button> : defaultShowResultsButton}
+      </div>
+    );
+  };
+
+  const processedChildren = Children.map(children, child => {
+    if (isValidElement<Omit<FilterDrawerViewProps, 'id' | 'home'>>(child) && child.type === FilterDrawerOverview) {
+      const viewDefaultFooter = generateViewFooter(child.props.onReset, child.props.onClose, child.props.noResetButton);
+      const viewFooter = viewDefaultFooter ?? child.props.footer ?? fallbackFooter;
+      return (
+        <DrawerNavigation.View
+          id="overview"
+          home
+          title={child.props.title}
+          children={child.props.children}
+          drawerContentClassname={styles['filter-drawer__view']}
+          footer={viewFooter}
+        />
+      );
+    }
+    if (isValidElement<FilterDrawerViewProps>(child)) {
+      const viewDefaultFooter = generateViewFooter(child.props.onReset, child.props.onClose, child.props.noResetButton);
+      const viewFooter = viewDefaultFooter ?? child.props.footer ?? fallbackFooter;
+      return (
+        <DrawerNavigation.View
+          id={child.props.id}
+          title={child.props.title}
+          children={child.props.children}
+          drawerContentClassname={styles['filter-drawer__view']}
+          footer={viewFooter}
+        />
+      );
+    } else {
+      return child;
+    }
+  });
 
   return (
     <DrawerNavigation isOpen={drawer.isOpen} initialView={drawer.initialView} onCloseButton={handleClose} footer={footer ?? defaultFooter}>
@@ -78,6 +145,6 @@ function FilterDrawer<ViewId extends string>({
 }
 
 FilterDrawer.Overview = FilterDrawerOverview;
-FilterDrawer.View = DrawerNavigation.View;
+FilterDrawer.View = FilterDrawerView;
 
 export default FilterDrawer;

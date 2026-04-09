@@ -457,8 +457,8 @@ export const DokumenterExample: Story = {
         <FilterDrawer
           drawer={drawer}
           onReset={() => {
-            filter.resetFiltersToEmpty();
-            setDateRangeValue(undefined);
+            filter.removeFilter('innhold');
+            filter.removeFilter('kommerFra');
           }}
           showResultButtonText={`Vis ${filtered.length} treff`}
         >
@@ -473,7 +473,7 @@ export const DokumenterExample: Story = {
               ]}
             />
           </FilterDrawer.Overview>
-          <FilterDrawer.View id="innhold" title={dokumentFilterLabels.innhold}>
+          <FilterDrawer.View id="innhold" title={dokumentFilterLabels.innhold} onReset={() => filter.removeFilter('innhold')}>
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {innholdTypeOptions.map(opt => (
@@ -487,7 +487,7 @@ export const DokumenterExample: Story = {
               </FormGroup>
             </div>
           </FilterDrawer.View>
-          <FilterDrawer.View id="kommerFra" title={dokumentFilterLabels.kommerFra}>
+          <FilterDrawer.View id="kommerFra" title={dokumentFilterLabels.kommerFra} onReset={() => filter.removeFilter('kommerFra')}>
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {kommerFraOptions.map(opt => (
@@ -501,7 +501,7 @@ export const DokumenterExample: Story = {
               </FormGroup>
             </div>
           </FilterDrawer.View>
-          <FilterDrawer.View id="periode" title={dokumentFilterLabels.dateRange}>
+          <FilterDrawer.View id="periode" title={dokumentFilterLabels.dateRange} noResetButton>
             <div>
               <FormGroup legend={'Velg periode'}>
                 <Unsafe_DateRangeSelector

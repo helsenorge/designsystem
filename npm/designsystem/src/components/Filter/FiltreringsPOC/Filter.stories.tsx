@@ -432,7 +432,7 @@ export const VerktoyExample: Story = {
         <div>
           <Button onClick={() => setDrawerOpen(true)}>{'Åpne filter'}</Button>
           <Button onClick={() => filter.resetFiltersToEmpty()} variant="borderless">
-            {'Nullstill filter'}
+            {'Nullstill'}
           </Button>
           <br />
           <TagList>

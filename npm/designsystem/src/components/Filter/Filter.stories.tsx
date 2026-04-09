@@ -263,7 +263,7 @@ export const VerktoyExample: Story = {
               ]}
             />
           </FilterDrawer.Overview>
-          <FilterDrawer.View id="omrade" title={verktoyFilterLabels.omrade}>
+          <FilterDrawer.View id="omrade" title={verktoyFilterLabels.omrade} onReset={() => filter.removeFilter('omrade')}>
             <div>
               <FormGroup legend={resources.filterOption_omrade_legend}>
                 {omradeOptions.map(opt => (
@@ -277,7 +277,7 @@ export const VerktoyExample: Story = {
               </FormGroup>
             </div>
           </FilterDrawer.View>
-          <FilterDrawer.View id="passerFor" title={verktoyFilterLabels.passerFor}>
+          <FilterDrawer.View id="passerFor" title={verktoyFilterLabels.passerFor} onReset={() => filter.removeFilter('passerFor')}>
             <div>
               <FormGroup legend={resources.filterOption_passerFor_legend}>
                 {passerForOptions.map(opt => (
@@ -291,7 +291,7 @@ export const VerktoyExample: Story = {
               </FormGroup>
             </div>
           </FilterDrawer.View>
-          <FilterDrawer.View id="type" title={verktoyFilterLabels.type}>
+          <FilterDrawer.View id="type" title={verktoyFilterLabels.type} onReset={() => filter.removeFilter('type')}>
             <div>
               <FormGroup legend={resources.filterOption_type_legend}>
                 {typeOptions.map(opt => (
@@ -434,7 +434,7 @@ export const LoggOverBrukExample: Story = {
               ]}
             />
           </FilterDrawer.Overview>
-          <FilterDrawer.View id="who" title={logginnslagFilterLabels.who}>
+          <FilterDrawer.View id="who" title={logginnslagFilterLabels.who} onReset={() => filter.removeFilter('who')}>
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {whoOptions.map(opt => (
@@ -448,7 +448,7 @@ export const LoggOverBrukExample: Story = {
               </FormGroup>
             </div>
           </FilterDrawer.View>
-          <FilterDrawer.View id="where" title={logginnslagFilterLabels.where}>
+          <FilterDrawer.View id="where" title={logginnslagFilterLabels.where} onReset={() => filter.removeFilter('where')}>
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {whereOptions.map(opt => (
