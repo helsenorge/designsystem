@@ -3,7 +3,6 @@ import { action } from 'storybook/actions';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Chip from './Chip';
-import { ChipAction, ChipSize, ChipVariant } from './constants';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Chip',
@@ -18,28 +17,11 @@ const meta = {
   },
   args: {
     children: 'Tekst',
-    action: ChipAction.remove,
-    onClick: action('Chip clicked'),
+    onChipClick: action('Chip clicked'),
   },
   argTypes: {
     children: {
       control: 'text',
-    },
-    size: {
-      control: 'select',
-      options: Object.values(ChipSize),
-    },
-    color: {
-      control: 'select',
-      options: ['blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum'],
-    },
-    variant: {
-      control: 'select',
-      options: Object.values(ChipVariant),
-    },
-    action: {
-      control: 'select',
-      options: Object.values(ChipAction),
     },
   },
 } satisfies Meta<typeof Chip>;
@@ -52,13 +34,13 @@ export const Default: Story = {
   render: args => <Chip {...args} />,
 };
 
-export const Actions: Story = {
+export const WithAndWithoutCloseButton: Story = {
   render: args => (
     <>
-      <Chip {...args} action="remove" />
+      <Chip {...args} withCloseButton />
       <br />
       <br />
-      <Chip {...args} action="undo" />
+      <Chip {...args} withCloseButton={false} />
     </>
   ),
 };
