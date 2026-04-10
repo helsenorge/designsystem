@@ -500,19 +500,12 @@ export const KunHurtigfilter: Story = {
       kunRefusjon: boolean;
     };
 
-    const filter = useFilter<ResepterFilterType>();
-
     interface Resept {
       navn: string;
       virkestoff: string;
       aktiv: boolean;
       medRefusjon: boolean;
     }
-
-    const filterMatchers: FilterMatchers<Resept, ResepterFilterType> = {
-      kunAktive: matchFilter.booleanToggle<Resept>(m => m.aktiv),
-      kunRefusjon: matchFilter.booleanToggle<Resept>(m => m.medRefusjon),
-    };
 
     const reseptMockData: Resept[] = [
       { navn: 'Accolate Tab 20 mg', virkestoff: 'Zafirlukast', aktiv: true, medRefusjon: true },
@@ -526,6 +519,13 @@ export const KunHurtigfilter: Story = {
       { navn: 'Somac Tab 20 mg', virkestoff: 'Pantoprazol', aktiv: false, medRefusjon: false },
       { navn: 'Aerius Tab 5 mg', virkestoff: 'Desloratadin', aktiv: true, medRefusjon: false },
     ];
+
+    const filter = useFilter<ResepterFilterType>();
+
+    const filterMatchers: FilterMatchers<Resept, ResepterFilterType> = {
+      kunAktive: matchFilter.booleanToggle<Resept>(m => m.aktiv),
+      kunRefusjon: matchFilter.booleanToggle<Resept>(m => m.medRefusjon),
+    };
 
     const filtered = filterItems(reseptMockData, filter.filters, filterMatchers);
 
