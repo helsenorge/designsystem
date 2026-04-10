@@ -2,9 +2,9 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import { TagSize, TagVariant } from './constants';
+import { TagVariant } from './constants';
 import Tag from './Tag';
-import LawBook from '../Icons/LawBook';
+import TagList from '../TagList';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Tag',
@@ -26,14 +26,6 @@ const meta = {
     children: {
       control: 'text',
     },
-    size: {
-      control: 'select',
-      options: Object.values(TagSize),
-    },
-    color: {
-      control: 'select',
-      options: ['blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum'],
-    },
     variant: {
       control: 'select',
       options: Object.values(TagVariant),
@@ -49,9 +41,10 @@ export const Default: Story = {
   render: args => <Tag {...args} />,
 };
 
-export const WithIcon: Story = {
-  args: {
-    svgIcon: LawBook,
-  },
-  render: args => <Tag {...args} />,
+export const Variants: Story = {
+  render: args => (
+    <TagList>
+      <Tag {...args} variant="normal" /> <Tag {...args} variant="accent" />
+    </TagList>
+  ),
 };
