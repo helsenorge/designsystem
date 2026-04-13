@@ -24,7 +24,7 @@ describe('Gitt at StickyNote skal vises', (): void => {
     });
 
     test('Så vises errorText', (): void => {
-      render(<StickyNote arialabelXButton="Slett notat" timestamp="12.04.24 11:14" error errorText="Error text" />);
+      render(<StickyNote arialabelXButton="Slett notat" timestamp="12.04.24 11:14" errorText="Error text" />);
       const errortext = screen.getByText('Error text');
       expect(errortext).toBeInTheDocument();
     });

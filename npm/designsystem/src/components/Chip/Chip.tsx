@@ -1,60 +1,64 @@
-import cn from 'classnames';
+import classNames from 'classnames';
 
-import type { PaletteNames } from '../../theme/palette';
-import type { SvgIcon } from '../Icon';
-
-import { ChipSize, type ChipAction, type ChipVariant } from './constants';
 import { AnalyticsId } from '../../constants';
-import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { palette } from '../../theme/palette';
 import Icon, { IconSize } from '../Icon';
-import Undo from '../Icons/Undo';
 import X from '../Icons/X';
 
 import styles from './styles.module.scss';
 
-export type ChipColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'cherry' | 'banana' | 'kiwi' | 'plum'>;
-
 export interface ChipProps {
   /** Sets the text of the chip */
   children: string;
-  /** Sets the size of the chip. Default: medium */
-  size?: keyof typeof ChipSize;
-  /** Sets the background of the chip. Not used if action is "undo". Default: blueberry */
-  color?: ChipColors;
-  /* Changes the appearance of the chip. Not used if action is "undo". Default: normal */
-  variant?: keyof typeof ChipVariant;
-  /* Makes the chip a clickable button that performs an action. onClick must also be set. */
-  action: keyof typeof ChipAction;
-  /* Called when action is set and the chip is clicked on. action must also be set. */
-  onClick: () => void;
+  /** Wether or not to have a close button */
+  withCloseButton?: boolean;
+  /** onClick handler for text-part of the chip */
+  onChipClick?: () => void;
+  /** Button props for main chip button */
+  chipButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+  /** onClick handler for close button */
+  onCloseClick?: () => void;
+  /** Button props for the close button */
+  closeButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   /** Sets the data-testid attribute on the expander button. */
   testId?: string;
 }
 
 const Chip: React.FC<ChipProps> = props => {
-  const { children, size = ChipSize.medium, color = 'blueberry', variant = 'normal', action, onClick, testId } = props;
-
-  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>();
-
-  const chipClasses = cn(styles.chip, styles[`chip--${size}`], styles[`chip--${color}`], styles[`chip--${variant}`], {
-    [styles[`chip--undo`]]: action === 'undo',
-  });
-
-  const getActionIcon = (): SvgIcon => {
-    switch (action) {
-      case 'undo':
-        return Undo;
-      case 'remove':
-        return X;
-    }
-  };
+  const { children, onChipClick, onCloseClick, chipButtonProps, closeButtonProps, testId, withCloseButton = true } = props;
 
   return (
-    <button className={chipClasses} onClick={onClick} ref={refObject} type="button" data-testid={testId} data-analyticsid={AnalyticsId.Tag}>
-      {children}
-      <Icon svgIcon={getActionIcon()} size={IconSize.XXSmall} color={palette[`${color}800`]} isHovered={isHovered} />
-    </button>
+    <div className={styles['chip']}>
+      <button
+        {...chipButtonProps}
+        className={classNames(styles['chip__chip'])}
+        onClick={onChipClick}
+        type="button"
+        data-testid={testId}
+        data-analyticsid={AnalyticsId.Tag}
+      >
+        <span
+          className={classNames(styles['chip__chip__inner'], {
+            [styles['chip__chip__inner--without-close']]: !withCloseButton,
+          })}
+        >
+          {children}
+        </span>
+      </button>
+      {withCloseButton && (
+        <button
+          {...closeButtonProps}
+          className={classNames(styles['chip__close'])}
+          onClick={onCloseClick}
+          type="button"
+          data-testid={`${testId}-close`}
+          data-analyticsid={AnalyticsId.Tag}
+        >
+          <span className={styles['chip__close__inner']}>
+            <Icon svgIcon={X} size={IconSize.XXSmall} />
+          </span>
+        </button>
+      )}
+    </div>
   );
 };
 

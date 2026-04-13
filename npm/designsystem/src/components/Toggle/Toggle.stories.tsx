@@ -31,6 +31,9 @@ const meta = {
     checked: {
       control: 'boolean',
     },
+    disabled: {
+      control: 'boolean',
+    },
   },
 } satisfies Meta<typeof Toggle>;
 
@@ -119,6 +122,39 @@ export const StatusExample: Story = {
         subLabel={
           'Vi bruker Youtube eller Vimeo for å vise videoer på Helsenorge. De bruker egne informasjonskapsler. Du må godta informasjonskapsler for video for å kunne se video.'
         }
+        statusText={{
+          checked: 'Godtatt',
+          unchecked: 'Avvist',
+        }}
+        checked={true}
+        onChange={action('Toggle switched')}
+        togglePosition={TogglePosition.right}
+      />
+    </>
+  ),
+};
+
+export const Disabled: Story = {
+  args: { disabled: true },
+  render: args => (
+    <>
+      <Toggle {...args} />
+      <Toggle
+        {...args}
+        label={[{ text: 'Statistikk og analyse' }]}
+        subLabel={'Sublabel text'}
+        statusText={{
+          checked: 'Godtatt',
+          unchecked: 'Avvist',
+        }}
+        onChange={action('Toggle switched')}
+        togglePosition={TogglePosition.right}
+      />
+      <br />
+      <Toggle
+        {...args}
+        label={[{ text: 'Se videoer' }]}
+        subLabel={'Sublabel text'}
         statusText={{
           checked: 'Godtatt',
           unchecked: 'Avvist',

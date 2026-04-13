@@ -90,7 +90,6 @@ export const Fullmaktshaver: Story = {
 
 export const Feilmelding: Story = {
   args: {
-    error: true,
     errorText: 'Det oppstod en feil.',
   },
   render: args => {

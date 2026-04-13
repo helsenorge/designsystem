@@ -62,6 +62,10 @@
     &__text--subdued {
       @include fonts.label-subdued;
     }
+
+    #{$toggle-container}--disabled & {
+      color: var(--color-disabled-text);
+    }
   }
 
   &__sublabel {
@@ -76,6 +80,10 @@
       line-height: font-settings.$lineheight-size-xs;
       text-align: left;
     }
+
+    #{$toggle-container}--disabled & {
+      color: var(--color-disabled-text);
+    }
   }
 
   &__status {
@@ -86,6 +94,10 @@
     &--checked {
       color: var(--color-action-text-onlight);
     }
+
+    #{$toggle-container}--disabled & {
+      color: var(--color-disabled-text);
+    }
   }
 
   &__toggle-group {
@@ -95,6 +107,10 @@
     align-items: center;
     cursor: pointer;
     min-height: 2.75rem;
+
+    #{$toggle-container}--disabled & {
+      cursor: not-allowed;
+    }
   }
 
   &__toggle {
@@ -105,6 +121,11 @@
     background-color: var(--color-base-background-white);
     border-radius: 60px;
     border: 2px solid var(--color-base-border-onlight-emphasized);
+
+    #{$toggle-container}--disabled & {
+      color: var(--color-disabled-border);
+      border-style: dashed;
+    }
 
     &--on-white {
       background-color: var(--core-color-neutral-50);
@@ -134,6 +155,10 @@
       &__icon {
         opacity: 0;
         stroke: var(--color-action-graphics-onlight);
+
+        #{$toggle-container}--disabled & {
+          stroke: var(--core-color-white);
+        }
       }
     }
   }

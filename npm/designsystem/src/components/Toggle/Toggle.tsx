@@ -21,7 +21,7 @@ export type StatusTextType = {
   unchecked: string;
 };
 
-export interface ToggleProps extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+export interface ToggleProps extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'disabled'> {
   /**  Determines if the Toggle is checked */
   checked?: boolean;
   /** Sets the label of the Toggle */
@@ -40,6 +40,7 @@ export interface ToggleProps extends Pick<React.InputHTMLAttributes<HTMLInputEle
 
 const Toggle: React.FC<ToggleProps> = ({
   checked = false,
+  disabled,
   label,
   onChange,
   onColor = ToggleOnColor.onwhite,
@@ -61,9 +62,17 @@ const Toggle: React.FC<ToggleProps> = ({
   const { refObject, isHovered, isActive } = usePseudoClasses<HTMLLabelElement>(scope);
   const showHoveredStyling = isHovered && !showToggleAnimation;
   const isOnWhite = onColor === ToggleOnColor.onwhite;
+  const animationDuration = disabled ? 0 : 0.2;
+  const dotBackgroundColor = disabled
+    ? 'var(--color-disabled-graphics)'
+    : checkedState
+      ? 'var(--color-action-graphics-ondark)'
+      : 'var(--core-color-neutral-700)';
 
   const getBackgroundColor = (): string => {
-    if (checkedState && isActive) {
+    if (disabled) {
+      return 'transparent';
+    } else if (checkedState && isActive) {
       return 'var(--core-color-blueberry-800)';
     } else if (checkedState) {
       return showHoveredStyling ? 'var(--color-action-graphics-onlight-hover)' : 'var(--color-action-graphics-onlight)';
@@ -91,15 +100,17 @@ const Toggle: React.FC<ToggleProps> = ({
 
   useEffect(() => {
     if (!toggleRef.current || !toggleDotRef.current) return;
-    animate(toggleRef.current, { background: getBackgroundColor() }, { duration: 0.2, ease: 'easeInOut' });
+    animate(toggleRef.current, { background: getBackgroundColor() }, { duration: animationDuration, ease: 'easeInOut' });
     animate(
       toggleDotRef.current,
-      { background: checkedState ? 'var(--color-action-graphics-ondark)' : 'var(--core-color-neutral-700)' },
-      { duration: 0.2, ease: 'easeInOut' }
+      {
+        background: dotBackgroundColor,
+      },
+      { duration: animationDuration, ease: 'easeInOut' }
     );
-    animate(toggleDotRef.current, { x: checkedState ? 16 : 0 }, { duration: 0.2, ease: 'easeInOut' });
-    animate('svg', { opacity: checkedState ? 1 : 0 }, { duration: 0.2, ease: 'easeInOut' });
-  }, [checkedState, showHoveredStyling, isActive]);
+    animate(toggleDotRef.current, { x: checkedState ? 16 : 0 }, { duration: animationDuration, ease: 'easeInOut' });
+    animate('svg', { opacity: checkedState ? 1 : 0 }, { duration: animationDuration, ease: 'easeInOut' });
+  }, [checkedState, showHoveredStyling, isActive, disabled]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setCheckedState(event.target.checked);
@@ -110,6 +121,7 @@ const Toggle: React.FC<ToggleProps> = ({
   const toggleContainerClassNames = classNames(styles['toggle-container'], {
     [styles['toggle-container--position-right']]: togglePosition === TogglePosition.right,
     [styles['toggle-container--with-status']]: statusText !== undefined && statusText !== null,
+    [styles['toggle-container--disabled']]: disabled,
   });
 
   const subLabelClassNames = classNames(styles['toggle-container__sublabel']);
@@ -129,8 +141,9 @@ const Toggle: React.FC<ToggleProps> = ({
 
   const renderToggle = (): React.ReactElement => (
     <div className={styles['toggle-container__outer-toggle']}>
-      <label ref={refObject} className={classNames(styles['toggle-container__toggle-group'])}>
+      <label ref={refObject} className={styles['toggle-container__toggle-group']}>
         <input
+          disabled={disabled}
           id={inputId}
           type="checkbox"
           checked={checkedState}
@@ -166,7 +179,7 @@ const Toggle: React.FC<ToggleProps> = ({
   const renderLabelText = (): React.ReactElement => {
     return (
       <div className={styles['toggle-container__outer-label']}>
-        <span id={labelId} className={classNames(styles['toggle-container__label'])}>
+        <span id={labelId} className={styles['toggle-container__label']}>
           {label.map(labelText => {
             const labelClassNames = classNames({
               [styles['toggle-container__label__text--subdued']]: labelText.type === 'subdued',
