@@ -67,6 +67,20 @@ describe('Gitt at Toggle skal vises', () => {
     });
   });
 
+  describe('Når Toggle er disabled', () => {
+    test('Så er input-elementet disabled', () => {
+      render(<Toggle label={[{ text: 'Test Toggle' }]} disabled testId="Toggle" />);
+      expect(screen.getByRole('switch')).toBeDisabled();
+    });
+
+    test('Så forblir Toggle checked når den er disabled og checked', () => {
+      render(<Toggle label={[{ text: 'Test Toggle' }]} disabled checked={true} />);
+      const toggle = screen.getByRole('switch');
+      expect(toggle).toBeChecked();
+      expect(toggle).toBeDisabled();
+    });
+  });
+
   describe('Når Toggle får en testId', () => {
     test('Så har Toggle-containeren riktig testId', () => {
       render(<Toggle label={[{ text: 'Test Toggle' }]} testId="Toggle" />);

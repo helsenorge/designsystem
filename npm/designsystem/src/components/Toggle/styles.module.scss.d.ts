@@ -17,6 +17,7 @@ export type Styles = {
   'toggle-container__toggle--ignore-hover': string;
   'toggle-container__toggle--on-white': string;
   'toggle-container__toggle-group': string;
+  'toggle-container--disabled': string;
   'toggle-container--position-right': string;
   'toggle-container--with-status': string;
 };
