@@ -6,12 +6,12 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 
-import Unsafe_DateRangePickers from './Unsafe_RangeDatePickers';
+import Unsafe_DateRangePickers from './Unsafe_DateRangePickers';
 
 import Unsafe_DatePicker from './index';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_RangeDatePickers',
+  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_DateRangePickers',
   component: Unsafe_DateRangePickers,
   argTypes: {
     from: { control: 'object' },
