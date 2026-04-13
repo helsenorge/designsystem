@@ -11,7 +11,6 @@ import FilterButton from './FilterButton';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterButton',
   component: FilterButton,
-  tags: ['new'],
   parameters: {
     docs: {
       page: (): React.ReactNode => <Docs component={FilterButton} />,

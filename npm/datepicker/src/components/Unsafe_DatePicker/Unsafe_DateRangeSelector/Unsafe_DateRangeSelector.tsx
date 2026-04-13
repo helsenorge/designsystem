@@ -8,7 +8,7 @@ import type { RadioButtonProps } from '@helsenorge/designsystem-react/components
 import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
 
 import Unsafe_DatePicker from '../Unsafe_DatePicker';
-import Unsafe_RangeDatePickers from '../Unsafe_RangeDatePickers';
+import Unsafe_DateRangePickers from '../Unsafe_RangeDatePickers';
 
 export interface Unsafe_DateRangeSelectorProps {
   /** Name for the radiobuttongroup */
@@ -103,7 +103,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
           }
         }}
       />
-      <Unsafe_RangeDatePickers
+      <Unsafe_DateRangePickers
         from={
           <Unsafe_DatePicker
             label={

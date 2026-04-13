@@ -10,7 +10,6 @@ import FilterSort from './FilterSort';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterSort',
   component: FilterSort,
-  tags: ['new'],
   parameters: {
     docs: {
       page: (): React.ReactNode => <Docs component={FilterSort} />,

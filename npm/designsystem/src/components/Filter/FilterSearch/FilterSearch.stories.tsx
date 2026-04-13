@@ -10,7 +10,6 @@ import FilterSearch from './FilterSearch';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterSearch',
   component: FilterSearch,
-  tags: ['new'],
   parameters: {
     docs: {
       page: (): React.ReactNode => <Docs component={FilterSearch} />,

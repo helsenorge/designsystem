@@ -6,13 +6,13 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 
-import Unsafe_RangeDatePickers from './Unsafe_RangeDatePickers';
+import Unsafe_DateRangePickers from './Unsafe_RangeDatePickers';
 
 import Unsafe_DatePicker from './index';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_RangeDateInputs',
-  component: Unsafe_RangeDatePickers,
+  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_RangeDatePickers',
+  component: Unsafe_DateRangePickers,
   argTypes: {
     from: { control: 'object' },
     to: { control: 'object' },
@@ -22,7 +22,7 @@ const meta = {
     to: <></>,
     onRangeChange: undefined,
   },
-} satisfies Meta<typeof Unsafe_RangeDatePickers>;
+} satisfies Meta<typeof Unsafe_DateRangePickers>;
 
 export default meta;
 
@@ -84,7 +84,7 @@ export const Default: Story = {
     };
     return (
       <>
-        <Unsafe_RangeDatePickers from={fromComponent} to={toComponent} onRangeChange={handleRangeChange} />
+        <Unsafe_DateRangePickers from={fromComponent} to={toComponent} onRangeChange={handleRangeChange} />
         <span>
           {from?.toString()}
           {'-'}

@@ -18,7 +18,7 @@ export interface RangeDateInputsProps {
   onRangeChange?: (from: Date | undefined, to: Date | undefined, isValid: boolean) => void;
 }
 
-const Unsafe_RangeDatePickers: React.FC<RangeDateInputsProps> = props => {
+const Unsafe_DateRangePickers: React.FC<RangeDateInputsProps> = props => {
   const { from, to, onRangeChange } = props;
 
   const [fromDate, setFromDate] = useState<Date | undefined>(from.props.value);
@@ -98,4 +98,4 @@ const Unsafe_RangeDatePickers: React.FC<RangeDateInputsProps> = props => {
   );
 };
 
-export default Unsafe_RangeDatePickers;
+export default Unsafe_DateRangePickers;

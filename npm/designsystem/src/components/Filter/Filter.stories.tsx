@@ -16,15 +16,15 @@ import Table, { TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 
 import Tag from '../Tag';
 import TagList from '../TagList';
 import Toggle from '../Toggle';
-import ActiveFilters from './ActiveFilters/ActiveFilters';
 import FilterButton from './FilterButton/FilterButton';
-import FilterButtonAndActiveFiltersWrapper from './FilterButtonAndActiveFiltersWrapper/FilterButtonAndActiveFiltersWrapper';
+import FilterButtonAndChipsWrapper from './FilterButtonAndChipsWrapper/FilterButtonAndChipsWrapper';
 import FilterDrawer from './FilterDrawer/FilterDrawer';
 import FilterOverviewLinkList from './FilterOverviewLinkList/FilterOverviewLinkList';
-import FilterResultTopBar from './FilterResultTopBar/FilterResultTopBar';
+import FilterResultCountAndSortWrapper from './FilterResultCountAndSortWrapper/FilterResultCountAndSortWrapper';
 import FilterSort from './FilterSort/FilterSort';
 import { useFilter } from './FiltreringsPOC/useFilter';
 import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './FiltreringsPOC/utils';
+import getFilterChips from './getFilterChips/getFilterChips';
 import { getResources } from './resourcesMock';
 import { useFilterDrawer } from './useFilterDrawer';
 
@@ -230,17 +230,18 @@ export const VerktoyExample: Story = {
         </div>
 
         <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
-          <FilterButtonAndActiveFiltersWrapper>
-            <FilterButton onClick={() => drawer.open()} />
-            <ActiveFilters
-              filter={filter}
-              getLabel={getLabel}
-              onChipClick={key => drawer.open(key as FilterViews)}
-              onOverflowChipClick={() => drawer.open()}
-            />
-          </FilterButtonAndActiveFiltersWrapper>
-          <FilterResultTopBar
-            countText={`${filtered.length} verktøy`}
+          <FilterButtonAndChipsWrapper
+            filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
+            filterChips={getFilterChips({
+              filter,
+              getLabel,
+              onChipClick: key => drawer.open(key as FilterViews),
+              onOverflowChipClick: () => drawer.open(),
+            })}
+          />
+
+          <FilterResultCountAndSortWrapper
+            resultCount={`${filtered.length} verktøy`}
             sortComponent={
               <FilterSort>
                 <option value={'Option 1'}>{'Nyeste'}</option>
@@ -411,16 +412,16 @@ export const LoggOverBrukExample: Story = {
     return (
       <>
         <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
-          <FilterButtonAndActiveFiltersWrapper>
-            <FilterButton onClick={() => drawer.open()} />
-            <ActiveFilters
-              filter={filter}
-              getLabel={getLabel}
-              onChipClick={key => drawer.open(key as LogginnslagFilterViews)}
-              onOverflowChipClick={() => drawer.open()}
-            />
-          </FilterButtonAndActiveFiltersWrapper>
-          <FilterResultTopBar countText={`${filtered.length} logginnslag`} />
+          <FilterButtonAndChipsWrapper
+            filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
+            filterChips={getFilterChips({
+              filter,
+              getLabel,
+              onChipClick: key => drawer.open(key as LogginnslagFilterViews),
+              onOverflowChipClick: () => drawer.open(),
+            })}
+          />
+          <FilterResultCountAndSortWrapper resultCount={`${filtered.length} logginnslag`} />
         </div>
 
         <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} treff`}>
@@ -542,8 +543,8 @@ export const KunHurtigfilter: Story = {
             onChange={() => filter.setFilter('kunRefusjon', !filter.filters.kunRefusjon)}
           />
         </div>
-        <FilterResultTopBar
-          countText={`${filtered.length} resepter`}
+        <FilterResultCountAndSortWrapper
+          resultCount={`${filtered.length} resepter`}
           sortComponent={
             <FilterSort>
               <option value={'Option 1'}>{'Standard sortering'}</option>

@@ -13,7 +13,6 @@ import HandWaving from '../../Icons/HandWaving';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterLinkList/Link',
   component: Link,
-  tags: ['new'],
   parameters: {
     docs: {
       page: (): React.ReactNode => <Docs component={Link} />,

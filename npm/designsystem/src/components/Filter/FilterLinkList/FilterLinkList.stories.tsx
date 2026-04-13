@@ -10,7 +10,6 @@ import FilterLinkList from './FilterLinkList';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterLinkList',
   component: FilterLinkList,
-  tags: ['new'],
   parameters: {
     docs: {
       page: (): React.ReactNode => <Docs component={FilterLinkList} />,
