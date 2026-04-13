@@ -2,8 +2,8 @@ const conventionalCommitsConfig = require('conventional-changelog-conventionalco
 
 async function customConfig() {
   const config = await conventionalCommitsConfig({
-    // Støtte for URL-formatet som Azure Devops bruker for å sammenlikne tager
-    compareUrlFormat: '{{host}}/{{owner}}/{{repository}}/branchCompare?baseVersion=GT{{previousTag}}&targetVersion=GT{{currentTag}}',
+    // Støtte for URL-formatet som github bruker for å sammenlikne tager
+    compareUrlFormat: '{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}',
   });
 
   return {

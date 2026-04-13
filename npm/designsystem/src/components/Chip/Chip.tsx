@@ -41,7 +41,7 @@ const Chip: React.FC<ChipProps> = props => {
             [styles['chip__chip__inner--without-close']]: !withCloseButton,
           })}
         >
-          <span>{children}</span>
+          {children}
         </div>
       </button>
       {withCloseButton && (
@@ -50,7 +50,7 @@ const Chip: React.FC<ChipProps> = props => {
           className={classNames(styles['chip__close'])}
           onClick={onCloseClick}
           type="button"
-          data-testid={testId}
+          data-testid={`${testId}-close`}
           data-analyticsid={AnalyticsId.Tag}
         >
           <div className={styles['chip__close__inner']}>
