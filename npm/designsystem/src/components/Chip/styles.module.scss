@@ -23,6 +23,7 @@
     cursor: pointer;
 
     &__inner {
+      display: block;
       box-sizing: border-box;
       height: 1.625rem;
       line-height: 1.25rem;

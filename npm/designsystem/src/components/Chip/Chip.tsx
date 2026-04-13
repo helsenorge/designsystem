@@ -36,13 +36,13 @@ const Chip: React.FC<ChipProps> = props => {
         data-testid={testId}
         data-analyticsid={AnalyticsId.Tag}
       >
-        <div
+        <span
           className={classNames(styles['chip__chip__inner'], {
             [styles['chip__chip__inner--without-close']]: !withCloseButton,
           })}
         >
           {children}
-        </div>
+        </span>
       </button>
       {withCloseButton && (
         <button
@@ -53,9 +53,9 @@ const Chip: React.FC<ChipProps> = props => {
           data-testid={`${testId}-close`}
           data-analyticsid={AnalyticsId.Tag}
         >
-          <div className={styles['chip__close__inner']}>
+          <span className={styles['chip__close__inner']}>
             <Icon svgIcon={X} size={IconSize.XXSmall} />
-          </div>
+          </span>
         </button>
       )}
     </div>
