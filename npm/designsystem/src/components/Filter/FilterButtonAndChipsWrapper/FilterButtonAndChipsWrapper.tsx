@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 
 export interface FilterButtonAndChipsWrapperProps {
   filterButtonComponent: React.ReactNode;
-  filterChips: React.ReactNode[]; // @todo: sjekk hvordan gå chipsene som direkte children
+  filterChips: React.ReactNode[];
   testId?: string;
 }
 

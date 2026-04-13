@@ -2,7 +2,7 @@ import type { FilterValues, UseFilterReturn } from '../FiltreringsPOC/useFilter'
 
 import Chip from '../../Chip';
 
-export interface getFilterChipsArgs<T extends FilterValues> {
+export interface GetFilterChipsArgs<T extends FilterValues> {
   /** The filter instance from useFilter */
   filter: UseFilterReturn<T>;
   /** Look up the display label for a filter key + value */
@@ -17,7 +17,6 @@ export interface getFilterChipsArgs<T extends FilterValues> {
   willShowCloseButton?: (key: keyof T, value?: unknown) => boolean;
 }
 
-// @todo: gjør om til hjelpefunksjon istedenfor komponent
 function getFilterChips<T extends FilterValues>({
   filter,
   getLabel,
@@ -25,7 +24,7 @@ function getFilterChips<T extends FilterValues>({
   onChipRemove,
   onOverflowChipClick,
   willShowCloseButton,
-}: getFilterChipsArgs<T>): React.ReactNode[] {
+}: GetFilterChipsArgs<T>): React.ReactNode[] {
   const maxVisible = 5;
 
   const allChips = Object.entries(filter.filters).flatMap(([key, raw]) => {
