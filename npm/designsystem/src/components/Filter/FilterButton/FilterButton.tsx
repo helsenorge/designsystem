@@ -32,14 +32,14 @@ const FilterButton: React.FC<FilterButtonProps> = props => {
 
   return (
     <button {...props} className={styles['filter-button']} ref={buttonRef}>
-      <div
+      <span
         className={classNames(styles['filter-button__inner'], {
           [styles['filter-button__inner--hovered']]: isHovered,
         })}
       >
         <Icon svgIcon={Filter} isHovered={isHovered} size={IconSize.XSmall} />
         <span className={styles['filter-button__text']}>{mergedResources.filterbutton_text}</span>
-      </div>
+      </span>
     </button>
   );
 };
