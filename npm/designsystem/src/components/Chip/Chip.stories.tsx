@@ -18,10 +18,16 @@ const meta = {
   args: {
     children: 'Tekst',
     onChipClick: action('Chip clicked'),
+    onCloseClick: action('Close clicked'),
+    closeButtonProps: {},
+    chipButtonProps: {},
   },
   argTypes: {
     children: {
       control: 'text',
+    },
+    withCloseButton: {
+      control: 'boolean',
     },
   },
 } satisfies Meta<typeof Chip>;
