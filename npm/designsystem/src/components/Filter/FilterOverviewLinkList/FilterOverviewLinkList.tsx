@@ -28,11 +28,15 @@ function FilterOverviewLinkList<T extends FilterValues>({ filter, getLabel, link
     <FilterLinkList>
       {links.map(({ filterKey, title, viewId }) => {
         const raw = filter.filters[filterKey as keyof T];
-        const chips = Array.isArray(raw)
-          ? raw.map(v => getLabel(filterKey as keyof T, v))
-          : raw !== undefined && raw !== null
-            ? [getLabel(filterKey as keyof T, raw)]
-            : [];
+
+        let chips: string[];
+        if (Array.isArray(raw)) {
+          chips = raw.map(v => getLabel(filterKey as keyof T, v));
+        } else if (raw !== undefined && raw !== null) {
+          chips = [getLabel(filterKey as keyof T, raw)];
+        } else {
+          chips = [];
+        }
 
         return <FilterLinkList.Link key={filterKey} title={title} chips={chips} onClick={() => goToView(viewId ?? filterKey)} />;
       })}
