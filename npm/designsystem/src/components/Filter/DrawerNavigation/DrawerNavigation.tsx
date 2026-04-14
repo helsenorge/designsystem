@@ -17,6 +17,8 @@ export interface DrawerViewProps<ViewId extends string = string> {
   onCloseButton?: () => void;
   /** Content sent to footer section of Drawer. Will override footer on parent */
   footer?: React.ReactNode;
+  /** Classname set on the content inside Drawer */
+  drawerContentClassname?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -30,6 +32,8 @@ export interface DrawerNavigationProps {
   children: React.ReactNode;
   /** Is drawer open or closed */
   isOpen: boolean;
+  /** Navigate to this view when the drawer opens. Defaults to home view. */
+  initialView?: string;
   /** Default onClose callback for drawer. View onCloseButton callback will override this. */
   onCloseButton?: () => void;
   /** Content sent to footer section of Drawer. View footer will override this */
@@ -48,6 +52,7 @@ function parseChildren(children: React.ReactNode): { views: DrawerViewProps[]; o
         children: child.props.children,
         onCloseButton: child.props.onCloseButton,
         footer: child.props.footer,
+        drawerContentClassname: child.props.drawerContentClassname,
       });
     } else {
       /** Added possibility of other children to support Modals that need navigation context */
@@ -57,7 +62,7 @@ function parseChildren(children: React.ReactNode): { views: DrawerViewProps[]; o
   return { views, other };
 }
 
-function DrawerNavigation({ children, isOpen, onCloseButton, footer }: DrawerNavigationProps): React.ReactNode {
+function DrawerNavigation({ children, isOpen, initialView, onCloseButton, footer }: DrawerNavigationProps): React.ReactNode {
   const { views, other } = useMemo(() => parseChildren(children), [children]);
 
   const homeView = views.find(v => v.home) ?? views[0];
@@ -95,6 +100,8 @@ function DrawerNavigation({ children, isOpen, onCloseButton, footer }: DrawerNav
     setPrevIsOpen(isOpen);
     if (!isOpen) {
       setViewStack([homeView?.id]);
+    } else if (initialView && views.some(v => v.id === initialView)) {
+      setViewStack(initialView === homeView?.id ? [homeView.id] : [homeView?.id, initialView]);
     }
   }
 
@@ -107,6 +114,7 @@ function DrawerNavigation({ children, isOpen, onCloseButton, footer }: DrawerNav
         onRequestBack={goBack}
         onRequestClose={currentView?.onCloseButton ?? onCloseButton}
         footerContent={currentView?.footer ?? footer}
+        contentClassName={currentView?.drawerContentClassname}
       >
         {currentView?.children}
       </Drawer>

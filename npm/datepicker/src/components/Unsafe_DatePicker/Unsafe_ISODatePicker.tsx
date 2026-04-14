@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { formatISO, isValid } from 'date-fns';
 
 import type { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
@@ -34,19 +32,11 @@ const Unsafe_ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODat
     return formatISO(date, { representation: 'date' });
   };
 
-  const [internalDate, setInternalDate] = useState<Date | undefined>(isoToDate(value));
-  const nextDateFromProp = isoToDate(value);
-
-  if ((internalDate?.getTime() ?? undefined) !== (nextDateFromProp?.getTime() ?? undefined)) {
-    setInternalDate(nextDateFromProp);
-  }
-
   const handleDateChange = (newDate: Date | undefined): void => {
-    setInternalDate(newDate);
     onChange?.(dateToIso(newDate));
   };
 
-  return <Unsafe_DatePicker {...baseDateInputProps} value={internalDate} onChange={handleDateChange} />;
+  return <Unsafe_DatePicker {...baseDateInputProps} value={isoToDate(value)} onChange={handleDateChange} />;
 };
 
 export default Unsafe_ISODatePicker;

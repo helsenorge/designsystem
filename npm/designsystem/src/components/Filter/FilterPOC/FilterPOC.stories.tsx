@@ -14,7 +14,6 @@ import { useDrawerNavigation } from '../DrawerNavigation/useDrawerNavigation';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter/FilterPOC',
   component: DrawerNavigation,
-  tags: ['new'],
   parameters: {
     docs: {
       page: (): React.ReactNode => <Docs component={DrawerNavigation} />,

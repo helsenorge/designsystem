@@ -6,8 +6,6 @@ import { AnalyticsId, IconSize } from '../../../constants';
 import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
 import Icon from '../../Icon';
 import ChevronRight from '../../Icons/ChevronRight';
-import Tag from '../../Tag';
-import TagList from '../../TagList';
 
 import styles from './FilterLinkList.module.scss';
 
@@ -65,11 +63,13 @@ export const Link: LinkType = (props: LinkProps) => {
             <>
               <span>{title}</span>
               {chips && chips.length > 0 && (
-                <TagList>
+                <div className={styles['link-list__chip-list']}>
                   {chips.map(chip => (
-                    <Tag key={chip}>{chip}</Tag>
+                    <span className={styles['link-list__chip']} key={chip}>
+                      {chip}
+                    </span>
                   ))}
-                </TagList>
+                </div>
               )}
             </>
           ) : (

@@ -1,0 +1,22 @@
+@use 'sass:map';
+@use '../../../scss/breakpoints' as breakpoints;
+@import '../../../scss/supernova/styles/spacers.css';
+
+.filter-drawer {
+  &__view {
+    --extra-horizontal-padding: 8px;
+
+    padding-left: var(--extra-horizontal-padding);
+    padding-right: var(--extra-horizontal-padding);
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      --extra-horizontal-padding: 12px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
