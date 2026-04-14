@@ -1,4 +1,10 @@
 {
   "dateButtonAriaLabel": "Raba dáhtonválljejeaddji",
-  "dayButtonBase": "{date}"
+  "dayButtonBase": "{date}",
+  "calendarButtonAriaLabel": "Raba dáhtonválljejeaddji",
+  "ariaLabelInputDay": "Beaivi",
+  "ariaLabelInputMonth": "Mánnu",
+  "ariaLabelInputYear": "Jahki",
+  "ariaLabelInputHour": "Diibmu",
+  "ariaLabelInputMinute": "Minuhtta"
 }

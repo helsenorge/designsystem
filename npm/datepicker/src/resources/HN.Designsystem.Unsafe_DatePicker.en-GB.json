@@ -1,3 +1,9 @@
 {
-  "dayButtonBase": "{date}"
+  "dayButtonBase": "{date}",
+  "calendarButtonAriaLabel": "Open date picker",
+  "ariaLabelInputDay": "Day",
+  "ariaLabelInputMonth": "Month",
+  "ariaLabelInputYear": "Year",
+  "ariaLabelInputHour": "Hour",
+  "ariaLabelInputMinute": "Minute"
 }

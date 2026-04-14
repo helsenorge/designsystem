@@ -1,4 +1,10 @@
 {
   "dateButtonAriaLabel": "Raba dáhtonválljejeaddji",
-  "dayButtonBase": "{date}"
+  "dayButtonBase": "{date}",
+  "dayButtonToday": "Odne, {date}",
+  "dayButtonSelected": "{date} válljejuvvon",
+  "nextMonth": "Boahtte mánnu",
+  "previousMonth": "Mannan mánnu",
+  "monthDropdown": "Vállje mánu",
+  "yearDropdown": "Vállje jagi"
 }
