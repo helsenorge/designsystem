@@ -4,12 +4,11 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import Checkbox from '@helsenorge/designsystem-react/components/Checkbox';
 import EmptyState from '@helsenorge/designsystem-react/components/EmptyState';
-import ActiveFilters from '@helsenorge/designsystem-react/components/Filter/ActiveFilters/ActiveFilters';
 import FilterButton from '@helsenorge/designsystem-react/components/Filter/FilterButton/FilterButton';
-import FilterButtonAndActiveFiltersWrapper from '@helsenorge/designsystem-react/components/Filter/FilterButtonAndActiveFiltersWrapper/FilterButtonAndActiveFiltersWrapper';
+import FilterButtonAndChipsWrapper from '@helsenorge/designsystem-react/components/Filter/FilterButtonAndChipsWrapper/FilterButtonAndChipsWrapper';
 import FilterDrawer from '@helsenorge/designsystem-react/components/Filter/FilterDrawer/FilterDrawer';
 import FilterOverviewLinkList from '@helsenorge/designsystem-react/components/Filter/FilterOverviewLinkList/FilterOverviewLinkList';
-import FilterResultTopBar from '@helsenorge/designsystem-react/components/Filter/FilterResultTopBar/FilterResultTopBar';
+import FilterResultCountAndSortWrapper from '@helsenorge/designsystem-react/components/Filter/FilterResultCountAndSortWrapper/FilterResultCountAndSortWrapper';
 import FilterSort from '@helsenorge/designsystem-react/components/Filter/FilterSort/FilterSort';
 import { useFilter } from '@helsenorge/designsystem-react/components/Filter/FiltreringsPOC/useFilter';
 import {
@@ -19,6 +18,7 @@ import {
   toggleArrayFilter,
   type FilterMatchers,
 } from '@helsenorge/designsystem-react/components/Filter/FiltreringsPOC/utils';
+import getFilterChips from '@helsenorge/designsystem-react/components/Filter/getFilterChips/getFilterChips';
 import { useFilterDrawer } from '@helsenorge/designsystem-react/components/Filter/useFilterDrawer';
 import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
@@ -428,18 +428,18 @@ export const DokumenterExample: Story = {
     return (
       <>
         <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
-          <FilterButtonAndActiveFiltersWrapper>
-            <FilterButton onClick={() => drawer.open()} />
-            <ActiveFilters
-              filter={filter}
-              getLabel={getLabel}
-              onChipClick={key => drawer.open(key === 'dateRange' ? 'periode' : (key as DokumentFilterViews))}
-              willShowCloseButton={key => (key === 'dateRange' ? false : true)}
-              onOverflowChipClick={() => drawer.open()}
-            />
-          </FilterButtonAndActiveFiltersWrapper>
-          <FilterResultTopBar
-            countText={`${sorted.length} dokumenter`}
+          <FilterButtonAndChipsWrapper
+            filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
+            filterChips={getFilterChips({
+              filter,
+              getLabel,
+              onChipClick: key => drawer.open(key === 'dateRange' ? 'periode' : (key as DokumentFilterViews)),
+              onOverflowChipClick: () => drawer.open(),
+            })}
+          />
+
+          <FilterResultCountAndSortWrapper
+            resultCount={`${sorted.length} dokumenter`}
             sortComponent={
               <FilterSort
                 value={sortOption}
