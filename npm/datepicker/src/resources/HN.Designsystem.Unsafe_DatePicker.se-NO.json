@@ -1,10 +1,19 @@
 {
   "dateButtonAriaLabel": "Raba dáhtonválljejeaddji",
   "dayButtonBase": "{date}",
+  "dayButtonToday": "Odne, {date}",
+  "dayButtonSelected": "{date} válljejuvvon",
+  "monthDropdown": "Vállje mánu",
+  "goToToday": "Mana otnážii",
+  "loadingText": "Viežžá dieđuid. Lea ge buorre ja vuordilaste.",
+  "dayFormatPlaceholder": "bb",
   "calendarButtonAriaLabel": "Raba dáhtonválljejeaddji",
+  "clearButtonAriaLabel": "Bija dáhtona ruovttuluotta",
   "ariaLabelInputDay": "Beaivi",
   "ariaLabelInputMonth": "Mánnu",
   "ariaLabelInputYear": "Jahki",
+  "hourFormatPlaceholder": "dd",
+  "minuteFormatPlaceholder": "mm",
   "ariaLabelInputHour": "Diibmu",
   "ariaLabelInputMinute": "Minuhtta"
 }

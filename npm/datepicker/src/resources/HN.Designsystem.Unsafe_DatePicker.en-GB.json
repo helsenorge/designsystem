@@ -1,9 +1,19 @@
 {
+  "dateButtonAriaLabel": "Open date picker",
   "dayButtonBase": "{date}",
+  "dayButtonToday": "Today, {date}",
+  "dayButtonSelected": "{date} selected",
+  "monthDropdown": "Select month",
+  "goToToday": "Go to today",
+  "loadingText": "Retrieving information. Please wait.",
+  "dayFormatPlaceholder": "dd",
   "calendarButtonAriaLabel": "Open date picker",
+  "clearButtonAriaLabel": "Reset date",
   "ariaLabelInputDay": "Day",
   "ariaLabelInputMonth": "Month",
   "ariaLabelInputYear": "Year",
+  "hourFormatPlaceholder": "hh",
+  "minuteFormatPlaceholder": "mm",
   "ariaLabelInputHour": "Hour",
   "ariaLabelInputMinute": "Minute"
 }
