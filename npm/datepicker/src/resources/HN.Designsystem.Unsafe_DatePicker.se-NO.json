@@ -1,3 +1,4 @@
 {
-  "dateButtonAriaLabel": "Raba dáhtonválljejeaddji"
+  "dateButtonAriaLabel": "Raba dáhtonválljejeaddji",
+  "dayButtonBase": "{date}"
 }
