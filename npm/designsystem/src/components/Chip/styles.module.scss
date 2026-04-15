@@ -5,7 +5,7 @@
 .chip {
   display: flex;
   flex-flow: row nowrap;
-  height: 2.75rem;
+  min-height: 2.75rem;
 
   .chip__chip:focus-visible,
   .chip__close:focus-visible {
@@ -14,7 +14,7 @@
 
   &__chip,
   &__close {
-    height: 2.75rem;
+    min-height: 2.75rem;
     background-color: transparent;
     align-self: flex-start;
     padding: 0;
@@ -25,13 +25,13 @@
     &__inner {
       display: block;
       box-sizing: border-box;
-      height: 1.625rem;
+      min-height: 1.625rem;
       line-height: 1.25rem;
       background-color: var(--core-color-blueberry-50);
       border: 1px solid var(--core-color-blueberry-500);
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-        height: 1.875rem;
+        min-height: 1.875rem;
       }
 
       .chip__chip:hover &,
@@ -61,7 +61,6 @@
       font-size: 0.875rem;
       font-weight: 600;
       color: var(--core-color-blueberry-800);
-      text-wrap: nowrap;
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         padding-top: 0.3125rem;

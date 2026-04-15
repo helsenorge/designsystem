@@ -1,6 +1,9 @@
+import { useRef } from 'react';
+
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
+import { useResizeObserver } from '../../hooks/useResizeObserver';
 import Icon, { IconSize } from '../Icon';
 import X from '../Icons/X';
 
@@ -26,6 +29,9 @@ export interface ChipProps {
 const Chip: React.FC<ChipProps> = props => {
   const { children, onChipClick, onCloseClick, chipButtonProps, closeButtonProps, testId, withCloseButton = true } = props;
 
+  const chipRef = useRef<HTMLDivElement>(null);
+  const chipSize = useResizeObserver(chipRef);
+
   return (
     <div className={styles['chip']}>
       <button
@@ -37,6 +43,7 @@ const Chip: React.FC<ChipProps> = props => {
         data-analyticsid={AnalyticsId.Tag}
       >
         <span
+          ref={chipRef}
           className={classNames(styles['chip__chip__inner'], {
             [styles['chip__chip__inner--without-close']]: !withCloseButton,
           })}
@@ -53,7 +60,7 @@ const Chip: React.FC<ChipProps> = props => {
           data-testid={`${testId}-close`}
           data-analyticsid={AnalyticsId.Tag}
         >
-          <span className={styles['chip__close__inner']}>
+          <span className={styles['chip__close__inner']} style={{ height: chipSize?.height }}>
             <Icon svgIcon={X} size={IconSize.XXSmall} />
           </span>
         </button>
