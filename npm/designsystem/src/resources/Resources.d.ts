@@ -146,4 +146,11 @@ export type HNDesignsystemInput = {
   characters: string;
 };
 
+export type HNDesignsystemChip = {
+  /**
+   * Fjern
+   */
+  removeAriaLabel: string;
+};
+
 /* eslint:enable */
