@@ -515,8 +515,6 @@ export const DokumenterExample: Story = {
                   onPresetSelected={handlePresetSelected}
                   onRangeChange={handleRangeChange}
                 />
-                {/* Legger til space til kalender popup */}
-                <div style={{ height: '23rem', width: '1px' }} />
               </FormGroup>
             </div>
           </FilterDrawer.View>
