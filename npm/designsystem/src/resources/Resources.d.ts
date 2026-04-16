@@ -146,6 +146,17 @@ export type HNDesignsystemInput = {
   characters: string;
 };
 
+export type HNDesignsystemFilter = {
+  /**
+   * Finn
+   */
+  filterButtonText: string;
+  /**
+   * Sortering
+   */
+  sortLabel: string;
+};
+
 export type HNDesignsystemChip = {
   /**
    * Fjern
