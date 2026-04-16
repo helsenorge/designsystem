@@ -1,3 +1,5 @@
 {
-  "filterButtonText": "Find"
+  "filterButtonText": "Find",
+  "sortLabel": "Sorting",
+  "resetButtonText": "Reset"
 }

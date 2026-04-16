@@ -155,6 +155,10 @@ export type HNDesignsystemFilter = {
    * Sortering
    */
   sortLabel: string;
+  /**
+   * Nullstill
+   */
+  resetButtonText: string;
 };
 
 export type HNDesignsystemChip = {
