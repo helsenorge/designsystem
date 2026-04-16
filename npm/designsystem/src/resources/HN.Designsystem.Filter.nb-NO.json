@@ -1,5 +1,6 @@
 {
   "filterButtonText": "Finn",
   "sortLabel": "Sortering",
-  "resetButtonText": "Nullstill"
+  "resetButtonText": "Nullstill",
+  "showButtonText": "Vis ${antall} treff"
 }

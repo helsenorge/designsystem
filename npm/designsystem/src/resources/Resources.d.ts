@@ -159,6 +159,10 @@ export type HNDesignsystemFilter = {
    * Nullstill
    */
   resetButtonText: string;
+  /**
+   * Vis ${antall} treff
+   */
+  showButtonText: string;
 };
 
 export type HNDesignsystemChip = {
