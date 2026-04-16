@@ -1,4 +1,10 @@
 
+## [14.4.0](https://github.com/helsenorge/designsystem/compare/v14.3.0...v14.4.0) (2026-04-16)
+
+### Features
+
+* **chip:**  lagt til resources ([10a2b31](https://github.com/helsenorge/designsystem/commit/10a2b31b3ef5c0fcbabea5a27cad7656f1271cff)), closes [#375385](https://github.com/helsenorge/designsystem/issues/375385)
+
 ## [14.3.0](https://github.com/helsenorge/designsystem/compare/v14.2.1...v14.3.0) (2026-04-14)
 
 ### Features
