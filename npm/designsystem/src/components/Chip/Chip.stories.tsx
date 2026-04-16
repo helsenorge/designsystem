@@ -1,8 +1,15 @@
+import { useState } from 'react';
+
 import { action } from 'storybook/actions';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Chip from './Chip';
+import { LanguageLocales } from '../../constants';
+import LanguageProvider from '../../utils/language';
+import Dropdown from '../Dropdown';
+import Globe from '../Icons/Globe';
+import Spacer from '../Spacer';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Chip',
@@ -49,4 +56,25 @@ export const WithAndWithoutCloseButton: Story = {
       <Chip {...args} withCloseButton={false} />
     </>
   ),
+};
+
+export const WithLanguageProvider: Story = {
+  render: args => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Dropdown svgIcon={Globe} triggerText="Velg språk">
+          <Dropdown.SingleSelectItem text={'English'} asChild defaultSelected>
+            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Bokmål'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+        <Spacer />
+        <Chip {...args} />
+      </LanguageProvider>
+    );
+  },
 };
