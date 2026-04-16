@@ -2,5 +2,5 @@
   "filterButtonText": "Find",
   "sortLabel": "Sorting",
   "resetButtonText": "Reset",
-  "showButtonText": "Show ${antall} results"
+  "showButtonText": "Show {0} results"
 }
