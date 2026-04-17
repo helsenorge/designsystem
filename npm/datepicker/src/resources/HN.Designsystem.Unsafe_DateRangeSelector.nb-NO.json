@@ -1,5 +1,7 @@
 {
   "startDateLabel": "Startdato",
   "endDateLabel": "Sluttdato",
-  "dateSublabel": "dd.mm.åååå"
+  "dateSublabel": "dd.mm.åååå",
+  "lastMonthLabel": "Siste måned",
+  "lastMonthLabel(1)": "Siste måned"
 }

@@ -163,6 +163,14 @@ export type HNDesignsystemUnsafe_DateRangeSelector = {
    * dd.mm.åååå
    */
   dateSublabel: string;
+  /**
+   * Siste måned
+   */
+  lastMonthLabel: string;
+  /**
+   * Siste måned
+   */
+  lastMonthLabel(1): string;
 };
 
 /* eslint:enable */
