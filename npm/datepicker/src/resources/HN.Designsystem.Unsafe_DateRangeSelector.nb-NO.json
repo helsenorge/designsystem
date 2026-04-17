@@ -3,5 +3,7 @@
   "endDateLabel": "Sluttdato",
   "dateSublabel": "dd.mm.åååå",
   "lastMonthLabel": "Siste måned",
-  "lastMonthLabel(1)": "Siste måned"
+  "lastMonthsLabel": "Siste {0} måneder",
+  "nextMonthsLabel": "Neste {0} måneder",
+  "nextMonthLabel": "Neste måned"
 }

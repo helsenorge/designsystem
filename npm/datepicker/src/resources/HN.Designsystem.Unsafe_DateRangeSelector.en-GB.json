@@ -3,5 +3,7 @@
   "endDateLabel": "End date",
   "dateSublabel": "dd.mm.yyyy",
   "lastMonthLabel": "Last month",
-  "lastMonthLabel(1)": "Last month"
+  "lastMonthsLabel": "Last {0} months",
+  "nextMonthsLabel": "Next {0} months",
+  "nextMonthLabel": "Next month"
 }
