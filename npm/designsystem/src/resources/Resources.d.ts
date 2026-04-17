@@ -148,7 +148,7 @@ export type HNDesignsystemInput = {
 
 export type HNDesignsystemFilter = {
   /**
-   * Finn
+   * Finn...
    */
   filterButtonText: string;
   /**
