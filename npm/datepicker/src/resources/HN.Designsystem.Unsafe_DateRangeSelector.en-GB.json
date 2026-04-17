@@ -1,0 +1,10 @@
+{
+  "startDateLabel": "Start date",
+  "endDateLabel": "End date",
+  "dateSublabel": "dd.mm.yyyy",
+  "lastMonthLabel": "Last month",
+  "lastMonthsLabel": "Last {0} months",
+  "nextMonthsLabel": "Next {0} months",
+  "nextMonthLabel": "Next month",
+  "customPeriodLabel": "Custom period/date"
+}

@@ -146,4 +146,34 @@ export type HNDesignsystemInput = {
   characters: string;
 };
 
+export type HNDesignsystemFilter = {
+  /**
+   * Finn...
+   */
+  filterButtonText: string;
+  /**
+   * Sortering
+   */
+  sortLabel: string;
+  /**
+   * Nullstill
+   */
+  resetButtonText: string;
+  /**
+   * Vis {0} treff
+   */
+  showButtonText: string;
+  /**
+   * Finn...
+   */
+  filterOverviewTitle: string;
+};
+
+export type HNDesignsystemChip = {
+  /**
+   * Fjern
+   */
+  removeAriaLabel: string;
+};
+
 /* eslint:enable */

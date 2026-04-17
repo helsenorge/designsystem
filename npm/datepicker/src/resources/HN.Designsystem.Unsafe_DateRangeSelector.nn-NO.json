@@ -1,0 +1,10 @@
+{
+  "startDateLabel": "Startdato",
+  "endDateLabel": "Sluttdato",
+  "dateSublabel": "dd.mm.åååå",
+  "lastMonthLabel": "Siste månaden",
+  "lastMonthsLabel": "Siste {0} månadene",
+  "nextMonthsLabel": "Neste {0} månadene",
+  "nextMonthLabel": "Neste månaden",
+  "customPeriodLabel": "Egendefinert periode/dato"
+}
