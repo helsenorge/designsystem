@@ -163,6 +163,10 @@ export type HNDesignsystemFilter = {
    * Vis {0} treff
    */
   showButtonText: string;
+  /**
+   * Finn...
+   */
+  filterOverviewTitle: string;
 };
 
 export type HNDesignsystemChip = {
