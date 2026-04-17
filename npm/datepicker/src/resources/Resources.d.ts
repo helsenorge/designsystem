@@ -179,6 +179,10 @@ export type HNDesignsystemUnsafe_DateRangeSelector = {
    * Neste måned
    */
   nextMonthLabel: string;
+  /**
+   * Egendefinert periode/dato
+   */
+  customPeriodLabel: string;
 };
 
 /* eslint:enable */
