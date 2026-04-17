@@ -150,4 +150,15 @@ export type HNDesignsystemUnsafe_DatePicker = {
   ariaLabelInputMinute: string;
 };
 
+export type HNDesignsystemUnsafe_DateRangeSelector = {
+  /**
+   * Startdato
+   */
+  startDateLabel: string;
+  /**
+   * Sluttdato
+   */
+  endDateLabel: string;
+};
+
 /* eslint:enable */
