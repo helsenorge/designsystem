@@ -159,6 +159,10 @@ export type HNDesignsystemUnsafe_DateRangeSelector = {
    * Sluttdato
    */
   endDateLabel: string;
+  /**
+   * dd.mm.åååå
+   */
+  dateSublabel: string;
 };
 
 /* eslint:enable */

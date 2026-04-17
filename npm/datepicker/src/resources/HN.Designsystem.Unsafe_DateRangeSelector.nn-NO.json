@@ -1,4 +1,5 @@
 {
   "startDateLabel": "Startdato",
-  "endDateLabel": "Sluttdato"
+  "endDateLabel": "Sluttdato",
+  "dateSublabel": "dd.mm.yyyy"
 }
