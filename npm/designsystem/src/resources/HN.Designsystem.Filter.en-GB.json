@@ -3,5 +3,8 @@
   "sortLabel": "Sorting",
   "resetButtonText": "Reset",
   "showButtonText": "Show {0} results",
-  "filterOverviewTitle": "Find..."
+  "filterOverviewTitle": "Find...",
+  "searchPlaceholder": "Search in list",
+  "searchClearButtonAriaLabel": "Clear input",
+  "searchButtonAriaLabel": "Search"
 }
