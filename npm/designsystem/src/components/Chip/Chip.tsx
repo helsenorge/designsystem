@@ -2,7 +2,11 @@ import { useRef } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId } from '../../constants';
+import type { HNDesignsystemChip } from '../../resources/Resources';
+
+import { getResources } from './resourceHelper';
+import { AnalyticsId, LanguageLocales } from '../../constants';
+import { useLanguage } from '../../hooks/useLanguage';
 import { useResizeObserver } from '../../hooks/useResizeObserver';
 import Icon, { IconSize } from '../Icon';
 import X from '../Icons/X';
@@ -24,10 +28,19 @@ export interface ChipProps {
   closeButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   /** Sets the data-testid attribute on the expander button. */
   testId?: string;
+  /** Resources for the component */
+  resources?: Partial<HNDesignsystemChip>;
 }
 
 const Chip: React.FC<ChipProps> = props => {
-  const { children, onChipClick, onCloseClick, chipButtonProps, closeButtonProps, testId, withCloseButton = true } = props;
+  const { children, onChipClick, onCloseClick, chipButtonProps, closeButtonProps, testId, withCloseButton = true, resources } = props;
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+  const mergedResources: HNDesignsystemChip = {
+    ...defaultResources,
+    ...resources,
+    removeAriaLabel: closeButtonProps?.['aria-label'] || resources?.removeAriaLabel || `${defaultResources.removeAriaLabel} ${children}`,
+  };
 
   const chipRef = useRef<HTMLDivElement>(null);
   const chipSize = useResizeObserver(chipRef);
@@ -54,6 +67,7 @@ const Chip: React.FC<ChipProps> = props => {
       {withCloseButton && (
         <button
           {...closeButtonProps}
+          aria-label={mergedResources.removeAriaLabel}
           className={classNames(styles['chip__close'])}
           onClick={onCloseClick}
           type="button"

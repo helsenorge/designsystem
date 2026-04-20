@@ -150,4 +150,39 @@ export type HNDesignsystemUnsafe_DatePicker = {
   ariaLabelInputMinute: string;
 };
 
+export type HNDesignsystemUnsafe_DateRangeSelector = {
+  /**
+   * Startdato
+   */
+  startDateLabel: string;
+  /**
+   * Sluttdato
+   */
+  endDateLabel: string;
+  /**
+   * dd.mm.åååå
+   */
+  dateSublabel: string;
+  /**
+   * Siste måned
+   */
+  lastMonthLabel: string;
+  /**
+   * Siste {0} måneder
+   */
+  lastMonthsLabel: string;
+  /**
+   * Neste {0} måneder
+   */
+  nextMonthsLabel: string;
+  /**
+   * Neste måned
+   */
+  nextMonthLabel: string;
+  /**
+   * Egendefinert periode/dato
+   */
+  customPeriodLabel: string;
+};
+
 /* eslint:enable */
