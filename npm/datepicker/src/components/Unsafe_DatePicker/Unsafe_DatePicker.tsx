@@ -78,7 +78,11 @@ const Unsafe_DatePicker = ({
 
   // Sync external value changes to internal state
   useEffect(() => {
-    if (!internalChangeRef.current) {
+    // Always sync if the external value differs from our internal state
+    // This ensures prop changes always take effect, even if internalChangeRef was set by a previous onChange
+    const valueTime = value?.getTime();
+    const statetime = dateDate?.getTime();
+    if (valueTime !== statetime) {
       setDateString(dateToString(value) || '');
       setDateDate(value || undefined);
     }
@@ -166,32 +170,23 @@ const Unsafe_DatePicker = ({
     internalChangeRef.current = true;
     setDateString(date);
 
-    const parsedDate = parse(date, 'P', new Date(), { locale: nb });
+    const isCompleteDate = /^\d{2}\.\d{2}\.\d{4}$/.test(date);
+    let parsedDate: Date | undefined = undefined;
 
-    if (isValid(parsedDate)) {
-      setDateDate(parsedDate);
-      if (onChange) {
-        onChange(parsedDate);
-      }
-    } else {
-      setDateDate(undefined);
-      if (onChange) {
-        onChange(undefined);
+    if (isCompleteDate) {
+      const parsed = parse(date, 'P', new Date(), { locale: nb });
+      if (isValid(parsed)) {
+        parsedDate = parsed;
       }
     }
+
+    setDateDate(parsedDate);
+    onChange?.(parsedDate);
   };
+
   const handleBlur = (date: string): void => {
     const parsedDate = parse(date, 'P', new Date(), { locale: nb });
-
-    if (isValid(parsedDate)) {
-      if (onBlur) {
-        onBlur(parsedDate);
-      }
-    } else {
-      if (onBlur) {
-        onBlur(undefined);
-      }
-    }
+    onBlur?.(isValid(parsedDate) ? parsedDate : undefined);
   };
 
   const labelGivenAsPropIsValidLabelComponent = isComponent<LabelProps>(label, Label);

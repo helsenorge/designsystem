@@ -6,10 +6,10 @@ import type { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
 
 import { isValidRange } from './validate';
 
-import styles from './RangeDatePickers.module.scss';
+import styles from './DateRangePickers.module.scss';
 
 //@todo: utvide denne til å ta inn ISODatePicker også
-export interface RangeDateInputsProps {
+export interface DateRangePickersProps {
   /** The 'from' date. Must be DateInput */
   from: React.ReactElement<Unsafe_DatePickerProps>;
   /** The 'to' date. Must be DateInput */
@@ -18,7 +18,7 @@ export interface RangeDateInputsProps {
   onRangeChange?: (from: Date | undefined, to: Date | undefined, isValid: boolean) => void;
 }
 
-const Unsafe_RangeDatePickers: React.FC<RangeDateInputsProps> = props => {
+const Unsafe_DateRangePickers: React.FC<DateRangePickersProps> = props => {
   const { from, to, onRangeChange } = props;
 
   const [fromDate, setFromDate] = useState<Date | undefined>(from.props.value);
@@ -98,4 +98,4 @@ const Unsafe_RangeDatePickers: React.FC<RangeDateInputsProps> = props => {
   );
 };
 
-export default Unsafe_RangeDatePickers;
+export default Unsafe_DateRangePickers;
