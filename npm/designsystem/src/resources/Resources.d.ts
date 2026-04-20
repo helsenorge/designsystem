@@ -175,6 +175,10 @@ export type HNDesignsystemFilter = {
    * Nullstill
    */
   searchClearButtonAriaLabel: string;
+  /**
+   * Søk
+   */
+  searchButtonAriaLabel: string;
 };
 
 export type HNDesignsystemChip = {
