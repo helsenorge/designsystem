@@ -74,12 +74,7 @@ export const Default = {
     };
 
     return (
-      <FilterDrawer
-        drawer={drawer}
-        onReset={() => action('onReset')()}
-        showResultButtonText="Vis resultater"
-        onClose={() => action('onClose')()}
-      >
+      <FilterDrawer drawer={drawer} onReset={() => action('onReset')()} resultCount={5} onClose={() => action('onClose')()}>
         <FilterDrawer.Overview title="Finn...">
           <FilterOverviewLinkList filter={dummyFilter} getLabel={getDummyLabels} links={dummyLinks} />
         </FilterDrawer.Overview>

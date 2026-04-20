@@ -12,7 +12,7 @@ export type ReadableRangeOption = DateRangePreset & {
 
 export type DateRangePreset = {
   readonly value: string;
-  readonly displayText: string;
+  readonly displayText?: string;
   readonly dateRange: { readonly from: Date; readonly to: Date };
 };
 

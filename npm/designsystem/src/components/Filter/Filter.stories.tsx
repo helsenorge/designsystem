@@ -6,11 +6,14 @@ import { LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
+import Dropdown from '../Dropdown';
 import EmptyState from '../EmptyState';
 import FormGroup from '../FormGroup';
+import Globe from '../Icons/Globe';
 import Panel from '../Panel';
 import PanelList from '../PanelList';
 import RadioButton from '../RadioButton';
+import Spacer from '../Spacer';
 import StatusDot from '../StatusDot';
 import Table, { TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
 import Tag from '../Tag';
@@ -21,6 +24,7 @@ import FilterButtonAndChipsWrapper from './FilterButtonAndChipsWrapper/FilterBut
 import FilterDrawer from './FilterDrawer/FilterDrawer';
 import FilterOverviewLinkList from './FilterOverviewLinkList/FilterOverviewLinkList';
 import FilterResultCountAndSortWrapper from './FilterResultCountAndSortWrapper/FilterResultCountAndSortWrapper';
+import FilterSearch from './FilterSearch/FilterSearch';
 import FilterSort from './FilterSort/FilterSort';
 import { useFilter } from './FiltreringsPOC/useFilter';
 import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './FiltreringsPOC/utils';
@@ -252,7 +256,11 @@ export const VerktoyExample: Story = {
           />
         </div>
 
-        <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} verktøy`}>
+        <FilterDrawer
+          drawer={drawer}
+          onReset={() => filter.resetFiltersToEmpty()}
+          resources={{ showButtonText: `Vis ${filtered.length} verktøy` }}
+        >
           <FilterDrawer.Overview title={'Finn ...'}>
             <FilterOverviewLinkList
               filter={filter}
@@ -424,7 +432,7 @@ export const LoggOverBrukExample: Story = {
           <FilterResultCountAndSortWrapper resultCount={`${filtered.length} logginnslag`} />
         </div>
 
-        <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} showResultButtonText={`Vis ${filtered.length} treff`}>
+        <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} resultCount={filtered.length}>
           <FilterDrawer.Overview title={'Finn ...'}>
             <FilterOverviewLinkList
               filter={filter}
@@ -583,6 +591,47 @@ export const KunHurtigfilter: Story = {
           <EmptyState title={'Ingen resepter ble funnet med valgt filter.'} />
         )}
       </>
+    );
+  },
+};
+
+export const WithLanguageProvider: Story = {
+  render: () => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
+    const drawer = useFilterDrawer();
+    const [searchValue, setSearchValue] = useState<string>('');
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Dropdown svgIcon={Globe} triggerText="Velg språk">
+          <Dropdown.SingleSelectItem text={'English'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+        <Spacer />
+
+        <FilterButton onClick={() => drawer.open()} />
+        <FilterSort>
+          <option value={'newest'}>{'Nyeste'}</option>
+          <option value={'oldest'}>{'Eldste'}</option>
+        </FilterSort>
+
+        <FilterDrawer drawer={drawer} onReset={() => undefined} resultCount={42}>
+          <FilterDrawer.Overview title={'Filter'}>
+            <div style={{ padding: '1rem' }}>{'Filter content'}</div>
+            <FilterSearch
+              value={searchValue}
+              onChange={e => setSearchValue((e.target as HTMLInputElement).value)}
+              clearButtonProps={{
+                onClick: () => setSearchValue(''),
+              }}
+            />
+          </FilterDrawer.Overview>
+        </FilterDrawer>
+      </LanguageProvider>
     );
   },
 };

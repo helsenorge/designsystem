@@ -11,7 +11,6 @@ export const DateRangePresets = ((): DateRangePresetsType => {
   return {
     LastMonth: {
       value: 'lastMonth',
-      displayText: 'Siste måned',
       dateRange: {
         from: addMonths(today, -1),
         to: today,
@@ -19,7 +18,6 @@ export const DateRangePresets = ((): DateRangePresetsType => {
     },
     Last6Months: {
       value: 'last6Months',
-      displayText: 'Siste 6 måneder',
       dateRange: {
         from: addMonths(today, -6),
         to: today,
@@ -27,7 +25,6 @@ export const DateRangePresets = ((): DateRangePresetsType => {
     },
     Last12Months: {
       value: 'last12Months',
-      displayText: 'Siste 12 måneder',
       dateRange: {
         from: addMonths(today, -12),
         to: today,
@@ -43,7 +40,6 @@ export const DateRangePresets = ((): DateRangePresetsType => {
     },
     NextMonth: {
       value: 'nextMonth',
-      displayText: 'Neste måned',
       dateRange: {
         from: today,
         to: addMonths(today, 1),
@@ -51,7 +47,6 @@ export const DateRangePresets = ((): DateRangePresetsType => {
     },
     Next6Months: {
       value: 'next6Months',
-      displayText: 'Neste 6 måneder',
       dateRange: {
         from: today,
         to: addMonths(today, 6),
@@ -59,7 +54,6 @@ export const DateRangePresets = ((): DateRangePresetsType => {
     },
     Next12Months: {
       value: 'next12Months',
-      displayText: 'Neste 12 måneder',
       dateRange: {
         from: today,
         to: addMonths(today, 12),

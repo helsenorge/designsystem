@@ -1,9 +1,14 @@
 import { Children, isValidElement } from 'react';
 
+import type { HNDesignsystemFilter } from '../../../resources/Resources';
 import type { UseFilterDrawerReturn } from '../useFilterDrawer';
 
+import { LanguageLocales } from '../../../constants';
+import { useLanguage } from '../../../hooks/useLanguage';
+import { formatResource } from '../../../utils/resource';
 import Button from '../../Button';
 import DrawerNavigation, { type DrawerViewProps } from '../DrawerNavigation/DrawerNavigation';
+import { getResources } from '../resourceHelper';
 
 import styles from './styles.module.scss';
 
@@ -16,10 +21,10 @@ export interface FilterDrawerProps<ViewId extends string = string> {
   footer?: React.ReactNode;
   /** If provided, shows a "Nullstill filter" button in the default footer */
   onReset?: () => void;
-  /** Text for the reset button. Default: 'Nullstill filter' */
-  resetText?: string;
-  /** If provided, shows a result button (e.g. "Vis 5 treff") that closes the drawer */
-  showResultButtonText?: string;
+  /** If provided, shows a result count button (e.g. "Vis 5 treff") that closes the drawer */
+  resultCount?: number;
+  /** Resources for the component */
+  resources?: Partial<HNDesignsystemFilter>;
   /** DrawerNavigation.View children defining the overview and filter views */
   children: React.ReactNode;
 }
@@ -56,10 +61,17 @@ function FilterDrawer<ViewId extends string>({
   onClose,
   footer,
   onReset,
-  resetText = 'Nullstill',
-  showResultButtonText,
+  resultCount,
+  resources,
   children,
 }: FilterDrawerProps<ViewId>): React.ReactNode {
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+  const mergedResources = {
+    ...defaultResources,
+    ...resources,
+  };
+
   const handleClose = (): void => {
     if (onClose) {
       onClose();
@@ -68,9 +80,12 @@ function FilterDrawer<ViewId extends string>({
     }
   };
 
+  const showResultButtonText =
+    resultCount !== undefined ? formatResource(mergedResources.showButtonText, resultCount) : mergedResources.showButtonText;
+
   const defaultResetButton = onReset && (
     <Button onClick={onReset} variant="borderless">
-      {resetText}
+      {mergedResources.resetButtonText}
     </Button>
   );
   const defaultShowResultsButton = showResultButtonText && <Button onClick={handleClose}>{showResultButtonText}</Button>;
@@ -95,12 +110,16 @@ function FilterDrawer<ViewId extends string>({
         {!noResetButton &&
           (viewOnReset ? (
             <Button onClick={viewOnReset} variant="borderless">
-              {resetText}
+              {mergedResources.resetButtonText}
             </Button>
           ) : (
             defaultResetButton
           ))}
-        {viewOnClose ? <Button onClick={viewOnClose}>{showResultButtonText ?? 'Vis resultat'}</Button> : defaultShowResultsButton}
+        {viewOnClose ? (
+          <Button onClick={viewOnClose}>{showResultButtonText ?? mergedResources.showButtonText}</Button>
+        ) : (
+          defaultShowResultsButton
+        )}
       </div>
     );
   };

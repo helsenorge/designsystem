@@ -2,15 +2,16 @@ import { useRef } from 'react';
 
 import classNames from 'classnames';
 
-import { useIsMobileBreakpoint } from '@helsenorge/designsystem-react/hooks/useIsMobileBreakpoint';
+import type { HNDesignsystemFilter } from '../../../resources/Resources';
 
 import { IconSize, LanguageLocales } from '../../../constants';
+import { useIsMobileBreakpoint } from '../../../hooks/useIsMobileBreakpoint';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
 import Icon from '../../Icon';
 import Search from '../../Icons/Search';
 import X from '../../Icons/X';
-import { getResources } from '../resourcesMock';
+import { getResources } from '../resourceHelper';
 
 import styles from './styles.module.scss';
 
@@ -26,7 +27,7 @@ export interface FilterSearchProps {
   /** Props for the clear button */
   clearButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   /** Texts if overriding SOT */
-  resources?: Partial<unknown>;
+  resources?: Partial<HNDesignsystemFilter>;
 }
 
 const FilterSearch: React.FC<FilterSearchProps> = props => {
@@ -55,9 +56,7 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
   return (
     <div className={styles['filter-search__wrapper']}>
       <label className={styles['filter-search__input-wrapper']} ref={inputWrapperRef}>
-        <span className={styles['filter-search__input__label']}>
-          {inputProps?.['aria-label'] ?? mergedResources.filtersearch_placeholder}
-        </span>
+        <span className={styles['filter-search__input__label']}>{inputProps?.['aria-label'] ?? mergedResources.searchPlaceholder}</span>
         <input
           {...inputProps}
           ref={inputRef}
@@ -66,13 +65,13 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
           className={classNames(styles['filter-search__input'], inputProps?.className, {
             [styles['filter-search__input--hovered']]: isWrapperHovered,
           })}
-          placeholder={mergedResources.filtersearch_placeholder}
+          placeholder={mergedResources.searchPlaceholder}
         />
       </label>
       {inputHasValue && (
         <button
           type="button"
-          aria-label={mergedResources.filtersearch_clearButton_arialabel}
+          aria-label={mergedResources.searchClearButtonAriaLabel}
           {...clearButtonProps}
           onClick={e => {
             clearButtonProps?.onClick?.(e);
@@ -86,7 +85,7 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
       )}
       <button
         type={'button'}
-        aria-label={mergedResources.filtersearch_button_arialabel}
+        aria-label={mergedResources.searchButtonAriaLabel}
         {...buttonProps}
         ref={buttonRef}
         className={classNames(styles['filter-search__search-button'], buttonProps?.className)}

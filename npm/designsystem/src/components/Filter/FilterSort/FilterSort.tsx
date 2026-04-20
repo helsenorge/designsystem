@@ -1,14 +1,16 @@
+import type { HNDesignsystemFilter } from '../../../resources/Resources';
+
 import { LanguageLocales } from '../../../constants';
 import { useLanguage } from '../../../hooks/useLanguage';
 import Label from '../../Label';
 import Select, { type SelectProps } from '../../Select';
-import { getResources } from '../resourcesMock';
+import { getResources } from '../resourceHelper';
 
 import styles from './styles.module.scss';
 
 export interface FilterSortProps extends SelectProps {
   /** Texts if overriding SOT */
-  resources?: Partial<unknown>;
+  resources?: Partial<HNDesignsystemFilter>;
 }
 
 const FilterSort: React.FC<FilterSortProps> = props => {
@@ -25,7 +27,7 @@ const FilterSort: React.FC<FilterSortProps> = props => {
   return (
     <Select
       {...props}
-      label={<Label labelTexts={[{ text: `${mergedResources.sort_label}:`, type: 'subdued' }]} />}
+      label={<Label labelTexts={[{ text: `${mergedResources.sortLabel}:`, type: 'subdued' }]} />}
       labelClassName={styles['select__label']}
       className={styles['select']}
       wrapperClassName={styles['select__wrapper']}

@@ -7,8 +7,12 @@ import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label
 import type { RadioButtonProps } from '@helsenorge/designsystem-react/components/RadioButton';
 import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
 
+import type { HNDesignsystemUnsafe_DateRangeSelector } from '@helsenorge/datepicker/resources/Resources';
+import { formatResource, LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
+
 import Unsafe_DatePicker from '../Unsafe_DatePicker';
 import Unsafe_DateRangePickers from '../Unsafe_DateRangePickers';
+import { getResources } from './resourceHelper';
 
 export interface Unsafe_DateRangeSelectorProps {
   /** Name for the radiobuttongroup */
@@ -21,8 +25,6 @@ export interface Unsafe_DateRangeSelectorProps {
   selectedRange: DateRange;
   /** Callback when the selected value changes */
   onChange?: (value: string) => void;
-  /** Overrides the text for the custom value radiobutton option */
-  customValueDisplayText?: string;
   /** Callback when a preset is selected */
   onPresetSelected?: (preset: DateRangePreset) => void;
   /** Callback when the date range changes */
@@ -33,6 +35,8 @@ export interface Unsafe_DateRangeSelectorProps {
   datePickerPropsFrom?: Partial<Unsafe_DatePickerProps>;
   /** Extra props for the 'to' date picker */
   datePickerPropsTo?: Partial<Unsafe_DatePickerProps>;
+  /** Resources for the component */
+  resources?: Partial<HNDesignsystemUnsafe_DateRangeSelector>;
 }
 
 const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props => {
@@ -42,13 +46,28 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
     value,
     selectedRange,
     onChange,
-    customValueDisplayText,
     onPresetSelected,
     onRangeChange,
     customRadioButtonProps,
     datePickerPropsFrom,
     datePickerPropsTo,
+    resources,
   } = props;
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+  const mergedResources: HNDesignsystemUnsafe_DateRangeSelector & Record<string, string> = {
+    ...defaultResources,
+    ...resources,
+    startDateLabel: datePickerPropsTo?.label?.toString() || resources?.startDateLabel || defaultResources.startDateLabel,
+    endDateLabel: datePickerPropsFrom?.label?.toString() || resources?.endDateLabel || defaultResources.endDateLabel,
+    lastMonth: resources?.lastMonthLabel || defaultResources.lastMonthLabel,
+    last6Months: resources?.lastMonthsLabel || formatResource(defaultResources.lastMonthsLabel, 6),
+    last12Months: resources?.lastMonthsLabel || formatResource(defaultResources.lastMonthsLabel, 12),
+    nextMonth: resources?.nextMonthLabel || defaultResources.nextMonthLabel,
+    next6Months: resources?.nextMonthsLabel || formatResource(defaultResources.nextMonthsLabel, 6),
+    next12Months: resources?.nextMonthsLabel || formatResource(defaultResources.nextMonthsLabel, 12),
+  };
+
   const ignorePickerChanges = useRef(2);
 
   const selected = value ?? '';
@@ -68,7 +87,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             key={option.value}
             value={option.value}
             checked={selected === option.value}
-            label={<Label labelTexts={[{ text: option.displayText, type: 'subdued' }]} />}
+            label={<Label labelTexts={[{ text: option.displayText ?? mergedResources[option.value] ?? option.value, type: 'subdued' }]} />}
             {...restExtraProps}
             onChange={e => {
               if (onChange) {
@@ -92,7 +111,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
         name={name}
         value="custom"
         checked={showCustom}
-        label={<Label labelTexts={[{ text: customValueDisplayText ?? 'Egendefinert periode/dato', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: mergedResources.customPeriodLabel, type: 'subdued' }]} />}
         {...customRadioButtonProps}
         onChange={e => {
           if (onChange) {
@@ -108,8 +127,8 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
           <Unsafe_DatePicker
             label={
               <Label
-                labelTexts={[{ text: 'Startdato' }]}
-                sublabel={<Sublabel sublabelTexts={[{ text: 'dd.mm.yyyy', type: 'subdued' }]} id={'sublabel-startdato'} />}
+                labelTexts={[{ text: mergedResources.startDateLabel }]}
+                sublabel={<Sublabel sublabelTexts={[{ text: mergedResources.dateSublabel, type: 'subdued' }]} id={'sublabel-startdato'} />}
               />
             }
             aria-describedby="sublabel-startdato"
@@ -135,8 +154,8 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
           <Unsafe_DatePicker
             label={
               <Label
-                labelTexts={[{ text: 'Sluttdato' }]}
-                sublabel={<Sublabel sublabelTexts={[{ text: 'dd.mm.yyyy', type: 'subdued' }]} id={'sublabel-sluttdato'} />}
+                labelTexts={[{ text: mergedResources.endDateLabel }]}
+                sublabel={<Sublabel sublabelTexts={[{ text: mergedResources.dateSublabel, type: 'subdued' }]} id={'sublabel-sluttdato'} />}
               />
             }
             aria-describedby="sublabel-sluttdato"

@@ -460,7 +460,7 @@ export const DokumenterExample: Story = {
             filter.removeFilter('innhold');
             filter.removeFilter('kommerFra');
           }}
-          showResultButtonText={`Vis ${filtered.length} treff`}
+          resultCount={filtered.length}
         >
           <FilterDrawer.Overview title={'Finn ...'}>
             <FilterOverviewLinkList

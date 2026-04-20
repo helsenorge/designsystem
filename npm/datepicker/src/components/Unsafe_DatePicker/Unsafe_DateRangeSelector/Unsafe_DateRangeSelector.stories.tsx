@@ -2,6 +2,13 @@ import { useState } from 'react';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
+import Dropdown from '@helsenorge/designsystem-react/components/Dropdown';
+import Globe from '@helsenorge/designsystem-react/components/Icons/Globe';
+import Spacer from '@helsenorge/designsystem-react/components/Spacer';
+import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
+
+import { LanguageLocales } from '@helsenorge/designsystem-react';
+
 import Unsafe_DateRangeSelector from './Unsafe_DateRangeSelector';
 import { DateRangePresets } from './utils';
 
@@ -13,7 +20,6 @@ const meta = {
     options: [],
     value: '',
     selectedRange: { from: new Date(), to: new Date() },
-    customValueDisplayText: 'Egendefinert periode/dato',
   },
 } satisfies Meta<typeof Unsafe_DateRangeSelector>;
 
@@ -141,6 +147,55 @@ export const CustomProps: Story = {
           }
         }}
       />
+    );
+  },
+};
+
+export const WithLanguageProvider: Story = {
+  render: args => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
+    const [value, setValue] = useState(DateRangePresets.Last12Months.value);
+    const [selectedRange, setSelectedRange] = useState(DateRangePresets.Last12Months.dateRange);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Dropdown svgIcon={Globe} triggerText="Velg språk">
+          <Dropdown.SingleSelectItem text={'English'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Nynorsk'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)} />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+        <Spacer />
+        <Unsafe_DateRangeSelector
+          {...args}
+          options={[
+            DateRangePresets.LastMonth,
+            DateRangePresets.Last6Months,
+            DateRangePresets.Last12Months,
+            DateRangePresets.FullYear,
+            DateRangePresets.NextMonth,
+            DateRangePresets.Next6Months,
+            DateRangePresets.Next12Months,
+          ]}
+          value={value}
+          selectedRange={selectedRange}
+          onChange={setValue}
+          onPresetSelected={preset => {
+            setValue(preset.value);
+            setSelectedRange(preset.dateRange);
+          }}
+          onRangeChange={(from, to) => {
+            if (from && to) {
+              setSelectedRange({ from, to });
+            }
+          }}
+        />
+      </LanguageProvider>
     );
   },
 };

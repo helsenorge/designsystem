@@ -18,9 +18,6 @@ const meta = {
   },
   args: {
     onClick: action('Clicked'),
-    resources: {
-      filterbutton_text: 'Finn...',
-    },
   },
   argTypes: {},
 } satisfies Meta<typeof FilterButton>;

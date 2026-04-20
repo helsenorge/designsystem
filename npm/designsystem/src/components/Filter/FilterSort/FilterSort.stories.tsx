@@ -24,9 +24,6 @@ const meta = {
         <option value={'Option 4'}>{'Alfabetisk Å-A'}</option>
       </>
     ),
-    resources: {
-      sort_label: 'Sortering',
-    },
   },
   argTypes: {},
 } satisfies Meta<typeof FilterSort>;

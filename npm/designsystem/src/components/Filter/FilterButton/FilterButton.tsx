@@ -2,18 +2,20 @@ import { useRef } from 'react';
 
 import classNames from 'classnames';
 
+import type { HNDesignsystemFilter } from '../../../resources/Resources';
+
 import { IconSize, LanguageLocales } from '../../../constants';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
 import Icon from '../../Icon';
 import Filter from '../../Icons/Filter';
-import { getResources } from '../resourcesMock';
+import { getResources } from '../resourceHelper';
 
 import styles from './styles.module.scss';
 
 export interface FilterButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Texts if overriding SOT */
-  resources?: Partial<unknown>;
+  resources?: Partial<HNDesignsystemFilter>;
 }
 
 const FilterButton: React.FC<FilterButtonProps> = props => {
@@ -38,7 +40,7 @@ const FilterButton: React.FC<FilterButtonProps> = props => {
         })}
       >
         <Icon svgIcon={Filter} isHovered={isHovered} size={IconSize.XSmall} />
-        <span className={styles['filter-button__text']}>{mergedResources.filterbutton_text}</span>
+        <span className={styles['filter-button__text']}>{mergedResources.filterButtonText}</span>
       </span>
     </button>
   );
