@@ -167,6 +167,14 @@ export type HNDesignsystemFilter = {
    * Finn...
    */
   filterOverviewTitle: string;
+  /**
+   * Søk i listen
+   */
+  searchPlaceholder: string;
+  /**
+   * Nullstill
+   */
+  searchClearButtonAriaLabel: string;
 };
 
 export type HNDesignsystemChip = {

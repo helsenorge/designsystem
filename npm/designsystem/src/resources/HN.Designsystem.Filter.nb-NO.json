@@ -3,5 +3,7 @@
   "sortLabel": "Sortering",
   "resetButtonText": "Nullstill",
   "showButtonText": "Vis {0} treff",
-  "filterOverviewTitle": "Finn..."
+  "filterOverviewTitle": "Finn...",
+  "searchPlaceholder": "Søk i listen",
+  "searchClearButtonAriaLabel": "Nullstill"
 }
