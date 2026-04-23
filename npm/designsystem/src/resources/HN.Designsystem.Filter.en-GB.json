@@ -4,7 +4,7 @@
   "resetButtonText": "Reset",
   "showButtonText": "Show {0} results",
   "filterOverviewTitle": "Find...",
-  "searchPlaceholder": "Search in list",
-  "searchClearButtonAriaLabel": "Clear input",
+  "searchPlaceholder": "Search the list",
+  "searchClearButtonAriaLabel": "Reset",
   "searchButtonAriaLabel": "Search"
 }
