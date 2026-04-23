@@ -27,8 +27,13 @@
     border-color: var(--core-color-neutral-600);
   }
 
-  &--accent {
+  &--accent1 {
     color: var(--core-color-kiwi-900);
     border-color: var(--core-color-kiwi-700);
+  }
+
+  &--accent2 {
+    color: var(--core-color-banana-800);
+    border-color: var(--core-color-banana-700);
   }
 }

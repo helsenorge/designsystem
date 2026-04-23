@@ -1,4 +1,5 @@
 export enum TagVariant {
   normal = 'normal',
-  accent = 'accent',
+  accent1 = 'accent1',
+  accent2 = 'accent2',
 }
