@@ -1,7 +1,9 @@
 import styles from './styles.module.scss';
 
 export interface FilterResultCountAndSortWrapper {
+  /** Result count content area */
   resultCount?: React.ReactNode;
+  /** FilterSort content area */
   sortComponent?: React.ReactNode;
 }
 

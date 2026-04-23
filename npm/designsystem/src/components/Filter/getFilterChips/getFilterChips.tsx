@@ -1,4 +1,4 @@
-import type { FilterValues, UseFilterReturn } from '../FiltreringsPOC/useFilter';
+import type { FilterValues, UseFilterReturn } from '../useFilter';
 
 import Chip from '../../Chip';
 

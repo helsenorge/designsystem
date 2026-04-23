@@ -69,8 +69,6 @@ export const createFilterConfig = <T extends FilterValues>(categories: {
   return { filterOptions: { defaultValues }, getLabel };
 };
 
-// TODO: Flere varianter her?
-// TODO: Dato range er en
 /**
  * Ferdige matcher-funksjoner for typiske filter mønster.
  * Brukes som deler i matcher objektet til filterItems.
@@ -171,97 +169,3 @@ export const toggleArrayFilter = <T extends FilterValues, K extends keyof T>(
   const updated = current.includes(value) ? current.filter(v => v !== value) : [...current, value];
   filter.setFilter(filterKey, (updated.length > 0 ? updated : undefined) as T[K] | undefined);
 };
-
-// ─── Før/etter-eksempler: slik gjør consumere det i dag vs. med våre helpers ───
-//
-// 1. Toggle verdi i array-filter (DeltHelseOpplysninger)
-//
-// FØR (manuelt):
-//   const toggleSykehusFilter = (sykehus: string) => {
-//     const isSelected = searchFilters.sykehus.includes(sykehus);
-//     const updated = isSelected
-//       ? searchFilters.sykehus.filter(s => s !== sykehus)
-//       : [...searchFilters.sykehus, sykehus];
-//     dispatch(setSearchFilters({ sykehus: updated }));
-//   };
-//
-// NÅ (med toggleArrayFilter):
-//   toggleArrayFilter(filter, 'sykehus', sykehus);
-//
-//
-// 2. Oppsett av filter med options, labels og default values (Pasientjournal)
-//
-// FØR (manuelt):
-//   const defaultValues: Record<string, { value: string; displayText: string }> = {};
-//   if (fromDate) {
-//     defaultValues.fromDate = { value: fromDate, displayText: getDatoDisplayText(resources.filterDateFrom, fromDate) };
-//   }
-//   if (toDate) {
-//     defaultValues.toDate = { value: toDate, displayText: getDatoDisplayText(resources.filterDateTo, toDate) };
-//   }
-//   kategorier.forEach(kategori => {
-//     defaultValues[`${kategoriKey}-${kategori}`] = { value: kategori, displayText: getKategoriLabel(kategori, resources) };
-//   });
-//
-// NÅ (med createFilterConfig + useFilter):
-//   const config = createFilterConfig<MyFilters>({
-//     sykehus: { options: sykehusOptions, defaultValue: ['haukeland'] },
-//     reseptstatus: { options: reseptStatusOptions },
-//     eResept: { options: eReseptOptions, defaultValue: true },
-//   });
-//   const filter = useFilter(config);
-//
-//
-// 3. Frontend filtrering av data (Pasientjournal)
-//
-// FØR (manuelt):
-//   const onFiltersSubmit = (): void => {
-//     const kategorier = getFilterKategorier(activeFilters ?? [], kategoriKey);
-//     const fraDato = filters?.fromDate?.value instanceof Date ? filters.fromDate.value : undefined;
-//     const tilDato = filters?.toDate?.value instanceof Date ? filters.toDate.value : undefined;
-//     if (komplett) {
-//       dispatch(localFilterDokumentListe(fraDato, tilDato, kategorier));
-//     } else {
-//       dispatch(fetchDokumentListe({ refetch: true, init: false, fromDate: fraDato, toDate: tilDato, kategorier }));
-//     }
-//   };
-//
-// NÅ (med filterItems + matchFilter):
-//   const filterMatchers = {
-//     sykehus: matchFilter.arrayIncludes<Medisin>(m => m.sykehus),
-//     reseptstatus: matchFilter.exactMatch<Medisin>(m => m.reseptstatus),
-//     eResept: matchFilter.booleanToggle<Medisin>(m => m.eResept),
-//   };
-//   const filtered = filterItems(medisiner, filter.filters, filterMatchers);
-//
-//
-// 4. Rendering av aktive filtre som chips/tags
-//
-// FØR (manuelt):
-//   {Object.entries(activeFilters).map(([key, value]) => (
-//     <button onClick={() => removeFilter(key)}>
-//       {value.displayText} ✕
-//     </button>
-//   ))}
-//
-// NÅ (med FilterResult-komponenten):
-//   <FilterResult filters={filter.filters}>
-//     <Button onClick={openDrawer}>Åpne filter</Button>
-//   </FilterResult>
-//   // Chips med remove-knapp rendres automatisk fra enriched filters
-
-// TODO: Eksempel på filtrering på en key med backup key tilfelle det ikke er treff på den første
-// Undersøk om vi kan tilby dette, eller la consumerne bruke vårt filter + legge på sitt eget som backup?
-// export const filterOmraderOgRekvirent = (
-//   omrader: string[],
-//   rekvirent: string[],
-//   provesvarListe: NasjonaleProvesvar[]
-// ): NasjonaleProvesvar[] => {
-//   const filteredOmrade =
-//     omrader.length > 0 ? provesvarListe.filter(svar => svar.OmraadeKode && omrader.includes(svar.OmraadeKode)) : provesvarListe;
-//   return rekvirent.length > 0
-//     ? filteredOmrade.filter(
-//         svar => (svar.Navn && rekvirent.includes(svar.Navn)) || (svar.Organisasjon && rekvirent.includes(svar.Organisasjon))
-//       )
-//     : filteredOmrade;
-// };

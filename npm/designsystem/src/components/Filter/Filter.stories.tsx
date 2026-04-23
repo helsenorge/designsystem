@@ -26,11 +26,11 @@ import FilterOverviewLinkList from './FilterOverviewLinkList/FilterOverviewLinkL
 import FilterResultCountAndSortWrapper from './FilterResultCountAndSortWrapper/FilterResultCountAndSortWrapper';
 import FilterSearch from './FilterSearch/FilterSearch';
 import FilterSort from './FilterSort/FilterSort';
-import { useFilter } from './FiltreringsPOC/useFilter';
-import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './FiltreringsPOC/utils';
 import getFilterChips from './getFilterChips/getFilterChips';
 import { getResources } from './resourcesMock';
+import { useFilter } from './useFilter';
 import { useFilterDrawer } from './useFilterDrawer';
+import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './utils';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter',

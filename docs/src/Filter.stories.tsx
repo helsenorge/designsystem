@@ -10,16 +10,16 @@ import FilterDrawer from '@helsenorge/designsystem-react/components/Filter/Filte
 import FilterOverviewLinkList from '@helsenorge/designsystem-react/components/Filter/FilterOverviewLinkList/FilterOverviewLinkList';
 import FilterResultCountAndSortWrapper from '@helsenorge/designsystem-react/components/Filter/FilterResultCountAndSortWrapper/FilterResultCountAndSortWrapper';
 import FilterSort from '@helsenorge/designsystem-react/components/Filter/FilterSort/FilterSort';
-import { useFilter } from '@helsenorge/designsystem-react/components/Filter/FiltreringsPOC/useFilter';
+import getFilterChips from '@helsenorge/designsystem-react/components/Filter/getFilterChips/getFilterChips';
+import { useFilter } from '@helsenorge/designsystem-react/components/Filter/useFilter';
+import { useFilterDrawer } from '@helsenorge/designsystem-react/components/Filter/useFilterDrawer';
 import {
   createFilterConfig,
   filterItems,
   matchFilter,
   toggleArrayFilter,
   type FilterMatchers,
-} from '@helsenorge/designsystem-react/components/Filter/FiltreringsPOC/utils';
-import getFilterChips from '@helsenorge/designsystem-react/components/Filter/getFilterChips/getFilterChips';
-import { useFilterDrawer } from '@helsenorge/designsystem-react/components/Filter/useFilterDrawer';
+} from '@helsenorge/designsystem-react/components/Filter/utils';
 import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import HTMLFile from '@helsenorge/designsystem-react/components/Icons/HTMLFile';
