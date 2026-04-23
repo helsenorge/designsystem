@@ -3,8 +3,8 @@
   "endDateLabel": "Sluttdato",
   "dateSublabel": "dd.mm.åååå",
   "lastMonthLabel": "Siste månaden",
-  "lastMonthsLabel": "Siste {0} månadene",
-  "nextMonthsLabel": "Neste {0} månadene",
+  "lastMonthsLabel": "Siste {0} månadane",
+  "nextMonthsLabel": "Neste {0} månadane",
   "nextMonthLabel": "Neste månaden",
-  "customPeriodLabel": "Egendefinert periode/dato"
+  "customPeriodLabel": "Eigendefinert periode/dato"
 }
