@@ -2,7 +2,7 @@ import type React from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 
-import type { Meta } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import FilterResultCountAndSortWrapper from './FilterResultCountAndSortWrapper';
 import FilterSort from '../FilterSort/FilterSort';
@@ -31,6 +31,8 @@ const meta = {
 
 export default meta;
 
-export const Default = {
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
   render: (args): React.JSX.Element => <FilterResultCountAndSortWrapper {...args} />,
 };

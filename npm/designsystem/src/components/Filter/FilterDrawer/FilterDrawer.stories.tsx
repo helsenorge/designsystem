@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
-import type { Meta } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import FilterDrawer from './FilterDrawer';
 import FilterOverviewLinkList from '../FilterOverviewLinkList/FilterOverviewLinkList';
@@ -22,12 +22,18 @@ const meta = {
       iframeHeight: '40rem',
     },
   },
+  args: {
+    drawer: { isOpen: false, initialView: 'overview', open: () => {}, close: () => {} },
+    children: undefined,
+  },
 } satisfies Meta<typeof FilterDrawer>;
 
 export default meta;
 
-export const Default = {
-  render: (): React.JSX.Element => {
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args): React.JSX.Element => {
     const [isOpen, setIsOpen] = useState(true);
 
     const dummyFilter = {
@@ -74,7 +80,7 @@ export const Default = {
     };
 
     return (
-      <FilterDrawer drawer={drawer} onReset={() => action('onReset')()} resultCount={5} onClose={() => action('onClose')()}>
+      <FilterDrawer {...args} drawer={drawer} onReset={() => action('onReset')()} resultCount={5} onClose={() => action('onClose')()}>
         <FilterDrawer.Overview title="Finn...">
           <FilterOverviewLinkList filter={dummyFilter} getLabel={getDummyLabels} links={dummyLinks} />
         </FilterDrawer.Overview>

@@ -4,7 +4,7 @@ import type React from 'react';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
-import type { Meta } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import FilterButtonAndChipsWrapper from './FilterButtonAndChipsWrapper';
 import FilterButton from '../FilterButton/FilterButton';
@@ -20,13 +20,16 @@ const meta = {
   },
   args: {
     filterButtonComponent: <FilterButton onClick={() => action('Open filter')} />,
+    filterChips: [],
   },
   argTypes: {},
 } satisfies Meta<typeof FilterButtonAndChipsWrapper>;
 
 export default meta;
 
-export const Default = {
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
   render: (args): React.JSX.Element => {
     const dummyFilter = {
       filters: {

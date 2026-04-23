@@ -511,7 +511,6 @@ export const DokumenterExample: Story = {
                   value={dateRangeValue}
                   selectedRange={selectedRange}
                   onChange={handleDateRangeChange}
-                  customValueDisplayText="Egendefinert periode/dato"
                   onPresetSelected={handlePresetSelected}
                   onRangeChange={handleRangeChange}
                 />
