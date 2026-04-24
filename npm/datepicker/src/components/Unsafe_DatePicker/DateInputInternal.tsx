@@ -180,7 +180,20 @@ const DateInputInternal = ({
   };
 
   // ved fokus flytt til nytt input felt kjør valideringsfunksjoner på nytt
-  const handleBlurOnSegment = (): void => {
+  const handleBlurOnSegment = (e: React.FocusEvent<HTMLInputElement>): void => {
+    const currentValue = e.currentTarget.value;
+
+    // Determine which input was blurred and apply auto-padding if needed
+    if (e.currentTarget === ddRef.current) {
+      if (currentValue.length === 1 && /^\d$/.test(currentValue)) {
+        setDd(`0${currentValue}`);
+      }
+    } else if (e.currentTarget === mmRef.current) {
+      if (currentValue.length === 1 && /^\d$/.test(currentValue)) {
+        setMm(`0${currentValue}`);
+      }
+    }
+
     validateAllSegments();
   };
 

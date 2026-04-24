@@ -1,3 +1,36 @@
+## [14.5.1](https://github.com/helsenorge/designsystem/compare/v14.5.0...v14.5.1) (2026-04-24)
+
+### Bug Fixes
+
+- **taglist:** knekker stylingen til nye chip
+  ([ead2ce4](https://github.com/helsenorge/designsystem/commit/ead2ce483a9986eb63bf2b501f21cc8c522ecc62)), closes
+  [#376494](https://github.com/helsenorge/designsystem/issues/376494)
+
+## [14.5.0](https://github.com/helsenorge/designsystem/compare/v14.4.1...v14.5.0) (2026-04-24)
+
+### Features
+
+- **tag:** visuelle endringer for tag for å skille mer fra chip
+  ([f37379b](https://github.com/helsenorge/designsystem/commit/f37379b0921efc80e5f32e954b31119b7ee45ce4)), closes
+  [#376269](https://github.com/helsenorge/designsystem/issues/376269)
+
+### Bug Fixes
+
+- **chip:** legger til tekstwrapping
+  ([70e360b](https://github.com/helsenorge/designsystem/commit/70e360b427123e5f430c67b6f9f2bfbccd666106)), closes
+  [#375560](https://github.com/helsenorge/designsystem/issues/375560)
+- **chip:** onclose midlertidig tilbake til neste major
+  ([5e1dca5](https://github.com/helsenorge/designsystem/commit/5e1dca5cf43e063bd8edc4fb72035d9aa7ba11d8)), closes
+  [#376455](https://github.com/helsenorge/designsystem/issues/376455)
+
+## [14.4.1](https://github.com/helsenorge/designsystem/compare/v14.4.0...v14.4.1) (2026-04-20)
+
+### Bug Fixes
+
+- **datepicker:** bugfixes fra arbeid med filter
+  ([fe2663c](https://github.com/helsenorge/designsystem/commit/fe2663c2e70536f055554b3660f9103a05563264)), closes
+  [#373156](https://github.com/helsenorge/designsystem/issues/373156)
+
 ## [14.4.0](https://github.com/helsenorge/designsystem/compare/v14.3.0...v14.4.0) (2026-04-16)
 
 ### Features

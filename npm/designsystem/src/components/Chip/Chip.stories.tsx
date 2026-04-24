@@ -26,6 +26,7 @@ const meta = {
     children: 'Tekst',
     onChipClick: action('Chip clicked'),
     onCloseClick: action('Close clicked'),
+    onClick: action('Old chip onclick clicked'),
     closeButtonProps: {},
     chipButtonProps: {},
   },
@@ -77,4 +78,16 @@ export const WithLanguageProvider: Story = {
       </LanguageProvider>
     );
   },
+};
+
+export const WithBreakingText: Story = {
+  args: {
+    children: 'Lang tekst her som fort går over flere linjer hvis man zoomer eller har veldig liten skjerm',
+    withCloseButton: true,
+  },
+  render: args => (
+    <>
+      <Chip {...args} />
+    </>
+  ),
 };

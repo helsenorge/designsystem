@@ -11,6 +11,8 @@ import X from '../Icons/X';
 import styles from './styles.module.scss';
 
 export interface ChipProps {
+  /** @deprecated Called when action is set and the chip is clicked on. action must also be set. */
+  onClick?: () => void;
   /** Sets the text of the chip */
   children: string;
   /** Wether or not to have a close button */
@@ -30,7 +32,17 @@ export interface ChipProps {
 }
 
 const Chip: React.FC<ChipProps> = props => {
-  const { children, onChipClick, onCloseClick, chipButtonProps, closeButtonProps, testId, withCloseButton = true, resources } = props;
+  const {
+    onClick,
+    children,
+    onChipClick,
+    onCloseClick,
+    chipButtonProps,
+    closeButtonProps,
+    testId,
+    withCloseButton = true,
+    resources,
+  } = props;
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
   const mergedResources: HNDesignsystemChip = {
@@ -44,7 +56,7 @@ const Chip: React.FC<ChipProps> = props => {
       <button
         {...chipButtonProps}
         className={classNames(styles['chip__chip'])}
-        onClick={onChipClick}
+        onClick={onClick ? onClick : onChipClick}
         type="button"
         data-testid={testId}
         data-analyticsid={AnalyticsId.Tag}
@@ -62,7 +74,7 @@ const Chip: React.FC<ChipProps> = props => {
           {...closeButtonProps}
           aria-label={mergedResources.removeAriaLabel}
           className={classNames(styles['chip__close'])}
-          onClick={onCloseClick}
+          onClick={onClick ? onClick : onCloseClick}
           type="button"
           data-testid={`${testId}-close`}
           data-analyticsid={AnalyticsId.Tag}
