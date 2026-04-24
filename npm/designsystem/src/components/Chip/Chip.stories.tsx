@@ -26,6 +26,7 @@ const meta = {
     children: 'Tekst',
     onChipClick: action('Chip clicked'),
     onCloseClick: action('Close clicked'),
+    onClick: action('Old chip onclick clicked'),
     closeButtonProps: {},
     chipButtonProps: {},
   },
