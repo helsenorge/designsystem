@@ -1,4 +1,10 @@
 
+## [14.5.1](https://github.com/helsenorge/designsystem/compare/v14.5.0...v14.5.1) (2026-04-24)
+
+### Bug Fixes
+
+* **taglist:**  knekker stylingen til nye chip ([ead2ce4](https://github.com/helsenorge/designsystem/commit/ead2ce483a9986eb63bf2b501f21cc8c522ecc62)), closes [#376494](https://github.com/helsenorge/designsystem/issues/376494)
+
 ## [14.5.0](https://github.com/helsenorge/designsystem/compare/v14.4.1...v14.5.0) (2026-04-24)
 
 ### Features
