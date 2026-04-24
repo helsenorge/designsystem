@@ -48,3 +48,13 @@ export const Variants: Story = {
     </TagList>
   ),
 };
+
+export const AllColors: Story = {
+  render: args => (
+    <>
+      <Tag {...args} color="neutral" /> <br />
+      <Tag {...args} color="kiwi" /> <br />
+      <Tag {...args} color="banana" /> <br />
+    </>
+  ),
+};

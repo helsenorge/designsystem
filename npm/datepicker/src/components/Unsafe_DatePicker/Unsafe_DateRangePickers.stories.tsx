@@ -6,13 +6,13 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 
-import Unsafe_RangeDatePickers from './Unsafe_RangeDatePickers';
+import Unsafe_DateRangePickers from './Unsafe_DateRangePickers';
 
 import Unsafe_DatePicker from './index';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_RangeDateInputs',
-  component: Unsafe_RangeDatePickers,
+  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_DateRangePickers',
+  component: Unsafe_DateRangePickers,
   argTypes: {
     from: { control: 'object' },
     to: { control: 'object' },
@@ -22,7 +22,7 @@ const meta = {
     to: <></>,
     onRangeChange: undefined,
   },
-} satisfies Meta<typeof Unsafe_RangeDatePickers>;
+} satisfies Meta<typeof Unsafe_DateRangePickers>;
 
 export default meta;
 
@@ -32,6 +32,7 @@ export const Default: Story = {
   render: () => {
     const [from, setFrom] = useState<Date | undefined>(new Date());
     const [to, setTo] = useState<Date | undefined>();
+    const [errorText, setErrorText] = useState<string | undefined>();
 
     const fromComponent = (
       <Unsafe_DatePicker
@@ -44,6 +45,7 @@ export const Default: Story = {
             sublabel={<Sublabel id="sublabel-from" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
           />
         }
+        errorText={errorText}
         value={from}
         onChange={date => {
           setFrom(date);
@@ -62,6 +64,7 @@ export const Default: Story = {
             sublabel={<Sublabel id="sublabel-to" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
           />
         }
+        errorText={errorText}
         value={to}
         onChange={date => {
           setTo(date);
@@ -70,13 +73,24 @@ export const Default: Story = {
       />
     );
 
-    const handleRangeChange = (from: Date | undefined, to: Date | undefined, isValid: boolean) => {
+    const handleRangeChange = (from: Date | undefined, to: Date | undefined, isValid: boolean): void => {
       setFrom(from);
       setTo(to);
       if (!isValid) {
-        console.log('Ugyldig datointervall');
+        setErrorText('Ugyldig datointervall');
+      } else {
+        setErrorText('');
       }
     };
-    return <Unsafe_RangeDatePickers from={fromComponent} to={toComponent} onRangeChange={handleRangeChange} />;
+    return (
+      <>
+        <Unsafe_DateRangePickers from={fromComponent} to={toComponent} onRangeChange={handleRangeChange} />
+        <span>
+          {from?.toString()}
+          {'-'}
+          {to?.toString()}
+        </span>
+      </>
+    );
   },
 };

@@ -31,12 +31,8 @@ describe('Gitt at TagList skal vises vanlig', (): void => {
 
       render(
         <TagList>
-          <Chip action="remove" onClick={mockClickHandler}>
-            {'Tekst'}
-          </Chip>
-          <Chip action="remove" onClick={mockClickHandler}>
-            {'Mer tekst'}
-          </Chip>
+          <Chip onChipClick={mockClickHandler}>{'Tekst'}</Chip>
+          <Chip onChipClick={mockClickHandler}>{'Mer tekst'}</Chip>
         </TagList>
       );
 
@@ -53,7 +49,7 @@ describe('Gitt at TagList skal vises vanlig', (): void => {
       const mockClickHandler = vi.fn();
       render(
         <TagList>
-          <Chip testId={'test-chip'} action="remove" onClick={mockClickHandler}>
+          <Chip testId={'test-chip'} onChipClick={mockClickHandler}>
             {'Tekst'}
           </Chip>
         </TagList>

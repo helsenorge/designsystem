@@ -9,11 +9,7 @@ describe('Gitt at Chip skal vises som remove-knapp', (): void => {
     test('Så kalles click-funksjonen', async (): Promise<void> => {
       const mockClickHandler = vi.fn();
 
-      render(
-        <Chip action="remove" onClick={mockClickHandler}>
-          {'Knapp'}
-        </Chip>
-      );
+      render(<Chip onChipClick={mockClickHandler}>{'Knapp'}</Chip>);
 
       const chip = screen.getByRole('button', { name: 'Knapp' });
 
@@ -24,24 +20,23 @@ describe('Gitt at Chip skal vises som remove-knapp', (): void => {
       expect(mockClickHandler).toHaveBeenCalledTimes(1);
     });
   });
-});
-
-describe('Gitt at Chip skal vises som undo-knapp', (): void => {
-  describe('Når man klikker på knappen', (): void => {
+  describe('Når man klikker på lukkekrysset', (): void => {
     test('Så kalles click-funksjonen', async (): Promise<void> => {
       const mockClickHandler = vi.fn();
 
       render(
-        <Chip action="undo" onClick={mockClickHandler}>
+        <Chip onCloseClick={mockClickHandler} closeButtonProps={{ 'aria-label': 'Lukkekryss' }}>
           {'Knapp'}
         </Chip>
       );
 
-      const chip = screen.getByRole('button', { name: 'Knapp' });
+      const chip = screen.queryByLabelText('Lukkekryss');
 
       expect(chip).toBeVisible();
 
-      await userEvent.click(chip);
+      if (chip) {
+        await userEvent.click(chip);
+      }
 
       expect(mockClickHandler).toHaveBeenCalledTimes(1);
     });

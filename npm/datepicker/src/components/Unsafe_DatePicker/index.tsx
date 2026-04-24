@@ -5,10 +5,11 @@ import BaseDayPicker from './BaseDayPicker/BaseDayPicker';
 import Unsafe_TimeInput from './TimeInput/Unsafe_TimeInput';
 import Unsafe_DateAndTime from './Unsafe_DateAndTime';
 import Unsafe_DatePicker from './Unsafe_DatePicker';
+import Unsafe_DateRangePickers from './Unsafe_DateRangePickers';
 import Unsafe_ISODatePicker from './Unsafe_ISODatePicker';
 
 export { BaseDayPicker as Unsafe_DatePickerStandalone };
 export type { Modifiers, Matcher };
 export type { BaseDayPickerProps as Unsafe_DatePickerStandaloneProps };
-export { Unsafe_DatePicker, Unsafe_ISODatePicker, Unsafe_TimeInput, Unsafe_DateAndTime };
+export { Unsafe_DatePicker, Unsafe_ISODatePicker, Unsafe_TimeInput, Unsafe_DateAndTime, Unsafe_DateRangePickers };
 export default Unsafe_DatePicker;
