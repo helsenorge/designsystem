@@ -29,9 +29,7 @@ export const Default = {
       <FilterSearch
         value={searchValue}
         onChange={e => setSearchValue((e.target as HTMLInputElement).value)}
-        inputProps={{
-          name: 'search',
-        }}
+        name="search"
         buttonProps={{
           onClick: () => alert(`Søker etter: ${searchValue}`),
         }}

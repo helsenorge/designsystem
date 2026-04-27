@@ -88,9 +88,9 @@ describe('Gitt at FilterSearch skal vises', (): void => {
     });
   });
 
-  describe('Når inputProps sendes inn', (): void => {
+  describe('Når native input-attributter sendes inn', (): void => {
     test('Så videresendes de til input-elementet', (): void => {
-      render(<FilterSearch value="" inputProps={{ 'aria-label': 'Søk etter noe', id: 'mitt-søk' }} />);
+      render(<FilterSearch value="" aria-label="Søk etter noe" id="mitt-søk" />);
 
       const input = screen.getByRole('textbox');
       expect(input).toHaveAttribute('id', 'mitt-søk');
