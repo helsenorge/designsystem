@@ -51,7 +51,7 @@ export interface NotificationPanelProps {
   /** Custom id for the label */
   labelId?: string;
   /** Custom role for the panel. Default is no role. If variant is alert or crisis, the aria role will be set to "alert" unless the role-prop is also set. */
-  role?: 'region' | 'alert' | 'status';
+  role?: 'region' | 'alert' | 'status' | 'none';
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Ref passed to the component */
@@ -148,7 +148,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = props => {
   );
 
   const ariaRole = role || (variant === 'error' && 'alert') || undefined;
-  const ariaLabelAttributes = ariaRole ? getAriaLabelAttributes({ label, id: labelId }) : undefined;
+  const ariaLabelAttributes = ariaRole && ariaRole !== 'none' ? getAriaLabelAttributes({ label, id: labelId }) : undefined;
 
   return (
     <FluidWrapper fluid={fluid}>
