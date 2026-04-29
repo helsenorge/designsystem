@@ -35,7 +35,7 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
   const inputWrapperRef = useRef<HTMLLabelElement>(null);
   const { isHovered: isWrapperHovered } = usePseudoClasses(inputWrapperRef);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const { isHovered: isButtonHovered, isActive: isButtonActive, isFocused: isButtonFocused } = usePseudoClasses(buttonRef);
+  const { isHovered: isButtonHovered } = usePseudoClasses(buttonRef);
   const clearButtonRef = useRef<HTMLButtonElement>(null);
   const { isHovered: isClearButtonHovered } = usePseudoClasses(clearButtonRef);
 
@@ -70,6 +70,7 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
         <button
           type="button"
           aria-label={mergedResources.searchClearButtonAriaLabel}
+          disabled={inputProps.disabled}
           {...clearButtonProps}
           onClick={e => {
             clearButtonProps?.onClick?.(e);
@@ -84,18 +85,13 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
       <button
         type={'button'}
         aria-label={mergedResources.searchButtonAriaLabel}
+        disabled={inputProps.disabled}
         {...buttonProps}
         ref={buttonRef}
         className={classNames(styles['filter-search__search-button'], buttonProps?.className)}
       >
-        <div
-          className={classNames(styles['filter-search__search-button--inner'], {
-            [styles['filter-search__search-button--inner--hovered']]: isButtonHovered,
-            [styles['filter-search__search-button--inner--active']]: isButtonActive,
-            [styles['filter-search__search-button--inner--focused']]: isButtonFocused,
-          })}
-        >
-          <Icon svgIcon={Search} size={isMobile ? IconSize.XXSmall : IconSize.XSmall} isHovered={isButtonHovered} />
+        <div className={classNames(styles['filter-search__search-button--inner'])}>
+          <Icon svgIcon={Search} size={isMobile ? IconSize.XXSmall : IconSize.XSmall} isHovered={!inputProps.disabled && isButtonHovered} />
         </div>
       </button>
     </div>

@@ -6,9 +6,6 @@ export type Styles = {
   'filter-search__input-wrapper': string;
   'filter-search__search-button': string;
   'filter-search__search-button--inner': string;
-  'filter-search__search-button--inner--active': string;
-  'filter-search__search-button--inner--focused': string;
-  'filter-search__search-button--inner--hovered': string;
   'filter-search__wrapper': string;
 };
 
