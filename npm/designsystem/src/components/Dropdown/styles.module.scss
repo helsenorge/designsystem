@@ -24,11 +24,11 @@
     border-color: var(--color-base-border-onlight-emphasized);
     background-color: var(--core-color-white);
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: var(--color-base-background-neutral);
     }
 
-    &:active {
+    &:active:not(:disabled) {
       background-color: var(--core-color-neutral-100);
     }
 
@@ -65,11 +65,11 @@
     &--borderless {
       background-color: transparent;
 
-      &:hover {
+      &:hover:not(:disabled) {
         background-color: var(--core-color-neutral-100);
       }
 
-      &:active {
+      &:active:not(:disabled) {
         background-color: var(--core-color-neutral-200);
       }
     }
