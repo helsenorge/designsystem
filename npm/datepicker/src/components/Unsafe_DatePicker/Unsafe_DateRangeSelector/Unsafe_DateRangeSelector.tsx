@@ -14,6 +14,8 @@ import Unsafe_DatePicker from '../Unsafe_DatePicker';
 import Unsafe_DateRangePickers from '../Unsafe_DateRangePickers';
 import { getResources } from './resourceHelper';
 
+import styles from './styles.module.scss';
+
 export interface Unsafe_DateRangeSelectorProps {
   /** Name for the radiobuttongroup */
   name: string;
@@ -78,50 +80,54 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
   }, [selectedRange]);
 
   return (
-    <div>
-      {options.map(option => {
-        const { onChange: extraOnChange, ...restExtraProps } = option.radioButtonProps ?? {};
-        return (
-          <RadioButton
-            name={name}
-            key={option.value}
-            value={option.value}
-            checked={selected === option.value}
-            label={<Label labelTexts={[{ text: option.displayText ?? mergedResources[option.value] ?? option.value, type: 'subdued' }]} />}
-            {...restExtraProps}
-            onChange={e => {
-              if (onChange) {
-                onChange(option.value);
+    <div className={styles['date-range-selector']}>
+      <div>
+        {options.map(option => {
+          const { onChange: extraOnChange, ...restExtraProps } = option.radioButtonProps ?? {};
+          return (
+            <RadioButton
+              name={name}
+              key={option.value}
+              value={option.value}
+              checked={selected === option.value}
+              label={
+                <Label labelTexts={[{ text: option.displayText ?? mergedResources[option.value] ?? option.value, type: 'subdued' }]} />
               }
-              if (option.value !== 'custom' && option.dateRange && typeof option.dateRange === 'object') {
-                // Set ignore counter so date pickers don't trigger 'custom' selection
-                ignorePickerChanges.current = 2;
-              }
-              if (onPresetSelected) {
-                onPresetSelected(option);
-              }
-              if (extraOnChange) {
-                extraOnChange(e);
-              }
-            }}
-          />
-        );
-      })}
-      <RadioButton
-        name={name}
-        value="custom"
-        checked={showCustom}
-        label={<Label labelTexts={[{ text: mergedResources.customPeriodLabel, type: 'subdued' }]} />}
-        {...customRadioButtonProps}
-        onChange={e => {
-          if (onChange) {
-            onChange('custom');
-          }
-          if (customRadioButtonProps?.onChange) {
-            customRadioButtonProps?.onChange(e);
-          }
-        }}
-      />
+              {...restExtraProps}
+              onChange={e => {
+                if (onChange) {
+                  onChange(option.value);
+                }
+                if (option.value !== 'custom' && option.dateRange && typeof option.dateRange === 'object') {
+                  // Set ignore counter so date pickers don't trigger 'custom' selection
+                  ignorePickerChanges.current = 2;
+                }
+                if (onPresetSelected) {
+                  onPresetSelected(option);
+                }
+                if (extraOnChange) {
+                  extraOnChange(e);
+                }
+              }}
+            />
+          );
+        })}
+        <RadioButton
+          name={name}
+          value="custom"
+          checked={showCustom}
+          label={<Label labelTexts={[{ text: mergedResources.customPeriodLabel, type: 'subdued' }]} />}
+          {...customRadioButtonProps}
+          onChange={e => {
+            if (onChange) {
+              onChange('custom');
+            }
+            if (customRadioButtonProps?.onChange) {
+              customRadioButtonProps?.onChange(e);
+            }
+          }}
+        />
+      </div>
       <Unsafe_DateRangePickers
         from={
           <Unsafe_DatePicker
