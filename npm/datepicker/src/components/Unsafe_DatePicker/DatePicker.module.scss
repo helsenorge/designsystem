@@ -14,6 +14,7 @@
   box-sizing: content-box;
   width: 7rem;
   cursor: text;
+  background-color: var(--core-color-white);
 
   @supports not (field-sizing: content) {
     width: 8rem;
@@ -146,6 +147,7 @@
   align-items: center;
   justify-content: center;
   border: 2px solid var(--color-base-border-onlight-emphasized);
+  background-color: var(--core-color-white);
   border-left: none;
   padding: 0;
   cursor: pointer;
