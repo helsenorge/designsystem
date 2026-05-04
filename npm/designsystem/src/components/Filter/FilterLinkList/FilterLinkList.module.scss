@@ -1,0 +1,89 @@
+@use 'sass:map';
+@use '../../../scss/breakpoints' as breakpoints;
+@import '../../../scss/supernova/styles/colors.css';
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  width: inherit;
+  margin: 0;
+  position: relative;
+
+  &__item {
+    &:first-of-type {
+      border-top: 1px solid var(--component-listelements-border-neutral-normal);
+    }
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    padding-right: 0;
+    min-height: 4rem;
+    text-decoration: none;
+    color: var(--color-base-text-onlight);
+    cursor: pointer;
+    width: 100%;
+    background-color: var(--color-base-background-white);
+    border: none;
+    text-align: left;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--component-listelements-border-neutral-normal);
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    &:hover {
+      background-color: var(--component-listelements-background-neutral-light);
+    }
+
+    &:active {
+      background-color: var(--component-listelements-background-neutral-medium);
+    }
+
+    &:focus-visible {
+      outline: 4px solid var(--color-action-border-onlight-focus);
+      outline-offset: 0; // Override user agent default
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &__chip-list {
+    display: flex;
+    flex-flow: row wrap;
+    column-gap: 0.5rem;
+  }
+
+  &__chip {
+    box-sizing: border-box;
+    height: 1.625rem;
+    margin-top: 0.375rem;
+    margin-bottom: 6px;
+    background-color: var(--core-color-blueberry-50);
+    border: 1px solid var(--core-color-blueberry-500);
+    color: var(--core-color-blueberry-800);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-wrap: none;
+    line-height: 1.25rem;
+    padding-top: 0.1875rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      height: 1.875rem;
+      padding-top: 0.3125rem;
+      margin-top: 0.4375rem;
+      margin-bottom: 0.4375rem;
+    }
+  }
+}

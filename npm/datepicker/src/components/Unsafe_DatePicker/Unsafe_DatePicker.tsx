@@ -1,6 +1,16 @@
 import { cloneElement, useEffect, useRef, useState } from 'react';
 
-import { autoUpdate, FloatingFocusManager, offset, shift, useClick, useDismiss, useFloating, useInteractions } from '@floating-ui/react';
+import {
+  autoUpdate,
+  flip,
+  FloatingFocusManager,
+  offset,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from '@floating-ui/react';
 import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 
@@ -100,7 +110,7 @@ const Unsafe_DatePicker = ({
   const { value: isPopupOpen, toggleValue: toggleIsPopupOpen } = useToggle(false);
   const { refs, floatingStyles, context, middlewareData } = useFloating({
     placement: 'bottom-start',
-    middleware: [offset(8), shift({ mainAxis: false, padding: 8 })],
+    middleware: [offset(8), flip(), shift({ mainAxis: false, padding: 8 })],
     whileElementsMounted: autoUpdate,
     elements: {
       reference: containerRef.current,

@@ -11,6 +11,7 @@ export type Styles = {
   'drawer__content__shadow--top': string;
   drawer__footer: string;
   drawer__header: string;
+  'drawer__header__back-button': string;
   'drawer__header__close-button': string;
   drawer__header__title: string;
   drawer__overlay: string;

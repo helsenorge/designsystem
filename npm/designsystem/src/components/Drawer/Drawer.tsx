@@ -20,6 +20,8 @@ import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
+import Icon from '../Icon';
+import ChevronLeft from '../Icons/ChevronLeft';
 import Title from '../Title';
 
 import styles from './styles.module.scss';
@@ -70,6 +72,12 @@ export interface InnerDrawerProps {
   resources?: Partial<HNDesignsystemDrawer>;
   /** Sets mobile styling and animation from outer level Drawer */
   isMobile?: boolean;
+  /** Shows a back button to the left of title */
+  withBackButton?: boolean;
+  /** Callback for the back button */
+  onRequestBack?: () => void;
+  /** Sets classname for content part in Drawer */
+  contentClassName?: string;
 }
 
 const Drawer: React.FC<DrawerProps> = props => {
@@ -100,6 +108,9 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     zIndex = ZIndex.OverlayScreen,
     resources,
     isMobile,
+    withBackButton,
+    onRequestBack,
+    contentClassName,
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledBy, fallbackId: titleId });
@@ -111,6 +122,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const bottomContent = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
   const [headerHeight, setHeaderHeight] = React.useState(0);
@@ -125,6 +137,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     ...resources,
   };
 
+  // eslint-disable-next-line react-hooks/refs
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
   const headerStyling = classNames(styles.drawer__header, headerClasses);
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
@@ -229,6 +242,10 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     }
   };
 
+  useEffect(() => {
+    titleRef.current?.focus();
+  }, [title]);
+
   return (
     <div className={styles.drawer} ref={scope} style={{ zIndex }} data-analyticsid={AnalyticsId.Drawer}>
       <div className={styles.drawer__overlay} ref={overlayRef} aria-hidden="true" />
@@ -249,9 +266,21 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
               className={styles['drawer__header__title']}
               htmlMarkup={titleHtmlMarkup}
               appearance="title3"
+              ref={titleRef}
+              tabIndex={-1}
             >
               {title}
             </Title>
+            {withBackButton && onRequestBack !== undefined && (
+              <Button
+                ariaLabel={mergedResources.ariaLabelBackButton}
+                onClick={onRequestBack}
+                variant="borderless"
+                wrapperClassName={styles['drawer__header__back-button']}
+              >
+                <Icon svgIcon={ChevronLeft} />
+              </Button>
+            )}
             {!noCloseButton && onRequestClose != undefined && (
               <Close
                 ariaLabel={mergedResources.ariaLabelCloseBtn}
@@ -269,7 +298,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             }}
           />
           <div
-            className={styles.drawer__content}
+            className={classNames(styles.drawer__content, contentClassName)}
             tabIndex={contentIsScrollable ? 0 : undefined}
             role={contentIsScrollable ? 'region' : undefined}
             {...(contentIsScrollable ? ariaLabelAttributes : {})}

@@ -84,10 +84,29 @@
 
     &__title {
       margin-top: 0.5rem !important;
+
+      &:focus,
+      &:focus-visible {
+        outline: none;
+      }
     }
 
     &__close-button {
       align-self: flex-start;
+    }
+
+    &__back-button {
+      // Moves the button visually to the left but keeps it in the DOM order for screen readers and keyboard navigation
+      order: -1;
+
+      // Temporary fix for the back button, until we decide if we want to implement this more properly
+      width: 48px;
+      height: 48px;
+
+      svg {
+        width: 48px;
+        height: 48px;
+      }
     }
   }
 

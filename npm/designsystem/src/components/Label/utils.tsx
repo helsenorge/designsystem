@@ -25,6 +25,7 @@ interface RenderLabelProps {
   inputId: string;
   onColor: FormOnColor;
   markup?: LabelTags;
+  className?: string;
 }
 
 export const renderLabel = (props: RenderLabelProps): React.ReactNode => {
@@ -35,9 +36,15 @@ export const renderLabel = (props: RenderLabelProps): React.ReactNode => {
             htmlFor: props.inputId,
             htmlMarkup: props.markup || 'label',
             onColor: props.onColor,
+            className: props.className,
           })
         : typeof props.label === 'string' && (
-            <Label labelTexts={[{ text: props.label, type: 'normal' }]} htmlFor={props.inputId} onColor={props.onColor} />
+            <Label
+              labelTexts={[{ text: props.label, type: 'normal' }]}
+              htmlFor={props.inputId}
+              onColor={props.onColor}
+              className={props.className}
+            />
           )}
     </>
   );

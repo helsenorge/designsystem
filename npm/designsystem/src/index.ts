@@ -15,4 +15,5 @@ export { useOutsideEvent } from './hooks/useOutsideEvent';
 export { useLanguage } from './hooks/useLanguage';
 export { isMobileUA } from './utils/mobile';
 export { uuid } from './utils/uuid';
+export { formatResource } from './utils/resource';
 export * from './constants';

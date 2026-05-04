@@ -66,6 +66,7 @@
   line-height: font-settings.$lineheight-size-sm;
   border-radius: 0;
   text-overflow: ellipsis;
+  cursor: pointer;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     height: calc(3rem + 0.25rem); // 48px height + 4px border

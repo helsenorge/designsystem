@@ -40,16 +40,16 @@ export const Default: Story = {
 export const WithChips: Story = {
   render: () => (
     <TagList>
-      <Chip action="remove" onClick={() => action('Læring clicked')}>
+      <Chip onChipClick={() => action('Læring clicked')} onCloseClick={() => action('Fjern Læring clicked')}>
         {'Læring'}
       </Chip>
-      <Chip action="remove" onClick={() => action('Psykisk helse clicked')}>
+      <Chip onChipClick={() => action('Psykisk helse clicked')} onCloseClick={() => action('Fjern Psykisk helse clicked')}>
         {'Psykisk helse'}
       </Chip>
-      <Chip action="remove" onClick={() => action('Fysisk helse clicked')}>
+      <Chip onChipClick={() => action('Fysisk helse clicked')} onCloseClick={() => action('Fjern Fysisk helse clicked')}>
         {'Fysisk helse'}
       </Chip>
-      <Chip action="remove" onClick={() => action('Livsstil clicked')}>
+      <Chip onChipClick={() => action('Livsstil clicked')} onCloseClick={() => action('Fjern Livsstil clicked')}>
         {'Livsstil'}
       </Chip>
     </TagList>

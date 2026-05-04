@@ -1,0 +1,8 @@
+@use 'sass:map';
+@use '@helsenorge/designsystem-react/scss/breakpoints' as breakpoints;
+
+.date-range-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--core-space-xs);
+}
