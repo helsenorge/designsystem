@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
-import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Dropdown from '../Dropdown';
 import EmptyState from '../EmptyState';
@@ -23,6 +22,7 @@ import FilterButton from './FilterButton/FilterButton';
 import FilterButtonAndChipsWrapper from './FilterButtonAndChipsWrapper/FilterButtonAndChipsWrapper';
 import FilterDrawer from './FilterDrawer/FilterDrawer';
 import FilterOverviewLinkList from './FilterOverviewLinkList/FilterOverviewLinkList';
+import FilterOverviewSearch from './FilterOverviewSearch/FilterOverviewSearch';
 import FilterResultCountAndSortWrapper from './FilterResultCountAndSortWrapper/FilterResultCountAndSortWrapper';
 import FilterSearch from './FilterSearch/FilterSearch';
 import FilterSort from './FilterSort/FilterSort';
@@ -228,10 +228,15 @@ export const VerktoyExample: Story = {
 
     return (
       <LanguageProvider<LanguageLocales> language={language}>
-        <div style={{ marginBottom: '1rem' }}>
-          <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>{'Bokmål'}</Button>
-          <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
-        </div>
+        <Dropdown svgIcon={Globe} triggerText="Velg språk">
+          <Dropdown.SingleSelectItem text={'English'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+        <Spacer />
 
         <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
           <FilterButtonAndChipsWrapper
@@ -271,9 +276,12 @@ export const VerktoyExample: Story = {
                 { filterKey: 'type', title: verktoyFilterLabels.type },
               ]}
             />
-            <FilterSearch
+            <FilterOverviewSearch
               value={(filter.filters.fritekst as string) ?? ''}
               onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
+              clearButtonProps={{
+                onClick: () => filter.removeFilter('fritekst'),
+              }}
             />
           </FilterDrawer.Overview>
           <FilterDrawer.View id="omrade" title={verktoyFilterLabels.omrade} onReset={() => filter.removeFilter('omrade')}>
@@ -625,8 +633,7 @@ export const WithLanguageProvider: Story = {
 
         <FilterDrawer drawer={drawer} onReset={() => undefined} resultCount={42}>
           <FilterDrawer.Overview title={'Filter'}>
-            <div style={{ padding: '1rem' }}>{'Filter content'}</div>
-            <FilterSearch
+            <FilterOverviewSearch
               value={searchValue}
               onChange={e => setSearchValue((e.target as HTMLInputElement).value)}
               clearButtonProps={{
@@ -636,6 +643,64 @@ export const WithLanguageProvider: Story = {
           </FilterDrawer.Overview>
         </FilterDrawer>
       </LanguageProvider>
+    );
+  },
+};
+
+export const FilterSearchInFilterResults: Story = {
+  render: () => {
+    interface MockData {
+      navn: string;
+    }
+
+    const searchInFilterResultsMockData: MockData[] = [
+      {
+        navn: 'Data 1',
+      },
+    ];
+
+    type FilterSearchInFilterType = {
+      fritekst: string;
+    };
+
+    const { filterOptions } = createFilterConfig<FilterSearchInFilterType>({});
+    const filter = useFilter<FilterSearchInFilterType>(filterOptions);
+    const drawer = useFilterDrawer();
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const filterMatchers: FilterMatchers<MockData, FilterSearchInFilterType> = {
+      fritekst: matchFilter.textSearch<MockData>(v => v.navn),
+    };
+
+    const filtered = filterItems(searchInFilterResultsMockData, filter.filters, filterMatchers);
+
+    return (
+      <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+        <FilterButton onClick={() => drawer.open()} />
+        <FilterSearch
+          ref={inputRef}
+          value={(filter.filters.fritekst as string) ?? ''}
+          onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
+          clearButtonProps={{
+            onClick: () => filter.removeFilter('fritekst'),
+          }}
+        />
+        <FilterResultCountAndSortWrapper
+          resultCount={`${filtered.length} verktøy`}
+          sortComponent={
+            <FilterSort>
+              <option value={'newest'}>{'Nyeste'}</option>
+              <option value={'oldest'}>{'Eldste'}</option>
+            </FilterSort>
+          }
+        />
+
+        <FilterDrawer drawer={drawer} onReset={() => undefined} resultCount={filtered.length}>
+          <FilterDrawer.Overview title={'Filter'}>
+            <div>{'Filter content'}</div>
+          </FilterDrawer.Overview>
+        </FilterDrawer>
+      </div>
     );
   },
 };

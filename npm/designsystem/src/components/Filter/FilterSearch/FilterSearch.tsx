@@ -8,6 +8,7 @@ import { IconSize, LanguageLocales } from '../../../constants';
 import { useIsMobileBreakpoint } from '../../../hooks/useIsMobileBreakpoint';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
+import { mergeRefs } from '../../../utils/refs';
 import Icon from '../../Icon';
 import Search from '../../Icons/Search';
 import X from '../../Icons/X';
@@ -15,7 +16,9 @@ import { getResources } from '../resourceHelper';
 
 import styles from './styles.module.scss';
 
-export interface FilterSearchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
+export interface FilterSearchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className' | 'value' | 'onChange'> {
+  /** Adds custom classes to the component */
+  className?: string;
   /** The value given by the user in the input field */
   value: string | undefined;
   /** onChange handler for the input field */
@@ -26,10 +29,12 @@ export interface FilterSearchProps extends Omit<React.InputHTMLAttributes<HTMLIn
   clearButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   /** Texts if overriding SOT */
   resources?: Partial<HNDesignsystemFilter>;
+  /** Ref passed to the input element */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
 const FilterSearch: React.FC<FilterSearchProps> = props => {
-  const { value, onChange, resources, buttonProps, clearButtonProps, ...inputProps } = props;
+  const { className, value, onChange, resources, buttonProps, clearButtonProps, ref, ...inputProps } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
   const inputWrapperRef = useRef<HTMLLabelElement>(null);
@@ -52,15 +57,15 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
   const inputHasValue = !!value;
 
   return (
-    <div className={styles['filter-search__wrapper']}>
+    <div className={classNames(styles['filter-search__wrapper'], className)}>
       <label className={styles['filter-search__input-wrapper']} ref={inputWrapperRef}>
         <span className={styles['filter-search__input__label']}>{inputProps['aria-label'] ?? mergedResources.searchPlaceholder}</span>
         <input
           {...inputProps}
-          ref={inputRef}
+          ref={mergeRefs([inputRef, ref])}
           value={value}
           onChange={onChange}
-          className={classNames(styles['filter-search__input'], inputProps.className, {
+          className={classNames(styles['filter-search__input'], {
             [styles['filter-search__input--hovered']]: isWrapperHovered,
           })}
           placeholder={mergedResources.searchPlaceholder}
