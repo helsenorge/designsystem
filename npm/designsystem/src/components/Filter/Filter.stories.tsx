@@ -271,6 +271,10 @@ export const VerktoyExample: Story = {
                 { filterKey: 'type', title: verktoyFilterLabels.type },
               ]}
             />
+            <FilterSearch
+              value={(filter.filters.fritekst as string) ?? ''}
+              onChange={e => filter.setFilter('fritekst', e.target.value || undefined)}
+            />
           </FilterDrawer.Overview>
           <FilterDrawer.View id="omrade" title={verktoyFilterLabels.omrade} onReset={() => filter.removeFilter('omrade')}>
             <div>
