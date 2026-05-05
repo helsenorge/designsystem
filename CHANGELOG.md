@@ -1,3 +1,50 @@
+## [14.7.0](https://github.com/helsenorge/designsystem/compare/v14.6.0...v14.7.0) (2026-05-04)
+
+### Features
+
+- **filter:** nytt filter ([ab9bf11](https://github.com/helsenorge/designsystem/commit/ab9bf11a0842201c19a26f776cd38a4bc214f9bb)), closes
+  [#372994](https://github.com/helsenorge/designsystem/issues/372994) [#372995](https://github.com/helsenorge/designsystem/issues/372995)
+  [#374423](https://github.com/helsenorge/designsystem/issues/374423) [#375591](https://github.com/helsenorge/designsystem/issues/375591)
+
+### Bug Fixes
+
+- **dateandtime:** wrapper med liten skjermbredde
+  ([96e0c0a](https://github.com/helsenorge/designsystem/commit/96e0c0a56478fa1a4d7e41b8a6d7e5433fb05957)), closes
+  [#377123](https://github.com/helsenorge/designsystem/issues/377123)
+
+## [14.6.0](https://github.com/helsenorge/designsystem/compare/v14.5.1...v14.6.0) (2026-04-30)
+
+### Features
+
+- **highlighter:** legg til semibold
+  ([5df732d](https://github.com/helsenorge/designsystem/commit/5df732d9d931794a8413682b10b00852bcd806e4)), closes
+  [#376890](https://github.com/helsenorge/designsystem/issues/376890)
+- **icon:** nytt ikon for html file ([50ceb7c](https://github.com/helsenorge/designsystem/commit/50ceb7cb48247ed38ad73bd702f7a768f7eb5d5a)),
+  closes [#376670](https://github.com/helsenorge/designsystem/issues/376670)
+- **lightbox:** legg på dropshadow på knapper ved hover og focus
+  ([35e6f97](https://github.com/helsenorge/designsystem/commit/35e6f97dca8c164466f3e17e39ddcf90382b07b6)), closes
+  [#376430](https://github.com/helsenorge/designsystem/issues/376430)
+- **notificationpanel:** legg til mulighet for role none
+  ([ce1d030](https://github.com/helsenorge/designsystem/commit/ce1d0302266b52ec1fe55abae80c51c12a25cd24)), closes
+  [#375231](https://github.com/helsenorge/designsystem/issues/375231)
+
+### Bug Fixes
+
+- **datepicker:** legg på bakgrunnsfarge
+  ([6d2857b](https://github.com/helsenorge/designsystem/commit/6d2857b3dad47bb11862a157eae573e92633e714)), closes
+  [#376737](https://github.com/helsenorge/designsystem/issues/376737)
+- **dropdown:** ikke ha hoverstyling på disabled trigger
+  ([0861b10](https://github.com/helsenorge/designsystem/commit/0861b10b3a828062e2ecf7bb923aac14ecc61da0)), closes
+  [#373943](https://github.com/helsenorge/designsystem/issues/373943)
+
+## [14.5.1](https://github.com/helsenorge/designsystem/compare/v14.5.0...v14.5.1) (2026-04-24)
+
+### Bug Fixes
+
+- **taglist:** knekker stylingen til nye chip
+  ([ead2ce4](https://github.com/helsenorge/designsystem/commit/ead2ce483a9986eb63bf2b501f21cc8c522ecc62)), closes
+  [#376494](https://github.com/helsenorge/designsystem/issues/376494)
+
 ## [14.5.0](https://github.com/helsenorge/designsystem/compare/v14.4.1...v14.5.0) (2026-04-24)
 
 ### Features

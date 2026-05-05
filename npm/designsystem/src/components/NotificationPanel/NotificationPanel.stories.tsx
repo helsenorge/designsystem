@@ -51,7 +51,7 @@ const meta = {
     },
     role: {
       control: 'select',
-      options: ['', 'status', 'alert', 'region'],
+      options: ['', 'status', 'alert', 'region', 'none'],
     },
   },
 } satisfies Meta<typeof NotificationPanel>;

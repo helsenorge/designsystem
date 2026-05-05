@@ -2,7 +2,7 @@
   "name": "@helsenorge/datepicker",
   "sideEffects": false,
   "private": false,
-  "version": "14.5.0",
+  "version": "14.7.0",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",
@@ -32,6 +32,18 @@
     "./components/*": {
       "types": "./lib/components/*/index.d.ts",
       "import": "./lib/components/*/index.js"
+    },
+    "./components/*/*": {
+      "types": "./lib/components/*/*/index.d.ts",
+      "import": "./lib/components/*/*/index.js"
+    },
+    "./components/Unsafe_DatePicker/BaseDayPicker/utils": {
+      "types": "./lib/components/Unsafe_DatePicker/BaseDayPicker/utils.d.ts",
+      "import": "./lib/components/Unsafe_DatePicker/BaseDayPicker/utils.js"
+    },
+    "./components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils": {
+      "types": "./lib/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils.d.ts",
+      "import": "./lib/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils.js"
     },
     "./__mocks__/*": {
       "types": "./lib/__mocks__/*.d.ts",

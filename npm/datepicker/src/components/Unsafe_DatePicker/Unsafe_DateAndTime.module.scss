@@ -12,7 +12,7 @@
 
   &__fields {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     gap: 0.75rem;
   }
 }

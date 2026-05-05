@@ -1,0 +1,14 @@
+@import '../../../scss/supernova/styles/colors.css';
+@import '../../../scss/supernova/styles/spacers.css';
+
+.filter-overview-search {
+  width: 100%;
+  padding: var(--core-space-s);
+  padding-right: var(--core-space-xl);
+  background-color: var(--color-base-background-white);
+  border-bottom: 1px solid var(--component-listelements-border-neutral-normal);
+
+  &:first-child {
+    border-top: 1px solid var(--component-listelements-border-neutral-normal);
+  }
+}
