@@ -15,6 +15,10 @@
     }
   }
 
+  select option {
+    text-align: left;
+  }
+
   &__wrapper {
     display: flex;
     flex-flow: row wrap;
