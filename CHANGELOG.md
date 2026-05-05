@@ -1,4 +1,11 @@
 
+## [14.7.1](https://github.com/helsenorge/designsystem/compare/v14.7.0...v14.7.1) (2026-05-05)
+
+### Bug Fixes
+
+* **filter:**  fikset manglende export ([2bc9c41](https://github.com/helsenorge/designsystem/commit/2bc9c41d796b142c327c7b378687002caea9d5df)), closes [#377337](https://github.com/helsenorge/designsystem/issues/377337)
+* **filtersort:**  option alignes feils på windows ([b38115a](https://github.com/helsenorge/designsystem/commit/b38115a9421eb5f5c0b0ad1bb692016daffbd8ce)), closes [#377337](https://github.com/helsenorge/designsystem/issues/377337)
+
 ## [14.7.0](https://github.com/helsenorge/designsystem/compare/v14.6.0...v14.7.0) (2026-05-04)
 
 ### Features
