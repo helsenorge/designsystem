@@ -1,5 +1,3 @@
-import { useRef, useState } from 'react';
-
 import { isValid } from 'date-fns';
 
 import ErrorWrapper from '@helsenorge/designsystem-react/components/ErrorWrapper';
@@ -78,9 +76,6 @@ const Unsafe_DateAndTime = ({
   datepickerProps,
   timeInputProps,
 }: Unsafe_DateAndTimeProps): React.ReactNode => {
-  // Date is fully controlled from value prop
-  const internalDate = value;
-
   // Helper to check if the value has a meaningful time (not just default 00:00)
   const hasMeaningfulTime = (date: Date | undefined): boolean => {
     if (!date) {
@@ -89,27 +84,17 @@ const Unsafe_DateAndTime = ({
     return date.getHours() !== 0 || date.getMinutes() !== 0;
   };
 
-  // Time needs internal state to allow typing without padding interfering
-  // Only initialize with time if the value has a non-zero time
-  const [internalTime, setInternalTime] = useState<string | undefined>(hasMeaningfulTime(value) ? toTimeString(value) : undefined);
-
-  // Track the last value we sent via onChange to detect external changes
-  const lastSentValueTime = useRef<number | undefined>(undefined);
+  // Both date and time are fully controlled from the value prop. The internal
+  // sub-components (Unsafe_DatePicker / Unsafe_TimeInput) own the editing state.
+  const internalDate = value;
+  const internalTime = hasMeaningfulTime(value) ? toTimeString(value) : undefined;
 
   const handleDateChange = (newDate: Date | undefined): void => {
-    const merged = mergeDateAndTime(newDate, internalTime);
-    lastSentValueTime.current = merged?.getTime();
-    onChange?.(merged);
+    onChange?.(mergeDateAndTime(newDate, internalTime));
   };
 
   const handleTimeChange = (newTime: string | undefined): void => {
-    // Update internal time state immediately to allow free typing
-    setInternalTime(newTime);
-
-    // Merge the new time with the existing date from value prop
-    const merged = mergeDateAndTime(value, newTime);
-    lastSentValueTime.current = merged?.getTime();
-    onChange?.(merged);
+    onChange?.(mergeDateAndTime(value, newTime));
   };
 
   return (

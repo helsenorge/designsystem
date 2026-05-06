@@ -9,7 +9,11 @@ import Input from '@helsenorge/designsystem-react/components/Input';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
 
-import Unsafe_DatePicker, { Unsafe_ISODatePicker, Unsafe_TimeInput } from '@helsenorge/datepicker/components/Unsafe_DatePicker';
+import Unsafe_DatePicker, {
+  Unsafe_DateAndTime,
+  Unsafe_ISODatePicker,
+  Unsafe_TimeInput,
+} from '@helsenorge/datepicker/components/Unsafe_DatePicker';
 
 const meta: Meta = {
   title: 'Documentation/Examples/NewDatePicker',
@@ -45,7 +49,7 @@ export const DateWithRHForm: Story = {
       handleSubmit,
       formState: { errors },
     } = useRHForm({
-      defaultValues: { avtale: new Date('2026-01-01') },
+      defaultValues: { avtale: new Date('2026-02-01') },
       mode: 'onBlur',
     });
 
@@ -79,6 +83,152 @@ export const DateWithRHForm: Story = {
               value={field.value ?? undefined}
               onChange={val => field.onChange(val)}
               showGoToTodayButton
+            />
+          )}
+        />
+        <br />
+        <button type="submit">{'Submit'}</button>
+      </form>
+    );
+  },
+};
+
+export const DateWithRHFormSetValue: Story = {
+  render: args => {
+    const {
+      control,
+      handleSubmit,
+      setValue,
+      formState: { errors },
+    } = useRHForm({
+      defaultValues: { avtale: new Date('2026-01-01') },
+      mode: 'onBlur',
+    });
+
+    const onSubmit = (data: any) => {
+      console.log('register submit: ', data);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <RHFController
+          name="avtale"
+          control={control}
+          render={({ field }) => (
+            <Unsafe_DatePicker
+              {...args}
+              errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
+              value={field.value ?? undefined}
+              onChange={val => field.onChange(val)}
+            />
+          )}
+        />
+        <br />
+        <button type="button" onClick={() => setValue('avtale', new Date('2026-12-24'))}>
+          {'Sett til julaften 2026'}
+        </button>
+        <button type="button" onClick={() => setValue('avtale', new Date())}>
+          {'Sett til i dag'}
+        </button>
+        <button type="button" onClick={() => setValue('avtale', undefined as unknown as Date)}>
+          {'Nullstill'}
+        </button>
+        <br />
+        <button type="submit">{'Submit'}</button>
+      </form>
+    );
+  },
+};
+
+export const DateAndTimeWithRHFormSetValue: Story = {
+  render: args => {
+    const {
+      control,
+      handleSubmit,
+      setValue,
+      formState: { errors },
+    } = useRHForm({
+      defaultValues: { avtale: new Date('2026-01-01T10:00') },
+      mode: 'onBlur',
+    });
+
+    const onSubmit = (data: any) => {
+      console.log('register submit: ', data);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <RHFController
+          name="avtale"
+          control={control}
+          render={({ field }) => (
+            <Unsafe_DateAndTime
+              {...args}
+              errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
+              value={field.value ?? undefined}
+              onChange={val => field.onChange(val)}
+              legend="Avtaletidspunkt"
+            />
+          )}
+        />
+        <br />
+        <button type="button" onClick={() => setValue('avtale', new Date('2026-12-24T18:30'))}>
+          {'Sett til julaften kl 18:30'}
+        </button>
+        <button type="button" onClick={() => setValue('avtale', new Date())}>
+          {'Sett til nå'}
+        </button>
+        <button type="button" onClick={() => setValue('avtale', undefined as unknown as Date)}>
+          {'Nullstill'}
+        </button>
+        <br />
+        <button type="submit">{'Submit'}</button>
+      </form>
+    );
+  },
+};
+
+export const DateAndTimeWithRHForm: Story = {
+  render: args => {
+    const {
+      control,
+      handleSubmit,
+      formState: { errors },
+    } = useRHForm({
+      defaultValues: { avtale: new Date('2026-01-01T10:00') },
+      mode: 'onBlur',
+    });
+
+    const onSubmit = (data: any) => {
+      console.log('register submit: ', data);
+    };
+
+    const validateDate = (value: Date | undefined) => {
+      if (!value) {
+        return 'Må velge dato og tidspunkt';
+      }
+      if (isBefore(value, new Date())) {
+        return 'Kan ikke velge tidspunkt i fortiden';
+      }
+      return true;
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <RHFController
+          name="avtale"
+          control={control}
+          rules={{
+            required: 'Feltet er påkrevd',
+            validate: value => validateDate(value),
+          }}
+          render={({ field }) => (
+            <Unsafe_DateAndTime
+              {...args}
+              errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
+              value={field.value ?? undefined}
+              onChange={val => field.onChange(val)}
+              legend="Avtaletidspunkt"
             />
           )}
         />
@@ -417,7 +567,7 @@ export const MultipleFields: Story = {
               <Unsafe_DatePicker
                 {...args}
                 errorText={errors?.birthday?.message as string}
-                value={field.value ?? ''}
+                value={field.value ?? undefined}
                 onChange={val => field.onChange(val)}
                 onBlur={field.onBlur}
               />

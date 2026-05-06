@@ -62,12 +62,6 @@ const DateInputInternal = ({
 
   const combinedValue = `${dd}.${mm}.${yyyy}`;
 
-  useEffect(() => {
-    if (onChange) {
-      onChange(combinedValue);
-    }
-  }, [combinedValue]);
-
   type ValidateSegmentOptions = {
     segment: string;
     length: number;
@@ -104,6 +98,7 @@ const DateInputInternal = ({
   const handleDdChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newDd = e.target.value;
     setDd(newDd);
+    onChange?.(`${newDd}.${mm}.${yyyy}`);
     if (
       validateSegment({
         segment: newDd,
@@ -123,6 +118,7 @@ const DateInputInternal = ({
   const handleMmChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newMm = e.target.value;
     setMm(newMm);
+    onChange?.(`${dd}.${newMm}.${yyyy}`);
     if (
       validateSegment({
         segment: newMm,
@@ -142,6 +138,7 @@ const DateInputInternal = ({
   const handleYyyyChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newYyyy = e.target.value;
     setYyyy(newYyyy);
+    onChange?.(`${dd}.${mm}.${newYyyy}`);
     validateSegment({
       segment: newYyyy,
       length: 4,
@@ -186,11 +183,15 @@ const DateInputInternal = ({
     // Determine which input was blurred and apply auto-padding if needed
     if (e.currentTarget === ddRef.current) {
       if (currentValue.length === 1 && /^\d$/.test(currentValue)) {
-        setDd(`0${currentValue}`);
+        const padded = `0${currentValue}`;
+        setDd(padded);
+        onChange?.(`${padded}.${mm}.${yyyy}`);
       }
     } else if (e.currentTarget === mmRef.current) {
       if (currentValue.length === 1 && /^\d$/.test(currentValue)) {
-        setMm(`0${currentValue}`);
+        const padded = `0${currentValue}`;
+        setMm(padded);
+        onChange?.(`${dd}.${padded}.${yyyy}`);
       }
     }
 
@@ -199,6 +200,18 @@ const DateInputInternal = ({
 
   useEffect(() => {
     if (!value || value === '') {
+      if (dd !== '') {
+        setDd('');
+      }
+      if (mm !== '') {
+        setMm('');
+      }
+      if (yyyy !== '') {
+        setYyyy('');
+      }
+      setErrorTextDd('');
+      setErrorTextMm('');
+      setErrorTextYyyy('');
       return;
     }
     const match = value.match(/^(\d{2})\.(\d{2})\.(\d{4})$/); // norsk format dd.mm.yyyy

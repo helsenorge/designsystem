@@ -79,8 +79,9 @@ const Unsafe_DatePicker = ({
     }
     return format(date, 'P', { locale: nb });
   };
-  const [dateString, setDateString] = useState<string>(dateToString(value) || '');
-  const [dateDate, setDateDate] = useState<Date | undefined>(value || undefined);
+  const initialSafeValue = value instanceof Date ? value : undefined;
+  const [dateString, setDateString] = useState<string>(dateToString(initialSafeValue) || '');
+  const [dateDate, setDateDate] = useState<Date | undefined>(initialSafeValue);
   const [softErrorText, setSoftErrorText] = useState<string>('');
   const containerRef = useRef<HTMLDivElement>(null);
   const calendarButtonRef = useRef<HTMLButtonElement>(null);
@@ -88,15 +89,21 @@ const Unsafe_DatePicker = ({
 
   // Sync external value changes to internal state
   useEffect(() => {
-    // Always sync if the external value differs from our internal state
-    // This ensures prop changes always take effect, even if internalChangeRef was set by a previous onChange
-    const valueTime = value?.getTime();
+    // Skip the sync if the change originated from internal user interaction.
+    // Without this, an externally-controlled value (e.g. RHF) that re-asserts
+    // the previous value during the same tick can clobber a clear/typed change.
+    if (internalChangeRef.current) {
+      internalChangeRef.current = false;
+      return;
+    }
+
+    const safeValue = value instanceof Date ? value : undefined;
+    const valueTime = safeValue?.getTime();
     const statetime = dateDate?.getTime();
     if (valueTime !== statetime) {
-      setDateString(dateToString(value) || '');
-      setDateDate(value || undefined);
+      setDateString(dateToString(safeValue) || '');
+      setDateDate(safeValue);
     }
-    internalChangeRef.current = false;
   }, [value]);
 
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);

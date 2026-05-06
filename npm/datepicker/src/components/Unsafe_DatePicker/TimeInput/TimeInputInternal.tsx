@@ -56,14 +56,22 @@ const TimeInputInternal = ({
 
   useEffect(() => {
     if (!value || value === '') {
+      if (hh !== '') {
+        setHh('');
+      }
+      if (mm !== '') {
+        setMm('');
+      }
+      setErrorTextHh('');
+      setErrorTextMm('');
       return;
     }
-    const match = value.match(/^(\d{2}):(\d{2})$/); // norsk format dd.mm.yyyy
+    const match = value.match(/^(\d{2}):(\d{2})$/); // norsk format hh:mm
     if (match) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const [_, newDd, newMm] = match;
-      if (hh !== newDd) {
-        setHh(newDd);
+      const [_, newHh, newMm] = match;
+      if (hh !== newHh) {
+        setHh(newHh);
       }
       if (mm !== newMm) {
         setMm(newMm);
@@ -72,12 +80,6 @@ const TimeInputInternal = ({
   }, [value]);
 
   const combinedValue = hh || mm ? `${hh}:${mm}` : '';
-
-  useEffect(() => {
-    if (onChange) {
-      onChange(combinedValue);
-    }
-  }, [combinedValue]);
 
   const validateHh = (newHh: string): boolean => {
     if (newHh === '') {
@@ -103,6 +105,7 @@ const TimeInputInternal = ({
   const handleHhChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newHh = e.target.value;
     setHh(newHh);
+    onChange?.(newHh || mm ? `${newHh}:${mm}` : '');
     if (validateHh(newHh)) {
       if (newHh.length === 2) {
         mmRef.current?.focus();
@@ -134,6 +137,7 @@ const TimeInputInternal = ({
   const handleMmChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newMm = e.target.value;
     setMm(newMm);
+    onChange?.(hh || newMm ? `${hh}:${newMm}` : '');
     validateMm(newMm);
   };
 
