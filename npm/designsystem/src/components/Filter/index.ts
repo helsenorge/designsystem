@@ -14,6 +14,8 @@ export { default as FilterOverviewSearch } from './FilterOverviewSearch';
 export * from './FilterOverviewSearch';
 export { default as FilterResultCountAndSortWrapper } from './FilterResultCountAndSortWrapper';
 export * from './FilterResultCountAndSortWrapper';
+export { default as FilterStateWrapper } from './FilterStateWrapper';
+export * from './FilterStateWrapper';
 export { default as FilterSearch } from './FilterSearch';
 export * from './FilterSearch';
 export { default as FilterSort } from './FilterSort';

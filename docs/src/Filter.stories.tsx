@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import Checkbox from '@helsenorge/designsystem-react/components/Checkbox';
 import EmptyState from '@helsenorge/designsystem-react/components/EmptyState';
+import { FilterStateWrapper } from '@helsenorge/designsystem-react/components/Filter';
 import FilterButton from '@helsenorge/designsystem-react/components/Filter/FilterButton/FilterButton';
 import FilterButtonAndChipsWrapper from '@helsenorge/designsystem-react/components/Filter/FilterButtonAndChipsWrapper/FilterButtonAndChipsWrapper';
 import FilterDrawer from '@helsenorge/designsystem-react/components/Filter/FilterDrawer/FilterDrawer';
@@ -427,7 +428,7 @@ export const DokumenterExample: Story = {
 
     return (
       <>
-        <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+        <FilterStateWrapper>
           <FilterButtonAndChipsWrapper
             filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
             filterChips={getFilterChips({
@@ -452,7 +453,7 @@ export const DokumenterExample: Story = {
               </FilterSort>
             }
           />
-        </div>
+        </FilterStateWrapper>
 
         <FilterDrawer
           drawer={drawer}

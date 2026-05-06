@@ -26,6 +26,7 @@ import FilterOverviewSearch from './FilterOverviewSearch/FilterOverviewSearch';
 import FilterResultCountAndSortWrapper from './FilterResultCountAndSortWrapper/FilterResultCountAndSortWrapper';
 import FilterSearch from './FilterSearch/FilterSearch';
 import FilterSort from './FilterSort/FilterSort';
+import FilterStateWrapper from './FilterStateWrapper/FilterStateWrapper';
 import getFilterChips from './getFilterChips/getFilterChips';
 import { getResources } from './resourcesMock';
 import { useFilter } from './useFilter';
@@ -238,7 +239,7 @@ export const VerktoyExample: Story = {
         </Dropdown>
         <Spacer />
 
-        <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+        <FilterStateWrapper>
           <FilterButtonAndChipsWrapper
             filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
             filterChips={getFilterChips({
@@ -259,7 +260,7 @@ export const VerktoyExample: Story = {
               </FilterSort>
             }
           />
-        </div>
+        </FilterStateWrapper>
 
         <FilterDrawer
           drawer={drawer}
@@ -431,7 +432,7 @@ export const LoggOverBrukExample: Story = {
 
     return (
       <>
-        <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+        <FilterStateWrapper>
           <FilterButtonAndChipsWrapper
             filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
             filterChips={getFilterChips({
@@ -442,7 +443,7 @@ export const LoggOverBrukExample: Story = {
             })}
           />
           <FilterResultCountAndSortWrapper resultCount={`${filtered.length} logginnslag`} />
-        </div>
+        </FilterStateWrapper>
 
         <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} resultCount={filtered.length}>
           <FilterDrawer.Overview title={'Finn ...'}>
@@ -675,7 +676,7 @@ export const FilterSearchInFilterResults: Story = {
     const filtered = filterItems(searchInFilterResultsMockData, filter.filters, filterMatchers);
 
     return (
-      <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+      <FilterStateWrapper>
         <FilterButton onClick={() => drawer.open()} />
         <FilterSearch
           ref={inputRef}
@@ -700,7 +701,7 @@ export const FilterSearchInFilterResults: Story = {
             <div>{'Filter content'}</div>
           </FilterDrawer.Overview>
         </FilterDrawer>
-      </div>
+      </FilterStateWrapper>
     );
   },
 };
