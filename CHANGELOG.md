@@ -1,4 +1,14 @@
 
+## [14.7.2](https://github.com/helsenorge/designsystem/compare/v14.7.1...v14.7.2) (2026-05-06)
+
+### Features
+
+* **filterstatewrapper:**  nytt wrapper komponent ([dd3b33f](https://github.com/helsenorge/designsystem/commit/dd3b33f5027a0d7636f2955896c62488f183af03)), closes [#377502](https://github.com/helsenorge/designsystem/issues/377502)
+
+### Bug Fixes
+
+* **datepicker:**  importer kastet feilmelding ([4646797](https://github.com/helsenorge/designsystem/commit/4646797552b27e4c8cd25bd5e8ae2d5f4f647007)), closes [#377492](https://github.com/helsenorge/designsystem/issues/377492)
+
 ## [14.7.1](https://github.com/helsenorge/designsystem/compare/v14.7.0...v14.7.1) (2026-05-05)
 
 ### Bug Fixes
