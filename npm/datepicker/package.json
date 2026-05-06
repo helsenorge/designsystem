@@ -33,10 +33,6 @@
       "types": "./lib/components/*/index.d.ts",
       "import": "./lib/components/*/index.js"
     },
-    "./components/*/*": {
-      "types": "./lib/components/*/*/index.d.ts",
-      "import": "./lib/components/*/*/index.js"
-    },
     "./components/Unsafe_DatePicker/BaseDayPicker/utils": {
       "types": "./lib/components/Unsafe_DatePicker/BaseDayPicker/utils.d.ts",
       "import": "./lib/components/Unsafe_DatePicker/BaseDayPicker/utils.js"
