@@ -50,6 +50,20 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const LanguagePickerExample: React.FC<{ onChange: (language: LanguageLocales) => void }> = ({ onChange }) => (
+  <>
+    <Dropdown svgIcon={Globe} triggerText="Velg språk">
+      <Dropdown.SingleSelectItem text={'English'} asChild>
+        <button onClick={() => onChange(LanguageLocales.ENGLISH)} />
+      </Dropdown.SingleSelectItem>
+      <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
+        <button onClick={() => onChange(LanguageLocales.NORWEGIAN)} />
+      </Dropdown.SingleSelectItem>
+    </Dropdown>
+    <Spacer size="2xl" />
+  </>
+);
+
 export const VerktoyExample: Story = {
   render: () => {
     enum FagomradeType {
@@ -229,15 +243,7 @@ export const VerktoyExample: Story = {
 
     return (
       <LanguageProvider<LanguageLocales> language={language}>
-        <Dropdown svgIcon={Globe} triggerText="Velg språk">
-          <Dropdown.SingleSelectItem text={'English'} asChild>
-            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
-          </Dropdown.SingleSelectItem>
-          <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
-            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
-          </Dropdown.SingleSelectItem>
-        </Dropdown>
-        <Spacer />
+        <LanguagePickerExample onChange={setLanguage} />
 
         <FilterStateWrapper>
           <FilterButtonAndChipsWrapper
@@ -616,15 +622,7 @@ export const WithLanguageProvider: Story = {
 
     return (
       <LanguageProvider<LanguageLocales> language={language}>
-        <Dropdown svgIcon={Globe} triggerText="Velg språk">
-          <Dropdown.SingleSelectItem text={'English'} asChild>
-            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
-          </Dropdown.SingleSelectItem>
-          <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
-            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
-          </Dropdown.SingleSelectItem>
-        </Dropdown>
-        <Spacer />
+        <LanguagePickerExample onChange={setLanguage} />
 
         <FilterButton onClick={() => drawer.open()} />
         <FilterSort>
