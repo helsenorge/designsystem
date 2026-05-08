@@ -3,5 +3,8 @@
   "sortLabel": "Sirren",
   "resetButtonText": "Bija ruovttuluotta",
   "showButtonText": "Čájet {0} deaivan",
+  "filterOverviewTitle": "Oza...",
+  "searchPlaceholder": "Oza listtus",
+  "searchClearButtonAriaLabel": "Bija ruovttuluotta",
   "searchButtonAriaLabel": "Oza"
 }
