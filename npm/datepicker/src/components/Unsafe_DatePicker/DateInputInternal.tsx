@@ -9,6 +9,8 @@ import X from '@helsenorge/designsystem-react/components/Icons/X';
 
 import { KeyboardEventKey, useKeyboardEvent } from '@helsenorge/designsystem-react';
 
+import { combineDateSegments, parseDateSegments } from './utils';
+
 import styles from './DatePicker.module.scss';
 
 export interface DateInputInternalProps {
@@ -49,9 +51,18 @@ const DateInputInternal = ({
   const [errorTextDd, setErrorTextDd] = useState('');
   const [errorTextMm, setErrorTextMm] = useState('');
   const [errorTextYyyy, setErrorTextYyyy] = useState('');
-  const [dd, setDd] = useState('');
-  const [mm, setMm] = useState('');
-  const [yyyy, setYyyy] = useState('');
+  const initialSegments = parseDateSegments(value);
+  const [dd, setDd] = useState(initialSegments.dd);
+  const [mm, setMm] = useState(initialSegments.mm);
+  const [yyyy, setYyyy] = useState(initialSegments.yyyy);
+  const [prevValue, setPrevValue] = useState(value);
+  if (value !== prevValue) {
+    setPrevValue(value);
+    const next = parseDateSegments(value);
+    setDd(next.dd);
+    setMm(next.mm);
+    setYyyy(next.yyyy);
+  }
   const hasValue = dd !== '' || mm !== '' || yyyy !== '';
   const ddRef = useRef<HTMLInputElement>(null);
   const mmRef = useRef<HTMLInputElement>(null);
@@ -60,13 +71,12 @@ const DateInputInternal = ({
   const clearButtonRef = useRef<HTMLButtonElement>(null);
   const [isClearButtonFocused, setIsClearButtonFocused] = useState(false);
 
-  const combinedValue = `${dd}.${mm}.${yyyy}`;
-
-  useEffect(() => {
-    if (onChange) {
-      onChange(combinedValue);
-    }
-  }, [combinedValue]);
+  const updateSegments = (newDd: string, newMm: string, newYyyy: string): void => {
+    setDd(newDd);
+    setMm(newMm);
+    setYyyy(newYyyy);
+    onChange?.(combineDateSegments(newDd, newMm, newYyyy));
+  };
 
   type ValidateSegmentOptions = {
     segment: string;
@@ -103,7 +113,7 @@ const DateInputInternal = ({
 
   const handleDdChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newDd = e.target.value;
-    setDd(newDd);
+    updateSegments(newDd, mm, yyyy);
     if (
       validateSegment({
         segment: newDd,
@@ -122,7 +132,7 @@ const DateInputInternal = ({
 
   const handleMmChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newMm = e.target.value;
-    setMm(newMm);
+    updateSegments(dd, newMm, yyyy);
     if (
       validateSegment({
         segment: newMm,
@@ -141,7 +151,7 @@ const DateInputInternal = ({
 
   const handleYyyyChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newYyyy = e.target.value;
-    setYyyy(newYyyy);
+    updateSegments(dd, mm, newYyyy);
     validateSegment({
       segment: newYyyy,
       length: 4,
@@ -186,38 +196,16 @@ const DateInputInternal = ({
     // Determine which input was blurred and apply auto-padding if needed
     if (e.currentTarget === ddRef.current) {
       if (currentValue.length === 1 && /^\d$/.test(currentValue)) {
-        setDd(`0${currentValue}`);
+        updateSegments(`0${currentValue}`, mm, yyyy);
       }
     } else if (e.currentTarget === mmRef.current) {
       if (currentValue.length === 1 && /^\d$/.test(currentValue)) {
-        setMm(`0${currentValue}`);
+        updateSegments(dd, `0${currentValue}`, yyyy);
       }
     }
 
     validateAllSegments();
   };
-
-  useEffect(() => {
-    if (!value || value === '') {
-      return;
-    }
-    const match = value.match(/^(\d{2})\.(\d{2})\.(\d{4})$/); // norsk format dd.mm.yyyy
-    if (match) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const [_, newDd, newMm, newYyyy] = match;
-      if (dd !== newDd) {
-        setDd(newDd);
-      }
-      if (mm !== newMm) {
-        setMm(newMm);
-      }
-      if (yyyy !== newYyyy) {
-        setYyyy(newYyyy);
-      }
-      // kjør valideringsfunksjoner på nytt med nyeste verdier fra value
-      validateAllSegments(newDd, newMm, newYyyy);
-    }
-  }, [value]);
 
   useEffect(() => {
     const combinedErrors = [errorTextDd, errorTextMm, errorTextYyyy].filter(err => err !== '').join('. ');
@@ -236,7 +224,7 @@ const DateInputInternal = ({
     /* Må bruke timeout for å vente til event loopen på document blir ferdig slik at activeElement rekker å bli oppdatert */
     setTimeout(() => {
       if (!inputRefs.some(ref => ref.current && ref.current === document.activeElement)) {
-        onBlur?.(combinedValue);
+        onBlur?.(combineDateSegments(dd, mm, yyyy));
       }
     }, 0);
   };

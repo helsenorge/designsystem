@@ -1,4 +1,4 @@
-import { cloneElement, useEffect, useRef, useState } from 'react';
+import { cloneElement, useRef, useState } from 'react';
 
 import {
   autoUpdate,
@@ -84,20 +84,24 @@ const Unsafe_DatePicker = ({
   const [softErrorText, setSoftErrorText] = useState<string>('');
   const containerRef = useRef<HTMLDivElement>(null);
   const calendarButtonRef = useRef<HTMLButtonElement>(null);
-  const internalChangeRef = useRef(false);
 
-  // Sync external value changes to internal state
-  useEffect(() => {
-    // Always sync if the external value differs from our internal state
-    // This ensures prop changes always take effect, even if internalChangeRef was set by a previous onChange
-    const valueTime = value?.getTime();
-    const statetime = dateDate?.getTime();
-    if (valueTime !== statetime) {
+  // Track the last value we emitted so we can distinguish our own updates from external ones.
+  // Important when consumers (e.g. react-hook-form) echo back the previous value because they
+  // substitute a defaultValue when our onChange emits `undefined`.
+  const lastSentValueTime = useRef<number | undefined>(value?.getTime());
+
+  // Sync internal state when external value changes (works for both controlled and uncontrolled use).
+  // Skip sync when the new value matches what we just emitted — otherwise consumer echo-back wipes local edits.
+  const [prevValueTime, setPrevValueTime] = useState<number | undefined>(value?.getTime());
+  const currentValueTime = value?.getTime();
+  if (currentValueTime !== prevValueTime) {
+    setPrevValueTime(currentValueTime);
+    if (currentValueTime !== lastSentValueTime.current) {
       setDateString(dateToString(value) || '');
       setDateDate(value || undefined);
+      lastSentValueTime.current = currentValueTime;
     }
-    internalChangeRef.current = false;
-  }, [value]);
+  }
 
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
@@ -128,10 +132,10 @@ const Unsafe_DatePicker = ({
   };
 
   const handleDayPickerSelect = (date: Date | undefined): void => {
-    internalChangeRef.current = true;
     if (!date) {
       setDateString('');
       setDateDate(undefined);
+      lastSentValueTime.current = undefined;
       if (onChange) {
         onChange(undefined);
       }
@@ -139,6 +143,7 @@ const Unsafe_DatePicker = ({
       setDateDate(date);
       const formattedDate = format(date, 'P', { locale: nb });
       setDateString(formattedDate);
+      lastSentValueTime.current = date.getTime();
       if (onChange) {
         onChange(date);
       }
@@ -177,7 +182,6 @@ const Unsafe_DatePicker = ({
   );
 
   const handleInputChange = (date: string): void => {
-    internalChangeRef.current = true;
     setDateString(date);
 
     const isCompleteDate = /^\d{2}\.\d{2}\.\d{4}$/.test(date);
@@ -191,6 +195,7 @@ const Unsafe_DatePicker = ({
     }
 
     setDateDate(parsedDate);
+    lastSentValueTime.current = parsedDate?.getTime();
     onChange?.(parsedDate);
   };
 

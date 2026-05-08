@@ -9,6 +9,7 @@ import X from '@helsenorge/designsystem-react/components/Icons/X';
 
 import { KeyboardEventKey, useKeyboardEvent } from '@helsenorge/designsystem-react';
 
+import { combineTimeSegments, parseTimeSegments } from './utils';
 import styles from '../DatePicker.module.scss';
 
 export interface TimeInputInternalProps {
@@ -45,8 +46,16 @@ const TimeInputInternal = ({
 }: TimeInputInternalProps): React.ReactNode => {
   const [errorTextHh, setErrorTextHh] = useState('');
   const [errorTextMm, setErrorTextMm] = useState('');
-  const [hh, setHh] = useState('');
-  const [mm, setMm] = useState('');
+  const initialSegments = parseTimeSegments(value);
+  const [hh, setHh] = useState(initialSegments.hh);
+  const [mm, setMm] = useState(initialSegments.mm);
+  const [prevValue, setPrevValue] = useState(value);
+  if (value !== prevValue) {
+    setPrevValue(value);
+    const next = parseTimeSegments(value);
+    setHh(next.hh);
+    setMm(next.mm);
+  }
   const hasValue = hh !== '' || mm !== '';
   const hhRef = useRef<HTMLInputElement>(null);
   const mmRef = useRef<HTMLInputElement>(null);
@@ -54,30 +63,11 @@ const TimeInputInternal = ({
   const clearButtonRef = useRef<HTMLButtonElement>(null);
   const [isClearButtonFocused, setIsClearButtonFocused] = useState(false);
 
-  useEffect(() => {
-    if (!value || value === '') {
-      return;
-    }
-    const match = value.match(/^(\d{2}):(\d{2})$/); // norsk format dd.mm.yyyy
-    if (match) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const [_, newDd, newMm] = match;
-      if (hh !== newDd) {
-        setHh(newDd);
-      }
-      if (mm !== newMm) {
-        setMm(newMm);
-      }
-    }
-  }, [value]);
-
-  const combinedValue = hh || mm ? `${hh}:${mm}` : '';
-
-  useEffect(() => {
-    if (onChange) {
-      onChange(combinedValue);
-    }
-  }, [combinedValue]);
+  const updateSegments = (newHh: string, newMm: string): void => {
+    setHh(newHh);
+    setMm(newMm);
+    onChange?.(combineTimeSegments(newHh, newMm));
+  };
 
   const validateHh = (newHh: string): boolean => {
     if (newHh === '') {
@@ -102,7 +92,7 @@ const TimeInputInternal = ({
 
   const handleHhChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newHh = e.target.value;
-    setHh(newHh);
+    updateSegments(newHh, mm);
     if (validateHh(newHh)) {
       if (newHh.length === 2) {
         mmRef.current?.focus();
@@ -133,7 +123,7 @@ const TimeInputInternal = ({
 
   const handleMmChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newMm = e.target.value;
-    setMm(newMm);
+    updateSegments(hh, newMm);
     validateMm(newMm);
   };
 
@@ -159,7 +149,7 @@ const TimeInputInternal = ({
     /* Må bruke timeout for å vente til event loopen på document blir ferdig slik at activeElement rekker å bli oppdatert */
     setTimeout(() => {
       if (!inputRefs.some(ref => ref.current && ref.current === document.activeElement)) {
-        onBlur?.(combinedValue);
+        onBlur?.(combineTimeSegments(hh, mm));
       }
     }, 0);
   };
@@ -186,9 +176,7 @@ const TimeInputInternal = ({
     setMm('');
     setErrorTextHh('');
     setErrorTextMm('');
-    if (onChange) {
-      onChange('');
-    }
+    onChange?.('');
     hhRef.current?.focus();
   };
 
