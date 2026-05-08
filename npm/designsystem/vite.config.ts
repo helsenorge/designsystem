@@ -17,6 +17,13 @@ export default defineConfig({
       insertTypesEntry: false,
       rollupTypes: false,
       copyDtsFiles: true,
+      compilerOptions: {
+        rootDir: 'src',
+        paths: {
+          '@helsenorge/designsystem-react': ['src/index.ts'],
+          '@helsenorge/designsystem-react/*': ['src/*'],
+        },
+      },
       include: [
         'src/components/**/*.{ts,tsx}',
         'src/hooks/**/*.{ts,tsx}',

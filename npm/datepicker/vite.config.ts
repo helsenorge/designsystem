@@ -16,6 +16,13 @@ export default defineConfig({
       insertTypesEntry: false,
       rollupTypes: false,
       copyDtsFiles: true,
+      compilerOptions: {
+        rootDir: 'src',
+        paths: {
+          '@helsenorge/datepicker': ['src/index.ts'],
+          '@helsenorge/datepicker/*': ['src/*'],
+        },
+      },
       include: ['src/components/**/*.{ts,tsx}', 'src/resources/**/*.{ts,json}', 'src/__mocks__/**/*.{ts,tsx}'],
       exclude: ['**/__snapshots__/**', '**/*.stories.*', '**/*.test.*'],
       aliasesExclude: [/@helsenorge\/designsystem-react/],
