@@ -39,7 +39,7 @@ describe('Gitt at SharingStatus rendres ', () => {
 
       const sharingStatusIcon = screen.getByTestId('sharingStatus');
       const sharingStatusText = screen.getByText('Eksempeltekst');
-      // eslint-disable-next-line
+
       expect(sharingStatusIcon.firstElementChild?.className).toBe('sharing-status__dot sharing-status__dot--kiwi');
       expect(sharingStatusText).toHaveClass('sharing-status__label sharing-status__label--kiwi');
     });
@@ -60,7 +60,7 @@ describe('Gitt at SharingStatus rendres ', () => {
 
       const sharingStatusIcon = screen.getByTestId('sharingStatus');
       const sharingStatusText = screen.getByText('Eksempeltekst');
-      // eslint-disable-next-line
+
       expect(sharingStatusIcon.firstElementChild?.className).toBe('sharing-status__dot sharing-status__dot--cherry');
       expect(sharingStatusText).toHaveClass('sharing-status__label sharing-status__label--cherry');
     });
@@ -81,7 +81,7 @@ describe('Gitt at SharingStatus rendres ', () => {
 
       const sharingStatusIcon = screen.getByTestId('sharingStatus');
       const sharingStatusText = screen.getByText('Eksempeltekst');
-      // eslint-disable-next-line
+
       expect(sharingStatusIcon.firstElementChild?.className).toBe('sharing-status__dot sharing-status__dot--neutral');
       expect(sharingStatusText).toHaveClass('sharing-status__label sharing-status__label--neutral');
     });

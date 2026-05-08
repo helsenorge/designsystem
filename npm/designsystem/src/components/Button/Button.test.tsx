@@ -89,7 +89,7 @@ describe('Gitt at button skal vises', (): void => {
       const button = screen.getByTestId('test');
 
       expect(text).toBeVisible();
-      // eslint-disable-next-line testing-library/no-node-access
+
       expect(button.firstElementChild?.className).toBe('button button--normal button--left-icon button--both-icons button--arrow');
     });
   });
@@ -241,9 +241,8 @@ describe('Gitt at button skal vises', (): void => {
         </div>
       );
 
-      // eslint-disable-next-line testing-library/no-node-access
       const testButton1 = screen.getByTestId('test01').children[0];
-      // eslint-disable-next-line testing-library/no-node-access
+
       const testButton2 = screen.getByTestId('test02').children[0];
 
       expect(testButton1.className).toBe('button button--normal');
@@ -259,7 +258,6 @@ describe('Gitt at button skal vises', (): void => {
         </Button>
       );
 
-      // eslint-disable-next-line testing-library/no-node-access
       const testButton = screen.getByTestId('test01').children[0];
 
       expect(testButton.className).toBe('button button--normal button--on-dark');
@@ -300,17 +298,14 @@ describe('Gitt at button skal vises', (): void => {
         </div>
       );
 
-      // eslint-disable-next-line testing-library/no-node-access
       const testFill = screen.getByTestId('test01').children[0];
 
       expect(testFill.className).toBe('button button--normal');
 
-      // eslint-disable-next-line testing-library/no-node-access
       const testOutline = screen.getByTestId('test02').children[0];
 
       expect(testOutline.className).toBe('button button--normal button--outline');
 
-      // eslint-disable-next-line testing-library/no-node-access
       const testBorderless = screen.getByTestId('test03').children[0];
 
       expect(testBorderless.className).toBe('button button--normal button--borderless');
@@ -326,7 +321,6 @@ describe('Gitt at button skal vises', (): void => {
         </div>
       );
 
-      // eslint-disable-next-line testing-library/no-node-access
       const testFill = screen.getByTestId('test01').children[0];
 
       expect(testFill.className).toBe('button button--normal button--borderless');
@@ -340,7 +334,6 @@ describe('Gitt at button skal vises', (): void => {
         </div>
       );
 
-      // eslint-disable-next-line testing-library/no-node-access
       const testFill = screen.getByTestId('test01').children[0];
 
       expect(testFill.className).toBe('button button--normal button--borderless');

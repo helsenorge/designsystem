@@ -43,7 +43,6 @@ describe('Gitt at Duolist skal vises', (): void => {
         </Duolist>
       );
 
-      // eslint-disable-next-line testing-library/no-node-access
       const duoList = screen.getByTestId('test01').children[0];
 
       expect(duoList).toHaveClass('duolist--line');
@@ -151,7 +150,6 @@ describe('Gitt at Duolist skal vises', (): void => {
         </Duolist>
       );
 
-      // eslint-disable-next-line testing-library/no-node-access
       const duoList = screen.getByTestId('test01').children[0];
       const dt = screen.getByText('test term 1');
       const dd = screen.getByText('test description 1');
