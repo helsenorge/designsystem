@@ -19,9 +19,9 @@ export interface Unsafe_DateAndTimeProps {
   /** Errortext for validation errors */
   errorText?: string;
   /** Props sent to the DatePicker */
-  datepickerProps?: Unsafe_DatePickerProps;
+  datepickerProps?: Omit<Unsafe_DatePickerProps, 'value' | 'onChange'>;
   /** Props sent to TimeInput */
-  timeInputProps?: Unsafe_TimeInputProps;
+  timeInputProps?: Omit<Unsafe_TimeInputProps, 'value' | 'onChange'>;
 }
 
 const toTimeString = (date: Date | undefined): string | undefined => {
@@ -93,8 +93,20 @@ const Unsafe_DateAndTime = ({
   // Only initialize with time if the value has a non-zero time
   const [internalTime, setInternalTime] = useState<string | undefined>(hasMeaningfulTime(value) ? toTimeString(value) : undefined);
 
-  // Track the last value we sent via onChange to detect external changes
-  const lastSentValueTime = useRef<number | undefined>(undefined);
+  // Track the last value we emitted so we can distinguish our own updates from external ones
+  const lastSentValueTime = useRef<number | undefined>(value?.getTime());
+
+  // Sync internal time when external value changes (works for both controlled and uncontrolled use).
+  // Skip sync when the change originated from our own onChange — otherwise partial typed input gets reformatted mid-edit.
+  const [prevValueTime, setPrevValueTime] = useState<number | undefined>(value?.getTime());
+  const currentValueTime = value?.getTime();
+  if (currentValueTime !== prevValueTime) {
+    setPrevValueTime(currentValueTime);
+    if (currentValueTime !== lastSentValueTime.current) {
+      setInternalTime(hasMeaningfulTime(value) ? toTimeString(value) : undefined);
+      lastSentValueTime.current = currentValueTime;
+    }
+  }
 
   const handleDateChange = (newDate: Date | undefined): void => {
     const merged = mergeDateAndTime(newDate, internalTime);
