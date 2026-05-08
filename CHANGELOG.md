@@ -1,3 +1,14 @@
+## [14.7.3](https://github.com/helsenorge/designsystem/compare/v14.7.2...v14.7.3) (2026-05-08)
+
+### Bug Fixes
+
+- **datepicker:** fokus og hover styling justering
+  ([0b3440c](https://github.com/helsenorge/designsystem/commit/0b3440cee67ae39fa123c55406d86bb453038247)), closes
+  [#377339](https://github.com/helsenorge/designsystem/issues/377339)
+- **datepicker:** racecondition mellom intern og ekstern value
+  ([43428c6](https://github.com/helsenorge/designsystem/commit/43428c642beb09170b178df25133fb7729ff8a18)), closes
+  [#377492](https://github.com/helsenorge/designsystem/issues/377492)
+
 ## [14.7.2](https://github.com/helsenorge/designsystem/compare/v14.7.1...v14.7.2) (2026-05-06)
 
 ### Features
