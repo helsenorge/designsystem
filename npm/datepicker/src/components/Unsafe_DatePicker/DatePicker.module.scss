@@ -62,6 +62,8 @@
   }
 
   &:has(:focus-visible):not(.date-picker--clear-button-focused) {
+    z-index: 1;
+    position: relative;
     border-color: black;
     box-shadow: 0 0 0 2px black;
   }
@@ -211,6 +213,7 @@
   display: inline-flex;
   position: relative;
   right: 4px;
+  cursor: pointer;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     --button-size: 3rem;
@@ -265,7 +268,7 @@
       content: '';
       position: absolute;
       border-radius: 100%;
-      outline: 2px solid var(--color-action-border-onlight-focus);
+      outline: 4px solid var(--color-action-border-onlight-focus);
       width: 2rem;
       height: 2rem;
       z-index: 1;

@@ -26,6 +26,7 @@ import FilterOverviewSearch from './FilterOverviewSearch/FilterOverviewSearch';
 import FilterResultCountAndSortWrapper from './FilterResultCountAndSortWrapper/FilterResultCountAndSortWrapper';
 import FilterSearch from './FilterSearch/FilterSearch';
 import FilterSort from './FilterSort/FilterSort';
+import FilterStateWrapper from './FilterStateWrapper/FilterStateWrapper';
 import getFilterChips from './getFilterChips/getFilterChips';
 import { getResources } from './resourcesMock';
 import { useFilter } from './useFilter';
@@ -48,6 +49,20 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
+const LanguagePickerExample: React.FC<{ onChange: (language: LanguageLocales) => void }> = ({ onChange }) => (
+  <>
+    <Dropdown svgIcon={Globe} triggerText="Velg språk">
+      <Dropdown.SingleSelectItem text={'English'} asChild>
+        <button onClick={() => onChange(LanguageLocales.ENGLISH)} />
+      </Dropdown.SingleSelectItem>
+      <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
+        <button onClick={() => onChange(LanguageLocales.NORWEGIAN)} />
+      </Dropdown.SingleSelectItem>
+    </Dropdown>
+    <Spacer size="2xl" />
+  </>
+);
 
 export const VerktoyExample: Story = {
   render: () => {
@@ -228,17 +243,9 @@ export const VerktoyExample: Story = {
 
     return (
       <LanguageProvider<LanguageLocales> language={language}>
-        <Dropdown svgIcon={Globe} triggerText="Velg språk">
-          <Dropdown.SingleSelectItem text={'English'} asChild>
-            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
-          </Dropdown.SingleSelectItem>
-          <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
-            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
-          </Dropdown.SingleSelectItem>
-        </Dropdown>
-        <Spacer />
+        <LanguagePickerExample onChange={setLanguage} />
 
-        <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+        <FilterStateWrapper>
           <FilterButtonAndChipsWrapper
             filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
             filterChips={getFilterChips({
@@ -259,7 +266,7 @@ export const VerktoyExample: Story = {
               </FilterSort>
             }
           />
-        </div>
+        </FilterStateWrapper>
 
         <FilterDrawer
           drawer={drawer}
@@ -431,7 +438,7 @@ export const LoggOverBrukExample: Story = {
 
     return (
       <>
-        <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+        <FilterStateWrapper>
           <FilterButtonAndChipsWrapper
             filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
             filterChips={getFilterChips({
@@ -442,7 +449,7 @@ export const LoggOverBrukExample: Story = {
             })}
           />
           <FilterResultCountAndSortWrapper resultCount={`${filtered.length} logginnslag`} />
-        </div>
+        </FilterStateWrapper>
 
         <FilterDrawer drawer={drawer} onReset={() => filter.resetFiltersToEmpty()} resultCount={filtered.length}>
           <FilterDrawer.Overview title={'Finn ...'}>
@@ -615,15 +622,7 @@ export const WithLanguageProvider: Story = {
 
     return (
       <LanguageProvider<LanguageLocales> language={language}>
-        <Dropdown svgIcon={Globe} triggerText="Velg språk">
-          <Dropdown.SingleSelectItem text={'English'} asChild>
-            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
-          </Dropdown.SingleSelectItem>
-          <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
-            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
-          </Dropdown.SingleSelectItem>
-        </Dropdown>
-        <Spacer />
+        <LanguagePickerExample onChange={setLanguage} />
 
         <FilterButton onClick={() => drawer.open()} />
         <FilterSort>
@@ -675,7 +674,7 @@ export const FilterSearchInFilterResults: Story = {
     const filtered = filterItems(searchInFilterResultsMockData, filter.filters, filterMatchers);
 
     return (
-      <div style={{ display: 'flex', flexFlow: 'column', gap: '12px' }}>
+      <FilterStateWrapper>
         <FilterButton onClick={() => drawer.open()} />
         <FilterSearch
           ref={inputRef}
@@ -700,7 +699,7 @@ export const FilterSearchInFilterResults: Story = {
             <div>{'Filter content'}</div>
           </FilterDrawer.Overview>
         </FilterDrawer>
-      </div>
+      </FilterStateWrapper>
     );
   },
 };
