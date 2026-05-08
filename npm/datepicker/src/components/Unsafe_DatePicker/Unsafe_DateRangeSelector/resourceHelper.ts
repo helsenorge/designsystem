@@ -1,4 +1,5 @@
-import type { HNDesignsystemUnsafe_DateRangeSelector } from '@helsenorge/datepicker/resources/Resources';
+import type { HNDesignsystemUnsafe_DateRangeSelector } from '../../../resources/Resources';
+
 import { LanguageLocales } from '@helsenorge/designsystem-react';
 
 import enGB from '../../../resources/HN.Designsystem.Unsafe_DateRangeSelector.en-GB.json';

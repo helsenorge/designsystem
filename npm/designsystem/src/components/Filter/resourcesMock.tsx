@@ -1,4 +1,4 @@
-import { LanguageLocales } from '@helsenorge/designsystem-react/constants';
+import { LanguageLocales } from '../../constants';
 
 export const getResources = (language: LanguageLocales) => {
   switch (language) {

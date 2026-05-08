@@ -2,12 +2,12 @@ import { useEffect, useRef } from 'react';
 
 import type { Unsafe_DatePickerProps } from '../Unsafe_DatePicker';
 import type { DateRange, DateRangePreset, ReadableRangeOption } from './constants';
+import type { HNDesignsystemUnsafe_DateRangeSelector } from '../../../resources/Resources';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import type { RadioButtonProps } from '@helsenorge/designsystem-react/components/RadioButton';
 import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
 
-import type { HNDesignsystemUnsafe_DateRangeSelector } from '@helsenorge/datepicker/resources/Resources';
 import { formatResource, LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
 
 import Unsafe_DatePicker from '../Unsafe_DatePicker';
