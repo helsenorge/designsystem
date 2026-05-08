@@ -13,23 +13,23 @@
   "dependencies": {
     "@helsenorge/designsystem-react": "*",
     "@helsenorge/datepicker": "*",
-    "@tanstack/react-form": "^1.27.4",
+    "@tanstack/react-form": "^1.29.1",
     "classnames": "^2.5.1",
-    "date-fns": "^4.0.0",
+    "date-fns": "^4.1.0",
     "normalize.css": "^8.0.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "react-hook-form": "^7.53.0",
-    "react-router": "^7.9.5"
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-hook-form": "^7.75.0",
+    "react-router": "^7.15.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@types/react": "^19.2.3",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitest/coverage-v8": "^4.0.18",
-    "jsdom": "^27.4.0",
+    "jsdom": "^29.1.1",
     "vitest": "^4.0.18"
   }
 }
