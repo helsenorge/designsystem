@@ -59,7 +59,7 @@ export const WithDefaultValue: Story = {
 
 export const BesideDate: Story = {
   render: args => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
+    const [date, setDate] = useState<Date | null | undefined>(new Date());
     const [time, setTime] = useState<string | undefined>('12:31');
     return (
       <div style={{ display: 'flex', alignItems: 'start', gap: '0.2rem' }}>

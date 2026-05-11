@@ -150,7 +150,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
                   onChange('custom');
                 }
                 if (onRangeChange) {
-                  onRangeChange(date, selectedRange.to);
+                  onRangeChange(date ?? undefined, selectedRange.to);
                 }
               }
             }}
@@ -177,7 +177,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
                   onChange('custom');
                 }
                 if (onRangeChange) {
-                  onRangeChange(selectedRange.from, date);
+                  onRangeChange(selectedRange.from, date ?? undefined);
                 }
               }
             }}

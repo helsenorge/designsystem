@@ -70,7 +70,7 @@ describe('Gitt at Unsafe_DatePicker skal vises', () => {
       const handleChange = vi.fn();
       const user = userEvent.setup();
       const Wrapper = (): React.ReactNode => {
-        const [value, setValue] = useState<Date | undefined>(new Date('2026-01-15'));
+        const [value, setValue] = useState<Date | null | undefined>(new Date('2026-01-15'));
         return (
           <Unsafe_DatePicker
             value={value}
@@ -85,7 +85,7 @@ describe('Gitt at Unsafe_DatePicker skal vises', () => {
 
       await user.click(screen.getByLabelText(CLEAR_LABEL));
 
-      expect(handleChange).toHaveBeenLastCalledWith(undefined);
+      expect(handleChange).toHaveBeenLastCalledWith(null);
       expectInputs('', '', '');
     });
   });

@@ -80,8 +80,8 @@ export const DateWithRHForm: Story = {
             <Unsafe_DatePicker
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
-              value={field.value ?? undefined}
-              onChange={val => field.onChange(val ?? null)}
+              value={field.value}
+              onChange={field.onChange}
               showGoToTodayButton
             />
           )}
@@ -118,8 +118,8 @@ export const DateWithRHFormSetValue: Story = {
             <Unsafe_DatePicker
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
-              value={field.value ?? undefined}
-              onChange={val => field.onChange(val ?? null)}
+              value={field.value}
+              onChange={field.onChange}
             />
           )}
         />
@@ -165,8 +165,8 @@ export const DateAndTimeWithRHFormSetValue: Story = {
             <Unsafe_DateAndTime
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
-              value={field.value ?? undefined}
-              onChange={val => field.onChange(val ?? null)}
+              value={field.value}
+              onChange={field.onChange}
               legend="Avtaletidspunkt"
             />
           )}
@@ -274,8 +274,8 @@ export const DateAndTimeWithRHForm: Story = {
             <Unsafe_DateAndTime
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
-              value={field.value ?? undefined}
-              onChange={val => field.onChange(val ?? null)}
+              value={field.value}
+              onChange={field.onChange}
               legend="Avtaletidspunkt"
             />
           )}
@@ -615,8 +615,8 @@ export const MultipleFields: Story = {
               <Unsafe_DatePicker
                 {...args}
                 errorText={errors?.birthday?.message as string}
-                value={field.value ?? undefined}
-                onChange={val => field.onChange(val)}
+                value={field.value}
+                onChange={field.onChange}
                 onBlur={field.onBlur}
               />
             )}

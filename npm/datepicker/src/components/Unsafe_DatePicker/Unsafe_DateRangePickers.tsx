@@ -21,28 +21,30 @@ export interface DateRangePickersProps {
 const Unsafe_DateRangePickers: React.FC<DateRangePickersProps> = props => {
   const { from, to, onRangeChange } = props;
 
-  const [fromDate, setFromDate] = useState<Date | undefined>(from.props.value);
-  const [toDate, setToDate] = useState<Date | undefined>(to.props.value);
+  const [fromDate, setFromDate] = useState<Date | undefined>(from.props.value ?? undefined);
+  const [toDate, setToDate] = useState<Date | undefined>(to.props.value ?? undefined);
 
-  const handleFromChange = (date: Date | undefined): void => {
-    setFromDate(date);
-    const valid = isValidRange(date, toDate);
+  const handleFromChange = (date: Date | null): void => {
+    const normalized = date ?? undefined;
+    setFromDate(normalized);
+    const valid = isValidRange(normalized, toDate);
     if (from.props.onChange) {
       from.props.onChange(date);
     }
     if (onRangeChange) {
-      onRangeChange(date, toDate, valid);
+      onRangeChange(normalized, toDate, valid);
     }
   };
 
-  const handleToChange = (date: Date | undefined): void => {
-    setToDate(date);
-    const valid = isValidRange(fromDate, date); // @todo: gjøre noe mer her?
+  const handleToChange = (date: Date | null): void => {
+    const normalized = date ?? undefined;
+    setToDate(normalized);
+    const valid = isValidRange(fromDate, normalized); // @todo: gjøre noe mer her?
     if (to.props.onChange) {
       to.props.onChange(date);
     }
     if (onRangeChange) {
-      onRangeChange(fromDate, date, valid);
+      onRangeChange(fromDate, normalized, valid);
     }
   };
 

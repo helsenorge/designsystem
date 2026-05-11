@@ -10,10 +10,10 @@ import Unsafe_DatePicker, { type Unsafe_DatePickerProps } from './Unsafe_DatePic
 import styles from './Unsafe_DateAndTime.module.scss';
 
 export interface Unsafe_DateAndTimeProps {
-  /** Currently given date */
-  value?: Date;
-  /** Callback for change on the given date */
-  onChange?: (value: Date | undefined) => void;
+  /** Currently given date. `null` and `undefined` are both treated as "no value". */
+  value?: Date | null;
+  /** Callback for change on the given date. Emits `null` when the field is cleared. */
+  onChange?: (value: Date | null) => void;
   /** Legend for labelling both fields */
   legend?: React.ReactNode;
   /** Errortext for validation errors */
@@ -71,13 +71,15 @@ const mergeDateAndTime = (date: Date | undefined, time: string | undefined): Dat
 };
 
 const Unsafe_DateAndTime = ({
-  value,
+  value: valueProp,
   onChange,
   legend,
   errorText,
   datepickerProps,
   timeInputProps,
 }: Unsafe_DateAndTimeProps): React.ReactNode => {
+  // Normalize null and undefined to a single internal representation.
+  const value = valueProp ?? undefined;
   // Date is fully controlled from value prop
   const internalDate = value;
 
@@ -108,10 +110,10 @@ const Unsafe_DateAndTime = ({
     }
   }
 
-  const handleDateChange = (newDate: Date | undefined): void => {
-    const merged = mergeDateAndTime(newDate, internalTime);
+  const handleDateChange = (newDate: Date | null): void => {
+    const merged = mergeDateAndTime(newDate ?? undefined, internalTime);
     lastSentValueTime.current = merged?.getTime();
-    onChange?.(merged);
+    onChange?.(merged ?? null);
   };
 
   const handleTimeChange = (newTime: string | undefined): void => {
@@ -121,7 +123,7 @@ const Unsafe_DateAndTime = ({
     // Merge the new time with the existing date from value prop
     const merged = mergeDateAndTime(value, newTime);
     lastSentValueTime.current = merged?.getTime();
-    onChange?.(merged);
+    onChange?.(merged ?? null);
   };
 
   return (

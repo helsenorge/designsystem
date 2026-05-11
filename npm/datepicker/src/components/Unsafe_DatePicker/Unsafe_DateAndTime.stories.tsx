@@ -48,7 +48,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     return (
       <>
         <Unsafe_DateAndTime {...args} value={value} onChange={value => setValue(value)} />
@@ -62,7 +62,7 @@ export const Default: Story = {
 export const WithDefaultValue: Story = {
   render: args => {
     const defaultValue = new Date('2025-12-03T14:45:00');
-    const [value, setValue] = useState<Date | undefined>(defaultValue);
+    const [value, setValue] = useState<Date | null | undefined>(defaultValue);
     return (
       <>
         <Unsafe_DateAndTime {...args} value={value} onChange={value => setValue(value)} />

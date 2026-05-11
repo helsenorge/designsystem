@@ -51,14 +51,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     return <Unsafe_DatePicker {...args} value={value} onChange={setValue} />;
   },
 };
 
 export const WithDefaultValue: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>(new Date('2025-12-03'));
+    const [value, setValue] = useState<Date | null | undefined>(new Date('2025-12-03'));
     return (
       <>
         <Unsafe_DatePicker {...args} value={value} onChange={value => setValue(value)} />
@@ -79,7 +79,7 @@ export const WithFooter: Story = {
     ),
   },
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     return (
       <>
         <Unsafe_DatePicker {...args} value={value} onChange={setValue} />
@@ -92,7 +92,7 @@ export const WithFooter: Story = {
 
 export const ModifiersExample: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
@@ -191,7 +191,7 @@ export const MultipleFields: Story = {
 
 export const VoiceOver: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     return (
       <div>
         <Title>{'Med aria-describedby'}</Title>
@@ -290,14 +290,14 @@ export const LocaleExample: Story = {
     localeForCalendar: nb,
   },
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     return <Unsafe_DatePicker {...args} value={value} onChange={setValue} />;
   },
 };
 
 export const WithChangingValue: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>(new Date('2025-12-03'));
+    const [value, setValue] = useState<Date | null | undefined>(new Date('2025-12-03'));
     return (
       <>
         <Unsafe_DatePicker {...args} value={value} onChange={value => setValue(value)} />

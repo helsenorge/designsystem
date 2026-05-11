@@ -63,7 +63,7 @@ describe('Gitt at Unsafe_DateAndTime skal vises', () => {
       const handleChange = vi.fn();
       const user = userEvent.setup();
       const Wrapper = (): React.ReactNode => {
-        const [value, setValue] = useState<Date | undefined>(new Date('2026-01-15T10:30'));
+        const [value, setValue] = useState<Date | null | undefined>(new Date('2026-01-15T10:30'));
         return (
           <Unsafe_DateAndTime
             value={value}
@@ -90,7 +90,7 @@ describe('Gitt at Unsafe_DateAndTime skal vises', () => {
     it('Så skal delvis innskrevet tid bevares selv om forelder ekkoer tilbake en sammenslått Date', async () => {
       const user = userEvent.setup();
       const Wrapper = (): React.ReactNode => {
-        const [value, setValue] = useState<Date | undefined>(new Date('2026-01-15T10:00'));
+        const [value, setValue] = useState<Date | null | undefined>(new Date('2026-01-15T10:00'));
         return <Unsafe_DateAndTime value={value} onChange={setValue} />;
       };
       render(<Wrapper />);
