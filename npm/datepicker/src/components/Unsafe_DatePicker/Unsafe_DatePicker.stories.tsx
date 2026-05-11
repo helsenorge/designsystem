@@ -7,6 +7,7 @@ import type { Matcher, Modifiers } from './index';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
+import FormGroup from '@helsenorge/designsystem-react/components/FormGroup/FormGroup';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import Title from '@helsenorge/designsystem-react/components/Title';
@@ -306,6 +307,30 @@ export const WithChangingValue: Story = {
         <br />
         <Button onClick={() => setValue(new Date())}>{'Sett til dagens dato'}</Button>
       </>
+    );
+  },
+};
+
+export const WithExternalFormGroup: Story = {
+  render: args => {
+    const [value, setValue] = useState<Date | null | undefined>();
+    return (
+      <FormGroup legend="Reisen startet" legendId="formgroup-legend-id">
+        <Unsafe_DatePicker
+          {...args}
+          label={
+            <Label
+              labelId="label-id"
+              labelTexts={[{ text: 'Dato' }]}
+              sublabel={<Sublabel id="sublabel-id" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
+            />
+          }
+          aria-labelledby={'formgroup-legend-id label-id'}
+          aria-describedby="sublabel-id"
+          value={value}
+          onChange={setValue}
+        />
+      </FormGroup>
     );
   },
 };

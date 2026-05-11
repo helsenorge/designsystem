@@ -37,6 +37,8 @@ export interface FormGroupProps {
   title?: string;
   /** text placed in the legend tag of the fieldset */
   legend?: string;
+  /** id for the legend tag */
+  legendId?: string;
   /** Items in the FormGroup component */
   children?: React.ReactNode;
   /** Adds custom classes to the element. */
@@ -85,6 +87,7 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
     fieldsetClassName,
     formFieldTag,
     legendClassName,
+    legendId,
     onColor = FormOnColor.onwhite,
     size = FormSize.medium,
     error,
@@ -195,7 +198,7 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
           <div className={fieldsetClasses}>
             {props.legend && (
               <>
-                <CustomTagForLegend className={legendClasses}>
+                <CustomTagForLegend id={legendId} className={legendClasses}>
                   {props.legend}
                   {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
                 </CustomTagForLegend>
@@ -208,7 +211,7 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
           <fieldset aria-labelledby={ariaLabelledBy} name={props.fieldsetName} className={fieldsetClasses}>
             {props.legend && (
               <>
-                <legend className={legendClasses}>
+                <legend id={legendId} className={legendClasses}>
                   {props.legend}
                   {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
                 </legend>
