@@ -30,7 +30,7 @@ export interface Unsafe_DateRangeSelectorProps {
   /** Callback when a preset is selected */
   onPresetSelected?: (preset: DateRangePreset) => void;
   /** Callback when the date range changes */
-  onRangeChange?: (from: Date | undefined, to: Date | undefined, isValid?: boolean) => void;
+  onRangeChange?: (from: Date | undefined | null, to: Date | undefined | null, isValid?: boolean) => void;
   /** Extra props for the custom value radiobutton option */
   customRadioButtonProps?: Partial<RadioButtonProps>;
   /** Extra props for the 'from' date picker */

@@ -15,7 +15,7 @@ export interface DateRangePickersProps {
   /** The 'to' date. Must be DateInput */
   to: React.ReactElement<Unsafe_DatePickerProps>;
   /** Callback when the date range changes with validation result */
-  onRangeChange?: (from: Date | undefined, to: Date | undefined, isValid: boolean) => void;
+  onRangeChange?: (from: Date | undefined | null, to: Date | undefined | null, isValid: boolean) => void;
 }
 
 const Unsafe_DateRangePickers: React.FC<DateRangePickersProps> = props => {
