@@ -1,4 +1,11 @@
 
+## [14.9.0](https://github.com/helsenorge/designsystem/compare/v14.8.0...v14.9.0) (2026-05-11)
+
+### Features
+
+* **daterangepicker:**  from og to value kan være undefined og null ([b1e2b07](https://github.com/helsenorge/designsystem/commit/b1e2b07037b932b1ceb35a5f2998fb0d8a224f3a)), closes [#377492](https://github.com/helsenorge/designsystem/issues/377492)
+* **formgroup:**  ny prop legendid ([5d73bdc](https://github.com/helsenorge/designsystem/commit/5d73bdcd1940f268b7aef79e602f8bf1d30044cf)), closes [#377978](https://github.com/helsenorge/designsystem/issues/377978)
+
 ## [14.8.0](https://github.com/helsenorge/designsystem/compare/v14.7.3...v14.8.0) (2026-05-11)
 
 ### Features
