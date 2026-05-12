@@ -152,6 +152,8 @@ const Unsafe_DatePicker = ({
       if (isPopupOpen) {
         toggleIsPopupOpen();
       }
+
+      onBlur?.(date);
       setFocusToCalendarButton();
     }
   };
@@ -160,6 +162,7 @@ const Unsafe_DatePicker = ({
     if (isPopupOpen) {
       toggleIsPopupOpen();
       setFocusToCalendarButton();
+      onBlur?.(dateDate ?? null);
     }
   };
   useKeyboardEvent(dayPickerPopupRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
@@ -177,6 +180,7 @@ const Unsafe_DatePicker = ({
       ) {
         if (isPopupOpen) {
           toggleIsPopupOpen();
+          onBlur?.(dateDate ?? null);
         }
       }
     },

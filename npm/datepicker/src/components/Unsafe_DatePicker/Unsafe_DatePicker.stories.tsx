@@ -28,6 +28,7 @@ const meta = {
         sublabel={<Sublabel id="sublabel-format" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
       />
     ),
+    onBlur: action('Datepicker blurred '),
   },
   argTypes: {
     isLoading: { control: 'boolean' },

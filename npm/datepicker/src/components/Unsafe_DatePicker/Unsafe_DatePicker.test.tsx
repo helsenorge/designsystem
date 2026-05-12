@@ -13,6 +13,7 @@ const DD_LABEL = 'Dag';
 const MM_LABEL = 'Måned';
 const YYYY_LABEL = 'År';
 const CLEAR_LABEL = 'Nullstill dato';
+const CALENDAR_BUTTON_LABEL = 'Åpne datovelger';
 
 const getInputs = (): { dd: HTMLInputElement; mm: HTMLInputElement; yyyy: HTMLInputElement } => ({
   dd: screen.getByLabelText(DD_LABEL) as HTMLInputElement,
@@ -164,6 +165,87 @@ describe('Gitt at Unsafe_DatePicker skal vises', () => {
       await user.click(screen.getByLabelText(CLEAR_LABEL));
 
       expectInputs('', '', '');
+    });
+  });
+
+  describe('Når onBlur er satt', () => {
+    it('Så skal onBlur kalles med en parsed Date når brukeren forlater feltet etter å ha skrevet en komplett dato', async () => {
+      const handleBlur = vi.fn();
+      const user = userEvent.setup();
+      render(
+        <>
+          <Unsafe_DatePicker value={undefined} onChange={vi.fn()} onBlur={handleBlur} />
+          <button type="button">{'Annet element'}</button>
+        </>
+      );
+
+      await user.type(screen.getByLabelText(DD_LABEL), '15');
+      await user.type(screen.getByLabelText(MM_LABEL), '01');
+      await user.type(screen.getByLabelText(YYYY_LABEL), '2026');
+      await user.click(screen.getByRole('button', { name: 'Annet element' }));
+
+      const lastCall = handleBlur.mock.calls.at(-1)?.[0] as Date | null | undefined;
+      expect(lastCall).toBeInstanceOf(Date);
+      expect((lastCall as Date).getFullYear()).toBe(2026);
+      expect((lastCall as Date).getMonth()).toBe(0);
+      expect((lastCall as Date).getDate()).toBe(15);
+    });
+
+    it('Så skal onBlur kalles med null når brukeren forlater et tomt felt', async () => {
+      const handleBlur = vi.fn();
+      const user = userEvent.setup();
+      render(
+        <>
+          <Unsafe_DatePicker value={undefined} onChange={vi.fn()} onBlur={handleBlur} />
+          <button type="button">{'Annet element'}</button>
+        </>
+      );
+
+      await user.click(screen.getByLabelText(DD_LABEL));
+      await user.click(screen.getByRole('button', { name: 'Annet element' }));
+
+      expect(handleBlur).toHaveBeenLastCalledWith(null);
+    });
+
+    it('Så skal onBlur ikke kalles når brukeren tabber mellom dd, mm og yyyy-segmentene', async () => {
+      const handleBlur = vi.fn();
+      const user = userEvent.setup();
+      render(<Unsafe_DatePicker value={undefined} onChange={vi.fn()} onBlur={handleBlur} />);
+
+      await user.click(screen.getByLabelText(DD_LABEL));
+      await user.tab();
+      await user.tab();
+
+      expect(handleBlur).not.toHaveBeenCalled();
+    });
+
+    it('Så skal onBlur kalles med valgt dato når brukeren velger en dag i popup', async () => {
+      const handleBlur = vi.fn();
+      const user = userEvent.setup();
+      render(<Unsafe_DatePicker value={new Date('2026-01-15')} onChange={vi.fn()} onBlur={handleBlur} />);
+
+      await user.click(screen.getByLabelText(CALENDAR_BUTTON_LABEL));
+      await user.click(screen.getByRole('button', { name: /20\.\s*januar/i }));
+
+      const lastCall = handleBlur.mock.calls.at(-1)?.[0] as Date | null | undefined;
+      expect(lastCall).toBeInstanceOf(Date);
+      expect((lastCall as Date).getFullYear()).toBe(2026);
+      expect((lastCall as Date).getMonth()).toBe(0);
+      expect((lastCall as Date).getDate()).toBe(20);
+    });
+
+    it('Så skal onBlur kalles når popup lukkes med Escape', async () => {
+      const handleBlur = vi.fn();
+      const user = userEvent.setup();
+      render(<Unsafe_DatePicker value={new Date('2026-01-15')} onChange={vi.fn()} onBlur={handleBlur} />);
+
+      await user.click(screen.getByLabelText(CALENDAR_BUTTON_LABEL));
+      await user.keyboard('{Escape}');
+
+      expect(handleBlur).toHaveBeenCalled();
+      const lastCall = handleBlur.mock.calls.at(-1)?.[0] as Date | null | undefined;
+      expect(lastCall).toBeInstanceOf(Date);
+      expect((lastCall as Date).getDate()).toBe(15);
     });
   });
 });
