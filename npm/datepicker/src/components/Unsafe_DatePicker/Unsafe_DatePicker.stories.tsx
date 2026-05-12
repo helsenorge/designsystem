@@ -7,6 +7,7 @@ import type { Matcher, Modifiers } from './index';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
+import FormFieldTag from '@helsenorge/designsystem-react/components/FormFieldTag';
 import FormGroup from '@helsenorge/designsystem-react/components/FormGroup/FormGroup';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
@@ -311,7 +312,7 @@ export const WithChangingValue: Story = {
   },
 };
 
-export const WithExternalFormGroup: Story = {
+export const WithFormGroup: Story = {
   render: args => {
     const [value, setValue] = useState<Date | null | undefined>();
     return (
@@ -320,13 +321,13 @@ export const WithExternalFormGroup: Story = {
           {...args}
           label={
             <Label
+              formFieldTag={<FormFieldTag id="formfield-id" level="required-field" />}
               labelId="label-id"
               labelTexts={[{ text: 'Dato' }]}
               sublabel={<Sublabel id="sublabel-id" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
             />
           }
-          aria-labelledby={'formgroup-legend-id label-id'}
-          aria-describedby="sublabel-id"
+          aria-labelledby={'formgroup-legend-id label-id formfield-id sublabel-id'}
           value={value}
           onChange={setValue}
         />

@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
+import FormFieldTag from '@helsenorge/designsystem-react/components/FormFieldTag';
+import FormGroup from '@helsenorge/designsystem-react/components/FormGroup/FormGroup';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 
 import Unsafe_DateAndTime from './Unsafe_DateAndTime';
@@ -59,18 +61,39 @@ export const Default: Story = {
   },
 };
 
-export const WithDefaultValue: Story = {
+export const WithFormGroup: Story = {
   render: args => {
-    const defaultValue = new Date('2025-12-03T14:45:00');
-    const [value, setValue] = useState<Date | null | undefined>(defaultValue);
+    const [value, setValue] = useState<Date | null | undefined>();
     return (
-      <>
-        <Unsafe_DateAndTime {...args} value={value} onChange={value => setValue(value)} />
-        <br />
-        <span>{'Current value: ' + value}</span>
-        <br />
-        <span>{'default was: ' + defaultValue}</span>
-      </>
+      <FormGroup legend="Reisen startet" legendId="formgroup-legend-id">
+        <Unsafe_DateAndTime
+          {...args}
+          value={value}
+          onChange={value => setValue(value)}
+          datepickerProps={{
+            label: (
+              <Label
+                formFieldTag={<FormFieldTag id="formfield-date-id" level="required-field" />}
+                labelId="label-date-id"
+                labelTexts={[{ text: 'Dato' }]}
+                sublabel={<Sublabel id="sublabel-date-id" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
+              />
+            ),
+            'aria-labelledby': 'formgroup-legend-id label-date-id formfield-date-id sublabel-date-id',
+          }}
+          timeInputProps={{
+            label: (
+              <Label
+                formFieldTag={<FormFieldTag id="formfield-time-id" level="required-field" />}
+                labelId="label-time-id"
+                labelTexts={[{ text: 'Klokkeslett' }]}
+                sublabel={<Sublabel id="sublabel-time-id" sublabelTexts={[{ text: 'tt:mm', type: 'subdued' }]} />}
+              />
+            ),
+            'aria-labelledby': 'formgroup-legend-id label-time-id formfield-time-id sublabel-time-id',
+          }}
+        />
+      </FormGroup>
     );
   },
 };
