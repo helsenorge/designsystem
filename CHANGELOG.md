@@ -1,4 +1,10 @@
 
+## [14.9.1](https://github.com/helsenorge/designsystem/compare/v14.9.0...v14.9.1) (2026-05-12)
+
+### Bug Fixes
+
+* **datepicker:**  onblur skal trigges når popup lukkes ([dfc3193](https://github.com/helsenorge/designsystem/commit/dfc31937fae8d1dfa63c221792e340355db59101)), closes [#377127](https://github.com/helsenorge/designsystem/issues/377127)
+
 ## [14.9.0](https://github.com/helsenorge/designsystem/compare/v14.8.0...v14.9.0) (2026-05-11)
 
 ### Features
