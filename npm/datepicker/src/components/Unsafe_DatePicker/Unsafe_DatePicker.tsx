@@ -222,7 +222,7 @@ const Unsafe_DatePicker = ({
     <ErrorWrapper errorText={errorText}>
       <fieldset className={styles['date-field']} aria-labelledby={legendId}>
         {legend}
-        <div ref={containerRef}>
+        <div className={styles['date-field__input-button-container']} ref={containerRef}>
           <DateInputInternal
             inputId={id}
             aria-describedby={ariaDescribedBy}

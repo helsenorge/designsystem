@@ -131,8 +131,12 @@ const Unsafe_DateAndTime = ({
       <fieldset className={styles['date-and-time--fieldset']}>
         {legend}
         <div className={styles['date-and-time__fields']}>
-          <Unsafe_DatePicker {...datepickerProps} value={internalDate} onChange={handleDateChange} />
-          <Unsafe_TimeInput {...timeInputProps} value={internalTime} onChange={handleTimeChange} />
+          <div className={styles['date-and-time__date-field']}>
+            <Unsafe_DatePicker {...datepickerProps} value={internalDate} onChange={handleDateChange} />
+          </div>
+          <div className={styles['date-and-time__time-field']}>
+            <Unsafe_TimeInput {...timeInputProps} value={internalTime} onChange={handleTimeChange} />
+          </div>
         </div>
       </fieldset>
     </ErrorWrapper>

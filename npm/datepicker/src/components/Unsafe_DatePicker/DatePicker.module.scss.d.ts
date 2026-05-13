@@ -3,6 +3,7 @@ export type Styles = {
   'clear-button': string;
   'clear-button__placeholder': string;
   'date-field': string;
+  'date-field__input-button-container': string;
   'date-field__soft-error-text': string;
   'date-picker': string;
   'date-picker__inputs': string;

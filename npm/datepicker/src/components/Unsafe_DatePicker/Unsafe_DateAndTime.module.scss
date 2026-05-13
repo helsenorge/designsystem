@@ -15,4 +15,24 @@
     flex-flow: row wrap;
     gap: 0.75rem;
   }
+
+  // Allows soft-error text to wrap when forced by the neighbour, but grow when space is available.
+  // DatePicker grows when there is space.
+  &__date-field {
+    flex: 1 1 auto;
+    min-width: min-content;
+  }
+
+  // TimeInput grows dominantly to claim leftover row space.
+  &__time-field {
+    flex: 999 1 auto;
+    min-width: min-content;
+  }
+
+  // soft-error texts takes available space but wraps when there is none.
+  &__date-field [role='status'],
+  &__time-field [role='status'] {
+    width: 0;
+    min-width: 100%;
+  }
 }
