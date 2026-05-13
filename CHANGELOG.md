@@ -1,4 +1,11 @@
 
+## [14.9.2](https://github.com/helsenorge/designsystem/compare/v14.9.1...v14.9.2) (2026-05-13)
+
+### Bug Fixes
+
+* **dateandtime:**  softerror skal spre seg uten å påvirke naboer ([27db71b](https://github.com/helsenorge/designsystem/commit/27db71b8e65f4d062da6b87f66147451d78be64f)), closes [#377339](https://github.com/helsenorge/designsystem/issues/377339)
+* **filtersort:**  første child skal være høyrestilt ([a9acf73](https://github.com/helsenorge/designsystem/commit/a9acf73ff4e65c267025535ec1d9f0ef78545b55)), closes [#376682](https://github.com/helsenorge/designsystem/issues/376682)
+
 ## [14.9.1](https://github.com/helsenorge/designsystem/compare/v14.9.0...v14.9.1) (2026-05-12)
 
 ### Bug Fixes
