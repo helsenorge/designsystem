@@ -32,8 +32,8 @@ const Unsafe_ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODat
     return formatISO(date, { representation: 'date' });
   };
 
-  const handleDateChange = (newDate: Date | undefined): void => {
-    onChange?.(dateToIso(newDate));
+  const handleDateChange = (newDate: Date | null): void => {
+    onChange?.(dateToIso(newDate ?? undefined));
   };
 
   return <Unsafe_DatePicker {...baseDateInputProps} value={isoToDate(value)} onChange={handleDateChange} />;

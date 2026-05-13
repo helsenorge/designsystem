@@ -1,3 +1,10 @@
 {
-  "dateSublabel": "bb.mm.jjjj"
+  "startDateLabel": "Álgindáhton",
+  "endDateLabel": "Loahppadáhton",
+  "dateSublabel": "bb.mm.jjjj",
+  "lastMonthLabel": "Maŋemuš mánnu",
+  "lastMonthsLabel": "Maŋemuš {0} mánut",
+  "nextMonthsLabel": "Boahtte {0} mánut",
+  "nextMonthLabel": "Boahtte mánnu",
+  "customPeriodLabel": "Iešmearriduvvon áigodat/dáhton"
 }

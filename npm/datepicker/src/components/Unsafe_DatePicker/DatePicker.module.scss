@@ -77,6 +77,13 @@
 .date-field {
   all: unset;
 
+  // Lets the fieldsets grow when inside DateAndTime - allowing dynamic wrapping of softerror text when there is available space
+  display: block;
+
+  &__input-button-container {
+    display: flex;
+  }
+
   &__soft-error-text {
     color: var(--color-notification-text-error);
 

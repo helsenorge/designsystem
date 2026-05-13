@@ -7,6 +7,8 @@ import type { Matcher, Modifiers } from './index';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
+import FormFieldTag from '@helsenorge/designsystem-react/components/FormFieldTag';
+import FormGroup from '@helsenorge/designsystem-react/components/FormGroup/FormGroup';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import Title from '@helsenorge/designsystem-react/components/Title';
@@ -26,6 +28,7 @@ const meta = {
         sublabel={<Sublabel id="sublabel-format" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
       />
     ),
+    onBlur: action('Datepicker blurred '),
   },
   argTypes: {
     isLoading: { control: 'boolean' },
@@ -51,14 +54,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     return <Unsafe_DatePicker {...args} value={value} onChange={setValue} />;
   },
 };
 
 export const WithDefaultValue: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>(new Date('2025-12-03'));
+    const [value, setValue] = useState<Date | null | undefined>(new Date('2025-12-03'));
     return (
       <>
         <Unsafe_DatePicker {...args} value={value} onChange={value => setValue(value)} />
@@ -79,7 +82,7 @@ export const WithFooter: Story = {
     ),
   },
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     return (
       <>
         <Unsafe_DatePicker {...args} value={value} onChange={setValue} />
@@ -92,7 +95,7 @@ export const WithFooter: Story = {
 
 export const ModifiersExample: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
@@ -191,7 +194,7 @@ export const MultipleFields: Story = {
 
 export const VoiceOver: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     return (
       <div>
         <Title>{'Med aria-describedby'}</Title>
@@ -290,14 +293,14 @@ export const LocaleExample: Story = {
     localeForCalendar: nb,
   },
   render: args => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | null | undefined>();
     return <Unsafe_DatePicker {...args} value={value} onChange={setValue} />;
   },
 };
 
 export const WithChangingValue: Story = {
   render: args => {
-    const [value, setValue] = useState<Date | undefined>(new Date('2025-12-03'));
+    const [value, setValue] = useState<Date | null | undefined>(new Date('2025-12-03'));
     return (
       <>
         <Unsafe_DatePicker {...args} value={value} onChange={value => setValue(value)} />
@@ -306,6 +309,30 @@ export const WithChangingValue: Story = {
         <br />
         <Button onClick={() => setValue(new Date())}>{'Sett til dagens dato'}</Button>
       </>
+    );
+  },
+};
+
+export const WithFormGroup: Story = {
+  render: args => {
+    const [value, setValue] = useState<Date | null | undefined>();
+    return (
+      <FormGroup legend="Reisen startet" legendId="formgroup-legend-id">
+        <Unsafe_DatePicker
+          {...args}
+          label={
+            <Label
+              formFieldTag={<FormFieldTag id="formfield-id" level="required-field" />}
+              labelId="label-id"
+              labelTexts={[{ text: 'Dato' }]}
+              sublabel={<Sublabel id="sublabel-id" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
+            />
+          }
+          aria-labelledby={'formgroup-legend-id label-id formfield-id sublabel-id'}
+          value={value}
+          onChange={setValue}
+        />
+      </FormGroup>
     );
   },
 };

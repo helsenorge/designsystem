@@ -1,8 +1,8 @@
 import type { RadioButtonProps } from '@helsenorge/designsystem-react/components/RadioButton';
 
 export interface DateRange {
-  from: Date;
-  to: Date;
+  from?: Date | null;
+  to?: Date | null;
 }
 
 export type ReadableRangeOption = DateRangePreset & {

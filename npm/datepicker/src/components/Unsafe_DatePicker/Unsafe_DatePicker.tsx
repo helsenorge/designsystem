@@ -40,12 +40,12 @@ import { getResources } from './resourceHelper';
 import styles from './DatePicker.module.scss';
 
 export interface Unsafe_DatePickerProps extends Omit<BaseDayPickerProps, 'selectedDate' | 'onDateChange'> {
-  /** Currently given date with type Date */
-  value?: Date;
-  /** Callback for change on the given date */
-  onChange?: (value: Date | undefined) => void;
-  /** Callback for bluring the input field */
-  onBlur?: (value: Date | undefined) => void;
+  /** Currently given date. `null` and `undefined` are both treated as "no value". */
+  value?: Date | null;
+  /** Callback for change on the given date. Emits `null` when the field is cleared. */
+  onChange?: (value: Date | null) => void;
+  /** Callback for bluring the input field. Emits `null` when blurred while empty. */
+  onBlur?: (value: Date | null) => void;
   /** Label of the input */
   label?: React.ReactNode;
   /** Id of the input field, for connecting labels */
@@ -61,7 +61,7 @@ export interface Unsafe_DatePickerProps extends Omit<BaseDayPickerProps, 'select
 }
 
 const Unsafe_DatePicker = ({
-  value,
+  value: valueProp,
   onChange,
   onBlur,
   label,
@@ -73,6 +73,8 @@ const Unsafe_DatePicker = ({
   resources,
   ...baseDayPickerProps
 }: Unsafe_DatePickerProps): React.ReactNode => {
+  // Normalize null and undefined to a single internal representation.
+  const value = valueProp ?? undefined;
   const dateToString = (date: Date | undefined): string => {
     if (!isValid(date) || !date) {
       return '';
@@ -137,7 +139,7 @@ const Unsafe_DatePicker = ({
       setDateDate(undefined);
       lastSentValueTime.current = undefined;
       if (onChange) {
-        onChange(undefined);
+        onChange(null);
       }
     } else {
       setDateDate(date);
@@ -150,6 +152,8 @@ const Unsafe_DatePicker = ({
       if (isPopupOpen) {
         toggleIsPopupOpen();
       }
+
+      onBlur?.(date);
       setFocusToCalendarButton();
     }
   };
@@ -158,6 +162,7 @@ const Unsafe_DatePicker = ({
     if (isPopupOpen) {
       toggleIsPopupOpen();
       setFocusToCalendarButton();
+      onBlur?.(dateDate ?? null);
     }
   };
   useKeyboardEvent(dayPickerPopupRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
@@ -175,6 +180,7 @@ const Unsafe_DatePicker = ({
       ) {
         if (isPopupOpen) {
           toggleIsPopupOpen();
+          onBlur?.(dateDate ?? null);
         }
       }
     },
@@ -196,12 +202,12 @@ const Unsafe_DatePicker = ({
 
     setDateDate(parsedDate);
     lastSentValueTime.current = parsedDate?.getTime();
-    onChange?.(parsedDate);
+    onChange?.(parsedDate ?? null);
   };
 
   const handleBlur = (date: string): void => {
     const parsedDate = parse(date, 'P', new Date(), { locale: nb });
-    onBlur?.(isValid(parsedDate) ? parsedDate : undefined);
+    onBlur?.(isValid(parsedDate) ? parsedDate : null);
   };
 
   const labelGivenAsPropIsValidLabelComponent = isComponent<LabelProps>(label, Label);
@@ -216,7 +222,7 @@ const Unsafe_DatePicker = ({
     <ErrorWrapper errorText={errorText}>
       <fieldset className={styles['date-field']} aria-labelledby={legendId}>
         {legend}
-        <div ref={containerRef}>
+        <div className={styles['date-field__input-button-container']} ref={containerRef}>
           <DateInputInternal
             inputId={id}
             aria-describedby={ariaDescribedBy}

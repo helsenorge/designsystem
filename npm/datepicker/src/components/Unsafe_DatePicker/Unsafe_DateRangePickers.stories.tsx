@@ -30,8 +30,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => {
-    const [from, setFrom] = useState<Date | undefined>(new Date());
-    const [to, setTo] = useState<Date | undefined>();
+    const [from, setFrom] = useState<Date | null | undefined>(new Date());
+    const [to, setTo] = useState<Date | null | undefined>();
     const [errorText, setErrorText] = useState<string | undefined>();
 
     const fromComponent = (
