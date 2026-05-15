@@ -1,0 +1,13 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/spacers.css';
+
+.visual-checkbox-cloud {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.12rem var(--core-space-xs);
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    gap: var(--core-space-m) var(--core-space-s);
+  }
+}
