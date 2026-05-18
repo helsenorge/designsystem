@@ -1,4 +1,11 @@
 
+## [14.10.0](https://github.com/helsenorge/designsystem/compare/v14.9.2...v14.10.0) (2026-05-18)
+
+### Features
+
+*  ny komponent visualcheckboxcloud ([4e6ea9c](https://github.com/helsenorge/designsystem/commit/4e6ea9c904f65cf4aedf2cc3f474cbff117c080a)), closes [#376757](https://github.com/helsenorge/designsystem/issues/376757)
+*  ny komponent visualradiobuttoncloud ([d14fce7](https://github.com/helsenorge/designsystem/commit/d14fce7e75b9f22397288defc51bfc6158595199)), closes [#376757](https://github.com/helsenorge/designsystem/issues/376757)
+
 ## [14.9.2](https://github.com/helsenorge/designsystem/compare/v14.9.1...v14.9.2) (2026-05-13)
 
 ### Bug Fixes
