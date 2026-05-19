@@ -4,7 +4,6 @@ import classNames from 'classnames';
 
 import type { ErrorWrapperClassNameProps } from '../../ErrorWrapper';
 
-import { AnalyticsId } from '../../../constants';
 import { useIdWithFallback } from '../../../hooks/useIdWithFallback';
 import { useIsMobileBreakpoint } from '../../../hooks/useIsMobileBreakpoint';
 import { getAriaDescribedBy } from '../../../utils/accessibility';
@@ -12,7 +11,7 @@ import ErrorWrapper from '../../ErrorWrapper';
 
 import styles from './styles.module.scss';
 
-export interface RadioButtonProps
+export interface RadioProps
   extends
     ErrorWrapperClassNameProps,
     Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'id' | 'className' | 'children' | 'size' | 'value'> {
@@ -36,7 +35,7 @@ export interface RadioButtonProps
   ref?: React.Ref<HTMLInputElement | null>;
 }
 
-const RadioButton: React.FC<RadioButtonProps> = props => {
+const Radio: React.FC<RadioProps> = props => {
   const {
     className,
     checked,
@@ -74,30 +73,29 @@ const RadioButton: React.FC<RadioButtonProps> = props => {
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <label
         className={classNames(
-          styles['visual-radio-button'],
+          styles['visual-radio'],
           {
-            [styles['visual-radio-button--checked']]: isChecked,
-            [styles['visual-radio-button--invalid']]: error,
+            [styles['visual-radio--checked']]: isChecked,
+            [styles['visual-radio--invalid']]: error,
           },
           className
         )}
         htmlFor={inputId}
         data-testid={testId}
-        data-analyticsid={AnalyticsId.RadioButton}
       >
         <input
           {...rest}
           id={inputId}
           ref={ref}
-          className={styles['visual-radio-button__input']}
+          className={styles['visual-radio__input']}
           type="radio"
           checked={isChecked}
           aria-describedby={getAriaDescribedBy(props, errorTextId)}
           onChange={handleChange}
         />
-        <span className={styles['visual-radio-button__pill']}>
+        <span className={styles['visual-radio__pill']}>
           {isChecked && (
-            <span className={styles['visual-radio-button__icon']} aria-hidden="true">
+            <span className={styles['visual-radio__icon']} aria-hidden="true">
               {isMobile ? (
                 <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" />
@@ -109,11 +107,11 @@ const RadioButton: React.FC<RadioButtonProps> = props => {
               )}
             </span>
           )}
-          <span className={styles['visual-radio-button__label']}>{children}</span>
+          <span className={styles['visual-radio__label']}>{children}</span>
         </span>
       </label>
     </ErrorWrapper>
   );
 };
 
-export default RadioButton;
+export default Radio;

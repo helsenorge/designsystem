@@ -1,5 +1,5 @@
 export type Styles = {
-  'visual-radio-button-cloud': string;
+  'visual-radio-cloud': string;
 };
 
 export type ClassNames = keyof Styles;

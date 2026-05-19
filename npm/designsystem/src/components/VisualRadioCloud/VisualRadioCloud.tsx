@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
-import type { RadioButtonProps } from './RadioButton/RadioButton';
+import type { RadioProps } from './Radio/Radio';
 
-import RadioButton from './RadioButton/RadioButton';
+import Radio from './Radio/Radio';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { isComponent } from '../../utils/component';
 import ErrorWrapper from '../ErrorWrapper';
 
 import styles from './styles.module.scss';
 
-export interface VisualRadioButtonCloudProps {
-  /** Items in the cloud. Should be VisualRadioButtonCloud.RadioButton elements. */
+export interface VisualRadioCloudProps {
+  /** Items in the cloud. Should be VisualRadioCloud.Radio elements. */
   children?: React.ReactNode;
-  /** Name shared by all child RadioButton elements (overridable per child). Required for native form grouping. */
+  /** Name shared by all child Radio elements (overridable per child). Required for native form grouping. */
   name?: string;
   /** Selected value (controlled). */
   value?: string;
@@ -44,11 +44,11 @@ export interface VisualRadioButtonCloudProps {
   'aria-labelledby'?: string;
 }
 
-interface VisualRadioButtonCloudComponent extends React.FC<VisualRadioButtonCloudProps> {
-  RadioButton: typeof RadioButton;
+interface VisualRadioCloudComponent extends React.FC<VisualRadioCloudProps> {
+  Radio: typeof Radio;
 }
 
-export const VisualRadioButtonCloud: VisualRadioButtonCloudComponent = props => {
+export const VisualRadioCloud: VisualRadioCloudComponent = props => {
   const {
     children,
     name,
@@ -78,7 +78,7 @@ export const VisualRadioButtonCloud: VisualRadioButtonCloudComponent = props => 
   }
 
   const mapChild = (child: React.ReactNode): React.ReactNode => {
-    if (isComponent<RadioButtonProps>(child, RadioButton)) {
+    if (isComponent<RadioProps>(child, Radio)) {
       const isSelected = selectedValue !== undefined && child.props.value === selectedValue;
       return React.cloneElement(child, {
         name: child.props.name ?? name,
@@ -110,7 +110,7 @@ export const VisualRadioButtonCloud: VisualRadioButtonCloudComponent = props => 
         aria-labelledby={ariaLabelledBy}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorTextId : undefined}
-        className={styles['visual-radio-button-cloud']}
+        className={styles['visual-radio-cloud']}
         data-testid={testId}
       >
         {React.Children.map(children, mapChild)}
@@ -119,6 +119,6 @@ export const VisualRadioButtonCloud: VisualRadioButtonCloudComponent = props => 
   );
 };
 
-VisualRadioButtonCloud.RadioButton = RadioButton;
+VisualRadioCloud.Radio = Radio;
 
-export default VisualRadioButtonCloud;
+export default VisualRadioCloud;

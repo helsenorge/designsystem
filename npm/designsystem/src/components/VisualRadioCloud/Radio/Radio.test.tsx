@@ -4,15 +4,15 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import RadioButton from './RadioButton';
+import Radio from './Radio';
 
-describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
+describe('Gitt at VisualRadioCloud.Radio vises', () => {
   describe('Når komponenten rendres uten props', () => {
     test('Så vises label-teksten og radioknappen er ikke valgt', () => {
       render(
-        <RadioButton value={'a'} name={'g'}>
+        <Radio value={'a'} name={'g'}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       const radio = screen.getByRole('radio', { name: 'Et valg' });
@@ -24,9 +24,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
   describe('Når defaultChecked er satt', () => {
     test('Så er radioknappen valgt ved første render', () => {
       render(
-        <RadioButton value={'a'} name={'g'} defaultChecked>
+        <Radio value={'a'} name={'g'} defaultChecked>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(screen.getByRole('radio', { name: 'Et valg' })).toBeChecked();
@@ -37,9 +37,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
     test('Så velges radioknappen og onChange kalles', async () => {
       const onChange = vi.fn();
       render(
-        <RadioButton value={'a'} name={'g'} onChange={onChange}>
+        <Radio value={'a'} name={'g'} onChange={onChange}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       await userEvent.click(screen.getByText('Et valg'));
@@ -52,9 +52,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
   describe('Når brukeren bruker mellomromstasten', () => {
     test('Så velges radioknappen', async () => {
       render(
-        <RadioButton value={'a'} name={'g'}>
+        <Radio value={'a'} name={'g'}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       const radio = screen.getByRole('radio', { name: 'Et valg' });
@@ -68,9 +68,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
   describe('Når komponenten er kontrollert', () => {
     test('Så følger komponenten checked propen på første render', () => {
       render(
-        <RadioButton value={'a'} name={'g'} checked>
+        <Radio value={'a'} name={'g'} checked>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(screen.getByRole('radio', { name: 'Et valg' })).toBeChecked();
@@ -78,17 +78,17 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
 
     test('Så oppdateres komponenten når checked propen endres', () => {
       const { rerender } = render(
-        <RadioButton value={'a'} name={'g'} checked={false}>
+        <Radio value={'a'} name={'g'} checked={false}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(screen.getByRole('radio', { name: 'Et valg' })).not.toBeChecked();
 
       rerender(
-        <RadioButton value={'a'} name={'g'} checked>
+        <Radio value={'a'} name={'g'} checked>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(screen.getByRole('radio', { name: 'Et valg' })).toBeChecked();
@@ -99,9 +99,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
     test('Så kan ikke radioknappen velges', async () => {
       const onChange = vi.fn();
       render(
-        <RadioButton value={'a'} name={'g'} disabled onChange={onChange}>
+        <Radio value={'a'} name={'g'} disabled onChange={onChange}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       const radio = screen.getByRole('radio', { name: 'Et valg' });
@@ -117,9 +117,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
   describe('Når name, value og required sendes inn', () => {
     test('Så videresendes de til input-elementet', () => {
       render(
-        <RadioButton value={'allergi'} name={'kategori'} required>
+        <Radio value={'allergi'} name={'kategori'} required>
           {'Allergi'}
-        </RadioButton>
+        </Radio>
       );
 
       const radio = screen.getByRole('radio', { name: 'Allergi' });
@@ -132,9 +132,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
   describe('Når inputId er satt', () => {
     test('Så får input riktig id', () => {
       render(
-        <RadioButton value={'a'} name={'g'} inputId={'min-radio'}>
+        <Radio value={'a'} name={'g'} inputId={'min-radio'}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(screen.getByRole('radio', { name: 'Et valg' })).toHaveAttribute('id', 'min-radio');
@@ -145,9 +145,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
     test('Så peker den til input-elementet', () => {
       const ref = createRef<HTMLInputElement>();
       render(
-        <RadioButton value={'a'} name={'g'} ref={ref}>
+        <Radio value={'a'} name={'g'} ref={ref}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(ref.current).toBe(screen.getByRole('radio', { name: 'Et valg' }));
@@ -159,9 +159,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
       const onFocus = vi.fn();
       const onBlur = vi.fn();
       render(
-        <RadioButton value={'a'} name={'g'} onFocus={onFocus} onBlur={onBlur}>
+        <Radio value={'a'} name={'g'} onFocus={onFocus} onBlur={onBlur}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       const radio = screen.getByRole('radio', { name: 'Et valg' });
@@ -176,9 +176,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
   describe('Når aria-label er satt', () => {
     test('Så overstyrer den den synlige labelen som tilgjengelig navn', () => {
       render(
-        <RadioButton value={'a'} name={'g'} aria-label={'Tilgjengelig navn'}>
+        <Radio value={'a'} name={'g'} aria-label={'Tilgjengelig navn'}>
           {'Synlig tekst'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(screen.getByRole('radio', { name: 'Tilgjengelig navn' })).toBeVisible();
@@ -188,9 +188,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
   describe('Når errorText er satt', () => {
     test('Så vises feilmeldingen og er koblet til input via aria-describedby', () => {
       render(
-        <RadioButton value={'a'} name={'g'} errorText={'Feilmelding her'}>
+        <Radio value={'a'} name={'g'} errorText={'Feilmelding her'}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(screen.getByText('Feilmelding her')).toBeVisible();
@@ -201,9 +201,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
   describe('Når error=true uten errorText', () => {
     test('Så vises ingen feilmelding men feil-styling aktiveres uten å sette aria-invalid', () => {
       render(
-        <RadioButton value={'a'} name={'g'} error>
+        <Radio value={'a'} name={'g'} error>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(screen.getByRole('radio', { name: 'Et valg' })).not.toHaveAttribute('aria-invalid');
@@ -215,9 +215,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
       render(
         <>
           <div id={'ekstern-error'}>{'Du må velge et alternativ'}</div>
-          <RadioButton value={'a'} name={'g'} error errorTextId={'ekstern-error'}>
+          <Radio value={'a'} name={'g'} error errorTextId={'ekstern-error'}>
             {'Et valg'}
-          </RadioButton>
+          </Radio>
         </>
       );
 
@@ -228,9 +228,9 @@ describe('Gitt at VisualRadioButtonCloud.RadioButton vises', () => {
   describe('Når testId er satt', () => {
     test('Så finnes elementet via data-testid', () => {
       render(
-        <RadioButton value={'a'} name={'g'} testId={'min-pill'}>
+        <Radio value={'a'} name={'g'} testId={'min-pill'}>
           {'Et valg'}
-        </RadioButton>
+        </Radio>
       );
 
       expect(screen.getByTestId('min-pill')).toBeVisible();

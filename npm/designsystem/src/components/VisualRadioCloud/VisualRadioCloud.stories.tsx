@@ -5,7 +5,7 @@ import { Docs } from 'frankenstein-build-tools';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Title from '../Title';
-import VisualRadioButtonCloud from './VisualRadioButtonCloud';
+import VisualRadioCloud from './VisualRadioCloud';
 import fontStyles from '../../scss/typography.module.scss';
 
 interface MockOption {
@@ -29,14 +29,14 @@ const mockOptions: MockOption[] = [
 ];
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/VisualRadioButtonCloud',
-  component: VisualRadioButtonCloud,
+  title: '@helsenorge/designsystem-react/Components/VisualRadioCloud',
+  component: VisualRadioCloud,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={VisualRadioButtonCloud} />,
+      page: (): React.JSX.Element => <Docs component={VisualRadioCloud} />,
       description: {
         component:
-          'VisualRadioButtonCloud lar innbygger velge étt alternativ fra et sett pill-formede radioknapper som er optimert for visuell skanning.',
+          'VisualRadioCloud lar innbygger velge étt alternativ fra et sett pill-formede radioknapper som er optimert for visuell skanning.',
       },
     },
   },
@@ -46,7 +46,7 @@ const meta = {
   argTypes: {
     error: { control: 'text' },
   },
-} satisfies Meta<typeof VisualRadioButtonCloud>;
+} satisfies Meta<typeof VisualRadioCloud>;
 
 export default meta;
 
@@ -54,13 +54,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => (
-    <VisualRadioButtonCloud {...args}>
+    <VisualRadioCloud {...args}>
       {mockOptions.map(option => (
-        <VisualRadioButtonCloud.RadioButton key={option.value} value={option.value}>
+        <VisualRadioCloud.Radio key={option.value} value={option.value}>
           {option.label}
-        </VisualRadioButtonCloud.RadioButton>
+        </VisualRadioCloud.Radio>
       ))}
-    </VisualRadioButtonCloud>
+    </VisualRadioCloud>
   ),
 };
 
@@ -69,13 +69,13 @@ export const WithDefaultValue: Story = {
     defaultValue: 'luftveisplager',
   },
   render: args => (
-    <VisualRadioButtonCloud {...args}>
+    <VisualRadioCloud {...args}>
       {mockOptions.map(option => (
-        <VisualRadioButtonCloud.RadioButton key={option.value} value={option.value}>
+        <VisualRadioCloud.Radio key={option.value} value={option.value}>
           {option.label}
-        </VisualRadioButtonCloud.RadioButton>
+        </VisualRadioCloud.Radio>
       ))}
-    </VisualRadioButtonCloud>
+    </VisualRadioCloud>
   ),
 };
 
@@ -84,13 +84,13 @@ export const WithError: Story = {
     error: 'Du må velge ett alternativ',
   },
   render: args => (
-    <VisualRadioButtonCloud {...args}>
+    <VisualRadioCloud {...args}>
       {mockOptions.map(option => (
-        <VisualRadioButtonCloud.RadioButton key={option.value} value={option.value}>
+        <VisualRadioCloud.Radio key={option.value} value={option.value}>
           {option.label}
-        </VisualRadioButtonCloud.RadioButton>
+        </VisualRadioCloud.Radio>
       ))}
-    </VisualRadioButtonCloud>
+    </VisualRadioCloud>
   ),
 };
 
@@ -108,13 +108,13 @@ export const WithExternalFieldsetAndLegend: Story = {
           <legend id={legendId} style={{ marginBottom: '2rem' }} className={fontStyles.preamble}>
             {'Velg én'}
           </legend>
-          <VisualRadioButtonCloud {...args}>
+          <VisualRadioCloud {...args}>
             {mockOptions.map(option => (
-              <VisualRadioButtonCloud.RadioButton key={option.value} value={option.value}>
+              <VisualRadioCloud.Radio key={option.value} value={option.value}>
                 {option.label}
-              </VisualRadioButtonCloud.RadioButton>
+              </VisualRadioCloud.Radio>
             ))}
-          </VisualRadioButtonCloud>
+          </VisualRadioCloud>
         </fieldset>
       </>
     );

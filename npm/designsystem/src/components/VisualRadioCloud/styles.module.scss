@@ -2,7 +2,7 @@
 @use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/spacers.css';
 
-.visual-radio-button-cloud {
+.visual-radio-cloud {
   display: flex;
   flex-flow: row wrap;
   gap: var(--core-space-4xs) var(--core-space-xs);
