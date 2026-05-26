@@ -4,11 +4,10 @@ import classNames from 'classnames';
 
 import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
+import RadioMarker from './RadioMarker/RadioMarker';
 import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
-import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import { getLabelText, renderLabelAsParent } from '../Label/utils';
@@ -70,20 +69,25 @@ export const RadioButton: React.FC<RadioButtonProps> = props => {
   } = props;
   const invalid = error || onColor === FormOnColor.oninvalid;
   const onDark = onColor === FormOnColor.ondark;
+  const onGrey = onColor === FormOnColor.ongrey;
   const onBlueberry = onColor === FormOnColor.onblueberry;
   const onCherry = onColor === FormOnColor.oninvalid;
   const isLarge = size === FormSize.large;
-  const [checked, changeChecked] = useState<boolean>();
-  const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
-  const mergedRefs = mergeRefs([ref, refObject]);
+  const [isChecked, setIsChecked] = useState<boolean>(!!(props.checked ?? defaultChecked));
+  const [prevChecked, setPrevChecked] = useState<boolean | undefined>(props.checked);
+  if (prevChecked !== props.checked) {
+    setPrevChecked(props.checked);
+    if (props.checked !== undefined && props.checked !== isChecked) {
+      setIsChecked(props.checked);
+    }
+  }
   const errorTextId = useIdWithFallback(errorTextIdProp);
 
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper__large']]: isLarge,
-    [radioButtonStyles['radio-button-wrapper__large--focused']]: isLarge && isFocused,
-    [radioButtonStyles['radio-button-wrapper__large--selected']]: isLarge && checked && isFocused,
-    [radioButtonStyles['radio-button-wrapper__large--invalid']]: isLarge && onCherry && isFocused,
-    [radioButtonStyles['radio-button-wrapper__large--on-blueberry']]: isLarge && onBlueberry && isFocused,
+    [radioButtonStyles['radio-button-wrapper__large--selected']]: isLarge && isChecked,
+    [radioButtonStyles['radio-button-wrapper__large--invalid']]: isLarge && onCherry,
+    [radioButtonStyles['radio-button-wrapper__large--on-blueberry']]: isLarge && onBlueberry,
   });
   const radioButtonLabelClasses = classNames(
     radioButtonStyles['radio-button-label'],
@@ -92,45 +96,39 @@ export const RadioButton: React.FC<RadioButtonProps> = props => {
       [radioButtonStyles['radio-button-label--on-dark']]: onDark,
       [radioButtonStyles['radio-button-label--invalid']]: invalid,
       [radioButtonStyles['radio-button-label__large']]: isLarge,
-      [radioButtonStyles['radio-button-label__large--focused']]: isFocused && isLarge,
       [radioButtonStyles['radio-button-label__large--disabled']]: isLarge && disabled,
+      [radioButtonStyles['radio-button-label__large--on-grey']]: isLarge && onGrey && !isChecked,
+      [radioButtonStyles['radio-button-label__large--on-blueberry']]: isLarge && onBlueberry && !isChecked,
+      [radioButtonStyles['radio-button-label__large--selected']]: isLarge && isChecked && !onCherry,
+      [radioButtonStyles['radio-button-label__large--selected-invalid']]: isLarge && isChecked && onCherry,
     },
     labelClassNames
   );
-  const radioButtonClasses = classNames(
-    radioButtonStyles['radio-button'],
-    {
-      [radioButtonStyles['radio-button--on-dark']]: onDark,
-      [radioButtonStyles['radio-button--disabled']]: disabled,
-      [radioButtonStyles['radio-button--on-blueberry']]: onBlueberry,
-      [radioButtonStyles['radio-button--invalid']]: invalid,
-      [radioButtonStyles['radio-button__large']]: isLarge,
-      [radioButtonStyles['radio-button__large--disabled']]: isLarge && disabled,
-      [radioButtonStyles['radio-button__large--invalid']]: isLarge && invalid,
-    },
-    className
-  );
+  const radioButtonClasses = classNames(radioButtonStyles['radio-button'], className);
 
   const change = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    changeChecked(e.target.checked);
+    setIsChecked(e.target.checked);
     if (onChange) onChange(e);
   };
 
   const getLabelContent = (): React.ReactNode => (
-    <input
-      {...rest}
-      id={inputId}
-      name={name}
-      className={radioButtonClasses}
-      type="radio"
-      disabled={disabled}
-      value={value}
-      ref={mergedRefs}
-      defaultChecked={defaultChecked}
-      aria-describedby={getAriaDescribedBy(props, errorTextId)}
-      required={required}
-      onChange={(e): void => change(e)}
-    />
+    <span className={radioButtonStyles['radio-button__marker-wrapper']}>
+      <input
+        {...rest}
+        id={inputId}
+        name={name}
+        className={radioButtonClasses}
+        type="radio"
+        disabled={disabled}
+        value={value}
+        ref={ref}
+        defaultChecked={defaultChecked}
+        aria-describedby={getAriaDescribedBy(props, errorTextId)}
+        required={required}
+        onChange={(e): void => change(e)}
+      />
+      <RadioMarker checked={isChecked} disabled={disabled} error={invalid} onColor={onColor} size={size} />
+    </span>
   );
 
   return (

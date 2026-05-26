@@ -20,7 +20,6 @@ import FormFieldTag from '../FormFieldTag';
 import FormLayout from '../FormLayout';
 import Input from '../Input/Input';
 import RadioButton from '../RadioButton/RadioButton';
-import { getRadioLabelClasses } from '../RadioButton/utils';
 import Select from '../Select';
 import Slider from '../Slider';
 import Textarea from '../Textarea';
@@ -100,11 +99,10 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
     legendHtmlMarkup = 'h5',
     titleHtmlMarkup = 'h4',
   } = props;
-  const [checkedRadioId, setCheckedRadioId] = useState<string>();
   const radioGroupId = useId();
+  const [checkedRadioId, setCheckedRadioId] = useState<string>();
   const errorTextId = useIdWithFallback(errorTextIdProp);
   const onDark = onColor === FormOnColor.ondark;
-  const isLarge = size === FormSize.large;
   const formGroupWrapperClasses = classNames(formGroupStyles['form-group-wrapper'], className);
   const titleClasses = classNames({
     [formGroupStyles['form-group-wrapper__title--on-dark']]: onDark && !error,
@@ -146,18 +144,20 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
       });
     } else if (isComponent<RadioButtonProps>(child, RadioButton)) {
       const radioId = typeof child.props.inputId === 'undefined' ? radioGroupId + index : child.props.inputId;
+      const groupChecked =
+        child.props.checked !== undefined ? child.props.checked : checkedRadioId !== undefined ? checkedRadioId === radioId : undefined;
       return React.cloneElement(child, {
         inputId: radioId,
         name: name ?? child.props.name,
         onColor,
         size,
+        checked: groupChecked,
         onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
           setCheckedRadioId(event.target.id);
           if (child.props.onChange) child.props.onChange(event);
         },
         error: !!error,
         errorTextId: errorTextId,
-        labelClassNames: getRadioLabelClasses(radioId, onColor as FormOnColor, isLarge, checkedRadioId),
       });
     } else if (isComponent<InputProps>(child, Input)) {
       return React.cloneElement(child, {

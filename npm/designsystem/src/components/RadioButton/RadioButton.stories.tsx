@@ -76,12 +76,8 @@ export const AllColors: Story = {
     <>
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} onColor={'onwhite'} />
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} onColor={'ongrey'} />
-      <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} onColor={'onblueberry'} />
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} onColor={'oninvalid'} />
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} onColor={'onwhite'} disabled />
-      <div style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
-        <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} onColor={'ondark'} />
-      </div>
     </>
   ),
 };
@@ -106,10 +102,6 @@ export const LargeEveryColor: Story = {
       <FormGroup legend={'ongrey'} name="radio2" onColor={'ongrey'} size={'large'}>
         <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} />
         <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} />
-      </FormGroup>
-      <FormGroup legend={'onblueberry'} name="radio3" onColor={'onblueberry'} size={'large'}>
-        <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} />
-        <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} />
       </FormGroup>
       <div style={{ background: getColor('blueberry', 500), padding: '2rem' }}>
         <FormGroup legend={'ondark'} name="radio4" onColor={'ondark'} size={'large'}>
