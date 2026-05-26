@@ -5,87 +5,6 @@
 @use '../../scss/screen-reader' as *;
 @use '../../scss/breakpoints' as breakpoints;
 
-@mixin dashed-dotted-border() {
-  box-shadow: none;
-
-  --dot-size: 2px;
-  --dash-length: 5px;
-  --gap-length: 2px;
-  --corner-gap: 2px;
-
-  background-image:
-    // Square dots at corners
-    linear-gradient(palette.$neutral600, palette.$neutral600),
-    linear-gradient(palette.$neutral600, palette.$neutral600),
-    linear-gradient(palette.$neutral600, palette.$neutral600),
-    linear-gradient(palette.$neutral600, palette.$neutral600),
-    // Dashed lines
-    repeating-linear-gradient(
-        0deg,
-        palette.$neutral600,
-        palette.$neutral600 var(--dash-length),
-        transparent var(--dash-length),
-        transparent calc(var(--dash-length) + var(--gap-length))
-      ),
-    repeating-linear-gradient(
-      90deg,
-      palette.$neutral600,
-      palette.$neutral600 var(--dash-length),
-      transparent var(--dash-length),
-      transparent calc(var(--dash-length) + var(--gap-length))
-    ),
-    repeating-linear-gradient(
-      180deg,
-      palette.$neutral600,
-      palette.$neutral600 var(--dash-length),
-      transparent var(--dash-length),
-      transparent calc(var(--dash-length) + var(--gap-length))
-    ),
-    repeating-linear-gradient(
-      270deg,
-      palette.$neutral600,
-      palette.$neutral600 var(--dash-length),
-      transparent var(--dash-length),
-      transparent calc(var(--dash-length) + var(--gap-length))
-    );
-  background-size:
-    // Top-left dot
-    var(--dot-size) var(--dot-size),
-    // Top-right dot
-    var(--dot-size) var(--dot-size),
-    // Bottom-right dot
-    var(--dot-size) var(--dot-size),
-    // Bottom-left dot
-    var(--dot-size) var(--dot-size),
-    // Left border
-    2px calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2),
-    // Top border
-    calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2) 2px,
-    // Right border
-    2px calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2),
-    // Bottom border
-    calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2) 2px;
-  background-position:
-    // Top-left dot
-    0 0,
-    // Top-right dot
-    100% 0,
-    // Bottom-right dot
-    100% 100%,
-    // Bottom-left dot
-    0 100%,
-    // Left border
-    0 calc(var(--dot-size) + var(--corner-gap)),
-    // Top border
-    calc(var(--dot-size) + var(--corner-gap)) 0,
-    // Right border
-    100% calc(var(--dot-size) + var(--corner-gap)),
-    // Bottom border
-    calc(var(--dot-size) + var(--corner-gap)) 100%;
-  background-repeat: no-repeat;
-}
-
-$checkbox-icon-size: 1.625rem;
 $padding-clickable-area-top-bottom: 7px;
 $padding-clickable-area-left: 8px;
 
@@ -117,9 +36,11 @@ $padding-clickable-area-left: 8px;
       &--checked {
         color: palette.$white;
       }
+
       &--checked#{&}--invalid {
         color: palette.$black;
       }
+
       &--checked#{&}--disabled {
         color: palette.$neutral700;
       }
@@ -135,7 +56,7 @@ $padding-clickable-area-left: 8px;
   }
 
   &--disabled {
-    cursor: default;
+    cursor: not-allowed;
   }
 
   &__large {
@@ -150,6 +71,7 @@ $padding-clickable-area-left: 8px;
         background-color: palette.$neutral100;
       }
     }
+
     &--on-white#{&}--focus {
       color: palette.$neutral500;
     }
@@ -174,6 +96,7 @@ $padding-clickable-area-left: 8px;
         background-color: palette.$blueberry100;
       }
     }
+
     &--on-blueberry#{&}--focus {
       color: palette.$blueberry500;
       background-color: palette.$white;
@@ -186,6 +109,7 @@ $padding-clickable-area-left: 8px;
         background-color: palette.$cherry100;
       }
     }
+
     &--on-invalid#{&}--focus {
       color: palette.$cherry400;
       background-color: palette.$white;
@@ -206,6 +130,7 @@ $padding-clickable-area-left: 8px;
         background-color: palette.$blueberry600;
       }
     }
+
     &--checked#{&}--focus {
       color: palette.$blueberry900;
       background-color: palette.$blueberry500;
@@ -260,193 +185,8 @@ $padding-clickable-area-left: 8px;
 .checkbox {
   @include sr-only;
 
-  &__icon-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: spacers.getSpacer(4xs) spacers.getSpacer(s) spacers.getSpacer(4xs) spacers.getSpacer(4xs);
-    height: $checkbox-icon-size;
-    width: $checkbox-icon-size;
-    min-height: $checkbox-icon-size;
-    min-width: $checkbox-icon-size;
-    box-shadow: 0 0 0 spacers.getSpacer(4xs);
-
-    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
-    @media (forced-colors: active) {
-      forced-color-adjust: none;
-      background-color: #000 !important;
-      color: #fff !important;
-    }
-
-    :hover > & {
-      box-shadow: 0 0 0 spacers.getSpacer(3xs);
-    }
-
-    &--on-white,
-    &--on-grey {
-      color: palette.$neutral700;
-
-      :hover > & {
-        background-color: palette.$neutral100;
-      }
-    }
-
-    &--on-blueberry {
-      color: palette.$blueberry500;
-
-      :hover > & {
-        background-color: palette.$blueberry100;
-      }
-    }
-
-    &--on-invalid {
-      color: palette.$cherry500;
-
-      :hover > & {
-        background-color: palette.$cherry100;
-      }
-    }
-
-    &--on-dark {
-      color: palette.$neutral200;
-
-      :hover > & {
-        background-color: #ffffff1a;
-      }
-    }
-
-    &__regular {
-      &--checked {
-        background-color: palette.$blueberry500;
-        color: palette.$blueberry500;
-        box-shadow: 0 0 0 spacers.getSpacer(4xs);
-
-        :hover > & {
-          background-color: palette.$blueberry600;
-          color: palette.$blueberry600;
-          box-shadow: 0 0 0 spacers.getSpacer(4xs);
-        }
-      }
-      &--checked#{&}--invalid {
-        background-color: palette.$cherry500;
-        color: palette.$cherry500;
-        box-shadow: 0 0 0 spacers.getSpacer(4xs);
-
-        :hover > & {
-          background-color: palette.$cherry600;
-          color: palette.$cherry600;
-          box-shadow: 0 0 0 spacers.getSpacer(4xs);
-        }
-      }
-      &--checked#{&}--on-dark {
-        background-color: palette.$blueberry50;
-        color: palette.$blueberry50;
-        box-shadow: 0 0 0 spacers.getSpacer(4xs);
-
-        :hover > & {
-          background-color: palette.$blueberry200;
-          color: palette.$blueberry200;
-          box-shadow: 0 0 0 spacers.getSpacer(4xs);
-        }
-      }
-    }
-
-    &__large {
-      &--checked {
-        background-color: palette.$blueberry50;
-        box-shadow: none;
-
-        :hover > & {
-          background-color: palette.$blueberry200;
-          box-shadow: none;
-        }
-      }
-      &--checked#{&}--invalid {
-        background-color: palette.$cherry500;
-
-        :hover > & {
-          background-color: palette.$cherry600;
-        }
-      }
-      &--checked#{&}--disabled {
-        color: palette.$neutral600;
-        background-color: transparent;
-
-        :hover > & {
-          background-color: transparent;
-        }
-      }
-    }
-
-    &--disabled,
-    &--disabled#{&}--invalid,
-    &--disabled#{&}--on-dark {
-      @include dashed-dotted-border;
-
-      background-color: transparent;
-
-      :hover > & {
-        box-shadow: none;
-        background-color: transparent;
-      }
-    }
-  }
-
-  &__icon {
-    position: relative;
-    top: 0.1rem;
-    right: 0.05rem;
-
-    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
-    @media (forced-colors: active) {
-      forced-color-adjust: none;
-      fill: #fff;
-    }
-  }
-
-  &:focus {
-    /* stylelint-disable-next-line */
-    & + .checkbox__icon-wrapper {
-      box-shadow: 0 0 0 spacers.getSpacer(3xs);
-      color: palette.$black;
-
-      &__regular--checked {
-        border: 1px solid var(--color-action-border-ondark-focus);
-
-        & + .checkbox__icon-wrapper__regular--on-dark {
-          border: 1px solid var(--color-action-border-onlight-focus);
-        }
-      }
-
-      &--on-dark {
-        color: palette.$white;
-        border: 1px solid var(--color-action-border-onlight-focus);
-      }
-
-      &--invalid {
-        color: palette.$black;
-      }
-
-      &__large {
-        &--checked {
-          background-color: palette.$blueberry200;
-          box-shadow: 0 0 0 spacers.getSpacer(3xs);
-          color: palette.$white;
-          border: 1px solid var(--color-action-border-onlight-focus);
-
-          // komboklasser fungerer ikke i nested struktur
-          &--invalid {
-            background-color: palette.$cherry500;
-            color: palette.$black;
-            border: 1px solid var(--color-action-border-ondark-focus);
-          }
-
-          &--disabled {
-            color: palette.$neutral700;
-          }
-        }
-      }
-    }
+  &__marker-wrapper {
+    margin-right: spacers.getSpacer(s);
   }
 
   &:focus-visible {

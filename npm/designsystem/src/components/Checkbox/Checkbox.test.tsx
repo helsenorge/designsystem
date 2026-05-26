@@ -17,9 +17,8 @@ describe('Gitt at Checkbox skal vises', (): void => {
       expect(input).toBeVisible();
       expect(input.className).toBe('checkbox');
 
-      // eslint-disable-next-line testing-library/no-node-access
       const checkIconWrapper = screen.getByRole('checkbox')?.parentElement?.children[1];
-      expect(checkIconWrapper?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white');
+      expect(checkIconWrapper?.className).toBe('checkbox__marker checkbox__marker--on-white');
     });
   });
 
@@ -64,11 +63,10 @@ describe('Gitt at Checkbox skal vises', (): void => {
     test('Så vises Checkbox med checkmark ikon', (): void => {
       render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} checked />);
 
-      // eslint-disable-next-line testing-library/no-node-access
       const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
       expect(checkIcon).toBeVisible();
-      expect(checkIcon?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper__regular--checked');
+      expect(checkIcon?.className).toBe('checkbox__marker checkbox__marker--on-white checkbox__marker__regular--checked');
     });
   });
 
@@ -78,14 +76,13 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       fireEvent.click(screen.getByText('Check me out!'));
 
-      // eslint-disable-next-line testing-library/no-node-access
       const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
-      expect(checkIcon?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper__regular--checked');
+      expect(checkIcon?.className).toBe('checkbox__marker checkbox__marker--on-white checkbox__marker__regular--checked');
 
       fireEvent.click(screen.getByText('Check me out!'));
 
-      expect(checkIcon?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white');
+      expect(checkIcon?.className).toBe('checkbox__marker checkbox__marker--on-white');
     });
   });
 
@@ -95,12 +92,12 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       // Indre styling
       const label = screen.getByTestId('check-label');
-      // eslint-disable-next-line testing-library/no-node-access
+
       const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
       expect(label?.className).toBe('checkbox-label');
       expect(checkIcon?.className).toBe(
-        'checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper--on-invalid checkbox__icon-wrapper--invalid'
+        'checkbox__marker checkbox__marker--on-white checkbox__marker--on-invalid checkbox__marker--invalid'
       );
 
       // Ytre styling
@@ -126,12 +123,12 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       // Indre styling
       const label = screen.getByTestId('check-label');
-      // eslint-disable-next-line testing-library/no-node-access
+
       const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
       expect(label?.className).toBe('checkbox-label');
       expect(checkIcon?.className).toBe(
-        'checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper--on-invalid checkbox__icon-wrapper--invalid'
+        'checkbox__marker checkbox__marker--on-white checkbox__marker--on-invalid checkbox__marker--invalid'
       );
     });
   });
