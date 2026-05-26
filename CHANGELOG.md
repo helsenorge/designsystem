@@ -1,4 +1,14 @@
 
+## [14.11.0](https://github.com/helsenorge/designsystem/compare/v14.10.0...v14.11.0) (2026-05-26)
+
+### Features
+
+*  nye komponenter visualcheckbox og visualcheckboxgroup ([8cde9b1](https://github.com/helsenorge/designsystem/commit/8cde9b1deea876ddb5fcc0bf22b7f228ca0d770f)), closes [#376756](https://github.com/helsenorge/designsystem/issues/376756)
+*  nye komponenter visualradio og visualradiogroup ([4643f81](https://github.com/helsenorge/designsystem/commit/4643f8177d086319ac168d24e2027573a76d681d)), closes [#376756](https://github.com/helsenorge/designsystem/issues/376756)
+*  renamet visualradiobuttoncloud til visualradiocloud ([2a52c26](https://github.com/helsenorge/designsystem/commit/2a52c26323c1cd57af057c301f8bc4d4ab66cb80)), closes [#376757](https://github.com/helsenorge/designsystem/issues/376757)
+* **datepicker:**  fjern blå markering ved focus på segment i dateinput og timeinput ([e02197e](https://github.com/helsenorge/designsystem/commit/e02197e5c63608a2ea531cce20d5d67f2a507c68)), closes [#378506](https://github.com/helsenorge/designsystem/issues/378506)
+* **illustration:**  nye illustrasjoner for småbarnsliv ([59a5521](https://github.com/helsenorge/designsystem/commit/59a5521d629420530cdc0d8dffa860a06a363912)), closes [#378919](https://github.com/helsenorge/designsystem/issues/378919)
+
 ## [14.10.0](https://github.com/helsenorge/designsystem/compare/v14.9.2...v14.10.0) (2026-05-18)
 
 ### Features
