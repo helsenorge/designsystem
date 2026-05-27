@@ -21,8 +21,8 @@ export interface VisualCheckboxProps
   className?: string;
   /** Label rendered inside the checkbox frame. */
   children: string;
-  /** Content rendered inside the circular visual slot. */
-  visualContent: React.ReactNode;
+  /** Image URL (supports `fit` and `focus` query params) or any React node. */
+  visualContent: React.ReactNode | string;
   /** Layout variant. `line` is a thin horizontal pill, `rectangle` is a vertical card. */
   variant?: VisualCheckboxVariant;
   /** input id of the underlying checkbox */

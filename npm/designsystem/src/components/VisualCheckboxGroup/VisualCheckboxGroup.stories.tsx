@@ -181,6 +181,42 @@ export const VariantRectangle: Story = {
   ),
 };
 
+export const VisualContentImgUrl: Story = {
+  args: {
+    variant: 'rectangle',
+  },
+  render: args => {
+    const img = 'https://picsum.photos/seed/hn-landscape/800/400';
+
+    const urlOptions: Array<{ value: string; label: string; src: string }> = [
+      // fit
+      { value: 'cover', label: 'fit=cover', src: `${img}?fit=cover` },
+      { value: 'contain', label: 'fit=contain', src: `${img}?fit=contain` },
+      // focus
+      { value: 'focus-center', label: 'focus=center', src: `${img}?fit=cover&focus=center` },
+      { value: 'focus-top', label: 'focus=top', src: `${img}?fit=cover&focus=top` },
+      { value: 'focus-bottom', label: 'focus=bottom', src: `${img}?fit=cover&focus=bottom` },
+      { value: 'focus-left', label: 'focus=left', src: `${img}?fit=cover&focus=left` },
+      { value: 'focus-right', label: 'focus=right', src: `${img}?fit=cover&focus=right` },
+      { value: 'focus-top-left', label: 'focus=top left', src: `${img}?fit=cover&focus=top+left` },
+      { value: 'focus-top-right', label: 'focus=top right', src: `${img}?fit=cover&focus=top+right` },
+      { value: 'focus-bottom-left', label: 'focus=bottom left', src: `${img}?fit=cover&focus=bottom+left` },
+      { value: 'focus-bottom-right', label: 'focus=bottom right', src: `${img}?fit=cover&focus=bottom+right` },
+      { value: 'focus-percent', label: 'focus=25% 75%', src: `${img}?fit=cover&focus=25%25+75%25` },
+    ];
+
+    return (
+      <VisualCheckboxGroup {...args}>
+        {urlOptions.map(option => (
+          <VisualCheckboxGroup.VisualCheckbox key={option.value} value={option.value} visualContent={option.src}>
+            {option.label}
+          </VisualCheckboxGroup.VisualCheckbox>
+        ))}
+      </VisualCheckboxGroup>
+    );
+  },
+};
+
 export const MobileLineVariantLimit: Story = {
   args: {
     variant: 'rectangle',
