@@ -27,7 +27,7 @@ describe('Gitt at FilterSearch skal vises', (): void => {
 
   describe('Når inputfeltet har en verdi', (): void => {
     test('Så vises nullstill-knappen', (): void => {
-      render(<FilterSearch value="test" />);
+      render(<FilterSearch value="test" readOnly />);
 
       expect(screen.getByRole('button', { name: /Nullstill/i })).toBeVisible();
     });
@@ -48,7 +48,7 @@ describe('Gitt at FilterSearch skal vises', (): void => {
   describe('Når brukeren klikker på nullstill-knappen', (): void => {
     test('Så kalles clearButtonProps.onClick', async (): Promise<void> => {
       const handleClear = vi.fn();
-      render(<FilterSearch value="test" clearButtonProps={{ onClick: handleClear }} />);
+      render(<FilterSearch value="test" readOnly clearButtonProps={{ onClick: handleClear }} />);
 
       const clearButton = screen.getByRole('button', { name: /Nullstill/i });
       await userEvent.click(clearButton);
@@ -60,7 +60,7 @@ describe('Gitt at FilterSearch skal vises', (): void => {
   describe('Når brukeren klikker på søkeknappen', (): void => {
     test('Så kalles buttonProps.onClick', async (): Promise<void> => {
       const handleSearch = vi.fn();
-      render(<FilterSearch value="" buttonProps={{ onClick: handleSearch }} />);
+      render(<FilterSearch value="" readOnly buttonProps={{ onClick: handleSearch }} />);
 
       const searchButton = screen.getByRole('button', { name: /Søk/i });
       await userEvent.click(searchButton);
@@ -74,6 +74,7 @@ describe('Gitt at FilterSearch skal vises', (): void => {
       render(
         <FilterSearch
           value="test"
+          readOnly
           resources={{
             searchPlaceholder: 'Egendefinert placeholder',
             searchButtonAriaLabel: 'Egendefinert søk',
@@ -90,7 +91,7 @@ describe('Gitt at FilterSearch skal vises', (): void => {
 
   describe('Når native input-attributter sendes inn', (): void => {
     test('Så videresendes de til input-elementet', (): void => {
-      render(<FilterSearch value="" aria-label="Søk etter noe" id="mitt-søk" />);
+      render(<FilterSearch value="" readOnly aria-label="Søk etter noe" id="mitt-søk" />);
 
       const input = screen.getByRole('textbox');
       expect(input).toHaveAttribute('id', 'mitt-søk');

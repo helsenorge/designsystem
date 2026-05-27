@@ -14,18 +14,18 @@ const Sort: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.
   const xSmall = (
     <>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M31.905 12.936h-1.894v20.013h1.895V12.936Zm-13.913 2.219h-1.895v19.793h1.895V15.155Z"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="m32.296 11.918-1.34-1.34-6.77 6.77 1.34 1.34 6.77-6.77ZM15.707 36.096l1.34 1.34 6.77-6.771-1.34-1.34-6.77 6.771Z"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="m36.39 18.686 1.34-1.34-6.77-6.769-1.34 1.34 6.77 6.77ZM11.611 29.324l-1.34 1.34 6.771 6.77 1.34-1.34-6.77-6.77Z"
       />
     </>
@@ -34,18 +34,18 @@ const Sort: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.
   const xSmallHover = (
     <>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M31.905 11.673h-1.894v20.013h1.895V11.673Zm-13.913 4.744h-1.895v19.794h1.895V16.417Z"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="m32.296 10.654-1.34-1.34-6.77 6.77 1.34 1.34 6.77-6.77ZM15.707 37.36l1.34 1.34 6.77-6.771-1.34-1.34-6.77 6.77Z"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="m36.39 17.424 1.34-1.34-6.77-6.77-1.34 1.34 6.77 6.77ZM11.611 30.588l-1.34 1.34 6.771 6.77 1.34-1.34-6.77-6.77Z"
       />
     </>
