@@ -403,7 +403,7 @@ export const SortableAndExpandable: Story = {
                 {getFastlegeDataCells(fastlege)}
                 {
                   <TableCell dataLabel="Handling" textAlign={TextAlign.center}>
-                    <PopMenu>
+                    <PopMenu openButtonAriaLabel="Handlinger">
                       <LinkList chevron={false}>
                         <LinkList.Link>{'Åpne'}</LinkList.Link>
                         <LinkList.Link>{'Lagre'}</LinkList.Link>
@@ -525,7 +525,7 @@ export const NestedExpandableBlockTables: Story = {
                 {getFastlegeDataCells(fastlege)}
                 {
                   <TableCell dataLabel="Handling" textAlign={TextAlign.center}>
-                    <PopMenu>
+                    <PopMenu openButtonAriaLabel="Handlinger">
                       <LinkList chevron={false}>
                         <LinkList.Link>{'Åpne'}</LinkList.Link>
                         <LinkList.Link>{'Lagre'}</LinkList.Link>
