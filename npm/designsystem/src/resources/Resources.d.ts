@@ -160,7 +160,7 @@ export type HNDesignsystemFilter = {
    */
   resetButtonText: string;
   /**
-   * Vis {0} treff
+   * Vis treff
    */
   showButtonText: string;
   /**
@@ -183,6 +183,10 @@ export type HNDesignsystemFilter = {
    * Henter treff
    */
   loadingText: string;
+  /**
+   * {0} treff
+   */
+  resultsText: string;
 };
 
 export type HNDesignsystemChip = {

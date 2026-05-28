@@ -2,10 +2,11 @@
   "filterButtonText": "Finn...",
   "sortLabel": "Sortering",
   "resetButtonText": "Nullstill",
-  "showButtonText": "Vis {0} treff",
+  "showButtonText": "Vis treff",
   "filterOverviewTitle": "Finn...",
   "searchPlaceholder": "Søk i listen",
   "searchClearButtonAriaLabel": "Nullstill",
   "searchButtonAriaLabel": "Søk",
-  "loadingText": "Henter treff"
+  "loadingText": "Henter treff",
+  "resultsText": "{0} treff"
 }
