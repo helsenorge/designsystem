@@ -148,7 +148,7 @@ export type HNDesignsystemInput = {
 
 export type HNDesignsystemFilter = {
   /**
-   * Finn...
+   * Finn ...
    */
   filterButtonText: string;
   /**
@@ -160,11 +160,11 @@ export type HNDesignsystemFilter = {
    */
   resetButtonText: string;
   /**
-   * Vis treff
+   * Vis {0} treff
    */
   showButtonText: string;
   /**
-   * Finn...
+   * Finn ...
    */
   filterOverviewTitle: string;
   /**

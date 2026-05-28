@@ -1,9 +1,9 @@
 {
-  "filterButtonText": "Find...",
+  "filterButtonText": "Find ...",
   "sortLabel": "Sorting",
   "resetButtonText": "Reset",
-  "showButtonText": "Show results",
-  "filterOverviewTitle": "Find...",
+  "showButtonText": "Show {0} results",
+  "filterOverviewTitle": "Find ...",
   "searchPlaceholder": "Search the list",
   "searchClearButtonAriaLabel": "Reset",
   "searchButtonAriaLabel": "Search",

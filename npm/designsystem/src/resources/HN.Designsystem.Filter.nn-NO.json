@@ -1,9 +1,9 @@
 {
-  "filterButtonText": "Finn...",
+  "filterButtonText": "Finn ...",
   "sortLabel": "Sortering",
   "resetButtonText": "Nullstill",
-  "showButtonText": "Vis treff",
-  "filterOverviewTitle": "Finn...",
+  "showButtonText": "Vis {0} treff",
+  "filterOverviewTitle": "Finn ...",
   "searchPlaceholder": "Søk i lista",
   "searchClearButtonAriaLabel": "Nullstill",
   "searchButtonAriaLabel": "Søk",
