@@ -179,6 +179,10 @@ export type HNDesignsystemFilter = {
    * Søk
    */
   searchButtonAriaLabel: string;
+  /**
+   * Henter treff
+   */
+  loadingText: string;
 };
 
 export type HNDesignsystemChip = {

@@ -6,5 +6,6 @@
   "filterOverviewTitle": "Find...",
   "searchPlaceholder": "Search the list",
   "searchClearButtonAriaLabel": "Reset",
-  "searchButtonAriaLabel": "Search"
+  "searchButtonAriaLabel": "Search",
+  "loadingText": "Loading results"
 }

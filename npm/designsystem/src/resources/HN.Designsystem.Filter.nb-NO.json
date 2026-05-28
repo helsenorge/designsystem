@@ -6,5 +6,6 @@
   "filterOverviewTitle": "Finn...",
   "searchPlaceholder": "Søk i listen",
   "searchClearButtonAriaLabel": "Nullstill",
-  "searchButtonAriaLabel": "Søk"
+  "searchButtonAriaLabel": "Søk",
+  "loadingText": "Henter treff"
 }
