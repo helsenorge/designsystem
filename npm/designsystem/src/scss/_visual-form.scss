@@ -73,7 +73,8 @@
     border-color: var(--color-action-border-onlight-hover);
   }
 
-  &--checked &__pill {
+  &--checked &__pill,
+  &:has(input:checked) &__pill {
     background-color: var(--color-action-background-onlight);
     color: var(--color-action-text-ondark);
     border-color: var(--color-action-background-onlight);
@@ -84,12 +85,14 @@
     }
   }
 
-  &--checked:hover &__pill {
+  &--checked:hover &__pill,
+  &:has(input:checked):hover &__pill {
     background-color: var(--color-action-graphics-onlight-hover);
     border-color: var(--color-action-graphics-onlight-hover);
   }
 
-  &--checked:active &__pill {
+  &--checked:active &__pill,
+  &:has(input:checked):active &__pill {
     background-color: var(--color-action-background-onlight-active);
     border-color: var(--color-action-background-onlight-active);
   }
@@ -109,17 +112,20 @@
     border-color: var(--color-destructive-border-normal);
   }
 
-  &--invalid#{&}--checked &__pill {
+  &--invalid#{&}--checked &__pill,
+  &--invalid:has(input:checked) &__pill {
     background-color: var(--color-destructive-graphics-normal);
     border-color: var(--color-destructive-graphics-normal);
   }
 
-  &--invalid#{&}--checked:hover &__pill {
+  &--invalid#{&}--checked:hover &__pill,
+  &--invalid:has(input:checked):hover &__pill {
     background-color: var(--color-destructive-graphics-hover);
     border-color: var(--color-destructive-graphics-hover);
   }
 
-  &--invalid#{&}--checked:active &__pill {
+  &--invalid#{&}--checked:active &__pill,
+  &--invalid:has(input:checked):active &__pill {
     background-color: var(--color-destructive-graphics-emphasized-onlight);
     border-color: var(--color-destructive-graphics-emphasized-onlight);
   }
@@ -264,7 +270,8 @@
     max-width: 13rem;
   }
 
-  &--checked &__frame {
+  &--checked &__frame,
+  &:has(input:checked) &__frame {
     background: var(--color-action-background-onlight);
     color: var(--color-action-text-ondark);
     border-color: var(--color-action-background-onlight);
@@ -285,11 +292,13 @@
     border-color: var(--color-action-border-onlight-hover);
   }
 
-  &--checked:hover &__frame {
+  &--checked:hover &__frame,
+  &:has(input:checked):hover &__frame {
     background: var(--color-action-background-onlight-hover);
   }
 
-  &--checked:active &__frame {
+  &--checked:active &__frame,
+  &:has(input:checked):active &__frame {
     background: var(--color-action-background-onlight-active);
     border-color: var(--color-action-background-onlight-active);
   }
@@ -304,18 +313,21 @@
     border-color: var(--core-color-cherry-500);
   }
 
-  &--invalid#{&}--checked &__frame {
+  &--invalid#{&}--checked &__frame,
+  &--invalid:has(input:checked) &__frame {
     background: var(--core-color-cherry-50);
     color: var(--color-base-text-onlight);
     border-color: var(--core-color-cherry-500);
   }
 
-  &--invalid#{&}--checked:hover &__frame {
+  &--invalid#{&}--checked:hover &__frame,
+  &--invalid:has(input:checked):hover &__frame {
     background: var(--core-color-cherry-100);
     border-color: var(--core-color-cherry-500);
   }
 
-  &--invalid#{&}--checked:active &__frame {
+  &--invalid#{&}--checked:active &__frame,
+  &--invalid:has(input:checked):active &__frame {
     background: var(--core-color-cherry-200);
     border-color: var(--core-color-cherry-500);
   }

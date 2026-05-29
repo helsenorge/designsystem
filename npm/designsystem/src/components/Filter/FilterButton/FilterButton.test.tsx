@@ -10,7 +10,7 @@ describe('Gitt at FilterButton skal vises', (): void => {
 
       const button = screen.getByRole('button');
       expect(button).toBeVisible();
-      expect(button).toHaveTextContent('Finn...');
+      expect(button).toHaveTextContent('Finn ...');
     });
   });
 

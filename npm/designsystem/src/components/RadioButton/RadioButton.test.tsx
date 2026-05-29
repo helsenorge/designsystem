@@ -66,16 +66,24 @@ describe('Gitt at RadioButton skal vises', (): void => {
         </FormGroup>
       );
 
+      const radios = screen.getAllByRole('radio');
+      const input1 = radios[0];
+      const input2 = radios[1];
       const label = screen.getByTestId('radio1-label');
+      const label2 = screen.getByTestId('radio2-label');
+
       fireEvent.click(screen.getByText('Radio1'));
 
-      expect(label).toHaveClass('radio-button-label radio-button-label__large radio-button-label__large--selected');
+      // Selected-styling drives off native :has(input:checked) in CSS, so we assert DOM state directly
+      expect(input1).toHaveProperty('checked', true);
+      expect(input2).toHaveProperty('checked', false);
+      expect(label).toHaveClass('radio-button-label__large');
+      expect(label2).toHaveClass('radio-button-label__large');
 
-      const label2 = screen.getByTestId('radio2-label');
       fireEvent.click(screen.getByText('Radio2'));
 
-      expect(label).toHaveClass('radio-button-label radio-button-label__large');
-      expect(label2).toHaveClass('radio-button-label radio-button-label__large radio-button-label__large--selected');
+      expect(input1).toHaveProperty('checked', false);
+      expect(input2).toHaveProperty('checked', true);
     });
   });
 

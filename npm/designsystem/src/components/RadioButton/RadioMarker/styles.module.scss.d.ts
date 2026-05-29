@@ -1,12 +1,8 @@
 export type Styles = {
   radio__marker: string;
-  'radio__marker__large--checked': string;
-  'radio__marker__large--checked--disabled': string;
-  'radio__marker__large--checked--invalid': string;
-  'radio__marker__regular--checked': string;
-  'radio__marker__regular--checked--disabled': string;
-  'radio__marker__regular--checked--invalid': string;
-  'radio__marker__regular--checked--on-dark': string;
+  radio__marker__large: string;
+  radio__marker__regular: string;
+  'radio__marker--checked': string;
   'radio__marker--disabled': string;
   'radio__marker--invalid': string;
   'radio__marker--on-blueberry': string;

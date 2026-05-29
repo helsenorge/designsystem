@@ -5,10 +5,9 @@ export type Styles = {
   'radio-button-label': string;
   'radio-button-label__large': string;
   'radio-button-label__large--disabled': string;
+  'radio-button-label__large--invalid': string;
   'radio-button-label__large--on-blueberry': string;
   'radio-button-label__large--on-grey': string;
-  'radio-button-label__large--selected': string;
-  'radio-button-label__large--selected-invalid': string;
   'radio-button-label--disabled': string;
   'radio-button-label--invalid': string;
   'radio-button-label--on-dark': string;
@@ -16,7 +15,6 @@ export type Styles = {
   'radio-button-wrapper__large': string;
   'radio-button-wrapper__large--invalid': string;
   'radio-button-wrapper__large--on-blueberry': string;
-  'radio-button-wrapper__large--selected': string;
   'radiobutton-afterlabelchildren-wrapper': string;
   'radiobutton-sublabel-wrapper': string;
 };

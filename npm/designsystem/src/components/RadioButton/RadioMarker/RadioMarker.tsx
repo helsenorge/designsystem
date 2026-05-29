@@ -34,6 +34,7 @@ export const RadioMarker: React.FC<RadioMarkerProps> = props => {
 
   const markerClasses = classNames(
     styles['radio__marker'],
+    large ? styles['radio__marker__large'] : styles['radio__marker__regular'],
     {
       [styles['radio__marker--on-white']]: onWhite,
       [styles['radio__marker--on-grey']]: onGrey,
@@ -42,20 +43,14 @@ export const RadioMarker: React.FC<RadioMarkerProps> = props => {
       [styles['radio__marker--on-invalid']]: onInvalid,
       [styles['radio__marker--invalid']]: onInvalid,
       [styles['radio__marker--disabled']]: disabled,
-      [styles['radio__marker__regular--checked']]: !large && checked,
-      [styles['radio__marker__regular--checked--invalid']]: !large && checked && onInvalid,
-      [styles['radio__marker__regular--checked--on-dark']]: !large && checked && onDark,
-      [styles['radio__marker__regular--checked--disabled']]: !large && checked && disabled,
-      [styles['radio__marker__large--checked']]: large && checked,
-      [styles['radio__marker__large--checked--invalid']]: large && checked && onInvalid,
-      [styles['radio__marker__large--checked--disabled']]: large && checked && disabled,
+      [styles['radio__marker--checked']]: checked,
     },
     className
   );
 
   return (
     <span className={markerClasses} aria-hidden="true">
-      {checked && <span className={styles['radio__marker-dot']} />}
+      <span className={styles['radio__marker-dot']} />
     </span>
   );
 };

@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import classNames from 'classnames';
 
 import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
@@ -73,19 +71,11 @@ export const RadioButton: React.FC<RadioButtonProps> = props => {
   const onBlueberry = onColor === FormOnColor.onblueberry;
   const onCherry = onColor === FormOnColor.oninvalid;
   const isLarge = size === FormSize.large;
-  const [isChecked, setIsChecked] = useState<boolean>(!!(props.checked ?? defaultChecked));
-  const [prevChecked, setPrevChecked] = useState<boolean | undefined>(props.checked);
-  if (prevChecked !== props.checked) {
-    setPrevChecked(props.checked);
-    if (props.checked !== undefined && props.checked !== isChecked) {
-      setIsChecked(props.checked);
-    }
-  }
+
   const errorTextId = useIdWithFallback(errorTextIdProp);
 
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper__large']]: isLarge,
-    [radioButtonStyles['radio-button-wrapper__large--selected']]: isLarge && isChecked,
     [radioButtonStyles['radio-button-wrapper__large--invalid']]: isLarge && onCherry,
     [radioButtonStyles['radio-button-wrapper__large--on-blueberry']]: isLarge && onBlueberry,
   });
@@ -97,19 +87,13 @@ export const RadioButton: React.FC<RadioButtonProps> = props => {
       [radioButtonStyles['radio-button-label--invalid']]: invalid,
       [radioButtonStyles['radio-button-label__large']]: isLarge,
       [radioButtonStyles['radio-button-label__large--disabled']]: isLarge && disabled,
-      [radioButtonStyles['radio-button-label__large--on-grey']]: isLarge && onGrey && !isChecked,
-      [radioButtonStyles['radio-button-label__large--on-blueberry']]: isLarge && onBlueberry && !isChecked,
-      [radioButtonStyles['radio-button-label__large--selected']]: isLarge && isChecked && !onCherry,
-      [radioButtonStyles['radio-button-label__large--selected-invalid']]: isLarge && isChecked && onCherry,
+      [radioButtonStyles['radio-button-label__large--on-grey']]: isLarge && onGrey,
+      [radioButtonStyles['radio-button-label__large--on-blueberry']]: isLarge && onBlueberry,
+      [radioButtonStyles['radio-button-label__large--invalid']]: isLarge && onCherry,
     },
     labelClassNames
   );
   const radioButtonClasses = classNames(radioButtonStyles['radio-button'], className);
-
-  const change = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setIsChecked(e.target.checked);
-    if (onChange) onChange(e);
-  };
 
   const getLabelContent = (): React.ReactNode => (
     <span className={radioButtonStyles['radio-button__marker-wrapper']}>
@@ -125,9 +109,9 @@ export const RadioButton: React.FC<RadioButtonProps> = props => {
         defaultChecked={defaultChecked}
         aria-describedby={getAriaDescribedBy(props, errorTextId)}
         required={required}
-        onChange={(e): void => change(e)}
+        onChange={onChange}
       />
-      <RadioMarker checked={isChecked} disabled={disabled} error={invalid} onColor={onColor} size={size} />
+      <RadioMarker disabled={disabled} error={invalid} onColor={onColor} size={size} />
     </span>
   );
 

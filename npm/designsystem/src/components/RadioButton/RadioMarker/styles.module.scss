@@ -63,36 +63,44 @@
       color: palette.$cherry600;
     }
 
-    &__regular {
-      &--checked {
-        color: palette.$blueberry500;
-      }
+    &__regular#{&}--checked,
+    label:has(input:checked) &__regular {
+      color: palette.$blueberry500;
+    }
 
-      &--checked--invalid {
-        color: palette.$cherry600;
-      }
+    &__regular#{&}--checked#{&}--invalid,
+    label:has(input:checked) &__regular#{&}--invalid {
+      color: palette.$cherry600;
+    }
 
-      &--checked--on-dark {
-        color: palette.$blueberry200;
-      }
+    &__regular#{&}--checked#{&}--on-dark,
+    label:has(input:checked) &__regular#{&}--on-dark {
+      color: palette.$blueberry200;
+    }
 
-      &--checked--disabled {
-        color: palette.$neutral600;
-      }
+    &__regular#{&}--checked#{&}--disabled,
+    label:has(input:checked) &__regular#{&}--disabled {
+      color: palette.$neutral600;
     }
 
     &__large {
-      &--checked {
-        color: palette.$blueberry100;
-      }
+      // empty stub — checked-state rules live at the &__marker level below
+    }
 
-      &--checked--invalid {
-        color: palette.$cherry500;
-      }
+    // Large size — checked appearance.
+    &__large#{&}--checked,
+    label:has(input:checked) &__large {
+      color: palette.$blueberry100;
+    }
 
-      &--checked--disabled {
-        color: palette.$neutral600;
-      }
+    &__large#{&}--checked#{&}--invalid,
+    label:has(input:checked) &__large#{&}--invalid {
+      color: palette.$cherry500;
+    }
+
+    &__large#{&}--checked#{&}--disabled,
+    label:has(input:checked) &__large#{&}--disabled {
+      color: palette.$neutral600;
     }
 
     &--disabled,
@@ -111,22 +119,26 @@
       &--on-dark {
         color: palette.$white;
       }
+    }
 
-      &__regular--checked {
-        color: palette.$black;
-      }
+    label:has(:focus-visible) &__regular#{&}--checked,
+    label:has(input:checked:focus-visible) &__regular {
+      color: palette.$black;
+    }
 
-      &__regular--checked--on-dark {
-        color: palette.$white;
-      }
+    label:has(:focus-visible) &__regular#{&}--checked#{&}--on-dark,
+    label:has(input:checked:focus-visible) &__regular#{&}--on-dark {
+      color: palette.$white;
+    }
 
-      &__large--checked {
-        color: palette.$white;
-      }
+    label:has(:focus-visible) &__large#{&}--checked,
+    label:has(input:checked:focus-visible) &__large {
+      color: palette.$white;
+    }
 
-      &__large--checked--invalid {
-        color: palette.$black;
-      }
+    label:has(:focus-visible) &__large#{&}--checked#{&}--invalid,
+    label:has(input:checked:focus-visible) &__large#{&}--invalid {
+      color: palette.$black;
     }
 
     // Hover styles via wrapping label
@@ -165,31 +177,38 @@
       background-color: palette.$inverted-hover-old;
     }
 
-    label:hover &__regular--checked {
+    label:hover &__regular#{&}--checked,
+    label:has(input:checked):hover &__regular {
       background-color: palette.$blueberry50;
     }
 
-    label:active &__regular--checked {
+    label:active &__regular#{&}--checked,
+    label:has(input:checked):active &__regular {
       background-color: palette.$blueberry100;
     }
 
-    label:hover &__regular--checked--invalid {
+    label:hover &__regular#{&}--checked#{&}--invalid,
+    label:has(input:checked):hover &__regular#{&}--invalid {
       background-color: palette.$cherry100;
     }
 
-    label:active &__regular--checked--invalid {
+    label:active &__regular#{&}--checked#{&}--invalid,
+    label:has(input:checked):active &__regular#{&}--invalid {
       background-color: palette.$cherry200;
     }
 
-    label:hover &__regular--checked--on-dark {
+    label:hover &__regular#{&}--checked#{&}--on-dark,
+    label:has(input:checked):hover &__regular#{&}--on-dark {
       background-color: palette.$inverted-hover-old;
     }
 
-    label:hover &__large--checked {
+    label:hover &__large#{&}--checked,
+    label:has(input:checked):hover &__large {
       background-color: unset;
     }
 
-    label:hover &__large--checked--invalid {
+    label:hover &__large#{&}--checked#{&}--invalid,
+    label:has(input:checked):hover &__large#{&}--invalid {
       background-color: transparent;
     }
 
@@ -202,7 +221,7 @@
   }
 
   &__marker-dot {
-    display: block;
+    display: none;
     background-color: palette.$blueberry500;
     width: 0.875rem;
     height: 0.875rem;
@@ -213,6 +232,12 @@
       forced-color-adjust: none;
       background-color: #fff !important;
     }
+  }
+
+  // Show the dot visually
+  &__marker#{&}__marker--checked &__marker-dot,
+  label:has(input:checked) &__marker &__marker-dot {
+    display: block;
   }
 
   // Dot color follows the marker state (so the focus ring can turn black
@@ -229,11 +254,13 @@
     background-color: palette.$neutral600;
   }
 
-  &__marker__large--checked &__marker-dot {
+  &__marker__large#{&}__marker--checked &__marker-dot,
+  label:has(input:checked) &__marker__large &__marker-dot {
     background-color: palette.$blueberry100;
   }
 
-  &__marker__large--checked--invalid &__marker-dot {
+  &__marker__large#{&}__marker--checked#{&}__marker--invalid &__marker-dot,
+  label:has(input:checked) &__marker__large#{&}__marker--invalid &__marker-dot {
     background-color: palette.$cherry500;
   }
 
@@ -249,11 +276,13 @@
     background-color: palette.$cherry800;
   }
 
-  label:active &__marker__large--checked &__marker-dot {
+  label:active &__marker__large#{&}__marker--checked &__marker-dot,
+  label:has(input:checked):active &__marker__large &__marker-dot {
     background-color: palette.$blueberry200;
   }
 
-  label:active &__marker__large--checked--invalid &__marker-dot {
+  label:active &__marker__large#{&}__marker--checked#{&}__marker--invalid &__marker-dot,
+  label:has(input:checked):active &__marker__large#{&}__marker--invalid &__marker-dot {
     background-color: palette.$cherry700;
   }
 }

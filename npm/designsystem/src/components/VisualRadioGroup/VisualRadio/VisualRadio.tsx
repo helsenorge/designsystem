@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import classNames from 'classnames';
 
 import type { ErrorWrapperClassNameProps } from '../../ErrorWrapper';
@@ -42,8 +40,6 @@ export interface VisualRadioProps
 const VisualRadio: React.FC<VisualRadioProps> = props => {
   const {
     className,
-    checked,
-    defaultChecked,
     children,
     visualContent,
     variant = 'line',
@@ -53,26 +49,12 @@ const VisualRadio: React.FC<VisualRadioProps> = props => {
     errorTextId: errorTextIdProp,
     errorWrapperClassName,
     testId,
-    onChange,
     ref,
     ...rest
   } = props;
 
   const inputId = useIdWithFallback(inputIdProp);
   const errorTextId = useIdWithFallback(errorTextIdProp);
-  const [isChecked, setIsChecked] = useState<boolean>(!!(checked ?? defaultChecked));
-  const [prevChecked, setPrevChecked] = useState<boolean | undefined>(checked);
-  if (prevChecked !== checked) {
-    setPrevChecked(checked);
-    if (checked !== undefined && checked !== isChecked) {
-      setIsChecked(checked);
-    }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setIsChecked(e.target.checked);
-    onChange?.(e);
-  };
 
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
@@ -80,10 +62,7 @@ const VisualRadio: React.FC<VisualRadioProps> = props => {
         className={classNames(
           styles['visual-radio'],
           styles[`visual-radio--variant-${variant}`],
-          {
-            [styles['visual-radio--checked']]: isChecked,
-            [styles['visual-radio--invalid']]: error,
-          },
+          { [styles['visual-radio--invalid']]: error },
           className
         )}
         htmlFor={inputId}
@@ -98,14 +77,14 @@ const VisualRadio: React.FC<VisualRadioProps> = props => {
           ref={ref}
           className={styles['visual-radio__input']}
           type="radio"
-          checked={isChecked}
+          checked={rest.checked}
           aria-invalid={error}
           aria-describedby={getAriaDescribedBy(props, errorTextId)}
-          onChange={handleChange}
+          onChange={rest.onChange}
         />
         <span className={styles['visual-radio__frame']}>
           <span className={styles['visual-radio__label']}>{children}</span>
-          <RadioMarker checked={isChecked} error={error} size={'large'} />
+          <RadioMarker error={error} size={'large'} />
         </span>
       </label>
     </ErrorWrapper>

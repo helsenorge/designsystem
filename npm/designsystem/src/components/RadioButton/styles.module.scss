@@ -30,7 +30,7 @@ $padding-clickable-area-left: 8px;
       color: palette.$blueberry500;
     }
 
-    &--selected:has(input:focus-visible) {
+    &:has(input:checked):has(input:focus-visible) {
       color: palette.$blueberry900;
     }
 
@@ -111,7 +111,7 @@ $padding-clickable-area-left: 8px;
     }
   }
 
-  &__large#{&}__large--selected-invalid {
+  &__large#{&}__large--invalid:has(input:checked) {
     background-color: palette.$cherry100;
     color: palette.$black;
 
@@ -144,7 +144,7 @@ $padding-clickable-area-left: 8px;
     }
   }
 
-  &__large--selected {
+  &__large:has(input:checked) {
     background-color: palette.$blueberry500;
     color: palette.$white;
 

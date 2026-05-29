@@ -167,6 +167,15 @@ export const Controlled: Story = {
     );
   },
 };
+export const WithoutControlledGroup: Story = {
+  render: args => (
+    <form>
+      <RadioButton {...args} name="bug-group" label={<Label labelTexts={[{ text: 'RadioButton 1' }]} />} value="1" />
+      <RadioButton {...args} name="bug-group" label={<Label labelTexts={[{ text: 'RadioButton 2' }]} />} value="2" />
+      <RadioButton {...args} name="bug-group" label={<Label labelTexts={[{ text: 'RadioButton 3' }]} />} value="3" />
+    </form>
+  ),
+};
 
 export const DifferentLabels: Story = {
   render: args => (

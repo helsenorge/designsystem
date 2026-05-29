@@ -5,21 +5,23 @@ import { FormOnColor, FormSize } from '../../../constants';
 
 describe('Gitt at RadioMarker skal vises', (): void => {
   describe('Når checked ikke er satt', () => {
-    test('Så rendres ikke dotten', () => {
+    test('Så rendres dotten alltid i DOM, men styres av CSS (--checked / :has(input:checked))', () => {
       const { container } = render(<RadioMarker />);
 
       const marker = container.firstChild as HTMLElement;
       expect(marker).toBeInTheDocument();
-      expect(marker.firstChild).toBeNull();
+      expect(marker.firstChild).toHaveClass('radio__marker-dot');
+      expect(marker).not.toHaveClass('radio__marker--checked');
     });
   });
 
   describe('Når checked er true', () => {
-    test('Så rendres dotten inne i en aria-hidden wrapper', () => {
+    test('Så får markøren --checked klasse og dotten ligger inne i en aria-hidden wrapper', () => {
       const { container } = render(<RadioMarker checked />);
 
       const marker = container.firstChild as HTMLElement;
       expect(marker).toHaveAttribute('aria-hidden', 'true');
+      expect(marker).toHaveClass('radio__marker--checked');
       expect(marker.firstChild).toHaveClass('radio__marker-dot');
     });
   });
@@ -32,11 +34,18 @@ describe('Gitt at RadioMarker skal vises', (): void => {
     });
   });
 
-  describe('Når size er large og checked', () => {
-    test('Så får markøren large-checked klasse', () => {
+  describe('Når size er large', () => {
+    test('Så får markøren large-base klasse', () => {
+      const { container } = render(<RadioMarker size={FormSize.large} />);
+
+      expect(container.firstChild).toHaveClass('radio__marker__large');
+    });
+
+    test('Så får markøren large-base og --checked klasser når checked er true', () => {
       const { container } = render(<RadioMarker checked size={FormSize.large} />);
 
-      expect(container.firstChild).toHaveClass('radio__marker__large--checked');
+      expect(container.firstChild).toHaveClass('radio__marker__large');
+      expect(container.firstChild).toHaveClass('radio__marker--checked');
     });
   });
 
