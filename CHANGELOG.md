@@ -1,4 +1,10 @@
 
+## [14.11.1](https://github.com/helsenorge/designsystem/compare/v14.11.0...v14.11.1) (2026-05-29)
+
+### Bug Fixes
+
+* **radiobutton:**  dot forsvant ikke uten formgroup med name ([8da51a3](https://github.com/helsenorge/designsystem/commit/8da51a390f5a54aeca6ce697ed6c7818b2564515)), closes [#379249](https://github.com/helsenorge/designsystem/issues/379249)
+
 ## [14.11.0](https://github.com/helsenorge/designsystem/compare/v14.10.0...v14.11.0) (2026-05-26)
 
 ### Features
