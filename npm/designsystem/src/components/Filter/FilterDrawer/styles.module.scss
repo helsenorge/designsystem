@@ -25,5 +25,12 @@
         justify-content: flex-end;
       }
     }
+
+    &__right {
+      display: flex;
+      align-items: center;
+      gap: var(--spacer-s, 12px);
+      margin-left: auto;
+    }
   }
 }

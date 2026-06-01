@@ -1,7 +1,7 @@
 export type Styles = {
-  'filter-drawer__footer': string;
-  'filter-drawer__footer__right': string;
-  'filter-drawer__view': string;
+  'loader-spinner': string;
+  'loader-spinner__svg': string;
+  'loader-spinner__text': string;
 };
 
 export type ClassNames = keyof Styles;

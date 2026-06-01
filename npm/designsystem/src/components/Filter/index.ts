@@ -8,6 +8,8 @@ export { default as FilterDrawer } from './FilterDrawer';
 export * from './FilterDrawer';
 export { default as FilterLinkList } from './FilterLinkList';
 export * from './FilterLinkList';
+export { default as LoaderSpinner } from './LoaderSpinner';
+export * from './LoaderSpinner';
 export { default as FilterOverviewLinkList } from './FilterOverviewLinkList';
 export * from './FilterOverviewLinkList';
 export { default as FilterOverviewSearch } from './FilterOverviewSearch';
