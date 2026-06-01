@@ -1,0 +1,10 @@
+@use '../../../scss/visual-form' as visual-form;
+@import '../../../scss/supernova/styles/colors.css';
+@import '../../../scss/supernova/styles/spacers.css';
+
+.visual-checkbox {
+  @include visual-form.visual-form-pill(
+    $pill-padding-mobile: var(--core-space-3xs) 1.75rem,
+    $checked-pill-padding-md: var(--core-space-3xs) 1.25rem
+  );
+}

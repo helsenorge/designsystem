@@ -1,0 +1,6 @@
+@use '../../scss/visual-form' as visual-form;
+@import '../../scss/supernova/styles/spacers.css';
+
+.visual-radio-group {
+  @include visual-form.visual-form-group;
+}

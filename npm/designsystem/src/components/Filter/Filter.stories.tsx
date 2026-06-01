@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
@@ -9,6 +9,7 @@ import Dropdown from '../Dropdown';
 import EmptyState from '../EmptyState';
 import FormGroup from '../FormGroup';
 import Globe from '../Icons/Globe';
+import Loader from '../Loader';
 import Panel from '../Panel';
 import PanelList from '../PanelList';
 import RadioButton from '../RadioButton';
@@ -271,7 +272,8 @@ export const VerktoyExample: Story = {
         <FilterDrawer
           drawer={drawer}
           onReset={() => filter.resetFiltersToEmpty()}
-          resources={{ showButtonText: `Vis ${filtered.length} verktøy` }}
+          resultCount={filtered.length}
+          resources={{ showButtonText: `Vis verktøy` }}
         >
           <FilterDrawer.Overview title={'Finn ...'}>
             <FilterOverviewLinkList
@@ -646,7 +648,7 @@ export const WithLanguageProvider: Story = {
   },
 };
 
-export const FilterSearchInFilterResults: Story = {
+export const FilterSearchInFilterState: Story = {
   render: () => {
     interface MockData {
       navn: string;
@@ -700,6 +702,167 @@ export const FilterSearchInFilterResults: Story = {
           </FilterDrawer.Overview>
         </FilterDrawer>
       </FilterStateWrapper>
+    );
+  },
+};
+
+export const WithAsyncFiltering: Story = {
+  render: () => {
+    type Clients = 'Alle' | 'Helsenorge' | 'Helsenorge mobilapp' | 'Doctrin';
+
+    interface Logginnslag {
+      when: string;
+      who: string;
+      isYou: boolean;
+      what: string;
+      where: Clients;
+    }
+
+    const dokumentMockData: Logginnslag[] = [
+      { when: '27.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Helsekontakter', where: 'Helsenorge' },
+      { when: '26.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Timeavtaler', where: 'Helsenorge mobilapp' },
+      { when: '25.03.2026', who: 'Dr. Hansen', isYou: false, what: 'Journalnotat', where: 'Helsenorge' },
+      { when: '24.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Meldinger', where: 'Helsenorge' },
+      { when: '23.03.2026', who: 'Sykehuset Innlandet', isYou: false, what: 'Prøvesvar', where: 'Helsenorge' },
+      { when: '22.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Resepter', where: 'Helsenorge mobilapp' },
+      { when: '21.03.2026', who: 'Dr. Olsen', isYou: false, what: 'Epikrise', where: 'Doctrin' },
+      { when: '20.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Vaksiner', where: 'Helsenorge' },
+      { when: '19.03.2026', who: 'Line Danser (egen bruk)', isYou: true, what: 'Bytte fastlege', where: 'Helsenorge mobilapp' },
+      { when: '18.03.2026', who: 'Fastlege Johansen', isYou: false, what: 'Henvisning', where: 'Helsenorge' },
+    ];
+
+    type LoggFilterType = {
+      who: string[];
+      where: Clients;
+    };
+
+    const whoOptions = [
+      { value: 'you', displaytext: 'Deg selv' },
+      { value: 'others', displaytext: 'Andre' },
+    ];
+    const whereOptions: { value: Clients }[] = [
+      { value: 'Alle' },
+      { value: 'Helsenorge' },
+      { value: 'Helsenorge mobilapp' },
+      { value: 'Doctrin' },
+    ];
+
+    const { filterOptions, getLabel } = createFilterConfig<LoggFilterType>({
+      who: { options: whoOptions, getLabel: o => o.displaytext },
+      where: { options: whereOptions, getLabel: o => o.value },
+    });
+
+    type LogginnslagFilterViews = 'overview' | 'who' | 'where';
+
+    const filter = useFilter<LoggFilterType>(filterOptions);
+    const drawer = useFilterDrawer<LogginnslagFilterViews>();
+
+    const filterMatchers: FilterMatchers<Logginnslag, LoggFilterType> = {
+      who: (item, value) => {
+        const values = Array.isArray(value) ? value : [value];
+        return values.some(v => (v === 'you' && item.isYou) || (v === 'others' && !item.isYou));
+      },
+      where: (item, value) => value === 'Alle' || item.where === value,
+    };
+
+    const logginnslagFilterLabels: Record<keyof LoggFilterType, string> = {
+      who: 'Hvem',
+      where: 'Hvor',
+    };
+
+    const filtered = filterItems(dokumentMockData, filter.filters, filterMatchers);
+
+    // Simulate an async API call: show isLoading briefly whenever the filter changes.
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+      setIsLoading(true);
+      const timeout = setTimeout(() => setIsLoading(false), 1200);
+      return (): void => clearTimeout(timeout);
+    }, [filter.filters.who, filter.filters.where]);
+
+    return (
+      <>
+        <FilterStateWrapper>
+          <FilterButtonAndChipsWrapper
+            filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
+            filterChips={getFilterChips({
+              filter,
+              getLabel,
+              onChipClick: key => drawer.open(key as LogginnslagFilterViews),
+              onOverflowChipClick: () => drawer.open(),
+            })}
+          />
+          <FilterResultCountAndSortWrapper resultCount={`${filtered.length} logginnslag`} />
+        </FilterStateWrapper>
+
+        <FilterDrawer resultCount={filtered.length} isLoading={isLoading} drawer={drawer} onReset={() => filter.resetFiltersToEmpty()}>
+          <FilterDrawer.Overview title={'Finn ...'}>
+            <FilterOverviewLinkList
+              filter={filter}
+              getLabel={getLabel}
+              links={[
+                { filterKey: 'who', title: logginnslagFilterLabels.who },
+                { filterKey: 'where', title: logginnslagFilterLabels.where },
+              ]}
+            />
+          </FilterDrawer.Overview>
+          <FilterDrawer.View id="who" title={logginnslagFilterLabels.who} onReset={() => filter.removeFilter('who')}>
+            <div>
+              <FormGroup legend={'Velg en eller flere'}>
+                {whoOptions.map(opt => (
+                  <Checkbox
+                    key={opt.value}
+                    label={opt.displaytext}
+                    checked={(filter.filters.who ?? []).includes(opt.value)}
+                    onChange={(): void => toggleArrayFilter(filter, 'who', opt.value)}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          </FilterDrawer.View>
+          <FilterDrawer.View id="where" title={logginnslagFilterLabels.where} onReset={() => filter.removeFilter('where')}>
+            <div>
+              <FormGroup legend={'Velg en eller flere'}>
+                {whereOptions.map(opt => (
+                  <RadioButton
+                    key={opt.value}
+                    label={opt.value}
+                    name="where"
+                    checked={filter.filters.where === opt.value}
+                    onChange={(): void => filter.setFilter('where', opt.value)}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          </FilterDrawer.View>
+        </FilterDrawer>
+        {isLoading ? (
+          <Loader />
+        ) : filtered.length > 0 ? (
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableHeadCell>{'Når'}</TableHeadCell>
+                <TableHeadCell>{'Hvem'}</TableHeadCell>
+                <TableHeadCell>{'Hva'}</TableHeadCell>
+                <TableHeadCell>{'Hvor'}</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filtered.map(logg => (
+                <TableRow key={logg.when + logg.what}>
+                  <TableCell>{logg.when}</TableCell>
+                  <TableCell>{logg.who}</TableCell>
+                  <TableCell>{logg.what}</TableCell>
+                  <TableCell>{logg.where}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        ) : (
+          <EmptyState title={'Ingen dokumenter ble funnet med valgt filter. Prøv å endre filteret for å se flere dokumenter.'} />
+        )}
+      </>
     );
   },
 };

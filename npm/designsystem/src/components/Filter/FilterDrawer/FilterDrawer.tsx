@@ -8,6 +8,7 @@ import { useLanguage } from '../../../hooks/useLanguage';
 import { formatResource } from '../../../utils/resource';
 import Button from '../../Button';
 import DrawerNavigation, { type DrawerViewProps } from '../DrawerNavigation/DrawerNavigation';
+import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 import { getResources } from '../resourceHelper';
 
 import styles from './styles.module.scss';
@@ -19,9 +20,11 @@ export interface FilterDrawerProps<ViewId extends string = string> {
   onClose?: () => void;
   /** Fully custom footer — overrides the default footer built from onReset/resultText */
   footer?: React.ReactNode;
+  /** Shows LoaderSpinner in the footer when turned on */
+  isLoading?: boolean;
   /** If provided, shows a "Nullstill filter" button in the default footer */
   onReset?: () => void;
-  /** If provided, shows a result count button (e.g. "Vis 5 treff") that closes the drawer */
+  /** If provided, shows a result count in the footer */
   resultCount?: number;
   /** Resources for the component */
   resources?: Partial<HNDesignsystemFilter>;
@@ -60,6 +63,7 @@ function FilterDrawer<ViewId extends string>({
   drawer,
   onClose,
   footer,
+  isLoading,
   onReset,
   resultCount,
   resources,
@@ -80,21 +84,28 @@ function FilterDrawer<ViewId extends string>({
     }
   };
 
-  const showResultButtonText =
-    resultCount !== undefined ? formatResource(mergedResources.showButtonText, resultCount) : mergedResources.showButtonText;
-
   const defaultResetButton = onReset && (
     <Button onClick={onReset} variant="borderless">
       {mergedResources.resetButtonText}
     </Button>
   );
-  const defaultShowResultsButton = showResultButtonText && <Button onClick={handleClose}>{showResultButtonText}</Button>;
+  const defaultShowResultsButton = <Button onClick={handleClose}>{mergedResources.showButtonText}</Button>;
+
+  const resultText = resultCount !== undefined ? <span>{formatResource(mergedResources.resultsText, resultCount)}</span> : undefined;
+  const resultContent = isLoading ? <LoaderSpinner resources={mergedResources} /> : resultText;
+
+  const defaultFooterRight = (resultContent || defaultShowResultsButton) && (
+    <div className={styles['filter-drawer__footer__right']}>
+      {resultContent}
+      {defaultShowResultsButton}
+    </div>
+  );
 
   const defaultFooter =
-    onReset || showResultButtonText ? (
+    onReset || resultContent ? (
       <div className={styles['filter-drawer__footer']}>
         {defaultResetButton}
-        {defaultShowResultsButton}
+        {defaultFooterRight}
       </div>
     ) : undefined;
 
@@ -104,6 +115,8 @@ function FilterDrawer<ViewId extends string>({
     if (!viewOnReset && !viewOnClose && !noResetButton) {
       return undefined;
     }
+
+    const viewShowButton = viewOnClose ? <Button onClick={viewOnClose}>{mergedResources.showButtonText}</Button> : defaultShowResultsButton;
 
     return (
       <div className={styles['filter-drawer__footer']}>
@@ -115,10 +128,11 @@ function FilterDrawer<ViewId extends string>({
           ) : (
             defaultResetButton
           ))}
-        {viewOnClose ? (
-          <Button onClick={viewOnClose}>{showResultButtonText ?? mergedResources.showButtonText}</Button>
-        ) : (
-          defaultShowResultsButton
+        {(resultContent || viewShowButton) && (
+          <div className={styles['filter-drawer__footer__right']}>
+            {resultContent}
+            {viewShowButton}
+          </div>
         )}
       </div>
     );

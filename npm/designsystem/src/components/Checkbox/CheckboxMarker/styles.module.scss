@@ -1,0 +1,309 @@
+@use '../../../scss/spacers' as spacers;
+@use '../../../scss/palette' as palette;
+
+@mixin dashed-dotted-border() {
+  box-shadow: none;
+
+  --dot-size: 2px;
+  --dash-length: 5px;
+  --gap-length: 2px;
+  --corner-gap: 2px;
+
+  background-image:
+    // Square dots at corners
+    linear-gradient(palette.$neutral600, palette.$neutral600),
+    linear-gradient(palette.$neutral600, palette.$neutral600),
+    linear-gradient(palette.$neutral600, palette.$neutral600),
+    linear-gradient(palette.$neutral600, palette.$neutral600),
+    // Dashed lines
+    repeating-linear-gradient(
+        0deg,
+        palette.$neutral600,
+        palette.$neutral600 var(--dash-length),
+        transparent var(--dash-length),
+        transparent calc(var(--dash-length) + var(--gap-length))
+      ),
+    repeating-linear-gradient(
+      90deg,
+      palette.$neutral600,
+      palette.$neutral600 var(--dash-length),
+      transparent var(--dash-length),
+      transparent calc(var(--dash-length) + var(--gap-length))
+    ),
+    repeating-linear-gradient(
+      180deg,
+      palette.$neutral600,
+      palette.$neutral600 var(--dash-length),
+      transparent var(--dash-length),
+      transparent calc(var(--dash-length) + var(--gap-length))
+    ),
+    repeating-linear-gradient(
+      270deg,
+      palette.$neutral600,
+      palette.$neutral600 var(--dash-length),
+      transparent var(--dash-length),
+      transparent calc(var(--dash-length) + var(--gap-length))
+    );
+  background-size:
+    // Top-left dot
+    var(--dot-size) var(--dot-size),
+    // Top-right dot
+    var(--dot-size) var(--dot-size),
+    // Bottom-right dot
+    var(--dot-size) var(--dot-size),
+    // Bottom-left dot
+    var(--dot-size) var(--dot-size),
+    // Left border
+    2px calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2),
+    // Top border
+    calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2) 2px,
+    // Right border
+    2px calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2),
+    // Bottom border
+    calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2) 2px;
+  background-position:
+    // Top-left dot
+    0 0,
+    // Top-right dot
+    100% 0,
+    // Bottom-right dot
+    100% 100%,
+    // Bottom-left dot
+    0 100%,
+    // Left border
+    0 calc(var(--dot-size) + var(--corner-gap)),
+    // Top border
+    calc(var(--dot-size) + var(--corner-gap)) 0,
+    // Right border
+    100% calc(var(--dot-size) + var(--corner-gap)),
+    // Bottom border
+    calc(var(--dot-size) + var(--corner-gap)) 100%;
+  background-repeat: no-repeat;
+}
+
+$checkbox-icon-size: 1.625rem;
+
+.checkbox {
+  &__marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $checkbox-icon-size;
+    width: $checkbox-icon-size;
+    min-height: $checkbox-icon-size;
+    min-width: $checkbox-icon-size;
+    box-shadow: inset 0 0 0 spacers.getSpacer(4xs);
+
+    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      background-color: #000 !important;
+      color: #fff !important;
+    }
+
+    &--on-white,
+    &--on-grey {
+      color: palette.$neutral700;
+    }
+
+    &--on-blueberry {
+      color: palette.$blueberry500;
+    }
+
+    &--on-invalid {
+      color: palette.$cherry500;
+    }
+
+    &--on-dark {
+      color: palette.$neutral200;
+    }
+
+    &__regular {
+      &--checked {
+        background-color: palette.$blueberry500;
+        color: palette.$blueberry500;
+        box-shadow: inset 0 0 0 spacers.getSpacer(4xs);
+      }
+
+      &--checked#{&}--invalid {
+        background-color: palette.$cherry500;
+        color: palette.$cherry500;
+      }
+
+      &--checked#{&}--on-dark {
+        background-color: palette.$blueberry50;
+        color: palette.$blueberry50;
+      }
+    }
+
+    &__large {
+      &--checked {
+        background-color: palette.$blueberry50;
+        box-shadow: none;
+      }
+
+      &--checked#{&}--invalid {
+        background-color: palette.$cherry500;
+      }
+
+      &--checked#{&}--disabled {
+        color: palette.$neutral600;
+        background-color: transparent;
+      }
+    }
+
+    &--disabled,
+    &--disabled#{&}--invalid,
+    &--disabled#{&}--on-dark {
+      @include dashed-dotted-border;
+
+      background-color: transparent;
+    }
+
+    // When any focusable element inside the wrapping <label>
+    // is focus-visible, style the .checkbox__marker.
+    // Specificity is doubled (&#{&}) so focus-visible styles win over the later
+    // label:hover rules below, while keeping the source order required by css:S4664.
+    label:has(:focus-visible) &#{&} {
+      box-shadow: 0 0 0 spacers.getSpacer(3xs) palette.$black;
+      color: palette.$black;
+
+      &__regular--checked {
+        border: 1px solid var(--color-action-border-ondark-focus);
+
+        & + .checkbox__marker__regular--on-dark {
+          border: 1px solid var(--color-action-border-onlight-focus);
+        }
+      }
+
+      &--on-dark {
+        color: palette.$white;
+        border: 1px solid var(--color-action-border-onlight-focus);
+      }
+
+      &--invalid {
+        color: palette.$black;
+      }
+
+      &__large {
+        &--checked {
+          background-color: palette.$blueberry200;
+          box-shadow: 0 0 0 spacers.getSpacer(3xs);
+          color: palette.$white;
+          border: 1px solid var(--color-action-border-onlight-focus);
+
+          // komboklasser fungerer ikke i nested struktur
+          &--invalid {
+            background-color: palette.$cherry500;
+            color: palette.$black;
+            border: 1px solid var(--color-action-border-ondark-focus);
+          }
+
+          &--disabled {
+            color: palette.$neutral700;
+          }
+        }
+      }
+    }
+
+    label:hover &,
+    label:active & {
+      box-shadow:
+        inset 0 0 0 spacers.getSpacer(4xs),
+        0 0 0 spacers.getSpacer(4xs);
+    }
+
+    label:hover &--on-white,
+    label:hover &--on-grey {
+      background-color: var(--color-action-graphics-ondark-hover);
+    }
+
+    label:active &--on-white,
+    label:active &--on-grey {
+      background-color: palette.$blueberry100;
+    }
+
+    label:hover &--on-blueberry {
+      background-color: palette.$blueberry100;
+    }
+
+    label:hover &--on-invalid {
+      background-color: palette.$cherry50;
+    }
+
+    label:active &--on-invalid {
+      background-color: palette.$cherry100;
+    }
+
+    label:hover &--on-dark {
+      background-color: #ffffff1a;
+    }
+
+    label:hover &__regular--checked,
+    label:active &__regular--checked {
+      box-shadow:
+        inset 0 0 0 spacers.getSpacer(4xs),
+        0 0 0 spacers.getSpacer(4xs);
+    }
+
+    label:hover &__regular--checked {
+      background-color: palette.$blueberry600;
+      color: palette.$blueberry600;
+    }
+
+    label:active &__regular--checked {
+      background-color: palette.$blueberry800;
+      color: palette.$blueberry800;
+    }
+
+    label:hover &__regular--checked#{&}__regular--invalid {
+      background-color: palette.$cherry600;
+      color: palette.$cherry600;
+    }
+
+    label:active &__regular--checked#{&}__regular--invalid {
+      background-color: palette.$cherry800;
+      color: palette.$cherry800;
+    }
+
+    label:hover &__regular--checked#{&}__regular--on-dark {
+      background-color: palette.$blueberry100;
+      color: palette.$blueberry100;
+    }
+
+    label:active &__regular--checked#{&}__regular--on-dark {
+      background-color: palette.$blueberry200;
+      color: palette.$blueberry200;
+    }
+
+    label:hover &__large--checked {
+      background-color: palette.$blueberry200;
+      box-shadow: none;
+    }
+
+    label:hover &__large--checked#{&}__large--invalid {
+      background-color: palette.$cherry600;
+    }
+
+    label:hover &__large--checked#{&}__large--disabled {
+      background-color: transparent;
+    }
+
+    label:hover &--disabled,
+    label:hover &--disabled#{&}--invalid,
+    label:hover &--disabled#{&}--on-dark {
+      box-shadow: none;
+      background-color: transparent;
+    }
+  }
+
+  &__marker-icon {
+    display: flex;
+
+    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      stroke: #fff;
+    }
+  }
+}

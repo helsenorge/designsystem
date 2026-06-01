@@ -1,10 +1,11 @@
 {
-  "filterButtonText": "Oza...",
+  "filterButtonText": "Oza ...",
   "sortLabel": "Sirren",
   "resetButtonText": "Bija ruovttuluotta",
-  "showButtonText": "Čájet {0} deaivan",
-  "filterOverviewTitle": "Oza...",
+  "showButtonText": "Čájet deaivan",
+  "filterOverviewTitle": "Oza ...",
   "searchPlaceholder": "Oza listtus",
   "searchClearButtonAriaLabel": "Bija ruovttuluotta",
-  "searchButtonAriaLabel": "Oza"
+  "searchButtonAriaLabel": "Oza",
+  "resultsText": "{0} deaivan"
 }

@@ -1,0 +1,288 @@
+@use '../../../scss/spacers' as spacers;
+@use '../../../scss/palette' as palette;
+@use 'sass:meta';
+@use 'sass:string';
+
+@mixin dashed-border() {
+  box-shadow: none;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: '';
+
+    $encoded-color: string.slice(meta.inspect(palette.$neutral600), 2);
+
+    // Variabler for å lettere styre dashen i background-imaget under
+    $stroke: 4;
+    $dash: 0.2;
+    $gap: 7;
+    $scale: 1;
+    $stroke-scaled: $stroke * $scale;
+    $dash-scaled: $dash * $scale;
+    $gap-scaled: $gap * $scale;
+
+    border-radius: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='%23#{$encoded-color}' stroke-width='#{$stroke-scaled}' stroke-dasharray='#{$dash-scaled},#{$gap-scaled}' stroke-linecap='square'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 28px;
+    inset: -2px;
+  }
+}
+
+.radio {
+  &__marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    min-height: 1.5rem;
+    min-width: 1.5rem;
+    color: palette.$neutral700;
+    box-shadow: 0 0 0 spacers.getSpacer(4xs);
+
+    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      background-color: transparent !important;
+      color: #fff !important;
+    }
+
+    &--on-blueberry {
+      color: palette.$blueberry500;
+    }
+
+    &--on-dark {
+      color: palette.$neutral200;
+    }
+
+    &--invalid {
+      color: palette.$cherry600;
+    }
+
+    &__regular#{&}--checked,
+    label:has(input:checked) &__regular {
+      color: palette.$blueberry500;
+    }
+
+    &__regular#{&}--checked#{&}--invalid,
+    label:has(input:checked) &__regular#{&}--invalid {
+      color: palette.$cherry600;
+    }
+
+    &__regular#{&}--checked#{&}--on-dark,
+    label:has(input:checked) &__regular#{&}--on-dark {
+      color: palette.$blueberry200;
+    }
+
+    &__regular#{&}--checked#{&}--disabled,
+    label:has(input:checked) &__regular#{&}--disabled {
+      color: palette.$neutral600;
+    }
+
+    &__large {
+      // empty stub — checked-state rules live at the &__marker level below
+    }
+
+    // Large size — checked appearance.
+    &__large#{&}--checked,
+    label:has(input:checked) &__large {
+      color: palette.$blueberry100;
+    }
+
+    &__large#{&}--checked#{&}--invalid,
+    label:has(input:checked) &__large#{&}--invalid {
+      color: palette.$cherry500;
+    }
+
+    &__large#{&}--checked#{&}--disabled,
+    label:has(input:checked) &__large#{&}--disabled {
+      color: palette.$neutral600;
+    }
+
+    &--disabled,
+    &--disabled#{&}--invalid,
+    &--disabled#{&}--on-dark {
+      @include dashed-border;
+
+      background-color: transparent;
+    }
+
+    // Focus styles when an input inside the wrapping label is focus-visible
+    label:has(:focus-visible) &#{&} {
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      color: palette.$black;
+
+      &--on-dark {
+        color: palette.$white;
+      }
+    }
+
+    label:has(:focus-visible) &__regular#{&}--checked,
+    label:has(input:checked:focus-visible) &__regular {
+      color: palette.$black;
+    }
+
+    label:has(:focus-visible) &__regular#{&}--checked#{&}--on-dark,
+    label:has(input:checked:focus-visible) &__regular#{&}--on-dark {
+      color: palette.$white;
+    }
+
+    label:has(:focus-visible) &__large#{&}--checked,
+    label:has(input:checked:focus-visible) &__large {
+      color: palette.$white;
+    }
+
+    label:has(:focus-visible) &__large#{&}--checked#{&}--invalid,
+    label:has(input:checked:focus-visible) &__large#{&}--invalid {
+      color: palette.$black;
+    }
+
+    // Hover styles via wrapping label
+    label:hover &,
+    label:active & {
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+    }
+
+    label:hover &--on-white,
+    label:hover &--on-grey {
+      background-color: palette.$neutral100;
+    }
+
+    label:active &--on-white,
+    label:active &--on-grey {
+      background-color: palette.$blueberry100;
+    }
+
+    label:hover &--on-blueberry {
+      background-color: palette.$blueberry100;
+    }
+
+    label:active &--on-blueberry {
+      background-color: palette.$blueberry200;
+    }
+
+    label:hover &--on-invalid {
+      background-color: palette.$cherry100;
+    }
+
+    label:active &--on-invalid {
+      background-color: palette.$cherry200;
+    }
+
+    label:hover &--on-dark {
+      background-color: palette.$inverted-hover-old;
+    }
+
+    label:hover &__regular#{&}--checked,
+    label:has(input:checked):hover &__regular {
+      background-color: palette.$blueberry50;
+    }
+
+    label:active &__regular#{&}--checked,
+    label:has(input:checked):active &__regular {
+      background-color: palette.$blueberry100;
+    }
+
+    label:hover &__regular#{&}--checked#{&}--invalid,
+    label:has(input:checked):hover &__regular#{&}--invalid {
+      background-color: palette.$cherry100;
+    }
+
+    label:active &__regular#{&}--checked#{&}--invalid,
+    label:has(input:checked):active &__regular#{&}--invalid {
+      background-color: palette.$cherry200;
+    }
+
+    label:hover &__regular#{&}--checked#{&}--on-dark,
+    label:has(input:checked):hover &__regular#{&}--on-dark {
+      background-color: palette.$inverted-hover-old;
+    }
+
+    label:hover &__large#{&}--checked,
+    label:has(input:checked):hover &__large {
+      background-color: unset;
+    }
+
+    label:hover &__large#{&}--checked#{&}--invalid,
+    label:has(input:checked):hover &__large#{&}--invalid {
+      background-color: transparent;
+    }
+
+    label:hover &--disabled,
+    label:hover &--disabled#{&}--invalid,
+    label:hover &--disabled#{&}--on-dark {
+      box-shadow: none;
+      background-color: transparent;
+    }
+  }
+
+  &__marker-dot {
+    display: none;
+    background-color: palette.$blueberry500;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 10rem;
+
+    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      background-color: #fff !important;
+    }
+  }
+
+  // Show the dot visually
+  &__marker#{&}__marker--checked &__marker-dot,
+  label:has(input:checked) &__marker &__marker-dot {
+    display: block;
+  }
+
+  // Dot color follows the marker state (so the focus ring can turn black
+  // without recoloring the dot).
+  &__marker--on-dark &__marker-dot {
+    background-color: palette.$blueberry200;
+  }
+
+  &__marker--invalid &__marker-dot {
+    background-color: palette.$cherry600;
+  }
+
+  &__marker--disabled &__marker-dot {
+    background-color: palette.$neutral600;
+  }
+
+  &__marker__large#{&}__marker--checked &__marker-dot,
+  label:has(input:checked) &__marker__large &__marker-dot {
+    background-color: palette.$blueberry100;
+  }
+
+  &__marker__large#{&}__marker--checked#{&}__marker--invalid &__marker-dot,
+  label:has(input:checked) &__marker__large#{&}__marker--invalid &__marker-dot {
+    background-color: palette.$cherry500;
+  }
+
+  label:active &__marker-dot {
+    background-color: palette.$blueberry800;
+  }
+
+  label:active &__marker--on-dark &__marker-dot {
+    background-color: palette.$blueberry300;
+  }
+
+  label:active &__marker--invalid &__marker-dot {
+    background-color: palette.$cherry800;
+  }
+
+  label:active &__marker__large#{&}__marker--checked &__marker-dot,
+  label:has(input:checked):active &__marker__large &__marker-dot {
+    background-color: palette.$blueberry200;
+  }
+
+  label:active &__marker__large#{&}__marker--checked#{&}__marker--invalid &__marker-dot,
+  label:has(input:checked):active &__marker__large#{&}__marker--invalid &__marker-dot {
+    background-color: palette.$cherry700;
+  }
+}

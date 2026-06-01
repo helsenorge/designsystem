@@ -81,12 +81,7 @@ export const AllColors: Story = {
     <>
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} onColor="onwhite" />
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} onColor="ongrey" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} onColor="onblueberry" />
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} onColor="oninvalid" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} onColor="onwhite" disabled />
-      <div style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
-        <Checkbox {...args} label={<Label onColor={'ondark'} labelTexts={[{ text: 'ondark' }]} />} onColor="ondark" />
-      </div>
     </>
   ),
 };
@@ -96,17 +91,16 @@ export const Large: Story = {
     <div style={{ backgroundColor: '#EAE7E7', display: 'block', marginTop: '1rem', padding: '1rem' }}>
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} size="large" onColor="onwhite" />
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} size="large" onColor="ongrey" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} size="large" onColor="onblueberry" />
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} size="large" onColor="oninvalid" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} size="large" onColor="onwhite" disabled />
-      <Checkbox
-        {...args}
-        label={<Label onColor={'ondark'} labelTexts={[{ text: 'onwhite - disabled - checked' }]} />}
-        size="large"
-        checked
-        onColor="onwhite"
-        disabled
-      />
     </div>
+  ),
+};
+
+export const Disabled: Story = {
+  render: args => (
+    <>
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'disabled' }]} />} onColor="onwhite" disabled />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'large - disabled' }]} />} size="large" onColor="onwhite" disabled />
+    </>
   ),
 };

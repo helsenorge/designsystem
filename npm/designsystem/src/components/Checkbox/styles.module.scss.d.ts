@@ -1,22 +1,6 @@
 export type Styles = {
   checkbox: string;
-  checkbox__icon: string;
-  'checkbox__icon-wrapper': string;
-  'checkbox__icon-wrapper__large--checked': string;
-  'checkbox__icon-wrapper__large--checked--disabled': string;
-  'checkbox__icon-wrapper__large--checked--invalid': string;
-  'checkbox__icon-wrapper__large--disabled': string;
-  'checkbox__icon-wrapper__large--invalid': string;
-  'checkbox__icon-wrapper__regular--checked': string;
-  'checkbox__icon-wrapper__regular--invalid': string;
-  'checkbox__icon-wrapper__regular--on-dark': string;
-  'checkbox__icon-wrapper--disabled': string;
-  'checkbox__icon-wrapper--invalid': string;
-  'checkbox__icon-wrapper--on-blueberry': string;
-  'checkbox__icon-wrapper--on-dark': string;
-  'checkbox__icon-wrapper--on-grey': string;
-  'checkbox__icon-wrapper--on-invalid': string;
-  'checkbox__icon-wrapper--on-white': string;
+  'checkbox__marker-wrapper': string;
   'checkbox-afterlabelchildren-wrapper': string;
   'checkbox-errors': string;
   'checkbox-label': string;

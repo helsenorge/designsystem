@@ -4,16 +4,14 @@ import classNames from 'classnames';
 
 import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
-import { AnalyticsId, FormOnColor, FormSize, IconSize } from '../../constants';
+import CheckboxMarker from './CheckboxMarker/CheckboxMarker';
+import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { getColor } from '../../theme/currys/color';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
-import Icon from '../Icon';
-import Check from '../Icons/Check';
 import { getLabelText, renderLabelAsParent } from '../Label/utils';
 
 import checkboxStyles from './styles.module.scss';
@@ -94,35 +92,12 @@ export const Checkbox: React.FC<CheckboxProps> = props => {
     [checkboxStyles['checkbox-label__large--disabled']]: large && disabled,
   });
   const checkboxClasses = classNames(checkboxStyles.checkbox, className);
-  const checkboxIconWrapperClasses = classNames(checkboxStyles['checkbox__icon-wrapper'], {
-    [checkboxStyles['checkbox__icon-wrapper--on-white']]: onWhite,
-    [checkboxStyles['checkbox__icon-wrapper--on-grey']]: onGrey,
-    [checkboxStyles['checkbox__icon-wrapper--on-invalid']]: onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper--disabled']]: disabled,
-    [checkboxStyles['checkbox__icon-wrapper__regular--checked']]: !large && isChecked,
-    [checkboxStyles['checkbox__icon-wrapper__regular--invalid']]: !large && isChecked && onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper__regular--on-dark']]: !large && isChecked && onDark,
-    [checkboxStyles['checkbox__icon-wrapper__large--checked']]: large && isChecked,
-    [checkboxStyles['checkbox__icon-wrapper__large--invalid']]: large && onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper--on-dark']]: onDark,
-    [checkboxStyles['checkbox__icon-wrapper--on-blueberry']]: onBlueberry,
-    [checkboxStyles['checkbox__icon-wrapper--invalid']]: onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper__large--invalid']]: large && isChecked && onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper__large--disabled']]: disabled && large && isChecked,
-    [checkboxStyles['checkbox__icon-wrapper__large--checked--invalid']]: large && isChecked && onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper__large--checked--disabled']]: disabled && large && isChecked,
-  });
   const labelTextClasses = classNames(checkboxStyles['checkbox-label__text'], {
     [checkboxStyles['checkbox-label__text__large--checked']]: large && isChecked,
     [checkboxStyles['checkbox-label__text__large--invalid']]: large && isChecked && onInvalid,
     [checkboxStyles['checkbox-label__text--on-dark']]: onDark,
     [checkboxStyles['checkbox-label__text--disabled']]: disabled,
   });
-
-  let iconColor = getColor('white');
-  if (onDark || (large && isChecked)) iconColor = getColor('blueberry', 900);
-  if (onInvalid && large && isChecked) iconColor = getColor('white');
-  if (disabled) iconColor = getColor('neutral', 700);
 
   useEffect(() => {
     setIsChecked(checked);
@@ -139,22 +114,22 @@ export const Checkbox: React.FC<CheckboxProps> = props => {
   const getLabelContent = (): React.ReactNode => {
     return (
       <>
-        <input
-          id={inputId}
-          name={name}
-          className={checkboxClasses}
-          type="checkbox"
-          checked={isChecked}
-          disabled={disabled}
-          value={value}
-          ref={mergedRefs}
-          aria-describedby={getAriaDescribedBy(props, errorTextId)}
-          aria-invalid={error}
-          required={required}
-          onChange={onChangeHandler}
-        />
-        <span className={checkboxIconWrapperClasses}>
-          {isChecked && <Icon color={iconColor} className={checkboxStyles['checkbox__icon']} svgIcon={Check} size={IconSize.XSmall} />}
+        <span className={checkboxStyles['checkbox__marker-wrapper']}>
+          <input
+            id={inputId}
+            name={name}
+            className={checkboxClasses}
+            type="checkbox"
+            checked={isChecked}
+            disabled={disabled}
+            value={value}
+            ref={mergedRefs}
+            aria-describedby={getAriaDescribedBy(props, errorTextId)}
+            aria-invalid={error}
+            required={required}
+            onChange={onChangeHandler}
+          />
+          <CheckboxMarker checked={isChecked} disabled={disabled} error={error} onColor={onColor} size={size} />
         </span>
       </>
     );

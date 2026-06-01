@@ -136,11 +136,6 @@
     background-color: var(--core-color-neutral-50);
   }
 
-  &:focus {
-    border-radius: 4px;
-    background-color: var(--core-color-blueberry-100);
-  }
-
   &::placeholder {
     color: var(--color-placeholder-text-onlight);
   }

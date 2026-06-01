@@ -1,0 +1,6 @@
+@use '../../scss/visual-form' as visual-form;
+@import '../../scss/supernova/styles/spacers.css';
+
+.visual-checkbox-cloud {
+  @include visual-form.visual-form-cloud;
+}

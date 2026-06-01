@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "15.0.0-beta.1",
+  "version": "14.11.1",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -720,6 +720,120 @@
     },
     "./components/Validation/types": {
       "types": "./lib/components/Validation/types.d.ts"
+    },
+    "./components/Avatar/constants": {
+      "types": "./lib/components/Avatar/constants.d.ts"
+    },
+    "./components/Chip/resourceHelper": {
+      "types": "./lib/components/Chip/resourceHelper.d.ts"
+    },
+    "./components/DropdownOld/constants": {
+      "types": "./lib/components/DropdownOld/constants.d.ts"
+    },
+    "./components/ElementHeader/utils": {
+      "types": "./lib/components/ElementHeader/utils.d.ts"
+    },
+    "./components/EmptyState/constants": {
+      "types": "./lib/components/EmptyState/constants.d.ts"
+    },
+    "./components/Expander/constants": {
+      "types": "./lib/components/Expander/constants.d.ts"
+    },
+    "./components/Filter/resourceHelper": {
+      "types": "./lib/components/Filter/resourceHelper.d.ts"
+    },
+    "./components/Filter/resourcesMock": {
+      "types": "./lib/components/Filter/resourcesMock.d.ts"
+    },
+    "./components/Filter/useFilter": {
+      "types": "./lib/components/Filter/useFilter.d.ts"
+    },
+    "./components/Filter/useFilterDrawer": {
+      "types": "./lib/components/Filter/useFilterDrawer.d.ts"
+    },
+    "./components/Filter/utils": {
+      "types": "./lib/components/Filter/utils.d.ts"
+    },
+    "./components/FormLayout/constants": {
+      "types": "./lib/components/FormLayout/constants.d.ts"
+    },
+    "./components/Icon/utils": {
+      "types": "./lib/components/Icon/utils.d.ts"
+    },
+    "./components/Input/constants": {
+      "types": "./lib/components/Input/constants.d.ts"
+    },
+    "./components/Input/resourceHelper": {
+      "types": "./lib/components/Input/resourceHelper.d.ts"
+    },
+    "./components/Label/utils": {
+      "types": "./lib/components/Label/utils.d.ts"
+    },
+    "./components/LinkList/resourceHelper": {
+      "types": "./lib/components/LinkList/resourceHelper.d.ts"
+    },
+    "./components/ListEditMode/constants": {
+      "types": "./lib/components/ListEditMode/constants.d.ts"
+    },
+    "./components/Loader/constants": {
+      "types": "./lib/components/Loader/constants.d.ts"
+    },
+    "./components/Modal/constants": {
+      "types": "./lib/components/Modal/constants.d.ts"
+    },
+    "./components/Panel/constants": {
+      "types": "./lib/components/Panel/constants.d.ts"
+    },
+    "./components/PanelList/utils": {
+      "types": "./lib/components/PanelList/utils.d.ts"
+    },
+    "./components/PopMenu/constants": {
+      "types": "./lib/components/PopMenu/constants.d.ts"
+    },
+    "./components/Progressbar/constants": {
+      "types": "./lib/components/Progressbar/constants.d.ts"
+    },
+    "./components/StatusDot/constants": {
+      "types": "./lib/components/StatusDot/constants.d.ts"
+    },
+    "./components/Table/constants": {
+      "types": "./lib/components/Table/constants.d.ts"
+    },
+    "./components/Tag/constants": {
+      "types": "./lib/components/Tag/constants.d.ts"
+    },
+    "./components/Textarea/resourceHelper": {
+      "types": "./lib/components/Textarea/resourceHelper.d.ts"
+    },
+    "./components/Title/utils": {
+      "types": "./lib/components/Title/utils.d.ts"
+    },
+    "./components/Toggle/constants": {
+      "types": "./lib/components/Toggle/constants.d.ts"
+    },
+    "./components/VisualCheckboxCloud/VisualCheckboxCloud": {
+      "types": "./lib/components/VisualCheckboxCloud/VisualCheckboxCloud.d.ts",
+      "import": "./lib/components/VisualCheckboxCloud/index.js",
+      "require": "./lib/components/VisualCheckboxCloud/index.js",
+      "default": "./lib/components/VisualCheckboxCloud/index.js"
+    },
+    "./components/VisualCheckboxGroup/VisualCheckboxGroup": {
+      "types": "./lib/components/VisualCheckboxGroup/VisualCheckboxGroup.d.ts",
+      "import": "./lib/components/VisualCheckboxGroup/index.js",
+      "require": "./lib/components/VisualCheckboxGroup/index.js",
+      "default": "./lib/components/VisualCheckboxGroup/index.js"
+    },
+    "./components/VisualRadioCloud/VisualRadioCloud": {
+      "types": "./lib/components/VisualRadioCloud/VisualRadioCloud.d.ts",
+      "import": "./lib/components/VisualRadioCloud/index.js",
+      "require": "./lib/components/VisualRadioCloud/index.js",
+      "default": "./lib/components/VisualRadioCloud/index.js"
+    },
+    "./components/VisualRadioGroup/VisualRadioGroup": {
+      "types": "./lib/components/VisualRadioGroup/VisualRadioGroup.d.ts",
+      "import": "./lib/components/VisualRadioGroup/index.js",
+      "require": "./lib/components/VisualRadioGroup/index.js",
+      "default": "./lib/components/VisualRadioGroup/index.js"
     }
   },
   "scripts": {
