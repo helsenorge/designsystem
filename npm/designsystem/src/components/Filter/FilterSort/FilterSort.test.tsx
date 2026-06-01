@@ -3,6 +3,10 @@ import userEvent from '@testing-library/user-event';
 
 import FilterSort from './FilterSort';
 
+const testResources = {
+  sortLabel: 'TEST_SORT',
+};
+
 describe('Gitt at FilterSort skal vises', (): void => {
   describe('Når FilterSort rendres med alternativer', (): void => {
     test('Så vises select-elementet med alternativene', (): void => {
@@ -22,14 +26,14 @@ describe('Gitt at FilterSort skal vises', (): void => {
       expect(options[1]).toHaveTextContent('Navn');
     });
 
-    test('Så vises standard sorteringslabel', (): void => {
+    test('Så vises sorteringslabel', (): void => {
       render(
-        <FilterSort>
+        <FilterSort resources={testResources}>
           <option value="dato">{'Dato'}</option>
         </FilterSort>
       );
 
-      expect(screen.getByText('Sortering:')).toBeVisible();
+      expect(screen.getByText(testResources.sortLabel + ':')).toBeVisible();
     });
   });
 
