@@ -3,14 +3,18 @@ import userEvent from '@testing-library/user-event';
 
 import FilterButton from './FilterButton';
 
+const testResources = {
+  filterButtonText: 'FILTER_BUTTON_TEXT',
+};
+
 describe('Gitt at FilterButton skal vises', (): void => {
   describe('Når FilterButton rendres', (): void => {
-    test('Så vises knappen med standard tekst', (): void => {
-      render(<FilterButton />);
+    test('Så vises knappen', (): void => {
+      render(<FilterButton resources={testResources} />);
 
       const button = screen.getByRole('button');
       expect(button).toBeVisible();
-      expect(button).toHaveTextContent('Finn ...');
+      expect(button).toHaveTextContent(testResources.filterButtonText);
     });
   });
 

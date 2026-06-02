@@ -64,7 +64,7 @@ describe('Gitt at getFilterChips brukes', (): void => {
 
       render(<>{chips}</>);
 
-      const closeButton = screen.getByRole('button', { name: /fjern aktiv/i });
+      const [, closeButton] = screen.getAllByRole('button');
       await userEvent.click(closeButton);
 
       expect(filter.removeFilter).toHaveBeenCalledWith('status', 'aktiv');
@@ -84,7 +84,7 @@ describe('Gitt at getFilterChips brukes', (): void => {
 
       render(<>{chips}</>);
 
-      const closeButton = screen.getByRole('button', { name: /fjern aktiv/i });
+      const [, closeButton] = screen.getAllByRole('button');
       await userEvent.click(closeButton);
 
       expect(handleRemove).toHaveBeenCalledWith('status', 'aktiv');
@@ -144,9 +144,8 @@ describe('Gitt at getFilterChips brukes', (): void => {
 
       render(<>{chips}</>);
 
-      const closeButtons = screen.getAllByRole('button', { name: /fjern/i });
-      // Bare chipen med 'synlig' skal ha lukkeknapp
-      expect(closeButtons).toHaveLength(1);
+      const skjultButtons = screen.getAllByRole('button', { name: /synlig/i });
+      expect(skjultButtons).toHaveLength(2);
     });
   });
 

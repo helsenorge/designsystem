@@ -29,7 +29,7 @@
     &__right {
       display: flex;
       align-items: center;
-      gap: var(--spacer-s, 12px);
+      gap: var(--core-space-xs);
       margin-left: auto;
     }
   }
