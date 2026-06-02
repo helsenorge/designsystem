@@ -1,10 +1,5 @@
-export enum TagSize {
-  medium = 'medium',
-  large = 'large',
-}
-
 export enum TagVariant {
   normal = 'normal',
-  oncolor = 'oncolor',
-  emphasised = 'emphasised',
+  accent1 = 'accent1',
+  accent2 = 'accent2',
 }

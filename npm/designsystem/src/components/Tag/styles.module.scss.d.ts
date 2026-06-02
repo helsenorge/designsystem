@@ -1,16 +1,8 @@
 export type Styles = {
   tag: string;
-  tag__icon: string;
-  'tag--banana': string;
-  'tag--blueberry': string;
-  'tag--cherry': string;
-  'tag--emphasised': string;
-  'tag--has-icon': string;
-  'tag--kiwi': string;
-  'tag--large': string;
-  'tag--medium': string;
-  'tag--neutral': string;
-  'tag--plum': string;
+  'tag--accent1': string;
+  'tag--accent2': string;
+  'tag--normal': string;
 };
 
 export type ClassNames = keyof Styles;

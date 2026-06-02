@@ -132,7 +132,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
       expect(checkbox).toHaveAccessibleDescription('error error!');
 
       const formGroup = screen.getByTestId('form-group');
-      // eslint-disable-next-line testing-library/no-node-access
+
       const errorWrapper = formGroup.children[1];
 
       expect(errorWrapper?.className).toBe('error-wrapper--with-error');

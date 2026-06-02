@@ -159,6 +159,12 @@ export const Slider: React.FC<SliderProps> = props => {
     return value;
   };
 
+  const handleSelected = (): void => {
+    if (selectedState === false) {
+      setSelectedState(true);
+    }
+  };
+
   useEffect(() => {
     const handlePointerMove = (e: PointerEvent): void => {
       if (!disabled && isMoving) {
@@ -186,12 +192,6 @@ export const Slider: React.FC<SliderProps> = props => {
       setSelectedState(selected);
     }
   }, [selected]);
-
-  const handleSelected = (): void => {
-    if (selectedState === false) {
-      setSelectedState(true);
-    }
-  };
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = e => {
     if (disabled) return;
