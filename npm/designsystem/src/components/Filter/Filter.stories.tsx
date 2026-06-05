@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
-import Checkbox from '../Checkbox';
 import Dropdown from '../Dropdown';
 import EmptyState from '../EmptyState';
 import FormGroup from '../FormGroup';
@@ -294,9 +293,9 @@ export const VerktoyExample: Story = {
             <div>
               <FormGroup legend={resources.filterOption_omrade_legend}>
                 {omradeOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.label}
+                    label={[{ text: opt.label }]}
                     checked={(filter.filters.omrade ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'omrade', opt.value)}
                   />
@@ -308,9 +307,9 @@ export const VerktoyExample: Story = {
             <div>
               <FormGroup legend={resources.filterOption_passerFor_legend}>
                 {passerForOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.text}
+                    label={[{ text: opt.text }]}
                     checked={(filter.filters.passerFor ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'passerFor', opt.value)}
                   />
@@ -322,9 +321,9 @@ export const VerktoyExample: Story = {
             <div>
               <FormGroup legend={resources.filterOption_type_legend}>
                 {typeOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.label}
+                    label={[{ text: opt.label }]}
                     checked={(filter.filters.type ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'type', opt.value)}
                   />
@@ -465,9 +464,9 @@ export const LoggOverBrukExample: Story = {
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {whoOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.displaytext}
+                    label={[{ text: opt.displaytext }]}
                     checked={(filter.filters.who ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'who', opt.value)}
                   />
@@ -477,7 +476,7 @@ export const LoggOverBrukExample: Story = {
           </FilterDrawer.View>
           <FilterDrawer.View id="where" title={logginnslagFilterLabels.where} onReset={() => filter.removeFilter('where')}>
             <div>
-              <FormGroup legend={'Velg en eller flere'}>
+              <FormGroup legend={'Velg en'}>
                 {whereOptions.map(opt => (
                   <RadioButton
                     key={opt.value}
@@ -775,9 +774,9 @@ export const WithAsyncFiltering: Story = {
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {whoOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.displaytext}
+                    label={[{ text: opt.displaytext }]}
                     checked={(filter.filters.who ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'who', opt.value)}
                   />
@@ -787,7 +786,7 @@ export const WithAsyncFiltering: Story = {
           </FilterDrawer.View>
           <FilterDrawer.View id="where" title={logginnslagFilterLabels.where} onReset={() => filter.removeFilter('where')}>
             <div>
-              <FormGroup legend={'Velg en eller flere'}>
+              <FormGroup legend={'Velg en'}>
                 {whereOptions.map(opt => (
                   <RadioButton
                     key={opt.value}
@@ -1096,9 +1095,9 @@ export const WithLanguageFull: Story = {
             <div>
               <FormGroup legend={resources.filterOption_omrade_legend}>
                 {omradeOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.label}
+                    label={[{ text: opt.label }]}
                     checked={(filter.filters.omrade ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'omrade', opt.value)}
                   />
@@ -1110,9 +1109,9 @@ export const WithLanguageFull: Story = {
             <div>
               <FormGroup legend={resources.filterOption_passerFor_legend}>
                 {passerForOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.text}
+                    label={[{ text: opt.text }]}
                     checked={(filter.filters.passerFor ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'passerFor', opt.value)}
                   />
@@ -1124,9 +1123,9 @@ export const WithLanguageFull: Story = {
             <div>
               <FormGroup legend={resources.filterOption_type_legend}>
                 {typeOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.label}
+                    label={[{ text: opt.label }]}
                     checked={(filter.filters.type ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'type', opt.value)}
                   />
@@ -1278,9 +1277,9 @@ export const WithValidation: Story = {
           <FilterDrawer.View id="omrade" title={verktoyFilterLabels.omrade} onReset={() => filter.removeFilter('omrade')}>
             <FormGroup legend={'Velg en eller flere'} error={isErrorInForm ? 'Du må velge minst ett område' : undefined}>
               {omradeOptions.map(opt => (
-                <Checkbox
+                <Toggle
                   key={opt.value}
-                  label={opt.label}
+                  label={[{ text: opt.label }]}
                   checked={(filter.filters.omrade ?? []).includes(opt.value)}
                   onChange={(): void => toggleArrayFilter(filter, 'omrade', opt.value)}
                 />
@@ -1431,9 +1430,9 @@ export const SlowsearchExample: Story = {
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {whoOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.displaytext}
+                    label={[{ text: opt.displaytext }]}
                     checked={(filter.filters.who ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'who', opt.value)}
                   />
@@ -1443,7 +1442,7 @@ export const SlowsearchExample: Story = {
           </FilterDrawer.View>
           <FilterDrawer.View id="where" title={logginnslagFilterLabels.where} onReset={() => filter.removeFilter('where')}>
             <div>
-              <FormGroup legend={'Velg en eller flere'}>
+              <FormGroup legend={'Velg en'}>
                 {whereOptions.map(opt => (
                   <RadioButton
                     key={opt.value}

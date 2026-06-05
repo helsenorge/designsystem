@@ -2,7 +2,6 @@ import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import Checkbox from '@helsenorge/designsystem-react/components/Checkbox';
 import EmptyState from '@helsenorge/designsystem-react/components/EmptyState';
 import { FilterStateWrapper } from '@helsenorge/designsystem-react/components/Filter';
 import FilterButton from '@helsenorge/designsystem-react/components/Filter/FilterButton/FilterButton';
@@ -29,6 +28,7 @@ import { PanelVariant } from '@helsenorge/designsystem-react/components/Panel/co
 import PanelList from '@helsenorge/designsystem-react/components/PanelList';
 import Tag from '@helsenorge/designsystem-react/components/Tag';
 import TagList from '@helsenorge/designsystem-react/components/TagList';
+import Toggle from '@helsenorge/designsystem-react/components/Toggle';
 
 import Unsafe_DateRangeSelector from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector';
 import { DateRangePresets, getDateRangeLabel } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils';
@@ -478,9 +478,9 @@ export const DokumenterExample: Story = {
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {innholdTypeOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.displaytext}
+                    label={[{ text: opt.displaytext }]}
                     checked={(filter.filters.innhold ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'innhold', opt.value)}
                   />
@@ -492,9 +492,9 @@ export const DokumenterExample: Story = {
             <div>
               <FormGroup legend={'Velg en eller flere'}>
                 {kommerFraOptions.map(opt => (
-                  <Checkbox
+                  <Toggle
                     key={opt.value}
-                    label={opt.displaytext}
+                    label={[{ text: opt.displaytext }]}
                     checked={(filter.filters.kommerFra ?? []).includes(opt.value)}
                     onChange={(): void => toggleArrayFilter(filter, 'kommerFra', opt.value)}
                   />
