@@ -7,5 +7,6 @@
   "searchPlaceholder": "Oza listtus",
   "searchClearButtonAriaLabel": "Bija ruovttuluotta",
   "searchButtonAriaLabel": "Oza",
+  "loadingText": "Viežžá",
   "resultsText": "{0} deaivan"
 }
