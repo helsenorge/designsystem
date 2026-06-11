@@ -1,0 +1,52 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+
+$desktop-size: 3rem;
+$mobile-inner-size: 2.375rem;
+$mobile-outer-size: 2.75rem;
+
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $mobile-outer-size;
+  width: $mobile-outer-size;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    height: $desktop-size;
+    width: $desktop-size;
+  }
+
+  &__inner-container {
+    width: $mobile-inner-size;
+    height: $mobile-inner-size;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      height: $desktop-size;
+      width: $desktop-size;
+    }
+
+    :hover > & {
+      background-color: var(--color-action-background-transparent-onlight-hover);
+    }
+
+    :active > & {
+      background-color: var(--color-action-background-transparent-onlight-active);
+    }
+
+    :focus-visible > & {
+      outline: 3px solid var(--color-action-border-onlight-focus);
+      border-radius: 0;
+      border: 0;
+    }
+  }
+}

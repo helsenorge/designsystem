@@ -20,9 +20,8 @@ import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
-import Icon from '../Icon';
-import ChevronLeft from '../Icons/ChevronLeft';
 import Title from '../Title';
+import DrawerBackButton from './DrawerBackButton';
 
 import styles from './styles.module.scss';
 
@@ -272,14 +271,11 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
               {title}
             </Title>
             {withBackButton && onRequestBack !== undefined && (
-              <Button
+              <DrawerBackButton
                 ariaLabel={mergedResources.ariaLabelBackButton}
                 onClick={onRequestBack}
-                variant="borderless"
-                wrapperClassName={styles['drawer__header__back-button']}
-              >
-                <Icon svgIcon={ChevronLeft} />
-              </Button>
+                className={styles['drawer__header__back-button']}
+              />
             )}
             {!noCloseButton && onRequestClose != undefined && (
               <Close
