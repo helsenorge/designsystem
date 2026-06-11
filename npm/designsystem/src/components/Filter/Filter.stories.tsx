@@ -59,6 +59,12 @@ const LanguagePickerExample: React.FC<{ onChange: (language: LanguageLocales) =>
       <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
         <button onClick={() => onChange(LanguageLocales.NORWEGIAN)} />
       </Dropdown.SingleSelectItem>
+      <Dropdown.SingleSelectItem text={'Nynorsk'} asChild defaultSelected>
+        <button onClick={() => onChange(LanguageLocales.NORWEGIAN_NYNORSK)} />
+      </Dropdown.SingleSelectItem>
+      <Dropdown.SingleSelectItem text={'Nordsamisk'} asChild defaultSelected>
+        <button onClick={() => onChange(LanguageLocales.SAMI_NORTHERN)} />
+      </Dropdown.SingleSelectItem>
     </Dropdown>
     <Spacer size="2xl" />
   </>

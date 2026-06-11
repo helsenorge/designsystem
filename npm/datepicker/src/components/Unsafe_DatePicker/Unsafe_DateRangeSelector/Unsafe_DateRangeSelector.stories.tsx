@@ -169,6 +169,9 @@ export const WithLanguageProvider: Story = {
           <Dropdown.SingleSelectItem text={'Nynorsk'} asChild>
             <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)} />
           </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Nordsamisk'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.SAMI_NORTHERN)} />
+          </Dropdown.SingleSelectItem>
         </Dropdown>
         <Spacer />
         <Unsafe_DateRangeSelector
