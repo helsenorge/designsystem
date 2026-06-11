@@ -4,6 +4,7 @@ import { LanguageLocales } from '../../constants';
 import enGB from '../../resources/HN.Designsystem.Drawer.en-GB.json';
 import nbNO from '../../resources/HN.Designsystem.Drawer.nb-NO.json';
 import nnNO from '../../resources/HN.Designsystem.Drawer.nn-NO.json';
+import seNO from '../../resources/HN.Designsystem.Drawer.se-NO.json';
 
 export const getResources = (language: LanguageLocales): HNDesignsystemDrawer => {
   switch (language) {
@@ -11,6 +12,8 @@ export const getResources = (language: LanguageLocales): HNDesignsystemDrawer =>
       return enGB;
     case LanguageLocales.NORWEGIAN_NYNORSK:
       return nnNO;
+    case LanguageLocales.SAMI_NORTHERN:
+      return seNO;
     case LanguageLocales.NORWEGIAN:
     default:
       return nbNO;
