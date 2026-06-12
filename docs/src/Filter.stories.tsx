@@ -31,7 +31,14 @@ import TagList from '@helsenorge/designsystem-react/components/TagList';
 import Toggle from '@helsenorge/designsystem-react/components/Toggle';
 
 import Unsafe_DateRangeSelector from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector';
-import { DateRangePresets, getDateRangeLabel } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils';
+import type { DateRangePreset } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/constants';
+import {
+  DateRangePresets,
+  getSelectedRangeLabel,
+  createPresetLabelMap,
+} from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils';
+
+import nbDateRangeSelectorResources from '../../npm/datepicker/src/resources/HN.Designsystem.Unsafe_DateRangeSelector.nb-NO.json';
 
 const meta: Meta = {
   title: 'Documentation/Examples/Filter',
@@ -81,7 +88,7 @@ export const DokumenterExample: Story = {
     type DokumenterFilterType = {
       innhold: InnholdType[];
       kommerFra: KontekstType[];
-      dateRange: string;
+      dateRange: DateRangePreset;
     };
 
     interface Dokument {
@@ -308,7 +315,7 @@ export const DokumenterExample: Story = {
         beskrivelse: 'Skjemautfyller',
         innholdstype: [InnholdType.egenkartlegging],
         kommerFra: [KontekstType.skjemautfyller],
-        arkivertDato: new Date(2026, 3, 8),
+        arkivertDato: new Date(),
       },
     ];
 
@@ -338,63 +345,48 @@ export const DokumenterExample: Story = {
       { value: KontekstType.gravid, displaytext: 'Gravid' },
     ];
 
+    const dateRangePresetLabels = createPresetLabelMap(nbDateRangeSelectorResources);
     const dateRangeOptions = [
-      DateRangePresets.LastMonth,
-      DateRangePresets.Last6Months,
-      DateRangePresets.Last12Months,
-      DateRangePresets.FullYear,
+      {
+        ...DateRangePresets.LastMonth,
+        displayText: dateRangePresetLabels[DateRangePresets.LastMonth.value],
+      },
+      {
+        ...DateRangePresets.Last6Months,
+        displayText: dateRangePresetLabels[DateRangePresets.Last6Months.value],
+      },
+      {
+        ...DateRangePresets.Last12Months,
+        displayText: dateRangePresetLabels[DateRangePresets.Last12Months.value],
+      },
+      {
+        ...DateRangePresets.FullYear,
+        displayText: DateRangePresets.FullYear.displayText ?? new Date().getUTCFullYear().toString(),
+      },
     ];
 
     const { filterOptions, getLabel: baseGetLabel } = createFilterConfig<DokumenterFilterType>({
       innhold: { options: innholdTypeOptions, getLabel: o => o.displaytext },
       kommerFra: { options: kommerFraOptions, getLabel: o => o.displaytext },
-      dateRange: { options: dateRangeOptions, getLabel: o => o.displayText, defaultValue: DateRangePresets.Last12Months.value },
     });
+
+    const getLabel: typeof baseGetLabel = (key, value) =>
+      key === 'dateRange' ? getSelectedRangeLabel(value as DateRangePreset | undefined, dateRangePresetLabels) : baseGetLabel(key, value);
 
     // Sorting state
     const [sortOption, setSortOption] = React.useState<'date-desc' | 'date-asc' | 'name-asc' | 'name-desc'>('date-desc');
 
-    // Custom date range state
-    const [dateRangeValue, setDateRangeValue] = React.useState<string | undefined>(DateRangePresets.Last12Months.value);
-    const [selectedRange, setSelectedRange] = React.useState<{ from: Date; to: Date }>(DateRangePresets.Last12Months.dateRange);
-
-    const handleDateRangeChange = React.useCallback((value: string) => {
-      setDateRangeValue(value);
-    }, []);
-
-    const handlePresetSelected = React.useCallback((preset: typeof DateRangePresets.LastMonth) => {
-      setDateRangeValue(preset.value);
-      setSelectedRange(preset.dateRange);
-    }, []);
-
-    const handleRangeChange = React.useCallback((from: Date | undefined, to: Date | undefined) => {
-      if (from && to) {
-        setSelectedRange({ from, to });
-      }
-    }, []);
-
-    const getLabel: typeof baseGetLabel = (key, value) => {
-      if (key === 'dateRange' && value === 'custom') {
-        return getDateRangeLabel(selectedRange);
-      }
-      return baseGetLabel(key, value);
-    };
-
     const filter = useFilter<DokumenterFilterType>(filterOptions);
     const drawer = useFilterDrawer<DokumentFilterViews>();
-
-    React.useEffect(() => {
-      filter.setFilter('dateRange', dateRangeValue);
-    }, [dateRangeValue]);
 
     const filterMatchers: FilterMatchers<Dokument, DokumenterFilterType> = {
       innhold: matchFilter.arrayIncludes<Dokument>(d => d.innholdstype),
       kommerFra: matchFilter.arrayIncludes<Dokument>(d => d.kommerFra),
       dateRange: (dokument, selected) => {
-        if (!selected) return true;
+        const { from, to } = selected.dateRange;
         const docDate = dokument.arkivertDato;
-        if (!docDate) return false;
-        return docDate >= selectedRange.from && docDate <= selectedRange.to;
+        if (!docDate || !from || !to) return true;
+        return docDate >= from && docDate <= to;
       },
     };
 
@@ -458,8 +450,7 @@ export const DokumenterExample: Story = {
         <FilterDrawer
           drawer={drawer}
           onReset={() => {
-            filter.removeFilter('innhold');
-            filter.removeFilter('kommerFra');
+            filter.resetFiltersToEmpty();
           }}
           resultCount={filtered.length}
         >
@@ -502,18 +493,14 @@ export const DokumenterExample: Story = {
               </FormGroup>
             </div>
           </FilterDrawer.View>
-          <FilterDrawer.View id="periode" title={dokumentFilterLabels.dateRange} noResetButton>
+          <FilterDrawer.View id="periode" title={dokumentFilterLabels.dateRange} onReset={() => filter.removeFilter('dateRange')}>
             <div>
               <FormGroup legend={'Velg periode'}>
                 <Unsafe_DateRangeSelector
-                  key={dateRangeValue}
                   name="periode"
                   options={dateRangeOptions}
-                  value={dateRangeValue}
-                  selectedRange={selectedRange}
-                  onChange={handleDateRangeChange}
-                  onPresetSelected={handlePresetSelected}
-                  onRangeChange={handleRangeChange}
+                  value={filter.filters.dateRange}
+                  onChange={value => filter.setFilter('dateRange', value)}
                 />
               </FormGroup>
             </div>
@@ -522,7 +509,7 @@ export const DokumenterExample: Story = {
         {sorted.length > 0 ? (
           <PanelList variant={PanelVariant.outline}>
             {sorted.map(dokument => (
-              <Panel>
+              <Panel key={dokument.navn}>
                 <Panel.Title title={dokument.navn} icon={<Icon svgIcon={HTMLFile} />} />
                 <Panel.A>
                   <span>{dokument.beskrivelse}</span>

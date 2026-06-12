@@ -1,18 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 import type { Unsafe_DatePickerProps } from '../Unsafe_DatePicker';
-import type { DateRange, DateRangePreset, ReadableRangeOption } from './constants';
+import type { DateRangePreset, ReadableRangeOption } from './constants';
 import type { HNDesignsystemUnsafe_DateRangeSelector } from '../../../resources/Resources';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import type { RadioButtonProps } from '@helsenorge/designsystem-react/components/RadioButton';
 import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
 
-import { formatResource, LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
+import { LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
 
 import Unsafe_DatePicker from '../Unsafe_DatePicker';
 import Unsafe_DateRangePickers from '../Unsafe_DateRangePickers';
 import { getResources } from './resourceHelper';
+import { DateRangePresets, createPresetLabelMap } from './utils';
 
 import styles from './styles.module.scss';
 
@@ -22,111 +23,97 @@ export interface Unsafe_DateRangeSelectorProps {
   /** Options for radiobuttongroup */
   options: ReadableRangeOption[];
   /** The currently selected value */
-  value: string | undefined;
-  /** The currently selected range */
-  selectedRange: DateRange;
-  /** Callback when the selected value changes */
-  onChange?: (value: string) => void;
-  /** Callback when a preset is selected */
-  onPresetSelected?: (preset: DateRangePreset) => void;
-  /** Callback when the date range changes */
-  onRangeChange?: (from: Date | undefined | null, to: Date | undefined | null, isValid?: boolean) => void;
-  /** Extra props for the custom value radiobutton option */
-  customRadioButtonProps?: Partial<RadioButtonProps>;
+  value?: DateRangePreset;
+  /** Called with the new value, or undefined when the selection is empty (custom option with no dates). */
+  onChange?: (value?: DateRangePreset) => void;
+  /** Optional extra props for the built-in custom radio option */
+  customRadioButtonProps?: Omit<RadioButtonProps, 'checked' | 'onChange' | 'value' | 'label'>;
   /** Extra props for the 'from' date picker */
-  datePickerPropsFrom?: Partial<Unsafe_DatePickerProps>;
+  datePickerPropsFrom?: Omit<Unsafe_DatePickerProps, 'value' | 'onChange'>;
   /** Extra props for the 'to' date picker */
-  datePickerPropsTo?: Partial<Unsafe_DatePickerProps>;
+  datePickerPropsTo?: Omit<Unsafe_DatePickerProps, 'value' | 'onChange'>;
   /** Resources for the component */
   resources?: Partial<HNDesignsystemUnsafe_DateRangeSelector>;
 }
 
 const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props => {
-  const {
-    name,
-    options,
-    value,
-    selectedRange,
-    onChange,
-    onPresetSelected,
-    onRangeChange,
-    customRadioButtonProps,
-    datePickerPropsFrom,
-    datePickerPropsTo,
-    resources,
-  } = props;
+  const { name, options, value, onChange, customRadioButtonProps, datePickerPropsFrom, datePickerPropsTo, resources } = props;
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
+  const localizedResources = { ...defaultResources, ...resources };
   const mergedResources: HNDesignsystemUnsafe_DateRangeSelector & Record<string, string> = {
-    ...defaultResources,
-    ...resources,
+    ...localizedResources,
     startDateLabel: datePickerPropsTo?.label?.toString() || resources?.startDateLabel || defaultResources.startDateLabel,
     endDateLabel: datePickerPropsFrom?.label?.toString() || resources?.endDateLabel || defaultResources.endDateLabel,
-    lastMonth: resources?.lastMonthLabel || defaultResources.lastMonthLabel,
-    last6Months: resources?.lastMonthsLabel || formatResource(defaultResources.lastMonthsLabel, 6),
-    last12Months: resources?.lastMonthsLabel || formatResource(defaultResources.lastMonthsLabel, 12),
-    nextMonth: resources?.nextMonthLabel || defaultResources.nextMonthLabel,
-    next6Months: resources?.nextMonthsLabel || formatResource(defaultResources.nextMonthsLabel, 6),
-    next12Months: resources?.nextMonthsLabel || formatResource(defaultResources.nextMonthsLabel, 12),
+    ...createPresetLabelMap(localizedResources),
   };
 
-  const ignorePickerChanges = useRef(2);
+  const [selectedRadio, setSelectedRadio] = useState(value?.value);
+  const [prevValue, setPrevValue] = useState(value);
+  if (value !== prevValue) {
+    setPrevValue(value);
+    setSelectedRadio(value?.value);
+  }
+  const selectedRange = value?.dateRange ?? DateRangePresets.Custom.dateRange;
 
-  const selected = value ?? '';
-  const showCustom = selected === 'custom';
+  const customOptionFromOptions = options.find(option => option.value === DateRangePresets.Custom.value);
+  const customOption: ReadableRangeOption = {
+    ...DateRangePresets.Custom,
+    displayText: mergedResources.customPeriodLabel,
+    ...customOptionFromOptions,
+    radioButtonProps: {
+      ...(customOptionFromOptions?.radioButtonProps ?? {}),
+      ...(customRadioButtonProps ?? {}),
+    },
+  };
+  const allOptions = customOptionFromOptions ? options : [...options, customOption];
 
-  useEffect(() => {
-    ignorePickerChanges.current = 2;
-  }, [selectedRange]);
+  const emitCustomRange = (from?: Date | null, to?: Date | null): void => {
+    if (!from && !to) {
+      onChange?.(undefined);
+      return;
+    }
+
+    onChange?.({
+      ...customOption,
+      value: DateRangePresets.Custom.value,
+      dateRange: {
+        from: from ?? undefined,
+        to: to ?? undefined,
+      },
+    });
+  };
+
+  const handleRadioChange = (option: ReadableRangeOption): void => {
+    setSelectedRadio(option.value);
+    if (option.value === DateRangePresets.Custom.value) {
+      emitCustomRange(selectedRange.from, selectedRange.to);
+      return;
+    }
+
+    onChange?.(option);
+  };
 
   return (
     <div className={styles['date-range-selector']}>
       <div>
-        {options.map(option => {
-          const { onChange: extraOnChange, ...restExtraProps } = option.radioButtonProps ?? {};
+        {allOptions.map(option => {
           return (
             <RadioButton
               name={name}
               key={option.value}
               value={option.value}
-              checked={selected === option.value}
+              checked={selectedRadio === option.value}
               label={
                 <Label labelTexts={[{ text: option.displayText ?? mergedResources[option.value] ?? option.value, type: 'subdued' }]} />
               }
-              {...restExtraProps}
-              onChange={e => {
-                if (onChange) {
-                  onChange(option.value);
-                }
-                if (option.value !== 'custom' && option.dateRange && typeof option.dateRange === 'object') {
-                  // Set ignore counter so date pickers don't trigger 'custom' selection
-                  ignorePickerChanges.current = 2;
-                }
-                if (onPresetSelected) {
-                  onPresetSelected(option);
-                }
-                if (extraOnChange) {
-                  extraOnChange(e);
-                }
+              {...option.radioButtonProps}
+              onChange={() => {
+                handleRadioChange(option);
               }}
             />
           );
         })}
-        <RadioButton
-          name={name}
-          value="custom"
-          checked={showCustom}
-          label={<Label labelTexts={[{ text: mergedResources.customPeriodLabel, type: 'subdued' }]} />}
-          {...customRadioButtonProps}
-          onChange={e => {
-            if (onChange) {
-              onChange('custom');
-            }
-            if (customRadioButtonProps?.onChange) {
-              customRadioButtonProps?.onChange(e);
-            }
-          }}
-        />
       </div>
       <Unsafe_DateRangePickers
         from={
@@ -143,16 +130,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             value={selectedRange.from}
             {...datePickerPropsFrom}
             onChange={date => {
-              if (ignorePickerChanges.current > 0) {
-                ignorePickerChanges.current--;
-              } else {
-                if (selected !== 'custom' && onChange) {
-                  onChange('custom');
-                }
-                if (onRangeChange) {
-                  onRangeChange(date ?? undefined, selectedRange.to);
-                }
-              }
+              emitCustomRange(date, selectedRange.to);
             }}
           />
         }
@@ -170,16 +148,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             value={selectedRange.to}
             {...datePickerPropsTo}
             onChange={date => {
-              if (ignorePickerChanges.current > 0) {
-                ignorePickerChanges.current--;
-              } else {
-                if (selected !== 'custom' && onChange) {
-                  onChange('custom');
-                }
-                if (onRangeChange) {
-                  onRangeChange(selectedRange.from, date ?? undefined);
-                }
-              }
+              emitCustomRange(selectedRange.from, date);
             }}
           />
         }

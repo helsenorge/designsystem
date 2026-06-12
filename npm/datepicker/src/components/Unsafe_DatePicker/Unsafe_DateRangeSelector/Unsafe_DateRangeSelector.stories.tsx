@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import type { DateRangePreset } from './constants';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Dropdown from '@helsenorge/designsystem-react/components/Dropdown';
@@ -18,8 +19,7 @@ const meta = {
   args: {
     name: 'rangepicker-custom',
     options: [],
-    value: '',
-    selectedRange: { from: new Date(), to: new Date() },
+    value: DateRangePresets.Last12Months,
   },
 } satisfies Meta<typeof Unsafe_DateRangeSelector>;
 
@@ -29,8 +29,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => {
-    const [value, setValue] = useState(DateRangePresets.Last12Months.value);
-    const [selectedRange, setSelectedRange] = useState(DateRangePresets.Last12Months.dateRange);
+    const [value, setValue] = useState<DateRangePreset | undefined>(DateRangePresets.Last12Months);
 
     return (
       <Unsafe_DateRangeSelector
@@ -45,17 +44,7 @@ export const Default: Story = {
           DateRangePresets.Next12Months,
         ]}
         value={value}
-        selectedRange={selectedRange}
         onChange={setValue}
-        onPresetSelected={preset => {
-          setValue(preset.value);
-          setSelectedRange(preset.dateRange);
-        }}
-        onRangeChange={(from, to) => {
-          if (from && to) {
-            setSelectedRange({ from, to });
-          }
-        }}
       />
     );
   },
@@ -63,8 +52,7 @@ export const Default: Story = {
 
 export const WithPrintedState: Story = {
   render: args => {
-    const [value, setValue] = useState(DateRangePresets.Last12Months.value);
-    const [selectedRange, setSelectedRange] = useState(DateRangePresets.Last12Months.dateRange);
+    const [value, setValue] = useState<DateRangePreset | undefined>(DateRangePresets.Last12Months);
 
     return (
       <>
@@ -80,27 +68,17 @@ export const WithPrintedState: Story = {
             DateRangePresets.Next12Months,
           ]}
           value={value}
-          selectedRange={selectedRange}
           onChange={setValue}
-          onPresetSelected={preset => {
-            setValue(preset.value);
-            setSelectedRange(preset.dateRange);
-          }}
-          onRangeChange={(from, to) => {
-            if (from && to) {
-              setSelectedRange({ from, to });
-            }
-          }}
         />
         <div>
           {'Value: '}
-          {value}
+          {value?.value ?? 'undefined'}
         </div>
         <div>
           {'Selected range: '}
-          {selectedRange.from.toISOString()}
+          {value?.dateRange.from?.toISOString() ?? 'undefined'}
           {'--------->'}
-          {selectedRange.to.toISOString()}
+          {value?.dateRange.to?.toISOString() ?? 'undefined'}
         </div>
       </>
     );
@@ -109,8 +87,7 @@ export const WithPrintedState: Story = {
 
 export const CustomProps: Story = {
   render: args => {
-    const [value, setValue] = useState(DateRangePresets.Last12Months.value);
-    const [selectedRange, setSelectedRange] = useState(DateRangePresets.Last12Months.dateRange);
+    const [value, setValue] = useState<DateRangePreset | undefined>(DateRangePresets.Last12Months);
 
     return (
       <Unsafe_DateRangeSelector
@@ -135,17 +112,7 @@ export const CustomProps: Story = {
           id: 'custom-to-date',
         }}
         value={value}
-        selectedRange={selectedRange}
         onChange={setValue}
-        onPresetSelected={preset => {
-          setValue(preset.value);
-          setSelectedRange(preset.dateRange);
-        }}
-        onRangeChange={(from, to) => {
-          if (from && to) {
-            setSelectedRange({ from, to });
-          }
-        }}
       />
     );
   },
@@ -154,8 +121,7 @@ export const CustomProps: Story = {
 export const WithLanguageProvider: Story = {
   render: args => {
     const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
-    const [value, setValue] = useState(DateRangePresets.Last12Months.value);
-    const [selectedRange, setSelectedRange] = useState(DateRangePresets.Last12Months.dateRange);
+    const [value, setValue] = useState<DateRangePreset | undefined>(DateRangePresets.Last12Months);
 
     return (
       <LanguageProvider<LanguageLocales> language={language}>
@@ -186,17 +152,7 @@ export const WithLanguageProvider: Story = {
             DateRangePresets.Next12Months,
           ]}
           value={value}
-          selectedRange={selectedRange}
           onChange={setValue}
-          onPresetSelected={preset => {
-            setValue(preset.value);
-            setSelectedRange(preset.dateRange);
-          }}
-          onRangeChange={(from, to) => {
-            if (from && to) {
-              setSelectedRange({ from, to });
-            }
-          }}
         />
       </LanguageProvider>
     );
