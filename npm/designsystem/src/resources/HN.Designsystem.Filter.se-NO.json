@@ -8,5 +8,6 @@
   "searchClearButtonAriaLabel": "Bija ruovttuluotta",
   "searchButtonAriaLabel": "Oza",
   "loadingText": "Viežžá",
-  "resultsText": "{0} deaivan"
+  "resultsText": "{0} deaivan",
+  "activeFiltersListLabel": "Aktive filter"
 }

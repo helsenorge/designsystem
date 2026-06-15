@@ -8,5 +8,6 @@
   "searchClearButtonAriaLabel": "Reset",
   "searchButtonAriaLabel": "Search",
   "loadingText": "Loading results",
-  "resultsText": "{0} results"
+  "resultsText": "{0} results",
+  "activeFiltersListLabel": "Aktive filter"
 }

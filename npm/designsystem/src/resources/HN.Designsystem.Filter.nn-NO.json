@@ -8,5 +8,6 @@
   "searchClearButtonAriaLabel": "Nullstill",
   "searchButtonAriaLabel": "Søk",
   "loadingText": "Hentar treff",
-  "resultsText": "{0} treff"
+  "resultsText": "{0} treff",
+  "activeFiltersListLabel": "Aktive filter"
 }
