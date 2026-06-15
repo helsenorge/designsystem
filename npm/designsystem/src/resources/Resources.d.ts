@@ -187,6 +187,10 @@ export type HNDesignsystemFilter = {
    * {0} treff
    */
   resultsText: string;
+  /**
+   * Aktive filter
+   */
+  activeFiltersListLabel: string;
 };
 
 export type HNDesignsystemChip = {
