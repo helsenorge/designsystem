@@ -1,4 +1,17 @@
 
+## [15.1.0](https://github.com/helsenorge/designsystem/compare/v15.0.0...v15.1.0) (2026-06-16)
+
+### Features
+
+*  legg til flere språk for default tekster for filter og datepicker ([e23c5d9](https://github.com/helsenorge/designsystem/commit/e23c5d913bc4f1deaad21ebe7744ff82ed47a8f2)), closes [#376074](https://github.com/helsenorge/designsystem/issues/376074)
+* **button:**  borderless variant kan ha size large ([dc68e4f](https://github.com/helsenorge/designsystem/commit/dc68e4f18a773aca05ac399a3eea140d3b93c720)), closes [#377363](https://github.com/helsenorge/designsystem/issues/377363)
+* **daterangeselector:**  value og onchange forenklet for letter bruk med filter ([a31ce8a](https://github.com/helsenorge/designsystem/commit/a31ce8a2229577a59eadd3179f6831c48d7f9c50)), closes [#378862](https://github.com/helsenorge/designsystem/issues/378862)
+* **drawer:**  lag egen komponent for tilbakeknapp som er lik close ([89966d7](https://github.com/helsenorge/designsystem/commit/89966d745d1e7b4836c9767ae9ed2b255a3b6650)), closes [#379768](https://github.com/helsenorge/designsystem/issues/379768)
+
+### Bug Fixes
+
+*  scss partials blir ikke eksportert med vite 8 ([9b9cdc4](https://github.com/helsenorge/designsystem/commit/9b9cdc49ba3f2ba38deef25fdc18cfea1a6ce1f8)), closes [#380701](https://github.com/helsenorge/designsystem/issues/380701)
+
 ## [15.0.0](https://github.com/helsenorge/designsystem/compare/v14.11.1...v15.0.0) (2026-06-04)
 
 ### Features
