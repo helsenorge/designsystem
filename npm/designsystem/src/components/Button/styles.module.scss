@@ -8,24 +8,29 @@
 
 $dark-mode-disabled-transparrent: #ffffffb3;
 $with-icons: // icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop
-  'left-icon' 'normal' spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) 0 spacers.getSpacer(3xs) 0
+  'left-icon' 'medium' spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) 0 spacers.getSpacer(3xs) 0
     spacers.getSpacer(2xs),
-  'right-icon' 'normal' spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(3xs) 0
+  'right-icon' 'medium' spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(3xs) 0
     spacers.getSpacer(2xs) 0,
-  'left-icon' 'large' spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l) 0 spacers.getSpacer(2xs) 0
-    spacers.getSpacer(xs),
-  'right-icon' 'large' spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(l) spacers.getSpacer(s) spacers.getSpacer(2xs) 0
-    spacers.getSpacer(xs) 0,
-  'arrow' 'normal' spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(m) 0
+  'left-icon' 'large-non-borderless' spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l) 0
+    spacers.getSpacer(2xs) 0 spacers.getSpacer(xs),
+  'right-icon' 'large-non-borderless' spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(l) spacers.getSpacer(s)
+    spacers.getSpacer(2xs) 0 spacers.getSpacer(xs) 0,
+  'arrow' 'medium' spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(m) 0
     spacers.getSpacer(l) 0,
-  'arrow' 'large' spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(l) spacers.getSpacer(xs) spacers.getSpacer(l) 0
-    spacers.getSpacer(xl) 0,
-  'arrow--both-icons' 'normal' 0 0 0 0 spacers.getSpacer(s) 0 spacers.getSpacer(m) 0,
-  'arrow--both-icons' 'large' 0 0 0 0 spacers.getSpacer(m) 0 spacers.getSpacer(l) 0,
-  'only-icon' 'normal' 0.062rem 0.062rem 0.375rem 0.375rem 0 0 0 0,
-  'only-icon' 'large' 0.312rem 0.312rem spacers.getSpacer(3xs) spacers.getSpacer(3xs) 0 0 0 0,
-  'both-icons' 'normal' spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) 0 0 0 0,
-  'both-icons' 'large' spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) 0 0 0 0;
+  'arrow' 'large-non-borderless' spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(l) spacers.getSpacer(xs) spacers.getSpacer(l)
+    0 spacers.getSpacer(xl) 0,
+  'arrow--both-icons' 'medium' 0 0 0 0 spacers.getSpacer(s) 0 spacers.getSpacer(m) 0,
+  'arrow--both-icons' 'large-non-borderless' 0 0 0 0 spacers.getSpacer(m) 0 spacers.getSpacer(l) 0,
+  'only-icon' 'medium' 0.0625rem 0.0625rem 0.375rem 0.375rem 0 0 0 0,
+  'only-icon' 'large-non-borderless' 0.312rem 0.312rem spacers.getSpacer(3xs) spacers.getSpacer(3xs) 0 0 0 0,
+  'both-icons' 'medium' spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) 0 0 0 0,
+  'both-icons' 'large-non-borderless' spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) 0 0 0 0,
+  'left-icon' 'large-borderless' spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) 0
+    spacers.getSpacer(3xs) 0 spacers.getSpacer(3xs),
+  'right-icon' 'large-borderless' spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(xs)
+    spacers.getSpacer(3xs) 0 spacers.getSpacer(3xs) 0,
+  'only-icon' 'large-borderless' 0 0 0.0625rem 0.0625rem 0 0 0 0;
 
 // Brukes til å aktivere hover styling uten at button hovres
 @mixin outline-borderless-hover {
@@ -44,6 +49,8 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   @if $with-uu-border {
     border: 1px solid var(--color-action-border-ondark-focus);
+  } @else {
+    border: none;
   }
 }
 
@@ -259,7 +266,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     line-height: 1.5rem;
   }
 
-  &--large {
+  &--large-non-borderless {
     min-height: 3.5rem;
     padding: 0 spacers.getSpacer(l);
     font-size: 1.3125rem;
@@ -267,6 +274,16 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       min-height: 4.5rem;
       padding: 0 spacers.getSpacer(xl);
+      font-size: font-settings.$font-size-lg;
+      line-height: 1.5rem;
+    }
+  }
+
+  // Medium box sizing with large font-size, used for borderless + large
+  &--large-borderless {
+    font-size: 1.3125rem;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       font-size: font-settings.$font-size-lg;
       line-height: 1.5rem;
     }
@@ -319,6 +336,8 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--outline,
   &--borderless {
     @include outline-borderless-background(transparent, var(--color-action-background-transparent-onlight-hover));
+
+    border: none;
 
     :focus > & {
       @include focus-shadow(false);
@@ -406,6 +425,10 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--outline#{&}--destructive &__text,
   &--borderless#{&}--destructive &__text {
     @include text-color(palette.$cherry600, palette.$cherry700);
+  }
+
+  &--only-icon {
+    justify-content: center;
   }
 
   /* stylelint-disable-next-line */

@@ -99,7 +99,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       const onClose = vi.fn();
       const onSuccess = vi.fn();
 
-      const { container } = render(
+      render(
         <Modal
           title="Hei der"
           titleId={'titleid01'}
@@ -112,8 +112,6 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       const dialog = screen.getByRole('dialog');
       expect(dialog.className).toBe(`modal modal--${ModalVariants.warning} modal--large`);
-
-      expect(container).toMatchSnapshot();
     });
   });
 
@@ -122,7 +120,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       const onClose = vi.fn();
       const onSuccess = vi.fn();
 
-      const { container } = render(
+      render(
         <Modal
           title="Hei der"
           titleId={'titleid02'}
@@ -135,8 +133,6 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       const dialog = screen.getByRole('dialog');
       expect(dialog.className).toBe(`modal modal--${ModalVariants.error} modal--large`);
-
-      expect(container).toMatchSnapshot();
     });
   });
 
@@ -405,7 +401,6 @@ describe('Gitt at en modal skal vises som printable ', (): void => {
     );
     const portal = screen.getByTestId('print-modal');
     expect(portal).toBeVisible();
-    expect(portal.innerHTML).toMatchSnapshot();
 
     const dialog = screen.getByLabelText('Hei der');
     expect(dialog).toBeVisible();

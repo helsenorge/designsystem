@@ -8,7 +8,7 @@ exports[`Gitt at button skal vises > Når button rendres > Så vises button 1`] 
     type="button"
   >
     <span
-      class="button button--normal"
+      class="button button--medium"
     >
       <span
         class="button__text"
@@ -30,7 +30,7 @@ exports[`Gitt at button skal vises > Når button rendres kun med ikon > Så inne
     type="button"
   >
     <span
-      class="button button--normal button--only-icon"
+      class="button button--medium button--only-icon"
     >
       <svg
         aria-hidden="true"
@@ -69,7 +69,7 @@ exports[`Gitt at button skal vises > Når button rendres med ikoner > Så vises 
     type="button"
   >
     <span
-      class="button button--normal button--left-icon button--right-icon button--both-icons"
+      class="button button--medium button--left-icon button--right-icon button--both-icons"
     >
       <svg
         aria-hidden="true"

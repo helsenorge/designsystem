@@ -88,9 +88,15 @@ const getIconColor = (
 
   return concept === 'normal' ? getColor('blueberry', 600) : getColor('cherry', 500);
 };
-const getLargeIconSize = (large: boolean, mobile: boolean): IconSize => {
-  if (mobile && large) return IconSize.Small;
-  if (large) return IconSize.Medium;
+const getIconSize = (large: boolean, mobile: boolean, isBorderless: boolean): IconSize => {
+  if ((isBorderless && large) || (mobile && large)) {
+    return IconSize.Small;
+  }
+
+  if (large) {
+    return IconSize.Medium;
+  }
+
   return IconSize.XSmall;
 };
 
@@ -140,7 +146,8 @@ const Button: React.FC<ButtonProps> = props => {
   const borderlessVariant = variant === 'borderless';
   const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, isMobile);
   const hasArrow = arrow === 'icon' && !borderlessVariant;
-  const large = size === 'large' && !destructive && !borderlessVariant;
+  const large = size === 'large' && !destructive;
+  const largeBorderless = large && borderlessVariant;
   const hasUURightArrow = arrow === 'accessibility-character' && !fluid && !leftIcon && !rightIcon && !hasArrow && borderlessVariant;
   const rest = { ...restProps };
 
@@ -153,8 +160,9 @@ const Button: React.FC<ButtonProps> = props => {
     buttonStyles.button,
     {
       [buttonStyles['button--destructive']]: destructive,
-      [buttonStyles['button--normal']]: !large,
-      [buttonStyles['button--large']]: large,
+      [buttonStyles['button--medium']]: !large,
+      [buttonStyles['button--large-non-borderless']]: large && !largeBorderless,
+      [buttonStyles['button--large-borderless']]: largeBorderless,
       [buttonStyles['button--outline']]: outlineVariant,
       [buttonStyles['button--borderless']]: borderlessVariant,
       [buttonStyles['button--left-icon']]: leftIcon && !onlyIcon,
@@ -206,24 +214,28 @@ const Button: React.FC<ButtonProps> = props => {
     );
   };
 
-  const renderbuttonContentWrapper = (): React.ReactNode => (
-    <span className={buttonClasses}>
-      {renderIcon(leftIcon, getLargeIconSize(large, isMobile), !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
-      {renderButtonContent()}
-      {hasArrow
-        ? renderIcon(
-            <Icon svgIcon={ArrowRight} />,
-            getLargeIconSize(large, isMobile),
-            classNames(buttonStyles['button__arrow'], { [buttonStyles['button__arrow--both-icons']]: bothIcons })
-          )
-        : renderIcon(rightIcon, getLargeIconSize(large, isMobile), buttonStyles['button__right-icon'])}
-      {hasUURightArrow && (
-        <span style={{ color: iconColor }} className={buttonStyles['button__right-unicode-arrow']} aria-hidden>
-          {'  →'}
-        </span>
-      )}
-    </span>
-  );
+  const renderbuttonContentWrapper = (): React.ReactNode => {
+    const iconSize = getIconSize(large, isMobile, borderlessVariant);
+
+    return (
+      <span className={buttonClasses}>
+        {renderIcon(leftIcon, iconSize, !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
+        {renderButtonContent()}
+        {hasArrow
+          ? renderIcon(
+              <Icon svgIcon={ArrowRight} />,
+              iconSize,
+              classNames(buttonStyles['button__arrow'], { [buttonStyles['button__arrow--both-icons']]: bothIcons })
+            )
+          : renderIcon(rightIcon, iconSize, buttonStyles['button__right-icon'])}
+        {hasUURightArrow && (
+          <span style={{ color: iconColor }} className={buttonStyles['button__right-unicode-arrow']} aria-hidden>
+            {'  →'}
+          </span>
+        )}
+      </span>
+    );
+  };
 
   return (
     <>

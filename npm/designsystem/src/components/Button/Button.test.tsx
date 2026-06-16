@@ -90,7 +90,7 @@ describe('Gitt at button skal vises', (): void => {
 
       expect(text).toBeVisible();
 
-      expect(button.firstElementChild?.className).toBe('button button--normal button--left-icon button--both-icons button--arrow');
+      expect(button.firstElementChild?.className).toBe('button button--medium button--left-icon button--both-icons button--arrow');
     });
   });
 
@@ -245,8 +245,8 @@ describe('Gitt at button skal vises', (): void => {
 
       const testButton2 = screen.getByTestId('test02').children[0];
 
-      expect(testButton1.className).toBe('button button--normal');
-      expect(testButton2.className).toBe('button button--destructive button--normal');
+      expect(testButton1.className).toBe('button button--medium');
+      expect(testButton2.className).toBe('button button--destructive button--medium');
     });
   });
 
@@ -260,7 +260,7 @@ describe('Gitt at button skal vises', (): void => {
 
       const testButton = screen.getByTestId('test01').children[0];
 
-      expect(testButton.className).toBe('button button--normal button--on-dark');
+      expect(testButton.className).toBe('button button--medium button--on-dark');
     });
   });
 
@@ -300,31 +300,18 @@ describe('Gitt at button skal vises', (): void => {
 
       const testFill = screen.getByTestId('test01').children[0];
 
-      expect(testFill.className).toBe('button button--normal');
+      expect(testFill.className).toBe('button button--medium');
 
       const testOutline = screen.getByTestId('test02').children[0];
 
-      expect(testOutline.className).toBe('button button--normal button--outline');
+      expect(testOutline.className).toBe('button button--medium button--outline');
 
       const testBorderless = screen.getByTestId('test03').children[0];
 
-      expect(testBorderless.className).toBe('button button--normal button--borderless');
+      expect(testBorderless.className).toBe('button button--medium button--borderless');
     });
   });
   describe('Når button rendres med borderless variant', (): void => {
-    test('Så er ikke large size tilgjengelig', (): void => {
-      render(
-        <div>
-          <Button testId={'test01'} variant={'borderless'} size={'large'}>
-            {'Button'}
-          </Button>
-        </div>
-      );
-
-      const testFill = screen.getByTestId('test01').children[0];
-
-      expect(testFill.className).toBe('button button--normal button--borderless');
-    });
     test('Så er ikke arrow som icon tilgjengelig', (): void => {
       render(
         <div>
@@ -336,7 +323,7 @@ describe('Gitt at button skal vises', (): void => {
 
       const testFill = screen.getByTestId('test01').children[0];
 
-      expect(testFill.className).toBe('button button--normal button--borderless');
+      expect(testFill.className).toBe('button button--medium button--borderless');
     });
   });
   describe('Når button rendres med aria props', (): void => {
