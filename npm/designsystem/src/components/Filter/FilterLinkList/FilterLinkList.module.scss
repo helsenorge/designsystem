@@ -59,6 +59,16 @@
     display: flex;
     flex-flow: row wrap;
     column-gap: 0.5rem;
+
+    /* Override list styling */
+    list-style: none;
+    margin-block: 0;
+    padding-inline-start: 0;
+
+    li {
+      list-style: none;
+      display: inline;
+    }
   }
 
   &__chip {

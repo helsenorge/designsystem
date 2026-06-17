@@ -36,7 +36,7 @@ function getFilterChips<T extends FilterValues>({
   const overflowCount = allChips.length - maxVisible;
 
   return [
-    visibleChips.map(({ key, value: v }) => (
+    ...visibleChips.map(({ key, value: v }) => (
       <Chip
         key={`${key}-${v}`}
         onChipClick={() => onChipClick(key as keyof T, v)}
@@ -52,7 +52,9 @@ function getFilterChips<T extends FilterValues>({
         {getLabel(key as keyof T, v)}
       </Chip>
     )),
-    overflowCount > 0 && <Chip key="overflow" onChipClick={onOverflowChipClick} withCloseButton={false}>{`+${overflowCount}`}</Chip>,
+    ...(overflowCount > 0
+      ? [<Chip key="overflow" onChipClick={onOverflowChipClick} withCloseButton={false}>{`+${overflowCount}`}</Chip>]
+      : []),
   ];
 }
 

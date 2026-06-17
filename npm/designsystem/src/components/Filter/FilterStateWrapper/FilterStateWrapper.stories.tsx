@@ -45,7 +45,7 @@ export const WithChildren: Story = {
       <>
         <FilterButtonAndChipsWrapper filterButtonComponent={<FilterButton />} filterChips={[<Chip>{'Parameter 1'}</Chip>]} />
         <FilterResultCountAndSortWrapper
-          resultCount={<span>{'3 treff'}</span>}
+          resultCount={<span aria-live="polite">{'3 treff'}</span>}
           sortComponent={
             <FilterSort
               children={

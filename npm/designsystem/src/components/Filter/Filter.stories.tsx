@@ -762,7 +762,7 @@ export const WithAsyncFiltering: Story = {
               onOverflowChipClick: () => drawer.open(),
             })}
           />
-          <FilterResultCountAndSortWrapper resultCount={`${filtered.length} logginnslag`} />
+          <FilterResultCountAndSortWrapper resultCount={<span aria-live="polite">{`${filtered.length} logginnslag`}</span>} />
         </FilterStateWrapper>
 
         <FilterDrawer resultCount={filtered.length} isLoading={isLoading} drawer={drawer} onReset={() => filter.resetFiltersToEmpty()}>

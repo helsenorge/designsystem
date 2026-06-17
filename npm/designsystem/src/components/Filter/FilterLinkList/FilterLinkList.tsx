@@ -37,6 +37,8 @@ export type LinkProps = Modify<
     title?: string;
     /** Texts rendered inside non-interactive chips on link element */
     chips?: string[];
+    /** Aria label for the list of chips */
+    chipsGroupAriaLabel?: string;
     /** Custom classname for link element */
     className?: string;
     /** Ref for button */
@@ -63,13 +65,13 @@ export const Link: LinkType = (props: LinkProps) => {
             <>
               <span>{title}</span>
               {chips && chips.length > 0 && (
-                <div className={styles['link-list__chip-list']}>
+                <ul className={styles['link-list__chip-list']} aria-label={props.chipsGroupAriaLabel}>
                   {chips.map(chip => (
-                    <span className={styles['link-list__chip']} key={chip}>
+                    <li className={styles['link-list__chip']} key={chip}>
                       {chip}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
             </>
           ) : (

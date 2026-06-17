@@ -1,7 +1,11 @@
+import type { HNDesignsystemFilter } from '../../../resources/Resources';
 import type { FilterValues, UseFilterReturn } from '../useFilter';
 
+import { LanguageLocales } from '../../../constants';
+import { useLanguage } from '../../../hooks/useLanguage';
 import { useDrawerNavigation } from '../DrawerNavigation';
 import FilterLinkList from '../FilterLinkList/FilterLinkList';
+import { getResources } from '../resourceHelper';
 
 export interface FilterOverviewLink {
   /** The filter key to read values from */
@@ -19,10 +23,23 @@ export interface FilterOverviewLinkListProps<T extends FilterValues> {
   getLabel: (key: keyof T, value: unknown) => string;
   /** Configuration for which filter keys to show as links */
   links: FilterOverviewLink[];
+  /** Resources for the component */
+  resources?: Partial<HNDesignsystemFilter>;
 }
 
-function FilterOverviewLinkList<T extends FilterValues>({ filter, getLabel, links }: FilterOverviewLinkListProps<T>): React.ReactNode {
+function FilterOverviewLinkList<T extends FilterValues>({
+  filter,
+  getLabel,
+  links,
+  resources,
+}: FilterOverviewLinkListProps<T>): React.ReactNode {
   const { goToView } = useDrawerNavigation();
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+  const mergedResources = {
+    ...defaultResources,
+    ...resources,
+  };
 
   return (
     <FilterLinkList>
@@ -38,7 +55,15 @@ function FilterOverviewLinkList<T extends FilterValues>({ filter, getLabel, link
           chips = [];
         }
 
-        return <FilterLinkList.Link key={filterKey} title={title} chips={chips} onClick={() => goToView(viewId ?? filterKey)} />;
+        return (
+          <FilterLinkList.Link
+            key={filterKey}
+            title={title}
+            chips={chips}
+            chipsGroupAriaLabel={mergedResources.activeFiltersListLabel}
+            onClick={() => goToView(viewId ?? filterKey)}
+          />
+        );
       })}
     </FilterLinkList>
   );

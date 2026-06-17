@@ -1,8 +1,24 @@
+@use '../../../scss/screen-reader' as *;
 @import '../../../scss/supernova/styles/spacers.css';
 
 .filter-chip-bar {
   display: flex;
-  flex-flow: row wrap;
   column-gap: var(--core-space-xs);
-  align-items: center;
+
+  &__list {
+    display: inline-flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    column-gap: var(--core-space-xs);
+
+    /* Override list styling */
+    list-style: none;
+    margin-block: 0;
+    padding-inline-start: 0;
+
+    li {
+      list-style: none;
+      display: inline;
+    }
+  }
 }
