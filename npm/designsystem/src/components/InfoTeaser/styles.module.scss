@@ -9,22 +9,13 @@
 
 .infoteaser {
   display: grid;
-  grid-template:
-    'icon title' auto
-    '. title' auto
-    'text text' min-content / auto 1fr;
+  grid-template-columns: [icon] auto [content] 1fr;
   width: 100%;
   overflow: hidden;
   background-color: var(--color-base-background-blueberry);
   border: 1px solid var(--color-base-border-blueberry);
   padding: var(--core-space-m) var(--core-space-s) var(--core-space-l) var(--core-space-s);
-
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-    grid-template:
-      'icon title' auto
-      '. title' auto
-      '. text' min-content / auto 1fr;
-  }
+  row-gap: var(--core-space-2xs);
 
   &--collapsed {
     &::after {
@@ -41,20 +32,26 @@
   }
 
   &__title {
-    grid-area: title;
+    grid-column: content;
+    grid-row: 1;
     align-self: center;
   }
 
   &__icon {
-    grid-area: icon;
+    grid-column: icon;
+    grid-row: 1;
+    align-self: center;
     margin-right: var(--core-space-xs);
   }
 
   &__text {
-    grid-area: text;
+    grid-column: 1 / -1;
     overflow: hidden;
     height: inherit;
-    margin-top: var(--core-space-2xs);
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      grid-column: content;
+    }
   }
 
   &__button {
@@ -76,7 +73,7 @@
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
-    line-height: 120%; /* 1.2rem */
+    line-height: 120%; // 1.2rem
 
     &:hover {
       background-color: var(--color-action-graphics-onlight-hover);

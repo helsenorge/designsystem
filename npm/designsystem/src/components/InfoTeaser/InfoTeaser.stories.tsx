@@ -5,6 +5,7 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import InfoTeaser from './InfoTeaser';
 import { allTitleTags } from '../../../.storybook/knobs';
 import longLoremText from '../../utils/loremtext';
+import { IconList } from '../Icons/IconNames';
 import InfoSignStroke from '../Icons/InfoSignStroke';
 
 const meta = {
@@ -43,6 +44,12 @@ const meta = {
       control: 'text',
       description: 'Override the default max height for collapsed teaser. Default is 12.25rem',
     },
+    svgIcon: {
+      control: {
+        type: 'select',
+      },
+      options: IconList,
+    },
   },
 } satisfies Meta<typeof InfoTeaser>;
 
@@ -51,6 +58,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  render: args => <InfoTeaser {...args} />,
+};
+
+export const NoIcon: Story = {
+  args: { svgIcon: undefined },
+  render: args => <InfoTeaser {...args} />,
+};
+
+export const CustomContent: Story = {
+  args: { title: undefined, svgIcon: undefined },
   render: args => <InfoTeaser {...args} />,
 };

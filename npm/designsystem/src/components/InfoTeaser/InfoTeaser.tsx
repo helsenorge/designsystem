@@ -36,7 +36,7 @@ export interface InfoTeaserProps {
   /** Sets the data-testid attribute */
   testId?: string;
   /** Title on top of the component */
-  title: string;
+  title?: string;
   /** Markup props for title */
   titleHtmlMarkup?: TitleTags;
 }
@@ -80,9 +80,11 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
           ) : (
             <Icon svgIcon={svgIcon} size={IconSize.Small} className={styles.infoteaser__icon} />
           ))}
-        <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4" className={styles.infoteaser__title}>
-          {title}
-        </Title>
+        {title && typeof title !== 'undefined' && (
+          <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4" className={styles.infoteaser__title}>
+            {title}
+          </Title>
+        )}
         <div className={styles.infoteaser__text} aria-hidden={expanded ? false : true} id={infoteaserTextId}>
           {children}
         </div>
