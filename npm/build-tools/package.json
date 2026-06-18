@@ -39,9 +39,9 @@
   },
   "peerDependencies": {
     "@storybook/addon-docs": "^10.0.5",
-    "storybook": "^10.0.5",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "storybook": "^10.4.6"
   },
   "devDependencies": {
     "rollup-plugin-peer-deps-external": "^2.2.4",
