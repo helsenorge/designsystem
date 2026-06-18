@@ -56,13 +56,6 @@ const DateInputInternal = ({
   const [mm, setMm] = useState(initialSegments.mm);
   const [yyyy, setYyyy] = useState(initialSegments.yyyy);
   const [prevValue, setPrevValue] = useState(value);
-  if (value !== prevValue) {
-    setPrevValue(value);
-    const next = parseDateSegments(value);
-    setDd(next.dd);
-    setMm(next.mm);
-    setYyyy(next.yyyy);
-  }
   const hasValue = dd !== '' || mm !== '' || yyyy !== '';
   const ddRef = useRef<HTMLInputElement>(null);
   const mmRef = useRef<HTMLInputElement>(null);
@@ -188,6 +181,15 @@ const DateInputInternal = ({
       errorMessage: resources?.validateDefaultMessageYear || 'År må være et tall med 4 siffer',
     });
   };
+
+  if (value !== prevValue) {
+    setPrevValue(value);
+    const next = parseDateSegments(value);
+    setDd(next.dd);
+    setMm(next.mm);
+    setYyyy(next.yyyy);
+    validateAllSegments(next.dd, next.mm, next.yyyy);
+  }
 
   // ved fokus flytt til nytt input felt kjør valideringsfunksjoner på nytt
   const handleBlurOnSegment = (e: React.FocusEvent<HTMLInputElement>): void => {

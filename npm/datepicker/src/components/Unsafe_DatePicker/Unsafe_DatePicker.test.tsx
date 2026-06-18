@@ -91,6 +91,25 @@ describe('Gitt at Unsafe_DatePicker skal vises', () => {
     });
   });
 
+  describe('Når en soft-feil vises og brukeren velger en gyldig dato i datovelgeren', () => {
+    const DAY_SOFT_ERROR = 'Dag må være et tall mellom 01 og 31';
+
+    it('Så skal soft-feilen fjernes (regresjonstest for at popup-valg validerer på nytt)', async () => {
+      const user = userEvent.setup();
+      render(<Unsafe_DatePicker value={undefined} onChange={vi.fn()} />);
+
+      // Skriv en ugyldig dag for å trigge soft-feil
+      await user.type(screen.getByLabelText(DD_LABEL), '32');
+      expect(screen.getByText(DAY_SOFT_ERROR)).toBeInTheDocument();
+
+      // Velg en gyldig dato i datovelger-popupen
+      await user.click(screen.getByLabelText(CALENDAR_BUTTON_LABEL));
+      await user.click(screen.getByRole('button', { name: /^I dag,/i }));
+
+      expect(screen.queryByText(DAY_SOFT_ERROR)).not.toBeInTheDocument();
+    });
+  });
+
   describe('Når ekstern verdi endres flere ganger (regresjonstest for echo-back guard)', () => {
     it('Så skal segmentene tømmes etter sekvens: tøm → sett Date → sett undefined', () => {
       const { rerender } = render(<Unsafe_DatePicker value={undefined} onChange={vi.fn()} />);
