@@ -1,0 +1,50 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/spacers.css';
+
+.visual-contentgroup-with-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: var(--core-space-l);
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+    flex-direction: row-reverse;
+  }
+
+  &__frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+
+    > * {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &--square {
+      aspect-ratio: 1/1;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+        flex: 0 0 50%;
+      }
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
+        max-width: 30rem;
+        max-height: 30rem;
+      }
+    }
+
+    &--landscape {
+      aspect-ratio: 3/2;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+        flex: 0 0 50%;
+      }
+    }
+  }
+}
