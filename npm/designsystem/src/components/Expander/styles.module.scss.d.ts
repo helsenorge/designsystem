@@ -32,11 +32,13 @@ export type Styles = {
   expander__button: string;
   expander__button__text: string;
   'expander__button--expanded': string;
+  'expander__button-container': string;
   'expander__button-container--sticky': string;
   expander__content: string;
   'expander__content--banana': string;
   'expander__content--blueberry': string;
   'expander__content--cherry': string;
+  'expander__content--emphasized': string;
   'expander__content--expanded': string;
   'expander__content--icon': string;
   'expander__content--kiwi': string;

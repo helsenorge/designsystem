@@ -39,6 +39,8 @@ export interface ExpanderProps {
   expanded?: boolean;
   /** Removes border to the left of the content. Requires size=ExpanderSize.small. */
   noNestedLine?: boolean;
+  /** Emphasizes the content section. Intended for size=ExpanderSize.small. */
+  emphasized?: boolean;
   /** Stick expander trigger to top of screen while scrolling down */
   sticky?: boolean;
   /** Called when expander is open/closed. */
@@ -62,6 +64,7 @@ const Expander: React.FC<ExpanderProps> = props => {
     svgIcon: icon,
     expanded = false,
     noNestedLine = false,
+    emphasized = false,
     sticky = false,
     testId,
     onExpand,
@@ -130,7 +133,7 @@ const Expander: React.FC<ExpanderProps> = props => {
         width: isSticky && triggerSize?.width ? `${triggerSize?.width}px` : undefined,
         height: isSticky && triggerSize?.height ? `${triggerSize?.height}px` : undefined,
       }}
-      className={classNames({
+      className={classNames(styles['expander__button-container'], {
         [styles['expander__button-container--sticky']]: isSticky,
       })}
     >
@@ -163,10 +166,13 @@ const Expander: React.FC<ExpanderProps> = props => {
       size === ExpanderSize.large && icon && styles['expander__content--icon'],
       isExpanded && styles['expander__content--expanded'],
       size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line--inner'],
+      emphasized && styles['expander__content--emphasized'],
       { [styles['expander__content--sticky']]: isSticky },
       contentClassNames
     );
-    const leftBorderClassName = classNames(size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line--outer']);
+    const leftBorderClassName = classNames(
+      size === ExpanderSize.small && !emphasized && !noNestedLine && styles['expander__content--nested-line--outer']
+    );
 
     return (
       <div className={leftBorderClassName}>
