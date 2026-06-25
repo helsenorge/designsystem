@@ -1,3 +1,15 @@
+## [15.2.0](https://github.com/helsenorge/designsystem/compare/v15.1.0...v15.2.0) (2026-06-25)
+
+### Features
+
+*  nytt komponent visualcontentgroupwithimage ([deafe38](https://github.com/helsenorge/designsystem/commit/deafe3823a48dca3e2256cfd8d82bb701fdc5060)), closes [#376758](https://github.com/helsenorge/designsystem/issues/376758)
+* **expander:**  ny prop emphasised ([7ae7d9e](https://github.com/helsenorge/designsystem/commit/7ae7d9e4bea2253f555b6b6fb6c5a597e9e0c3eb)), closes [#380269](https://github.com/helsenorge/designsystem/issues/380269)
+* **filter:**  forbedre skjermleseroppførsel for aktive filter ([33de604](https://github.com/helsenorge/designsystem/commit/33de6047677cdc43018694e17e339e5202b0e53b)), closes [#375582](https://github.com/helsenorge/designsystem/issues/375582)
+* **infoteaser:**  title er optional ([b178185](https://github.com/helsenorge/designsystem/commit/b178185f6ad42ecb8bdadc532fe8fdff431c6486)), closes [#380754](https://github.com/helsenorge/designsystem/issues/380754)
+
+### Bug Fixes
+
+* **datepicker:**  soft error forsvinner ikke ved popup valg ([5380c60](https://github.com/helsenorge/designsystem/commit/5380c60e6f6f75dcf798e14c128ddb458d51c8f4)), closes [#380884](https://github.com/helsenorge/designsystem/issues/380884)
 
 ## [15.1.0](https://github.com/helsenorge/designsystem/compare/v15.0.0...v15.1.0) (2026-06-16)
 
