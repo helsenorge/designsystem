@@ -12,8 +12,8 @@
   grid-template-columns: [icon] auto [content] 1fr;
   width: 100%;
   overflow: hidden;
-  background-color: var(--color-base-background-blueberry);
-  border: 1px solid var(--color-base-border-blueberry);
+  background-color: var(--color-base-blueberry-background-light-onlight);
+  border: 1px solid var(--color-base-blueberry-border-light-onlight);
   padding: var(--core-space-m) var(--core-space-s) var(--core-space-l) var(--core-space-s);
   row-gap: var(--core-space-2xs);
 
@@ -61,7 +61,7 @@
     width: fit-content;
     white-space: nowrap;
     border-radius: 1.25rem;
-    background: var(--color-action-graphics-onlight, #188097);
+    background: var(--color-action-graphics-dark-onlight-normal, #188097);
     color: var(--core-color-white, #fff);
     padding: 0.375rem 1rem;
     bottom: 0;
@@ -76,13 +76,13 @@
     line-height: 120%; // 1.2rem
 
     &:hover {
-      background-color: var(--color-action-graphics-onlight-hover);
+      background-color: var(--color-action-graphics-dark-onlight-hover);
     }
 
     &:focus-visible {
-      border: 1px solid var(--color-base-graphics-ondark);
+      border: 1px solid var(--color-base-graphics-light-ondark);
       outline: none;
-      box-shadow: 0 0 0 3px var(--color-base-graphics-onlight);
+      box-shadow: 0 0 0 3px var(--color-base-graphics-dark-onlight);
     }
 
     &:active {

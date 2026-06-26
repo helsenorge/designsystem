@@ -110,11 +110,11 @@
   }
 
   &--white {
-    background-color: var(--color-base-background-white);
+    background-color: var(--color-base-white-background);
   }
 
   &--neutral {
-    background-color: var(--color-base-background-neutral);
+    background-color: var(--color-base-neutral-background-light);
   }
 
   &--line {
@@ -124,7 +124,7 @@
   &__border {
     &--outline {
       &--outer {
-        border: 1px solid var(--color-base-border-neutral-emphasized);
+        border: 1px solid var(--color-base-neutral-border-light-onlight-plus1);
       }
 
       &--inner {
@@ -133,15 +133,15 @@
     }
 
     &--line {
-      border-top: 1px solid var(--color-base-border-onlight);
-      border-bottom: 1px solid var(--color-base-border-onlight);
+      border-top: 1px solid var(--color-base-border-dark-onlight);
+      border-bottom: 1px solid var(--color-base-border-dark-onlight);
       border-right: none;
       border-left: none;
       padding: spacers.getSpacer(xs) 0;
     }
 
     &--fill--neutral {
-      border: 1px solid var(--color-base-border-neutral-emphasized);
+      border: 1px solid var(--color-base-neutral-border-light-onlight-plus1);
     }
 
     &--fill--new {
@@ -154,7 +154,7 @@
   }
 
   &--border {
-    border: 2px solid var(--color-base-background-white);
+    border: 2px solid var(--color-base-white-background);
   }
 
   &--status {
@@ -164,31 +164,31 @@
   }
 
   &--new {
-    border-left-color: var(--color-notification-status-info);
-    background-color: var(--color-base-background-blueberry);
+    border-left-color: var(--color-notification-info);
+    background-color: var(--color-base-blueberry-background-light-onlight);
   }
 
   &--draft {
-    border-left: dotted $status-width var(--color-notification-status-draft);
+    border-left: dotted $status-width var(--color-notification-draft);
   }
 
   &--error {
-    border-left-color: var(--color-notification-status-error);
+    border-left-color: var(--color-notification-error);
   }
 
   &__expander {
     &__border {
       &--expanded {
-        border-left: 2px solid var(--color-base-border-onlight-emphasized);
+        border-left: 2px solid var(--color-base-emphasized-border-dark-onlight);
       }
 
       &--not-expanded {
         &--white {
-          border-left: 2px solid var(--color-base-background-white);
+          border-left: 2px solid var(--color-base-white-background);
         }
 
         &--neutral {
-          border-left: 2px solid var(--color-base-background-neutral);
+          border-left: 2px solid var(--color-base-neutral-background-light);
         }
 
         &--line {
@@ -200,7 +200,7 @@
     &__separator {
       height: 1px;
       width: 40px;
-      background-color: var(--color-base-border-onlight);
+      background-color: var(--color-base-border-dark-onlight);
     }
 
     &__content {

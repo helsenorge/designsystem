@@ -36,11 +36,11 @@ const TabList: React.FC<TabListProps> = props => {
   const getBackgroundColor = (onColor: TabsOnColor): string => {
     switch (onColor) {
       case 'onwhite':
-        return 'var(--color-base-background-white)';
+        return 'var(--color-base-white-background)';
       case 'onblueberry':
-        return 'var(--color-base-background-blueberry)';
+        return 'var(--color-base-blueberry-background-light-onlight)';
       case 'onneutral':
-        return 'var(--color-base-background-neutral)';
+        return 'var(--color-base-neutral-background-light)';
     }
   };
   const firstTab = tabRefs.current && tabRefs.current[0];

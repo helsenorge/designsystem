@@ -21,11 +21,11 @@
     font-family: inherit;
     font-size: font-settings.$font-size-sm;
     line-height: 1.3rem; // Custom fordi teksten skal henge bedre sammen om den går over to linjer
-    border-color: var(--color-base-border-onlight-emphasized);
+    border-color: var(--color-base-emphasized-border-dark-onlight);
     background-color: var(--core-color-white);
 
     &:hover:not(:disabled) {
-      background-color: var(--color-base-background-neutral);
+      background-color: var(--color-base-neutral-background-light);
     }
 
     &:active:not(:disabled) {
@@ -40,15 +40,15 @@
 
     &:focus-visible {
       outline: none;
-      border-color: var(--color-action-border-onlight-focus);
-      box-shadow: 0 0 0 1px var(--color-action-border-onlight-focus);
+      border-color: var(--color-action-border-dark-onlight-focus);
+      box-shadow: 0 0 0 1px var(--color-action-border-dark-onlight-focus);
     }
 
     &:disabled {
       cursor: initial;
       color: var(--color-disabled-text);
       background-color: transparent;
-      border-color: var(--color-disabled-border);
+      border-color: var(--color-disabled-border-dark-onlight);
       border-style: dashed;
     }
 
@@ -79,7 +79,7 @@
     }
 
     &--borderless#{&}--open {
-      border-color: var(--color-base-border-onlight-emphasized);
+      border-color: var(--color-base-emphasized-border-dark-onlight);
     }
 
     &__text {
@@ -104,14 +104,14 @@
 
   &__left-icon,
   &__right-icon {
-    fill: var(--color-action-graphics-onlight);
+    fill: var(--color-action-graphics-dark-onlight-normal);
 
     :hover > & {
-      fill: var(--color-action-graphics-onlight-hover);
+      fill: var(--color-action-graphics-dark-onlight-hover);
     }
 
     :disabled > & {
-      fill: var(--color-disabled-graphics);
+      fill: var(--color-disabled-graphics-dark-onlight);
     }
   }
 
@@ -144,7 +144,7 @@
 
   &__list-item {
     min-height: 44px;
-    border-bottom: 1px solid var(--color-base-border-neutral-emphasized);
+    border-bottom: 1px solid var(--color-base-neutral-border-light-onlight-plus1);
 
     &:last-child {
       border-bottom: none;
@@ -172,8 +172,8 @@
     }
 
     &--single-select:has(:focus-visible) {
-      border-color: var(--color-action-border-onlight-focus);
-      outline: 4px solid var(--color-action-border-onlight-focus);
+      border-color: var(--color-action-border-dark-onlight-focus);
+      outline: 4px solid var(--color-action-border-dark-onlight-focus);
       outline-offset: -4px;
     }
   }

@@ -169,16 +169,16 @@ $checkbox-icon-size: 1.625rem;
       color: palette.$black;
 
       &__regular--checked {
-        border: 1px solid var(--color-action-border-ondark-focus);
+        border: 1px solid var(--color-action-border-light-ondark-focus);
 
         & + .checkbox__marker__regular--on-dark {
-          border: 1px solid var(--color-action-border-onlight-focus);
+          border: 1px solid var(--color-action-border-dark-onlight-focus);
         }
       }
 
       &--on-dark {
         color: palette.$white;
-        border: 1px solid var(--color-action-border-onlight-focus);
+        border: 1px solid var(--color-action-border-dark-onlight-focus);
       }
 
       &--invalid {
@@ -190,13 +190,13 @@ $checkbox-icon-size: 1.625rem;
           background-color: palette.$blueberry200;
           box-shadow: 0 0 0 spacers.getSpacer(3xs);
           color: palette.$white;
-          border: 1px solid var(--color-action-border-onlight-focus);
+          border: 1px solid var(--color-action-border-dark-onlight-focus);
 
           // komboklasser fungerer ikke i nested struktur
           &--invalid {
             background-color: palette.$cherry500;
             color: palette.$black;
-            border: 1px solid var(--color-action-border-ondark-focus);
+            border: 1px solid var(--color-action-border-light-ondark-focus);
           }
 
           &--disabled {
@@ -215,7 +215,7 @@ $checkbox-icon-size: 1.625rem;
 
     label:hover &--on-white,
     label:hover &--on-grey {
-      background-color: var(--color-action-graphics-ondark-hover);
+      background-color: var(--color-action-graphics-light-ondark-hover);
     }
 
     label:active &--on-white,

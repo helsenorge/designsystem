@@ -41,14 +41,14 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 }
 
 @mixin outline-borderless-text-hover {
-  @include text-color(var(--color-action-text-onlight-hover), var(--color-action-text-onlight-hover));
+  @include text-color(var(--color-action-text-dark-onlight-hover), var(--color-action-text-dark-onlight-hover));
 }
 
 @mixin focus-shadow($with-uu-border: true) {
   box-shadow: 0 0 0 spacers.getSpacer(3xs) palette.$black;
 
   @if $with-uu-border {
-    border: 1px solid var(--color-action-border-ondark-focus);
+    border: 1px solid var(--color-action-border-light-ondark-focus);
   } @else {
     border: none;
   }
@@ -58,7 +58,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   box-shadow: 0 0 0 spacers.getSpacer(3xs) palette.$white;
 
   @if $with-uu-border {
-    border: 1px solid var(--color-action-border-onlight-focus);
+    border: 1px solid var(--color-action-border-dark-onlight-focus);
   } @else {
     border: none;
   }
@@ -133,7 +133,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
 @mixin on-dark {
   &--on-dark {
-    @include fill-on-dark(var(--color-action-background-ondark-hover));
+    @include fill-on-dark(var(--color-action-background-light-ondark-hover));
 
     :focus > & {
       @include focus-shadow-on-dark(true);
@@ -419,7 +419,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   /* stylelint-disable-next-line */
   &--outline &__text,
   &--borderless &__text {
-    @include text-color(var(--color-action-text-onlight), var(--color-action-text-onlight-hover));
+    @include text-color(var(--color-action-text-dark-onlight-normal), var(--color-action-text-dark-onlight-hover));
   }
 
   &--outline#{&}--destructive &__text,

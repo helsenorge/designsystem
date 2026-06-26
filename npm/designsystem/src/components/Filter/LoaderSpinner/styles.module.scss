@@ -13,7 +13,7 @@
     position: relative;
     display: inline-flex;
     flex-shrink: 0;
-    stroke: var(--color-action-graphics-onlight);
+    stroke: var(--color-action-graphics-dark-onlight-normal);
     top: 6px;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
@@ -22,6 +22,6 @@
   }
 
   &__text {
-    color: var(--color-base-text-onlight);
+    color: var(--color-base-text-dark-onlight);
   }
 }

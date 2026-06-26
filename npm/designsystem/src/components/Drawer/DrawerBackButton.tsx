@@ -25,7 +25,7 @@ const DrawerBackButton: React.FC<DrawerBackButtonProps> = props => {
   return (
     <button ref={refObject} className={classNames(styles['back-button'], className)} aria-label={ariaLabel} onClick={onClick} type="button">
       <span className={classNames(styles['back-button__inner-container'])}>
-        <Icon svgIcon={ChevronLeft} color={'var(--color-action-graphics-onlight'} size={iconSize} isHovered={isHovered} />
+        <Icon svgIcon={ChevronLeft} color={'var(--color-action-graphics-dark-onlight-normal'} size={iconSize} isHovered={isHovered} />
       </span>
     </button>
   );

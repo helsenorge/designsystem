@@ -82,7 +82,7 @@
 
     dd {
       padding-bottom: spacers.getSpacer(2xs);
-      border-bottom: 1px solid var(--color-base-border-onlight);
+      border-bottom: 1px solid var(--color-base-border-dark-onlight);
 
       &:last-of-type {
         border-bottom: 0;
@@ -93,11 +93,11 @@
   &--line#{&}--not-collapsed {
     dt,
     dd {
-      border-top: 1px solid var(--color-base-border-onlight);
+      border-top: 1px solid var(--color-base-border-dark-onlight);
       padding-top: spacers.getSpacer(2xs);
 
       &:last-of-type {
-        border-bottom: 0.062rem solid var(--color-base-border-onlight);
+        border-bottom: 0.062rem solid var(--color-base-border-dark-onlight);
       }
     }
   }

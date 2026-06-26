@@ -51,7 +51,7 @@
 .sublabel {
   @include fonts.sublabel;
 
-  color: var(--color-base-text-onlight-subdued);
+  color: var(--color-base-subdued-text-dark-onlight);
 
   &--subdued {
     @include fonts.sublabel-subdued;

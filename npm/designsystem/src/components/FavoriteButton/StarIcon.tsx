@@ -1,9 +1,9 @@
 import styles from './styles.module.scss';
 
-const normalStroke = 'var(--color-action-graphics-onlight)';
+const normalStroke = 'var(--color-action-graphics-dark-onlight-normal)';
 const normalFill = 'transparent';
-const hoverFill = 'var(--color-action-graphics-onlight-hover)';
-const hoverStroke = 'var(--color-action-graphics-onlight-hover)';
+const hoverFill = 'var(--color-action-graphics-dark-onlight-hover)';
+const hoverStroke = 'var(--color-action-graphics-dark-onlight-hover)';
 const activeStroke = 'var(--core-color-blueberry-800)';
 
 const fillColor = (isChecked: boolean, isActive: boolean, isHovered: boolean): string => {

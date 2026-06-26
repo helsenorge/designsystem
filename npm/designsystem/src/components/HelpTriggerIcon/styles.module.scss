@@ -69,7 +69,7 @@ $outline-focus-outer-width: 5px;
         $outline-width: clamp(0px, 0.3em, 3px);
 
         inset: calc(-1 * (#{$outline-width}/ 3));
-        box-shadow: inset 0 0 0 #{$outline-width} var(--color-action-border-onlight-focus);
+        box-shadow: inset 0 0 0 #{$outline-width} var(--color-action-border-dark-onlight-focus);
         z-index: 1;
       }
     }
@@ -110,7 +110,7 @@ $outline-focus-outer-width: 5px;
   &--large#{&}--is-button {
     &:focus-visible {
       box-shadow: none;
-      outline: 3px solid var(--color-action-border-onlight-focus);
+      outline: 3px solid var(--color-action-border-dark-onlight-focus);
       outline-offset: -2px;
     }
   }
@@ -132,7 +132,7 @@ $outline-focus-outer-width: 5px;
 
     &:focus-visible {
       box-shadow: none;
-      outline: 3.5px solid var(--color-action-border-onlight-focus);
+      outline: 3.5px solid var(--color-action-border-dark-onlight-focus);
       outline-offset: -2px;
     }
 
@@ -152,22 +152,22 @@ $outline-focus-outer-width: 5px;
   }
 
   &--strong {
-    background-color: var(--color-help-graphics-normal);
+    background-color: var(--color-help-graphics);
   }
 
   &--strong#{&}--is-button {
     &:hover {
-      background-color: var(--color-help-graphics-verydark);
+      background-color: var(--color-help-graphics-plus2);
     }
 
     &:active {
-      background-color: var(--color-help-graphics-normal);
+      background-color: var(--color-help-graphics);
     }
 
     &:focus-visible {
       box-shadow:
-        0 0 0 #{$outline-focus-inner-width} var(--color-base-graphics-ondark),
-        0 0 0 calc(#{$outline-focus-outer-width}) var(--color-action-border-onlight-focus);
+        0 0 0 #{$outline-focus-inner-width} var(--color-base-graphics-light-ondark),
+        0 0 0 calc(#{$outline-focus-outer-width}) var(--color-action-border-dark-onlight-focus);
       outline: none;
 
       &::after {

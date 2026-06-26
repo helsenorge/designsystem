@@ -73,7 +73,7 @@
     display: flex;
     min-height: 4rem;
     text-decoration: none;
-    color: var(--color-base-text-onlight);
+    color: var(--color-base-text-dark-onlight);
 
     // listeelement settes til div om man er i edit mode, og skal da ikke ha interactive effekter
     &:not(div) {
@@ -92,7 +92,7 @@
     &--fill,
     &--line {
       &--white {
-        background-color: var(--color-base-background-white);
+        background-color: var(--color-base-white-background);
       }
 
       &--blueberry {
@@ -109,7 +109,7 @@
     }
 
     &--fill-negative {
-      background-color: var(--color-base-background-white);
+      background-color: var(--color-base-white-background);
     }
 
     &--fill,
@@ -215,17 +215,17 @@
     }
 
     &:focus-visible {
-      outline: 4px solid var(--color-action-border-onlight-focus);
+      outline: 4px solid var(--color-action-border-dark-onlight-focus);
       outline-offset: 0; // Override user agent default
       position: relative;
       z-index: 1;
     }
 
     &--outline {
-      background-color: var(--color-base-background-white);
+      background-color: var(--color-base-white-background);
 
       &--white {
-        background-color: var(--color-base-background-white);
+        background-color: var(--color-base-white-background);
       }
 
       &--blueberry {
@@ -304,7 +304,7 @@
     background-color: transparent;
 
     &--new {
-      background-color: var(--color-notification-status-info);
+      background-color: var(--color-notification-info);
     }
   }
 }

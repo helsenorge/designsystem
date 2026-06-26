@@ -27,7 +27,7 @@ const Triangle: React.FC<TriangleProps> = ({ isHover, isFocus, isActive, isError
         colors.background = 'var(--component-stickynote-background-fold-normal-medium)';
       }
       if (isFocus) {
-        colors.border = 'var(--color-action-border-onlight-focus)';
+        colors.border = 'var(--color-action-border-dark-onlight-focus)';
         colors.background = 'var(--component-stickynote-background-fold-normal-medium)';
       }
       if (isActive) {
@@ -40,7 +40,7 @@ const Triangle: React.FC<TriangleProps> = ({ isHover, isFocus, isActive, isError
         colors.background = 'var(--component-stickynote-background-fold-error-medium)';
       }
       if (isFocus) {
-        colors.border = 'var(--color-action-border-onlight-focus)';
+        colors.border = 'var(--color-action-border-dark-onlight-focus)';
         colors.background = 'var(--component-stickynote-background-fold-error-medium)';
       }
       if (isActive) {

@@ -10,7 +10,7 @@
 
   padding: spacers.getSpacer(l) spacers.getSpacer(s) spacers.getSpacer(xl);
   width: 100%;
-  border-bottom: 1px solid var(--color-action-border-onlight-focus);
+  border-bottom: 1px solid var(--color-action-border-dark-onlight-focus);
 
   @each $color in $colors {
     &#{$tab-panel}--#{$color} {
@@ -20,7 +20,7 @@
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     border-radius: 0 0 0.5rem 0.5rem;
-    border: 1px solid var(--color-action-border-onlight-focus);
+    border: 1px solid var(--color-action-border-dark-onlight-focus);
     border-top: 0;
     padding: spacers.getSpacer(xl) spacers.getSpacer(m) spacers.getSpacer(2xl);
 

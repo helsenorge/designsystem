@@ -118,7 +118,7 @@ $mark-size: spacers.getSpacer(l);
     }
 
     &--invalid {
-      border-color: var(--color-notification-border-error);
+      border-color: var(--color-notification-error-border);
     }
 
     &--disabled {

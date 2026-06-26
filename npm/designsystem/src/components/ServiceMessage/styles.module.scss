@@ -16,43 +16,43 @@
   }
 
   &--success {
-    background-color: var(--color-notification-background-success);
+    background-color: var(--color-notification-success-background);
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: var(--color-notification-border-success);
+      border-color: var(--color-notification-success-border);
     }
   }
 
   &--info {
-    background-color: var(--color-notification-background-info);
+    background-color: var(--color-notification-info-background);
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: var(--color-notification-border-info);
+      border-color: var(--color-notification-info-border);
     }
   }
 
   &--warn {
-    background-color: var(--color-notification-background-warning);
+    background-color: var(--color-notification-warning-background);
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: var(--color-notification-border-warning);
+      border-color: var(--color-notification-warning-border);
     }
   }
 
   &--error {
-    background-color: var(--color-notification-background-error);
+    background-color: var(--color-notification-error-background);
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: var(--color-notification-border-error);
+      border-color: var(--color-notification-error-border);
     }
   }
 
   &__icon {
-    fill: var(--color-action-graphics-onlight);
+    fill: var(--color-action-graphics-dark-onlight-normal);
   }
 
   &__container {
@@ -77,46 +77,46 @@
     }
 
     &--has-expander:has(:focus-visible) {
-      box-shadow: inset 0 0 0 4px var(--color-action-border-onlight-focus);
+      box-shadow: inset 0 0 0 4px var(--color-action-border-dark-onlight-focus);
     }
 
     &--info#{&}--has-expander {
       &:hover {
-        background-color: var(--color-notification-background-info-hover);
+        background-color: var(--color-notification-info-background-hover);
       }
 
       &:active {
-        background-color: var(--color-notification-background-info-active);
+        background-color: var(--color-notification-info-background-active);
       }
     }
 
     &--success#{&}--has-expander {
       &:hover {
-        background-color: var(--color-notification-background-success-hover);
+        background-color: var(--color-notification-success-background-hover);
       }
 
       &:active {
-        background-color: var(--color-notification-background-success-active);
+        background-color: var(--color-notification-success-background-active);
       }
     }
 
     &--warn#{&}--has-expander {
       &:hover {
-        background-color: var(--color-notification-background-warning-hover);
+        background-color: var(--color-notification-warning-background-hover);
       }
 
       &:active {
-        background-color: var(--color-notification-background-warning-active);
+        background-color: var(--color-notification-warning-background-active);
       }
     }
 
     &--error#{&}--has-expander {
       &:hover {
-        background-color: var(--color-notification-background-error-hover);
+        background-color: var(--color-notification-error-background-hover);
       }
 
       &:active {
-        background-color: var(--color-notification-background-error-active);
+        background-color: var(--color-notification-error-background-active);
       }
     }
   }
@@ -223,7 +223,7 @@
     align-items: center;
     border: none;
     width: fit-content;
-    color: var(--color-action-text-onlight);
+    color: var(--color-action-text-dark-onlight-normal);
     font-weight: 600;
     font-size: font-settings.$font-size-xs;
     line-height: 1.25rem;
@@ -239,7 +239,7 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 4px var(--color-action-border-onlight-focus);
+      box-shadow: 0 0 0 4px var(--color-action-border-dark-onlight-focus);
       background-color: transparent;
       border: 0;
       outline: none;

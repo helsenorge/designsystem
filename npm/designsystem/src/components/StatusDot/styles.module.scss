@@ -75,7 +75,7 @@ $status-dot-size: 1rem;
     }
 
     &--transparent {
-      fill: var(--color-disabled-border);
+      fill: var(--color-disabled-border-dark-onlight);
     }
 
     &--transparent#{&}--on-dark,
@@ -86,7 +86,7 @@ $status-dot-size: 1rem;
     &--hidden#{&}--on-dark,
     &--login#{&}--on-dark,
     &--attachment#{&}--on-dark {
-      fill: var(--color-base-graphics-ondark);
+      fill: var(--color-base-graphics-light-ondark);
     }
 
     svg {
@@ -95,12 +95,12 @@ $status-dot-size: 1rem;
   }
 
   &__label {
-    color: var(--color-base-text-onlight-subdued);
+    color: var(--color-base-subdued-text-dark-onlight);
 
     @include fonts.sublabel-subdued;
 
     &--on-dark {
-      color: var(--color-base-text-ondark);
+      color: var(--color-base-text-light-ondark);
     }
   }
 }

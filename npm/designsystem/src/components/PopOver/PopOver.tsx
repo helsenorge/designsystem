@@ -117,7 +117,7 @@ const PopOver: React.FC<PopOverProps> = props => {
           className={styles['popover__arrow']}
           context={context}
           fill={'var(--core-color-white)'}
-          stroke={'var(--color-base-border-onlight)'}
+          stroke={'var(--color-base-border-dark-onlight)'}
           strokeWidth={1}
         />
       </div>

@@ -64,9 +64,9 @@ const Toggle: React.FC<ToggleProps> = ({
   const isOnWhite = onColor === ToggleOnColor.onwhite;
   const animationDuration = disabled ? 0 : 0.2;
   const dotBackgroundColor = disabled
-    ? 'var(--color-disabled-graphics)'
+    ? 'var(--color-disabled-graphics-dark-onlight)'
     : checkedState
-      ? 'var(--color-action-graphics-ondark)'
+      ? 'var(--color-action-graphics-light-ondark-normal)'
       : 'var(--core-color-neutral-700)';
 
   const getBackgroundColor = (): string => {
@@ -75,7 +75,7 @@ const Toggle: React.FC<ToggleProps> = ({
     } else if (checkedState && isActive) {
       return 'var(--core-color-blueberry-800)';
     } else if (checkedState) {
-      return showHoveredStyling ? 'var(--color-action-graphics-onlight-hover)' : 'var(--color-action-graphics-onlight)';
+      return showHoveredStyling ? 'var(--color-action-graphics-dark-onlight-hover)' : 'var(--color-action-graphics-dark-onlight-normal)';
     } else if (isOnWhite && isActive) {
       return 'var(--core-color-neutral-400)';
     } else if (isOnWhite) {

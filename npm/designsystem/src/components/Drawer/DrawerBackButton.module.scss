@@ -44,7 +44,7 @@ $mobile-outer-size: 2.75rem;
     }
 
     :focus-visible > & {
-      outline: 3px solid var(--color-action-border-onlight-focus);
+      outline: 3px solid var(--color-action-border-dark-onlight-focus);
       border-radius: 0;
       border: 0;
     }

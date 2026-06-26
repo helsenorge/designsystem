@@ -56,7 +56,7 @@ interface HelpTriggerIconInternalProps extends HelpTriggerIconProps {
 
 const getIconColor = (hover: boolean, weight: HelpTriggerWeights): string | undefined => {
   if (weight === 'normal') {
-    return hover ? 'var(--color-help-graphics-verydark)' : 'var(--color-help-graphics-normal)';
+    return hover ? 'var(--color-help-graphics-plus2)' : 'var(--color-help-graphics)';
   }
 };
 

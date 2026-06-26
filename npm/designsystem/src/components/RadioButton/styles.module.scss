@@ -71,7 +71,7 @@ $padding-clickable-area-left: 8px;
     }
 
     &:has(input:focus-visible) {
-      border: 1px solid var(--color-action-border-ondark-focus);
+      border: 1px solid var(--color-action-border-light-ondark-focus);
     }
 
     &--on-blueberry {

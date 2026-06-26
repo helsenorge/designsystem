@@ -22,7 +22,7 @@ $outline-xl-width: 2.5px;
   border: 0;
   min-width: 4.6rem;
   min-height: 2.75rem;
-  color: var(--color-help-graphics-normal);
+  color: var(--color-help-graphics);
   padding: 0 var(--core-space-3xs);
   font-size: 1rem;
   font-weight: 600;
@@ -36,12 +36,12 @@ $outline-xl-width: 2.5px;
 
   &:hover,
   &:active {
-    color: var(--color-help-graphics-verydark);
+    color: var(--color-help-graphics-plus2);
     background-color: var(--color-help-background-transparent-onlight-hover);
   }
 
   &:focus-visible {
-    outline: 3px solid var(--color-action-border-onlight-focus);
+    outline: 3px solid var(--color-action-border-dark-onlight-focus);
   }
 
   &:active {

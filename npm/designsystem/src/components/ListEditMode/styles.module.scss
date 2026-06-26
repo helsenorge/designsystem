@@ -21,15 +21,15 @@
     cursor: pointer;
 
     &:hover {
-      background-color: var(--color-action-background-transparent-onmulticolor-hover);
+      background-color: var(--color-action-background-transparent-multi-onlight-hover);
     }
 
     &:active {
-      background-color: var(--color-action-background-transparent-onmulticolor-active);
+      background-color: var(--color-action-background-transparent-multi-ondark-hover);
     }
 
     &:focus-visible {
-      outline: 4px solid var(--color-action-border-onlight-focus);
+      outline: 4px solid var(--color-action-border-dark-onlight-focus);
     }
   }
 
@@ -41,10 +41,10 @@
 
     &--neutral,
     &--white {
-      border-bottom: 1px solid var(--color-base-border-onlight);
+      border-bottom: 1px solid var(--color-base-border-dark-onlight);
 
       &:first-of-type {
-        border-top: 1px solid var(--color-base-border-onlight);
+        border-top: 1px solid var(--color-base-border-dark-onlight);
       }
     }
 

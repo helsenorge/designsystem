@@ -38,7 +38,7 @@ const Close: React.FC<CloseProps> = props => {
   } else if (color === 'plum') {
     iconColor = 'var(--core-color-plum-700)';
   } else {
-    iconColor = 'var(--color-action-graphics-onlight)';
+    iconColor = 'var(--color-action-graphics-dark-onlight-normal)';
   }
 
   const closeClasses = classNames(styles.close, { [styles['close--small']]: small }, className);
