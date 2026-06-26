@@ -83,6 +83,7 @@ const meta = {
     titleId: { control: 'text' },
     zIndex: { control: 'number' },
     noCloseButton: { control: 'boolean' },
+    paddingSize: { control: 'select', options: ['normal', 'extra'] },
   },
 } satisfies Meta<typeof Drawer>;
 
@@ -233,6 +234,41 @@ export const ScrollingWindow: Story = {
         <div>{longLoremText}</div>
         <div>{longLoremText}</div>
       </>
+    );
+  },
+};
+
+export const ExtraPadding: Story = {
+  args: {
+    onRequestClose: action('Drawer closed'),
+    onPrimaryAction: action('Primary action clicked'),
+    onSecondaryAction: action('Secondary action clicked'),
+    isOpen: true,
+    paddingSize: 'extra',
+  },
+
+  render: (args: DrawerProps) => {
+    const [{ isOpen }, setIsOpen] = useArgs<DrawerProps>();
+
+    return (
+      <Drawer
+        {...args}
+        isOpen={isOpen}
+        onRequestClose={() => {
+          args.onRequestClose?.();
+          setIsOpen({ isOpen: false });
+        }}
+        onPrimaryAction={() => {
+          args.onPrimaryAction?.();
+          setIsOpen({ isOpen: false });
+        }}
+        onSecondaryAction={() => {
+          args.onSecondaryAction?.();
+          setIsOpen({ isOpen: false });
+        }}
+      >
+        {args.children}
+      </Drawer>
     );
   },
 };

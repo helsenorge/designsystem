@@ -5,15 +5,18 @@ export type Styles = {
   'drawer__container--right': string;
   drawer__content: string;
   drawer__content__children: string;
+  'drawer__content__children--padding-extra': string;
   drawer__content__shadow: string;
   'drawer__content__shadow--bottom': string;
   'drawer__content__shadow--show': string;
   'drawer__content__shadow--top': string;
   drawer__footer: string;
+  'drawer__footer--padding-extra': string;
   drawer__header: string;
   'drawer__header__back-button': string;
   'drawer__header__close-button': string;
   drawer__header__title: string;
+  'drawer__header--padding-extra': string;
   drawer__overlay: string;
 };
 

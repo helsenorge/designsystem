@@ -142,29 +142,12 @@ function FilterDrawer<ViewId extends string>({
     if (isValidElement<Omit<FilterDrawerViewProps, 'id' | 'home'>>(child) && child.type === FilterDrawerOverview) {
       const viewDefaultFooter = generateViewFooter(child.props.onReset, child.props.onClose, child.props.noResetButton);
       const viewFooter = viewDefaultFooter ?? child.props.footer ?? fallbackFooter;
-      return (
-        <DrawerNavigation.View
-          id="overview"
-          home
-          title={child.props.title}
-          children={child.props.children}
-          drawerContentClassname={styles['filter-drawer__view']}
-          footer={viewFooter}
-        />
-      );
+      return <DrawerNavigation.View id="overview" home title={child.props.title} children={child.props.children} footer={viewFooter} />;
     }
     if (isValidElement<FilterDrawerViewProps>(child)) {
       const viewDefaultFooter = generateViewFooter(child.props.onReset, child.props.onClose, child.props.noResetButton);
       const viewFooter = viewDefaultFooter ?? child.props.footer ?? fallbackFooter;
-      return (
-        <DrawerNavigation.View
-          id={child.props.id}
-          title={child.props.title}
-          children={child.props.children}
-          drawerContentClassname={styles['filter-drawer__view']}
-          footer={viewFooter}
-        />
-      );
+      return <DrawerNavigation.View id={child.props.id} title={child.props.title} children={child.props.children} footer={viewFooter} />;
     } else {
       return child;
     }

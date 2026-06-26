@@ -115,6 +115,7 @@ function DrawerNavigation({ children, isOpen, initialView, onCloseButton, footer
         onRequestClose={currentView?.onCloseButton ?? onCloseButton}
         footerContent={currentView?.footer ?? footer}
         contentClassName={currentView?.drawerContentClassname}
+        paddingSize={'extra'}
       >
         {currentView?.children}
       </Drawer>

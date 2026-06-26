@@ -82,6 +82,14 @@
       align-items: flex-start;
     }
 
+    &--padding-extra {
+      padding: var(--core-space-xs) var(--core-space-xs) var(--core-space-xs) var(--core-space-s);
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: var(--core-space-xs) var(--core-space-xs) var(--core-space-xs) var(--core-space-m);
+      }
+    }
+
     &__title {
       margin-top: 0.5rem !important;
 
@@ -118,6 +126,14 @@
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         padding: var(--core-space-s) var(--core-space-xs);
+      }
+
+      &--padding-extra {
+        padding: var(--core-space-xs) var(--core-space-s);
+
+        @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+          padding: var(--core-space-xs) var(--core-space-m);
+        }
       }
     }
 
@@ -180,6 +196,14 @@
     // Selector targets iOS
     @supports (font: -apple-system-body) and (-webkit-appearance: none) {
       padding-bottom: 2.5rem;
+    }
+
+    &--padding-extra {
+      padding: var(--core-space-s) var(--core-space-s);
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: var(--core-space-m) var(--core-space-m);
+      }
     }
   }
 }

@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 
 export interface HelpDrawerProps extends Pick<
   DrawerProps,
-  'ariaLabelledBy' | 'children' | 'isOpen' | 'onRequestClose' | 'title' | 'titleHtmlMarkup' | 'titleId' | 'zIndex'
+  'ariaLabelledBy' | 'children' | 'isOpen' | 'onRequestClose' | 'title' | 'titleHtmlMarkup' | 'titleId' | 'zIndex' | 'paddingSize'
 > {
   /** Resources for the component */
   resources?: Partial<HNDesignsystemHelpDrawer>;
@@ -35,6 +35,7 @@ const HelpDrawer: React.FC<HelpDrawerProps> = props => {
       headerClasses={styles['help-drawer']}
       desktopDirection={'left'}
       ariaLabel={mergedResources.ariaLabel}
+      paddingSize={drawerProps.paddingSize ?? 'extra'}
     />
   );
 };

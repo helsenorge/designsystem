@@ -26,6 +26,7 @@ import DrawerBackButton from './DrawerBackButton';
 import styles from './styles.module.scss';
 
 type DesktopDirections = 'left' | 'right';
+type PaddingSizes = 'normal' | 'extra';
 
 export interface DrawerProps extends InnerDrawerProps {
   /** Opens and closes the drawer */
@@ -77,6 +78,8 @@ export interface InnerDrawerProps {
   onRequestBack?: () => void;
   /** Sets classname for content part in Drawer */
   contentClassName?: string;
+  /** Sets the content padding of the Drawer */
+  paddingSize?: PaddingSizes;
 }
 
 const Drawer: React.FC<DrawerProps> = props => {
@@ -110,6 +113,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     withBackButton,
     onRequestBack,
     contentClassName,
+    paddingSize = 'normal',
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledBy, fallbackId: titleId });
@@ -138,7 +142,11 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
 
   // eslint-disable-next-line react-hooks/refs
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
-  const headerStyling = classNames(styles.drawer__header, headerClasses);
+  const headerStyling = classNames(
+    styles.drawer__header,
+    { [styles['drawer__header--padding-extra']]: paddingSize === 'extra' },
+    headerClasses
+  );
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
 
   useFocusTrap(containerRef, true);
@@ -301,7 +309,13 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             ref={contentRef}
           >
             <div ref={topContent} />
-            <div className={styles['drawer__content__children']}>{children}</div>
+            <div
+              className={classNames(styles['drawer__content__children'], {
+                [styles['drawer__content__children--padding-extra']]: paddingSize === 'extra',
+              })}
+            >
+              {children}
+            </div>
             <div ref={bottomContent} style={{ height: '1px' }} />
           </div>
           <div
@@ -313,7 +327,10 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
           />
         </div>
         {hasFooterContent && (
-          <div className={styles.drawer__footer} ref={footerRef}>
+          <div
+            className={classNames(styles.drawer__footer, { [styles['drawer__footer--padding-extra']]: paddingSize === 'extra' })}
+            ref={footerRef}
+          >
             {footerContent ? (
               footerContent
             ) : (
