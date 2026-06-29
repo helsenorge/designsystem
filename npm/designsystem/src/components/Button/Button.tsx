@@ -102,7 +102,8 @@ const getIconSize = (large: boolean, mobile: boolean, isBorderless: boolean): Ic
 
 const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined, devEnv: boolean): void => {
   if (devEnv && onlyIcon && (ariaLabel === undefined || ariaLabel === '')) {
-    throw new Error('Fyll inn ariaLabel prop på Button uten tekst for å opprettholde UU krav');
+    // eslint-disable-next-line no-console
+    console.error(new Error('Fyll inn ariaLabel prop på Button uten tekst for å opprettholde UU krav'));
   }
 };
 
