@@ -1,3 +1,14 @@
+## [15.3.0](https://github.com/helsenorge/designsystem/compare/v15.2.0...v15.3.0) (2026-06-30)
+
+### Features
+
+* **drawer:**  ny prop paddingsize ([4beca34](https://github.com/helsenorge/designsystem/commit/4beca34e5d68c67c35ca53f88647ef37fa24d628)), closes [#376374](https://github.com/helsenorge/designsystem/issues/376374)
+* **toggle:**  ny variant accent3 ([2d9c56b](https://github.com/helsenorge/designsystem/commit/2d9c56b64ad392106da496053b70143904a416ec)), closes [#381588](https://github.com/helsenorge/designsystem/issues/381588)
+
+### Bug Fixes
+
+* **button:**  arialabel feilmelding bruker nå console error ([e26f357](https://github.com/helsenorge/designsystem/commit/e26f357ab066e148c7131805d6586add9fb2e849)), closes [#375609](https://github.com/helsenorge/designsystem/issues/375609)
+
 ## [15.2.0](https://github.com/helsenorge/designsystem/compare/v15.1.0...v15.2.0) (2026-06-25)
 
 ### Features
