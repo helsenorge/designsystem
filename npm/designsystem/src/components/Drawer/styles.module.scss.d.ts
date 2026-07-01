@@ -13,9 +13,7 @@ export type Styles = {
   drawer__footer: string;
   'drawer__footer--padding-extra': string;
   drawer__header: string;
-  'drawer__header__back-button': string;
   'drawer__header__close-button': string;
-  drawer__header__title: string;
   'drawer__header--padding-extra': string;
   drawer__overlay: string;
 };

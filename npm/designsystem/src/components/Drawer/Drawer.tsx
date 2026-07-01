@@ -20,8 +20,7 @@ import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
-import Title from '../Title';
-import DrawerBackButton from './DrawerBackButton';
+import DrawerHeaderContent from './DrawerHeaderContent';
 
 import styles from './styles.module.scss';
 
@@ -44,8 +43,10 @@ export interface InnerDrawerProps {
   desktopDirection?: DesktopDirections;
   /** Sets the style of the Drawer header */
   headerClasses?: string;
+  /** Optional content that replaces the default title (and back button) in the header. The close button is still rendered. */
+  headerContent?: React.ReactNode;
   /** Title to display in the header of the drawer */
-  title: string;
+  title?: string;
   /** id of the drawer title */
   titleId?: string;
   /** Changes the underlying element of the title. Default: h3 */
@@ -98,6 +99,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     desktopDirection = 'left',
     footerContent,
     headerClasses,
+    headerContent,
     noCloseButton = false,
     onPrimaryAction,
     onRequestClose,
@@ -253,6 +255,18 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     titleRef.current?.focus();
   }, [title]);
 
+  const headerMain = (
+    <DrawerHeaderContent
+      title={title}
+      titleId={ariaLabelAttributes?.['aria-labelledby']}
+      titleRef={titleRef}
+      titleHtmlMarkup={titleHtmlMarkup}
+      withBackButton={withBackButton && onRequestBack !== undefined}
+      onRequestBack={onRequestBack}
+      backButtonAriaLabel={mergedResources.ariaLabelBackButton}
+    />
+  );
+
   return (
     <div className={styles.drawer} ref={scope} style={{ zIndex }} data-analyticsid={AnalyticsId.Drawer}>
       <div className={styles.drawer__overlay} ref={overlayRef} aria-hidden="true" />
@@ -268,23 +282,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
       >
         <div className={styles.drawer__container__inner}>
           <div className={headerStyling} ref={headerRef}>
-            <Title
-              id={ariaLabelAttributes?.['aria-labelledby']}
-              className={styles['drawer__header__title']}
-              htmlMarkup={titleHtmlMarkup}
-              appearance="title3"
-              ref={titleRef}
-              tabIndex={-1}
-            >
-              {title}
-            </Title>
-            {withBackButton && onRequestBack !== undefined && (
-              <DrawerBackButton
-                ariaLabel={mergedResources.ariaLabelBackButton}
-                onClick={onRequestBack}
-                className={styles['drawer__header__back-button']}
-              />
-            )}
+            {headerContent ?? headerMain}
             {!noCloseButton && onRequestClose != undefined && (
               <Close
                 ariaLabel={mergedResources.ariaLabelCloseBtn}

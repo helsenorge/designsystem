@@ -1,0 +1,15 @@
+.header {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+
+  &__layer {
+    position: relative;
+    display: flex;
+    min-height: 100%;
+  }
+}
+
+.content {
+  position: relative;
+}
