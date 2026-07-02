@@ -23,6 +23,7 @@ const meta = {
     title: 'Mange lurer på dette',
     children: <span>{longLoremText}</span>,
     svgIcon: InfoSignStroke,
+    onExpand: (isExpanded: boolean): void => console.log('InfoTeaser expanded:', isExpanded),
   },
   argTypes: {
     title: {
