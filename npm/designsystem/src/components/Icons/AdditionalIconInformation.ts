@@ -149,7 +149,8 @@ export default {
   amputation: { alternativeName: 'Amputasjon', categories: 'Behandling, Personer' },
   childplaying: { alternativeName: 'Barn leker', categories: 'Livsstil, Personer' },
   breasts: { alternativeName: 'Pupper', categories: 'Anatomi, Sykdom, Samvalg' },
-  arrowupright: { alternativeName: 'Pil oppover mot høyre', categories: 'System' },
+  arrowuprightlight: { alternativeName: 'Pil oppover mot høyre Light', categories: 'System' },
+  arrowupright: { alternativeName: 'Pil oppover mot høyre Normal', categories: 'System' },
   attachment: { alternativeName: 'Vedlegg', categories: 'Generisk' },
   atv: { alternativeName: 'ATV', categories: 'Kjøretøy' },
   bike: { alternativeName: 'Sykkel', categories: 'Kjøretøy, Livsstil' },
@@ -349,4 +350,6 @@ export default {
   starstroke: { alternativeName: '', categories: '' },
   starfill: { alternativeName: '', categories: '' },
   measuringtape: { alternativeName: '', categories: '' },
+  thumbsup: { alternativeName: 'Tommel Opp', categories: '' },
+  thumbsdown: { alternativeName: 'Tommel Ned', categories: '' },
 };

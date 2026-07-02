@@ -314,6 +314,8 @@ export const IconList = [
   'TeddyBear',
   'Teenagers',
   'ThinkingAboutBaby',
+  'ThumbsDown',
+  'ThumbsUp',
   'Ticket',
   'TimePassing',
   'Toddler',
