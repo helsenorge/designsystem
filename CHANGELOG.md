@@ -1,3 +1,15 @@
+## [15.4.0](https://github.com/helsenorge/designsystem/compare/v15.3.0...v15.4.0) (2026-07-03)
+
+### Features
+
+*  drawernavigation får animasjon under navigering ([746b378](https://github.com/helsenorge/designsystem/commit/746b378675bb6b04b7d214a90443fcee92cb751c)), closes [#376680](https://github.com/helsenorge/designsystem/issues/376680)
+*  nye ikoner thumbsup og thumbsdown ([44b7b56](https://github.com/helsenorge/designsystem/commit/44b7b56254d1bca10d5ed05c6d98be5a76b732a2)), closes [#381474](https://github.com/helsenorge/designsystem/issues/381474)
+* **infoteaser:**  nye props expanded og onexpanded ([6e088be](https://github.com/helsenorge/designsystem/commit/6e088be16ae0a8e3f90e174d3b299da177df5370)), closes [#381641](https://github.com/helsenorge/designsystem/issues/381641)
+
+### Bug Fixes
+
+* **highlighter:**  lysere bakgrunnsfarge ([740aea9](https://github.com/helsenorge/designsystem/commit/740aea961562a78d0ae26da7ba59de35081f9752)), closes [#381583](https://github.com/helsenorge/designsystem/issues/381583)
+
 ## [15.3.0](https://github.com/helsenorge/designsystem/compare/v15.2.0...v15.3.0) (2026-06-30)
 
 ### Features
