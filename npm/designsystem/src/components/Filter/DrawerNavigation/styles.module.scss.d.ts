@@ -1,6 +1,7 @@
 export type Styles = {
-  'filter-drawer__footer': string;
-  'filter-drawer__footer__right': string;
+  content: string;
+  header: string;
+  header__layer: string;
 };
 
 export type ClassNames = keyof Styles;

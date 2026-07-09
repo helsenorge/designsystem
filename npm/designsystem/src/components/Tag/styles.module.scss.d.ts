@@ -2,6 +2,7 @@ export type Styles = {
   tag: string;
   'tag--accent1': string;
   'tag--accent2': string;
+  'tag--accent3': string;
   'tag--normal': string;
 };
 

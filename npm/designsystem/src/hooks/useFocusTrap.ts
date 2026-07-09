@@ -17,11 +17,19 @@ export const useFocusTrap = (ref: React.RefObject<HTMLElement | null>, trapFocus
       const firstElement = focusableElementList[0];
       const lastElement = focusableElementList.length === 1 ? firstElement : focusableElementList[focusableElementList.length - 1];
 
-      if (e.shiftKey && activeElement === firstElement) {
+      // Handles non-listed elements inside the trap (an element with tabindex="-1") that was focused programmatically)
+      const isAtOrBeforeFirst =
+        activeElement === firstElement ||
+        (!!activeElement && (firstElement.compareDocumentPosition(activeElement) & Node.DOCUMENT_POSITION_PRECEDING) !== 0);
+      const isAtOrAfterLast =
+        activeElement === lastElement ||
+        (!!activeElement && (lastElement.compareDocumentPosition(activeElement) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0);
+
+      if (e.shiftKey && isAtOrBeforeFirst) {
         /* shift + tab */
         lastElement.focus();
         e.preventDefault();
-      } else if (!e.shiftKey && activeElement === lastElement) {
+      } else if (!e.shiftKey && isAtOrAfterLast) {
         /* tab */
         firstElement.focus();
         e.preventDefault();

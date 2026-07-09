@@ -1,8 +1,14 @@
 import type React from 'react';
-import { Children, isValidElement, useCallback, useMemo, useState } from 'react';
+import { Children, isValidElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+
+import { animate, useReducedMotion } from 'motion/react';
 
 import { type NavigateProps, DrawerNavigationContext } from './useDrawerNavigation';
+import uuid from '../../../utils/uuid';
 import Drawer from '../../Drawer';
+import DrawerHeaderContent from '../../Drawer/DrawerHeaderContent';
+
+import styles from './styles.module.scss';
 
 export interface DrawerViewProps<ViewId extends string = string> {
   /** Id for the view. Important for navigation */
@@ -65,8 +71,23 @@ function parseChildren(children: React.ReactNode): { views: DrawerViewProps[]; o
 function DrawerNavigation({ children, isOpen, initialView, onCloseButton, footer }: DrawerNavigationProps): React.ReactNode {
   const { views, other } = useMemo(() => parseChildren(children), [children]);
 
+  const incomingContentRef = useRef<HTMLDivElement>(null);
+  const outgoingContentRef = useRef<HTMLDivElement>(null);
+  const incomingHeaderRef = useRef<HTMLDivElement>(null);
+  const outgoingHeaderRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const titleId = useMemo(() => uuid(), []);
   const homeView = views.find(v => v.home) ?? views[0];
   const [viewStack, setViewStack] = useState<string[]>([homeView?.id]);
+  const prevStackLength = useRef<number>(viewStack.length);
+  const prevView = useRef<DrawerViewProps | undefined>(undefined);
+  const reducedMotion = useReducedMotion();
+
+  const currentViewId = viewStack[viewStack.length - 1];
+  const currentView = views.find(v => v.id === currentViewId);
+
+  // The previous view, kept mounted as an overlay while it slides out during a navigation transition
+  const [outgoing, setOutgoing] = useState<{ view: DrawerViewProps; dir: 'left' | 'right'; withBackButton: boolean } | null>(null);
 
   const goToView = useCallback(
     (id: string): void => {
@@ -90,8 +111,55 @@ function DrawerNavigation({ children, isOpen, initialView, onCloseButton, footer
     [views, homeView]
   );
 
-  const currentViewId = viewStack[viewStack.length - 1];
-  const currentView = views.find(v => v.id === currentViewId);
+  // Detect a navigation and capture the outgoing view + direction
+  useEffect(() => {
+    if (!isOpen) {
+      prevView.current = undefined;
+      return;
+    }
+
+    const previous = prevView.current;
+    prevView.current = currentView;
+
+    const previousStackLength = prevStackLength.current;
+    const dir: 'left' | 'right' = viewStack.length >= previousStackLength ? 'left' : 'right';
+    prevStackLength.current = viewStack.length;
+
+    if (isOpen && !reducedMotion && previous && currentView && previous.id !== currentView.id) {
+      setOutgoing({ view: previous, dir, withBackButton: previousStackLength > 1 });
+    }
+  }, [viewStack, currentView, isOpen]);
+
+  // Animates the incoming and outgoing views
+  useLayoutEffect(() => {
+    if (!outgoing || !incomingContentRef.current || !outgoingContentRef.current) {
+      return;
+    }
+
+    const incomingFrom = outgoing.dir === 'left' ? '100%' : '-100%';
+    const outgoingTo = outgoing.dir === 'left' ? '-100%' : '100%';
+    const options = { duration: 0.3, ease: 'easeInOut' } as const;
+
+    animate(incomingContentRef.current, { x: [incomingFrom, '0%'] }, options);
+    if (incomingHeaderRef.current) {
+      animate(incomingHeaderRef.current, { x: [incomingFrom, '0%'] }, options);
+    }
+    if (outgoingHeaderRef.current) {
+      animate(outgoingHeaderRef.current, { x: ['0%', outgoingTo] }, options);
+    }
+    const leaving = animate(outgoingContentRef.current, { x: ['0%', outgoingTo] }, { ...options, onComplete: () => setOutgoing(null) });
+
+    return (): void => {
+      leaving.stop();
+    };
+  }, [outgoing]);
+
+  // Moves focus between incoming and outgoing view
+  useEffect(() => {
+    if (isOpen) {
+      titleRef.current?.focus();
+    }
+  }, [currentViewId, isOpen]);
 
   const navigate = useMemo<NavigateProps>(() => ({ goBack, goToView, goToViewAndClearStack }), [goBack, goToView, goToViewAndClearStack]);
 
@@ -105,18 +173,43 @@ function DrawerNavigation({ children, isOpen, initialView, onCloseButton, footer
     }
   }
 
+  const headerContent = (
+    <div className={styles.header} style={{ overflow: outgoing ? 'hidden' : 'visible' }}>
+      {outgoing && (
+        <div ref={outgoingHeaderRef} aria-hidden inert className={styles['header__layer']} style={{ position: 'absolute', inset: 0 }}>
+          <DrawerHeaderContent title={outgoing.view.title} withBackButton={outgoing.withBackButton} onRequestBack={() => undefined} />
+        </div>
+      )}
+      <div ref={incomingHeaderRef} className={styles['header__layer']}>
+        <DrawerHeaderContent
+          title={currentView?.title}
+          titleId={titleId}
+          titleRef={titleRef}
+          withBackButton={viewStack.length > 1}
+          onRequestBack={goBack}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <DrawerNavigationContext.Provider value={navigate}>
       <Drawer
         isOpen={isOpen}
-        title={currentView?.title ?? 'Filter'}
-        withBackButton={viewStack.length > 1}
-        onRequestBack={goBack}
         onRequestClose={currentView?.onCloseButton ?? onCloseButton}
         footerContent={currentView?.footer ?? footer}
         contentClassName={currentView?.drawerContentClassname}
+        paddingSize={'extra'}
+        headerContent={headerContent}
       >
-        {currentView?.children}
+        <div className={styles['content']} style={{ overflow: outgoing ? 'hidden' : 'visible' }}>
+          {outgoing && (
+            <div ref={outgoingContentRef} aria-hidden inert style={{ position: 'absolute', width: '100%' }}>
+              {outgoing.view.children}
+            </div>
+          )}
+          <div ref={incomingContentRef}>{currentView?.children}</div>
+        </div>
       </Drawer>
       {other}
     </DrawerNavigationContext.Provider>

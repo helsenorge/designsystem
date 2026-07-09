@@ -44,17 +44,8 @@ export const Default: Story = {
 export const Variants: Story = {
   render: args => (
     <TagList>
-      <Tag {...args} variant="normal" /> <Tag {...args} variant="accent1" /> <Tag {...args} variant="accent2" />
+      <Tag {...args} variant="normal" /> <Tag {...args} variant="accent1" /> <Tag {...args} variant="accent2" />{' '}
+      <Tag {...args} variant="accent3" />
     </TagList>
-  ),
-};
-
-export const AllColors: Story = {
-  render: args => (
-    <>
-      <Tag {...args} color="neutral" /> <br />
-      <Tag {...args} color="kiwi" /> <br />
-      <Tag {...args} color="banana" /> <br />
-    </>
   ),
 };

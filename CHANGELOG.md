@@ -1,3 +1,38 @@
+## [15.4.0](https://github.com/helsenorge/designsystem/compare/v15.3.0...v15.4.0) (2026-07-03)
+
+### Features
+
+*  drawernavigation får animasjon under navigering ([746b378](https://github.com/helsenorge/designsystem/commit/746b378675bb6b04b7d214a90443fcee92cb751c)), closes [#376680](https://github.com/helsenorge/designsystem/issues/376680)
+*  nye ikoner thumbsup og thumbsdown ([44b7b56](https://github.com/helsenorge/designsystem/commit/44b7b56254d1bca10d5ed05c6d98be5a76b732a2)), closes [#381474](https://github.com/helsenorge/designsystem/issues/381474)
+* **infoteaser:**  nye props expanded og onexpanded ([6e088be](https://github.com/helsenorge/designsystem/commit/6e088be16ae0a8e3f90e174d3b299da177df5370)), closes [#381641](https://github.com/helsenorge/designsystem/issues/381641)
+
+### Bug Fixes
+
+* **highlighter:**  lysere bakgrunnsfarge ([740aea9](https://github.com/helsenorge/designsystem/commit/740aea961562a78d0ae26da7ba59de35081f9752)), closes [#381583](https://github.com/helsenorge/designsystem/issues/381583)
+
+## [15.3.0](https://github.com/helsenorge/designsystem/compare/v15.2.0...v15.3.0) (2026-06-30)
+
+### Features
+
+* **drawer:**  ny prop paddingsize ([4beca34](https://github.com/helsenorge/designsystem/commit/4beca34e5d68c67c35ca53f88647ef37fa24d628)), closes [#376374](https://github.com/helsenorge/designsystem/issues/376374)
+* **toggle:**  ny variant accent3 ([2d9c56b](https://github.com/helsenorge/designsystem/commit/2d9c56b64ad392106da496053b70143904a416ec)), closes [#381588](https://github.com/helsenorge/designsystem/issues/381588)
+
+### Bug Fixes
+
+* **button:**  arialabel feilmelding bruker nå console error ([e26f357](https://github.com/helsenorge/designsystem/commit/e26f357ab066e148c7131805d6586add9fb2e849)), closes [#375609](https://github.com/helsenorge/designsystem/issues/375609)
+
+## [15.2.0](https://github.com/helsenorge/designsystem/compare/v15.1.0...v15.2.0) (2026-06-25)
+
+### Features
+
+*  nytt komponent visualcontentgroupwithimage ([deafe38](https://github.com/helsenorge/designsystem/commit/deafe3823a48dca3e2256cfd8d82bb701fdc5060)), closes [#376758](https://github.com/helsenorge/designsystem/issues/376758)
+* **expander:**  ny prop emphasised ([7ae7d9e](https://github.com/helsenorge/designsystem/commit/7ae7d9e4bea2253f555b6b6fb6c5a597e9e0c3eb)), closes [#380269](https://github.com/helsenorge/designsystem/issues/380269)
+* **filter:**  forbedre skjermleseroppførsel for aktive filter ([33de604](https://github.com/helsenorge/designsystem/commit/33de6047677cdc43018694e17e339e5202b0e53b)), closes [#375582](https://github.com/helsenorge/designsystem/issues/375582)
+* **infoteaser:**  title er optional ([b178185](https://github.com/helsenorge/designsystem/commit/b178185f6ad42ecb8bdadc532fe8fdff431c6486)), closes [#380754](https://github.com/helsenorge/designsystem/issues/380754)
+
+### Bug Fixes
+
+* **datepicker:**  soft error forsvinner ikke ved popup valg ([5380c60](https://github.com/helsenorge/designsystem/commit/5380c60e6f6f75dcf798e14c128ddb458d51c8f4)), closes [#380884](https://github.com/helsenorge/designsystem/issues/380884)
 
 ## [15.1.0](https://github.com/helsenorge/designsystem/compare/v15.0.0...v15.1.0) (2026-06-16)
 

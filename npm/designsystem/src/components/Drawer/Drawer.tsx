@@ -20,12 +20,12 @@ import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
-import Title from '../Title';
-import DrawerBackButton from './DrawerBackButton';
+import DrawerHeaderContent from './DrawerHeaderContent';
 
 import styles from './styles.module.scss';
 
 type DesktopDirections = 'left' | 'right';
+type PaddingSizes = 'normal' | 'extra';
 
 export interface DrawerProps extends InnerDrawerProps {
   /** Opens and closes the drawer */
@@ -43,8 +43,10 @@ export interface InnerDrawerProps {
   desktopDirection?: DesktopDirections;
   /** Sets the style of the Drawer header */
   headerClasses?: string;
+  /** Optional content that replaces the default title (and back button) in the header. The close button is still rendered. */
+  headerContent?: React.ReactNode;
   /** Title to display in the header of the drawer */
-  title: string;
+  title?: string;
   /** id of the drawer title */
   titleId?: string;
   /** Changes the underlying element of the title. Default: h3 */
@@ -77,6 +79,8 @@ export interface InnerDrawerProps {
   onRequestBack?: () => void;
   /** Sets classname for content part in Drawer */
   contentClassName?: string;
+  /** Sets the content padding of the Drawer */
+  paddingSize?: PaddingSizes;
 }
 
 const Drawer: React.FC<DrawerProps> = props => {
@@ -95,6 +99,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     desktopDirection = 'left',
     footerContent,
     headerClasses,
+    headerContent,
     noCloseButton = false,
     onPrimaryAction,
     onRequestClose,
@@ -110,6 +115,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     withBackButton,
     onRequestBack,
     contentClassName,
+    paddingSize = 'normal',
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledBy, fallbackId: titleId });
@@ -138,7 +144,11 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
 
   // eslint-disable-next-line react-hooks/refs
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
-  const headerStyling = classNames(styles.drawer__header, headerClasses);
+  const headerStyling = classNames(
+    styles.drawer__header,
+    { [styles['drawer__header--padding-extra']]: paddingSize === 'extra' },
+    headerClasses
+  );
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
 
   useFocusTrap(containerRef, true);
@@ -245,6 +255,18 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     titleRef.current?.focus();
   }, [title]);
 
+  const headerMain = (
+    <DrawerHeaderContent
+      title={title}
+      titleId={ariaLabelAttributes?.['aria-labelledby']}
+      titleRef={titleRef}
+      titleHtmlMarkup={titleHtmlMarkup}
+      withBackButton={withBackButton && onRequestBack !== undefined}
+      onRequestBack={onRequestBack}
+      backButtonAriaLabel={mergedResources.ariaLabelBackButton}
+    />
+  );
+
   return (
     <div className={styles.drawer} ref={scope} style={{ zIndex }} data-analyticsid={AnalyticsId.Drawer}>
       <div className={styles.drawer__overlay} ref={overlayRef} aria-hidden="true" />
@@ -260,23 +282,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
       >
         <div className={styles.drawer__container__inner}>
           <div className={headerStyling} ref={headerRef}>
-            <Title
-              id={ariaLabelAttributes?.['aria-labelledby']}
-              className={styles['drawer__header__title']}
-              htmlMarkup={titleHtmlMarkup}
-              appearance="title3"
-              ref={titleRef}
-              tabIndex={-1}
-            >
-              {title}
-            </Title>
-            {withBackButton && onRequestBack !== undefined && (
-              <DrawerBackButton
-                ariaLabel={mergedResources.ariaLabelBackButton}
-                onClick={onRequestBack}
-                className={styles['drawer__header__back-button']}
-              />
-            )}
+            {headerContent ?? headerMain}
             {!noCloseButton && onRequestClose != undefined && (
               <Close
                 ariaLabel={mergedResources.ariaLabelCloseBtn}
@@ -301,7 +307,13 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             ref={contentRef}
           >
             <div ref={topContent} />
-            <div className={styles['drawer__content__children']}>{children}</div>
+            <div
+              className={classNames(styles['drawer__content__children'], {
+                [styles['drawer__content__children--padding-extra']]: paddingSize === 'extra',
+              })}
+            >
+              {children}
+            </div>
             <div ref={bottomContent} style={{ height: '1px' }} />
           </div>
           <div
@@ -313,7 +325,10 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
           />
         </div>
         {hasFooterContent && (
-          <div className={styles.drawer__footer} ref={footerRef}>
+          <div
+            className={classNames(styles.drawer__footer, { [styles['drawer__footer--padding-extra']]: paddingSize === 'extra' })}
+            ref={footerRef}
+          >
             {footerContent ? (
               footerContent
             ) : (
