@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId } from 'react';
 
 import classNames from 'classnames';
 
@@ -8,6 +8,7 @@ import type { IconName } from '../Icons/IconNames';
 import type { TitleTags } from '../Title';
 
 import { AnalyticsId, LanguageLocales } from '../../constants';
+import { useExpand } from '../../hooks/useExpand';
 import { useLanguage } from '../../hooks/useLanguage';
 import Icon, { IconSize } from '../Icon';
 import LazyIcon from '../LazyIcon';
@@ -27,8 +28,12 @@ export interface InfoTeaserProps {
   collapsedMaxHeight?: string;
   /** For overriding styling on infoteaser box */
   className?: string;
+  /** Opens or closes the teaser */
+  expanded?: boolean;
   /** Changes the underlying element of the wrapper */
   htmlMarkup?: InfoTeaserTags;
+  /** Called when the teaser is expanded/collapsed. */
+  onExpand?: (isExpanded: boolean) => void;
   /** Resources for component */
   resources?: Partial<HNDesignsystemInfoTeaser>;
   /** Adds an icon */
@@ -46,7 +51,9 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
     buttonClassName,
     children,
     className,
+    expanded = false,
     htmlMarkup = 'div',
+    onExpand,
     resources,
     svgIcon,
     testId,
@@ -54,7 +61,7 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
     titleHtmlMarkup = 'h2',
     collapsedMaxHeight,
   } = props;
-  const [expanded, setExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
   const infoteaserTextId = useId();
@@ -70,9 +77,9 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
     <WrapperTag className={styles.wrapper} data-testid={testId} data-analyticsid={AnalyticsId.InfoTeaser}>
       <div
         className={classNames(styles.infoteaser, className, {
-          [styles['infoteaser--collapsed']]: !expanded,
+          [styles['infoteaser--collapsed']]: !isExpanded,
         })}
-        style={{ maxHeight: !expanded ? (collapsedMaxHeight ? collapsedMaxHeight : '12.25rem') : undefined }}
+        style={{ maxHeight: !isExpanded ? (collapsedMaxHeight ? collapsedMaxHeight : '12.25rem') : undefined }}
       >
         {svgIcon &&
           (typeof svgIcon === 'string' ? (
@@ -85,7 +92,7 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
             {title}
           </Title>
         )}
-        <div className={styles.infoteaser__text} aria-hidden={expanded ? false : true} id={infoteaserTextId}>
+        <div className={styles.infoteaser__text} aria-hidden={isExpanded ? false : true} id={infoteaserTextId}>
           {children}
         </div>
       </div>
@@ -93,12 +100,12 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
         type="button"
         className={classNames(styles.infoteaser__button, buttonClassName)}
         onClick={() => {
-          setExpanded(!expanded);
+          setIsExpanded(!isExpanded);
         }}
-        aria-expanded={expanded}
+        aria-expanded={isExpanded}
         aria-controls={infoteaserTextId}
       >
-        {expanded ? mergedResources.expandButtonOpen : mergedResources.expandButtonClose}
+        {isExpanded ? mergedResources.expandButtonOpen : mergedResources.expandButtonClose}
       </button>
     </WrapperTag>
   );

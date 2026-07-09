@@ -82,22 +82,16 @@
       align-items: flex-start;
     }
 
-    &__title {
-      margin-top: 0.5rem !important;
+    &--padding-extra {
+      padding: var(--core-space-xs) var(--core-space-xs) var(--core-space-xs) var(--core-space-s);
 
-      &:focus,
-      &:focus-visible {
-        outline: none;
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: var(--core-space-xs) var(--core-space-xs) var(--core-space-xs) var(--core-space-m);
       }
     }
 
     &__close-button {
       align-self: flex-start;
-    }
-
-    &__back-button {
-      // Moves the button visually to the left but keeps it in the DOM order for screen readers and keyboard navigation
-      order: -1;
     }
   }
 
@@ -118,6 +112,14 @@
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         padding: var(--core-space-s) var(--core-space-xs);
+      }
+
+      &--padding-extra {
+        padding: var(--core-space-xs) var(--core-space-s);
+
+        @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+          padding: var(--core-space-xs) var(--core-space-m);
+        }
       }
     }
 
@@ -180,6 +182,14 @@
     // Selector targets iOS
     @supports (font: -apple-system-body) and (-webkit-appearance: none) {
       padding-bottom: 2.5rem;
+    }
+
+    &--padding-extra {
+      padding: var(--core-space-s) var(--core-space-s);
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: var(--core-space-m) var(--core-space-m);
+      }
     }
   }
 }

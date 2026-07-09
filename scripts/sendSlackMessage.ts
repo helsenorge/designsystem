@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-require-imports */
-// scripts/sendSlackMessage.js
+// scripts/sendSlackMessage.ts
 
-const fs = require('fs');
-const https = require('https');
-const { URL } = require('url');
+import fs from 'node:fs';
+import https from 'node:https';
+import { URL } from 'node:url';
 
 /**
  * cleanupLine(line):
@@ -15,7 +14,7 @@ const { URL } = require('url');
  *   - Remove "**" (double asterisk for bold).
  *   - Collapse extra spaces, trim.
  */
-function cleanupLine(line) {
+function cleanupLine(line: string): string {
   let clean = line.trim();
 
   // Replace leading "*" with "• "
@@ -42,13 +41,16 @@ function cleanupLine(line) {
 const changelog = fs.readFileSync('CHANGELOG.md', 'utf8');
 const lines = changelog.replace(/\r\n/g, '\n').split('\n');
 
-let version = '';
+// Versjonen ligger i npm/designsystem/package.json (ikke i root sin package.json).
+const packageJson = JSON.parse(fs.readFileSync('npm/designsystem/package.json', 'utf8')) as { version: string };
+const version = packageJson.version;
+
 let link = '';
 let inEntry = false;
 let inFeatures = false;
 let inBugFixes = false;
-const features = [];
-const bugFixes = [];
+const features: string[] = [];
+const bugFixes: string[] = [];
 
 /**
  * We look for the first line starting with "## ".
@@ -58,7 +60,7 @@ const bugFixes = [];
  *
  * For beta:  ## 35.0.0-beta.7 (date)
  * For standard: ## [34.9.0](link) (date)
- * We'll parse whichever format matches.
+ * We'll parse whichever format matches the version from package.json.
  */
 for (let i = 0; i < lines.length; i++) {
   const line = lines[i];
@@ -66,20 +68,16 @@ for (let i = 0; i < lines.length; i++) {
   // Find the topmost version entry: must start with `## `
   if (!inEntry && line.startsWith('## ')) {
     // Try to match the link format: e.g. "## [34.9.0](http://...)"
-    let match = line.match(/^## \[([^\]]+)\]\(([^)]+)\)/);
-    if (match) {
+    const match = line.match(/^## \[([^\]]+)\]\(([^)]+)\)/);
+    if (match && match[1] === version) {
       // Format 1: version + link
-      version = match[1];
       link = match[2];
       inEntry = true;
       continue;
     }
 
     // Otherwise, try no-link format: e.g. "## 35.0.0-beta.7 (2025-03-26)"
-    match = line.match(/^## ([^\s]+.*)/);
-    if (match) {
-      version = match[1].trim(); // e.g. "35.0.0-beta.7 (2025-03-26)"
-      // If you only want the raw semver, you'd parse out the date, but let's keep it.
+    if (line.startsWith(`## ${version}`)) {
       inEntry = true;
       continue;
     }
@@ -111,24 +109,18 @@ for (let i = 0; i < lines.length; i++) {
     }
 
     // Gather feature lines
-    if (inFeatures && (line.trim().startsWith('*') || line.trim().startsWith('-'))) {
+    if (inFeatures && line.trim().startsWith('*')) {
       features.push(cleanupLine(line));
     }
     // Gather bug-fix lines
-    if (inBugFixes && (line.trim().startsWith('*') || line.trim().startsWith('-'))) {
+    if (inBugFixes && line.trim().startsWith('*')) {
       bugFixes.push(cleanupLine(line));
     }
   }
 }
 
-// Ensure at least we got a version
-if (!version) {
-  console.error('Failed to parse version from CHANGELOG.md');
-  process.exit(1);
-}
-
 // Use the repo name from an environment variable, or fall back
-const repoName = process.env.REPO_NAME || 'UNKNOWN-REPO';
+const repoName = process.env.REPO_NAME ?? 'UNKNOWN-REPO';
 
 // Build the Slack message
 // If link is present, do clickable Slack link: <link|repoName version>
@@ -153,7 +145,7 @@ if (!webhookUrl) {
 const payload = JSON.stringify({ text: message });
 const { hostname, pathname } = new URL(webhookUrl);
 
-const options = {
+const options: https.RequestOptions = {
   hostname,
   path: pathname,
   method: 'POST',
@@ -168,7 +160,7 @@ const req = https.request(options, res => {
   res.resume();
 });
 
-req.on('error', e => {
+req.on('error', (e: Error) => {
   console.error('Error sending to Slack:', e);
   process.exit(1);
 });

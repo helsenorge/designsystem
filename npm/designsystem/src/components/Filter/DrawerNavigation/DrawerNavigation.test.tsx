@@ -1,9 +1,19 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import DrawerNavigation from './DrawerNavigation';
 import { useDrawerNavigation } from './useDrawerNavigation';
 import Button from '../../Button';
+
+// Turns on reduced motion for tests
+vi.mock('motion/react', async importOriginal => {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-imports
+  const actual = await importOriginal<typeof import('motion/react')>();
+  return {
+    ...actual,
+    useReducedMotion: (): boolean => true,
+  };
+});
 
 type TestViewId = 'home' | 'second' | 'third';
 
@@ -260,6 +270,40 @@ describe('Gitt at navigasjon til ugyldig view forsøkes', (): void => {
       );
 
       await userEvent.click(screen.getByRole('button', { name: /Gå til ugyldig/i }));
+      expect(screen.getByText('Hjemmeinnhold')).toBeVisible();
+    });
+  });
+});
+
+describe('Gitt at DrawerNavigation viser en tilbakeknapp i headeren', (): void => {
+  describe('Når home-viewet vises', (): void => {
+    test('Så vises ingen tilbakeknapp i headeren', (): void => {
+      renderDrawerNavigation();
+
+      expect(screen.queryByRole('button', { name: 'Tilbake' })).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Når man har navigert inn i et under-view', (): void => {
+    test('Så vises en tilbakeknapp i headeren', async (): Promise<void> => {
+      renderDrawerNavigation();
+
+      await userEvent.click(screen.getByRole('button', { name: /Gå til andre/i }));
+
+      expect(screen.getByRole('button', { name: 'Tilbake' })).toBeInTheDocument();
+    });
+  });
+
+  describe('Når man klikker på tilbakeknappen i headeren', (): void => {
+    test('Så navigeres man tilbake til forrige view', async (): Promise<void> => {
+      renderDrawerNavigation();
+
+      await userEvent.click(screen.getByRole('button', { name: /Gå til andre/i }));
+      expect(screen.getByRole('button', { name: 'Tilbake' })).toBeInTheDocument();
+
+      await userEvent.click(screen.getByRole('button', { name: 'Tilbake' }));
+
+      await waitFor(() => expect(screen.queryByRole('button', { name: 'Tilbake' })).not.toBeInTheDocument());
       expect(screen.getByText('Hjemmeinnhold')).toBeVisible();
     });
   });

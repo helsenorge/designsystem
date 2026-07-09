@@ -1,11 +1,27 @@
 import type React from 'react';
+import { useId } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import VisualContentgroupWithImage from './VisualContentgroupWithImage';
+import FormGroup from '../FormGroup';
+import Label from '../Label';
+import RadioButton from '../RadioButton';
 import Spacer from '../Spacer';
+import Title from '../Title';
+
+interface MockOption {
+  value: string;
+  label: string;
+}
+
+const mockOptions: MockOption[] = [
+  { value: 'muskel-og-skjelettplager', label: 'Muskel og skjelettplager' },
+  { value: 'forleng-sykmelding', label: 'Forleng sykmelding' },
+  { value: 'svangerskapsplager', label: 'Svangerskapsplager' },
+];
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/VisualContentgroupWithImage',
@@ -46,4 +62,32 @@ export const ImageRatios: Story = {
       <VisualContentgroupWithImage {...args} imageRatio="landscape" />
     </>
   ),
+};
+
+export const WithFormElements: Story = {
+  args: { children: undefined },
+  render: args => {
+    const titleId = useId();
+    const legendId = useId();
+
+    return (
+      <VisualContentgroupWithImage {...args}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Title id={titleId} htmlMarkup="h2" appearance="title2" margin={{ marginTop: 0, marginBottom: 1 }}>
+            {'«Hva trenger du mest hjelp med?»'}
+          </Title>
+
+          <FormGroup legend={'Velg ett alternativ'} name={'gruppe1'} aria-labelledby={titleId} aria-describedby={legendId}>
+            {mockOptions.map(option => (
+              <RadioButton
+                key={option.value}
+                inputId={option.value}
+                label={<Label labelTexts={[{ text: option.label, type: 'subdued' }]} />}
+              />
+            ))}
+          </FormGroup>
+        </div>
+      </VisualContentgroupWithImage>
+    );
+  },
 };

@@ -1,0 +1,51 @@
+@use '../../scss/breakpoints' as breakpoints;
+
+.header-content {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  min-height: 100%;
+
+  @include breakpoints.tiny-screens-media-query {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  &__title {
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+
+    &--centered {
+      position: relative;
+      inset: 0;
+      align-items: flex-start;
+      margin: 0.5rem auto 0;
+      pointer-events: none;
+
+      @include breakpoints.tiny-screens-media-query {
+        position: static;
+        inset: auto;
+        justify-content: flex-start;
+      }
+    }
+
+    :focus,
+    :focus-visible {
+      outline: none;
+    }
+  }
+
+  &__back-button {
+    // Moves the button visually to the left but keeps it in the DOM order for screen readers and keyboard navigation
+    order: -1;
+
+    @include breakpoints.tiny-screens-media-query {
+      order: 0;
+    }
+  }
+}
