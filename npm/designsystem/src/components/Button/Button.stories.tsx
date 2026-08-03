@@ -50,6 +50,30 @@ const meta = {
     href: {
       control: 'text',
     },
+    arrow: {
+      control: 'select',
+      options: ['icon', 'accessibility-character'],
+    },
+    concept: {
+      control: 'select',
+      options: ['normal', 'destructive'],
+    },
+    size: {
+      control: 'select',
+      options: ['medium', 'large'],
+    },
+    variant: {
+      control: 'select',
+      options: ['fill', 'outline', 'borderless'],
+    },
+    onColor: {
+      control: 'select',
+      options: ['onlight', 'ondark'],
+    },
+    textPosition: {
+      control: 'select',
+      options: ['left', 'centered'],
+    },
   },
 } satisfies Meta<typeof Button>;
 
