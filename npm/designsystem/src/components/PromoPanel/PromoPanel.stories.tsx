@@ -45,10 +45,6 @@ const meta = {
       control: 'select',
       options: ['neutral', 'blueberry', 'cherry'],
     },
-    illustration: {
-      control: 'select',
-      options: ['', 'Doctor', 'HealthcarePersonnel'],
-    },
   },
 } satisfies Meta<typeof PromoPanel>;
 
