@@ -10,7 +10,7 @@ import FormLayout, { FormLayoutColumns } from '../../components/FormLayout';
 import Hospital from '../../components/Icons/Hospital';
 import Input from '../../components/Input';
 import Label from '../../components/Label';
-import RadioButton from '../../components/RadioButton';
+import Radio from '../../components/Radio';
 import Select from '../../components/Select';
 import Slider from '../../components/Slider';
 import Spacer from '../../components/Spacer';
@@ -120,17 +120,17 @@ export const FormExample = (props: FormExampleProps): React.JSX.Element => {
       size={props.size}
       errorTextId="error2"
     >
-      <RadioButton
+      <Radio
         inputId="positions1"
         label={<Label labelTexts={[{ text: 'Venstre', type: 'normal' }]} />}
         {...register('positions', { required: positionErrorMessage })}
       />
-      <RadioButton
+      <Radio
         inputId="positions2"
         label={<Label labelTexts={[{ text: 'Høyre', type: 'normal' }]} />}
         {...register('positions', { required: positionErrorMessage })}
       />
-      <RadioButton
+      <Radio
         inputId="positions3"
         label={<Label labelTexts={[{ text: 'Midten', type: 'normal' }]} />}
         {...register('positions', { required: positionErrorMessage })}
@@ -222,7 +222,7 @@ export const FormExample = (props: FormExampleProps): React.JSX.Element => {
             label={<Label labelTexts={[{ text: 'Small' }]} />}
             {...register('sizes', { validate: requireTwo })}
           />
-          <RadioButton
+          <Radio
             errorText={errors.positions ? (errors.positions.message as string) : undefined}
             errorTextId="error2"
             inputId="positions1"

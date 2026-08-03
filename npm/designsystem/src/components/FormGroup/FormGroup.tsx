@@ -6,7 +6,7 @@ import type { CheckboxProps } from '../Checkbox/Checkbox';
 import type { FormFieldTagProps } from '../FormFieldTag';
 import type { FormLayoutProps } from '../FormLayout';
 import type { InputProps } from '../Input/Input';
-import type { RadioButtonProps } from '../RadioButton/RadioButton';
+import type { RadioProps } from '../Radio/Radio';
 import type { SelectProps } from '../Select';
 import type { SliderProps } from '../Slider';
 import type { TextareaProps } from '../Textarea';
@@ -19,7 +19,7 @@ import ErrorWrapper from '../ErrorWrapper';
 import FormFieldTag from '../FormFieldTag';
 import FormLayout from '../FormLayout';
 import Input from '../Input/Input';
-import RadioButton from '../RadioButton/RadioButton';
+import Radio from '../Radio/Radio';
 import Select from '../Select';
 import Slider from '../Slider';
 import Textarea from '../Textarea';
@@ -142,7 +142,7 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
         error: !!error,
         errorTextId: errorTextId,
       });
-    } else if (isComponent<RadioButtonProps>(child, RadioButton)) {
+    } else if (isComponent<RadioProps>(child, Radio)) {
       const radioId = typeof child.props.inputId === 'undefined' ? radioGroupId + index : child.props.inputId;
       const groupChecked =
         child.props.checked !== undefined ? child.props.checked : checkedRadioId !== undefined ? checkedRadioId === radioId : undefined;

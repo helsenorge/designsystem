@@ -1,4 +1,4 @@
-import type { RadioButtonProps } from '@helsenorge/designsystem-react/components/RadioButton';
+import type { RadioProps } from '@helsenorge/designsystem-react/components/Radio';
 
 export interface DateRange {
   from?: Date | null;
@@ -7,7 +7,7 @@ export interface DateRange {
 
 export type ReadableRangeOption = DateRangePreset & {
   /** Optional extra props for the radiobutton */
-  radioButtonProps?: Partial<RadioButtonProps>;
+  radioButtonProps?: Partial<RadioProps>;
 };
 
 export type DateRangePreset = {

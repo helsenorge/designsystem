@@ -5,8 +5,8 @@ import type { DateRangePreset, ReadableRangeOption } from './constants';
 import type { HNDesignsystemUnsafe_DateRangeSelector } from '../../../resources/Resources';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
-import type { RadioButtonProps } from '@helsenorge/designsystem-react/components/RadioButton';
-import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
+import type { RadioProps } from '@helsenorge/designsystem-react/components/Radio';
+import { Radio } from '@helsenorge/designsystem-react/components/Radio';
 
 import { LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
 
@@ -27,7 +27,7 @@ export interface Unsafe_DateRangeSelectorProps {
   /** Called with the new value, or undefined when the selection is empty (custom option with no dates). */
   onChange?: (value?: DateRangePreset) => void;
   /** Optional extra props for the built-in custom radio option */
-  customRadioButtonProps?: Omit<RadioButtonProps, 'checked' | 'onChange' | 'value' | 'label'>;
+  customRadioButtonProps?: Omit<RadioProps, 'checked' | 'onChange' | 'value' | 'label'>;
   /** Extra props for the 'from' date picker */
   datePickerPropsFrom?: Omit<Unsafe_DatePickerProps, 'value' | 'onChange'>;
   /** Extra props for the 'to' date picker */
@@ -99,7 +99,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
       <div>
         {allOptions.map(option => {
           return (
-            <RadioButton
+            <Radio
               name={name}
               key={option.value}
               value={option.value}

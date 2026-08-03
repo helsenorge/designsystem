@@ -10,9 +10,9 @@ import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import { getLabelText, renderLabelAsParent } from '../Label/utils';
 
-import radioButtonStyles from './styles.module.scss';
+import radioStyles from './styles.module.scss';
 
-export interface RadioButtonProps
+export interface RadioProps
   extends
     ErrorWrapperClassNameProps,
     Pick<
@@ -21,17 +21,17 @@ export interface RadioButtonProps
     > {
   /** Adds custom classes to the element. */
   className?: string;
-  /** The <Label/> next to the radioButton - sublabels kan ikke kombineres med large variant */
+  /** The <Label/> next to the radio - sublabels kan ikke kombineres med large variant */
   label: React.ReactNode;
   /** Adds custom classes to the label element. */
   labelClassNames?: string;
-  /** input id of the radioButton */
+  /** input id of the radio */
   inputId?: string;
-  /** Changes the visuals of the radioButton */
+  /** Changes the visuals of the radio */
   onColor?: keyof typeof FormOnColor;
-  /** Changes the visuals of the radioButton. Large version only works when used inside a FormGroup wrapper. */
+  /** Changes the visuals of the radio. Large version only works when used inside a FormGroup wrapper. */
   size?: keyof typeof FormSize;
-  /** Activates Error style for the radioButton - This is can be true while errorText is empty, when in a FormGroup */
+  /** Activates Error style for the radio - This is can be true while errorText is empty, when in a FormGroup */
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
@@ -43,7 +43,7 @@ export interface RadioButtonProps
   ref?: React.Ref<HTMLInputElement | null>;
 }
 
-export const RadioButton: React.FC<RadioButtonProps> = props => {
+export const Radio: React.FC<RadioProps> = props => {
   const {
     className,
     defaultChecked,
@@ -74,34 +74,34 @@ export const RadioButton: React.FC<RadioButtonProps> = props => {
 
   const errorTextId = useIdWithFallback(errorTextIdProp);
 
-  const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
-    [radioButtonStyles['radio-button-wrapper__large']]: isLarge,
-    [radioButtonStyles['radio-button-wrapper__large--invalid']]: isLarge && onCherry,
-    [radioButtonStyles['radio-button-wrapper__large--on-blueberry']]: isLarge && onBlueberry,
+  const radioWrapperClasses = classNames(radioStyles['radio-wrapper'], {
+    [radioStyles['radio-wrapper__large']]: isLarge,
+    [radioStyles['radio-wrapper__large--invalid']]: isLarge && onCherry,
+    [radioStyles['radio-wrapper__large--on-blueberry']]: isLarge && onBlueberry,
   });
-  const radioButtonLabelClasses = classNames(
-    radioButtonStyles['radio-button-label'],
+  const radioLabelClasses = classNames(
+    radioStyles['radio-label'],
     {
-      [radioButtonStyles['radio-button-label--disabled']]: disabled,
-      [radioButtonStyles['radio-button-label--on-dark']]: onDark,
-      [radioButtonStyles['radio-button-label--invalid']]: invalid,
-      [radioButtonStyles['radio-button-label__large']]: isLarge,
-      [radioButtonStyles['radio-button-label__large--disabled']]: isLarge && disabled,
-      [radioButtonStyles['radio-button-label__large--on-grey']]: isLarge && onGrey,
-      [radioButtonStyles['radio-button-label__large--on-blueberry']]: isLarge && onBlueberry,
-      [radioButtonStyles['radio-button-label__large--invalid']]: isLarge && onCherry,
+      [radioStyles['radio-label--disabled']]: disabled,
+      [radioStyles['radio-label--on-dark']]: onDark,
+      [radioStyles['radio-label--invalid']]: invalid,
+      [radioStyles['radio-label__large']]: isLarge,
+      [radioStyles['radio-label__large--disabled']]: isLarge && disabled,
+      [radioStyles['radio-label__large--on-grey']]: isLarge && onGrey,
+      [radioStyles['radio-label__large--on-blueberry']]: isLarge && onBlueberry,
+      [radioStyles['radio-label__large--invalid']]: isLarge && onCherry,
     },
     labelClassNames
   );
-  const radioButtonClasses = classNames(radioButtonStyles['radio-button'], className);
+  const radioClasses = classNames(radioStyles['radio'], className);
 
   const getLabelContent = (): React.ReactNode => (
-    <span className={radioButtonStyles['radio-button__marker-wrapper']}>
+    <span className={radioStyles['radio__marker-wrapper']}>
       <input
         {...rest}
         id={inputId}
         name={name}
-        className={radioButtonClasses}
+        className={radioClasses}
         type="radio"
         disabled={disabled}
         value={value}
@@ -117,22 +117,22 @@ export const RadioButton: React.FC<RadioButtonProps> = props => {
 
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
-      <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
+      <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioWrapperClasses}>
         {renderLabelAsParent({
           label: label,
           children: getLabelContent(),
           inputId: inputId,
           onColor: onColor as FormOnColor,
-          labelClassName: radioButtonLabelClasses,
-          sublabelWrapperClassName: radioButtonStyles['radiobutton-sublabel-wrapper'],
+          labelClassName: radioLabelClasses,
+          sublabelWrapperClassName: radioStyles['radio-sublabel-wrapper'],
           large: isLarge,
-          afterLabelChildrenClassName: radioButtonStyles['radiobutton-afterlabelchildren-wrapper'],
+          afterLabelChildrenClassName: radioStyles['radio-afterlabelchildren-wrapper'],
         })}
       </div>
     </ErrorWrapper>
   );
 };
 
-RadioButton.displayName = 'RadioButton';
+Radio.displayName = 'Radio';
 
-export default RadioButton;
+export default Radio;

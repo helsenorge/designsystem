@@ -7,7 +7,7 @@ import { AnalyticsId } from '../../../constants';
 import { useIdWithFallback } from '../../../hooks/useIdWithFallback';
 import { getAriaDescribedBy } from '../../../utils/accessibility';
 import ErrorWrapper from '../../ErrorWrapper';
-import RadioMarker from '../../RadioButton/RadioMarker/RadioMarker';
+import RadioMarker from '../../Radio/RadioMarker/RadioMarker';
 
 import styles from './styles.module.scss';
 

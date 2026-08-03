@@ -7,7 +7,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
 import { FormLayoutColumns } from './constants';
-import RadioButton from '../RadioButton/RadioButton';
+import Radio from '../Radio/Radio';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/FormLayout',
@@ -74,16 +74,16 @@ export const RadioButtonChildren: Story = {
         name={'radiogroup1'}
       >
         <FormLayout {...args}>
-          <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-          <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-          <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+          <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
+          <Radio inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
+          <Radio inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
         </FormLayout>
       </FormGroup>
       <FormGroup legend={'Radio radio hello!'} name={'radiogroup2'}>
         <FormLayout {...args}>
-          <RadioButton inputId={'RadioButton4'} label={<Label labelTexts={[{ text: 'Radiobutton 4' }]} />} />
-          <RadioButton inputId={'RadioButton5'} label={<Label labelTexts={[{ text: 'Radiobutton 5' }]} />} />
-          <RadioButton inputId={'RadioButton6'} label={<Label labelTexts={[{ text: 'Radiobutton 6' }]} />} />
+          <Radio inputId={'Radio4'} label={<Label labelTexts={[{ text: 'Radio 4' }]} />} />
+          <Radio inputId={'Radio5'} label={<Label labelTexts={[{ text: 'Radio 5' }]} />} />
+          <Radio inputId={'Radio6'} label={<Label labelTexts={[{ text: 'Radio 6' }]} />} />
         </FormLayout>
       </FormGroup>
     </>

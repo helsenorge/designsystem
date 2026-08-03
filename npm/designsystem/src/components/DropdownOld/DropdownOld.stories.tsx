@@ -12,7 +12,7 @@ import LanguageProvider from '../../utils/language';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Label, { Sublabel } from '../Label';
-import RadioButton from '../RadioButton';
+import Radio from '../Radio';
 import Spacer from '../Spacer';
 import { DropdownOldOnColor } from './constants';
 
@@ -83,7 +83,7 @@ export const Default: Story = {
   },
   render: args => (
     <DropdownOld {...args}>
-      <RadioButton
+      <Radio
         label={
           <Label
             labelTexts={[{ text: 'Valg 1', type: 'subdued' }]}
@@ -92,8 +92,8 @@ export const Default: Story = {
         }
         name="radiobutton"
       />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
     </DropdownOld>
   ),
 };
@@ -104,15 +104,15 @@ export const RadioButtonChildren: Story = {
   },
   render: args => (
     <DropdownOld {...args}>
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 4', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 5', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 6', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 7', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 8', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 9', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 4', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 5', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 6', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 7', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 8', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 9', type: 'subdued' }]} />} name="radiobutton" />
     </DropdownOld>
   ),
 };
@@ -196,9 +196,9 @@ return ('}<LanguageProvider<LanguageLocales> language={language}>
     <span>{\`Valgt språk: \${language}\`}</span>
     <Spacer />
     <DropdownOld {...args}>
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
+      <Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
     </DropdownOld>
   </LanguageProvider>
 );`,
@@ -220,9 +220,9 @@ return ('}<LanguageProvider<LanguageLocales> language={language}>
         <span>{`Valgt språk: ${language}`}</span>
         <Spacer />
         <DropdownOld {...args}>
-          <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-          <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-          <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+          <Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
+          <Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
+          <Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
         </DropdownOld>
       </LanguageProvider>
     );

@@ -4,7 +4,7 @@ import FormLayout from './FormLayout';
 import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
-import RadioButton from '../RadioButton';
+import Radio from '../Radio';
 import { FormLayoutColumns } from './constants';
 
 describe('Gitt at FormLayout skal vises', (): void => {
@@ -48,9 +48,9 @@ describe('Gitt at FormLayout skal vises', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
           <FormLayout maxColumns={FormLayoutColumns.two}>
-            <RadioButton inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
-            <RadioButton inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
-            <RadioButton inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
+            <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
+            <Radio inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
+            <Radio inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
           </FormLayout>
         </FormGroup>
       );

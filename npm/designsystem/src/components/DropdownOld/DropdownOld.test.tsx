@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Label from '../Label';
-import RadioButton from '../RadioButton';
+import Radio from '../Radio';
 
 import DropdownOld from '.';
 
@@ -159,9 +159,9 @@ describe('Gitt at DropdownOld skal vises vanlig', (): void => {
     test('Så flyttes fokus til første radioknapp, og man kan bruke tastaturet for å gå nedover, men ikke oppover', async (): Promise<void> => {
       render(
         <DropdownOld label="Ta et valg" placeholder="Knapp">
-          <RadioButton label={<Label labelTexts={[{ text: 'Førstevalg' }]} />} inputId="radio-1" value="radio-1" />
-          <RadioButton label={<Label labelTexts={[{ text: 'Andrevalg' }]} />} inputId="radio-2" value="radio-2" />
-          <RadioButton label={<Label labelTexts={[{ text: 'Tredjevalg' }]} />} inputId="radio-3" value="radio-3" />
+          <Radio label={<Label labelTexts={[{ text: 'Førstevalg' }]} />} inputId="radio-1" value="radio-1" />
+          <Radio label={<Label labelTexts={[{ text: 'Andrevalg' }]} />} inputId="radio-2" value="radio-2" />
+          <Radio label={<Label labelTexts={[{ text: 'Tredjevalg' }]} />} inputId="radio-3" value="radio-3" />
         </DropdownOld>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
@@ -184,9 +184,9 @@ describe('Gitt at DropdownOld skal vises vanlig', (): void => {
     test('Så flyttes fokus til sist radioknapp, og man kan bruke tastaturet for å gå oppover, men ikke nedover', async (): Promise<void> => {
       render(
         <DropdownOld label="Ta et valg" placeholder="Knapp">
-          <RadioButton label={<Label labelTexts={[{ text: 'Førstevalg' }]} />} inputId="radio-1" value="radio-1" />
-          <RadioButton label={<Label labelTexts={[{ text: 'Andrevalg' }]} />} inputId="radio-2" value="radio-2" />
-          <RadioButton label={<Label labelTexts={[{ text: 'Tredjevalg' }]} />} inputId="radio-3" value="radio-3" />
+          <Radio label={<Label labelTexts={[{ text: 'Førstevalg' }]} />} inputId="radio-1" value="radio-1" />
+          <Radio label={<Label labelTexts={[{ text: 'Andrevalg' }]} />} inputId="radio-2" value="radio-2" />
+          <Radio label={<Label labelTexts={[{ text: 'Tredjevalg' }]} />} inputId="radio-3" value="radio-3" />
         </DropdownOld>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
