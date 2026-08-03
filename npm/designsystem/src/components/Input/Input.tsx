@@ -138,6 +138,7 @@ const Input: React.FC<InputProps> = props => {
     inputContainerRef,
     resources,
     ref,
+    value,
     ...rest
   } = props;
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
@@ -151,9 +152,10 @@ const Input: React.FC<InputProps> = props => {
   const breakpoint = useBreakpoint();
   const inputContainerRefLocal = useRef<HTMLDivElement>(null);
   const inputId = useIdWithFallback(inputIdProp);
-  const [input, setInput] = useState(defaultValue || '');
+  const [input, setInput] = useState(value ?? defaultValue ?? '');
   const [prevDefaultValue, setPrevDefaultValue] = useState(defaultValue);
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
+  const [prevControlledValue, setPrevControlledValue] = useState<string | number | readonly string[] | undefined>(value);
   const numKeyPressed = useRef<boolean>(false);
   const errorTextId = useIdWithFallback(errorTextIdProp);
   const numRegex = /^[0-9]$/;
@@ -161,6 +163,14 @@ const Input: React.FC<InputProps> = props => {
   if (defaultValue !== prevDefaultValue) {
     setPrevDefaultValue(defaultValue);
     setInput(defaultValue || '');
+  }
+
+  if (value !== prevControlledValue) {
+    setPrevControlledValue(value);
+
+    if (value !== undefined) {
+      setInput(value);
+    }
   }
 
   const onDark = onColor === FormOnColor.ondark;
@@ -274,6 +284,7 @@ const Input: React.FC<InputProps> = props => {
               name={name}
               type={type}
               defaultValue={defaultValue}
+              value={value}
               id={inputId}
               className={inputClass}
               ref={ref}

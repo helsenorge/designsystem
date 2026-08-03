@@ -14,6 +14,7 @@ import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 import Spacer from '../Spacer';
 import { InputTypes } from './constants';
+import Button from '../Button';
 
 type InputWithAndCustomArgs = React.ComponentProps<typeof Input> & {
   showIcon: boolean;
@@ -204,6 +205,46 @@ export const WithAndWithoutIcon: Story = {
         />
         <br />
         <Input {...rest} label={<Label labelTexts={[{ text: 'Large uten ikon' }]} htmlFor={inputId} />} inputId={inputId} size="large" />
+      </>
+    );
+  },
+};
+
+export const Controlled: Story = {
+  render: ({ ...rest }: InputProps) => {
+    const [valueWithoutMax, setValueWithoutMax] = useState('Startverdi');
+    const [valueWithMax, setValueWithMax] = useState('Startverdi');
+
+    return (
+      <>
+        <Input
+          {...rest}
+          label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />}
+          value={valueWithoutMax}
+          onChange={e => setValueWithoutMax(e.target.value)}
+        />
+        <Button type="button" onClick={() => setValueWithoutMax(v => `${v} tekst`)}>
+          {'Legg til tekst'}
+        </Button>{' '}
+        <Button type="button" onClick={() => setValueWithoutMax('')}>
+          {'Tøm felt'}
+        </Button>
+        <Spacer />
+        <br />
+        <Input
+          {...rest}
+          label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />}
+          value={valueWithMax}
+          onChange={e => setValueWithMax(e.target.value)}
+          maxCharacters={20}
+          width={20}
+        />
+        <Button type="button" onClick={() => setValueWithMax(v => `${v} tekst`)}>
+          {'Legg til tekst'}
+        </Button>{' '}
+        <Button type="button" onClick={() => setValueWithMax('')}>
+          {'Tøm felt'}
+        </Button>
       </>
     );
   },
