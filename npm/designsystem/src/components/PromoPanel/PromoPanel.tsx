@@ -10,10 +10,12 @@ import { AnalyticsId, IconSize } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys/color';
+import { isComponent } from '../../utils/component';
 import Icon from '../Icon';
 import ArrowRight from '../Icons/ArrowRight';
 import ArrowUpRight from '../Icons/ArrowUpRight';
-import LazyIllustration from '../LazyIllustration';
+import Illustration, { type IllustrationProps } from '../Illustration';
+import LazyIllustration, { type LazyIllustrationProps } from '../LazyIllustration';
 import Title from '../Title';
 
 import styles from './styles.module.scss';
@@ -25,8 +27,8 @@ export interface PromoPanelProps {
   title?: string;
   /** Used as the link text if title is not set. */
   children?: string;
-  /** Illustration element */
-  illustration?: 'Doctor' | 'HealthcarePersonnel';
+  /** Illustration element. If an Illustration or LazyIllustration is passed without a size prop, a default size based on breakpoint is applied. */
+  illustration?: React.ReactNode;
   /** Changes the underlying element of the title. */
   titleHtmlMarkup?: TitleTags;
   /** Changes the background color. Default: white */
@@ -106,16 +108,27 @@ const PromoPanel: React.FC<PromoPanelProps> = props => {
     return 110;
   })();
 
+  const illustration = ((): React.ReactNode => {
+    const node = props.illustration;
+
+    if (!node) {
+      return node;
+    }
+
+    if (isComponent(node, Illustration)) {
+      return node.props.size === undefined ? React.cloneElement<IllustrationProps>(node, { size: illustrationSize }) : node;
+    }
+
+    if (isComponent(node, LazyIllustration)) {
+      return node.props.size === undefined ? React.cloneElement<LazyIllustrationProps>(node, { size: illustrationSize }) : node;
+    }
+
+    return node;
+  })();
+
   return (
     <div className={promoPanelClasses} data-testid={props.testId} data-analyticsid={AnalyticsId.PromoPanel} ref={refObject}>
-      {props.illustration && (
-        <LazyIllustration
-          illustrationName={props.illustration}
-          size={illustrationSize}
-          color={color}
-          className={styles.promopanel__illustration}
-        />
-      )}
+      {illustration}
       <div className={styles.promopanel__content}>
         {props.title && (
           <Title htmlMarkup={titleHtmlMarkup} appearance={'title3'}>
