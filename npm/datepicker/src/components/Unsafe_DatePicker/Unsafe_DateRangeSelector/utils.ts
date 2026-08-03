@@ -1,7 +1,9 @@
 import type { DateRange, DateRangePreset, DateRangePresetsType } from './constants';
 import type { HNDesignsystemUnsafe_DateRangeSelector } from '../../../resources/Resources';
 
-import { formatResource } from '@helsenorge/designsystem-react';
+import { LanguageLocales, formatResource } from '@helsenorge/designsystem-react';
+
+import { getResources } from './resourceHelper';
 
 export const DateRangePresets = ((): DateRangePresetsType => {
   const now = new Date();
@@ -73,19 +75,27 @@ export const DateRangePresets = ((): DateRangePresetsType => {
 })();
 
 /**
- * Map each preset value to its localized display text using the component resources.
- * @param resources - The DateRangeSelector resources for the active language
+ * Map each preset value to its localized display text
+ * @param language - The active language locale (default: Norwegian Bokmål)
+ * @param resources - Optional partial resources overriding the defaults for the given language
  * @returns A record mapping preset value to its localized label
  */
-export const createPresetLabelMap = (resources: HNDesignsystemUnsafe_DateRangeSelector): Record<string, string> => ({
-  [DateRangePresets.LastMonth.value]: resources.lastMonthLabel,
-  [DateRangePresets.Last6Months.value]: formatResource(resources.lastMonthsLabel, 6),
-  [DateRangePresets.Last12Months.value]: formatResource(resources.lastMonthsLabel, 12),
-  [DateRangePresets.NextMonth.value]: resources.nextMonthLabel,
-  [DateRangePresets.Next6Months.value]: formatResource(resources.nextMonthsLabel, 6),
-  [DateRangePresets.Next12Months.value]: formatResource(resources.nextMonthsLabel, 12),
-  [DateRangePresets.Custom.value]: resources.customPeriodLabel,
-});
+export const createPresetLabelMap = (
+  language: LanguageLocales = LanguageLocales.NORWEGIAN,
+  resources?: Partial<HNDesignsystemUnsafe_DateRangeSelector>
+): Record<string, string> => {
+  const localizedResources: HNDesignsystemUnsafe_DateRangeSelector = { ...getResources(language), ...resources };
+
+  return {
+    [DateRangePresets.LastMonth.value]: localizedResources.lastMonthLabel,
+    [DateRangePresets.Last6Months.value]: formatResource(localizedResources.lastMonthsLabel, 6),
+    [DateRangePresets.Last12Months.value]: formatResource(localizedResources.lastMonthsLabel, 12),
+    [DateRangePresets.NextMonth.value]: localizedResources.nextMonthLabel,
+    [DateRangePresets.Next6Months.value]: formatResource(localizedResources.nextMonthsLabel, 6),
+    [DateRangePresets.Next12Months.value]: formatResource(localizedResources.nextMonthsLabel, 12),
+    [DateRangePresets.Custom.value]: localizedResources.customPeriodLabel,
+  };
+};
 
 /**
  * Format a custom date range for display in filter labels

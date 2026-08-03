@@ -2,6 +2,7 @@ import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import Dropdown from '@helsenorge/designsystem-react/components/Dropdown';
 import EmptyState from '@helsenorge/designsystem-react/components/EmptyState';
 import { FilterStateWrapper } from '@helsenorge/designsystem-react/components/Filter';
 import FilterButton from '@helsenorge/designsystem-react/components/Filter/FilterButton/FilterButton';
@@ -22,13 +23,16 @@ import {
 } from '@helsenorge/designsystem-react/components/Filter/utils';
 import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
+import Globe from '@helsenorge/designsystem-react/components/Icons/Globe';
 import HTMLFile from '@helsenorge/designsystem-react/components/Icons/HTMLFile';
 import Panel from '@helsenorge/designsystem-react/components/Panel';
 import { PanelVariant } from '@helsenorge/designsystem-react/components/Panel/constants';
 import PanelList from '@helsenorge/designsystem-react/components/PanelList';
+import Spacer from '@helsenorge/designsystem-react/components/Spacer';
 import Tag from '@helsenorge/designsystem-react/components/Tag';
 import TagList from '@helsenorge/designsystem-react/components/TagList';
 import Toggle from '@helsenorge/designsystem-react/components/Toggle';
+import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
 
 import Unsafe_DateRangeSelector from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector';
 import type { DateRangePreset } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/constants';
@@ -37,8 +41,7 @@ import {
   getSelectedRangeLabel,
   createPresetLabelMap,
 } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils';
-
-import nbDateRangeSelectorResources from '../../npm/datepicker/src/resources/HN.Designsystem.Unsafe_DateRangeSelector.nb-NO.json';
+import { LanguageLocales } from '@helsenorge/designsystem-react';
 
 const meta: Meta = {
   title: 'Documentation/Examples/Filter',
@@ -319,6 +322,8 @@ export const DokumenterExample: Story = {
       },
     ];
 
+    const [language, setLanguage] = React.useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
+
     const innholdTypeOptions = [
       { value: InnholdType.notat, displaytext: 'Notat' },
       { value: InnholdType.epikriseSammenfatning, displaytext: 'Epikrise, sammenfatning' },
@@ -345,7 +350,7 @@ export const DokumenterExample: Story = {
       { value: KontekstType.gravid, displaytext: 'Gravid' },
     ];
 
-    const dateRangePresetLabels = createPresetLabelMap(nbDateRangeSelectorResources);
+    const dateRangePresetLabels = createPresetLabelMap(language);
     const dateRangeOptions = [
       {
         ...DateRangePresets.LastMonth,
@@ -419,7 +424,22 @@ export const DokumenterExample: Story = {
     type DokumentFilterViews = 'overview' | 'innhold' | 'kommerFra' | 'periode';
 
     return (
-      <>
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Dropdown svgIcon={Globe} triggerText="Velg språk">
+          <Dropdown.SingleSelectItem text={'English'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Nynorsk'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Nordsamisk'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.SAMI_NORTHERN)} />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+        <Spacer />
         <FilterStateWrapper>
           <FilterButtonAndChipsWrapper
             filterButtonComponent={<FilterButton onClick={() => drawer.open()} />}
@@ -527,7 +547,7 @@ export const DokumenterExample: Story = {
         ) : (
           <EmptyState title={'Ingen dokumenter ble funnet med valgt filter. Prøv å endre filteret for å se flere dokumenter.'} />
         )}
-      </>
+      </LanguageProvider>
     );
   },
 };
