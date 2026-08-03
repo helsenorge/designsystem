@@ -5,7 +5,7 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys';
 import AsChildSlot from '../AsChildSlot';
 import Icon, { IconSize } from '../Icon';
-import ArrowUpRight from '../Icons/ArrowUpRight';
+import ArrowUpRightLight from '../Icons/ArrowUpRightLight';
 
 import AnchorLinkStyles from './styles.module.scss';
 
@@ -63,7 +63,7 @@ const AnchorLink: React.FC<AnchorLinkProps> = props => {
       {external && (
         <Icon
           className={AnchorLinkStyles.anchorlink__icon}
-          svgIcon={ArrowUpRight}
+          svgIcon={ArrowUpRightLight}
           color={getColor('blueberry', 600)}
           hoverColor={getColor('blueberry', 700)}
           size={IconSize.XSmall}

@@ -16,6 +16,7 @@ export const IconList = [
   'ArrowRight',
   'ArrowUp',
   'ArrowUpRight',
+  'ArrowUpRightLight',
   'Attachment',
   'Atv',
   'Avatar',
