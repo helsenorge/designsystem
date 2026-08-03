@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { nb } from 'date-fns/locale';
 import { action } from 'storybook/actions';
 
-import type { Matcher, Modifiers } from './index';
+import type { Matcher, Modifiers, Unsafe_DatePickerHandle } from './index';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
@@ -309,6 +309,27 @@ export const WithChangingValue: Story = {
         <span>{'Value: ' + value}</span>
         <br />
         <Button onClick={() => setValue(new Date())}>{'Sett til dagens dato'}</Button>
+      </>
+    );
+  },
+};
+
+export const WithImperativeFocus: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Viser hvordan man kan sette fokus i inputfeltet programmatisk.',
+      },
+    },
+  },
+  render: args => {
+    const [value, setValue] = useState<Date | null | undefined>();
+    const datePickerRef = useRef<Unsafe_DatePickerHandle>(null);
+    return (
+      <>
+        <Button onClick={() => datePickerRef.current?.focus()}>{'Sett fokus i datofeltet'}</Button>
+        <br />
+        <Unsafe_DatePicker {...args} ref={datePickerRef} value={value} onChange={setValue} />
       </>
     );
   },

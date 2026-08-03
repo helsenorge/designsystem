@@ -248,6 +248,7 @@ const TimeInputInternal = ({
           placeholder={resources?.hourFormatPlaceholder || 'tt'}
           aria-label={resources?.ariaLabelInputHour || 'Time'}
           className={hourSegmentClassNames}
+          autoComplete="off"
         />
         <span aria-hidden={true}>{':'}</span>
         <input
@@ -263,6 +264,7 @@ const TimeInputInternal = ({
           placeholder={resources?.minuteFormatPlaceholder || 'mm'}
           aria-label={resources?.ariaLabelInputMinute || 'Minutt'}
           className={minuteSegmentClassNames}
+          autoComplete="off"
         />
       </span>
       {withClearButton &&

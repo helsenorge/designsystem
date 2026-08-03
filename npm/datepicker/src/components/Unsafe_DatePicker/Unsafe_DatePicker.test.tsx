@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { render, screen, act } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
@@ -7,7 +7,7 @@ import '@testing-library/jest-dom';
 
 import { Controller, useForm } from 'react-hook-form';
 
-import Unsafe_DatePicker from './Unsafe_DatePicker';
+import Unsafe_DatePicker, { type Unsafe_DatePickerHandle } from './Unsafe_DatePicker';
 
 const DD_LABEL = 'Dag';
 const MM_LABEL = 'Måned';
@@ -265,6 +265,48 @@ describe('Gitt at Unsafe_DatePicker skal vises', () => {
       const lastCall = handleBlur.mock.calls.at(-1)?.[0] as Date | null | undefined;
       expect(lastCall).toBeInstanceOf(Date);
       expect((lastCall as Date).getDate()).toBe(15);
+    });
+  });
+
+  describe('Når man bruker ref.focus()', () => {
+    const RefHarness = ({ value }: { value?: Date | null }): React.ReactNode => {
+      const ref = useRef<Unsafe_DatePickerHandle>(null);
+      return (
+        <>
+          <button type="button" onClick={() => ref.current?.focus()}>
+            {'Fokuser'}
+          </button>
+          <Unsafe_DatePicker ref={ref} value={value} onChange={vi.fn()} />
+        </>
+      );
+    };
+
+    it('Så skal fokus settes på dag-segmentet når feltet er tomt', async () => {
+      const user = userEvent.setup();
+      render(<RefHarness />);
+
+      await user.click(screen.getByRole('button', { name: 'Fokuser' }));
+
+      expect(getInputs().dd).toHaveFocus();
+    });
+
+    it('Så skal fokus settes på første tomme segment når noen segmenter allerede er fylt ut', async () => {
+      const user = userEvent.setup();
+      render(<RefHarness />);
+
+      await user.type(getInputs().dd, '15');
+      await user.click(screen.getByRole('button', { name: 'Fokuser' }));
+
+      expect(getInputs().mm).toHaveFocus();
+    });
+
+    it('Så skal fokus settes på år-segmentet når alle segmenter er fylt ut, i tråd med klikk på gruppen', async () => {
+      const user = userEvent.setup();
+      render(<RefHarness value={new Date('2026-01-15')} />);
+
+      await user.click(screen.getByRole('button', { name: 'Fokuser' }));
+
+      expect(getInputs().yyyy).toHaveFocus();
     });
   });
 });
