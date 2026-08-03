@@ -38,6 +38,7 @@ const meta = {
     // helpBubbleTexts: { control: 'object' },
     startMonth: { control: 'date' },
     endMonth: { control: 'date' },
+    defaultMonth: { control: 'date' },
     captionLayout: {
       control: { type: 'select' },
       options: ['dropdown', 'label'],
@@ -334,5 +335,13 @@ export const WithFormGroup: Story = {
         />
       </FormGroup>
     );
+  },
+};
+
+export const DefaultMonth: Story = {
+  args: { defaultMonth: new Date(2020, 2) },
+  render: args => {
+    const [value, setValue] = useState<Date | null | undefined>();
+    return <Unsafe_DatePicker {...args} value={value} onChange={setValue} />;
   },
 };
