@@ -73,10 +73,6 @@ export interface InnerDrawerProps {
   resources?: Partial<HNDesignsystemDrawer>;
   /** Sets mobile styling and animation from outer level Drawer */
   isMobile?: boolean;
-  /** Shows a back button to the left of title */
-  withBackButton?: boolean;
-  /** Callback for the back button */
-  onRequestBack?: () => void;
   /** Sets classname for content part in Drawer */
   contentClassName?: string;
   /** Sets the content padding of the Drawer */
@@ -112,8 +108,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     zIndex = ZIndex.OverlayScreen,
     resources,
     isMobile,
-    withBackButton,
-    onRequestBack,
     contentClassName,
     paddingSize = 'normal',
   } = props;
@@ -261,8 +255,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
       titleId={ariaLabelAttributes?.['aria-labelledby']}
       titleRef={titleRef}
       titleHtmlMarkup={titleHtmlMarkup}
-      withBackButton={withBackButton && onRequestBack !== undefined}
-      onRequestBack={onRequestBack}
       backButtonAriaLabel={mergedResources.ariaLabelBackButton}
     />
   );
