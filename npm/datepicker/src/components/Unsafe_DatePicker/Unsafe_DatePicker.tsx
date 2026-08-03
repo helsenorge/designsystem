@@ -11,6 +11,7 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
+import classNames from 'classnames';
 import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 
@@ -247,7 +248,12 @@ const Unsafe_DatePicker = ({
             <Icon svgIcon={Calendar} size={IconSize.XSmall} />
           </button>
         </div>
-        <div className={styles['date-field__soft-error-text']} role="status">
+        <div
+          className={classNames(styles['date-field__soft-error-text'], {
+            [styles['date-field__soft-error-text--visible']]: softErrorText,
+          })}
+          role="status"
+        >
           {softErrorText}
         </div>
       </fieldset>

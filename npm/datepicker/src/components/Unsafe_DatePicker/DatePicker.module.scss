@@ -89,7 +89,9 @@
 
     @include fonts.sublabel-subdued;
 
-    margin-top: 0.75rem;
+    &--visible {
+      margin-top: 0.75rem;
+    }
   }
 }
 
