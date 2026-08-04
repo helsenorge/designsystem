@@ -487,11 +487,11 @@
       "require": "./lib/components/PromoPanel/index.js",
       "default": "./lib/components/PromoPanel/index.js"
     },
-    "./components/RadioButton/RadioButton": {
-      "types": "./lib/components/RadioButton/RadioButton.d.ts",
-      "import": "./lib/components/RadioButton/index.js",
-      "require": "./lib/components/RadioButton/index.js",
-      "default": "./lib/components/RadioButton/index.js"
+    "./components/Radio/Radio": {
+      "types": "./lib/components/Radio/Radio.d.ts",
+      "import": "./lib/components/Radio/index.js",
+      "require": "./lib/components/Radio/index.js",
+      "default": "./lib/components/Radio/index.js"
     },
     "./components/Select/Select": {
       "types": "./lib/components/Select/Select.d.ts",
