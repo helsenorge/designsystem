@@ -81,7 +81,7 @@ const HighlightPanel: React.FC<HighlightPanelProps> = props => {
             <div className={classNames(styles.highlightpanel__icon, styles['highlightpanel__icon--compact'])}>
               {typeof svgIcon === 'string' ? <LazyIcon iconName={svgIcon} size={iconSize} /> : <Icon svgIcon={svgIcon} size={iconSize} />}
             </div>
-            <div className={(styles.highlightpanel__content, styles['highlightpanel__content--compact'])}>
+            <div className={classNames(styles.highlightpanel__content, styles['highlightpanel__content--compact'])}>
               {title && <div className={styles['highlightpanel__title-wrapper']}>{titleElement}</div>}
               <div className={styles['highlightpanel__content__children--compact']}>{children}</div>
             </div>
