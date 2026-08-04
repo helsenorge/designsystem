@@ -25,6 +25,7 @@ const meta = {
     // helpBubbleTexts: { control: 'object' },
     startMonth: { control: 'date' },
     endMonth: { control: 'date' },
+    defaultMonth: { control: 'date' },
     captionLayout: {
       control: { type: 'select' },
       options: ['dropdown', 'label'],
@@ -203,5 +204,13 @@ export const AriaLabels: Story = {
   },
   render: args => {
     return <Unsafe_DatePickerStandalone {...args} />;
+  },
+};
+
+export const DefaultMonth: Story = {
+  args: { defaultMonth: new Date(2020, 2) },
+  render: args => {
+    const [value, setValue] = useState<Date | undefined>();
+    return <Unsafe_DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />;
   },
 };

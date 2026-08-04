@@ -1,4 +1,4 @@
-import { cloneElement, useRef, useState } from 'react';
+import { cloneElement, useImperativeHandle, useRef, useState } from 'react';
 
 import {
   autoUpdate,
@@ -11,6 +11,7 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
+import classNames from 'classnames';
 import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 
@@ -34,7 +35,7 @@ import {
 } from '@helsenorge/designsystem-react';
 
 import BaseDayPicker, { type BaseDayPickerProps } from './BaseDayPicker/BaseDayPicker';
-import DateInputInternal from './DateInputInternal';
+import DateInputInternal, { type DateInputInternalHandle } from './DateInputInternal';
 import { getResources } from './resourceHelper';
 
 import styles from './DatePicker.module.scss';
@@ -60,6 +61,10 @@ export interface Unsafe_DatePickerProps extends Omit<BaseDayPickerProps, 'select
   ['aria-labelledby']?: string;
 }
 
+export interface Unsafe_DatePickerHandle {
+  focus: () => void;
+}
+
 const Unsafe_DatePicker = ({
   value: valueProp,
   onChange,
@@ -71,8 +76,9 @@ const Unsafe_DatePicker = ({
   ['aria-describedby']: ariaDescribedBy,
   ['aria-labelledby']: ariaLabelledBy,
   resources,
+  ref,
   ...baseDayPickerProps
-}: Unsafe_DatePickerProps): React.ReactNode => {
+}: Unsafe_DatePickerProps & { ref?: React.Ref<Unsafe_DatePickerHandle> }): React.ReactNode => {
   // Normalize null and undefined to a single internal representation.
   const value = valueProp ?? undefined;
   const dateToString = (date: Date | undefined): string => {
@@ -86,6 +92,11 @@ const Unsafe_DatePicker = ({
   const [softErrorText, setSoftErrorText] = useState<string>('');
   const containerRef = useRef<HTMLDivElement>(null);
   const calendarButtonRef = useRef<HTMLButtonElement>(null);
+  const dateInputInternalRef = useRef<DateInputInternalHandle>(null);
+
+  useImperativeHandle(ref, () => ({
+    focus: (): void => dateInputInternalRef.current?.focus(),
+  }));
 
   // Track the last value we emitted so we can distinguish our own updates from external ones.
   // Important when consumers (e.g. react-hook-form) echo back the previous value because they
@@ -224,6 +235,7 @@ const Unsafe_DatePicker = ({
         {legend}
         <div className={styles['date-field__input-button-container']} ref={containerRef}>
           <DateInputInternal
+            ref={dateInputInternalRef}
             inputId={id}
             aria-describedby={ariaDescribedBy}
             aria-labelledby={ariaLabelledBy}
@@ -247,7 +259,12 @@ const Unsafe_DatePicker = ({
             <Icon svgIcon={Calendar} size={IconSize.XSmall} />
           </button>
         </div>
-        <div className={styles['date-field__soft-error-text']} role="status">
+        <div
+          className={classNames(styles['date-field__soft-error-text'], {
+            [styles['date-field__soft-error-text--visible']]: softErrorText,
+          })}
+          role="status"
+        >
           {softErrorText}
         </div>
       </fieldset>

@@ -45,7 +45,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
     ...localizedResources,
     startDateLabel: datePickerPropsTo?.label?.toString() || resources?.startDateLabel || defaultResources.startDateLabel,
     endDateLabel: datePickerPropsFrom?.label?.toString() || resources?.endDateLabel || defaultResources.endDateLabel,
-    ...createPresetLabelMap(localizedResources),
+    ...createPresetLabelMap(language, resources),
   };
 
   const [selectedRadio, setSelectedRadio] = useState(value?.value);

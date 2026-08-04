@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -36,6 +36,10 @@ export interface DateInputInternalProps {
   inputId?: string;
 }
 
+export interface DateInputInternalHandle {
+  focus: () => void;
+}
+
 const DateInputInternal = ({
   value,
   onChange,
@@ -47,7 +51,8 @@ const DateInputInternal = ({
   withClearButton,
   ['aria-describedby']: ariaDescribedBy,
   ['aria-labelledby']: ariaLabelledBy,
-}: DateInputInternalProps) => {
+  ref,
+}: DateInputInternalProps & { ref?: React.Ref<DateInputInternalHandle> }): React.ReactNode => {
   const [errorTextDd, setErrorTextDd] = useState('');
   const [errorTextMm, setErrorTextMm] = useState('');
   const [errorTextYyyy, setErrorTextYyyy] = useState('');
@@ -63,6 +68,23 @@ const DateInputInternal = ({
   const inputRefs = [ddRef, mmRef, yyyyRef];
   const clearButtonRef = useRef<HTMLButtonElement>(null);
   const [isClearButtonFocused, setIsClearButtonFocused] = useState(false);
+
+  const getSegmentRefToFocus = (): React.RefObject<HTMLInputElement | null> => {
+    if (dd === '') {
+      return ddRef;
+    }
+    if (mm === '') {
+      return mmRef;
+    }
+    return yyyyRef;
+  };
+
+  useImperativeHandle(ref, () => ({
+    focus: (): void => {
+      const segmentToFocus = getSegmentRefToFocus().current;
+      segmentToFocus?.focus();
+    },
+  }));
 
   const updateSegments = (newDd: string, newMm: string, newYyyy: string): void => {
     setDd(newDd);
@@ -242,13 +264,7 @@ const DateInputInternal = ({
       document.activeElement !== yyyyRef.current &&
       document.activeElement !== clearButtonRef.current
     ) {
-      if (dd === '') {
-        ddRef.current.focus();
-      } else if (mm === '') {
-        mmRef.current.focus();
-      } else {
-        yyyyRef.current.focus();
-      }
+      getSegmentRefToFocus().current?.focus();
     }
   };
 
@@ -353,6 +369,7 @@ const DateInputInternal = ({
             placeholder={resources?.dayFormatPlaceholder || 'dd'}
             aria-label={resources?.ariaLabelInputDay || 'Dag'}
             className={daySegmentClassNames}
+            autoComplete="off"
           />
           <span aria-hidden={true}>{'.'}</span>
           <input
@@ -368,6 +385,7 @@ const DateInputInternal = ({
             placeholder={resources?.monthFormatPlaceholder || 'mm'}
             aria-label={resources?.ariaLabelInputMonth || 'Måned'}
             className={monthSegmentClassNames}
+            autoComplete="off"
           />
           <span aria-hidden={true}>{'.'}</span>
           <input
@@ -383,6 +401,7 @@ const DateInputInternal = ({
             placeholder={resources?.yearFormatPlaceholder || 'åååå'}
             aria-label={resources?.ariaLabelInputYear || 'År'}
             className={yearSegmentClassNames}
+            autoComplete="off"
           />
         </span>
         {withClearButton &&

@@ -31,10 +31,12 @@ export interface FilterSearchProps extends Omit<React.InputHTMLAttributes<HTMLIn
   resources?: Partial<HNDesignsystemFilter>;
   /** Ref passed to the input element */
   ref?: React.Ref<HTMLInputElement | null>;
+  /** If the input field should have a separate search/submit button or not */
+  withSearchButton?: boolean;
 }
 
 const FilterSearch: React.FC<FilterSearchProps> = props => {
-  const { className, value, onChange, resources, buttonProps, clearButtonProps, ref, ...inputProps } = props;
+  const { className, value, onChange, resources, buttonProps, clearButtonProps, ref, withSearchButton = false, ...inputProps } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
   const inputWrapperRef = useRef<HTMLLabelElement>(null);
@@ -60,6 +62,9 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
     <div className={classNames(styles['filter-search__wrapper'], className)}>
       <label className={styles['filter-search__input-wrapper']} ref={inputWrapperRef}>
         <span className={styles['filter-search__input__label']}>{inputProps['aria-label'] ?? mergedResources.searchPlaceholder}</span>
+        <div className={styles['filter-search__input__icon']}>
+          {!withSearchButton && <Icon svgIcon={Search} size={isMobile ? IconSize.XXSmall : IconSize.XSmall} />}
+        </div>
         <input
           {...inputProps}
           ref={mergeRefs([inputRef, ref])}
@@ -67,6 +72,7 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
           onChange={onChange}
           className={classNames(styles['filter-search__input'], {
             [styles['filter-search__input--hovered']]: isWrapperHovered,
+            [styles['filter-search__input--with-search-button']]: withSearchButton,
           })}
           placeholder={mergedResources.searchPlaceholder}
         />
@@ -87,18 +93,24 @@ const FilterSearch: React.FC<FilterSearchProps> = props => {
           <Icon svgIcon={X} size={IconSize.XXSmall} isHovered={!isMobile && isClearButtonHovered} />
         </button>
       )}
-      <button
-        type={'button'}
-        aria-label={mergedResources.searchButtonAriaLabel}
-        disabled={inputProps.disabled}
-        {...buttonProps}
-        ref={buttonRef}
-        className={classNames(styles['filter-search__search-button'], buttonProps?.className)}
-      >
-        <div className={classNames(styles['filter-search__search-button--inner'])}>
-          <Icon svgIcon={Search} size={isMobile ? IconSize.XXSmall : IconSize.XSmall} isHovered={!inputProps.disabled && isButtonHovered} />
-        </div>
-      </button>
+      {withSearchButton && (
+        <button
+          type={'button'}
+          aria-label={mergedResources.searchButtonAriaLabel}
+          disabled={inputProps.disabled}
+          {...buttonProps}
+          ref={buttonRef}
+          className={classNames(styles['filter-search__search-button'], buttonProps?.className)}
+        >
+          <div className={classNames(styles['filter-search__search-button--inner'])}>
+            <Icon
+              svgIcon={Search}
+              size={isMobile ? IconSize.XXSmall : IconSize.XSmall}
+              isHovered={!inputProps.disabled && isButtonHovered}
+            />
+          </div>
+        </button>
+      )}
     </div>
   );
 };

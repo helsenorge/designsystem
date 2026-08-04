@@ -18,16 +18,40 @@ describe('Gitt at FilterSearch skal vises', (): void => {
       expect(input).toBeVisible();
     });
 
-    test('Så vises søkeknappen', (): void => {
+    test('Så vises ikke søkeknappen som standard', (): void => {
       render(<FilterSearch value={undefined} resources={testResources} />);
 
-      expect(screen.getByRole('button', { name: testResources.searchButtonAriaLabel })).toBeVisible();
+      expect(screen.queryByRole('button', { name: testResources.searchButtonAriaLabel })).not.toBeInTheDocument();
     });
 
     test('Så vises ikke nullstill-knappen', (): void => {
       render(<FilterSearch value={undefined} resources={testResources} />);
 
       expect(screen.queryByRole('button', { name: testResources.searchClearButtonAriaLabel })).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Når FilterSearch rendres med withSearchButton', (): void => {
+    test('Så vises søkeknappen', (): void => {
+      render(<FilterSearch value={undefined} resources={testResources} withSearchButton />);
+
+      expect(screen.getByRole('button', { name: testResources.searchButtonAriaLabel })).toBeVisible();
+    });
+
+    test('Så vises ikke søkeikonet i inputfeltet', (): void => {
+      render(<FilterSearch value={undefined} resources={testResources} withSearchButton />);
+
+      const input = screen.getByPlaceholderText(testResources.searchPlaceholder);
+      expect(input).toHaveClass('filter-search__input--with-search-button');
+    });
+  });
+
+  describe('Når FilterSearch rendres uten withSearchButton', (): void => {
+    test('Så vises søkeikonet i inputfeltet', (): void => {
+      render(<FilterSearch value={undefined} resources={testResources} />);
+
+      const input = screen.getByPlaceholderText(testResources.searchPlaceholder);
+      expect(input).not.toHaveClass('filter-search__input--with-search-button');
     });
   });
 
@@ -66,7 +90,7 @@ describe('Gitt at FilterSearch skal vises', (): void => {
   describe('Når brukeren klikker på søkeknappen', (): void => {
     test('Så kalles buttonProps.onClick', async (): Promise<void> => {
       const handleSearch = vi.fn();
-      render(<FilterSearch value="" readOnly resources={testResources} buttonProps={{ onClick: handleSearch }} />);
+      render(<FilterSearch value="" readOnly resources={testResources} withSearchButton buttonProps={{ onClick: handleSearch }} />);
 
       const searchButton = screen.getByRole('button', { name: testResources.searchButtonAriaLabel });
       await userEvent.click(searchButton);
@@ -81,6 +105,7 @@ describe('Gitt at FilterSearch skal vises', (): void => {
         <FilterSearch
           value="test"
           readOnly
+          withSearchButton
           resources={{
             searchPlaceholder: 'Egendefinert placeholder',
             searchButtonAriaLabel: 'Egendefinert søk',

@@ -45,7 +45,7 @@ export type DatePickerModifiers = {
 
 export interface BaseDayPickerProps extends Pick<
   DayPickerProps,
-  'startMonth' | 'endMonth' | 'captionLayout' | 'footer' | 'fixedWeeks' | 'animate'
+  'startMonth' | 'endMonth' | 'captionLayout' | 'footer' | 'fixedWeeks' | 'animate' | 'defaultMonth'
 > {
   /** The currenlty selected date in the calendar */
   selectedDate?: Date;
@@ -80,6 +80,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
     localeForCalendar = nb,
     // helpBubbleTexts,
     labelsForCalendar,
+    defaultMonth,
     ...rdpProps
   } = props;
 
@@ -122,7 +123,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
 
   // Internal state - synced with external selectedDate
   const [selected, setSelected] = useState<Date | undefined>(selectedDate);
-  const [month, setMonth] = useState<Date>(selectedDate || new Date());
+  const [month, setMonth] = useState<Date>(selectedDate || defaultMonth || new Date());
 
   // Update internal state when prop changes
   React.useEffect(() => {

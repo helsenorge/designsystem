@@ -130,7 +130,7 @@ const Textarea: React.FC<TextareaProps> = props => {
   if (value !== prevValue) {
     setPrevValue(value);
 
-    if (value) {
+    if (value !== undefined) {
       setTextareaInput(value);
     }
   }

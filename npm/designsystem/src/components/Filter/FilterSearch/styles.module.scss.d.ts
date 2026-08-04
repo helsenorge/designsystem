@@ -1,8 +1,10 @@
 export type Styles = {
   'filter-search__clear-button': string;
   'filter-search__input': string;
+  'filter-search__input__icon': string;
   'filter-search__input__label': string;
   'filter-search__input--hovered': string;
+  'filter-search__input--with-search-button': string;
   'filter-search__input-wrapper': string;
   'filter-search__search-button': string;
   'filter-search__search-button--inner': string;

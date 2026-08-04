@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { nb } from 'date-fns/locale';
 import { action } from 'storybook/actions';
 
-import type { Matcher, Modifiers } from './index';
+import type { Matcher, Modifiers, Unsafe_DatePickerHandle } from './index';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
@@ -38,6 +38,7 @@ const meta = {
     // helpBubbleTexts: { control: 'object' },
     startMonth: { control: 'date' },
     endMonth: { control: 'date' },
+    defaultMonth: { control: 'date' },
     captionLayout: {
       control: { type: 'select' },
       options: ['dropdown', 'label'],
@@ -313,6 +314,27 @@ export const WithChangingValue: Story = {
   },
 };
 
+export const WithImperativeFocus: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Viser hvordan man kan sette fokus i inputfeltet programmatisk.',
+      },
+    },
+  },
+  render: args => {
+    const [value, setValue] = useState<Date | null | undefined>();
+    const datePickerRef = useRef<Unsafe_DatePickerHandle>(null);
+    return (
+      <>
+        <Button onClick={() => datePickerRef.current?.focus()}>{'Sett fokus i datofeltet'}</Button>
+        <br />
+        <Unsafe_DatePicker {...args} ref={datePickerRef} value={value} onChange={setValue} />
+      </>
+    );
+  },
+};
+
 export const WithFormGroup: Story = {
   render: args => {
     const [value, setValue] = useState<Date | null | undefined>();
@@ -334,5 +356,13 @@ export const WithFormGroup: Story = {
         />
       </FormGroup>
     );
+  },
+};
+
+export const DefaultMonth: Story = {
+  args: { defaultMonth: new Date(2020, 2) },
+  render: args => {
+    const [value, setValue] = useState<Date | null | undefined>();
+    return <Unsafe_DatePicker {...args} value={value} onChange={setValue} />;
   },
 };
