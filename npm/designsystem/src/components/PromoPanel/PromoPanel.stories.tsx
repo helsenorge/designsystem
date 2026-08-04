@@ -5,6 +5,9 @@ import { Docs } from 'frankenstein-build-tools';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import PromoPanel from './PromoPanel';
+import Illustration from '../Illustration';
+import Doctor from '../Illustrations/Doctor';
+import LazyIllustration from '../LazyIllustration';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/PromoPanel',
@@ -26,7 +29,7 @@ const meta = {
     href: 'https://www.helsenorge.no',
     target: '_parent',
     color: 'neutral',
-    illustration: 'Doctor',
+    illustration: <LazyIllustration illustrationName={'Doctor'} />,
   },
   argTypes: {
     title: {
@@ -41,10 +44,6 @@ const meta = {
     color: {
       control: 'select',
       options: ['neutral', 'blueberry', 'cherry'],
-    },
-    illustration: {
-      control: 'select',
-      options: ['', 'Doctor', 'HealthcarePersonnel'],
     },
   },
 } satisfies Meta<typeof PromoPanel>;
@@ -61,5 +60,15 @@ export const CustomLinkComponent: Story = {
   args: {
     linkComponent: <a href={'https://www.helsenorge.no'} target="_blank" rel="noreferrer" />,
   },
+  render: args => <PromoPanel {...args} />,
+};
+
+export const WithLazyIllustration: Story = {
+  args: { illustration: <LazyIllustration illustrationName={'Doctor'} /> },
+  render: args => <PromoPanel {...args} />,
+};
+
+export const WithIllustration: Story = {
+  args: { illustration: <Illustration illustration={Doctor} /> },
   render: args => <PromoPanel {...args} />,
 };

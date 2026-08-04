@@ -1,5 +1,7 @@
 import { cloneElement, useState } from 'react';
 
+import classNames from 'classnames';
+
 import type { HNDesignsystemDatePicker } from '../../../resources/Resources';
 
 import ErrorWrapper from '@helsenorge/designsystem-react/components/ErrorWrapper';
@@ -69,7 +71,10 @@ const Unsafe_TimeInput = ({
           onBlur={onBlur}
           setErrorText={setSoftErrorText}
         />
-        <div className={styles['date-field__soft-error-text']} role="status">
+        <div
+          className={classNames(styles['date-field__soft-error-text'], { [styles['date-field__soft-error-text--visible']]: softErrorText })}
+          role="status"
+        >
           {softErrorText}
         </div>
       </fieldset>

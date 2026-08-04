@@ -148,19 +148,13 @@
     }
 
     label:hover &--on-white,
-    label:hover &--on-grey {
-      background-color: palette.$neutral100;
-    }
-
-    label:active &--on-white,
-    label:active &--on-grey {
-      background-color: palette.$blueberry100;
-    }
-
+    label:hover &--on-grey,
     label:hover &--on-blueberry {
       background-color: palette.$blueberry100;
     }
 
+    label:active &--on-white,
+    label:active &--on-grey,
     label:active &--on-blueberry {
       background-color: palette.$blueberry200;
     }

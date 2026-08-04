@@ -5,6 +5,7 @@ export type Styles = {
   'date-field': string;
   'date-field__input-button-container': string;
   'date-field__soft-error-text': string;
+  'date-field__soft-error-text--visible': string;
   'date-picker': string;
   'date-picker__inputs': string;
   'date-picker--clear-button-focused': string;

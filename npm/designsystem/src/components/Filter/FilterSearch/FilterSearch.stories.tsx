@@ -19,6 +19,7 @@ const meta = {
   argTypes: {
     value: { control: 'text' },
     disabled: { control: 'boolean' },
+    withSearchButton: { control: 'boolean' },
   },
 } satisfies Meta<typeof FilterSearch>;
 

@@ -25,7 +25,17 @@ const meta = {
   args: {
     children: '',
   },
-} satisfies Meta<typeof LinkList>;
+  argTypes: {
+    parentType: {
+      control: 'select',
+      options: ['linklist', 'expanderlist'],
+    },
+    size: {
+      control: 'select',
+      options: ['compact', 'small', 'medium', 'large'],
+    },
+  },
+} satisfies Meta<typeof ElementHeader>;
 
 export default meta;
 

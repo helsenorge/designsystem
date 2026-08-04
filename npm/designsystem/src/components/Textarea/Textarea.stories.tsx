@@ -7,6 +7,7 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import Textarea from './Textarea';
 import { FormOnColor, LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
+import Button from '../Button';
 import Dropdown from '../Dropdown';
 import Globe from '../Icons/Globe';
 import Label from '../Label/Label';
@@ -107,6 +108,47 @@ export const MaxCharacters: Story = {
       />
     </>
   ),
+};
+
+export const Controlled: Story = {
+  render: ({ ...rest }) => {
+    const [valueWithoutMax, setValueWithoutMax] = useState('Startverdi');
+    const [valueWithMax, setValueWithMax] = useState('Startverdi');
+
+    return (
+      <>
+        <Textarea
+          {...rest}
+          label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />}
+          value={valueWithoutMax}
+          onChange={e => setValueWithoutMax(e.target.value)}
+          marginBottom
+        />
+        <Button type="button" onClick={() => setValueWithoutMax(v => `${v} tekst`)}>
+          {'Legg til tekst'}
+        </Button>{' '}
+        <Button type="button" onClick={() => setValueWithoutMax('')}>
+          {'Tøm felt'}
+        </Button>
+        <Spacer />
+        <br />
+        <Textarea
+          {...rest}
+          label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />}
+          value={valueWithMax}
+          onChange={e => setValueWithMax(e.target.value)}
+          maxCharacters={20}
+          width={20}
+        />
+        <Button type="button" onClick={() => setValueWithMax(v => `${v} tekst`)}>
+          {'Legg til tekst'}
+        </Button>{' '}
+        <Button type="button" onClick={() => setValueWithMax('')}>
+          {'Tøm felt'}
+        </Button>
+      </>
+    );
+  },
 };
 
 export const WithLanguageProvider: Story = {
