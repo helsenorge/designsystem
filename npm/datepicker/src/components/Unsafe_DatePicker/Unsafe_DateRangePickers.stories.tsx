@@ -73,7 +73,7 @@ export const Default: Story = {
       />
     );
 
-    const handleRangeChange = (from: Date | undefined, to: Date | undefined, isValid: boolean): void => {
+    const handleRangeChange = (from: Date | undefined | null, to: Date | undefined | null, isValid: boolean): void => {
       setFrom(from);
       setTo(to);
       if (!isValid) {

@@ -4,12 +4,12 @@ import { useFilter } from './useFilter';
 
 type Status = 'aktiv' | 'inaktiv' | 'ventende';
 
-interface TestFilters {
+type TestFilters = {
   kategori: string[];
   status: Status;
   søk: string;
   erGodkjent: boolean;
-}
+};
 
 describe('Gitt at useFilter brukes', (): void => {
   describe('Når hooken initialiseres uten defaultValues', (): void => {

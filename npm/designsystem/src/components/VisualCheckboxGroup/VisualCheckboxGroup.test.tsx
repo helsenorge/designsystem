@@ -2,14 +2,16 @@ import { render, screen } from '@testing-library/react';
 
 import VisualCheckboxGroup from './VisualCheckboxGroup';
 
+const visualContent = <img src="https://placehold.co/64x64" alt="" />;
+
 describe('Gitt at VisualCheckboxGroup skal vises', (): void => {
   describe('Når komponenten har checkbox-children', () => {
     test('Så rendres alle children', () => {
       render(
         <VisualCheckboxGroup>
-          <VisualCheckboxGroup.VisualCheckbox>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
-          <VisualCheckboxGroup.VisualCheckbox>{'To'}</VisualCheckboxGroup.VisualCheckbox>
-          <VisualCheckboxGroup.VisualCheckbox>{'Tre'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'To'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'Tre'}</VisualCheckboxGroup.VisualCheckbox>
         </VisualCheckboxGroup>
       );
 
@@ -24,8 +26,8 @@ describe('Gitt at VisualCheckboxGroup skal vises', (): void => {
     test('Så får alle children samme name-attributt', () => {
       render(
         <VisualCheckboxGroup name={'kategori'}>
-          <VisualCheckboxGroup.VisualCheckbox>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
-          <VisualCheckboxGroup.VisualCheckbox>{'To'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'To'}</VisualCheckboxGroup.VisualCheckbox>
         </VisualCheckboxGroup>
       );
 
@@ -36,8 +38,10 @@ describe('Gitt at VisualCheckboxGroup skal vises', (): void => {
     test('Så vinner name på en VisualCheckbox over gruppa sitt name', () => {
       render(
         <VisualCheckboxGroup name={'kategori'}>
-          <VisualCheckboxGroup.VisualCheckbox>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
-          <VisualCheckboxGroup.VisualCheckbox name={'overstyrt'}>{'To'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent} name={'overstyrt'}>
+            {'To'}
+          </VisualCheckboxGroup.VisualCheckbox>
         </VisualCheckboxGroup>
       );
 
@@ -50,8 +54,8 @@ describe('Gitt at VisualCheckboxGroup skal vises', (): void => {
     test('Så vises feilmelding og alle barn markeres som aria-invalid', () => {
       render(
         <VisualCheckboxGroup error={'Du må velge minst ett alternativ'}>
-          <VisualCheckboxGroup.VisualCheckbox>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
-          <VisualCheckboxGroup.VisualCheckbox>{'To'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'To'}</VisualCheckboxGroup.VisualCheckbox>
         </VisualCheckboxGroup>
       );
 
@@ -63,8 +67,8 @@ describe('Gitt at VisualCheckboxGroup skal vises', (): void => {
     test('Så er feilmeldingen koblet til hver checkbox via aria-describedby', () => {
       render(
         <VisualCheckboxGroup error={'Du må velge minst ett alternativ'}>
-          <VisualCheckboxGroup.VisualCheckbox>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
-          <VisualCheckboxGroup.VisualCheckbox>{'To'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'To'}</VisualCheckboxGroup.VisualCheckbox>
         </VisualCheckboxGroup>
       );
 
@@ -77,7 +81,7 @@ describe('Gitt at VisualCheckboxGroup skal vises', (): void => {
     test('Så finnes elementene via data-testid', () => {
       render(
         <VisualCheckboxGroup testId={'min-gruppe'} errorWrapperTestId={'min-error-wrapper'} error={'Feil'}>
-          <VisualCheckboxGroup.VisualCheckbox>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
         </VisualCheckboxGroup>
       );
 
@@ -90,8 +94,8 @@ describe('Gitt at VisualCheckboxGroup skal vises', (): void => {
     test('Så bruker alle children den id-en i aria-describedby', () => {
       render(
         <VisualCheckboxGroup error={'Du må velge minst ett alternativ'} errorTextId={'min-feil'}>
-          <VisualCheckboxGroup.VisualCheckbox>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
-          <VisualCheckboxGroup.VisualCheckbox>{'To'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'To'}</VisualCheckboxGroup.VisualCheckbox>
         </VisualCheckboxGroup>
       );
 
@@ -105,8 +109,10 @@ describe('Gitt at VisualCheckboxGroup skal vises', (): void => {
     test('Så er det aria-invalid selv om gruppa ikke har error', () => {
       render(
         <VisualCheckboxGroup>
-          <VisualCheckboxGroup.VisualCheckbox error>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
-          <VisualCheckboxGroup.VisualCheckbox>{'To'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent} error>
+            {'Ett'}
+          </VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'To'}</VisualCheckboxGroup.VisualCheckbox>
         </VisualCheckboxGroup>
       );
 
@@ -119,7 +125,7 @@ describe('Gitt at VisualCheckboxGroup skal vises', (): void => {
     test('Så rendres de uendret', () => {
       render(
         <VisualCheckboxGroup>
-          <VisualCheckboxGroup.VisualCheckbox>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
+          <VisualCheckboxGroup.VisualCheckbox visualContent={visualContent}>{'Ett'}</VisualCheckboxGroup.VisualCheckbox>
           <div data-testid={'tilfeldig'}>{'Et annet element'}</div>
         </VisualCheckboxGroup>
       );

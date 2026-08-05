@@ -6,10 +6,12 @@ import { vi } from 'vitest';
 
 import VisualCheckbox from './VisualCheckbox';
 
+const visualContent = <img src="https://placehold.co/64x64" alt="" />;
+
 describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
   describe('Når komponenten rendres uten props', () => {
     test('Så vises label og checkboksen er ikke checked', () => {
-      render(<VisualCheckbox>{'Et valg'}</VisualCheckbox>);
+      render(<VisualCheckbox visualContent={visualContent}>{'Et valg'}</VisualCheckbox>);
 
       const checkbox = screen.getByRole('checkbox', { name: 'Et valg' });
       expect(checkbox).toBeVisible();
@@ -19,7 +21,11 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
 
   describe('Når defaultChecked er satt', () => {
     test('Så er checkboksen checked', () => {
-      render(<VisualCheckbox defaultChecked>{'Et valg'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox defaultChecked visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       expect(screen.getByRole('checkbox', { name: 'Et valg' })).toBeChecked();
     });
@@ -28,7 +34,11 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
   describe('Når brukeren klikker på rammen', () => {
     test('Så toggles checkboksen og onChange kalles', async () => {
       const onChange = vi.fn();
-      render(<VisualCheckbox onChange={onChange}>{'Et valg'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox onChange={onChange} visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       await userEvent.click(screen.getByText('Et valg'));
 
@@ -44,7 +54,7 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
 
   describe('Når brukeren trykker på space', () => {
     test('Så toggles checkboksen', async () => {
-      render(<VisualCheckbox>{'Et valg'}</VisualCheckbox>);
+      render(<VisualCheckbox visualContent={visualContent}>{'Et valg'}</VisualCheckbox>);
 
       const checkbox = screen.getByRole('checkbox', { name: 'Et valg' });
       checkbox.focus();
@@ -56,23 +66,39 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
 
   describe('Når komponenten er kontrollert', () => {
     test('Så følger komponenten checked propen på første render', () => {
-      render(<VisualCheckbox checked>{'Et valg'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox checked visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       expect(screen.getByRole('checkbox', { name: 'Et valg' })).toBeChecked();
     });
 
     test('Så oppdateres komponenten når checked propen endres', () => {
-      const { rerender } = render(<VisualCheckbox checked={false}>{'Et valg'}</VisualCheckbox>);
+      const { rerender } = render(
+        <VisualCheckbox checked={false} visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       expect(screen.getByRole('checkbox', { name: 'Et valg' })).not.toBeChecked();
 
-      rerender(<VisualCheckbox checked>{'Et valg'}</VisualCheckbox>);
+      rerender(
+        <VisualCheckbox checked visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       expect(screen.getByRole('checkbox', { name: 'Et valg' })).toBeChecked();
     });
 
     test('Så kan bruker fortsatt styre checked state ved å trykke', async () => {
-      render(<VisualCheckbox checked>{'Et valg'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox checked visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       const checkbox = screen.getByRole('checkbox', { name: 'Et valg' });
       expect(checkbox).toBeChecked();
@@ -87,7 +113,7 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
     test('Så kan ikke checkboksen toggles', async () => {
       const onChange = vi.fn();
       render(
-        <VisualCheckbox disabled onChange={onChange}>
+        <VisualCheckbox disabled onChange={onChange} visualContent={visualContent}>
           {'Et valg'}
         </VisualCheckbox>
       );
@@ -105,7 +131,7 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
   describe('Når name, value og required sendes inn', () => {
     test('Så videresendes de til input', () => {
       render(
-        <VisualCheckbox name={'kategori'} value={'allergi'} required>
+        <VisualCheckbox name={'kategori'} value={'allergi'} required visualContent={visualContent}>
           {'Allergi'}
         </VisualCheckbox>
       );
@@ -119,7 +145,11 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
 
   describe('Når inputId er satt', () => {
     test('Så får input riktig id og label kobles via htmlFor', () => {
-      render(<VisualCheckbox inputId={'min-checkbox'}>{'Et valg'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox inputId={'min-checkbox'} visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       const checkbox = screen.getByRole('checkbox', { name: 'Et valg' });
       expect(checkbox).toHaveAttribute('id', 'min-checkbox');
@@ -129,7 +159,11 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
   describe('Når ref sendes inn', () => {
     test('Så peker den til input', () => {
       const ref = createRef<HTMLInputElement>();
-      render(<VisualCheckbox ref={ref}>{'Et valg'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox ref={ref} visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       expect(ref.current).toBe(screen.getByRole('checkbox', { name: 'Et valg' }));
     });
@@ -140,7 +174,7 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
       const onFocus = vi.fn();
       const onBlur = vi.fn();
       render(
-        <VisualCheckbox onFocus={onFocus} onBlur={onBlur}>
+        <VisualCheckbox onFocus={onFocus} onBlur={onBlur} visualContent={visualContent}>
           {'Et valg'}
         </VisualCheckbox>
       );
@@ -156,7 +190,11 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
 
   describe('Når aria-label er satt', () => {
     test('Så overstyrer den den synlige labelen som name', () => {
-      render(<VisualCheckbox aria-label={'Tilgjengelig navn'}>{'Synlig tekst'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox aria-label={'Tilgjengelig navn'} visualContent={visualContent}>
+          {'Synlig tekst'}
+        </VisualCheckbox>
+      );
 
       expect(screen.getByRole('checkbox', { name: 'Tilgjengelig navn' })).toBeVisible();
     });
@@ -164,7 +202,11 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
 
   describe('Når errorText er satt', () => {
     test('Så vises feilmeldingen og input markeres som aria-invalid', () => {
-      render(<VisualCheckbox errorText={'Feilmelding her'}>{'Et valg'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox errorText={'Feilmelding her'} visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       expect(screen.getByText('Feilmelding her')).toBeVisible();
       const checkbox = screen.getByRole('checkbox', { name: 'Et valg' });
@@ -178,7 +220,7 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
       render(
         <>
           <div id={'ekstern-error'}>{'Du må velge minst ett alternativ'}</div>
-          <VisualCheckbox error errorTextId={'ekstern-error'}>
+          <VisualCheckbox error errorTextId={'ekstern-error'} visualContent={visualContent}>
             {'Et valg'}
           </VisualCheckbox>
         </>
@@ -191,7 +233,11 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
 
   describe('Når testId er satt', () => {
     test('Så finnes elementet via data-testid', () => {
-      render(<VisualCheckbox testId={'min-frame'}>{'Et valg'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox testId={'min-frame'} visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       expect(screen.getByTestId('min-frame')).toBeVisible();
     });
@@ -199,7 +245,11 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
 
   describe('Når error er satt uten errorText', () => {
     test('Så markeres input som aria-invalid uten at det rendres feilmelding', () => {
-      render(<VisualCheckbox error>{'Et valg'}</VisualCheckbox>);
+      render(
+        <VisualCheckbox error visualContent={visualContent}>
+          {'Et valg'}
+        </VisualCheckbox>
+      );
 
       const checkbox = screen.getByRole('checkbox', { name: 'Et valg' });
       expect(checkbox).toHaveAttribute('aria-invalid', 'true');
@@ -210,7 +260,7 @@ describe('Gitt at VisualCheckboxGroup.VisualCheckbox vises', () => {
   describe('Når både checked og defaultChecked er satt', () => {
     test('Så vinner checked-propen på første render', () => {
       render(
-        <VisualCheckbox checked={false} defaultChecked>
+        <VisualCheckbox checked={false} defaultChecked visualContent={visualContent}>
           {'Et valg'}
         </VisualCheckbox>
       );
