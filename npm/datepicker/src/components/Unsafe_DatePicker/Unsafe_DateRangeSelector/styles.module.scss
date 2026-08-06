@@ -1,5 +1,4 @@
-@use 'sass:map';
-@use '@helsenorge/designsystem-react/scss/breakpoints' as breakpoints;
+@import '@helsenorge/designsystem-react/scss/supernova/styles/spacers';
 
 .date-range-selector {
   display: flex;
