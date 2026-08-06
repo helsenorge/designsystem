@@ -178,6 +178,7 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
 
   useEffect(() => {
     if (isValid(dateValue)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setInputValue(dateValue ? format(dateValue, dateFormat) : '');
       setDateState(dateValue);
       setMonth(dateValue);

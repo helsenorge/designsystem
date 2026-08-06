@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -65,6 +65,8 @@ export const Checkbox: React.FC<CheckboxProps> = props => {
     onChange,
     ref,
   } = props;
+
+  const [checkedControlledState, setCheckedControlledState] = useState(checked);
   const [isChecked, setIsChecked] = useState(checked);
   const errorTextId = useIdWithFallback(errorTextIdProp);
   const onWhite = onColor === FormOnColor.onwhite;
@@ -99,9 +101,13 @@ export const Checkbox: React.FC<CheckboxProps> = props => {
     [checkboxStyles['checkbox-label__text--disabled']]: disabled,
   });
 
-  useEffect(() => {
-    setIsChecked(checked);
-  }, [checked]);
+  if (checked !== checkedControlledState && typeof checked !== 'undefined') {
+    setCheckedControlledState(checked);
+
+    if (typeof checked !== 'undefined') {
+      setIsChecked(checked);
+    }
+  }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (onChange) {

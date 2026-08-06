@@ -106,11 +106,6 @@ const PanelRoot: React.FC<PanelProps> = ({
   ref,
 }: PanelProps) => {
   const panelListContext = React.useContext(PanelListContext);
-  const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
-  const [title, setTitle] = React.useState<React.ReactNode[]>([]);
-  const [content, setContent] = React.useState<React.ReactNode[]>([]);
-  const [expandableContent, setExpandableContent] = React.useState<React.ReactNode[]>([]);
-  const [hasIcon, setHasIcon] = React.useState(false);
   const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const localRef = React.useRef<HTMLDivElement>(null);
   const panelRef = ref ?? localRef;
@@ -130,7 +125,7 @@ const PanelRoot: React.FC<PanelProps> = ({
     ...resources,
   };
 
-  React.useEffect(() => {
+  const { preContainer, title, content, expandableContent, hasIcon } = React.useMemo(() => {
     let index = 0;
     let localHasIcon = false;
     const newPreContainer: React.ReactNode[] = [];
@@ -162,12 +157,14 @@ const PanelRoot: React.FC<PanelProps> = ({
       }
     });
 
-    setPreContainer(newPreContainer);
-    setTitle(newTitle);
-    setContent(newContent);
-    setExpandableContent(newExpandableContent);
-    setHasIcon(localHasIcon);
-  }, [children]);
+    return {
+      preContainer: newPreContainer,
+      title: newTitle,
+      content: newContent,
+      expandableContent: newExpandableContent,
+      hasIcon: localHasIcon,
+    };
+  }, [children, effectiveHighlightText]);
 
   React.useEffect(() => {
     if (expanded) {

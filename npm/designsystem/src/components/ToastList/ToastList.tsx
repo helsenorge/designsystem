@@ -34,6 +34,7 @@ const ToastList: React.FC<ToastListProps> = props => {
   React.useEffect(() => {
     const newToasts = toasts.filter(toast => !visibleToasts.some(vt => vt.id === toast.id) && !removedToastIds.has(toast.id));
     if (newToasts.length > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisibleToasts(prev => [...prev, ...newToasts]);
     }
   }, [toasts, visibleToasts, removedToastIds]);

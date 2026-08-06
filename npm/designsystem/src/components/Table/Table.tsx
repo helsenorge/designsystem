@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -54,7 +54,6 @@ export const Table: React.FC<Props> = ({
   scrollAriaLabelledById,
   ...rest
 }) => {
-  const [currentConfig, setCurrentConfig] = useState<BreakpointConfig>();
   const [tableWidth, setTableWidth] = useState<number>(0);
   const [parentWidth, setParentWidth] = useState<number>(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -62,9 +61,10 @@ export const Table: React.FC<Props> = ({
   const tableIsVisible = useIsVisible(tableRef, 0);
   const breakpoint = useBreakpoint();
 
-  useEffect(() => {
-    setCurrentConfig(getCurrentConfig(breakpointConfig, breakpoint, tableWidth, windowWidth));
-  }, [breakpointConfig, breakpoint, tableWidth, windowWidth]);
+  const currentConfig = useMemo(
+    () => getCurrentConfig(breakpointConfig, breakpoint, tableWidth, windowWidth),
+    [breakpointConfig, breakpoint, tableWidth, windowWidth]
+  );
 
   useEffect(() => {
     if (
