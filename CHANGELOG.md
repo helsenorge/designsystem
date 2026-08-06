@@ -1,3 +1,20 @@
+## [15.5.0](https://github.com/helsenorge/designsystem/compare/v15.4.0...v15.5.0) (2026-08-05)
+
+### Features
+
+* **datepicker:**  eksponer ref og legg på riktig fokushåndtering ([7bcb8f9](https://github.com/helsenorge/designsystem/commit/7bcb8f964ab1f4060f74506eba0423ea652f71ba)), closes [#377338](https://github.com/helsenorge/designsystem/issues/377338) [#380881](https://github.com/helsenorge/designsystem/issues/380881)
+* **datepicker:**  legg til prop for defaultMonth fra react-day-picker ([5c78125](https://github.com/helsenorge/designsystem/commit/5c781251c02fe83ea4f5938fa988129d79aca20b)), closes [#379294](https://github.com/helsenorge/designsystem/issues/379294)
+* **daterangeselector:**  hent resources i util funksjon istedenfor hos consumer ([be634e9](https://github.com/helsenorge/designsystem/commit/be634e912eccf1a1923b0ec8c2367b2b12fac74b)), closes [#381850](https://github.com/helsenorge/designsystem/issues/381850)
+* **filtersearch:**  tilby variant med og uten søkeknapp ([7f524e8](https://github.com/helsenorge/designsystem/commit/7f524e8502fcad953741d753248a2b0e5445f288)), closes [#381695](https://github.com/helsenorge/designsystem/issues/381695)
+* **icon:**  nytt ikon ArrowUpRightLight og endring på dagens ArrowUpRight ([b8f4e6e](https://github.com/helsenorge/designsystem/commit/b8f4e6eedd8a90a03c614d865d06af231d3b950c)), closes [#379773](https://github.com/helsenorge/designsystem/issues/379773)
+* **promopanel:**  endre illustration prop til å være reactnode ([588a9cf](https://github.com/helsenorge/designsystem/commit/588a9cf512f2d96a14eb5e2ef09778a91d82a21c)), closes [#373836](https://github.com/helsenorge/designsystem/issues/373836)
+
+### Bug Fixes
+
+* **datepicker:**  ikke ha space til soft error text før den trengs ([e70feb2](https://github.com/helsenorge/designsystem/commit/e70feb2ba4b96b2c7223f9a48a1f6aa1f794228e)), closes [#380882](https://github.com/helsenorge/designsystem/issues/380882)
+* **input:**  fiks maxcharacter count for controlled inputfelt ([1123f6b](https://github.com/helsenorge/designsystem/commit/1123f6b2245ddab107f450bb879f155d710fa4c7)), closes [#378142](https://github.com/helsenorge/designsystem/issues/378142)
+* **radiobutton:**  hoverfarge for oncolor hvit og grå ([1f49dd1](https://github.com/helsenorge/designsystem/commit/1f49dd141e24001b1091eb383eff6248633cc257)), closes [#380410](https://github.com/helsenorge/designsystem/issues/380410)
+
 ## [15.4.0](https://github.com/helsenorge/designsystem/compare/v15.3.0...v15.4.0) (2026-07-03)
 
 ### Features
