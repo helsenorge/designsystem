@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
+import type { Unsafe_DatePickerHandle } from './Unsafe_DatePicker';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
+import Button from '@helsenorge/designsystem-react/components/Button';
 import FormFieldTag from '@helsenorge/designsystem-react/components/FormFieldTag';
 import FormGroup from '@helsenorge/designsystem-react/components/FormGroup/FormGroup';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
@@ -94,6 +96,25 @@ export const WithFormGroup: Story = {
           }}
         />
       </FormGroup>
+    );
+  },
+};
+
+export const WithImperativeFocus: Story = {
+  render: args => {
+    const [value, setValue] = useState<Date | null | undefined>();
+    const datePickerRef = useRef<Unsafe_DatePickerHandle>(null);
+    return (
+      <>
+        <Button onClick={() => datePickerRef.current?.focus()}>{'Sett fokus i datofeltet'}</Button>
+        <br />
+        <Unsafe_DateAndTime
+          {...args}
+          value={value}
+          onChange={value => setValue(value)}
+          datepickerProps={{ ...args.datepickerProps, ref: datePickerRef }}
+        />
+      </>
     );
   },
 };
