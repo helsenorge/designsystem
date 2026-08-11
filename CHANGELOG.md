@@ -1,3 +1,11 @@
+## [15.5.1](https://github.com/helsenorge/designsystem/compare/v15.5.0...v15.5.1) (2026-08-11)
+
+### Bug Fixes
+
+* **datepicker:**  legg til ref som del av interface ([608e3c7](https://github.com/helsenorge/designsystem/commit/608e3c79021264b71503ea35963bfc73ed858bf3)), closes [#382784](https://github.com/helsenorge/designsystem/issues/382784)
+* **datepicker:**  skal ligge over filterdrawer ([12efc78](https://github.com/helsenorge/designsystem/commit/12efc78c305e580632f9007d04c74e0009d5ebe5)), closes [#382949](https://github.com/helsenorge/designsystem/issues/382949)
+* **daterangeselector:**  importer tokenfil ([0beb8eb](https://github.com/helsenorge/designsystem/commit/0beb8eb175ec881665efc40baf8a957adf6b7e34)), closes [#380549](https://github.com/helsenorge/designsystem/issues/380549)
+
 ## [15.5.0](https://github.com/helsenorge/designsystem/compare/v15.4.0...v15.5.0) (2026-08-05)
 
 ### Features
