@@ -134,6 +134,7 @@ const Unsafe_DatePicker = ({
     elements: {
       reference: containerRef.current,
     },
+    strategy: 'fixed',
   });
   const dayPickerPopupRef = useRef<HTMLDivElement>(null);
   const click = useClick(context);
