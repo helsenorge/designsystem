@@ -72,10 +72,7 @@ const Toggle: React.FC<ToggleProps> = ({
 
   if (checked !== checkedControlledState && typeof checked !== 'undefined') {
     setCheckedControlledState(checked);
-
-    if (typeof checked !== 'undefined') {
-      setCheckedState(checked);
-    }
+    setCheckedState(checked);
   }
 
   const getBackgroundColor = (): string => {

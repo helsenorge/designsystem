@@ -103,10 +103,7 @@ export const Checkbox: React.FC<CheckboxProps> = props => {
 
   if (checked !== checkedControlledState && typeof checked !== 'undefined') {
     setCheckedControlledState(checked);
-
-    if (typeof checked !== 'undefined') {
-      setIsChecked(checked);
-    }
+    setIsChecked(checked);
   }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
