@@ -14,8 +14,6 @@ export default [
     rules: {
       // This rule is temporarily set to warn so we can solve it later
       'react-hooks/refs': 'warn',
-      // This rule is temporarily set to warn so we can solve it later
-      'react-hooks/set-state-in-effect': 'warn',
 
       'react/prop-types': 'off',
       'react-hooks/exhaustive-deps': 'off',

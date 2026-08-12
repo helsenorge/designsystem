@@ -1,14 +1,17 @@
 import classNames from 'classnames';
 
-import HighlightPanel from '../HighlightPanel';
+import { useIsMobileBreakpoint } from '@helsenorge/designsystem-react/hooks/useIsMobileBreakpoint';
+
+import Icon, { IconSize } from '../Icon';
 import HandWaving from '../Icons/HandWaving';
+import Title from '../Title';
 
 import styles from './styles.module.scss';
 
-export type HelpPanelVariants = 'normal' | 'compact';
+export type HelpPanelVariants = 'normal' | 'compact' | 'subdued';
 
 export interface HelpPanelProps {
-  /** What's in the box? */
+  /** The content of the component */
   children: React.ReactNode;
   /** If set the compact styling will be used */
   variant?: HelpPanelVariants;
@@ -21,16 +24,55 @@ export interface HelpPanelProps {
 }
 
 const HelpPanel: React.FC<HelpPanelProps> = ({ className, variant = 'normal', testId, children, title }) => {
+  const isMobile = useIsMobileBreakpoint();
+
+  const containerClassName = classNames(
+    styles['help-panel'],
+    {
+      [styles['help-panel--compact']]: variant === 'compact',
+      [styles['help-panel--subdued']]: variant === 'subdued',
+    },
+    className
+  );
+
+  const renderContent = (): React.ReactNode => {
+    const titleElement = title && (
+      <Title testId="titleId" htmlMarkup={'h2'} appearance={'title6'}>
+        {title}
+      </Title>
+    );
+
+    const iconSize = isMobile ? IconSize.XSmall : IconSize.Small;
+
+    if (variant === 'compact') {
+      return (
+        <>
+          <div className={classNames(styles['help-panel__icon'], styles['help-panel__icon--compact'])}>
+            <Icon svgIcon={HandWaving} size={iconSize} />
+          </div>
+          <div className={classNames(styles['help-panel__content'], styles['help-panel__content--compact'])}>
+            {title && <div className={styles['help-panel__title-wrapper']}>{titleElement}</div>}
+            {children}
+          </div>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <div className={styles['help-panel__icon']}>{<Icon svgIcon={HandWaving} size={iconSize} />}</div>
+        <div className={styles['help-panel__content']}>
+          <div className={styles['help-panel__title-wrapper']}>{titleElement}</div>
+          {children}
+        </div>
+      </>
+    );
+  };
+
   return (
-    <HighlightPanel
-      className={classNames([styles['help-panel']], className)}
-      testId={testId}
-      svgIcon={HandWaving}
-      title={title}
-      variant={variant}
-    >
-      {children}
-    </HighlightPanel>
+    <div className={containerClassName} data-testid={testId}>
+      {renderContent()}
+    </div>
   );
 };
 

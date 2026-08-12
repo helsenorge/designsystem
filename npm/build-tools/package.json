@@ -22,14 +22,14 @@
   },
   "main": "./lib/index.js",
   "module": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "types": "./lib/src/index.d.ts",
   "exports": {
     ".": {
-      "types": "./lib/index.d.ts",
+      "types": "./lib/src/index.d.ts",
       "import": "./lib/index.js"
     },
     "./vite": {
-      "types": "./lib/vite.d.ts",
+      "types": "./lib/src/vite/copy.d.ts",
       "import": "./lib/vite.js"
     }
   },

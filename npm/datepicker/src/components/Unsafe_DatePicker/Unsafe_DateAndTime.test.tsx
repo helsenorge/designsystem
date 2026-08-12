@@ -96,7 +96,7 @@ describe('Gitt at Unsafe_DateAndTime skal vises', () => {
       render(<Wrapper />);
 
       // Erase a digit from the minute field; user is now mid-edit at '0' / partial.
-      const min = screen.getByLabelText(MIN_LABEL);
+      const min = screen.getByLabelText(MIN_LABEL) as HTMLInputElement;
       await user.clear(min);
       await user.type(min, '3');
 

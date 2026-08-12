@@ -1,3 +1,5 @@
+// Midlertidig disabling, følges opp i oppgave 382710
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState, useRef, useId } from 'react';
 
 import classNames from 'classnames';

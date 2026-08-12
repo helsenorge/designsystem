@@ -14,10 +14,7 @@ export type AnchorLinkTargets = '_self' | '_blank' | '_parent';
 export type AnchorLinkTags = 'a' | 'button';
 
 export type AnchorLinkOnClickEvent =
-  | React.MouseEvent<HTMLElement, MouseEvent>
-  | React.FormEvent<unknown>
-  | React.KeyboardEvent<HTMLUListElement>
-  | null;
+  React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null;
 
 export interface AnchorLinkProps {
   /** When true, onclick and keyboard events will be passed to the child. */

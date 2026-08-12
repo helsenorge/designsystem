@@ -71,6 +71,7 @@ export const DateTime: React.FC<DateTimeProps> = props => {
   const mergedRefs = mergeRefs([ref, refObject]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setInputValue(value ? formatAsTwoDigits(value) : undefined);
   }, [value]);
 

@@ -29,10 +29,15 @@ const meta = {
   args: {
     children: 'Button',
     href: 'https://www.helsenorge.no',
+    type: 'button',
   },
   argTypes: {
     children: {
       control: 'text',
+    },
+    type: {
+      control: 'select',
+      options: ['button', 'submit', 'reset'],
     },
     ellipsis: {
       control: 'boolean',
@@ -48,6 +53,15 @@ const meta = {
       options: ['button', 'a'],
     },
     href: {
+      control: 'text',
+    },
+    target: {
+      control: 'text',
+    },
+    rel: {
+      control: 'text',
+    },
+    referrerPolicy: {
       control: 'text',
     },
     arrow: {

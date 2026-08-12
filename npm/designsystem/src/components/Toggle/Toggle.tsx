@@ -49,6 +49,7 @@ const Toggle: React.FC<ToggleProps> = ({
   togglePosition = TogglePosition.left,
   testId,
 }: ToggleProps) => {
+  const [checkedControlledState, setCheckedControlledState] = useState(checked);
   const [checkedState, setCheckedState] = useState(checked);
   const [showToggleAnimation, setShowToggleAnimation] = useState(false);
   const [scope, animate] = useAnimate();
@@ -68,6 +69,11 @@ const Toggle: React.FC<ToggleProps> = ({
     : checkedState
       ? 'var(--color-action-graphics-light-ondark-normal)'
       : 'var(--core-color-neutral-700)';
+
+  if (checked !== checkedControlledState && typeof checked !== 'undefined') {
+    setCheckedControlledState(checked);
+    setCheckedState(checked);
+  }
 
   const getBackgroundColor = (): string => {
     if (disabled) {
@@ -93,10 +99,6 @@ const Toggle: React.FC<ToggleProps> = ({
       return (): void => clearTimeout(timer);
     }
   }, [showToggleAnimation]);
-
-  useEffect(() => {
-    setCheckedState(checked);
-  }, [checked]);
 
   useEffect(() => {
     if (!toggleRef.current || !toggleDotRef.current) return;

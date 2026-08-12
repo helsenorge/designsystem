@@ -122,22 +122,14 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
   };
 
   // Internal state - synced with external selectedDate
-  const [selected, setSelected] = useState<Date | undefined>(selectedDate);
   const [month, setMonth] = useState<Date>(selectedDate || defaultMonth || new Date());
-
-  // Update internal state when prop changes
-  React.useEffect(() => {
-    setSelected(selectedDate);
-  }, [selectedDate]);
 
   // Handle selection changes
   const handleSelect = (date: Date | undefined): void => {
-    if (date && selected && isSameDay(date, selected)) {
-      setSelected(undefined);
+    if (date && selectedDate && isSameDay(date, selectedDate)) {
       onDateChange?.(undefined);
       return;
     }
-    setSelected(date);
     onDateChange?.(date);
   };
 
@@ -193,10 +185,8 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDayButtonClick = (day: any, modifiers: Modifiers) => {
     if (modifiers.selected) {
-      setSelected(undefined);
       onDateChange?.(undefined);
     } else if (!modifiers.disabled) {
-      setSelected(day.date);
       onDateChange?.(day.date);
     }
   };
@@ -206,7 +196,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
       {...rdpProps}
       navLayout={'around'}
       mode={'single'}
-      selected={selected}
+      selected={selectedDate}
       month={month}
       onMonthChange={setMonth}
       onSelect={handleSelect}

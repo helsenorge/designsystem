@@ -59,6 +59,8 @@ export interface Unsafe_DatePickerProps extends Omit<BaseDayPickerProps, 'select
   ['aria-describedby']?: string;
   /** Sets aria-labelledby on the input, for connecting labels */
   ['aria-labelledby']?: string;
+  /** Ref exposing an imperative handle (e.g. `focus()`) for the input field */
+  ref?: React.Ref<Unsafe_DatePickerHandle>;
 }
 
 export interface Unsafe_DatePickerHandle {
@@ -78,7 +80,7 @@ const Unsafe_DatePicker = ({
   resources,
   ref,
   ...baseDayPickerProps
-}: Unsafe_DatePickerProps & { ref?: React.Ref<Unsafe_DatePickerHandle> }): React.ReactNode => {
+}: Unsafe_DatePickerProps): React.ReactNode => {
   // Normalize null and undefined to a single internal representation.
   const value = valueProp ?? undefined;
   const dateToString = (date: Date | undefined): string => {
@@ -132,6 +134,7 @@ const Unsafe_DatePicker = ({
     elements: {
       reference: containerRef.current,
     },
+    strategy: 'fixed',
   });
   const dayPickerPopupRef = useRef<HTMLDivElement>(null);
   const click = useClick(context);

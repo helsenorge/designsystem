@@ -4,7 +4,7 @@ This is **Helsenorge's design system** ("Frankenstein"): a TypeScript/React mono
 across [helsenorge.no](https://helsenorge.no) (Norway's national health portal). Documentation lives at
 [helsenorge.design](https://helsenorge.design).
 
-Requires Node `^24.0.0` and npm `11.6.2`.
+Requires Node `^24.0.0 || ^26.0.0` and npm `11.18.0`.
 
 ---
 
