@@ -1,6 +1,70 @@
+@use 'sass:map';
+@use '../../scss/font-mixins' as fonts;
+@use '../../scss/screen-reader' as *;
+@use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
 
 .help-panel {
-  background-color: var(--color-help-background-normal) !important;
-  border: 1px solid var(--color-help-border-subtle-wcag) !important;
+  display: flex;
+  flex-direction: row;
+  padding: var(--core-space-xs) var(--core-space-xs) var(--core-space-m);
+  background-color: var(--color-help-background-normal);
+  border: 1px solid var(--color-help-border-subtle-wcag);
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+    padding: var(--core-space-s) var(--core-space-s) var(--core-space-m);
+  }
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, xl)) {
+    padding: var(--core-space-s) var(--core-space-m) var(--core-space-m);
+  }
+
+  &--compact {
+    padding: var(--core-space-2xs) var(--core-space-s);
+  }
+
+  &--subdued {
+    background-color: transparent;
+  }
+
+  &--white {
+    background-color: var(--color-base-background-white);
+    border: 1px solid var(--color-base-border-onlight-subtle);
+  }
+
+  &__content {
+    @include fonts.help-text;
+
+    margin-top: 0.625rem;
+
+    &--compact {
+      margin-top: 0.625rem;
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    gap: var(--core-space-xs);
+    margin-right: var(--core-space-3xs);
+    margin-bottom: 0;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      margin-right: var(--core-space-2xs);
+    }
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, xl)) {
+      margin-right: var(--core-space-s);
+    }
+
+    &--compact {
+      margin-right: var(--core-space-2xs);
+      margin-bottom: 0;
+    }
+  }
+
+  &__title-wrapper {
+    display: flex;
+    align-items: center;
+  }
 }

@@ -27,7 +27,7 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: ['normal', 'compact'],
+      options: ['normal', 'compact', 'subdued'],
     },
   },
 } satisfies Meta<typeof HelpPanel>;
@@ -47,6 +47,13 @@ export const WithTitle: Story = {
 export const Compact: Story = {
   args: {
     variant: 'compact',
+  },
+  render: args => <HelpPanel {...args} />,
+};
+
+export const Subdued: Story = {
+  args: {
+    variant: 'subdued',
   },
   render: args => <HelpPanel {...args} />,
 };
