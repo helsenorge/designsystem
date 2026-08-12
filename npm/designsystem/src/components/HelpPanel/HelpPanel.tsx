@@ -8,12 +8,12 @@ import Title from '../Title';
 
 import styles from './styles.module.scss';
 
-export type HelpPanelVariants = 'normal' | 'compact' | 'subdued';
+export type HelpPanelVariants = 'normal' | 'subdued';
 
 export interface HelpPanelProps {
   /** The content of the component */
   children: React.ReactNode;
-  /** If set the compact styling will be used */
+  /** Sets the visual variant */
   variant?: HelpPanelVariants;
   /** Adds custom classes to the element. */
   className?: string;
@@ -29,7 +29,6 @@ const HelpPanel: React.FC<HelpPanelProps> = ({ className, variant = 'normal', te
   const containerClassName = classNames(
     styles['help-panel'],
     {
-      [styles['help-panel--compact']]: variant === 'compact',
       [styles['help-panel--subdued']]: variant === 'subdued',
     },
     className
@@ -43,20 +42,6 @@ const HelpPanel: React.FC<HelpPanelProps> = ({ className, variant = 'normal', te
     );
 
     const iconSize = isMobile ? IconSize.XSmall : IconSize.Small;
-
-    if (variant === 'compact') {
-      return (
-        <>
-          <div className={classNames(styles['help-panel__icon'], styles['help-panel__icon--compact'])}>
-            <Icon svgIcon={HandWaving} size={iconSize} />
-          </div>
-          <div className={classNames(styles['help-panel__content'], styles['help-panel__content--compact'])}>
-            {title && <div className={styles['help-panel__title-wrapper']}>{titleElement}</div>}
-            {children}
-          </div>
-        </>
-      );
-    }
 
     return (
       <>
