@@ -58,11 +58,6 @@ stages:
                 sonar.coverage.exclusions=**/__*__/**/*,**/*.config.js,**/*.config.ts,**/*.stories.tsx,**/Icons/*.tsx,**/Illustrations/*.tsx,**/Icons/*.ts,**/Illustrations/*.ts,**/components/*/index.ts,**/components/*/*/index.ts
                 sonar.javascript.lcov.reportPaths=$(working_directory)/coverage/lcov.info
                 sonar.typescript.tsconfigPath=$(working_directory)/tsconfig-sonarqube.json
-                # css:S8778 ("@import must precede other rules") is a false positive in SCSS:
-                # Sass requires @use before @import, and the plain-CSS @import ends up first in compiled output anyway.
-                sonar.issue.ignore.multicriteria=scssImportAfterUse
-                sonar.issue.ignore.multicriteria.scssImportAfterUse.ruleKey=css:S8778
-                sonar.issue.ignore.multicriteria.scssImportAfterUse.resourceKey=**/*.scss
 
           # Install node version
           - task: NodeTool@0
