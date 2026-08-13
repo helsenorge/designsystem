@@ -41,6 +41,12 @@ const meta = {
       control: 'text',
       description: 'Override the default max height for collapsed teaser. Default is 12.25rem',
     },
+    variant: {
+      control: {
+        type: 'select',
+        options: ['normal', 'subdued'],
+      },
+    },
   },
 } satisfies Meta<typeof HelpTeaser>;
 
@@ -50,5 +56,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
+  render: args => <HelpTeaser {...args} />,
+};
+
+export const Subdued: Story = {
+  args: { variant: 'subdued' },
   render: args => <HelpTeaser {...args} />,
 };
