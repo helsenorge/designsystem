@@ -16,7 +16,6 @@ import type { Locale } from 'date-fns';
 import type { DayPickerProps, Labels, Matcher, Modifiers, MonthGridProps } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
-// import HelpBubble from '@helsenorge/designsystem-react/components/HelpBubble';
 import Loader from '@helsenorge/designsystem-react/components/Loader';
 
 import { LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
@@ -35,13 +34,6 @@ export type DatePickerModifiers = {
   disabled?: Date[] | Matcher[];
   [key: string]: Date[] | Matcher[] | undefined;
 };
-
-// //begrensning her: hvis man velger en dato så lukkes popup så da vil ikke helpbubble vises for ikke-disabled datoer
-// export type HelpBubbleText = {
-//   id: string;
-//   dates: Date | Date[] | Matcher | Matcher[];
-//   text: string;
-// };
 
 export interface BaseDayPickerProps extends Pick<
   DayPickerProps,
@@ -64,8 +56,6 @@ export interface BaseDayPickerProps extends Pick<
   labelsForCalendar?: Partial<Labels>;
   /** Resources for component */
   resources?: Partial<HNDesignsystemUnsafe_DatePicker>;
-  // /** Texts with dates or matcher functions for showing helpbubbles on given dates */
-  // helpBubbleTexts?: HelpBubbleText[];
 }
 
 const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
@@ -78,7 +68,6 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
     footer,
     resources,
     localeForCalendar = nb,
-    // helpBubbleTexts,
     labelsForCalendar,
     defaultMonth,
     ...rdpProps
@@ -133,53 +122,9 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
     onDateChange?.(date);
   };
 
-  // const helpBubbleTextModifiers = {} as DatePickerModifiers;
-  // helpBubbleTexts?.forEach(helpBubbleText => {
-  //   const dates = Array.isArray(helpBubbleText.dates) ? helpBubbleText.dates : [helpBubbleText.dates];
-  //   helpBubbleTextModifiers[helpBubbleText.id] = dates;
-  // });
-
   const modifiersExtended: DatePickerModifiers = {
     ...modifiers,
-    // ...helpBubbleTextModifiers,
   };
-
-  // Find help text for a given day
-  // const getHelpTextForDay = (day: CalendarDay): string => {
-  //   let foundHelpText = '';
-  //   Object.keys(helpBubbleTextModifiers).forEach(key => {
-  //     const dates = helpBubbleTextModifiers[key];
-  //     if (dates && day?.date) {
-  //       dates.forEach(dateOrMatcher => {
-  //         let isMatch = false;
-
-  //         if (dateOrMatcher == null) {
-  //           return;
-  //         }
-
-  //         // Check if it's a Date object
-  //         if (dateOrMatcher instanceof Date) {
-  //           isMatch = isSameDay(day.date, dateOrMatcher);
-  //         }
-
-  //         // Check if it's a matcher function
-  //         else if (typeof dateOrMatcher === 'function') {
-  //           isMatch = dateOrMatcher(day.date);
-  //         } else if (typeof dateOrMatcher === 'object' && dateOrMatcher !== null) {
-  //           isMatch = matchesDayObjectMatcher(day.date, dateOrMatcher);
-  //         }
-  //         if (isMatch) {
-  //           const helpBubbleText = helpBubbleTexts?.find(hbt => hbt.id === key);
-  //           const helpText = helpBubbleText?.text;
-  //           if (helpText) {
-  //             foundHelpText = helpText;
-  //           }
-  //         }
-  //       });
-  //     }
-  //   });
-  //   return foundHelpText;
-  // };
 
   // Handle DayButton click for popover and selection
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -236,7 +181,6 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
           // const [openPopover, setOpenPopover] = useState(false);
           // const popoverText = getHelpTextForDay(day);
           const buttonRef = React.useRef<HTMLButtonElement>(null);
-          // const helpBubbleId = 'helpbubble-' + day.date.getUTCDate();
           const handleClick = (): void => {
             handleDayButtonClick(day, modifiers);
             // if (popoverText) {
@@ -277,16 +221,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
                 onClick={handleClick}
                 aria-label={ariaLabel()}
                 // aria-haspopup={popoverText ? 'dialog' : false}
-                // aria-controls={helpBubbleId} // @todo: mulig noe må gjøres her for skjermlesere
               />
-              {/* <HelpBubble
-                helpBubbleId={helpBubbleId}
-                showBubble={openPopover}
-                onClose={() => setOpenPopover(false)}
-                controllerRef={buttonRef}
-              >
-                <span>{popoverText}</span>
-              </HelpBubble> */}
             </>
           );
         },

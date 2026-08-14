@@ -22,7 +22,6 @@ const meta = {
     modifiers: { control: 'object' },
     showGoToTodayButton: { control: 'boolean' },
     resources: { control: 'object' },
-    // helpBubbleTexts: { control: 'object' },
     startMonth: { control: 'date' },
     endMonth: { control: 'date' },
     defaultMonth: { control: 'date' },
@@ -112,36 +111,6 @@ export const ModifiersExample: Story = {
     );
   },
 };
-
-// export const WithHelpBubbles: Story = {
-//   args: {
-//     helpBubbleTexts: [
-//       {
-//         id: 'disabledPast',
-//         dates: { from: new Date(0), to: new Date() },
-//         text: 'Du kan ikke velge datoer i fortiden',
-//       },
-//       {
-//         id: 'emphasizedWeekends',
-//         dates: { dayOfWeek: [0, 6] },
-//         text: 'Helgedager er markert',
-//       },
-//     ],
-//     modifiers: {
-//       disabled: [{ from: new Date(0), to: new Date() }],
-//     },
-//   },
-//   render: args => {
-//     const [value, setValue] = useState<Date>();
-//     return (
-//       <>
-//         <Unsafe_DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />
-//         <br />
-//         <span>{'Value: ' + value}</span>
-//       </>
-//     );
-//   },
-// };
 
 export const Locales: Story = {
   args: {
