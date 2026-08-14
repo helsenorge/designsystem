@@ -1,22 +1,125 @@
+@use 'sass:map';
+@use '../../scss/font-mixins' as fonts;
+@use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
+
+.wrapper {
+  position: relative;
+}
 
 .helpteaser {
+  display: grid;
+  grid-template-columns: [icon] auto [content] 1fr;
+  width: 100%;
+  overflow: hidden;
   background-color: var(--color-help-background);
   border: 1px solid var(--color-help-border-subtle-wcag);
+  padding: var(--core-space-xs) var(--core-space-xs) var(--core-space-m);
 
-  &::after {
-    background: linear-gradient(180deg, #f4ecfe40 0%, #f4ecfe 80%);
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+    padding: var(--core-space-s) var(--core-space-s) var(--core-space-m);
+  }
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    padding: var(--core-space-s) var(--core-space-s) var(--core-space-l);
+  }
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
+    padding: var(--core-space-s) var(--core-space-m) var(--core-space-l);
+  }
+
+  &--subdued {
+    background-color: var(--color-base-background-white);
+  }
+
+  &--collapsed {
+    &::after {
+      content: '';
+      position: absolute;
+      height: 5.875rem;
+      background: linear-gradient(180deg, #f4ecfe40 0%, #f4ecfe 80%);
+
+      /* 1px på hver side for å ikke ligge over border */
+      bottom: 1px;
+      left: 1px;
+      width: calc(100% - 2px);
+    }
+  }
+
+  &--collapsed#{&}--subdued {
+    &::after {
+      background: linear-gradient(180deg, #fff6 0%, #fff 80%);
+    }
+  }
+
+  &__title {
+    grid-column: content;
+    grid-row: 1;
+    align-self: center;
+    padding: var(--core-space-2xs) 0;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding-top: 0.62rem;
+    }
+  }
+
+  &__icon {
+    grid-column: icon;
+    grid-row: 1;
+    align-self: center;
+    margin-right: var(--core-space-3xs);
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      margin-right: var(--core-space-2xs);
+    }
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
+      margin-right: var(--core-space-s);
+    }
+  }
+
+  &__text {
+    @include fonts.help-text;
+
+    grid-column: content;
+    overflow: hidden;
+    height: inherit;
   }
 
   &__button {
-    background-color: var(--color-help-graphics);
+    position: absolute;
+    right: calc(50%);
+    border: none;
+    width: fit-content;
+    white-space: nowrap;
+    border-radius: 1.25rem;
+    color: var(--core-color-white, #fff);
+    padding: 0.375rem 1rem;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    cursor: pointer;
+
+    /* @todo Mobile/HelpTriggerText */
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; // 1.2rem
+    background-color: var(--color-help-graphics-normal);
 
     &:hover {
-      background-color: var(--color-help-graphics-plus2);
+      background-color: var(--color-help-graphics-verydark);
     }
 
     &:active {
-      background-color: var(--color-help-graphics-plus1);
+      background-color: var(--color-help-graphics-dark);
+    }
+
+    &:focus-visible {
+      border: 1px solid var(--color-base-graphics-ondark);
+      outline: none;
+      box-shadow: 0 0 0 3px var(--color-base-graphics-onlight);
     }
   }
 }
