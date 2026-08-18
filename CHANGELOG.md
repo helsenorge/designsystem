@@ -1,3 +1,16 @@
+## [15.6.0](https://github.com/helsenorge/designsystem/compare/v15.5.1...v15.6.0) (2026-08-18)
+
+### Features
+
+* **helppanel:**  ny variant subdued og spacing endringer ([ab758f9](https://github.com/helsenorge/designsystem/commit/ab758f9b0fe6cb6b5df4a1fd9e46a5b17095afef)), closes [#381355](https://github.com/helsenorge/designsystem/issues/381355)
+* **helpteaser:**  ny prop variant med subdued valg ([83ffba6](https://github.com/helsenorge/designsystem/commit/83ffba63fb1e0c67c84d9de416ca88b98dbcd9b1)), closes [#381365](https://github.com/helsenorge/designsystem/issues/381365)
+
+### Bug Fixes
+
+*  formgroup og formlayout spacing fikses ([31ea3ff](https://github.com/helsenorge/designsystem/commit/31ea3ff9e6250ae41cb59d1fae94452e5cbce5f7)), closes [#374103](https://github.com/helsenorge/designsystem/issues/374103)
+* **close:**  fokus outline 4px ([b51d0dd](https://github.com/helsenorge/designsystem/commit/b51d0ddb149ff7103dfe1d2f6a09ce80c00f723f)), closes [#379795](https://github.com/helsenorge/designsystem/issues/379795)
+* **helppanel:**  styling settes på riktig breakpoint ([103a337](https://github.com/helsenorge/designsystem/commit/103a337a36d5df5ebe4a5963328a060ff1e4ac5c)), closes [#381355](https://github.com/helsenorge/designsystem/issues/381355)
+
 ## [15.5.1](https://github.com/helsenorge/designsystem/compare/v15.5.0...v15.5.1) (2026-08-11)
 
 ### Bug Fixes
