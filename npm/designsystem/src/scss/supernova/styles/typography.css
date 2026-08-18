@@ -108,4 +108,10 @@
 
   /* For use in Help trigger components */
   --mobile-help-trigger-text: 600 1rem/120% "Source Sans 3";
+
+  /* Eyebrow er en stikktittel som gir mulighet til å videreføre et tema eller område over flere sider – slik at man implisitt ser at siden man er på tilhører et gitt tema eller område. */
+  --desktop-eyebrow: 400 1.25rem/1.875rem "Source Sans Pro";
+
+  /* Eyebrow er en stikktittel som gir mulighet til å videreføre et tema eller område over flere sider – slik at man implisitt ser at siden man er på tilhører et gitt tema eller område. */
+  --mobile-eyebrow: 400 1.125rem/1.688rem "Source Sans Pro";
 }
