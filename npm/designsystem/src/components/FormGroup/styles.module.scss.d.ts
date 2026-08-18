@@ -2,6 +2,8 @@ export type Styles = {
   'field-set': string;
   'field-set__legend': string;
   'field-set__legend--on-dark': string;
+  'field-set--compact-gap': string;
+  'field-set--compact-sublabel-gap': string;
   'form-group-wrapper': string;
   'form-group-wrapper__title--on-dark': string;
 };

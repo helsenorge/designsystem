@@ -5,9 +5,10 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import FormLayout from './FormLayout';
 import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
-import Label from '../Label';
+import Label, { Sublabel } from '../Label';
 import { FormLayoutColumns } from './constants';
 import RadioButton from '../RadioButton/RadioButton';
+import Spacer from '../Spacer';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/FormLayout',
@@ -65,6 +66,55 @@ export const CheckboxChildren: Story = {
   ),
 };
 
+export const CheckboxChildrenWithSublabel: Story = {
+  render: args => (
+    <FormGroup title={'Her kan du styre maks antall kolonner'} legend={'Antallet er basert på hvor mange som har plass'}>
+      <FormLayout {...args}>
+        <Checkbox
+          inputId={'Checkbox1'}
+          aria-describedby={'sublabelid01'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Checkbox 1' }]}
+              sublabel={<Sublabel id={'sublabelid01'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <Checkbox
+          inputId={'Checkbox2'}
+          aria-describedby={'sublabelid02'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Checkbox 2' }]}
+              sublabel={<Sublabel id={'sublabelid02'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <Checkbox
+          inputId={'Checkbox3'}
+          aria-describedby={'sublabelid03'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Checkbox 3' }]}
+              sublabel={<Sublabel id={'sublabelid03'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <Checkbox
+          inputId={'Checkbox4'}
+          aria-describedby={'sublabelid04'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Checkbox 4' }]}
+              sublabel={<Sublabel id={'sublabelid04'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+      </FormLayout>
+    </FormGroup>
+  ),
+};
+
 export const RadioButtonChildren: Story = {
   render: args => (
     <>
@@ -79,6 +129,7 @@ export const RadioButtonChildren: Story = {
           <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
         </FormLayout>
       </FormGroup>
+      <Spacer size={'m'} />
       <FormGroup legend={'Radio radio hello!'} name={'radiogroup2'}>
         <FormLayout {...args}>
           <RadioButton inputId={'RadioButton4'} label={<Label labelTexts={[{ text: 'Radiobutton 4' }]} />} />
@@ -87,5 +138,48 @@ export const RadioButtonChildren: Story = {
         </FormLayout>
       </FormGroup>
     </>
+  ),
+};
+
+export const RadioButtonChildrenWithSublabel: Story = {
+  render: args => (
+    <FormGroup
+      title={'Her kan du styre maks antall kolonner'}
+      legend={'Antallet er basert på hvor mange som har plass'}
+      name={'radiogroup3'}
+    >
+      <FormLayout {...args}>
+        <RadioButton
+          inputId={'RadioButton7'}
+          aria-describedby={'sublabelid07'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Radiobutton 7' }]}
+              sublabel={<Sublabel id={'sublabelid07'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <RadioButton
+          inputId={'RadioButton8'}
+          aria-describedby={'sublabelid08'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Radiobutton 8' }]}
+              sublabel={<Sublabel id={'sublabelid08'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <RadioButton
+          inputId={'RadioButton9'}
+          aria-describedby={'sublabelid09'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Radiobutton 9' }]}
+              sublabel={<Sublabel id={'sublabelid09'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+      </FormLayout>
+    </FormGroup>
   ),
 };
