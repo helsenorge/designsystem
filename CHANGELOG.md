@@ -1,3 +1,9 @@
+## [15.7.0](https://github.com/helsenorge/designsystem/compare/v15.6.0...v15.7.0) (2026-08-19)
+
+### Features
+
+*  ikoner for innstillinger ([86e28d9](https://github.com/helsenorge/designsystem/commit/86e28d950a40b9dd72fa63cbac8e09ad5ff79dd2)), closes [#383478](https://github.com/helsenorge/designsystem/issues/383478)
+
 ## [15.6.0](https://github.com/helsenorge/designsystem/compare/v15.5.1...v15.6.0) (2026-08-18)
 
 ### Features
