@@ -1,3 +1,9 @@
+## [15.7.1](https://github.com/helsenorge/designsystem/compare/v15.7.0...v15.7.1) (2026-08-20)
+
+### Bug Fixes
+
+*  fjernet svg wrapper rundt ikon ([1ae60d4](https://github.com/helsenorge/designsystem/commit/1ae60d4ad62a90ebfff4f956c956ce46c76aee9c)), closes [#383478](https://github.com/helsenorge/designsystem/issues/383478)
+
 ## [15.7.0](https://github.com/helsenorge/designsystem/compare/v15.6.0...v15.7.0) (2026-08-19)
 
 ### Features
