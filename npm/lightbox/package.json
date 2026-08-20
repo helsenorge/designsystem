@@ -2,7 +2,7 @@
   "name": "@helsenorge/lightbox",
   "sideEffects": false,
   "private": false,
-  "version": "15.7.2",
+  "version": "15.7.3",
   "description": "The official Helsenorge lightbox.",
   "repository": {
     "type": "git",

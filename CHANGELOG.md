@@ -1,3 +1,9 @@
+## [15.7.3](https://github.com/helsenorge/designsystem/compare/v15.7.1...v15.7.3) (2026-08-20)
+
+### Bug Fixes
+
+*  reversed icon ([c1cc13a](https://github.com/helsenorge/designsystem/commit/c1cc13ae59db05de41d21d4431219ea7529f35a5)), closes [#383478](https://github.com/helsenorge/designsystem/issues/383478)
+
 ## [15.7.2](https://github.com/helsenorge/designsystem/compare/v15.7.1...v15.7.2) (2026-08-20)
 
 ### Bug Fixes
