@@ -156,7 +156,7 @@ export const IconList = [
   'HandWithDisease',
   'HealthcarePerson',
   'HealthcarePersonell',
-  'HealthCarePersonnelSecurity',
+  'HealthcarePersonnelSecurity',
   'HealthClinic',
   'HealthMeasurements',
   'HealthWarning',
