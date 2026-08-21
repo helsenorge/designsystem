@@ -1,4 +1,5 @@
 /* Base tokens */
 @import './styles/spacers.css';
 @import './styles/colors.css';
+@import './styles/legacy-colors.css';
 @import './styles/typography.css';
