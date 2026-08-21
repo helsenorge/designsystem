@@ -6,7 +6,7 @@
 @forward 'body';
 @forward 'print';
 @forward 'radio-reset';
-@use './supernova/styles/legacy-colors.css';
+@use './supernova-legacy/styles/legacy-colors.css';
 @import './bootstrap/scss/bootstrap-grid';
 @import './supernova/styles/colors.css';
 @import './supernova/styles/spacers.css';
