@@ -295,12 +295,6 @@
       "require": "./lib/components/HelpTeaser/index.js",
       "default": "./lib/components/HelpTeaser/index.js"
     },
-    "./components/HelpTooltip/HelpTooltip": {
-      "types": "./lib/components/HelpTooltip/HelpTooltip.d.ts",
-      "import": "./lib/components/HelpTooltip/index.js",
-      "require": "./lib/components/HelpTooltip/index.js",
-      "default": "./lib/components/HelpTooltip/index.js"
-    },
     "./components/HelpTriggerIcon/HelpSign": {
       "types": "./lib/components/HelpTriggerIcon/HelpSign.d.ts",
       "import": "./lib/components/HelpTriggerIcon/index.js",

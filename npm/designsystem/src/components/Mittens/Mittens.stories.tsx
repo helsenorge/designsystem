@@ -4,7 +4,8 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import HelpTooltip from '../HelpTooltip';
+import HelpBubble from '../HelpBubble';
+import HelpTriggerInline from '../HelpTriggerInline';
 import Label from '../Label';
 import Select from '../Select';
 
@@ -31,6 +32,32 @@ const getDescriptionText = (xsCount: number, smCount: number, lxlCount: number):
   return `XS: ${xsCount}, S/M: ${smCount}, L/XL: ${lxlCount}`;
 };
 
+interface SizeHelpProps {
+  description: string;
+  children: string;
+}
+
+const SizeHelp = ({ description, children }: SizeHelpProps): React.JSX.Element => {
+  const controllerRef = React.useRef<HTMLButtonElement>(null);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <>
+      <HelpTriggerInline
+        ref={controllerRef}
+        ariaLabel={`Forklaring: ${children}`}
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {children}
+      </HelpTriggerInline>
+      <HelpBubble controllerRef={controllerRef} showBubble={isOpen} onClose={() => setIsOpen(false)}>
+        {description}
+      </HelpBubble>
+    </>
+  );
+};
+
 interface MittenProps {
   initialSize: MittensSize;
 }
@@ -52,7 +79,7 @@ const Mitten = ({ initialSize }: MittenProps): React.JSX.Element => {
       <p>
         {'Legg opp '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(40, 44, 48)}>{getParsedSizeString(size, 40, 44, 48)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(40, 44, 48)}>{getParsedSizeString(size, 40, 44, 48)}</SizeHelp>
         </span>
         {
           ' masker på pinne 3mm på den måten du ønsker. Forslag: italiensk opplegg. Sett en markør som markerer omgangens start i høyre side.'
@@ -63,14 +90,14 @@ const Mitten = ({ initialSize }: MittenProps): React.JSX.Element => {
       <p>
         {'Bytt til pinne 3,5mm. Strikk 1 omgang rundt i glattstrikk samtidig som du øker 2 masker jevnt fordelt = '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(42, 46, 50)}>{getParsedSizeString(size, 42, 46, 50)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(42, 46, 50)}>{getParsedSizeString(size, 42, 46, 50)}</SizeHelp>
         </span>
         {' masker.'}
       </p>
       <p>
         {'Strikk glattstrikk rundt til votten måler ca '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(6, 6.5, 7)}>{getParsedSizeString(size, 6, 6.5, 7)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(6, 6.5, 7)}>{getParsedSizeString(size, 6, 6.5, 7)}</SizeHelp>
         </span>
         {' cm målt fra vrangborden.'}
       </p>
@@ -83,15 +110,15 @@ const Mitten = ({ initialSize }: MittenProps): React.JSX.Element => {
       <p>
         {'Fra maskemarkør: Strikk 1 maske rett, strikk '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</SizeHelp>
         </span>
         {' masker med kontrasttråd, sett de '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</SizeHelp>
         </span>
         {' maskene tilbake på venstre pinne, strikk de '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</SizeHelp>
         </span>
         {' maskene med det vanlige garnet ditt. Strikk rett til omgangens start.'}
       </p>
@@ -99,26 +126,26 @@ const Mitten = ({ initialSize }: MittenProps): React.JSX.Element => {
       <p>
         {'Fra maskemarkør: Strikk '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(13, 15, 16)}>{getParsedSizeString(size, 13, 15, 16)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(13, 15, 16)}>{getParsedSizeString(size, 13, 15, 16)}</SizeHelp>
         </span>
         {' masker rett, strikk '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</SizeHelp>
         </span>
         {' masker med kontrasttråd, sett de '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</SizeHelp>
         </span>
         {' maskene tilbake på venstre pinne, strikk de '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</SizeHelp>
         </span>
         {' maskene med det vanlige garnet ditt. Strikk rett til omgangens start.'}
       </p>
       <p>
         {'Strikk så videre rundt i glattstrikk til arbeidet måler ca. '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(15, 16, 17)}>{getParsedSizeString(size, 15, 16, 17)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(15, 16, 17)}>{getParsedSizeString(size, 15, 16, 17)}</SizeHelp>
         </span>
         {' cm målt fra vrangborden. (Prøv gjerne på, og start fellingene når kun fingertuppene strikker ut).'}
       </p>
@@ -126,7 +153,7 @@ const Mitten = ({ initialSize }: MittenProps): React.JSX.Element => {
       <p>
         {'Det skal nå felles på hver side. Sett en til maskemarkør '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(21, 23, 25)}>{getParsedSizeString(size, 21, 23, 25)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(21, 23, 25)}>{getParsedSizeString(size, 21, 23, 25)}</SizeHelp>
         </span>
         {' masker fra den første.'}
       </p>
@@ -142,22 +169,22 @@ const Mitten = ({ initialSize }: MittenProps): React.JSX.Element => {
       <p>
         {'Gjenta 1. og 2. pinne i alt '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(3, 3, 3)}>{getParsedSizeString(size, 3, 3, 3)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(3, 3, 3)}>{getParsedSizeString(size, 3, 3, 3)}</SizeHelp>
         </span>
         {' ganger = '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(30, 34, 38)}>{getParsedSizeString(size, 30, 34, 38)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(30, 34, 38)}>{getParsedSizeString(size, 30, 34, 38)}</SizeHelp>
         </span>
         {' masker.'}
       </p>
       <p>
         {'Strikk så kun 1. pinne i alt '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(4, 5, 6)}>{getParsedSizeString(size, 4, 5, 6)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(4, 5, 6)}>{getParsedSizeString(size, 4, 5, 6)}</SizeHelp>
         </span>
         {' ganger = '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(14, 14, 14)}>{getParsedSizeString(size, 14, 14, 14)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(14, 14, 14)}>{getParsedSizeString(size, 14, 14, 14)}</SizeHelp>
         </span>
         {' masker.'}
       </p>
@@ -167,33 +194,33 @@ const Mitten = ({ initialSize }: MittenProps): React.JSX.Element => {
       <p>
         {'Hent opp '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</SizeHelp>
         </span>
         {' masker nedenfor kontrasttråden, hent om 1 maske i siden, hent opp '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(7, 7, 8)}>{getParsedSizeString(size, 7, 7, 8)}</SizeHelp>
         </span>
         {' masker ovenfor kontrasttråden, hent opp 1 maske i siden = '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(16, 16, 18)}>{getParsedSizeString(size, 16, 16, 18)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(16, 16, 18)}>{getParsedSizeString(size, 16, 16, 18)}</SizeHelp>
         </span>
         {' masker til tommel. Kontrasttråden kan nå fjernes.'}
       </p>
       <p>
         {'Strikk rundt i glattstrikk til tommelen måler ca. '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(6, 6.5, 7)}>{getParsedSizeString(size, 6, 6.5, 7)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(6, 6.5, 7)}>{getParsedSizeString(size, 6, 6.5, 7)}</SizeHelp>
         </span>
         {' cm.'}
       </p>
       <p>
         {'Strikk 2 rett sammen ut omgangen. Strikk 1 omgang rett. Strikk 2 rett sammen til det gjenstår '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(0, 0, 1)}>{getParsedSizeString(size, 0, 0, 1)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(0, 0, 1)}>{getParsedSizeString(size, 0, 0, 1)}</SizeHelp>
         </span>
         {' maske, strikk '}
         <span className={styles['size-format']}>
-          <HelpTooltip description={getDescriptionText(0, 0, 1)}>{getParsedSizeString(size, 0, 0, 1)}</HelpTooltip>
+          <SizeHelp description={getDescriptionText(0, 0, 1)}>{getParsedSizeString(size, 0, 0, 1)}</SizeHelp>
         </span>
         {' maske rett. Bryt tråden, dra den gjennom alle maskene og snurp sammen.'}
       </p>

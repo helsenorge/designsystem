@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'HelpExpanderStandalone tilbyr et felt med kontekstuell informasjon som opptrer mellom andre elementer. I motsetning til HelpBubble og HelpTooltip vises informasjonen direkte i flaten, ikke over som en popup. HelpExpanderStandalone benyttes for å gi innbygger en utdypet forklaring eller hjelp under tekst eller elementer på siden.',
+          'HelpExpanderStandalone tilbyr et felt med kontekstuell informasjon som opptrer mellom andre elementer. I motsetning til HelpBubble vises informasjonen direkte i flaten, ikke over som en popup. HelpExpanderStandalone benyttes for å gi innbygger en utdypet forklaring eller hjelp under tekst eller elementer på siden.',
       },
       page: (): React.JSX.Element => <Docs component={HelpExpanderStandalone} />,
     },
