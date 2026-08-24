@@ -5,7 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "confluence:icons": "node utils/IconGenerator/index.js"
+    "confluence:icons": "node utils/IconGenerator/index.js",
+    "import:icons": "node utils/import-icons.mjs"
   },
   "author": "Helsenorge",
   "license": "ISC",
