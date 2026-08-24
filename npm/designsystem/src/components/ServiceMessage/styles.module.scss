@@ -52,7 +52,7 @@
   }
 
   &__icon {
-    fill: var(--color-action-graphics-dark-onlight-normal);
+    fill: var(--color-action-graphics-dark-normal);
   }
 
   &__container {
@@ -77,7 +77,7 @@
     }
 
     &--has-expander:has(:focus-visible) {
-      box-shadow: inset 0 0 0 4px var(--color-action-border-dark-onlight-focus);
+      box-shadow: inset 0 0 0 4px var(--color-action-border-dark-focus);
     }
 
     &--info#{&}--has-expander {
@@ -223,7 +223,7 @@
     align-items: center;
     border: none;
     width: fit-content;
-    color: var(--color-action-text-dark-onlight-normal);
+    color: var(--color-action-text-dark-normal);
     font-weight: 600;
     font-size: font-settings.$font-size-xs;
     line-height: 1.25rem;
@@ -239,7 +239,7 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 4px var(--color-action-border-dark-onlight-focus);
+      box-shadow: 0 0 0 4px var(--color-action-border-dark-focus);
       background-color: transparent;
       border: 0;
       outline: none;

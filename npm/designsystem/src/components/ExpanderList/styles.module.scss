@@ -73,12 +73,12 @@
 
       &--white,
       .expander-list-link--line--white {
-        background-color: var(--color-base-white-background);
+        background-color: var(--color-base-background-light);
       }
     }
 
     &--outline {
-      background-color: var(--color-base-white-background);
+      background-color: var(--color-base-background-light);
 
       &--white,
       &--neutral {
@@ -130,12 +130,12 @@
 
       &--white,
       .expander-list-link--fill--white {
-        background-color: var(--color-base-white-background);
+        background-color: var(--color-base-background-light);
       }
     }
 
     &--fill-negative {
-      background-color: var(--color-base-white-background);
+      background-color: var(--color-base-background-light);
     }
 
     &--fill,
@@ -178,7 +178,7 @@
   justify-content: space-between;
   align-items: center;
   letter-spacing: unset;
-  color: var(--color-base-text-dark-onlight);
+  color: var(--color-base-text-dark);
   border: 0;
   width: 100%;
   outline: none;
@@ -195,7 +195,7 @@
   }
 
   &[aria-expanded='true'] {
-    border-bottom: 1px solid var(--color-action-border-light-ondark-normal);
+    border-bottom: 1px solid var(--color-action-border-light-normal);
   }
 
   &--open {
@@ -203,11 +203,11 @@
   }
 
   &--fill-negative {
-    background-color: var(--color-base-white-background);
+    background-color: var(--color-base-background-light);
   }
 
   &:focus-visible {
-    outline: 0.25rem solid var(--color-action-border-dark-onlight-focus);
+    outline: 0.25rem solid var(--color-action-border-dark-focus);
   }
 
   &--white:not(.expander-list-link--outline, .expander-list-link--fill-negative) {
@@ -335,7 +335,7 @@
 
   &--outline,
   &--fill-negative {
-    background-color: var(--color-base-white-background);
+    background-color: var(--color-base-background-light);
 
     &--blueberry {
       &[aria-expanded='false'] {

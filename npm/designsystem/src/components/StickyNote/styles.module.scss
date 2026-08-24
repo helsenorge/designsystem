@@ -17,8 +17,8 @@
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
 
   &--focused {
-    box-shadow: inset 0 0 0 1px var(--color-action-border-dark-onlight-focus);
-    border-color: var(--color-action-border-dark-onlight-focus);
+    box-shadow: inset 0 0 0 1px var(--color-action-border-dark-focus);
+    border-color: var(--color-action-border-dark-focus);
     background-color: var(--component-stickynote-background-normal-medium);
   }
 
@@ -39,8 +39,8 @@
     }
 
     &#{$sticky-note}--focused {
-      box-shadow: inset 0 0 0 1px var(--color-action-border-dark-onlight-focus);
-      border-color: var(--color-action-border-dark-onlight-focus);
+      box-shadow: inset 0 0 0 1px var(--color-action-border-dark-focus);
+      border-color: var(--color-action-border-dark-focus);
       background-color: var(--component-stickynote-background-error-medium);
     }
 
@@ -58,7 +58,7 @@
     &__timestamp {
       @include fonts.compact-data;
 
-      color: var(--color-placeholder-text-dark-onlight);
+      color: var(--color-placeholder-text-dark);
     }
   }
 
@@ -73,7 +73,7 @@
 
     &:disabled {
       // Dette er for å unngå at disabled tekst ikke validerer på iOS
-      -webkit-text-fill-color: var(--color-base-text-dark-onlight);
+      -webkit-text-fill-color: var(--color-base-text-dark);
       opacity: 1;
     }
   }
@@ -81,7 +81,7 @@
   &__footer {
     @include fonts.image-credit;
 
-    color: var(--color-placeholder-text-dark-onlight);
+    color: var(--color-placeholder-text-dark);
   }
 
   &__triangle {
@@ -155,7 +155,7 @@ $mobile-outer-size: 2.75rem;
     }
 
     :focus-visible > & {
-      outline: 3px solid var(--color-action-border-dark-onlight-focus);
+      outline: 3px solid var(--color-action-border-dark-focus);
       border-radius: 0;
       border: 0;
     }

@@ -28,19 +28,9 @@ const TabChevron: React.FC<TabChevronProps> = ({ direction, onClick, backgroundC
       style={{ backgroundColor: backgroundColor }}
     >
       {direction === 'left' ? (
-        <Icon
-          color={'var(--color-action-graphics-dark-onlight-normal)'}
-          isHovered={isHovered}
-          svgIcon={ChevronLeft}
-          size={IconSize.XSmall}
-        />
+        <Icon color={'var(--color-action-graphics-dark-normal)'} isHovered={isHovered} svgIcon={ChevronLeft} size={IconSize.XSmall} />
       ) : (
-        <Icon
-          color={'var(--color-action-graphics-dark-onlight-normal)'}
-          isHovered={isHovered}
-          svgIcon={ChevronRight}
-          size={IconSize.XSmall}
-        />
+        <Icon color={'var(--color-action-graphics-dark-normal)'} isHovered={isHovered} svgIcon={ChevronRight} size={IconSize.XSmall} />
       )}
     </button>
   );

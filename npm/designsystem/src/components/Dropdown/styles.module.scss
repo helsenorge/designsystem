@@ -21,7 +21,7 @@
     font-family: inherit;
     font-size: font-settings.$font-size-sm;
     line-height: 1.3rem; // Custom fordi teksten skal henge bedre sammen om den går over to linjer
-    border-color: var(--color-base-emphasized-border-dark-onlight);
+    border-color: var(--color-base-emphasized-border-dark);
     background-color: var(--core-color-white);
 
     &:hover:not(:disabled) {
@@ -40,15 +40,15 @@
 
     &:focus-visible {
       outline: none;
-      border-color: var(--color-action-border-dark-onlight-focus);
-      box-shadow: 0 0 0 1px var(--color-action-border-dark-onlight-focus);
+      border-color: var(--color-action-border-dark-focus);
+      box-shadow: 0 0 0 1px var(--color-action-border-dark-focus);
     }
 
     &:disabled {
       cursor: initial;
       color: var(--color-disabled-text);
       background-color: transparent;
-      border-color: var(--color-disabled-border-dark-onlight);
+      border-color: var(--color-disabled-border-dark);
       border-style: dashed;
     }
 
@@ -79,7 +79,7 @@
     }
 
     &--borderless#{&}--open {
-      border-color: var(--color-base-emphasized-border-dark-onlight);
+      border-color: var(--color-base-emphasized-border-dark);
     }
 
     &__text {
@@ -104,14 +104,14 @@
 
   &__left-icon,
   &__right-icon {
-    fill: var(--color-action-graphics-dark-onlight-normal);
+    fill: var(--color-action-graphics-dark-normal);
 
     :hover > & {
-      fill: var(--color-action-graphics-dark-onlight-hover);
+      fill: var(--color-action-graphics-dark-hover);
     }
 
     :disabled > & {
-      fill: var(--color-disabled-graphics-dark-onlight);
+      fill: var(--color-disabled-graphics-dark);
     }
   }
 
@@ -144,7 +144,7 @@
 
   &__list-item {
     min-height: 44px;
-    border-bottom: 1px solid var(--color-base-neutral-border-light-onlight-plus1);
+    border-bottom: 1px solid var(--color-base-neutral-border-light-plus1);
 
     &:last-child {
       border-bottom: none;
@@ -172,8 +172,8 @@
     }
 
     &--single-select:has(:focus-visible) {
-      border-color: var(--color-action-border-dark-onlight-focus);
-      outline: 4px solid var(--color-action-border-dark-onlight-focus);
+      border-color: var(--color-action-border-dark-focus);
+      outline: 4px solid var(--color-action-border-dark-focus);
       outline-offset: -4px;
     }
   }

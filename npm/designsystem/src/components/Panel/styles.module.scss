@@ -110,7 +110,7 @@
   }
 
   &--white {
-    background-color: var(--color-base-white-background);
+    background-color: var(--color-base-background-light);
   }
 
   &--neutral {
@@ -124,7 +124,7 @@
   &__border {
     &--outline {
       &--outer {
-        border: 1px solid var(--color-base-neutral-border-light-onlight-plus1);
+        border: 1px solid var(--color-base-neutral-border-light-plus1);
       }
 
       &--inner {
@@ -133,15 +133,15 @@
     }
 
     &--line {
-      border-top: 1px solid var(--color-base-border-dark-onlight);
-      border-bottom: 1px solid var(--color-base-border-dark-onlight);
+      border-top: 1px solid var(--color-base-border-dark);
+      border-bottom: 1px solid var(--color-base-border-dark);
       border-right: none;
       border-left: none;
       padding: spacers.getSpacer(xs) 0;
     }
 
     &--fill--neutral {
-      border: 1px solid var(--color-base-neutral-border-light-onlight-plus1);
+      border: 1px solid var(--color-base-neutral-border-light-plus1);
     }
 
     &--fill--new {
@@ -154,7 +154,7 @@
   }
 
   &--border {
-    border: 2px solid var(--color-base-white-background);
+    border: 2px solid var(--color-base-background-light);
   }
 
   &--status {
@@ -165,7 +165,7 @@
 
   &--new {
     border-left-color: var(--color-notification-info);
-    background-color: var(--color-base-blueberry-background-light-onlight);
+    background-color: var(--color-base-blueberry-background-light);
   }
 
   &--draft {
@@ -179,12 +179,12 @@
   &__expander {
     &__border {
       &--expanded {
-        border-left: 2px solid var(--color-base-emphasized-border-dark-onlight);
+        border-left: 2px solid var(--color-base-emphasized-border-dark);
       }
 
       &--not-expanded {
         &--white {
-          border-left: 2px solid var(--color-base-white-background);
+          border-left: 2px solid var(--color-base-background-light);
         }
 
         &--neutral {
@@ -200,7 +200,7 @@
     &__separator {
       height: 1px;
       width: 40px;
-      background-color: var(--color-base-border-dark-onlight);
+      background-color: var(--color-base-border-dark);
     }
 
     &__content {
