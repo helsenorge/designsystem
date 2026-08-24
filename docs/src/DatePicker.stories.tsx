@@ -11,6 +11,7 @@ import Validation from '@helsenorge/designsystem-react/components/Validation';
 
 import Unsafe_DatePicker, {
   Unsafe_DateAndTime,
+  Unsafe_ISODateAndTime,
   Unsafe_ISODatePicker,
   Unsafe_TimeInput,
 } from '@helsenorge/datepicker/components/Unsafe_DatePicker';
@@ -388,6 +389,119 @@ return (
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
               value={field.value ?? undefined}
               onChange={val => field.onChange(val)}
+            />
+          )}
+        />
+        <br />
+        <button type="submit">{'Submit'}</button>
+      </form>
+    );
+  },
+};
+
+export const ISODateAndTimeWithRHForm: Story = {
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+const {
+  control,
+  handleSubmit,
+  formState: { errors },
+} = useRHForm({
+  defaultValues: { avtale: '2026-01-31T10:00' },
+  mode: 'onBlur',
+});
+
+const onSubmit = (data: any) => {
+  console.log('register submit: ', data);
+};
+
+const validateDate = (value: string) => {
+  if (!value) {
+    return 'Må velge dato og tidspunkt';
+  }
+  const date = new Date(value);
+  if (!isValid(date)) {
+    return 'Må være på formatet dd.mm.yyyy hh:mm';
+  }
+  if (isBefore(date, new Date())) {
+    return 'Kan ikke velge tidspunkt i fortiden';
+  }
+  return true;
+};
+
+return (
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <RHFController
+      name="avtale"
+      control={control}
+      rules={{
+        required: 'Feltet er påkrevd',
+        validate: value => validateDate(value),
+      }}
+      render={({ field }) => (
+        <Unsafe_ISODateAndTime
+          {...args}
+          errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
+          value={field.value ?? undefined}
+          onChange={val => field.onChange(val)}
+          legend="Avtaletidspunkt"
+        />
+      )}
+    />
+    <br />
+    <button type="submit">{'Submit'}</button>
+  </form>
+);`,
+      },
+    },
+  },
+  render: args => {
+    const {
+      control,
+      handleSubmit,
+      formState: { errors },
+    } = useRHForm({
+      defaultValues: { avtale: '2026-01-31T10:00' },
+      mode: 'onBlur',
+    });
+
+    const onSubmit = (data: any) => {
+      console.log('register submit: ', data);
+    };
+
+    const validateDate = (value: string) => {
+      if (!value) {
+        return 'Må velge dato og tidspunkt';
+      }
+      const date = new Date(value);
+      if (!isValid(date)) {
+        return 'Må være på formatet dd.mm.yyyy hh:mm';
+      }
+      if (isBefore(date, new Date())) {
+        return 'Kan ikke velge tidspunkt i fortiden';
+      }
+      return true;
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <RHFController
+          name="avtale"
+          control={control}
+          rules={{
+            required: 'Feltet er påkrevd',
+            validate: value => validateDate(value),
+          }}
+          render={({ field }) => (
+            <Unsafe_ISODateAndTime
+              {...args}
+              errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
+              value={field.value ?? undefined}
+              onChange={val => field.onChange(val)}
+              legend="Avtaletidspunkt"
             />
           )}
         />
