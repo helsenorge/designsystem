@@ -250,6 +250,91 @@ Migrer fra RadioButton til Radio.
      baselines for stories som bruker Radio.
 ```
 
+## HelpTooltip er fjernet
+
+`HelpTooltip` (og `HelpTooltipDelayGroup`) er slettet fra `@helsenorge/designsystem-react`. Det finnes ingen direkte erstatningskomponent.
+Byggeklossene komponenten var laget av — `DictionaryTrigger` og `PopOver` — er fortsatt tilgjengelige, og tilsvarende funksjonalitet kan
+bygges med disse sammen med `@floating-ui/react` (slik `HelpTooltip` selv var implementert).
+
+### Agent-prompt
+
+```
+Fjern bruk av HelpTooltip.
+
+1. Sjekk om kodebasen bruker HelpTooltip:
+   Søk etter import-stien '@helsenorge/designsystem-react/components/HelpTooltip'
+   i TypeScript/TSX-filer, og etter strengene 'HelpTooltip' og
+   'HelpTooltipDelayGroup' i JSX og re-eksporter.
+   Hvis ingen treff: hopp over dette steget og noter i PR-beskrivelsen at
+   HelpTooltip ikke er i bruk.
+
+2. For hvert treff:
+   - Komponenten er slettet uten direkte erstatning. Tilsvarende
+     funksjonalitet kan bygges med komponentene DictionaryTrigger
+     ('@helsenorge/designsystem-react/components/DictionaryTrigger/DictionaryTrigger')
+     og PopOver ('@helsenorge/designsystem-react/components/PopOver')
+     sammen med useFloating/useHover/useFocus/useDismiss/useInteractions
+     fra '@floating-ui/react': DictionaryTrigger som referanse-element
+     og PopOver med role="tooltip" som flytende innhold.
+   - Les TypeScript-typene i
+     node_modules/@helsenorge/designsystem-react/lib/components/DictionaryTrigger/
+     og node_modules/@helsenorge/designsystem-react/lib/components/PopOver/
+     for å bekrefte props. Ikke gjett.
+   - Hvis bruken er kompleks eller UX-kritisk: ikke gjett på en løsning —
+     noter i PR-beskrivelsen at funksjonaliteten må erstattes manuelt og
+     flagg for menneskelig gjennomgang.
+
+3. Sjekk om noen av treffene er i *.stories.tsx eller snapshot-tester og
+   oppdater disse også.
+
+4. Verifiser:
+   - Les scripts-feltet i package.json og finn riktig navn på typecheck-,
+     test-, og evt. storybook-build-scriptene i dette prosjektet. Kjør dem.
+   - Hvis prosjektet har visual regression (Chromatic e.l.), oppdater
+     baselines.
+
+5. I PR-beskrivelsen: lim inn liste over filer du endret, eller skriv
+   "HelpTooltip ikke i bruk" hvis ingen treff.
+```
+
+## HelpPanel — `compact`-varianten er fjernet
+
+`HelpPanelVariants` er endret fra `'normal' | 'compact' | 'subdued'` til `'normal' | 'subdued'`. `variant="compact"` finnes ikke lenger og
+vil feile typecheck. Bruk `normal` (standard) eller `subdued` i stedet — hvilken som passer best er en designvurdering.
+
+### Agent-prompt
+
+```
+Fjern bruk av HelpPanel sin compact-variant.
+
+1. Sjekk om kodebasen bruker HelpPanel med compact:
+   Søk etter import-stien '@helsenorge/designsystem-react/components/HelpPanel'
+   i TypeScript/TSX-filer. For hvert treff, søk videre etter
+   variant="compact" eller variant={'compact'} i samme JSX-bruk (også via
+   prop-spread eller variabler av typen HelpPanelVariants).
+   Hvis ingen treff: hopp over dette steget og noter i PR-beskrivelsen at
+   HelpPanel ikke bruker compact-varianten.
+
+2. For hvert treff:
+   - Fjern variant="compact" (gir 'normal', som er standard) eller bytt
+     til variant="subdued" hvis det visuelt passer bedre.
+   - Les TypeScript-typene i
+     node_modules/@helsenorge/designsystem-react/lib/components/HelpPanel/HelpPanel.d.ts
+     for å bekrefte gyldige varianter.
+   - Siden dette er en visuell endring: noter i PR-beskrivelsen hvilke
+     steder som gikk fra compact til normal/subdued, slik at design kan
+     vurdere resultatet.
+
+3. Sjekk om noen av treffene er i *.stories.tsx eller snapshot-tester og
+   oppdater disse også.
+
+4. Verifiser:
+   - Les scripts-feltet i package.json og finn riktig navn på typecheck-,
+     test-, og evt. storybook-build-scriptene i dette prosjektet. Kjør dem.
+   - Hvis prosjektet har visual regression (Chromatic e.l.), oppdater
+     baselines for stories som bruker HelpPanel.
+```
+
 ## Drawer — `withBackButton` og `onRequestBack` er fjernet
 
 Propene `withBackButton` og `onRequestBack` er fjernet fra `Drawer` (og `InnerDrawerProps`). Tilbakefunksjonalitet bygges nå ved å sende
