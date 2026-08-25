@@ -36,12 +36,14 @@
 
 ## CSS-tokens er omdøpt
 
-Navnene på CSS-tokens (designtokens) har endret seg betydelig for å følge en mer konsistent namingkonvensjon i hele designsystemet. Alle
-farger, grenser, grafikkeelementer og tekst er nå navnelaget etter et meer strukturert mønster:
-`--color-[kategori]-[betingelse]-[tilstand]`. Dette påvirker alle komponenter som bruker CSS-variabler og alle custom SCSS-filer som
-refererer direkte til tokens.
+Fargetokens har fått ny navnestruktur for å følge en mer konsistent navnekonvensjon i hele designsystemet. Dette påvirker all egen kode som
+refererer direkte til tokens via `var(--color-...)` i CSS/SCSS eller TypeScript.
 
-For hver token i listen under, må du søke etter alle forekomster av det gamle tokennavnet og erstatte det med det nye.
+De gamle tokennavnene fortsetter å fungere i v16: pakken shipper en legacy-fil (`scss/supernova-legacy/styles/legacy-colors.css`) som lastes
+automatisk via `helsenorge.scss`. Verdiene i legacy-filen er imidlertid frosne hex-verdier som ikke lenger vedlikeholdes — migrér derfor til
+de nye navnene.
+
+For hver token i listen under, søk etter alle forekomster av det gamle tokennavnet og erstatt det med det nye.
 
 ### Agent-prompt
 
@@ -50,96 +52,93 @@ Migrér CSS-tokens fra v15 til v16-nomenklatur.
 
 1. Sjekk om kodebasen bruker gamle tokens:
    Søk etter forekomster av de gamle tokennavnene i filer som
-   bruker CSS-variabler: .css, .scss, .module.scss, .ts, .tsx, .js, .jsx
-   filer. Look for patterns som 'var(--color-...)' eller direkte
-   '--color-...' referanser.
+   bruker CSS-variabler: .css, .scss, .module.scss, .ts, .tsx, .js, .jsx.
+   Se etter mønstre som 'var(--color-...)' eller direkte
+   '--color-...'-referanser.
    Hvis ingen treff: hopp over dette steget og noter i PR-beskrivelsen at
    gamle tokens ikke er i bruk.
 
-2. Tokenmap (gjeldende liste) — bytt alle forekomster i denne rekkefølgen
-   (rekkefølgen er viktig for å unngå delvis matching av tokens som deler
-   prefiks):
+2. Tokenmap (gammel → ny) — bytt alle forekomster i denne rekkefølgen.
+   Rekkefølgen er viktig: tokens med lengre navn må byttes før tokens
+   som deler samme prefiks (f.eks. '-ondark-hover' før '-ondark').
+   Gjør hele/eksakte erstatninger — ikke delvise substring-bytter.
 
-   --color-action-background-stroke-onlight  →  --color-action-border-dark-onlight-hover
-   --color-action-background-ondark  →  --color-action-background-light-ondark-normal
-   --color-action-background-ondark-hover  →  --color-action-background-light-ondark-hover
-   --color-action-background-ondark-hoverselected  →  --color-action-background-light-ondark-active
-   --color-action-background-ondark-selected  →  --color-action-background-light-ondark-selected
-   --color-action-background-onlight  →  --color-action-background-dark-onlight-normal
-   --color-action-background-onlight-active  →  --color-action-background-dark-onlight-active-plus1
-   --color-action-background-onlight-hover  →  --color-action-background-dark-onlight-hover-plus1
-   --color-action-background-transparent-onlight-hover-selected  →  --color-action-background-transparent-onlight-hover-plus1
+   --color-action-background-ondark-hover  →  --color-action-background-light-hover
+   --color-action-background-ondark-selected  →  --color-action-background-light-selected
+   --color-action-background-ondark  →  --color-action-background-light-normal
+   --color-action-background-onlight-active  →  --color-action-background-dark-plus1-active
+   --color-action-background-onlight-hover  →  --color-action-background-dark-plus1-hover
+   --color-action-background-onlight  →  --color-action-background-dark-normal
    --color-action-background-transparent-onmulticolor-active  →  --color-action-background-transparent-multi-ondark-hover
    --color-action-background-transparent-onmulticolor-hover  →  --color-action-background-transparent-multi-onlight-hover
-   --color-action-border-ondark  →  --color-action-border-light-ondark-normal
-   --color-action-border-ondark-focus  →  --color-action-border-light-ondark-focus
-   --color-action-border-ondark-hover  →  --color-action-border-light-ondark-hover
-   --color-action-border-onlight  →  --color-action-border-dark-onlight-normal
-   --color-action-border-onlight-focus  →  --color-action-border-dark-onlight-focus
-   --color-action-border-onlight-hover  →  --color-action-border-dark-onlight-hover-plus1
-   --color-action-graphics-emphasized-onlight  →  --color-action-graphics-dark-onlight-active
-   --color-action-graphics-ondark  →  --color-action-graphics-light-ondark-normal
-   --color-action-graphics-ondark-hover  →  --color-action-graphics-light-ondark-hover
-   --color-action-graphics-onlight  →  --color-action-graphics-dark-onlight-normal
-   --color-action-graphics-onlight-hover  →  --color-action-graphics-dark-onlight-hover
-   --color-action-text-ondark  →  --color-action-text-light-ondark-normal
-   --color-action-text-onlight  →  --color-action-text-dark-onlight-normal
-   --color-action-text-onlight-active  →  --color-action-text-dark-onlight-active
-   --color-action-text-onlight-hover  →  --color-action-text-dark-onlight-hover
-   --color-base-background-blueberry  →  --color-base-blueberry-background-light-onlight
-   --color-base-background-cherry  →  --color-base-cherry-background-light-onlight
-   --color-base-background-dark-blueberry  →  --color-base-blueberry-background-dark-onlight
-   --color-base-background-dark-cherry  →  --color-base-cherry-background-dark-onlight
+   --color-action-border-ondark-focus  →  --color-action-border-light-focus
+   --color-action-border-ondark-hover  →  --color-action-border-light-hover
+   --color-action-border-ondark  →  --color-action-border-light-normal
+   --color-action-border-onlight-focus  →  --color-action-border-dark-focus
+   --color-action-border-onlight-hover  →  --color-action-border-dark-plus1-hover
+   --color-action-border-onlight  →  --color-action-border-dark-normal
+   --color-action-graphics-emphasized-onlight  →  --color-action-graphics-dark-active
+   --color-action-graphics-ondark-hover  →  --color-action-graphics-light-hover
+   --color-action-graphics-ondark  →  --color-action-graphics-light-normal
+   --color-action-graphics-onlight-hover  →  --color-action-graphics-dark-hover
+   --color-action-graphics-onlight  →  --color-action-graphics-dark-normal
+   --color-action-text-ondark  →  --color-action-text-light-normal
+   --color-action-text-onlight-hover  →  --color-action-text-dark-hover
+   --color-action-text-onlight  →  --color-action-text-dark-normal
+   --color-base-background-blueberry  →  --color-base-blueberry-background-light
+   --color-base-background-cherry  →  --color-base-cherry-background-light
+   --color-base-background-dark-blueberry  →  --color-base-blueberry-background-dark
+   --color-base-background-dark-cherry  →  --color-base-cherry-background-dark
    --color-base-background-dark-neutral  →  --color-base-neutral-background-dark
    --color-base-background-neutral  →  --color-base-neutral-background-light
-   --color-base-background-white  →  --color-base-white-background
-   --color-base-border-blueberry  →  --color-base-blueberry-border-light-onlight
-   --color-base-border-cherry  →  --color-base-cherry-border-light-onlight
-   --color-base-border-neutral  →  --color-base-neutral-border-light-onlight
-   --color-base-border-neutral-emphasized  →  --color-base-neutral-border-light-onlight-plus1
+   --color-base-background-white  →  --color-base-background-light
+   --color-base-border-blueberry  →  --color-base-blueberry-border-light
+   --color-base-border-cherry  →  --color-base-cherry-border-light
+   --color-base-border-neutral-emphasized  →  --color-base-neutral-border-light-plus1
+   --color-base-border-neutral  →  --color-base-neutral-border-light
    --color-base-border-ondark  →  --color-base-border-light-ondark
-   --color-base-border-onlight  →  --color-base-border-dark-onlight
-   --color-base-border-onlight-emphasized  →  --color-base-emphasized-border-dark-onlight
-   --color-base-border-onlight-subtle  →  --color-base-border-light-onlight
-   --color-base-graphics-ondark  →  --color-base-graphics-light-ondark
-   --color-base-graphics-onlight  →  --color-base-graphics-dark-onlight
-   --color-base-text-ondark  →  --color-base-text-light-ondark
-   --color-base-text-onlight  →  --color-base-text-dark-onlight
-   --color-base-text-onlight-subdued  →  --color-base-subdued-text-dark-onlight
-   --color-destructive-background-emphasized  →  --color-destructive-background-light-ondark-hover-plus1
-   --color-destructive-background-normal  →  --color-destructive-background-light-ondark-normal-plus1
-   --color-destructive-border-normal  →  --color-destructive-border-dark-onlight-normal
-   --color-destructive-graphics-emphasized-onlight  →  --color-destructive-graphics-dark-onlight-active
-   --color-destructive-graphics-hover  →  --color-destructive-graphics-dark-onlight-hover
-   --color-destructive-graphics-normal  →  --color-destructive-graphics-dark-onlight-normal
-   --color-destructive-text-hover  →  --color-destructive-text-dark-onlight-hover
-   --color-destructive-text-normal  →  --color-destructive-text-dark-onlight-normal
-   --color-disabled-background  →  --color-disabled-background-light-ondark
-   --color-disabled-border  →  --color-disabled-border-dark-onlight
-   --color-disabled-border-ondark  →  --color-disabled-border-light-ondark
-   --color-disabled-graphics  →  --color-disabled-graphics-dark-onlight
-   --color-disabled-graphics-ondark  →  --color-disabled-graphics-light-ondark
-   --color-disabled-text-ondark  →  --color-disabled-text-dark-onlight
-   --color-help-background-normal  →  --color-help-background
+   --color-base-border-onlight-emphasized  →  --color-base-emphasized-border-dark
+   --color-base-border-onlight-subtle  →  --color-base-border-light
+   --color-base-border-onlight  →  --color-base-border-dark
+   --color-base-graphics-ondark  →  --color-base-graphics-light
+   --color-base-graphics-onlight  →  --color-base-graphics-dark
+   --color-base-text-ondark  →  --color-base-text-light
+   --color-base-text-onlight-subdued  →  --color-base-subdued-text-dark
+   --color-base-text-onlight  →  --color-base-text-dark
+   --color-destructive-background-emphasized  →  --color-destructive-background-light-plus1-hover
+   --color-destructive-background-normal  →  --color-destructive-background-light-plus1-normal
+   --color-destructive-border-normal  →  --color-destructive-border-dark-normal
+   --color-destructive-graphics-emphasized-onlight  →  --color-destructive-graphics-dark-active
+   --color-destructive-graphics-hover  →  --color-destructive-graphics-dark-hover
+   --color-destructive-graphics-normal  →  --color-destructive-graphics-dark-normal
+   --color-destructive-text-hover  →  --color-destructive-text-dark-hover
+   --color-destructive-text-normal  →  --color-destructive-text-dark-normal
+   --color-disabled-background  →  --color-disabled-background-light
+   --color-disabled-border-ondark  →  --color-disabled-border-light
+   --color-disabled-border  →  --color-disabled-border-dark
+   --color-disabled-graphics-ondark  →  --color-disabled-graphics-light
+   --color-disabled-graphics  →  --color-disabled-graphics-dark
+   --color-disabled-text-ondark  →  --color-disabled-text-light
    --color-help-background-transparent-onlight-hover-selected  →  --color-help-background-transparent-onlight-hoverselected
+   --color-help-background-normal  →  --color-help-background
    --color-help-border-dark  →  --color-help-border-plus1
    --color-help-border-normal  →  --color-help-border
    --color-help-border-verydark  →  --color-help-border-plus2
    --color-help-graphics-dark  →  --color-help-graphics-plus1
    --color-help-graphics-normal  →  --color-help-graphics
    --color-help-graphics-verydark  →  --color-help-graphics-plus2
-   --color-notification-background-error  →  --color-notification-error-background
    --color-notification-background-error-active  →  --color-notification-error-background-active
    --color-notification-background-error-hover  →  --color-notification-error-background-hover
-   --color-notification-background-info  →  --color-notification-info-background
+   --color-notification-background-error  →  --color-notification-error-background
    --color-notification-background-info-active  →  --color-notification-info-background-active
    --color-notification-background-info-hover  →  --color-notification-info-background-hover
-   --color-notification-background-success  →  --color-notification-success-background
+   --color-notification-background-info  →  --color-notification-info-background
    --color-notification-background-success-active  →  --color-notification-success-background-active
    --color-notification-background-success-hover  →  --color-notification-success-background-hover
-   --color-notification-background-warning  →  --color-notification-warning-background
+   --color-notification-background-success  →  --color-notification-success-background
    --color-notification-background-warning-active  →  --color-notification-warning-background-active
    --color-notification-background-warning-hover  →  --color-notification-warning-background-hover
+   --color-notification-background-warning  →  --color-notification-warning-background
    --color-notification-border-error  →  --color-notification-error-border
    --color-notification-border-info  →  --color-notification-info-border
    --color-notification-border-success  →  --color-notification-success-border
@@ -149,11 +148,29 @@ Migrér CSS-tokens fra v15 til v16-nomenklatur.
    --color-notification-graphics-success  →  --color-notification-success-graphics
    --color-notification-graphics-warning  →  --color-notification-warning-graphics
    --color-notification-status-draft  →  --color-notification-draft
+   --color-notification-status-error  →  --color-notification-error
+   --color-notification-status-info  →  --color-notification-info
+   --color-notification-status-success  →  --color-notification-success
+   --color-notification-status-warning  →  --color-notification-warning
    --color-notification-text-error  →  --color-notification-error-text
    --color-notification-text-info  →  --color-notification-info-text
    --color-notification-text-success  →  --color-notification-success-text
    --color-notification-text-warning  →  --color-notification-warning-text
-   --color-placeholder-text-onlight  →  --color-placeholder-text-dark-onlight
+   --color-placeholder-text-onlight  →  --color-placeholder-text-dark
+
+   Følgende gamle tokens har INGEN direkte erstatning i det nye settet.
+   De fortsetter å fungere via legacy-filen, men verdiene er frosne.
+   Ikke bytt dem automatisk — noter forekomster i PR-beskrivelsen og
+   flagg dem for manuell design-gjennomgang:
+
+   --color-action-background-stroke-onlight
+   --color-action-background-ondark-hoverselected
+   --color-action-background-transparent-ondark-hover
+   --color-action-background-transparent-ondark-hoverselected
+   --color-action-background-transparent-onlight-hoverselected
+   --color-base-background-stroke-dark-blueberry
+   --color-base-background-stroke-dark-cherry
+   --color-base-background-stroke-dark-neutral
 
 3. Etter endringer, søk igjen etter de gamle tokennavnene for å
    verifisere at alle forekomster er erstattet:
@@ -235,9 +252,9 @@ Migrer fra RadioButton til Radio.
 
 ## Drawer — `withBackButton` og `onRequestBack` er fjernet
 
-Propene `withBackButton` og `onRequestBack` er fjernet fra `Drawer` (og `InnerDrawerProps`). Tilbakefunksjonalitet må nå bygges med
-`DrawerHeaderContent` i stedet for. Hvis du tidligere brukte disse propene for å vise en tilbakeknapp, må du implementere denne
-funksjonaliteten manuelt ved å styre Drawer-innholdet selv.
+Propene `withBackButton` og `onRequestBack` er fjernet fra `Drawer` (og `InnerDrawerProps`). Tilbakefunksjonalitet bygges nå ved å sende
+eget header-innhold via `headerContent`-propen, som erstatter standard tittel (og tilbakeknapp) i headeren — lukkeknappen rendres fortsatt.
+Hvis du tidligere brukte disse propene for å vise en tilbakeknapp, må du implementere den selv i `headerContent`.
 
 ### Agent-prompt
 
@@ -259,9 +276,11 @@ Fjern bruk av Drawer sine withBackButton/onRequestBack-props.
      node_modules/@helsenorge/designsystem-react/lib/components/Drawer/Drawer.d.ts
      for å bekrefte at propene faktisk er borte og se om det finnes noen
      alternativ mekanisme i den publiserte versjonen.
-   - Hvis tilbakeknapp-funksjonalitet fortsatt er nødvendig for brukeropplevelsen,
-     ikke gjett på en løsning — noter i PR-beskrivelsen at funksjonaliteten
-     må erstattes manuelt (f.eks. med DrawerHeaderContent), og flagg dette for en menneskelig gjennomgang.
+   - Hvis tilbakeknapp-funksjonalitet fortsatt er nødvendig for brukeropplevelsen:
+     bygg den selv via 'headerContent'-propen på Drawer, som erstatter
+     standard tittel i headeren (lukkeknappen rendres fortsatt). Hvis du er
+     usikker på riktig utforming, ikke gjett — noter i PR-beskrivelsen at
+     funksjonaliteten må erstattes manuelt og flagg for menneskelig gjennomgang.
 
 3. Sjekk om noen av treffene er i *.stories.tsx eller snapshot-tester og
    oppdater disse også.
