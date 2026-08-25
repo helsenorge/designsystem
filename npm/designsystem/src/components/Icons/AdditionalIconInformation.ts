@@ -352,4 +352,9 @@ export default {
   measuringtape: { alternativeName: '', categories: '' },
   thumbsup: { alternativeName: 'Tommel Opp', categories: '' },
   thumbsdown: { alternativeName: 'Tommel Ned', categories: '' },
+  consentdocument: { alternativeName: '', categories: '' },
+  healthcarepersonnelsecurity: { alternativeName: '', categories: '' },
+  historydocument: { alternativeName: '', categories: '' },
+  personcommunication: { alternativeName: '', categories: '' },
+  persondocument: { alternativeName: '', categories: '' },
 };

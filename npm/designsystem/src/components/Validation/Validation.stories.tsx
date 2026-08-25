@@ -71,7 +71,7 @@ export const FormExample = (props: FormExampleProps): React.JSX.Element => {
           label={<Label labelTexts={[{ text: 'Small' }]} />}
           {...register('sizes', { validate: requireTwo })}
         />
-        <RadioButton
+        <Radio
           errorText={errors.positions ? (errors.positions.message as string) : undefined}
           errorTextId="error2"
           inputId="positions1"

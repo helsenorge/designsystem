@@ -67,7 +67,7 @@ const VisualRadio: React.FC<VisualRadioProps> = props => {
         )}
         htmlFor={inputId}
         data-testid={testId}
-        data-analyticsid={AnalyticsId.RadioButton}
+        data-analyticsid={AnalyticsId.Radio}
       >
         {visualContent !== undefined && <VisualContent>{visualContent}</VisualContent>}
         {/* eslint-disable-next-line jsx-a11y/role-supports-aria-props -- aria-invalid is a global ARIA state, valid on radio inputs */}

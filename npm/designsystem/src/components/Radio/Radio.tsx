@@ -117,7 +117,7 @@ export const Radio: React.FC<RadioProps> = props => {
 
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
-      <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioWrapperClasses}>
+      <div data-testid={testId} data-analyticsid={AnalyticsId.Radio} className={radioWrapperClasses}>
         {renderLabelAsParent({
           label: label,
           children: getLabelContent(),
