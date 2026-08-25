@@ -40,6 +40,8 @@ import { getResources } from './resourceHelper';
 
 import styles from './DatePicker.module.scss';
 
+export type DayPickerVariants = 'popover' | 'inline';
+
 export interface Unsafe_DatePickerProps extends Omit<BaseDayPickerProps, 'selectedDate' | 'onDateChange'> {
   /** Currently given date. `null` and `undefined` are both treated as "no value". */
   value?: Date | null;
@@ -61,6 +63,8 @@ export interface Unsafe_DatePickerProps extends Omit<BaseDayPickerProps, 'select
   ['aria-labelledby']?: string;
   /** Ref exposing an imperative handle (e.g. `focus()`) for the input field */
   ref?: React.Ref<Unsafe_DatePickerHandle>;
+  /** Selects the visual variant of the daypicker. */
+  variant?: DayPickerVariants;
 }
 
 export interface Unsafe_DatePickerHandle {
@@ -79,6 +83,7 @@ const Unsafe_DatePicker = ({
   ['aria-labelledby']: ariaLabelledBy,
   resources,
   ref,
+  variant = 'popover',
   ...baseDayPickerProps
 }: Unsafe_DatePickerProps): React.ReactNode => {
   // Normalize null and undefined to a single internal representation.
@@ -232,6 +237,12 @@ const Unsafe_DatePicker = ({
   const legendId = labelGivenAsPropIsValidLabelComponent && label.props.labelId ? label.props.labelId : 'date-legend';
   const popupId = isPopupOpen ? 'calendar-popup' : undefined;
 
+  const renderBaseDayPicker = (): React.ReactNode => {
+    return (
+      <BaseDayPicker {...baseDayPickerProps} resources={mergedResources} selectedDate={dateDate} onDateChange={handleDayPickerSelect} />
+    );
+  };
+
   return (
     <ErrorWrapper errorText={errorText}>
       <fieldset className={styles['date-field']} aria-labelledby={legendId}>
@@ -272,21 +283,24 @@ const Unsafe_DatePicker = ({
         </div>
       </fieldset>
       {isPopupOpen && (
-        <FloatingFocusManager context={context} modal={false}>
-          <div
-            id={popupId}
-            ref={mergeRefs([refs.setFloating, dayPickerPopupRef])}
-            style={{ ...floatingStyles, visibility: isVisible ? 'visible' : 'hidden', zIndex: 10000 }}
-            {...getFloatingProps()}
-          >
-            <BaseDayPicker
-              {...baseDayPickerProps}
-              resources={mergedResources}
-              selectedDate={dateDate}
-              onDateChange={handleDayPickerSelect}
-            />
-          </div>
-        </FloatingFocusManager>
+        <>
+          {variant === 'popover' ? (
+            <FloatingFocusManager context={context} modal={false}>
+              <div
+                id={popupId}
+                ref={mergeRefs([refs.setFloating, dayPickerPopupRef])}
+                style={{ ...floatingStyles, visibility: isVisible ? 'visible' : 'hidden', zIndex: 10000 }}
+                {...getFloatingProps()}
+              >
+                {renderBaseDayPicker()}
+              </div>
+            </FloatingFocusManager>
+          ) : (
+            <div ref={dayPickerPopupRef} className={styles['inline-daypicker']}>
+              {renderBaseDayPicker()}
+            </div>
+          )}
+        </>
       )}
     </ErrorWrapper>
   );

@@ -285,3 +285,8 @@
     z-index: 2;
   }
 }
+
+.inline-daypicker {
+  margin-top: var(--core-space-2xs);
+  width: fit-content;
+}

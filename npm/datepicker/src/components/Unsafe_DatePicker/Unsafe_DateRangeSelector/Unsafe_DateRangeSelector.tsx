@@ -132,6 +132,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             onChange={date => {
               emitCustomRange(date, selectedRange.to);
             }}
+            variant="inline"
           />
         }
         to={
@@ -150,6 +151,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
             onChange={date => {
               emitCustomRange(selectedRange.from, date);
             }}
+            variant="inline"
           />
         }
       />

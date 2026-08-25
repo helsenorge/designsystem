@@ -115,7 +115,12 @@
       }
 
       &--padding-extra {
-        padding: var(--core-space-xs) var(--core-space-s);
+        padding-top: var(--core-space-xs);
+        padding-bottom: var(--core-space-xs);
+
+        @media (min-width: map.get(breakpoints.$grid-breakpoints, xs)) {
+          padding: var(--core-space-xs) var(--core-space-s);
+        }
 
         @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
           padding: var(--core-space-xs) var(--core-space-m);

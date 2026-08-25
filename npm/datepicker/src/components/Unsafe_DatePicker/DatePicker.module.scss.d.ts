@@ -15,6 +15,7 @@ export type Styles = {
   'date-segment': string;
   'date-segment--error': string;
   'date-segment--year': string;
+  'inline-daypicker': string;
   legend: string;
   legend__sublabel: string;
 };
