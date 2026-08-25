@@ -14,6 +14,7 @@ import type { TextareaProps } from '../Textarea';
 import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { isComponent } from '../../utils/component';
+import { hasSublabel, isCompactComponent } from '../../utils/formSpacing';
 import Checkbox from '../Checkbox/Checkbox';
 import ErrorWrapper from '../ErrorWrapper';
 import FormFieldTag from '../FormFieldTag';
@@ -118,7 +119,17 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
     legendClassName
   );
 
-  const fieldsetClasses = classNames(formGroupStyles['field-set'], fieldsetClassName);
+  const childArray = React.Children.toArray(props.children);
+  const hasOnlyCompactComponents = childArray.length > 0 && childArray.every(isCompactComponent);
+  const hasCompactSublabel = hasOnlyCompactComponents && childArray.some(hasSublabel);
+  const fieldsetClasses = classNames(
+    formGroupStyles['field-set'],
+    {
+      [formGroupStyles['field-set--compact-gap']]: hasOnlyCompactComponents && !hasCompactSublabel,
+      [formGroupStyles['field-set--compact-sublabel-gap']]: hasCompactSublabel,
+    },
+    fieldsetClassName
+  );
 
   const mapFormComponent = (child: React.ReactNode, index: number): React.ReactNode => {
     if (isComponent<FormLayoutProps>(child, FormLayout)) {

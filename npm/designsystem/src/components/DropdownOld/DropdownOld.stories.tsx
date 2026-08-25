@@ -98,7 +98,7 @@ export const Default: Story = {
   ),
 };
 
-export const RadioButtonChildren: Story = {
+export const RadioChildren: Story = {
   args: {
     onToggle: action('onToggle'),
   },

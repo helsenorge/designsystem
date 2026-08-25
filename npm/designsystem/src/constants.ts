@@ -117,7 +117,7 @@ export enum AnalyticsId {
   PopOver = 'pop-over',
   Portal = 'portal',
   PromoPanel = 'promo-panel',
-  RadioButton = 'radio-button',
+  Radio = 'radio-button',
   Select = 'select',
   SharingStatus = 'sharing-status',
   Slider = 'slider',

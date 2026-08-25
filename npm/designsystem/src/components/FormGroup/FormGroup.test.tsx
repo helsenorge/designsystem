@@ -150,15 +150,15 @@ describe('Gitt at FormGroup skal vises', (): void => {
         expect(input).toHaveAccessibleDescription('error error!');
       });
     });
-    describe('Når children er RadioButton', (): void => {
-      test('Så er feilmelding knyttet til RadioButton', (): void => {
+    describe('Når children er Radio', (): void => {
+      test('Så er feilmelding knyttet til Radio', (): void => {
         render(
           <FormGroup error={'error error!'}>
-            <Radio inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'RadioButton 1' }]} />} />
+            <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
           </FormGroup>
         );
 
-        const input = screen.getByLabelText('RadioButton 1');
+        const input = screen.getByLabelText('Radio 1');
         expect(input).toHaveAccessibleDescription('error error!');
       });
     });

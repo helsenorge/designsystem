@@ -3,7 +3,7 @@
   "compilerOptions": {
     "types": ["vitest/globals", "vitest/jsdom", "node"]
   },
-  "include": ["src"],
+  "include": ["src", "../designsystem/src/global.d.ts"],
   "exclude": ["**/*.test.snap.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

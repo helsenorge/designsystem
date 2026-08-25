@@ -6,7 +6,15 @@
 
   display: flex;
   flex-wrap: wrap;
-  gap: spacers.getSpacer(s) var(--column-gap);
+  column-gap: var(--column-gap);
+
+  &--compact-gap {
+    row-gap: 0;
+  }
+
+  &--compact-sublabel-gap {
+    row-gap: var(--core-space-2xs);
+  }
 
   &--large {
     row-gap: spacers.getSpacer(2xs);

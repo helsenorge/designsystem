@@ -204,6 +204,22 @@ class IconGenerator {
       const fileContent = lines.join('\n');
 
       console.log(this.list);
+
+      // Sikkerhetssjekk: den ekte ikontabellen i Confluence har flere hundre ikoner.
+      // Får vi bare noen få, har scrapingen feilet (f.eks. feil fane / ikke innlogget),
+      // og da skal vi ikke overskrive AdditionalIconInformation.ts.
+      const iconCount = Object.keys(this.list).length;
+      if (iconCount < 50) {
+        console.error(
+          `Avbryter: fant bare ${iconCount} ikon(er) i tabellen – det ser ut som scrapingen feilet.\n` +
+            'Sjekk at du er innlogget på confluence.nhn.no i Chrome, at riktig side lastes,\n' +
+            'og at "Allow JavaScript from Apple Events" er slått på (View > Developer).\n' +
+            'AdditionalIconInformation.ts ble IKKE endret.'
+        );
+        process.exitCode = 1;
+        return;
+      }
+
       writeFileSync('../../npm/designsystem/src/components/Icons/AdditionalIconInformation.ts', fileContent);
     } catch (e) {
       console.log('ERROR', e);

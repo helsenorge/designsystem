@@ -27,7 +27,7 @@ export interface Unsafe_DateRangeSelectorProps {
   /** Called with the new value, or undefined when the selection is empty (custom option with no dates). */
   onChange?: (value?: DateRangePreset) => void;
   /** Optional extra props for the built-in custom radio option */
-  customRadioButtonProps?: Omit<RadioProps, 'checked' | 'onChange' | 'value' | 'label'>;
+  customRadioProps?: Omit<RadioProps, 'checked' | 'onChange' | 'value' | 'label'>;
   /** Extra props for the 'from' date picker */
   datePickerPropsFrom?: Omit<Unsafe_DatePickerProps, 'value' | 'onChange'>;
   /** Extra props for the 'to' date picker */
@@ -37,7 +37,7 @@ export interface Unsafe_DateRangeSelectorProps {
 }
 
 const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props => {
-  const { name, options, value, onChange, customRadioButtonProps, datePickerPropsFrom, datePickerPropsTo, resources } = props;
+  const { name, options, value, onChange, customRadioProps, datePickerPropsFrom, datePickerPropsTo, resources } = props;
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
   const localizedResources = { ...defaultResources, ...resources };
@@ -63,7 +63,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
     ...customOptionFromOptions,
     radioButtonProps: {
       ...(customOptionFromOptions?.radioButtonProps ?? {}),
-      ...(customRadioButtonProps ?? {}),
+      ...(customRadioProps ?? {}),
     },
   };
   const allOptions = customOptionFromOptions ? options : [...options, customOption];

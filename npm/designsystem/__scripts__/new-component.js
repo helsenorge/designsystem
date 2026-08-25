@@ -1,47 +1,116 @@
-import { writeFile, mkdir } from 'fs/promises';
-import readline from 'readline';
+/* eslint-disable no-console, @typescript-eslint/explicit-function-return-type */
+import { existsSync } from 'node:fs';
+import { writeFile, mkdir } from 'node:fs/promises';
+import path from 'node:path';
+import readline from 'node:readline';
 
-const rl = readline.createInterface({
-  input: process.stdin,
+const getComponentName = async () => {
+  const fromArgs = process.argv[2];
 
-  output: process.stdout,
-});
+  if (fromArgs) {
+    return fromArgs.trim();
+  }
 
-const ask = str => new Promise(resolve => rl.question(str, resolve));
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
-const componentName = await ask('Hva skal komponenten hete? Eksempel: PromoPanel ');
+  const answer = await new Promise(resolve => rl.question('Komponentnavn (PascalCase, f.eks. PromoPanel): ', resolve));
 
-if (!/^[A-Z][a-z][a-zA-Z]+$/.test(componentName)) {
-  throw Error('Navnet må bruke PascalCase Button eller SpecialButton');
+  rl.close();
+
+  return answer.trim();
+};
+
+const toKebabCase = name =>
+  name
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
+    .toLowerCase();
+
+const assertPathWithinDirectory = (baseDirectory, targetPath) => {
+  const relative = path.relative(baseDirectory, targetPath);
+
+  if (relative === '' || relative.startsWith('..') || path.isAbsolute(relative)) {
+    console.error(`Ugyldig sti: ${targetPath}`);
+    process.exit(1);
+  }
+
+  return targetPath;
+};
+
+const componentName = await getComponentName();
+
+if (!/^[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]+)*$/.test(componentName)) {
+  console.error(`Ugyldig navn: "${componentName}". Navnet må være PascalCase, f.eks. Button eller SpecialButton.`);
+  process.exit(1);
 }
 
-const componentDirectory = `./src/components/${componentName}`;
+const className = toKebabCase(componentName);
+const componentsRoot = path.resolve('./src/components');
+const componentDirectory = assertPathWithinDirectory(componentsRoot, path.resolve(componentsRoot, componentName));
+
+if (existsSync(componentDirectory)) {
+  console.error(`Komponenten finnes allerede: ${componentDirectory}`);
+  process.exit(1);
+}
+
+const resolveComponentFile = fileName => assertPathWithinDirectory(componentDirectory, path.resolve(componentDirectory, fileName));
 
 await mkdir(componentDirectory);
 
 await writeFile(
-  `${componentDirectory}/index.ts`,
+  resolveComponentFile('index.ts'),
   `import ${componentName} from './${componentName}';
 export * from './${componentName}';
 export default ${componentName};
 `
 );
 
-await writeFile(`${componentDirectory}/styles.module.scss`, '');
+await writeFile(
+  resolveComponentFile('styles.module.scss'),
+  `.${className} {
+  display: block;
+}
+`
+);
 
 await writeFile(
-  `${componentDirectory}/${componentName}.tsx`,
-  `import React from 'react';
+  resolveComponentFile('styles.module.scss.d.ts'),
+  `export type Styles = {
+  '${className}': string;
+};
+
+export type ClassNames = keyof Styles;
+
+declare const styles: Styles;
+
+export default styles;
+`
+);
+
+await writeFile(
+  resolveComponentFile(`${componentName}.tsx`),
+  `import type React from 'react';
 
 import styles from './styles.module.scss';
 
 export interface ${componentName}Props {
+  /** Content of the component */
+  children?: React.ReactNode;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
-const ${componentName}: React.FC<${componentName}Props> = () => {
-  return null;
+export const ${componentName}: React.FC<${componentName}Props> = props => {
+  const { children, testId } = props;
+
+  return (
+    <div className={styles['${className}']} data-testid={testId}>
+      {children}
+    </div>
+  );
 };
 
 export default ${componentName};
@@ -49,17 +118,17 @@ export default ${componentName};
 );
 
 await writeFile(
-  `${componentDirectory}/${componentName}.test.tsx`,
-  `import React from 'react';
-
-import { render } from '@testing-library/react';
+  resolveComponentFile(`${componentName}.test.tsx`),
+  `import { render, screen } from '@testing-library/react';
 
 import ${componentName} from './${componentName}';
 
 describe('Gitt at ${componentName} skal vises', (): void => {
   describe('Når ${componentName} vises', (): void => {
-    test('Så vises ${componentName}', (): void => {
-      render(<${componentName} />);
+    test('Så vises innholdet', (): void => {
+      render(<${componentName} testId={'${className}'}>{'Innhold'}</${componentName}>);
+
+      expect(screen.getByTestId('${className}')).toBeVisible();
     });
   });
 });
@@ -67,23 +136,22 @@ describe('Gitt at ${componentName} skal vises', (): void => {
 );
 
 await writeFile(
-  `${componentDirectory}/${componentName}.stories.tsx`,
-  `import React from 'react';
+  resolveComponentFile(`${componentName}.stories.tsx`),
+  `import { Docs } from 'frankenstein-build-tools';
 
-import { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import ${componentName} from './${componentName}';
-import { Docs } from 'frankenstein-build-tools';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/${componentName}',
   component: ${componentName},
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={${componentName}} />,
       description: {
         component: 'Beskrivelse av ${componentName}',
       },
-      page: (): React.JSX.Element => <Docs component={${componentName}} />,
     },
   },
   args: {},
@@ -95,12 +163,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
-  render: args => (
-      <${componentName} {...args} />
-  ),
+  render: args => <${componentName} {...args}>{'${componentName}'}</${componentName}>,
 };
 `
 );
 
-rl.close();
+console.log(`
+Komponenten ${componentName} er opprettet i ${componentDirectory}`);

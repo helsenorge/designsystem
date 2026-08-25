@@ -13,8 +13,9 @@ import FormFieldTag from '../FormFieldTag';
 import FormLayout from '../FormLayout';
 import Coronavirus from '../Icons/Coronavirus';
 import Input from '../Input/Input';
-import Label from '../Label';
+import Label, { Sublabel } from '../Label';
 import Radio from '../Radio/Radio';
+import Toggle from '../Toggle';
 
 import styles from './formGroup.module.scss';
 
@@ -91,11 +92,44 @@ export const CheckboxChildren: Story = {
         <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
         <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
       </FormGroup>
+      <Spacer size="m" />
+      <FormGroup {...args}>
+        <Checkbox
+          inputId={'Checkbox1'}
+          aria-describedby={'sublabelid01'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Checkbox 1' }]}
+              sublabel={<Sublabel id={'sublabelid01'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <Checkbox
+          inputId={'Checkbox2'}
+          aria-describedby={'sublabelid02'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Checkbox 2' }]}
+              sublabel={<Sublabel id={'sublabelid02'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <Checkbox
+          inputId={'Checkbox3'}
+          aria-describedby={'sublabelid03'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Checkbox 3' }]}
+              sublabel={<Sublabel id={'sublabelid03'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+      </FormGroup>
     </div>
   ),
 };
 
-export const RadioButtonChildren: Story = {
+export const RadioChildren: Story = {
   render: args => (
     <div
       style={{
@@ -106,6 +140,61 @@ export const RadioButtonChildren: Story = {
         <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
         <Radio inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
         <Radio inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
+      </FormGroup>
+      <Spacer size="m" />
+      <FormGroup {...args} name={'gruppe2'}>
+        <Radio
+          inputId={'Radio4'}
+          aria-describedby={'sublabelid04'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Radio 4' }]}
+              sublabel={<Sublabel id={'sublabelid04'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <Radio
+          inputId={'Radio5'}
+          aria-describedby={'sublabelid05'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Radio 5' }]}
+              sublabel={<Sublabel id={'sublabelid05'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <Radio
+          inputId={'Radio6'}
+          aria-describedby={'sublabelid06'}
+          label={
+            <Label
+              labelTexts={[{ text: 'Radio 6' }]}
+              sublabel={<Sublabel id={'sublabelid06'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
+            />
+          }
+        />
+      </FormGroup>
+    </div>
+  ),
+};
+
+export const ToggleChildren: Story = {
+  render: args => (
+    <div
+      style={{
+        background: mapToBackgoundColor(args.onColor as FormOnColor),
+      }}
+    >
+      <FormGroup {...args}>
+        <Toggle label={[{ text: 'Label text' }]} />
+        <Toggle label={[{ text: 'Label text' }]} />
+        <Toggle label={[{ text: 'Label text' }]} />
+      </FormGroup>
+      <Spacer size="m" />
+      <FormGroup {...args}>
+        <Toggle label={[{ text: 'Label text' }]} subLabel="Sublabel text" />
+        <Toggle label={[{ text: 'Label text' }]} subLabel="Sublabel text" />
+        <Toggle label={[{ text: 'Label text' }]} subLabel="Sublabel text" />
       </FormGroup>
     </div>
   ),

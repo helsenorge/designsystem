@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { FormLayoutColumns } from './constants';
 import { AnalyticsId, FormSize } from '../../constants';
+import { hasSublabel, isCompactComponent } from '../../utils/formSpacing';
 
 import formGroupStyles from './styles.module.scss';
 
@@ -30,9 +31,14 @@ export const FormLayout: React.FC<FormLayoutProps> = (props: FormLayoutProps) =>
   const { maxColumns: columns = FormLayoutColumns.one, colMinWidth = 300, size, className, mapHelper, ref } = props;
 
   const cssVariable = { '--min-col-width': `${colMinWidth}px` } as React.CSSProperties;
+  const childArray = React.Children.toArray(props.children);
+  const hasOnlyCompactComponents = childArray.length > 0 && childArray.every(isCompactComponent);
+  const hasCompactSublabel = hasOnlyCompactComponents && childArray.some(hasSublabel);
   const formLayoutContainerClasses = classNames(
     formGroupStyles['form-layout-container'],
     {
+      [formGroupStyles['form-layout-container--compact-gap']]: hasOnlyCompactComponents && !hasCompactSublabel,
+      [formGroupStyles['form-layout-container--compact-sublabel-gap']]: hasCompactSublabel,
       [formGroupStyles['form-layout-container--large']]: size === FormSize.large,
     },
     className

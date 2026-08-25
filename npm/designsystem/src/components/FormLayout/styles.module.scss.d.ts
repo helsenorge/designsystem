@@ -5,6 +5,8 @@ export type Styles = {
   'form-layout-child--three': string;
   'form-layout-child--two': string;
   'form-layout-container': string;
+  'form-layout-container--compact-gap': string;
+  'form-layout-container--compact-sublabel-gap': string;
   'form-layout-container--large': string;
 };
 
