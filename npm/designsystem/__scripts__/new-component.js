@@ -1,7 +1,8 @@
 /* eslint-disable no-console, @typescript-eslint/explicit-function-return-type */
-import { existsSync } from 'fs';
-import { writeFile, mkdir } from 'fs/promises';
-import readline from 'readline';
+import { existsSync } from 'node:fs';
+import { writeFile, mkdir } from 'node:fs/promises';
+import path from 'node:path';
+import readline from 'node:readline';
 
 const getComponentName = async () => {
   const fromArgs = process.argv[2];
@@ -25,7 +26,7 @@ const getComponentName = async () => {
 const toKebabCase = name =>
   name
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
     .toLowerCase();
 
 const componentName = await getComponentName();
@@ -36,17 +37,34 @@ if (!/^[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]+)*$/.test(componentName)) {
 }
 
 const className = toKebabCase(componentName);
-const componentDirectory = `./src/components/${componentName}`;
+const componentsRoot = path.resolve('./src/components');
+const componentDirectory = path.resolve(componentsRoot, componentName);
+
+if (!componentDirectory.startsWith(componentsRoot + path.sep)) {
+  console.error(`Ugyldig komponentsti: ${componentDirectory}`);
+  process.exit(1);
+}
 
 if (existsSync(componentDirectory)) {
   console.error(`Komponenten finnes allerede: ${componentDirectory}`);
   process.exit(1);
 }
 
+const resolveComponentFile = fileName => {
+  const filePath = path.resolve(componentDirectory, fileName);
+
+  if (!filePath.startsWith(componentDirectory + path.sep)) {
+    console.error(`Ugyldig filsti: ${filePath}`);
+    process.exit(1);
+  }
+
+  return filePath;
+};
+
 await mkdir(componentDirectory);
 
 await writeFile(
-  `${componentDirectory}/index.ts`,
+  resolveComponentFile('index.ts'),
   `import ${componentName} from './${componentName}';
 export * from './${componentName}';
 export default ${componentName};
@@ -54,7 +72,7 @@ export default ${componentName};
 );
 
 await writeFile(
-  `${componentDirectory}/styles.module.scss`,
+  resolveComponentFile('styles.module.scss'),
   `.${className} {
   display: block;
 }
@@ -62,7 +80,7 @@ await writeFile(
 );
 
 await writeFile(
-  `${componentDirectory}/styles.module.scss.d.ts`,
+  resolveComponentFile('styles.module.scss.d.ts'),
   `export type Styles = {
   '${className}': string;
 };
@@ -76,7 +94,7 @@ export default styles;
 );
 
 await writeFile(
-  `${componentDirectory}/${componentName}.tsx`,
+  resolveComponentFile(`${componentName}.tsx`),
   `import type React from 'react';
 
 import styles from './styles.module.scss';
@@ -103,7 +121,7 @@ export default ${componentName};
 );
 
 await writeFile(
-  `${componentDirectory}/${componentName}.test.tsx`,
+  resolveComponentFile(`${componentName}.test.tsx`),
   `import { render, screen } from '@testing-library/react';
 
 import ${componentName} from './${componentName}';
@@ -121,7 +139,7 @@ describe('Gitt at ${componentName} skal vises', (): void => {
 );
 
 await writeFile(
-  `${componentDirectory}/${componentName}.stories.tsx`,
+  resolveComponentFile(`${componentName}.stories.tsx`),
   `import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
