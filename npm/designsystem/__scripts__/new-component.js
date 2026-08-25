@@ -29,6 +29,17 @@ const toKebabCase = name =>
     .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
     .toLowerCase();
 
+const assertPathWithinDirectory = (baseDirectory, targetPath) => {
+  const relative = path.relative(baseDirectory, targetPath);
+
+  if (relative === '' || relative.startsWith('..') || path.isAbsolute(relative)) {
+    console.error(`Ugyldig sti: ${targetPath}`);
+    process.exit(1);
+  }
+
+  return targetPath;
+};
+
 const componentName = await getComponentName();
 
 if (!/^[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]+)*$/.test(componentName)) {
@@ -38,28 +49,14 @@ if (!/^[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]+)*$/.test(componentName)) {
 
 const className = toKebabCase(componentName);
 const componentsRoot = path.resolve('./src/components');
-const componentDirectory = path.resolve(componentsRoot, componentName);
-
-if (!componentDirectory.startsWith(componentsRoot + path.sep)) {
-  console.error(`Ugyldig komponentsti: ${componentDirectory}`);
-  process.exit(1);
-}
+const componentDirectory = assertPathWithinDirectory(componentsRoot, path.resolve(componentsRoot, componentName));
 
 if (existsSync(componentDirectory)) {
   console.error(`Komponenten finnes allerede: ${componentDirectory}`);
   process.exit(1);
 }
 
-const resolveComponentFile = fileName => {
-  const filePath = path.resolve(componentDirectory, fileName);
-
-  if (!filePath.startsWith(componentDirectory + path.sep)) {
-    console.error(`Ugyldig filsti: ${filePath}`);
-    process.exit(1);
-  }
-
-  return filePath;
-};
+const resolveComponentFile = fileName => assertPathWithinDirectory(componentDirectory, path.resolve(componentDirectory, fileName));
 
 await mkdir(componentDirectory);
 
