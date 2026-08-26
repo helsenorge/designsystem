@@ -6,5 +6,6 @@
   "lastMonthsLabel": "Last {0} months",
   "nextMonthsLabel": "Next {0} months",
   "nextMonthLabel": "Next month",
-  "customPeriodLabel": "Custom period/date"
+  "customPeriodLabel": "Custom period/date",
+  "customPeriodLabel(1)": "Custom period/date"
 }

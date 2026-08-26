@@ -6,5 +6,6 @@
   "lastMonthsLabel": "Siste {0} månadane",
   "nextMonthsLabel": "Neste {0} månadane",
   "nextMonthLabel": "Neste månaden",
-  "customPeriodLabel": "Eigendefinert periode/dato"
+  "customPeriodLabel": "Eigendefinert periode/dato",
+  "customPeriodLabel(1)": "Eigendefinert periode/dato"
 }
