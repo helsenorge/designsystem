@@ -7,5 +7,5 @@
   "nextMonthsLabel": "Next {0} months",
   "nextMonthLabel": "Next month",
   "customPeriodLabel": "Custom period/date",
-  "customPeriodLabel(1)": ""
+  "resetPeriodLabel": ""
 }

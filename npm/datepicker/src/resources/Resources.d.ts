@@ -184,9 +184,9 @@ export type HNDesignsystemUnsafe_DateRangeSelector = {
    */
   customPeriodLabel: string;
   /**
-   * Egendefinert periode/dato
+   * Nullstilt periode/dato
    */
-  customPeriodLabel(1): string;
+  resetPeriodLabel: string;
 };
 
 /* eslint:enable */
