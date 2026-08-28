@@ -6,6 +6,6 @@ export enum ModalVariants {
 }
 
 export enum ModalSize {
-  large = 'large',
+  normal = 'normal',
   medium = 'medium',
 }

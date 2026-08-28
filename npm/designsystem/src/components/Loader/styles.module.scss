@@ -79,7 +79,7 @@
   width: 8 * 5px;
   height: 8px;
 
-  &--small {
+  &--normal {
     width: 12 * 5px;
     height: 12px;
   }
@@ -108,7 +108,7 @@
     // Sets a form of easing animation curve
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 
-    &--small {
+    &--normal {
       width: 12px;
       height: 12px;
     }
@@ -166,9 +166,9 @@
       left: 16px;
     }
 
-    &--small:nth-child(2),
-    &--small:nth-child(3) {
-      @include loader-dot-translate(translate-small, 24px);
+    &--normal:nth-child(2),
+    &--normal:nth-child(3) {
+      @include loader-dot-translate(translate-normal, 24px);
     }
 
     &--medium:nth-child(2),
@@ -181,7 +181,7 @@
       @include loader-dot-translate(translate-large, 48px);
     }
 
-    &--small:nth-child(3) {
+    &--normal:nth-child(3) {
       left: 24px;
     }
 
@@ -200,7 +200,7 @@
       @include loader-dot-scale(scale-reverse, 1, 0);
     }
 
-    &--small:nth-child(4) {
+    &--normal:nth-child(4) {
       left: 48px;
     }
 

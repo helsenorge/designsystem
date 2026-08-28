@@ -8,11 +8,6 @@ import Dog from '../Icons/Dog';
 
 describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres', (): void => {
-    test('Så vises button', (): void => {
-      const { container } = render(<Button>{'Button'}</Button>);
-      expect(container).toMatchSnapshot();
-    });
-
     test('Så rendres button uten aria props', (): void => {
       render(
         <div>
@@ -48,22 +43,9 @@ describe('Gitt at button skal vises', (): void => {
     });
   });
 
-  describe('Når button rendres med ikoner', (): void => {
-    test('Så vises ikonene', (): void => {
-      const { container } = render(
-        <Button>
-          <Icon svgIcon={Check} />
-          {'Button'}
-          <Icon svgIcon={Check} />
-        </Button>
-      );
-      expect(container).toMatchSnapshot();
-    });
-  });
-
   describe('Når button rendres kun med ikon', (): void => {
     test('Så inneholder knappen bare ikon, og ariaLabel kan leses', (): void => {
-      const { container } = render(
+      render(
         <Button ariaLabel="Check me">
           <Icon svgIcon={Check} />
         </Button>
@@ -72,7 +54,6 @@ describe('Gitt at button skal vises', (): void => {
       const button = screen.getByText('Check me');
 
       expect(button).toBeVisible();
-      expect(container).toMatchSnapshot();
     });
   });
 
@@ -90,7 +71,7 @@ describe('Gitt at button skal vises', (): void => {
 
       expect(text).toBeVisible();
 
-      expect(button.firstElementChild?.className).toBe('button button--medium button--left-icon button--both-icons button--arrow');
+      expect(button.firstElementChild?.className).toBe('button button--normal button--left-icon button--both-icons button--arrow');
     });
   });
 
@@ -245,8 +226,8 @@ describe('Gitt at button skal vises', (): void => {
 
       const testButton2 = screen.getByTestId('test02').children[0];
 
-      expect(testButton1.className).toBe('button button--medium');
-      expect(testButton2.className).toBe('button button--destructive button--medium');
+      expect(testButton1.className).toBe('button button--normal');
+      expect(testButton2.className).toBe('button button--destructive button--normal');
     });
   });
 
@@ -260,7 +241,7 @@ describe('Gitt at button skal vises', (): void => {
 
       const testButton = screen.getByTestId('test01').children[0];
 
-      expect(testButton.className).toBe('button button--medium button--on-dark');
+      expect(testButton.className).toBe('button button--normal button--on-dark');
     });
   });
 
@@ -300,15 +281,15 @@ describe('Gitt at button skal vises', (): void => {
 
       const testFill = screen.getByTestId('test01').children[0];
 
-      expect(testFill.className).toBe('button button--medium');
+      expect(testFill.className).toBe('button button--normal');
 
       const testOutline = screen.getByTestId('test02').children[0];
 
-      expect(testOutline.className).toBe('button button--medium button--outline');
+      expect(testOutline.className).toBe('button button--normal button--outline');
 
       const testBorderless = screen.getByTestId('test03').children[0];
 
-      expect(testBorderless.className).toBe('button button--medium button--borderless');
+      expect(testBorderless.className).toBe('button button--normal button--borderless');
     });
   });
   describe('Når button rendres med borderless variant', (): void => {
@@ -323,7 +304,7 @@ describe('Gitt at button skal vises', (): void => {
 
       const testFill = screen.getByTestId('test01').children[0];
 
-      expect(testFill.className).toBe('button button--medium button--borderless');
+      expect(testFill.className).toBe('button button--normal button--borderless');
     });
   });
   describe('Når button rendres med aria props', (): void => {

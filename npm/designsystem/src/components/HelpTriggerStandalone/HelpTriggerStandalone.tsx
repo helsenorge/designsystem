@@ -59,7 +59,7 @@ const HelpTriggerStandalone: React.FC<HelpTriggerStandaloneProps> = props => {
       {...ariaLabelAttributes}
       {...rest}
     >
-      <HelpTriggerIconInternal weight={weight} size={isMobile ? 'medium' : 'large'} htmlMarkup={'span'} isHovered={isHovered} />
+      <HelpTriggerIconInternal weight={weight} size={isMobile ? 'normal' : 'large'} htmlMarkup={'span'} isHovered={isHovered} />
       <span className={styles['help-trigger-standalone__children']}>{children}</span>
     </button>
   );

@@ -8,23 +8,23 @@
 
 $dark-mode-disabled-transparrent: #ffffffb3;
 $with-icons: // icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop
-  'left-icon' 'medium' spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) 0 spacers.getSpacer(3xs) 0
+  'left-icon' 'normal' spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) 0 spacers.getSpacer(3xs) 0
     spacers.getSpacer(2xs),
-  'right-icon' 'medium' spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(3xs) 0
+  'right-icon' 'normal' spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(3xs) 0
     spacers.getSpacer(2xs) 0,
   'left-icon' 'large-non-borderless' spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l) 0
     spacers.getSpacer(2xs) 0 spacers.getSpacer(xs),
   'right-icon' 'large-non-borderless' spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(l) spacers.getSpacer(s)
     spacers.getSpacer(2xs) 0 spacers.getSpacer(xs) 0,
-  'arrow' 'medium' spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(m) 0
+  'arrow' 'normal' spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(m) 0
     spacers.getSpacer(l) 0,
   'arrow' 'large-non-borderless' spacers.getSpacer(m) spacers.getSpacer(xs) spacers.getSpacer(l) spacers.getSpacer(xs) spacers.getSpacer(l)
     0 spacers.getSpacer(xl) 0,
-  'arrow--both-icons' 'medium' 0 0 0 0 spacers.getSpacer(s) 0 spacers.getSpacer(m) 0,
+  'arrow--both-icons' 'normal' 0 0 0 0 spacers.getSpacer(s) 0 spacers.getSpacer(m) 0,
   'arrow--both-icons' 'large-non-borderless' 0 0 0 0 spacers.getSpacer(m) 0 spacers.getSpacer(l) 0,
-  'only-icon' 'medium' 0.0625rem 0.0625rem 0.375rem 0.375rem 0 0 0 0,
+  'only-icon' 'normal' 0.0625rem 0.0625rem 0.375rem 0.375rem 0 0 0 0,
   'only-icon' 'large-non-borderless' 0.312rem 0.312rem spacers.getSpacer(3xs) spacers.getSpacer(3xs) 0 0 0 0,
-  'both-icons' 'medium' spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) 0 0 0 0,
+  'both-icons' 'normal' spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) 0 0 0 0,
   'both-icons' 'large-non-borderless' spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) 0 0 0 0,
   'left-icon' 'large-borderless' spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) 0
     spacers.getSpacer(3xs) 0 spacers.getSpacer(3xs),

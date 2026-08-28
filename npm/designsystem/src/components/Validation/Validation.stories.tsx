@@ -120,7 +120,7 @@ export const FormExample = (props: FormExampleProps): React.JSX.Element => {
     },
   },
   args: {
-    size: FormSize.medium,
+    size: FormSize.normal,
   },
   argTypes: {
     size: {

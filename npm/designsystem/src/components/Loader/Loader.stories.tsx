@@ -44,7 +44,7 @@ export const AllSizes: Story = {
   render: args => (
     <div style={{ display: 'grid', gridGap: '2rem' }}>
       <Loader {...args} size={'tiny'} />
-      <Loader {...args} size={'small'} />
+      <Loader {...args} size={'normal'} />
       <Loader {...args} size={'medium'} />
       <Loader {...args} size={'large'} />
     </div>

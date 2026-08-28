@@ -8,7 +8,7 @@ import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 
 import styles from './styles.module.scss';
 
-export type HelpTriggerIconSizes = 'inherit' | 'medium' | 'large' | 'xlarge';
+export type HelpTriggerIconSizes = 'inherit' | 'normal' | 'large' | 'xlarge';
 
 export type HelpTriggerIconTags = 'button' | 'span';
 
@@ -29,7 +29,7 @@ export interface HelpTriggerIconProps extends Pick<
   /** Adds custom classes to the element. */
   className?: string;
   /**
-   * Size of the Icon. Default: medium.
+   * Size of the Icon. Default: normal.
    */
   size?: HelpTriggerIconSizes;
   /** Sets the data-testid attribute. */
@@ -71,7 +71,7 @@ export const HelpTriggerIconInternal: React.FC<HelpTriggerIconInternalProps> = p
     className,
     htmlMarkup = 'button',
     isHovered = false,
-    size = 'medium',
+    size = 'normal',
     testId,
     weight = 'normal',
     ref,

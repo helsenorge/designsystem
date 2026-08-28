@@ -146,7 +146,7 @@
       line-height: font-settings.$lineheight-size-xs;
     }
 
-    &--medium {
+    &--normal {
       font-size: font-settings.$font-size-sm;
       line-height: font-settings.$lineheight-size-sm;
     }
@@ -162,7 +162,7 @@
         line-height: font-settings.$lineheight-size-sm;
       }
 
-      &--medium {
+      &--normal {
         font-size: font-settings.$font-size-md;
         line-height: font-settings.$lineheight-size-md;
       }

@@ -260,7 +260,7 @@ const PanelRoot: React.FC<PanelProps> = ({
           </div>
           {buttonBottomText && buttonBottomOnClick && (
             <div className={styles['panel__button-bottom']}>
-              <Button variant="borderless" type="button" size="medium" onClick={buttonBottomOnClick} aria-label={buttonBottomAriaLabel}>
+              <Button variant="borderless" type="button" size="normal" onClick={buttonBottomOnClick} aria-label={buttonBottomAriaLabel}>
                 {buttonBottomText}
                 <Icon svgIcon={ChevronRight} size={IconSize.XSmall} />
               </Button>

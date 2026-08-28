@@ -32,7 +32,7 @@ const meta = {
     },
     checked: {
       control: 'boolean',
-      description: 'Used for controlled component. Only works when size is default (medium), does not work with large version.',
+      description: 'Used for controlled component. Only works when size is default (normal), does not work with large version.',
     },
     defaultChecked: {
       control: 'boolean',

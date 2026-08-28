@@ -63,7 +63,7 @@ export enum FormOnColor {
 }
 
 export enum FormSize {
-  medium = 'medium',
+  normal = 'normal',
   large = 'large',
 }
 

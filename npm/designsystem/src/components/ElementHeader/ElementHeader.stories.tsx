@@ -32,7 +32,7 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: ['compact', 'small', 'medium', 'large'],
+      options: ['compact', 'small', 'normal', 'large'],
     },
   },
 } satisfies Meta<typeof ElementHeader>;
@@ -65,8 +65,8 @@ export const Sizes: Story = {
         <Badge color="blueberry">{'Ny'}</Badge>
       </ElementHeader>
       <br />
-      <ElementHeader {...args} size="medium" icon={<Icon svgIcon={AlarmClock} />}>
-        {'Medium ElementHeader'}
+      <ElementHeader {...args} size="normal" icon={<Icon svgIcon={AlarmClock} />}>
+        {'Normal ElementHeader'}
         <Badge color="blueberry">{'Ny'}</Badge>
       </ElementHeader>
       <br />
@@ -87,7 +87,7 @@ export const Sizes: Story = {
         </>
       </ElementHeader>
       <br />
-      <ElementHeader {...args} size="medium" icon={<Icon svgIcon={AlarmClock} />}>
+      <ElementHeader {...args} size="normal" icon={<Icon svgIcon={AlarmClock} />}>
         <>
           <span>
             {'Ved å gi LinkList.Link et '}

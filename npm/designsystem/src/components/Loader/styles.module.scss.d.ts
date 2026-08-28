@@ -8,13 +8,13 @@ export type Styles = {
   'loader__dot--large': string;
   'loader__dot--medium': string;
   'loader__dot--neutral': string;
+  'loader__dot--normal': string;
   'loader__dot--plum': string;
-  'loader__dot--small': string;
   'loader__dot--white': string;
   'loader__hidden-text': string;
   'loader--large': string;
   'loader--medium': string;
-  'loader--small': string;
+  'loader--normal': string;
   'loader-wrapper--center': string;
   'loader-wrapper--inline': string;
   'loader-wrapper--overlay': string;
@@ -26,7 +26,7 @@ export type Styles = {
   translate: string;
   'translate-large': string;
   'translate-medium': string;
-  'translate-small': string;
+  'translate-normal': string;
   'translate-tiny': string;
 };
 

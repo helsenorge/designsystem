@@ -89,7 +89,7 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
     legendClassName,
     legendId,
     onColor = FormOnColor.onwhite,
-    size = FormSize.medium,
+    size = FormSize.normal,
     error,
     name,
     htmlMarkup = 'fieldset',

@@ -62,21 +62,6 @@
 
   &--normal {
     background-color: palette.$white;
-  }
-
-  &--error {
-    background-color: palette.$cherry100;
-  }
-
-  &--warning {
-    background-color: palette.$banana50;
-  }
-
-  &--success {
-    background-color: palette.$kiwi50;
-  }
-
-  &--large {
     width: calc(100vw - 0.75rem);
     padding-bottom: spacers.getSpacer(l);
 
@@ -98,6 +83,18 @@
     @include breakpoints.tiny-screens-media-query {
       padding-bottom: spacers.getSpacer(2xs);
     }
+  }
+
+  &--error {
+    background-color: palette.$cherry100;
+  }
+
+  &--warning {
+    background-color: palette.$banana50;
+  }
+
+  &--success {
+    background-color: palette.$kiwi50;
   }
 
   &--medium {
@@ -178,7 +175,7 @@
     }
 
     &__scroll {
-      &--large {
+      &--normal {
         padding: spacers.getSpacer(xl) spacers.getSpacer(m) spacers.getSpacer(2xs);
 
         @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
@@ -223,7 +220,7 @@
     display: flex;
     gap: var(--core-space-m);
 
-    &--large {
+    &--normal {
       padding: spacers.getSpacer(l) spacers.getSpacer(m) 0;
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {

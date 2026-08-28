@@ -30,7 +30,7 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['small', 'medium', 'normal'],
     },
     mode: {
       control: 'select',

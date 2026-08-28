@@ -15,7 +15,7 @@ import buttonStyles from './styles.module.scss';
 
 export type ButtonConcept = 'normal' | 'destructive';
 export type ButtonVariant = 'fill' | 'outline' | 'borderless';
-export type ButtonSize = 'medium' | 'large';
+export type ButtonSize = 'normal' | 'large';
 export type ButtonOnColor = 'onlight' | 'ondark';
 export type ButtonTags = 'button' | 'a';
 export type ButtonArrows = 'icon' | 'accessibility-character';
@@ -123,7 +123,7 @@ const Button: React.FC<ButtonProps> = props => {
     onColor = 'onlight',
     onBlur,
     onClick,
-    size = 'medium',
+    size = 'normal',
     variant = 'fill',
     href,
     tabIndex,
@@ -161,7 +161,7 @@ const Button: React.FC<ButtonProps> = props => {
     buttonStyles.button,
     {
       [buttonStyles['button--destructive']]: destructive,
-      [buttonStyles['button--medium']]: !large,
+      [buttonStyles['button--normal']]: !large,
       [buttonStyles['button--large-non-borderless']]: large && !largeBorderless,
       [buttonStyles['button--large-borderless']]: largeBorderless,
       [buttonStyles['button--outline']]: outlineVariant,

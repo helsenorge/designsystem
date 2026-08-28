@@ -110,7 +110,7 @@ const Modal: React.FC<ModalProps> = props => {
     primaryButtonText = 'OK',
     titleId = uuid(),
     className = '',
-    size = ModalSize.large,
+    size = ModalSize.normal,
     zIndex = ZIndex.OverlayScreen,
     role = 'dialog',
   } = props;

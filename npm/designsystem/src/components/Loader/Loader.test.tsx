@@ -14,13 +14,13 @@ describe('Gitt at en loader skal vises ', (): void => {
       render(<Loader testId={'loaderDotTest'} />);
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
 
-      expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
+      expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--normal loader__dot--neutral');
 
-      expect(loaderDotsWrapper.children[1].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
+      expect(loaderDotsWrapper.children[1].className).toBe('loader__dot loader__dot--normal loader__dot--neutral');
 
-      expect(loaderDotsWrapper.children[2].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
+      expect(loaderDotsWrapper.children[2].className).toBe('loader__dot loader__dot--normal loader__dot--neutral');
 
-      expect(loaderDotsWrapper.children[3].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
+      expect(loaderDotsWrapper.children[3].className).toBe('loader__dot loader__dot--normal loader__dot--neutral');
     });
   });
 
@@ -49,7 +49,7 @@ describe('Gitt at en loader skal vises ', (): void => {
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
       expect(loaderDotsWrapper).toHaveAttribute('aria-labelledby', 'test');
 
-      expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--white');
+      expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--normal loader__dot--white');
 
       const parent = screen.getByTestId('parent-wrapper');
       expect(parent).not.toHaveStyle('position: relative');
