@@ -37,11 +37,12 @@
 ## CSS-tokens er omdøpt
 
 Fargetokens har fått ny navnestruktur for å følge en mer konsistent navnekonvensjon i hele designsystemet. Dette påvirker all egen kode som
-refererer direkte til tokens via `var(--color-...)` i CSS/SCSS eller TypeScript.
+refererer direkte til tokens via `var(--color-...)` eller `var(--brandcolor-...)` i CSS/SCSS eller TypeScript.
 
-De gamle tokennavnene fortsetter å fungere i v16: pakken shipper en legacy-fil (`scss/supernova-legacy/styles/legacy-colors.css`) som lastes
-automatisk via `helsenorge.scss`. Verdiene i legacy-filen er imidlertid frosne hex-verdier som ikke lenger vedlikeholdes — migrér derfor til
-de nye navnene.
+De fleste gamle `--color-*`-tokennavnene fortsetter å fungere i v16 når `helsenorge.scss` importeres: pakken shipper en legacy-fil
+(`scss/supernova-legacy/styles/legacy-colors.css`) som lastes automatisk der. Denne kompatibiliteten gjelder ikke ved direkte import av
+`scss/supernova/styles/colors.css`, og den gjelder heller ikke `--brandcolor-*`-tokenene. Verdiene i legacy-filen er frosne hex-verdier som
+ikke lenger vedlikeholdes — migrér derfor til de nye navnene.
 
 For hver token i listen under, søk etter alle forekomster av det gamle tokennavnet og erstatt det med det nye.
 
@@ -53,8 +54,11 @@ Migrér CSS-tokens fra v15 til v16-nomenklatur.
 1. Sjekk om kodebasen bruker gamle tokens:
    Søk etter forekomster av de gamle tokennavnene i filer som
    bruker CSS-variabler: .css, .scss, .module.scss, .ts, .tsx, .js, .jsx.
-   Se etter mønstre som 'var(--color-...)' eller direkte
-   '--color-...'-referanser.
+   Se etter mønstre som 'var(--color-...)', 'var(--brandcolor-...)',
+   eller direkte '--color-...'/'--brandcolor-...'-referanser. Søk også
+   etter direkte import av
+   '@helsenorge/designsystem-react/scss/supernova/styles/colors.css':
+   denne importen inkluderer ikke legacy-tokenene.
    Hvis ingen treff: hopp over dette steget og noter i PR-beskrivelsen at
    gamle tokens ikke er i bruk.
 
@@ -105,6 +109,25 @@ Migrér CSS-tokens fra v15 til v16-nomenklatur.
    --color-base-text-ondark  →  --color-base-text-light
    --color-base-text-onlight-subdued  →  --color-base-subdued-text-dark
    --color-base-text-onlight  →  --color-base-text-dark
+   --brandcolor-black  →  --brand-color-black
+   --brandcolor-blueberry-dark  →  --brand-color-blueberry-dark
+   --brandcolor-blueberry-light  →  --brand-color-blueberry-light
+   --brandcolor-blueberry-medium  →  --brand-color-blueberry-medium
+   --brandcolor-blueberry-mediumdark  →  --brand-color-blueberry-mediumdark
+   --brandcolor-blueberry-mediumlight  →  --brand-color-blueberry-mediumlight
+   --brandcolor-blueberry-verylight  →  --brand-color-blueberry-verylight
+   --brandcolor-cherry-dark  →  --brand-color-cherry-dark
+   --brandcolor-cherry-light  →  --brand-color-cherry-light
+   --brandcolor-cherry-medium  →  --brand-color-cherry-medium
+   --brandcolor-cherry-mediumdark  →  --brand-color-cherry-mediumdark
+   --brandcolor-cherry-verylight  →  --brand-color-cherry-verylight
+   --brandcolor-neutral-dark  →  --brand-color-neutral-dark
+   --brandcolor-neutral-light  →  --brand-color-neutral-light
+   --brandcolor-neutral-medium  →  --brand-color-neutral-medium
+   --brandcolor-neutral-mediumlight  →  --brand-color-neutral-mediumlight
+   --brandcolor-neutral-verydark  →  --brand-color-neutral-verydark
+   --brandcolor-neutral-verylight  →  --brand-color-neutral-verylight
+   --brandcolor-white  →  --brand-color-white
    --color-destructive-background-emphasized  →  --color-destructive-background-light-plus1-hover
    --color-destructive-background-normal  →  --color-destructive-background-light-plus1-normal
    --color-destructive-border-normal  →  --color-destructive-border-dark-normal
@@ -176,7 +199,8 @@ Migrér CSS-tokens fra v15 til v16-nomenklatur.
    verifisere at alle forekomster er erstattet:
    Søk etter et utvalg av gamle navn (f.eks.
    '--color-action-background-ondark',
-   '--color-notification-background-error') i hele kodebasen for å
+   '--color-notification-background-error', '--brandcolor-blueberry-medium')
+   i hele kodebasen for å
    sikre at ingen gamle tokens blir brukt.
 
 4. Verifiser:
