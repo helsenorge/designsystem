@@ -6,5 +6,6 @@
   "lastMonthsLabel": "Siste {0} måneder",
   "nextMonthsLabel": "Neste {0} måneder",
   "nextMonthLabel": "Neste måned",
-  "customPeriodLabel": "Egendefinert periode/dato"
+  "customPeriodLabel": "Egendefinert periode/dato",
+  "resetPeriodLabel": "Nullstilt periode/dato"
 }

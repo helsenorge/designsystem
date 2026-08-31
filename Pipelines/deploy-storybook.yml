@@ -14,7 +14,7 @@ variables:
   - name: node_version
     value: 26
   - name: npm_version
-    value: '11.18.0'
+    value: '11.17.0''
   - name: HUSKY
     value: 0
   - name: branchName

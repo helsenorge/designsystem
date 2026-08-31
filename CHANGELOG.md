@@ -1,3 +1,11 @@
+## [15.8.0](https://github.com/helsenorge/designsystem/compare/v15.7.2...v15.8.0) (2026-08-27)
+
+### Features
+
+*  icon import script ([5051a87](https://github.com/helsenorge/designsystem/commit/5051a8790d1eed52d145774f8cf0bdec82a020b5)), closes [#383478](https://github.com/helsenorge/designsystem/issues/383478)
+* **datepicker:**  inline variant tilgjengelig og brukes i daterangeselector ([1c12a71](https://github.com/helsenorge/designsystem/commit/1c12a716e15ea3aac3d7a86bcc1ec5536618d349)), closes [#383069](https://github.com/helsenorge/designsystem/issues/383069)
+* **datepicker:**  iso støtte for date and time ([2b05131](https://github.com/helsenorge/designsystem/commit/2b051312fcf839fd7a380d9f9c42def6f260f043)), closes [#376922](https://github.com/helsenorge/designsystem/issues/376922)
+
 ## [15.7.2](https://github.com/helsenorge/designsystem/compare/v15.7.1...v15.7.2) (2026-08-20)
 
 ### Bug Fixes
