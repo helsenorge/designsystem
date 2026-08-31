@@ -232,7 +232,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
               <div style={{ position: 'relative' }}>
                 <MonthGrid {...props} />
                 <div className={customstyles['loading-overlay']}>
-                  <Loader size="small" color="blueberry" />
+                  <Loader size="normal" color="blueberry" />
                   <p style={{ whiteSpace: 'pre-line' }} aria-live="polite">
                     {mergedResources.loadingText}
                   </p>

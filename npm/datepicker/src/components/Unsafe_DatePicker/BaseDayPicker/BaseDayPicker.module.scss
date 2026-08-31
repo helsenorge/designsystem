@@ -18,8 +18,12 @@
 
   width: fit-content;
   border: 1px solid var(--color-action-border-dark-normal);
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   background-color: var(--color-base-background-light);
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, xs)) {
+    padding: 0.5rem;
+  }
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
     --rdp-day_button-height: 2.75rem;
