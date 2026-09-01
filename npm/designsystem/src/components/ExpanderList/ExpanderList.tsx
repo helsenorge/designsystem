@@ -309,42 +309,43 @@ const ExpanderListComponent: React.FC<ExpanderListProps> = (props: ExpanderListP
           const id = getExpanderId(index);
           const expanded = activeExpander?.[id];
           const highlightTextChild: string | undefined = child.props.highlightText || highlightText;
+          const childProps = child.props;
+          const sharedProps = {
+            padding: childProps.padding ?? childPadding,
+            color: childProps.color ?? color,
+            large: childProps.large ?? large,
+            className: classNames(expanderListStyles['expander-list__item'], childProps.className),
+            variant: childProps.variant ?? variant,
+            zIndex: childProps.zIndex ?? zIndex,
+            highlightText: highlightTextChild,
+          };
 
           if (editMode) {
             return (
-              <ListEditModeItem color={color} variant={variant} onDelete={child.props.onDelete}>
+              <ListEditModeItem color={color} variant={variant} onDelete={childProps.onDelete}>
                 {React.cloneElement(child, {
+                  ...sharedProps,
                   id,
                   key: index,
                   expanded,
-                  padding: childPadding,
-                  color,
-                  large,
                   'aria-expanded': false,
-                  className: expanderListStyles['expander-list__item'],
                   renderChildrenWhenClosed: false,
-                  variant,
-                  zIndex: zIndex,
-                  highlightText: highlightTextChild,
                   editMode: true,
                 })}
               </ListEditModeItem>
             );
           } else {
             return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
+              ...sharedProps,
               id,
               key: index,
               expanded,
-              padding: childPadding,
-              color,
-              large,
               'aria-expanded': expanded,
-              className: expanderListStyles['expander-list__item'],
-              handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${expanderIdBase}-${index}`),
-              renderChildrenWhenClosed,
-              variant,
-              zIndex: zIndex,
-              highlightText: highlightTextChild,
+              handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => {
+                childProps.handleExpanderClick?.(event);
+                handleExpanderClick(event, id);
+              },
+              renderChildrenWhenClosed: childProps.renderChildrenWhenClosed ?? renderChildrenWhenClosed,
             });
           }
         }
