@@ -90,7 +90,7 @@ const OsloView = (): React.ReactNode => {
 const NameDoctorView = ({ inputValue, setInputValue, errors, clearErrors }: ValidationInputPageProps): React.ReactNode => {
   const { goToView } = useDrawerNavigation<FinnFastlegeViewId>();
   return (
-    <div>
+    <div style={{ display: 'flex', flexFlow: 'column', gap: '2rem' }}>
       <Input
         label="Navnet til fastlegen"
         required
@@ -115,7 +115,7 @@ const NameDoctorView = ({ inputValue, setInputValue, errors, clearErrors }: Vali
 const NameOfficeView = ({ inputValue, setInputValue, errors, clearErrors }: ValidationInputPageProps): React.ReactNode => {
   const { goToView } = useDrawerNavigation<FinnFastlegeViewId>();
   return (
-    <div>
+    <div style={{ display: 'flex', flexFlow: 'column', gap: '2rem' }}>
       <Input
         label="Navnet på legekontoret"
         required
@@ -140,7 +140,7 @@ const NameOfficeView = ({ inputValue, setInputValue, errors, clearErrors }: Vali
 const CustomOverview = (): React.ReactNode => {
   const { goToView } = useDrawerNavigation<FinnFastlegeViewId>();
   return (
-    <div>
+    <div style={{ display: 'flex', flexFlow: 'column', gap: '2rem' }}>
       <NotificationPanel compactVariant="outline">
         {'Sted, navn på fastlegen eller legekontoret må være angitt for at vi skal kunne vise deg resultater'}
       </NotificationPanel>
@@ -211,7 +211,7 @@ const FinnFastlegeFlytExample = (): React.ReactNode => {
 
   return (
     <div>
-      <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
+      <Button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</Button>
       <DrawerNavigation isOpen={isOpen} onCloseButton={() => setModalOpen(true)}>
         <DrawerNavigation.View<FinnFastlegeViewId> id="overview" title="Filtrer" home>
           <CustomOverview />
