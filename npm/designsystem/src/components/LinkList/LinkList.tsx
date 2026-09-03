@@ -270,11 +270,11 @@ const LinkListComponent: React.FC<LinkListProps> = (props: LinkListProps) => {
                 deleteButtonAriaLabel={deleteAriaLabel}
               >
                 {React.cloneElement(child, {
-                  color,
-                  size,
+                  color: child.props.color ?? color,
+                  size: child.props.size ?? size,
                   chevron: false,
-                  variant,
-                  highlightText: highlightText,
+                  variant: child.props.variant ?? variant,
+                  highlightText: child.props.highlightText ?? highlightText,
                   editMode: true,
                   contentId: itemId,
                 })}
@@ -282,11 +282,11 @@ const LinkListComponent: React.FC<LinkListProps> = (props: LinkListProps) => {
             );
           } else {
             return React.cloneElement(child, {
-              color,
-              size,
+              color: child.props.color ?? color,
+              size: child.props.size ?? size,
               chevron,
-              variant,
-              highlightText: highlightText,
+              variant: child.props.variant ?? variant,
+              highlightText: child.props.highlightText ?? highlightText,
               editMode: false,
             });
           }

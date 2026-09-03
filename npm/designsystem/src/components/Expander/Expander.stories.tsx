@@ -68,9 +68,9 @@ export const Default: Story = {
 export const Sizes: Story = {
   render: args => (
     <>
-      <Expander {...args} size={ExpanderSize.small} />
+      <Expander size={ExpanderSize.small} {...args} />
       <Spacer size="l" />
-      <Expander {...args} size={ExpanderSize.large} />
+      <Expander size={ExpanderSize.large} {...args} />
     </>
   ),
 };
