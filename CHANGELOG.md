@@ -1,3 +1,12 @@
+## [15.8.1](https://github.com/helsenorge/designsystem/compare/v15.8.0...v15.8.1) (2026-09-04)
+
+### Bug Fixes
+
+*  correct icon path for HistoryDocument ([eea9a4b](https://github.com/helsenorge/designsystem/commit/eea9a4b5c39ed0ff9a5e7cfa988d7ef85193d445)), closes [#383478](https://github.com/helsenorge/designsystem/issues/383478)
+*  linklist respekterer size overstyring ([e04ff31](https://github.com/helsenorge/designsystem/commit/e04ff31f89810b59f66ac4c37fd9b289660ec685)), closes [#351264](https://github.com/helsenorge/designsystem/issues/351264)
+*  newComponent script sonar warning fix ([fc56c82](https://github.com/helsenorge/designsystem/commit/fc56c82a6a567588066a1e112da24322fe2523b2)), closes [#383169](https://github.com/helsenorge/designsystem/issues/383169)
+* **expanderlist:**  props settes i story ([86712a5](https://github.com/helsenorge/designsystem/commit/86712a58ced56755b37fc81cd94fd3150449cf4f)), closes [#382634](https://github.com/helsenorge/designsystem/issues/382634)
+
 ## [15.8.0](https://github.com/helsenorge/designsystem/compare/v15.7.2...v15.8.0) (2026-08-27)
 
 ### Features
