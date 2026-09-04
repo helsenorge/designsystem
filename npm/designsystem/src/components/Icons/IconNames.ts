@@ -355,6 +355,7 @@ export const IconList = [
   'X',
   'XmlFile',
   'XOutline',
+  'YesNo',
   'YouTube',
   'Zoom',
   'ZoomInLeft',
