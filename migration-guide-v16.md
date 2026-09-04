@@ -15,7 +15,9 @@
 >
 > 2. Finn riktig versjon:
 >    npm dist-tag ls @helsenorge/designsystem-react
->    De tre pakkene er versjonert sammen — bruk samme versjon for alle tre.
+>    Hvis v16 ikke er publisert som 'latest' ennå, bruk 'beta'-versjonen
+>    (f.eks. 16.0.0-beta.0). De tre pakkene er versjonert sammen — bruk
+>    samme versjon for alle tre.
 >
 > 3. Andre @helsenorge-pakker:
 >    Pakker som @helsenorge/core-framework, @helsenorge/framework-utils,
@@ -399,4 +401,97 @@ Fjern bruk av Drawer sine withBackButton/onRequestBack-props.
      test-, og evt. storybook-build-scriptene i dette prosjektet. Kjør dem.
    - Hvis prosjektet har visual regression (Chromatic e.l.), oppdater
      baselines for stories som bruker Drawer med tilbakeknapp.
+```
+
+## Standardstørrelsen på `size`-props heter nå `normal`
+
+Flere komponenter har fått omdøpt verdien som er standardstørrelse i `size`-propen til `normal`. Selve utseendet er uendret — dette er kun
+en navneendring — men de gamle verdiene finnes ikke lenger i typene og vil feile typecheck. Hvilken gammel verdi som er omdøpt varierer per
+komponent:
+
+| Komponent(er)                                                         | Type/enum              | Gammel verdi | Ny verdi |
+| --------------------------------------------------------------------- | ---------------------- | ------------ | -------- |
+| `Button`                                                              | `ButtonSize`           | `medium`     | `normal` |
+| `HelpTriggerIcon`                                                     | `HelpTriggerIconSizes` | `medium`     | `normal` |
+| `LinkList` / `LinkList.Link`                                          | `LinkListSize`         | `medium`     | `normal` |
+| `ElementHeader`                                                       | `ElementHeaderSize`    | `medium`     | `normal` |
+| `Checkbox`, `Radio`, `Input`, `FormGroup`, `FormLayout`, `Validation` | `FormSize`             | `medium`     | `normal` |
+| `Loader`                                                              | `LoaderSizes`          | `small`      | `normal` |
+| `Modal`                                                               | `ModalSize`            | `large`      | `normal` |
+| `Progressbar`                                                         | `ProgressbarSize`      | `large`      | `normal` |
+
+Merk at kun standardverdien er omdøpt: `Loader` beholder `tiny`, `medium` og `large`, `Modal` beholder `medium`, og `Progressbar` beholder
+`small` og `medium`. Kode som ikke setter `size` eksplisitt er ikke berørt (standardverdien peker nå på `normal` og rendrer likt som før).
+
+Før:
+
+```tsx
+<Button size="medium">Lagre</Button>
+<Loader size="small" />
+<Modal size={ModalSize.large} title="Tittel" />
+```
+
+Etter:
+
+```tsx
+<Button size="normal">Lagre</Button>
+<Loader size="normal" />
+<Modal size={ModalSize.normal} title="Tittel" />
+```
+
+De interne CSS-klassenavnene er også endret tilsvarende (f.eks. `button--medium` → `button--normal`, `loader--small` → `loader--normal`),
+noe som kan påvirke snapshot-tester og egne stilark som refererer til disse klassene.
+
+### Agent-prompt
+
+```
+Migrér size-props til den nye 'normal'-verdien.
+
+1. Sjekk om kodebasen bruker de berørte komponentene med eksplisitt size:
+   Søk i TypeScript/TSX-filer etter import-stier under
+   '@helsenorge/designsystem-react/components/' for disse komponentene:
+   Button, HelpTriggerIcon, LinkList, ElementHeader, Checkbox, Radio,
+   Input, FormGroup, FormLayout, Validation, Loader, Modal, Progressbar.
+   Søk også etter enum-importene FormSize, ModalSize og ProgressbarSize
+   fra '@helsenorge/designsystem-react/constants' eller komponentenes
+   undermapper.
+   For hvert treff, søk videre etter en eksplisitt size-prop i JSX
+   (size="...", size={...}) eller bruk av enum-medlemmene.
+   Hvis ingen treff med eksplisitt size: hopp over dette steget og noter
+   i PR-beskrivelsen at ingen berørte size-props er i bruk.
+
+2. Bytt gammel verdi til 'normal' — mappingen varierer per komponent:
+   - Button, HelpTriggerIcon, LinkList, ElementHeader: 'medium' → 'normal'
+   - Checkbox, Radio, Input, FormGroup, FormLayout, Validation:
+     'medium' → 'normal' (også FormSize.medium → FormSize.normal)
+   - Loader: 'small' → 'normal' (tiny/medium/large er uendret)
+   - Modal: ModalSize.large / 'large' → ModalSize.normal / 'normal'
+     ('medium' er uendret)
+   - Progressbar: ProgressbarSize.large / 'large' → ProgressbarSize.normal /
+     'normal' ('small' og 'medium' er uendret)
+   Kode som ikke setter size eksplisitt trenger ingen endring.
+   Vær nøye med å ikke bytte 'medium' på Loader, Modal eller Progressbar —
+   der er 'medium' fortsatt en gyldig (annen) størrelse.
+   Ved tvil: les komponentens TypeScript-typer i
+   node_modules/@helsenorge/designsystem-react/lib/components/<Navn>/<Navn>.d.ts
+   og bekreft gyldige verdier. Ikke gjett.
+
+3. Søk etter hardkodede referanser til de gamle CSS-klassenavnene
+   (f.eks. 'button--medium', 'loader--small', 'loader__dot--small')
+   i egne SCSS-filer og snapshot-tester — disse er omdøpt til
+   '...--normal' og må oppdateres der de forekommer.
+
+4. Sjekk om noen av treffene er i *.stories.tsx eller snapshot-tester og
+   oppdater disse også.
+
+5. Verifiser:
+   - Les scripts-feltet i package.json og finn riktig navn på typecheck-,
+     test-, og evt. storybook-build-scriptene i dette prosjektet. Kjør dem.
+     Typecheck vil fange igjenværende bruk av de gamle verdiene.
+   - Hvis prosjektet har visual regression (Chromatic e.l.): utseendet skal
+     være uendret, men snapshot-baserte tester kan slå ut pga. endrede
+     klassenavn. Oppdater baselines ved behov.
+
+6. I PR-beskrivelsen: lim inn liste over filer du endret, eller skriv
+   at ingen berørte size-props er i bruk hvis ingen treff.
 ```
