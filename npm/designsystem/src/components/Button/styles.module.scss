@@ -4,7 +4,6 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/screen-reader' as *;
 @use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
 
 $dark-mode-disabled-transparrent: #ffffffb3;
 $with-icons: // icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop

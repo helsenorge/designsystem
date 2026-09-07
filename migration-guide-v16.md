@@ -217,6 +217,58 @@ Migrér CSS-tokens fra v15 til v16-nomenklatur.
    at ingen gamle tokens ble funnet hvis ingen treff.
 ```
 
+## Komponentene laster ikke lenger CSS-tokens selv
+
+I v15 importerte hver enkelt komponent tokenfilene (`colors.css`, `spacers.css`) i sin egen SCSS-modul. Dette ga mange dupliserte kopier av
+tokenene i konsumentens bundle, og er fjernet i v16. Tokenene leveres nå kun globalt.
+
+Prosjekter som importerer `@helsenorge/designsystem-react/scss/helsenorge.scss` er ikke berørt — den laster tokenene (og legacy-laget) som
+før.
+
+Prosjekter som **ikke** bruker `helsenorge.scss` (typisk utenfor Helsenorge-plattformen) må selv importere tokenene fra supernova **én gang
+globalt**, ellers mister komponentene farger og spacing:
+
+```scss
+// Alt-i-ett (farger, spacing, typografi):
+@import '@helsenorge/designsystem-react/scss/supernova/index.css';
+
+// Eller enkeltvis:
+@import '@helsenorge/designsystem-react/scss/supernova/styles/colors.css';
+@import '@helsenorge/designsystem-react/scss/supernova/styles/spacers.css';
+```
+
+Merk: Direkteimport av supernova-filene inkluderer **ikke** legacy-tokennavnene (se seksjonen «CSS-tokens er omdøpt») — egen kode må være
+migrert til de nye navnene.
+
+### Agent-prompt
+
+```
+Sørg for at CSS-tokens lastes globalt.
+
+1. Sjekk om prosjektet allerede laster tokenene globalt:
+   Søk etter 'helsenorge.scss' og 'scss/supernova' i hele kodebasen.
+   Hvis prosjektet importerer
+   '@helsenorge/designsystem-react/scss/helsenorge.scss' i en global
+   stilfil eller app-entry: ingen endring nødvendig — hopp over denne
+   seksjonen og noter det i PR-beskrivelsen.
+
+2. Hvis tokenene ikke lastes globalt:
+   Legg til én import i prosjektets globale stilfil eller app-entry
+   (der annen global CSS lastes):
+   '@helsenorge/designsystem-react/scss/supernova/index.css'
+
+3. Fjern redundante direkteimporter:
+   Søk etter 'supernova/styles/colors' og 'supernova/styles/spacers' i
+   prosjektets egne .module.scss-filer. Slike imports var et
+   arbeidsmønster fra v15 og dupliserer nå bare innhold — fjern dem
+   (behold kun den globale importen fra steg 1/2).
+
+4. Verifiser:
+   Kjør prosjektets build og start appen/storybook. Sjekk at komponenter
+   fra designsystemet har riktige farger og spacing (CSS-variabler som
+   '--color-*' og '--spacer-*' skal være satt på :root).
+```
+
 ## RadioButton er omdøpt til Radio
 
 Komponenten `RadioButton` er slettet og erstattet av `Radio`. Selve API-et (props) er uendret — kun navnet på komponenten, mappen,

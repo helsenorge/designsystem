@@ -9,8 +9,6 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 
 import styles from './styles.module.scss';
 
-import '../../scss/supernova/styles/colors.css';
-
 export type LabelText = {
   text: string;
   type?: 'subdued' | 'normal';

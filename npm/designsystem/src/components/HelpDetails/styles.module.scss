@@ -1,8 +1,6 @@
 @use 'sass:map';
 @use '../../scss/breakpoints' as breakpoints;
 @use '../../scss/font-mixins' as fonts;
-@import '../../scss/supernova/styles/colors.css';
-@import '../../scss/supernova/styles/spacers.css';
 
 .help-details {
   @include fonts.help-text;
