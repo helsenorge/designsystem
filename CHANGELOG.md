@@ -1,3 +1,9 @@
+## [16.0.0-beta.1](https://github.com/helsenorge/designsystem/compare/v16.0.0-beta.0...v16.0.0-beta.1) (2026-09-07)
+
+### Features
+
+*  komponenter importerer ikke lenger colorscss og spacerscss ([1f4af7c](https://github.com/helsenorge/designsystem/commit/1f4af7cf02dd713c529ec973f598d1b837a17d0b)), closes [#383163](https://github.com/helsenorge/designsystem/issues/383163)
+
 ## [15.9.0](https://github.com/helsenorge/designsystem/compare/v15.8.0...v15.9.0) (2026-09-04)
 
 ### Features
