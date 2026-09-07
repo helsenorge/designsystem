@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => (
     <LinkList>
-      <LinkList.Link {...args} href={'https://www.helsenorge.no'} target="_blank"></LinkList.Link>
+      <LinkList.Link {...args}></LinkList.Link>
     </LinkList>
   ),
 };

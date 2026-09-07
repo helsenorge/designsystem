@@ -49,14 +49,15 @@ if (!/^[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]+)*$/.test(componentName)) {
 
 const className = toKebabCase(componentName);
 const componentsRoot = path.resolve('./src/components');
-const componentDirectory = assertPathWithinDirectory(componentsRoot, path.resolve(componentsRoot, componentName));
+
+const componentDirectory = assertPathWithinDirectory(componentsRoot, path.resolve(componentsRoot, path.basename(componentName)));
 
 if (existsSync(componentDirectory)) {
   console.error(`Komponenten finnes allerede: ${componentDirectory}`);
   process.exit(1);
 }
 
-const resolveComponentFile = fileName => assertPathWithinDirectory(componentDirectory, path.resolve(componentDirectory, fileName));
+const resolveComponentFile = fileName => path.resolve(componentDirectory, path.basename(fileName));
 
 await mkdir(componentDirectory);
 

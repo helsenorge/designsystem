@@ -7,6 +7,8 @@ import LinkList from './LinkList';
 import Badge from '../Badge';
 import ElementHeader from '../ElementHeader';
 
+import LinkListStyles from './styles.module.scss';
+
 describe('Gitt at LinkList skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
@@ -70,6 +72,21 @@ describe('Gitt at LinkList skal vises', (): void => {
       await userEvent.click(button);
 
       expect(mockListener).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('Når LinkList.Link har egen størrelse', (): void => {
+    test('Så overstyrer den størrelsen fra LinkList', (): void => {
+      render(
+        <LinkList size="large">
+          <LinkList.Link href="#" size="small">
+            {'Lenke med egen størrelse'}
+          </LinkList.Link>
+        </LinkList>
+      );
+
+      const link = screen.getByRole('link', { name: 'Lenke med egen størrelse' });
+      expect(link).toHaveClass(LinkListStyles['link-list__anchor--small']);
+      expect(link).not.toHaveClass(LinkListStyles['link-list__anchor--large']);
     });
   });
 });
