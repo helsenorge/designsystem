@@ -31,7 +31,7 @@ import getFilterChips from './getFilterChips/getFilterChips';
 import { getResources } from './resourcesMock';
 import { useFilter } from './useFilter';
 import { useFilterDrawer } from './useFilterDrawer';
-import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter, type FilterMatchers } from './utils';
+import { createFilterConfig, filterItems, matchFilter, sortBy, sortItems, toggleArrayFilter, type FilterMatchers } from './utils';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Filter',
@@ -224,6 +224,7 @@ export const VerktoyExample: Story = {
 
     const filter = useFilter<VerktoyFilterType>(filterOptions);
     const drawer = useFilterDrawer<FilterViews>();
+    const [sortKey, setSortKey] = useState('standard');
 
     const filterMatchers: FilterMatchers<Verktoy, VerktoyFilterType> = {
       omrade: matchFilter.arrayIncludes<Verktoy>(m => m.omrade),
@@ -236,6 +237,11 @@ export const VerktoyExample: Story = {
     };
 
     const filtered = filterItems(verktoyMockData, filter.filters, filterMatchers);
+
+    const sorted = sortItems(filtered, sortKey, {
+      nameAsc: sortBy<Verktoy>(v => v.navn),
+      nameDesc: sortBy<Verktoy>(v => v.navn, 'desc'),
+    });
 
     const verktoyFilterLabels: Record<keyof VerktoyFilterType, string> = {
       omrade: resources.filterOptionTitles_omrade,
@@ -262,10 +268,10 @@ export const VerktoyExample: Story = {
           <FilterResultCountAndSortWrapper
             resultCount={`${filtered.length} verktøy`}
             sortComponent={
-              <FilterSort>
-                <option value={'Option 1'}>{'Nyeste'}</option>
-                <option value={'Option 2'}>{'Eldste'}</option>
-                <option value={'Option 3'}>{'Alfabetisk A-Å'}</option>
+              <FilterSort value={sortKey} onChange={e => setSortKey(e.target.value)}>
+                <option value={'standard'}>{'Standard sortering'}</option>
+                <option value={'nameAsc'}>{'Alfabetisk A-Å'}</option>
+                <option value={'nameDesc'}>{'Alfabetisk Å-A'}</option>
               </FilterSort>
             }
           />
@@ -340,7 +346,7 @@ export const VerktoyExample: Story = {
         </FilterDrawer>
         {filtered.length > 0 ? (
           <PanelList>
-            {filtered.map(verktoy => (
+            {sorted.map(verktoy => (
               <Panel>
                 <Panel.Title title={verktoy.navn} icon={<img src={verktoy.logoSrc} alt="logo" />} />
                 <Panel.A>
@@ -537,22 +543,95 @@ export const KunHurtigfilter: Story = {
       virkestoff: string;
       aktiv: boolean;
       medRefusjon: boolean;
+      rekvirertDato: Date;
+      gyldigTil: Date;
     }
 
     const reseptMockData: Resept[] = [
-      { navn: 'Accolate Tab 20 mg', virkestoff: 'Zafirlukast', aktiv: true, medRefusjon: true },
-      { navn: 'Ibux Gel 50 mg/g', virkestoff: 'Ibuprofen', aktiv: true, medRefusjon: false },
-      { navn: 'Paracet Tab 500 mg', virkestoff: 'Paracetamol', aktiv: false, medRefusjon: false },
-      { navn: 'Metformin Tab 500 mg', virkestoff: 'Metformin', aktiv: true, medRefusjon: true },
-      { navn: 'Atorvastatin Tab 20 mg', virkestoff: 'Atorvastatin', aktiv: true, medRefusjon: true },
-      { navn: 'Ventoline Inh 0,1 mg/dose', virkestoff: 'Salbutamol', aktiv: false, medRefusjon: true },
-      { navn: 'Zoloft Tab 50 mg', virkestoff: 'Sertralin', aktiv: false, medRefusjon: false },
-      { navn: 'Marevan Tab 2,5 mg', virkestoff: 'Warfarin', aktiv: true, medRefusjon: true },
-      { navn: 'Somac Tab 20 mg', virkestoff: 'Pantoprazol', aktiv: false, medRefusjon: false },
-      { navn: 'Aerius Tab 5 mg', virkestoff: 'Desloratadin', aktiv: true, medRefusjon: false },
+      {
+        navn: 'Accolate Tab 20 mg',
+        virkestoff: 'Zafirlukast',
+        aktiv: true,
+        medRefusjon: true,
+        rekvirertDato: new Date('2024-03-12'),
+        gyldigTil: new Date('2025-03-12'),
+      },
+      {
+        navn: 'Ibux Gel 50 mg/g',
+        virkestoff: 'Ibuprofen',
+        aktiv: true,
+        medRefusjon: false,
+        rekvirertDato: new Date('2024-01-20'),
+        gyldigTil: new Date('2025-01-20'),
+      },
+      {
+        navn: 'Paracet Tab 500 mg',
+        virkestoff: 'Paracetamol',
+        aktiv: false,
+        medRefusjon: false,
+        rekvirertDato: new Date('2023-06-05'),
+        gyldigTil: new Date('2024-06-05'),
+      },
+      {
+        navn: 'Metformin Tab 500 mg',
+        virkestoff: 'Metformin',
+        aktiv: true,
+        medRefusjon: true,
+        rekvirertDato: new Date('2024-02-14'),
+        gyldigTil: new Date('2025-02-14'),
+      },
+      {
+        navn: 'Atorvastatin Tab 20 mg',
+        virkestoff: 'Atorvastatin',
+        aktiv: true,
+        medRefusjon: true,
+        rekvirertDato: new Date('2024-04-01'),
+        gyldigTil: new Date('2025-04-01'),
+      },
+      {
+        navn: 'Ventoline Inh 0,1 mg/dose',
+        virkestoff: 'Salbutamol',
+        aktiv: false,
+        medRefusjon: true,
+        rekvirertDato: new Date('2023-09-10'),
+        gyldigTil: new Date('2024-09-10'),
+      },
+      {
+        navn: 'Zoloft Tab 50 mg',
+        virkestoff: 'Sertralin',
+        aktiv: false,
+        medRefusjon: false,
+        rekvirertDato: new Date('2023-11-30'),
+        gyldigTil: new Date('2024-11-30'),
+      },
+      {
+        navn: 'Marevan Tab 2,5 mg',
+        virkestoff: 'Warfarin',
+        aktiv: true,
+        medRefusjon: true,
+        rekvirertDato: new Date('2024-05-22'),
+        gyldigTil: new Date('2025-05-22'),
+      },
+      {
+        navn: 'Somac Tab 20 mg',
+        virkestoff: 'Pantoprazol',
+        aktiv: false,
+        medRefusjon: false,
+        rekvirertDato: new Date('2023-08-17'),
+        gyldigTil: new Date('2024-08-17'),
+      },
+      {
+        navn: 'Aerius Tab 5 mg',
+        virkestoff: 'Desloratadin',
+        aktiv: true,
+        medRefusjon: false,
+        rekvirertDato: new Date('2024-06-03'),
+        gyldigTil: new Date('2025-06-03'),
+      },
     ];
 
     const filter = useFilter<ResepterFilterType>();
+    const [sortKey, setSortKey] = useState('standard');
 
     const filterMatchers: FilterMatchers<Resept, ResepterFilterType> = {
       kunAktive: matchFilter.booleanToggle<Resept>(m => m.aktiv),
@@ -560,6 +639,12 @@ export const KunHurtigfilter: Story = {
     };
 
     const filtered = filterItems(reseptMockData, filter.filters, filterMatchers);
+
+    const sorted = sortItems(filtered, sortKey, {
+      navn: sortBy<Resept>(r => r.navn),
+      rekvirertDato: sortBy<Resept>(r => r.rekvirertDato, 'desc'),
+      gyldigTil: sortBy<Resept>(r => r.gyldigTil),
+    });
 
     return (
       <>
@@ -577,18 +662,18 @@ export const KunHurtigfilter: Story = {
         <FilterResultCountAndSortWrapper
           resultCount={`${filtered.length} resepter`}
           sortComponent={
-            <FilterSort>
-              <option value={'Option 1'}>{'Standard sortering'}</option>
-              <option value={'Option 2'}>{'Navn'}</option>
-              <option value={'Option 3'}>{'Rekvirert dato'}</option>
-              <option value={'Option 4'}>{'Gyldig til'}</option>
+            <FilterSort value={sortKey} onChange={e => setSortKey(e.target.value)}>
+              <option value={'standard'}>{'Standard sortering'}</option>
+              <option value={'navn'}>{'Navn'}</option>
+              <option value={'rekvirertDato'}>{'Rekvirert dato'}</option>
+              <option value={'gyldigTil'}>{'Gyldig til'}</option>
             </FilterSort>
           }
         />
-        {filtered.length > 0 ? (
+        {sorted.length > 0 ? (
           <PanelList>
-            {filtered.map(resept => (
-              <Panel>
+            {sorted.map(resept => (
+              <Panel key={resept.navn}>
                 {resept.aktiv && (
                   <Panel.PreContainer>
                     <StatusDot text="Aktiv" variant="active" />
@@ -605,6 +690,10 @@ export const KunHurtigfilter: Story = {
                   <span>
                     {'Refusjon: '}
                     {resept.medRefusjon ? 'Ja' : 'Nei'}
+                    {' | Rekvirert: '}
+                    {resept.rekvirertDato.toLocaleDateString('nb-NO')}
+                    {' | Gyldig til: '}
+                    {resept.gyldigTil.toLocaleDateString('nb-NO')}
                   </span>
                 </Panel.B>
               </Panel>
@@ -622,12 +711,13 @@ export const FilterSearchInFilterState: Story = {
   render: () => {
     interface MockData {
       navn: string;
+      dato: Date;
     }
 
     const searchInFilterResultsMockData: MockData[] = [
-      {
-        navn: 'Data 1',
-      },
+      { navn: 'Data 1', dato: new Date('2024-01-10') },
+      { navn: 'Data 2', dato: new Date('2024-03-05') },
+      { navn: 'Data 3', dato: new Date('2024-02-18') },
     ];
 
     type FilterSearchInFilterType = {
@@ -645,6 +735,12 @@ export const FilterSearchInFilterState: Story = {
 
     const filtered = filterItems(searchInFilterResultsMockData, filter.filters, filterMatchers);
 
+    const [sortKey, setSortKey] = useState('newest');
+    const sorted = sortItems(filtered, sortKey, {
+      newest: sortBy<MockData>(d => d.dato, 'desc'),
+      oldest: sortBy<MockData>(d => d.dato),
+    });
+
     return (
       <FilterStateWrapper>
         <FilterButton onClick={() => drawer.open()} />
@@ -659,12 +755,17 @@ export const FilterSearchInFilterState: Story = {
         <FilterResultCountAndSortWrapper
           resultCount={`${filtered.length} verktøy`}
           sortComponent={
-            <FilterSort>
+            <FilterSort value={sortKey} onChange={e => setSortKey(e.target.value)}>
               <option value={'newest'}>{'Nyeste'}</option>
               <option value={'oldest'}>{'Eldste'}</option>
             </FilterSort>
           }
         />
+        <ul>
+          {sorted.map(data => (
+            <li key={data.navn}>{`${data.navn} (${data.dato.toLocaleDateString('nb-NO')})`}</li>
+          ))}
+        </ul>
 
         <FilterDrawer drawer={drawer} onReset={() => undefined} resultCount={filtered.length}>
           <FilterDrawer.Overview title={'Filter'}>
@@ -1024,6 +1125,7 @@ export const WithLanguageFull: Story = {
 
     const filter = useFilter<VerktoyFilterType>(filterOptions);
     const drawer = useFilterDrawer<FilterViews>();
+    const [sortKey, setSortKey] = useState('standard');
 
     const filterMatchers: FilterMatchers<Verktoy, VerktoyFilterType> = {
       omrade: matchFilter.arrayIncludes<Verktoy>(m => m.omrade),
@@ -1036,6 +1138,11 @@ export const WithLanguageFull: Story = {
     };
 
     const filtered = filterItems(verktoyMockData, filter.filters, filterMatchers);
+
+    const sorted = sortItems(filtered, sortKey, {
+      nameAsc: sortBy<Verktoy>(v => v.navn),
+      nameDesc: sortBy<Verktoy>(v => v.navn, 'desc'),
+    });
 
     const verktoyFilterLabels: Record<keyof VerktoyFilterType, string> = {
       omrade: resources.filterOptionTitles_omrade,
@@ -1064,10 +1171,10 @@ export const WithLanguageFull: Story = {
           <FilterResultCountAndSortWrapper
             resultCount={`${filtered.length} verktøy`}
             sortComponent={
-              <FilterSort>
-                <option value={'Option 1'}>{'Nyeste'}</option>
-                <option value={'Option 2'}>{'Eldste'}</option>
-                <option value={'Option 3'}>{'Alfabetisk A-Å'}</option>
+              <FilterSort value={sortKey} onChange={e => setSortKey(e.target.value)}>
+                <option value={'standard'}>{'Standard sortering'}</option>
+                <option value={'nameAsc'}>{'Alfabetisk A-Å'}</option>
+                <option value={'nameDesc'}>{'Alfabetisk Å-A'}</option>
               </FilterSort>
             }
           />
@@ -1142,7 +1249,7 @@ export const WithLanguageFull: Story = {
         </FilterDrawer>
         {filtered.length > 0 ? (
           <PanelList>
-            {filtered.map(verktoy => (
+            {sorted.map(verktoy => (
               <Panel>
                 <Panel.Title title={verktoy.navn} icon={<img src={verktoy.logoSrc} alt="logo" />} />
                 <Panel.A>

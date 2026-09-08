@@ -155,6 +155,82 @@ export const filterItems = <TItem, T extends FilterValues>(
   });
 };
 
+/** Sorteringsretning for sortBy */
+export type SortOrder = 'asc' | 'desc';
+
+/** Verdier sortBy kan sammenligne automatisk */
+export type SortableValue = string | number | boolean | Date | null | undefined;
+
+/** En comparator-funksjon som kan brukes av sortItems (samme signatur som Array.prototype.sort) */
+export type SortComparer<TItem> = (a: TItem, b: TItem) => number;
+
+const compareValues = (a: SortableValue, b: SortableValue): number => {
+  // null/undefined sorteres alltid sist, uavhengig av retning
+  if (a === null || a === undefined) return b === null || b === undefined ? 0 : 1;
+  if (b === null || b === undefined) return -1;
+  if (typeof a === 'number' && typeof b === 'number') {
+    return a - b;
+  }
+  if (typeof a === 'boolean' && typeof b === 'boolean') {
+    return Number(a) - Number(b);
+  }
+  if (a instanceof Date && b instanceof Date) {
+    return a.getTime() - b.getTime();
+  }
+  return String(a).localeCompare(String(b), 'nb', { numeric: true, sensitivity: 'base' });
+};
+
+/**
+ * Lager en comparator som sorterer på verdien fra accessor.
+ * Håndterer string (norsk locale), number, boolean og Date automatisk.
+ * null/undefined sorteres alltid sist.
+ *
+ * Eksempel:
+ *   sortBy<Resept>(r => r.navn)                    // alfabetisk A-Å
+ *   sortBy<Resept>(r => r.rekvirertDato, 'desc')   // nyeste først
+ */
+export const sortBy =
+  <TItem>(accessor: (item: TItem) => SortableValue, order: SortOrder = 'asc'): SortComparer<TItem> =>
+  (a: TItem, b: TItem): number => {
+    const aValue = accessor(a);
+    const bValue = accessor(b);
+    // null/undefined skal alltid sist, også ved desc
+    if (aValue === null || aValue === undefined || bValue === null || bValue === undefined) {
+      return compareValues(aValue, bValue);
+    }
+    const result = compareValues(aValue, bValue);
+    return order === 'desc' ? -result : result;
+  };
+
+/** Type for sorters-objektet som sendes til sortItems. Nøkler matcher sorteringsvalgene (f.eks. option-values i FilterSort). */
+export type FilterSorters<TItem> = Record<string, SortComparer<TItem> | undefined>;
+
+/**
+ * Sorterer en liste med items basert på valgt sorteringsnøkkel.
+ * Returnerer en ny, sortert liste. Hvis sortKey ikke finnes i sorters
+ * (f.eks. "standard sortering"), returneres listen i original rekkefølge.
+ *
+ * Eksempel:
+ *   const sorted = sortItems(filtered, sortKey, {
+ *     navn: sortBy<Resept>(r => r.navn),
+ *     rekvirertDato: sortBy<Resept>(r => r.rekvirertDato, 'desc'),
+ *     status: (a, b) => statusRang(a) - statusRang(b), // egendefinert comparator
+ *   });
+ *
+ *   <FilterSort value={sortKey} onChange={e => setSortKey(e.target.value)}>
+ *     <option value="standard">Standard sortering</option>
+ *     <option value="navn">Navn</option>
+ *     <option value="rekvirertDato">Rekvirert dato</option>
+ *   </FilterSort>
+ */
+export const sortItems = <TItem>(items: TItem[], sortKey: string | undefined, sorters: FilterSorters<TItem>): TItem[] => {
+  const comparer = sortKey !== undefined ? sorters[sortKey] : undefined;
+  if (!comparer) {
+    return items;
+  }
+  return [...items].sort(comparer);
+};
+
 /**
  * Toggler en verdi i et array-basert filter.
  * Legger til verdien hvis den ikke finnes, fjerner den hvis den finnes.

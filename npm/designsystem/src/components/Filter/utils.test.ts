@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react';
 
 import { useFilter } from './useFilter';
-import { createFilterConfig, filterItems, matchFilter, toggleArrayFilter } from './utils';
+import { createFilterConfig, filterItems, matchFilter, sortBy, sortItems, toggleArrayFilter } from './utils';
 
 interface TestItem {
   name: string;
@@ -205,6 +205,116 @@ describe('Gitt at toggleArrayFilter brukes', (): void => {
       });
 
       expect(result.current.filters.kategori).toBeUndefined();
+    });
+  });
+});
+
+describe('Gitt at sortBy brukes', (): void => {
+  interface SortItem {
+    navn: string;
+    dato?: Date;
+    antall: number | null;
+    aktiv: boolean;
+  }
+
+  const items: SortItem[] = [
+    { navn: 'Østre', dato: new Date('2024-01-15'), antall: 2, aktiv: false },
+    { navn: 'Alfa', dato: new Date('2024-03-01'), antall: 10, aktiv: true },
+    { navn: 'Ærlig', dato: undefined, antall: null, aktiv: true },
+    { navn: 'beta', dato: new Date('2024-02-01'), antall: 1, aktiv: false },
+  ];
+
+  describe('Når det sorteres på string', (): void => {
+    test('Så sorteres det alfabetisk med norsk locale (æøå til slutt)', (): void => {
+      const sorted = [...items].sort(sortBy(i => i.navn));
+      expect(sorted.map(i => i.navn)).toEqual(['Alfa', 'beta', 'Ærlig', 'Østre']);
+    });
+
+    test('Så snus rekkefølgen med desc', (): void => {
+      const sorted = [...items].sort(sortBy(i => i.navn, 'desc'));
+      expect(sorted.map(i => i.navn)).toEqual(['Østre', 'Ærlig', 'beta', 'Alfa']);
+    });
+  });
+
+  describe('Når det sorteres på Date', (): void => {
+    test('Så sorteres det kronologisk med undefined til slutt', (): void => {
+      const sorted = [...items].sort(sortBy(i => i.dato));
+      expect(sorted.map(i => i.navn)).toEqual(['Østre', 'beta', 'Alfa', 'Ærlig']);
+    });
+
+    test('Så beholdes undefined sist også ved desc', (): void => {
+      const sorted = [...items].sort(sortBy(i => i.dato, 'desc'));
+      expect(sorted.map(i => i.navn)).toEqual(['Alfa', 'beta', 'Østre', 'Ærlig']);
+    });
+  });
+
+  describe('Når det sorteres på number', (): void => {
+    test('Så sorteres det numerisk med null til slutt', (): void => {
+      const sorted = [...items].sort(sortBy(i => i.antall));
+      expect(sorted.map(i => i.antall)).toEqual([1, 2, 10, null]);
+    });
+  });
+
+  describe('Når det sorteres på boolean', (): void => {
+    test('Så kommer true sist ved asc', (): void => {
+      const sorted = [...items].sort(sortBy(i => i.aktiv));
+      expect(sorted.map(i => i.aktiv)).toEqual([false, false, true, true]);
+    });
+  });
+
+  describe('Når strenger inneholder tall', (): void => {
+    test('Så sorteres tallene numerisk', (): void => {
+      const values = [{ v: 'Rom 10' }, { v: 'Rom 2' }, { v: 'Rom 1' }];
+      const sorted = [...values].sort(sortBy(i => i.v));
+      expect(sorted.map(i => i.v)).toEqual(['Rom 1', 'Rom 2', 'Rom 10']);
+    });
+  });
+});
+
+describe('Gitt at sortItems brukes', (): void => {
+  interface Resept {
+    navn: string;
+    rekvirertDato: Date;
+  }
+
+  const resepter: Resept[] = [
+    { navn: 'Paracet', rekvirertDato: new Date('2024-02-01') },
+    { navn: 'Ibux', rekvirertDato: new Date('2024-03-01') },
+    { navn: 'Zoloft', rekvirertDato: new Date('2024-01-01') },
+  ];
+
+  const sorters = {
+    navn: sortBy<Resept>(r => r.navn),
+    rekvirertDato: sortBy<Resept>(r => r.rekvirertDato, 'desc'),
+  };
+
+  describe('Når en sorteringsnøkkel er valgt', (): void => {
+    test('Så returneres en ny sortert liste', (): void => {
+      const sorted = sortItems(resepter, 'navn', sorters);
+      expect(sorted.map(r => r.navn)).toEqual(['Ibux', 'Paracet', 'Zoloft']);
+      expect(sorted).not.toBe(resepter);
+      expect(resepter[0].navn).toBe('Paracet');
+    });
+
+    test('Så brukes riktig retning fra comparatoren', (): void => {
+      const sorted = sortItems(resepter, 'rekvirertDato', sorters);
+      expect(sorted.map(r => r.navn)).toEqual(['Ibux', 'Paracet', 'Zoloft']);
+    });
+  });
+
+  describe('Når sortKey ikke finnes i sorters', (): void => {
+    test('Så returneres listen i original rekkefølge', (): void => {
+      expect(sortItems(resepter, 'standard', sorters)).toBe(resepter);
+      expect(sortItems(resepter, undefined, sorters)).toBe(resepter);
+    });
+  });
+
+  describe('Når en egendefinert comparator brukes', (): void => {
+    test('Så sorteres det med den', (): void => {
+      const sorted = sortItems(resepter, 'lengde', {
+        lengde: (a, b) => a.navn.length - b.navn.length,
+      });
+      expect(sorted.map(r => r.navn)).toEqual(['Ibux', 'Zoloft', 'Paracet']);
     });
   });
 });
