@@ -1,0 +1,5 @@
+@use '../../scss/screen-reader' as sr;
+
+.table-caption {
+  @include sr.sr-only;
+}
