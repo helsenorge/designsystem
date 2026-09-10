@@ -4,6 +4,10 @@
 > `@helsenorge/lightbox`). Hver seksjon inneholder en menneskelig beskrivelse av hva som er endret, og en **agent-prompt** med konkrete
 > instrukser for å utføre migreringen.
 >
+> **Viktig for konsumenter på Helsenorge (beta-perioden):** De oppdaterte fargetokenene finnes foreløpig kun globalt tilgjengelig i
+> feature-branchen **`core-v40`**. Så lenge v16 er i beta må du jobbe i (eller basere deg på) `core-v40` for å få riktige token-verdier — de
+> ligger ikke i `master` ennå. Når v16 slippes i produksjon, merges endringene til `master`, og dette steget bortfaller.
+>
 > **For agenter — steg 0, gjør dette før alt annet:**
 >
 > ```
