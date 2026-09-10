@@ -85,7 +85,7 @@
     "npm-run-all2": "^8.0.4",
     "prettier": "^3.8.3",
     "rimraf": "^6.1.3",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.11"
   },
   "overrides": {
     "@types/react": "19.2.11",
