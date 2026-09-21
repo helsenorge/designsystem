@@ -44,7 +44,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 }
 
 @mixin focus-shadow($with-uu-border: true) {
-  box-shadow: 0 0 0 spacers.getSpacer(3xs) palette.$black;
+  box-shadow: 0 0 0 spacers.getSpacer(3xs) var(--color-action-border-dark-focus);
 
   @if $with-uu-border {
     border: 1px solid var(--color-action-border-light-focus);
@@ -54,7 +54,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 }
 
 @mixin focus-shadow-on-dark($with-uu-border: true) {
-  box-shadow: 0 0 0 spacers.getSpacer(3xs) palette.$white;
+  box-shadow: 0 0 0 spacers.getSpacer(3xs) var(--color-action-border-light-focus);
 
   @if $with-uu-border {
     border: 1px solid var(--color-action-border-dark-focus);
@@ -75,7 +75,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 }
 
-@mixin outline($ouline-color, $hover-outline-color) {
+@mixin outline($ouline-color) {
   outline: spacers.getSpacer(4xs) solid $ouline-color;
   outline-offset: spacers.getSpacer(4xs) * -1;
 
@@ -84,10 +84,10 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   :disabled > & {
-    outline-color: palette.$neutral700;
+    outline-color: var(--color-action-border-dark-focus);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      outline-color: palette.$neutral500;
+      outline-color: var(--color-disabled-border-light);
     }
   }
 }
@@ -100,19 +100,20 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   :disabled > & {
-    color: palette.$neutral700;
+    color: var(--color-disabled-text);
   }
 }
 
 @mixin fill-on-dark($background-color) {
-  background-color: palette.$white;
+  background-color: var(--color-action-background-light-normal);
 
   &:hover {
     box-shadow: none;
   }
 
   &:hover,
-  :focus > & {
+  :focus-visible > & {
+    /* NOSONAR - falsk positiv: & får scoping root der mixinen inkluderes (css:S8776) */
     background-color: $background-color;
   }
 
@@ -126,7 +127,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   color: $color;
 
   :disabled > & {
-    color: palette.$neutral700;
+    color: var(--color-disabled-text);
   }
 }
 
@@ -134,19 +135,39 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--on-dark {
     @include fill-on-dark(var(--color-action-background-light-hover));
 
-    :focus > & {
+    &:active {
+      background-color: var(--color-action-background-light-active);
+    }
+
+    :focus-visible > & {
       @include focus-shadow-on-dark(true);
 
       &:hover {
         @include focus-shadow-on-dark(true);
 
-        background-color: palette.$white;
+        background-color: var(--color-action-background-light-normal);
       }
     }
   }
 
   &--on-dark#{&}--destructive {
     @include fill-on-dark(palette.$cherry50);
+
+    &:active {
+      background-color: var(--color-destructive-graphics-dark-active);
+    }
+  }
+
+  &--on-dark#{&}--outline#{&}--destructive {
+    &:active {
+      background-color: var(--color-destructive-background-transparent-onlight-active);
+    }
+  }
+
+  &--on-dark#{&}--borderless#{&}--destructive {
+    &:active {
+      background-color: var(--color-destructive-background-transparent-onlight-active);
+    }
   }
 
   &--on-dark#{&}--outline,
@@ -155,7 +176,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--on-dark#{&}--borderless#{&}--destructive {
     background-color: transparent;
 
-    :focus > & {
+    :focus-visible > & {
       @include focus-shadow-on-dark(false);
 
       &:hover {
@@ -167,7 +188,11 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   &--on-dark#{&}--outline {
-    outline-color: palette.$white;
+    outline-color: var(--color-action-border-light-normal);
+
+    &:active {
+      background-color: var(--color-action-background-transparent-multi-onlight-active);
+    }
 
     :disabled > & {
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
@@ -177,26 +202,30 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   &--on-dark#{&}--borderless {
+    &:active {
+      background-color: var(--color-action-background-transparent-onlight-active);
+    }
+
     :disabled > & {
       border-color: $dark-mode-disabled-transparrent;
     }
   }
 
   &--on-dark &__text {
-    @include on-dark-text(palette.$blueberry600);
+    @include on-dark-text(var(--color-action-text-dark-normal));
   }
 
   &--on-dark#{&}--destructive &__text {
-    @include on-dark-text(palette.$cherry600);
+    @include on-dark-text(var(--color-destructive-text-dark-normal));
   }
 
   &--on-dark#{&}--outline &__text,
   &--on-dark#{&}--borderless &__text {
-    color: palette.$white;
+    color: var(--color-action-text-light-normal);
 
     :disabled > & {
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-        color: $dark-mode-disabled-transparrent;
+        color: var(--color-disabled-text-light);
       }
     }
   }
@@ -227,7 +256,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
 .button {
   display: inline-flex;
-  background-color: palette.$blueberry500;
+  background-color: var(--color-action-background-dark-normal);
   padding: 0 spacers.getSpacer(m);
   font-size: font-settings.$font-size-sm;
   font-weight: 600;
@@ -243,19 +272,24 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   letter-spacing: unset;
 
   &:hover {
-    background-color: palette.$blueberry700;
-    box-shadow: 0 0 0 spacers.getSpacer(3xs) palette.$blueberry700;
+    background-color: var(--color-action-background-dark-hover);
+    box-shadow: 0 0 0 spacers.getSpacer(3xs) var(--color-action-border-dark-hover);
+  }
+
+  &:active {
+    background: var(--color-action-background-dark-active);
+    box-shadow: 0 0 0 spacers.getSpacer(3xs) var(--color-action-border-dark-active);
   }
 
   :disabled > & {
     pointer-events: none;
-    outline: spacers.getSpacer(4xs) dashed palette.$neutral700;
+    outline: spacers.getSpacer(4xs) dashed var(--color-disabled-border-dark);
     outline-offset: spacers.getSpacer(4xs) * -1;
-    background-color: palette.$neutral200;
+    background-color: var(--color-disabled-background-light);
   }
 
   :disabled > & &__text {
-    color: palette.$neutral800;
+    color: var(--color-disabled-text);
   }
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
@@ -313,18 +347,23 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   &--destructive {
-    background-color: palette.$cherry500;
+    background-color: var(--color-destructive-background-dark-normal);
 
     &:hover {
-      background-color: palette.$cherry700;
-      box-shadow: 0 0 0 spacers.getSpacer(3xs) palette.$cherry700;
+      background-color: var(--color-destructive-graphics-dark-hover);
+      box-shadow: 0 0 0 spacers.getSpacer(3xs) var(--color-destructive-graphics-dark-hover);
+    }
+
+    &:active {
+      background-color: var(--color-destructive-graphics-dark-active);
+      box-shadow: 0 0 0 spacers.getSpacer(3xs) var(--color-destructive-border-dark-active);
     }
   }
 
   // Gives space to focus border
   border: 1px solid transparent;
 
-  :focus > & {
+  :focus-visible > & {
     @include focus-shadow;
 
     &:hover {
@@ -338,7 +377,11 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
     border: none;
 
-    :focus > & {
+    &:active {
+      background-color: var(--color-action-background-transparent-onlight-active);
+    }
+
+    :focus-visible > & {
       @include focus-shadow(false);
 
       &:hover {
@@ -349,15 +392,25 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   &--outline#{&}--destructive,
   &--borderless#{&}--destructive {
-    @include outline-borderless-background(transparent, palette.$cherry50);
+    @include outline-borderless-background(transparent, var(--color-destructive-background-transparent-onlight-hover));
   }
 
   &--outline {
-    @include outline(palette.$blueberry700, palette.$blueberry50);
+    @include outline(var(--color-action-border-dark-normal));
   }
 
   &--outline#{&}--destructive {
-    @include outline(palette.$cherry700, palette.$cherry50);
+    @include outline(var(--color-destructive-border-dark-normal));
+
+    &:active {
+      background-color: var(--color-destructive-background-transparent-onlight-active);
+    }
+  }
+
+  &--borderless#{&}--destructive {
+    &:active {
+      background-color: var(--color-destructive-background-transparent-onlight-active);
+    }
   }
 
   &--borderless {
@@ -386,7 +439,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   /* stylelint-disable-next-line */
   &__text {
-    color: palette.$white;
+    color: var(--color-action-text-light-normal);
     margin: 0 auto 0 0;
     position: relative;
     display: flex;
@@ -423,7 +476,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   &--outline#{&}--destructive &__text,
   &--borderless#{&}--destructive &__text {
-    @include text-color(palette.$cherry600, palette.$cherry700);
+    @include text-color(var(--color-destructive-text-dark-normal), var(--color-destructive-text-dark-hover));
   }
 
   &--only-icon {
@@ -452,13 +505,13 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   &__line {
     display: block;
-    border-bottom: spacers.getSpacer(4xs) dashed palette.$neutral500;
+    border-bottom: spacers.getSpacer(4xs) dashed var(--color-disabled-graphics-dark);
     transform-origin: top left;
     transform: rotate(37.4deg);
   }
 
   &--on-dark &__line {
-    border-color: palette.$white;
+    border-color: var(--color-disabled-graphics-light);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       border-color: $dark-mode-disabled-transparrent;
