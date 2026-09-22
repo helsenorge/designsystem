@@ -24,15 +24,7 @@ import Label, { type LabelProps } from '@helsenorge/designsystem-react/component
 import { isComponent } from '@helsenorge/designsystem-react/utils/component';
 import { mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
-import {
-  IconSize,
-  KeyboardEventKey,
-  LanguageLocales,
-  useKeyboardEvent,
-  useLanguage,
-  useOutsideEvent,
-  useToggle,
-} from '@helsenorge/designsystem-react';
+import { IconSize, LanguageLocales, useDismissablePopover, useLanguage, useToggle } from '@helsenorge/designsystem-react';
 
 import BaseDayPicker, { type BaseDayPickerProps } from './BaseDayPicker/BaseDayPicker';
 import DateInputInternal, { type DateInputInternalHandle } from './DateInputInternal';
@@ -177,34 +169,15 @@ const Unsafe_DatePicker = ({
     }
   };
 
-  const handleEscapeKeyDown = (): void => {
-    if (isPopupOpen) {
+  useDismissablePopover({
+    popoverRef: [containerRef, dayPickerPopupRef],
+    triggerRef: calendarButtonRef,
+    isOpen: isPopupOpen,
+    onClose: () => {
       toggleIsPopupOpen();
-      setFocusToCalendarButton();
       onBlur?.(dateDate ?? null);
-    }
-  };
-  useKeyboardEvent(dayPickerPopupRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
-  useKeyboardEvent(calendarButtonRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
-
-  useOutsideEvent(
-    [calendarButtonRef, dayPickerPopupRef],
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (e: any) => {
-      if (
-        calendarButtonRef.current &&
-        dayPickerPopupRef.current &&
-        !e?.composedPath().includes(calendarButtonRef.current) &&
-        !e?.composedPath().includes(dayPickerPopupRef.current)
-      ) {
-        if (isPopupOpen) {
-          toggleIsPopupOpen();
-          onBlur?.(dateDate ?? null);
-        }
-      }
     },
-    ['mousedown', 'focusin', 'blur']
-  );
+  });
 
   const handleInputChange = (date: string): void => {
     setDateString(date);
@@ -285,7 +258,8 @@ const Unsafe_DatePicker = ({
       {isPopupOpen && (
         <>
           {variant === 'popover' ? (
-            <FloatingFocusManager context={context} modal={false}>
+            // returnFocus=false: Escape og datovalg setter fokus eksplisitt; Tab/klikk ut skal ikke stjele fokus tilbake
+            <FloatingFocusManager context={context} modal={false} returnFocus={false}>
               <div
                 id={popupId}
                 ref={mergeRefs([refs.setFloating, dayPickerPopupRef])}

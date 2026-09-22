@@ -12,6 +12,8 @@ export { useResizeObserver } from './hooks/useResizeObserver';
 export { useToggle } from './hooks/useToggle';
 export { useKeyboardEvent } from './hooks/useKeyboardEvent';
 export { useOutsideEvent } from './hooks/useOutsideEvent';
+export { useDismissablePopover } from './hooks/useDismissablePopover';
+export { useReturnFocusOnClose } from './hooks/useReturnFocusOnClose';
 export { useLanguage } from './hooks/useLanguage';
 export { isMobileUA } from './utils/mobile';
 export { uuid } from './utils/uuid';

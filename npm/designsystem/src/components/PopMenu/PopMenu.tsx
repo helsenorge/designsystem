@@ -7,8 +7,8 @@ import type { IconName } from '../Icons/IconNames';
 import type { LinkListProps, LinkProps } from '../LinkList';
 
 import { AnalyticsId, IconSize } from '../../constants';
+import { useDismissablePopover } from '../../hooks/useDismissablePopover';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
-import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { isComponent } from '../../utils/component';
 import Button from '../Button';
@@ -69,15 +69,18 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   } = props;
   const isMobile = useIsMobileBreakpoint();
 
-  useOutsideEvent(outerRef, () => {
-    setIsOpen(false);
+  const handleClose = useDismissablePopover({
+    popoverRef: outerRef,
+    triggerRef: triggerButtonRef,
+    isOpen,
+    onClose: () => setIsOpen(false),
   });
 
   const { isHovered: triggerButtonIsHovered } = usePseudoClasses(triggerButtonRef);
   const mobileIconSize = isMobile ? IconSize.XSmall : IconSize.Small;
 
   const handleClick = (cb?: () => void): void => {
-    setIsOpen(false);
+    handleClose();
     if (cb) cb();
   };
 
