@@ -156,13 +156,15 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--on-dark#{&}--borderless#{&}--destructive {
     background-color: transparent;
 
+    :hover > & {
+      background-color: palette.$inverted-hover;
+    }
+
     :focus > & {
       @include focus-shadow-on-dark(false);
 
       &:hover {
         @include focus-shadow-on-dark(false);
-
-        background-color: palette.$inverted-hover;
       }
     }
   }
