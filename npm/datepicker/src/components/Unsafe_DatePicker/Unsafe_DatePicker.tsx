@@ -173,6 +173,7 @@ const Unsafe_DatePicker = ({
     popoverRef: [containerRef, dayPickerPopupRef],
     triggerRef: calendarButtonRef,
     isOpen: isPopupOpen,
+    scrollPopoverIntoView: true,
     onClose: () => {
       toggleIsPopupOpen();
       onBlur?.(dateDate ?? null);

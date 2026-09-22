@@ -15,6 +15,8 @@ interface UseDismissablePopover {
   isOpen: boolean;
   /** Lukker popoveren (oppdaterer komponentens state) */
   onClose: () => void;
+  /** Scroller popoveren inn i viewport når den åpnes, uten at trigger mister synlighet */
+  scrollPopoverIntoView?: boolean;
 }
 
 /**
@@ -23,9 +25,35 @@ interface UseDismissablePopover {
  * trigger når det ellers ville gått tapt.
  * @returns Lukkefunksjon som også kan brukes av komponentens egne lukkeknapper/valg
  */
-export const useDismissablePopover = ({ popoverRef, triggerRef, isOpen, onClose }: UseDismissablePopover): (() => void) => {
+export const useDismissablePopover = ({
+  popoverRef,
+  triggerRef,
+  isOpen,
+  onClose,
+  scrollPopoverIntoView = false,
+}: UseDismissablePopover): (() => void) => {
   const refs = [...(Array.isArray(popoverRef) ? popoverRef : [popoverRef]), triggerRef];
   const returnFocusOnClose = useReturnFocusOnClose(refs, triggerRef);
+
+  useEffect(() => {
+    if (!isOpen || !scrollPopoverIntoView) return;
+
+    const scroll = (): void => {
+      const popoverRefs = Array.isArray(popoverRef) ? popoverRef : [popoverRef];
+      popoverRefs.forEach(ref => ref.current?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' }));
+      // Trigger sist, slik at den ikke mister synlighet hvis popoveren dyttet den ut av viewport
+      triggerRef.current?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+    };
+
+    // Vent en frame slik at popoveren er posisjonert (f.eks. av floating-ui) før scrolling.
+    // requestAnimationFrame finnes ikke i ikke-visuelle DOM-miljøer (f.eks. jsdom uten pretendToBeVisual)
+    if (typeof window.requestAnimationFrame === 'function') {
+      const frame = window.requestAnimationFrame(scroll);
+      return (): void => window.cancelAnimationFrame(frame);
+    }
+    const timeout = window.setTimeout(scroll);
+    return (): void => window.clearTimeout(timeout);
+  }, [isOpen, scrollPopoverIntoView]);
 
   const close = (): void => {
     if (!isOpen) return;
