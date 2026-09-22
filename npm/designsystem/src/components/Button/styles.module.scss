@@ -404,6 +404,8 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     }
 
     &--ellipsis {
+      // text-overflow fungerer ikke på flex-containere
+      display: block;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
