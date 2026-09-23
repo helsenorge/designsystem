@@ -84,11 +84,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   :disabled > & {
-    outline-color: var(--color-action-border-dark-focus);
-
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      outline-color: var(--color-disabled-border-light);
-    }
+    outline-color: var(--color-disabled-border-dark);
   }
 }
 
