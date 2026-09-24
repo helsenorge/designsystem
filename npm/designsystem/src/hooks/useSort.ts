@@ -8,12 +8,8 @@ export type SortValueGetter<TData> = (item: TData, sortKey: string) => unknown;
 export type SortComparer<TData> = (a: TData, b: TData) => number;
 
 export interface SortableHeadCellProps {
-  /** Sets if column for head cell should be sortable */
-  sortable: boolean;
-  /** Sort direction */
+  /** Sort direction, for displaying the current sort state on the column header (e.g. aria-sort) */
   sortDir?: SortDirection;
-  /** Function that is called when clicked */
-  onClick: () => void;
 }
 
 export interface UseSortOptions<TData> {
@@ -46,7 +42,7 @@ export interface UseSortReturn<TData> {
   sortDirection: SortDirection | undefined;
   /** Sort by a key. Toggles direction when the key is already sorted. */
   requestSort: (columnKey: string) => void;
-  /** Get props for TableHeadCell to make it a sortable header for a column */
+  /** Get props for TableHeadCell to display the current sort state (aria-sort). Sorting itself is triggered by the consumer, e.g. via requestSort/onSortChange from a FilterSort control. */
   getSortProps: (columnKey: string) => SortableHeadCellProps;
 }
 
@@ -147,9 +143,7 @@ export const useSort = <TData>(options: UseSortOptions<TData>): UseSortReturn<TD
   }, [data, currentSortColumnKey, currentSortDirection, disableInternalSort, getSortValue, sorters]);
 
   const getSortProps = (columnKey: string): SortableHeadCellProps => ({
-    sortable: true,
     sortDir: sort?.columnKey === columnKey ? sort.direction : undefined,
-    onClick: (): void => requestSort(columnKey),
   });
 
   return {

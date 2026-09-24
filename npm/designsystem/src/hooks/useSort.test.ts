@@ -234,25 +234,11 @@ describe('Gitt at useSort brukes', (): void => {
   });
 
   describe('Når getSortProps brukes', (): void => {
-    test('Så returneres props for sorterbar TableHeadCell', (): void => {
+    test('Så returneres sortDir for sorterbar TableHeadCell', (): void => {
       const { result } = renderHook(() => useSort({ data, initialSortColumnKey: 'navn' }));
 
-      expect(result.current.getSortProps('navn')).toEqual({
-        sortable: true,
-        sortDir: SortDirection.asc,
-        onClick: expect.any(Function),
-      });
+      expect(result.current.getSortProps('navn')).toEqual({ sortDir: SortDirection.asc });
       expect(result.current.getSortProps('alder').sortDir).toBeUndefined();
-    });
-
-    test('Så sorterer onClick på kolonnen', (): void => {
-      const { result } = renderHook(() => useSort({ data }));
-
-      act(() => {
-        result.current.getSortProps('navn').onClick();
-      });
-
-      expect(result.current.sortColumnKey).toBe('navn');
     });
   });
 });

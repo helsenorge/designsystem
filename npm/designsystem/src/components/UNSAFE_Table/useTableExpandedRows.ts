@@ -11,7 +11,7 @@ export interface UseTableExpandedRowsReturn {
   collapseAll: () => void;
 }
 
-/** Expanded state per row for tables with expandable rows (TableExpanderCell/TableExpandedRow). */
+/** Expanded state per row for tables with expandable rows (UNSAFE_TableRow expandable/UNSAFE_TableExpandedRow). */
 export const useTableExpandedRows = (): UseTableExpandedRowsReturn => {
   const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
 
