@@ -72,6 +72,7 @@
     border-bottom: 0;
     border-radius: 0.5rem 0.5rem 0 0;
     position: relative;
+    cursor: pointer;
 
     // Z-index brukes til å flytte tab bak/foran bottom border til tab-list__border
     z-index: 0;

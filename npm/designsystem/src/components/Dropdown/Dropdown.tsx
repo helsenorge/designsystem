@@ -19,8 +19,8 @@ import {
   LanguageLocales,
   ZIndex,
   usePseudoClasses,
+  useDismissablePopover,
   useKeyboardEvent,
-  useOutsideEvent,
   useToggle,
 } from '../..';
 import { getResources } from './resourceHelper';
@@ -168,12 +168,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     toggleIsOpen();
   };
 
-  const handleClose = (): void => {
-    if (!isOpen) return;
-
-    toggleIsOpen();
-    buttonRef.current?.focus();
-  };
+  const handleClose = useDismissablePopover({ popoverRef: dropdownRef, triggerRef: buttonRef, isOpen, onClose: toggleIsOpen });
 
   useEffect(() => {
     if (isOpen && openedByKeyboard.current) {
@@ -194,14 +189,6 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     if (!childrenRefList.current) return;
 
     const key = event.key as KeyboardEventKey;
-
-    if (key === KeyboardEventKey.Escape) {
-      if (isOpen) {
-        event.preventDefault();
-        handleClose();
-      }
-      return;
-    }
 
     if (!isOpen) {
       if (isListNavKey(key)) {
@@ -239,12 +226,9 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     KeyboardEventKey.ArrowUp,
     KeyboardEventKey.End,
     KeyboardEventKey.Enter,
-    KeyboardEventKey.Escape,
     KeyboardEventKey.Home,
     KeyboardEventKey.Space,
   ]);
-
-  useOutsideEvent(dropdownRef, () => isOpen && handleClose());
 
   const renderChildren = React.Children.map(children, (child, index) => {
     const element = child as React.ReactElement<{ ref?: React.Ref<HTMLElement | null> }>;
@@ -329,7 +313,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         </ul>
         {!isSingleSelect && !noCloseButton && (
           <div className={styles.dropdown__close}>
-            <Button onClick={handleClose}>{mergedResources.closeText}</Button>
+            <Button onClick={(): void => handleClose()}>{mergedResources.closeText}</Button>
           </div>
         )}
       </div>
