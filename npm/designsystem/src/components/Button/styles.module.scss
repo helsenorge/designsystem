@@ -54,6 +54,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 }
 
 @mixin focus-shadow-on-dark($with-uu-border: true) {
+  outline: none;
   box-shadow: 0 0 0 spacers.getSpacer(3xs) var(--color-action-border-light-focus);
 
   @if $with-uu-border {
@@ -104,13 +105,14 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   background-color: var(--color-action-background-light-normal);
 
   &:hover {
-    box-shadow: none;
+    box-shadow: 0 0 0 spacers.getSpacer(3xs) var(--color-action-border-light-hover);
+    background-color: $background-color;
   }
 
-  &:hover,
-  :focus-visible > & {
-    /* NOSONAR - falsk positiv: & får scoping root der mixinen inkluderes (css:S8776) */
-    background-color: $background-color;
+  &:active {
+    /* NOSONAR - falsk positiv: & får scoping root der mixinen inkluderes */
+    background-color: var(--color-action-background-light-active);
+    box-shadow: 0 0 0 spacers.getSpacer(3xs) var(--color-action-border-light-active);
   }
 
   /* stylelint-disable-next-line */
@@ -131,17 +133,11 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--on-dark {
     @include fill-on-dark(var(--color-action-background-light-hover));
 
-    &:active {
-      background-color: var(--color-action-background-light-active);
-    }
-
     :focus-visible > & {
       @include focus-shadow-on-dark(true);
 
       &:hover {
         @include focus-shadow-on-dark(true);
-
-        background-color: var(--color-action-background-light-normal);
       }
     }
   }
@@ -172,22 +168,22 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--on-dark#{&}--borderless#{&}--destructive {
     background-color: transparent;
 
-    :focus-visible > & {
-      @include focus-shadow-on-dark(false);
+    &:hover {
+      background-color: var(--color-action-background-transparent-multi-onlight-hover);
+      box-shadow: none;
+    }
 
-      &:hover {
-        @include focus-shadow-on-dark(false);
-
-        background-color: palette.$inverted-hover;
-      }
+    &:active {
+      background-color: var(--color-action-background-transparent-multi-onlight-active);
+      box-shadow: none;
     }
   }
 
   &--on-dark#{&}--outline {
     outline-color: var(--color-action-border-light-normal);
 
-    &:active {
-      background-color: var(--color-action-background-transparent-multi-onlight-active);
+    :focus-visible > & {
+      @include focus-shadow-on-dark(true);
     }
 
     :disabled > & {
@@ -198,8 +194,12 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   &--on-dark#{&}--borderless {
-    &:active {
-      background-color: var(--color-action-background-transparent-onlight-active);
+    :focus-visible > & {
+      @include focus-shadow-on-dark(false);
+
+      &:hover {
+        @include focus-shadow-on-dark(false);
+      }
     }
 
     :disabled > & {
@@ -375,6 +375,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
     &:active {
       background-color: var(--color-action-background-transparent-onlight-active);
+      box-shadow: none;
     }
 
     :focus-visible > & {
@@ -450,6 +451,8 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     }
 
     &--ellipsis {
+      // text-overflow fungerer ikke på flex-containere
+      display: block;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

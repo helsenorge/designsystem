@@ -523,6 +523,7 @@ export const DokumenterExample: Story = {
                   onChange={value => filter.setFilter('dateRange', value)}
                 />
               </FormGroup>
+              <Spacer size="6xl" />
             </div>
           </FilterDrawer.View>
         </FilterDrawer>

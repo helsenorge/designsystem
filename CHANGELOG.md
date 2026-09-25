@@ -2,7 +2,60 @@
 
 ### Features
 
-*  komponenter importerer ikke lenger colorscss og spacerscss ([1f4af7c](https://github.com/helsenorge/designsystem/commit/1f4af7cf02dd713c529ec973f598d1b837a17d0b)), closes [#383163](https://github.com/helsenorge/designsystem/issues/383163)
+- komponenter importerer ikke lenger colorscss og spacerscss
+  ([1f4af7c](https://github.com/helsenorge/designsystem/commit/1f4af7cf02dd713c529ec973f598d1b837a17d0b)), closes
+  [#383163](https://github.com/helsenorge/designsystem/issues/383163)
+
+## [15.9.0](https://github.com/helsenorge/designsystem/compare/v15.8.0...v15.9.0) (2026-09-04)
+
+### Features
+
+- nytt ikon yesno ([530f709](https://github.com/helsenorge/designsystem/commit/530f7093f4789e2f98b9f67db204cbc841b3139c)), closes
+  [#384449](https://github.com/helsenorge/designsystem/issues/384449)
+
+### Bug Fixes
+
+- correct icon path for HistoryDocument
+  ([eea9a4b](https://github.com/helsenorge/designsystem/commit/eea9a4b5c39ed0ff9a5e7cfa988d7ef85193d445)), closes
+  [#383478](https://github.com/helsenorge/designsystem/issues/383478)
+- linklist respekterer size overstyring
+  ([e04ff31](https://github.com/helsenorge/designsystem/commit/e04ff31f89810b59f66ac4c37fd9b289660ec685)), closes
+  [#351264](https://github.com/helsenorge/designsystem/issues/351264)
+- newComponent script sonar warning fix
+  ([fc56c82](https://github.com/helsenorge/designsystem/commit/fc56c82a6a567588066a1e112da24322fe2523b2)), closes
+  [#383169](https://github.com/helsenorge/designsystem/issues/383169)
+- **expanderlist:** props settes i story
+  ([86712a5](https://github.com/helsenorge/designsystem/commit/86712a58ced56755b37fc81cd94fd3150449cf4f)), closes
+  [#382634](https://github.com/helsenorge/designsystem/issues/382634)
+
+## [15.10.0](https://github.com/helsenorge/designsystem/compare/v15.9.0...v15.10.0) (2026-09-23)
+
+### Features
+
+- moveaway illustration ([48807fb](https://github.com/helsenorge/designsystem/commit/48807fb6f78d783955519fddf632b70e5b2abe31)), closes
+  [#386004](https://github.com/helsenorge/designsystem/issues/386004)
+- **datepicker:** popover har scrollintoview
+  ([a31a4e6](https://github.com/helsenorge/designsystem/commit/a31a4e6953ac4d107a840c66d77a915e44abc569)), closes
+  [#385992](https://github.com/helsenorge/designsystem/issues/385992)
+
+### Bug Fixes
+
+- cursor pointer on tabs ([7b3c6d1](https://github.com/helsenorge/designsystem/commit/7b3c6d13a386cca0a52f4a15246ea9f432f9f48c)), closes
+  [#385911](https://github.com/helsenorge/designsystem/issues/385911)
+- no outline color on moveaway ([c34ed21](https://github.com/helsenorge/designsystem/commit/c34ed2183da3878fab1f4f73bebad1aaaf2ce771)),
+  closes [#386004](https://github.com/helsenorge/designsystem/issues/386004)
+- popovers lukkes ved klikk på scrollbar
+  ([3a87c7a](https://github.com/helsenorge/designsystem/commit/3a87c7a6492ecc5c1ad05f790ff2ac6b2e95be68)), closes
+  [#385970](https://github.com/helsenorge/designsystem/issues/385970)
+- **button:** ellipsis fungerer igjen
+  ([dd76173](https://github.com/helsenorge/designsystem/commit/dd76173331d34604c3673164ddf2d8e413a64d45)), closes
+  [#386067](https://github.com/helsenorge/designsystem/issues/386067)
+- **button:** ondark borderless hover får riktig farge
+  ([4d92ad7](https://github.com/helsenorge/designsystem/commit/4d92ad7c378d41cfaf2459ae5abf59fa1278aba1)), closes
+  [#384693](https://github.com/helsenorge/designsystem/issues/384693)
+- **filter:** filterlinklist chip vokser ikke i høyden
+  ([616eb59](https://github.com/helsenorge/designsystem/commit/616eb590960853ac0469545ffb8178de5d44edc3)), closes
+  [#385420](https://github.com/helsenorge/designsystem/issues/385420)
 
 ## [15.9.0](https://github.com/helsenorge/designsystem/compare/v15.8.0...v15.9.0) (2026-09-04)
 
