@@ -4,7 +4,7 @@ import type { TableColors } from '../constants';
 
 import { TableSizes } from '../constants';
 import styles from '../styles.module.scss';
-import { mapChildrenWithSizeAndColor } from '../utils';
+import { mapChildren } from '../utils';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'tbody'>, 'style'> {
   /** Adds custom classes to the element. */
@@ -15,13 +15,22 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'tbody'>, 'st
   color?: TableColors;
   /** For display with less space. Discouraged to use together with interactive elements. */
   size?: TableSizes;
+  /** Applies zebra stripes to every other row. Default: false */
+  zebraStripes?: boolean;
 }
 
-export const UNSAFE_TableBody: React.FC<Props> = ({ className, children, color, size = TableSizes.normal, ...rest }) => {
-  const tableBodyClasses = classNames(styles['table-body'], className);
+export const UNSAFE_TableBody: React.FC<Props> = ({
+  className,
+  children,
+  color,
+  size = TableSizes.normal,
+  zebraStripes = false,
+  ...rest
+}) => {
+  const tableBodyClasses = classNames(styles['table-body'], { [styles['table-body--zebra']]: zebraStripes }, className);
   return (
     <tbody className={tableBodyClasses} {...rest}>
-      {mapChildrenWithSizeAndColor(children, size, color)}
+      {mapChildren(children, size, color)}
     </tbody>
   );
 };

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import { TableColors, TableSizes } from './constants';
-import { mapChildrenWithSizeAndColor } from './utils';
+import { mapChildren } from './utils';
 
 interface ChildProps {
   color?: TableColors;
@@ -14,7 +14,7 @@ describe('Gitt at tabellbarn mappes med størrelse og farge', (): void => {
   test('Så mottar vanlige barn og fragmentbarn begge propene', (): void => {
     render(
       <>
-        {mapChildrenWithSizeAndColor(
+        {mapChildren(
           <>
             <Child />
             <Child />

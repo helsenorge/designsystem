@@ -11,131 +11,126 @@
   @include sr.sr-only;
 }
 
-/* fix outline for Safari */
-table .table-body .table-row {
-  // outline: 3px solid transparent;
-}
-
 @mixin centeredoverflow {
-  // position: relative;
+  position: relative;
 }
 
-@mixin block {
-  // display: block;
-  // clear: both;
+@mixin stack {
+  display: block;
+  clear: both;
 
   .table__head {
-    // display: none;
+    display: none;
   }
 
   .table-body,
   .table-row,
   .table__head-cell,
   .table__cell {
-    // display: block;
+    display: block;
   }
 
   .table__cell-expander {
-    // display: none;
+    display: none;
   }
 
   .table-row {
-    // clear: both;
+    clear: both;
   }
 
   select {
-    // max-width: 100%;
+    max-width: 100%;
   }
 
   .table__cell {
-    // position: relative;
-    // padding: 0.75rem 0 0.75rem 40%;
-    // float: left;
-    // clear: both;
-    // width: 100%;
-    // border-top: 0;
-    // border-bottom: 0;
-    // outline: 0;
+    position: relative;
+    padding: 0.75rem 0 0.75rem 40%;
+    float: left;
+    clear: both;
+    width: 100%;
+    border-top: 0;
+    border-bottom: 0;
+    outline: 0;
 
     &--center {
-      // text-align: left;
+      text-align: left;
     }
 
     &--right {
-      // text-align: left;
+      text-align: left;
     }
 
     &:not(.expandable-container) {
-      // font-weight: 400;
+      font-weight: 400;
     }
 
     /* Get data from the td-tag attribute "data-label" and use this to populate :before content */
     &::before {
-      // content: attr(data-label);
-      // position: relative;
-      // top: 0;
-      // left: 0;
-      // width: 60%;
-      // padding-right: spacers.$spacer;
-      // white-space: normal;
-      // display: block;
-      // float: left;
-      // overflow-wrap: break-word;
-      // margin-left: -67%;
-      // padding-left: 0.75rem;
-      // font-weight: 400;
+      content: attr(data-label);
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 60%;
+      padding-right: spacers.$spacer;
+      white-space: normal;
+      display: block;
+      float: left;
+      overflow-wrap: break-word;
+      margin-left: -67%;
+      padding-left: 0.75rem;
+      font-weight: 400;
     }
   }
 
   .table__expander-cell-mobile {
-    // padding-left: 0.75rem;
-    // border-bottom: 1px solid palette.$neutral500;
+    padding-left: 0.75rem;
+    border-bottom: 1px solid palette.$neutral500;
 
     &--expanded {
-      // border-bottom: 0;
+      border-bottom: 0;
     }
   }
 
   .table__expanded-row>.table__cell {
-    // text-align: left;
-    // padding: 0.75rem;
+    text-align: left;
+    padding: 0.75rem;
   }
 
   .table__cell:first-child {
-    // border-collapse: collapse;
-    // border-top: 1px solid palette.$neutral500;
+    border-collapse: collapse;
+    border-top: 1px solid palette.$neutral500;
   }
 
   .table__expanded-row {
-    // display: none;
+    display: none;
 
     &--expanded {
-      // display: block;
+      display: block;
     }
 
     >.table__cell:first-child {
-      // border-top: 0;
+      border-top: 0;
     }
   }
 
   .table__row--expandable {
     .table__cell:nth-child(2) {
-      // border-collapse: collapse;
-      // border-top: 1px solid palette.$neutral500;
+      border-collapse: collapse;
+      border-top: 1px solid palette.$neutral500;
     }
 
     &:focus-within {
-      // outline: none;
+      outline: none;
     }
   }
 
   .table-row:last-child .table__cell:last-child {
-    // border-bottom: 1px solid palette.$neutral500;
+    border-bottom: 1px solid palette.$neutral500;
   }
 }
 
 .table {
-  // width: 100%;
+  width: 100%;
   border-collapse: collapse;
 
   @each $breakpoint in map.keys($grid-breakpoints) {
@@ -145,9 +140,9 @@ table .table-body .table-row {
       }
     }
 
-    &--block-#{$breakpoint} {
+    &--stack-#{$breakpoint} {
       @include media-breakpoint-down($breakpoint) {
-        @include block;
+        @include stack;
       }
     }
   }
@@ -229,13 +224,15 @@ table .table-body .table-row {
 }
 
 .table__cell-expander {
+  position: relative;
   width: 3.375rem;
+  min-width: 3.375rem;
   padding: 0;
 }
 
 .table__expander-button {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   background: none;
   border: 0;
   padding: 0;
@@ -255,13 +252,15 @@ table .table-body .table-row {
 }
 
 .table__cell-pop-menu {
+  position: relative;
   width: 3.375rem;
+  min-width: 3.375rem;
   padding: 0;
 }
 
 .table__pop-menu {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
 
   // Trekkerknappen skal fylle hele cellen, overstyrer Button-stilene
   >button {
@@ -294,7 +293,21 @@ table .table-body .table-row {
 
   &--expanded {
     background: var(--color-action-background-light-plus2-normal, #cae7ed);
+
+    .table__expander-button:hover,
+    .table__pop-menu>button:hover {
+      background: var(--color-action-background-light-onlight-plus2-hover, #afdae3);
+    }
+
+    .table__expander-button:active,
+    .table__pop-menu>button:active {
+      background: var(--color-action-background-light-onlight-plus2-active, #7abecc);
+    }
   }
+}
+
+.table-body--zebra> :nth-child(even of .table-row:not(.table__row--expanded)) {
+  background: var(--color-base-neutral-background-light, #f5f3f3);
 }
 
 .table__expanded-row {

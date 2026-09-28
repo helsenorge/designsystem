@@ -60,6 +60,23 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
       const table = screen.getByRole('table', { name: 'Fastleger i nærheten' });
       expect(table).toBeVisible();
     });
+
+    test('Så vises zebra-striper på annenhver rad når det er aktivert', (): void => {
+      render(
+        <UNSAFE_Table caption="Fastleger i nærheten" zebraStripes>
+          <UNSAFE_TableBody>
+            <UNSAFE_TableRow>
+              <UNSAFE_TableCell>{'Rad 1'}</UNSAFE_TableCell>
+            </UNSAFE_TableRow>
+            <UNSAFE_TableRow>
+              <UNSAFE_TableCell>{'Rad 2'}</UNSAFE_TableCell>
+            </UNSAFE_TableRow>
+          </UNSAFE_TableBody>
+        </UNSAFE_Table>
+      );
+
+      expect(screen.getByRole('rowgroup')).toHaveClass('table-body--zebra');
+    });
   });
 
   describe('Når tabellen brukes sammen med useSort', (): void => {

@@ -15,16 +15,19 @@ export enum TextAlign {
   center = 'center',
   right = 'right',
 }
-
+// normal
+// stack
+// centeredoverflow
+// horizontalscroll
 export enum ResponsiveTableVariant {
-  /** No handling responsive behaviour. Default. */
-  none = 'none',
+  /** Normal table grid */
+  normal = 'normal',
+  /** Collapse to two columns. */
+  stack = 'stack',
   /** Overflow parent container to the left and right while remaining centered horizontally. */
   centeredoverflow = 'centeredoverflow',
   /** Show horizontal scrollbar when table is too big for the screen. */
   horizontalscroll = 'horizontalscroll',
-  /** Collapse to two columns. */
-  block = 'block',
 }
 export enum TableSizes {
   normal = 'normal',
@@ -48,6 +51,6 @@ export const simpleConfig: BreakpointConfig[] = [
   {
     breakpoint: 'sm',
     variant: ResponsiveTableVariant.centeredoverflow,
-    fallbackVariant: ResponsiveTableVariant.block,
+    fallbackVariant: ResponsiveTableVariant.stack,
   },
 ];

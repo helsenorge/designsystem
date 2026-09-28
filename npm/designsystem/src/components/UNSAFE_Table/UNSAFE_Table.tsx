@@ -6,7 +6,7 @@ import type { TableColors } from './constants';
 
 import { ResponsiveTableVariant, defaultConfig, TableSizes } from './constants';
 import TableCaption from './TableCaption';
-import { getBreakpointClass, getCenteredOverflowTableStyle, getCurrentConfig, mapChildrenWithSizeAndColor, omitProps } from './utils';
+import { getBreakpointClass, getCenteredOverflowTableStyle, getCurrentConfig, mapChildren, omitProps } from './utils';
 import { useBreakpoint, type Breakpoint } from '../../hooks/useBreakpoint';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
@@ -40,6 +40,8 @@ export interface UNSAFE_TableProps extends Omit<React.ComponentPropsWithoutRef<'
   size?: TableSizes;
   /** Id used for testing */
   testId?: string;
+  /** Applies zebra stripes to every other row. Default: false */
+  zebraStripes?: boolean;
 }
 
 export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
@@ -51,6 +53,7 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
   color,
   size = TableSizes.normal,
   testId,
+  zebraStripes = false,
   ...rest
 }) => {
   const captionElementId = useId();
@@ -104,7 +107,7 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
       {...(domRest as React.ComponentPropsWithoutRef<'table'>)}
     >
       <TableCaption id={captionElementId}>{caption}</TableCaption>
-      {mapChildrenWithSizeAndColor(children, size, color)}
+      {mapChildren(children, size, color, zebraStripes)}
     </table>
   );
 

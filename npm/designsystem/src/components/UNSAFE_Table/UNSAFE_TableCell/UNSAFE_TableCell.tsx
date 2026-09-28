@@ -4,7 +4,7 @@ import { TableColors, TableSizes, TextAlign } from '../constants';
 import styles from '../styles.module.scss';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'td'>, 'style'> {
-  /** Label used for small viewport block */
+  /** Label used for small viewport stack */
   dataLabel?: string;
   /**  text align in cell */
   textAlign?: TextAlign;

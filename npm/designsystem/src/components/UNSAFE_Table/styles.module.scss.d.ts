@@ -1,4 +1,5 @@
 export type Styles = {
+  'expandable-container': string;
   table: string;
   table__cell: string;
   'table__cell--center': string;
@@ -14,19 +15,31 @@ export type Styles = {
   'table__expanded-row-container--open': string;
   'table__expander-button': string;
   'table__expander-cell-mobile': string;
+  'table__expander-cell-mobile--expanded': string;
+  table__head: string;
   'table__head-cell': string;
   'table__head-cell--compact': string;
   'table__head-cell--transparent': string;
   'table__pop-menu': string;
   table__row: string;
+  'table-body--zebra': string;
+  'table__row--expandable': string;
   'table__row--expanded': string;
-  'table--block-lg': string;
-  'table--block-md': string;
-  'table--block-sm': string;
-  'table--block-xl': string;
-  'table--block-xs': string;
-  'table--block-xxs': string;
+  'table--centeredoverflow-lg': string;
+  'table--centeredoverflow-md': string;
+  'table--centeredoverflow-sm': string;
+  'table--centeredoverflow-xl': string;
+  'table--centeredoverflow-xs': string;
+  'table--centeredoverflow-xxs': string;
+  'table--stack-lg': string;
+  'table--stack-md': string;
+  'table--stack-sm': string;
+  'table--stack-xl': string;
+  'table--stack-xs': string;
+  'table--stack-xxs': string;
+  'table-body': string;
   'table-caption': string;
+  'table-row': string;
 };
 
 export type ClassNames = keyof Styles;

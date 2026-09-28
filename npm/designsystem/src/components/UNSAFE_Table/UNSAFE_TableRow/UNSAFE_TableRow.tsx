@@ -11,7 +11,7 @@ import { TableSizes } from '../constants';
 import styles from '../styles.module.scss';
 import UNSAFE_TableExpanderCellMobile from '../UNSAFE_TableExpanderCell/UNSAFE_TableExpanderCellMobile';
 import UNSAFE_TablePopMenuCell from '../UNSAFE_TablePopMenuCell/UNSAFE_TablePopMenuCell';
-import { mapChildrenWithSizeAndColor } from '../utils';
+import { mapChildren } from '../utils';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style'> {
   /** Sets if expanded row can be expanded. Renders an expander cell as the first cell in the row. */
@@ -97,7 +97,7 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
           </button>
         </td>
       )}
-      {mapChildrenWithSizeAndColor(children, size, color)}
+      {mapChildren(children, size, color)}
       {popMenu && <UNSAFE_TablePopMenuCell size={size}>{popMenu}</UNSAFE_TablePopMenuCell>}
       {expandable && (
         <UNSAFE_TableExpanderCellMobile

@@ -15,7 +15,7 @@ import styles from './styles.module.scss';
  * @returns true om breakpoint bruker CSS
  */
 const configUsesCss = (config: BreakpointConfig): boolean =>
-  config.variant === ResponsiveTableVariant.centeredoverflow || config.variant === ResponsiveTableVariant.block;
+  config.variant === ResponsiveTableVariant.centeredoverflow || config.variant === ResponsiveTableVariant.stack;
 
 /**
  * Lag klassenavn for CSS-config
@@ -23,7 +23,7 @@ const configUsesCss = (config: BreakpointConfig): boolean =>
  * @returns CSS-klassenavn
  */
 const mapConfigToClass = (config: BreakpointConfig): string =>
-  config.variant === 'centeredoverflow' || config.variant === 'block' ? styles[`table--${config.variant}-${config.breakpoint}`] : '';
+  config.variant === 'centeredoverflow' || config.variant === 'stack' ? styles[`table--${config.variant}-${config.breakpoint}`] : '';
 
 /**
  * Sorter konfigurasjon etter breakpoints, fra største til minste
@@ -86,7 +86,7 @@ export const getCurrentConfig = (
     breakpointConfig.fallbackVariant === ResponsiveTableVariant.horizontalscroll
   ) {
     return {
-      variant: canUseHorizontalScroll ? ResponsiveTableVariant.horizontalscroll : ResponsiveTableVariant.none,
+      variant: canUseHorizontalScroll ? ResponsiveTableVariant.horizontalscroll : ResponsiveTableVariant.normal,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
@@ -97,7 +97,7 @@ export const getCurrentConfig = (
     breakpointConfig.fallbackVariant !== ResponsiveTableVariant.centeredoverflow
   ) {
     return {
-      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.none,
+      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.normal,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
@@ -108,7 +108,7 @@ export const getCurrentConfig = (
     breakpointConfig.fallbackVariant === ResponsiveTableVariant.centeredoverflow
   ) {
     return {
-      variant: canUseCenteredOverflow ? ResponsiveTableVariant.centeredoverflow : ResponsiveTableVariant.none,
+      variant: canUseCenteredOverflow ? ResponsiveTableVariant.centeredoverflow : ResponsiveTableVariant.normal,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
@@ -119,7 +119,7 @@ export const getCurrentConfig = (
     breakpointConfig.fallbackVariant !== ResponsiveTableVariant.horizontalscroll
   ) {
     return {
-      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.none,
+      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.normal,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
@@ -155,21 +155,28 @@ export const getCenteredOverflowTableStyle = (parentWidth: number, tableWidth: n
  * Map children and inject the `size` and `color` props into element children, but never on React.Fragment.
  * If a Fragment is encountered, its children are mapped and updated, while the Fragment wrapper is preserved.
  */
-export const mapChildrenWithSizeAndColor = (
+export const mapChildren = (
   children: React.ReactNode,
   size: TableSizes | undefined,
-  color: TableColors | undefined
+  color: TableColors | undefined,
+  zebraStripes?: boolean
 ): React.ReactNode =>
   React.Children.map(children, child => {
     if (!React.isValidElement(child)) return child;
     if (child.type === React.Fragment) {
       const fragmentChildren = (child.props as { children?: React.ReactNode }).children;
       const mapped = React.Children.map(fragmentChildren, gc =>
-        React.isValidElement<{ size?: TableSizes; color?: TableColors }>(gc) ? React.cloneElement(gc, { size, color }) : gc
+        React.isValidElement<{ size?: TableSizes; color?: TableColors; zebraStripes?: boolean }>(gc)
+          ? React.cloneElement(gc, { size, color, ...(zebraStripes === undefined ? {} : { zebraStripes }) })
+          : gc
       );
       return React.cloneElement(child, undefined, mapped);
     }
-    return React.cloneElement(child as React.ReactElement<{ size?: TableSizes; color?: TableColors }>, { size, color });
+    return React.cloneElement(child as React.ReactElement<{ size?: TableSizes; color?: TableColors; zebraStripes?: boolean }>, {
+      size,
+      color,
+      ...(zebraStripes === undefined ? {} : { zebraStripes }),
+    });
   });
 
 /**
