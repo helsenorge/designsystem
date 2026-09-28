@@ -38,6 +38,10 @@
     clear: both;
   }
 
+  .table-body--zebra> :nth-child(even of .table-row:not(.table__row--expanded))>.table__cell {
+    background: var(--color-base-neutral-background-light, #f5f3f3);
+  }
+
   select {
     max-width: 100%;
   }
