@@ -290,7 +290,7 @@ export const BreakpointConfigs: Story = {
 
     const variantExamples: ConfigExample[] = [
       {
-        label: 'None',
+        label: 'Normal',
         description: 'Tabellen beholder tabelloppsettet på alle skjermstørrelser.',
         config: { breakpoint: 'xl', variant: ResponsiveTableVariant.normal },
       },
