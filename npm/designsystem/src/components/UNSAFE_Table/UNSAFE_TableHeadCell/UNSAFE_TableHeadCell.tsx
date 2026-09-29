@@ -14,6 +14,8 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'th'>, 'style
   children?: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
   size?: TableSizes;
+  /** Sets the width of the column, e.g. '10rem', '25%' or a number of pixels. Ignored in the stack variant. */
+  width?: string | number;
 }
 
 export const UNSAFE_TableHeadCell: React.FC<Props> = ({
@@ -23,6 +25,7 @@ export const UNSAFE_TableHeadCell: React.FC<Props> = ({
   sortDir,
   size = TableSizes.normal,
   scope = 'col',
+  width,
   ...rest
 }) => {
   const tableHeadCellDefaultClass = classNames(styles['table__head-cell'], className, {
@@ -43,12 +46,14 @@ export const UNSAFE_TableHeadCell: React.FC<Props> = ({
     }
   };
 
+  const style = typeof width !== 'undefined' ? { width } : undefined;
+
   if (!children) {
-    return <td className={tableHeadCellDefaultClass} />;
+    return <td className={tableHeadCellDefaultClass} style={style} />;
   }
 
   return (
-    <th scope={scope} className={tableHeadCellDefaultClass} aria-sort={getSortDirection()} {...rest}>
+    <th scope={scope} className={tableHeadCellDefaultClass} style={style} aria-sort={getSortDirection()} {...rest}>
       {children}
     </th>
   );

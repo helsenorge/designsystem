@@ -10,6 +10,7 @@ import Highlighter from '../Highlighter';
 import Input from '../Input';
 import LinkList from '../LinkList';
 import PopMenu from '../PopMenu';
+import Select from '../Select';
 import Spacer from '../Spacer';
 import { defaultConfig, ResponsiveTableVariant, simpleConfig, TableColors, TableSizes } from './constants';
 import Title from '../Title';
@@ -320,6 +321,9 @@ export const BreakpointConfigs: Story = {
       },
     ];
 
+    const examples = [...configuredExamples, ...variantExamples];
+    const [selectedExampleIndex, setSelectedExampleIndex] = useState(0);
+
     const renderConfig = ({ label, description, config, wide = false }: ConfigExample): React.JSX.Element => (
       <React.Fragment key={label}>
         <Title appearance="title3">{label}</Title>
@@ -375,12 +379,19 @@ export const BreakpointConfigs: Story = {
 
     return (
       <>
-        <Title appearance="title2">{'Ferdige oppsett'}</Title>
-        <p>{'Eksempler på kombinerte breakpoint-oppsett som kan brukes direkte.'}</p>
-        {configuredExamples.map(renderConfig)}
-        <Title appearance="title2">{'Enkeltvarianter'}</Title>
-        <p>{'Eksempler som viser de tilgjengelige responsvariantene hver for seg.'}</p>
-        {variantExamples.map(renderConfig)}
+        <Select
+          label="Velg tabellkonfigurasjon"
+          value={String(selectedExampleIndex)}
+          onChange={event => setSelectedExampleIndex(Number(event.currentTarget.value))}
+        >
+          {examples.map((example, index) => (
+            <option key={example.label} value={index}>
+              {example.label}
+            </option>
+          ))}
+        </Select>
+        <Spacer size="s" />
+        {renderConfig(examples[selectedExampleIndex])}
       </>
     );
   },
@@ -522,7 +533,7 @@ export const WithPopMenu: Story = {
           <UNSAFE_TableRow>
             <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
             <UNSAFE_TableHeadCell>{'Fastlegekontor'}</UNSAFE_TableHeadCell>
-            <UNSAFE_TableHeadCell />
+            <UNSAFE_TableHeadCell>{'Valg'}</UNSAFE_TableHeadCell>
           </UNSAFE_TableRow>
         </UNSAFE_TableHead>
         <UNSAFE_TableBody>
@@ -533,7 +544,7 @@ export const WithPopMenu: Story = {
                   hideDetailsText="Skjul detaljer"
                   showDetailsText="Vis detaljer"
                   popMenu={
-                    <PopMenu>
+                    <PopMenu labelText={'Flere valg'}>
                       <LinkList chevron={false}>
                         <LinkList.Link onClick={handleClick} href="#">
                           {'Link 1'}
@@ -557,6 +568,128 @@ export const WithPopMenu: Story = {
   },
 };
 
+export const ExpandableWithPopMenu: Story = {
+  args: {
+    zebraStripes: true,
+  },
+  render: function ExpandableWithPopMenuStory(args) {
+    const { isExpanded, toggleExpanded } = useTableExpandedRows();
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>): void => {
+      event.preventDefault();
+    };
+
+    const numberOfColumns = 4;
+
+    return (
+      <UNSAFE_Table {...args} breakpointConfig={{ breakpoint: 'xl', variant: ResponsiveTableVariant.stack }}>
+        <UNSAFE_TableHead>
+          <UNSAFE_TableRow>
+            <UNSAFE_TableHeadCell />
+            <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell>{'Fastlegekontor'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell>{'Valg'}</UNSAFE_TableHeadCell>
+          </UNSAFE_TableRow>
+        </UNSAFE_TableHead>
+        <UNSAFE_TableBody>
+          {fastleger.map(fastlege => {
+            const expanded = isExpanded(fastlege.id);
+            const expandedRowId = `detaljer-med-meny-${fastlege.id}`;
+
+            return (
+              <React.Fragment key={fastlege.id}>
+                <UNSAFE_TableRow
+                  expandable
+                  expanded={expanded}
+                  expandableRowId={expandedRowId}
+                  onClick={(): void => toggleExpanded(fastlege.id)}
+                  hideDetailsText="Skjul detaljer"
+                  showDetailsText="Vis detaljer"
+                  popMenu={
+                    <PopMenu labelText={'Flere valg'}>
+                      <LinkList chevron={false}>
+                        <LinkList.Link onClick={handleClick} href="#">
+                          {'Rediger'}
+                        </LinkList.Link>
+                        <LinkList.Link onClick={handleClick} href="#">
+                          {'Fjern'}
+                        </LinkList.Link>
+                      </LinkList>
+                    </PopMenu>
+                  }
+                >
+                  <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
+                  <UNSAFE_TableCell dataLabel="Fastlegekontor">{fastlege.kontor.navn}</UNSAFE_TableCell>
+                </UNSAFE_TableRow>
+                <UNSAFE_TableExpandedRow
+                  id={expandedRowId}
+                  expanded={expanded}
+                  numberOfColumns={numberOfColumns}
+                  hideDetailsText="Skjul detaljer"
+                  toggleClick={(): void => toggleExpanded(fastlege.id)}
+                >
+                  <p>{`${fastlege.kontor.navn}, ${fastlege.kontor.adresse}. Språk: ${fastlege.spraak.join(', ')}`}</p>
+                </UNSAFE_TableExpandedRow>
+              </React.Fragment>
+            );
+          })}
+        </UNSAFE_TableBody>
+      </UNSAFE_Table>
+    );
+  },
+};
+
+export const ColumnsBehindExpander: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Velg hvilke kolonner som skal skjules bak expander i stack-visning: hideBehindExpander på UNSAFE_TableCell skjuler cellen og ' +
+          'viser ledetekst + innhold i en automatisk rendret UNSAFE_TableExpandedRow. expandable="stack" på raden gjør at expanderen kun ' +
+          'finnes i stack-visning, slik at alle kolonnene vises som vanlig tabell på store skjermer.',
+      },
+    },
+  },
+  render: function ColumnsBehindExpanderStory(args) {
+    const { isExpanded, toggleExpanded } = useTableExpandedRows();
+
+    return (
+      <UNSAFE_Table {...args} breakpointConfig={{ breakpoint: 'md', variant: ResponsiveTableVariant.stack }}>
+        <UNSAFE_TableHead>
+          <UNSAFE_TableRow>
+            <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell>{'Alder'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell>{'Fastlegekontor'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell>{'Ledige plasser'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell>{'Språk'}</UNSAFE_TableHeadCell>
+          </UNSAFE_TableRow>
+        </UNSAFE_TableHead>
+        <UNSAFE_TableBody>
+          {fastleger.map(fastlege => (
+            <UNSAFE_TableRow
+              key={fastlege.id}
+              expandable="stack"
+              expanded={isExpanded(fastlege.id)}
+              onClick={(): void => toggleExpanded(fastlege.id)}
+              hideDetailsText="Skjul detaljer"
+              showDetailsText="Vis detaljer"
+            >
+              <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Alder" hideBehindExpander>
+                {fastlege.alder}
+              </UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Fastlegekontor">{fastlege.kontor.navn}</UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Ledige plasser" hideBehindExpander>
+                {fastlege.ledigePlasser}
+              </UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Språk">{fastlege.spraak.join(', ')}</UNSAFE_TableCell>
+            </UNSAFE_TableRow>
+          ))}
+        </UNSAFE_TableBody>
+      </UNSAFE_Table>
+    );
+  },
+};
+
 export const ShowMore: Story = {
   render: function ShowMoreStory(args) {
     const { sortedData, sortColumnKey, requestSort, getSortProps } = useSort({ data: fastleger });
@@ -571,7 +704,6 @@ export const ShowMore: Story = {
           <option value="navn">{'Navn'}</option>
           <option value="kontor.navn">{'Fastlegekontor'}</option>
         </FilterSort>
-        <Spacer size="s" />
         <UNSAFE_Table {...args}>
           <UNSAFE_TableHead>
             <UNSAFE_TableRow>
@@ -631,7 +763,6 @@ export const ServerSideSorting: Story = {
           <option value="navn">{'Navn'}</option>
           <option value="alder">{'Alder'}</option>
         </FilterSort>
-        <Spacer size="s" />
         <UNSAFE_Table {...args}>
           <UNSAFE_TableHead>
             <UNSAFE_TableRow>
@@ -791,7 +922,6 @@ export const CustomSortValue: Story = {
           <option value="spraak">{'Språk'}</option>
           <option value="ledigePlasser">{'Ledige plasser'}</option>
         </FilterSort>
-        <Spacer size="s" />
         <UNSAFE_Table {...args}>
           <UNSAFE_TableHead>
             <UNSAFE_TableRow>
@@ -813,6 +943,33 @@ export const CustomSortValue: Story = {
           </UNSAFE_TableBody>
         </UNSAFE_Table>
       </>
+    );
+  },
+};
+
+export const WithCustomColumnWidth: Story = {
+  render: function DefaultStory(args) {
+    return (
+      <UNSAFE_Table {...args}>
+        <UNSAFE_TableHead>
+          <UNSAFE_TableRow>
+            <UNSAFE_TableHeadCell width="15rem">{'Navn'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell width="5rem">{'Alder'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell width="20rem">{'Fastlegekontor'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell width="5rem">{'Ledige plasser'}</UNSAFE_TableHeadCell>
+          </UNSAFE_TableRow>
+        </UNSAFE_TableHead>
+        <UNSAFE_TableBody>
+          {fastleger.map(fastlege => (
+            <UNSAFE_TableRow key={fastlege.id}>
+              <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Alder">{fastlege.alder}</UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Fastlegekontor">{fastlege.kontor.navn}</UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Ledige plasser">{fastlege.ledigePlasser}</UNSAFE_TableCell>
+            </UNSAFE_TableRow>
+          ))}
+        </UNSAFE_TableBody>
+      </UNSAFE_Table>
     );
   },
 };

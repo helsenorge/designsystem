@@ -23,6 +23,8 @@ export interface Props {
   children: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
   size?: TableSizes;
+  /** Only display the expanded row in the stack variant. */
+  stackOnly?: boolean;
   /** Row id. For use with aria-controls. */
   id?: string;
 }
@@ -35,9 +37,17 @@ export const UNSAFE_TableExpandedRow = ({
   children,
   className,
   size = TableSizes.normal,
+  stackOnly,
   id,
 }: Props): React.JSX.Element => {
-  const tableRowClass = classNames(styles['table__expanded-row'], { [styles['table__expanded-row--expanded']]: expanded }, className);
+  const tableRowClass = classNames(
+    styles['table__expanded-row'],
+    {
+      [styles['table__expanded-row--expanded']]: expanded,
+      [styles['table__expanded-row--stack-only']]: stackOnly,
+    },
+    className
+  );
   const tableCellClass = classNames(styles['table__cell'], className, {
     [styles['table__cell--compact']]: size === TableSizes.compact,
   });

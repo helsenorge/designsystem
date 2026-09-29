@@ -1,21 +1,26 @@
+import React from 'react';
+
 import classNames from 'classnames';
 
 import type { PopMenuProps } from '../../PopMenu';
 import type { TableColors } from '../constants';
+import type { Props as TableCellProps } from '../UNSAFE_TableCell/UNSAFE_TableCell';
 
 import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
+import Button from '../../Button';
 import Icon from '../../Icon';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
 import { TableSizes } from '../constants';
 import styles from '../styles.module.scss';
+import UNSAFE_TableExpandedRow from '../UNSAFE_TableExpandedRow/UNSAFE_TableExpandedRow';
 import UNSAFE_TableExpanderCellMobile from '../UNSAFE_TableExpanderCell/UNSAFE_TableExpanderCellMobile';
 import UNSAFE_TablePopMenuCell from '../UNSAFE_TablePopMenuCell/UNSAFE_TablePopMenuCell';
 import { mapChildren } from '../utils';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style'> {
-  /** Sets if expanded row can be expanded. Renders an expander cell as the first cell in the row. */
-  expandable?: boolean;
+  /** Renders an expander cell as the first cell in the row. Use 'stack' to only enable the expander in the stack variant, e.g. together with hideBehindExpander on cells. */
+  expandable?: boolean | 'stack';
   /** Sets if expanded row is expanded */
   expanded?: boolean;
   /** Id of the expanded row this row controls. For use with aria-controls on the expander button. */
@@ -36,7 +41,7 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style
   children?: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
   size?: TableSizes;
-  /** PopMenu rendered in an extra cell as the last cell in the row. Fills the entire cell. */
+  /** PopMenu rendered in an extra cell as the last cell in the row. Fills the entire cell. Outside the stack variant labelText is hidden and used as aria-label instead. */
   popMenu?: React.ReactElement<PopMenuProps>;
 }
 
@@ -59,6 +64,7 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
   const tableRowClass = classNames(
     styles['table-row'],
     {
+      [styles['table__row--expandable']]: expandable,
       [styles['table__row--expanded']]: expanded,
     },
     className
@@ -68,19 +74,24 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
     [styles['table__cell--compact']]: size === TableSizes.compact,
   });
 
-  return (
+  const hiddenCells = React.Children.toArray(children).filter(
+    (child): child is React.ReactElement<TableCellProps> => React.isValidElement<TableCellProps>(child) && !!child.props.hideBehindExpander
+  );
+
+  const row = (
     <tr className={tableRowClass} key={rowKey} {...rest} ref={refObject}>
-      {expandable && (
+      {expandable === true && (
         <td className={expanderCellClass}>
-          <button
-            type="button"
-            className={styles['table__expander-button']}
-            arizxa-expanded={expanded}
+          <Button
+            size={'large'}
+            variant="borderless"
+            wrapperClassName={styles['table__expander-button']}
+            aria-expanded={expanded}
             aria-controls={expandableRowId}
-            aria-label={expanded ? hideDetailsText : showDetailsText}
+            ariaLabel={expanded ? hideDetailsText : showDetailsText}
             onClick={(e): void => {
               // Unngå dobbel toggling via raden
-              e.stopPropagation();
+              e?.stopPropagation();
               onClick?.();
             }}
           >
@@ -94,7 +105,7 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
               }
               svgIcon={expanded ? ChevronUp : ChevronDown}
             />
-          </button>
+          </Button>
         </td>
       )}
       {mapChildren(children, size, color)}
@@ -109,6 +120,37 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
         />
       )}
     </tr>
+  );
+
+  if (!expandable || hiddenCells.length === 0) {
+    return row;
+  }
+
+  // Antall celler i raden, slik at colSpan dekker hele bredden
+  const numberOfColumns = React.Children.count(children) + (expandable === true ? 1 : 0) + 1 + (popMenu ? 1 : 0);
+
+  return (
+    <>
+      {row}
+      <UNSAFE_TableExpandedRow
+        stackOnly
+        id={expandableRowId}
+        expanded={!!expanded}
+        numberOfColumns={numberOfColumns}
+        hideDetailsText={hideDetailsText ?? ''}
+        toggleClick={(): void => onClick?.()}
+        size={size}
+      >
+        <dl className={styles['table__expanded-row-details']}>
+          {hiddenCells.map((cell, index) => (
+            <React.Fragment key={cell.props.dataLabel ?? index}>
+              <dt>{cell.props.dataLabel}</dt>
+              <dd>{cell.props.children}</dd>
+            </React.Fragment>
+          ))}
+        </dl>
+      </UNSAFE_TableExpandedRow>
+    </>
   );
 };
 

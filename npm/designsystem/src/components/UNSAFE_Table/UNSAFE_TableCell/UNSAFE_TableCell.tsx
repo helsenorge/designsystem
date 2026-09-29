@@ -6,6 +6,8 @@ import styles from '../styles.module.scss';
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'td'>, 'style'> {
   /** Label used for small viewport stack */
   dataLabel?: string;
+  /** In the stack variant, hides the cell and shows dataLabel + content in an automatically rendered UNSAFE_TableExpandedRow. Other variants always show the cell. Requires expandable on the row. */
+  hideBehindExpander?: boolean;
   /**  text align in cell */
   textAlign?: TextAlign;
   /**  nowrap for white space */
@@ -26,6 +28,7 @@ export const UNSAFE_TableCell: React.FC<Props> = ({
   nowrap = false,
   textAlign = TextAlign.left,
   dataLabel,
+  hideBehindExpander = false,
   children,
   className,
   testId,
@@ -40,12 +43,14 @@ export const UNSAFE_TableCell: React.FC<Props> = ({
     { [styles['table__cell--nowrap']]: nowrap },
     { [styles['table__cell--center']]: textAlign === 'center' },
     { [styles['table__cell--right']]: textAlign === 'right' },
+    { [styles['table__cell--behind-expander']]: hideBehindExpander },
     className
   );
 
   return (
     <td className={tableCellClass} data-label={dataLabel} data-testid={testId} {...rest}>
-      {children}
+      {dataLabel && <span className={styles['table__cell-label']}>{dataLabel}</span>}
+      <span className={styles['table__cell-content']}>{children}</span>
     </td>
   );
 };

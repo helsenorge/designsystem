@@ -19,13 +19,12 @@ const UNSAFE_TableExpanderCellMobile: React.FC<UNSAFE_TableExpanderCellMobilePro
   size = TableSizes.normal,
 }) => {
   const cellClass = classNames(styles.table__cell, styles['table__expander-cell-mobile'], {
-    [styles['table__expander-cell-mobile--expanded']]: expanded,
     [styles['table__cell--compact']]: size === TableSizes.compact,
   });
 
   return (
     <td className={cellClass}>
-      <Button aria-expanded={expanded} variant="borderless" onClick={onClick}>
+      <Button aria-expanded={expanded} variant="borderless" onClick={onClick} wrapperClassName={styles['table__expander-trigger']}>
         <Icon svgIcon={expanded ? ChevronUp : ChevronDown} /> {expanded ? hideDetailsText : showDetailsText}
       </Button>
     </td>

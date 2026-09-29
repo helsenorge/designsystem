@@ -6,6 +6,7 @@ import type { TableColors } from './constants';
 
 import { ResponsiveTableVariant, defaultConfig, TableSizes } from './constants';
 import TableCaption from './TableCaption';
+import { TableVariantContext } from './TableVariantContext';
 import { getBreakpointClass, getCenteredOverflowTableStyle, getCurrentConfig, mapChildren, omitProps } from './utils';
 import { useBreakpoint, type Breakpoint } from '../../hooks/useBreakpoint';
 import { useIsVisible } from '../../hooks/useIsVisible';
@@ -34,6 +35,8 @@ export interface UNSAFE_TableProps extends Omit<React.ComponentPropsWithoutRef<'
   className?: string;
   /** Header category for styling. Default: normal */
   color?: TableColors;
+  /** Width of the content column in percentage in the stack variant, like Duolist's descriptionWidth. Default: 60 */
+  descriptionWidth?: number;
   /** Unique ID */
   id?: string;
   /** For display with less space. Discouraged to use together with interactive elements. */
@@ -51,6 +54,7 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
   children,
   className,
   color,
+  descriptionWidth,
   size = TableSizes.normal,
   testId,
   zebraStripes = false,
@@ -90,8 +94,15 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
     }
   }, [tableWidth, tableIsVisible]);
 
-  const tableStyle =
-    currentConfig?.variant === ResponsiveTableVariant.centeredoverflow ? getCenteredOverflowTableStyle(parentWidth, tableWidth) : undefined;
+  const tableStyle: React.CSSProperties | undefined =
+    currentConfig?.variant === ResponsiveTableVariant.centeredoverflow || typeof descriptionWidth !== 'undefined'
+      ? {
+          ...(currentConfig?.variant === ResponsiveTableVariant.centeredoverflow
+            ? getCenteredOverflowTableStyle(parentWidth, tableWidth)
+            : undefined),
+          ...(typeof descriptionWidth !== 'undefined' ? { '--table-stack-description-width': descriptionWidth } : undefined),
+        }
+      : undefined;
 
   const breakpointClass = getBreakpointClass(currentConfig);
   const tableClass = classNames(styles.table, breakpointClass, className);
@@ -111,15 +122,17 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
     </table>
   );
 
-  if (currentConfig?.variant === ResponsiveTableVariant.horizontalscroll) {
-    return (
-      <HorizontalScroll childWidth={tableWidth} testId="horizontal-scroll" aria-labelledby={captionElementId}>
-        {table}
-      </HorizontalScroll>
-    );
-  }
-
-  return table;
+  return (
+    <TableVariantContext.Provider value={currentConfig?.variant ?? ResponsiveTableVariant.normal}>
+      {currentConfig?.variant === ResponsiveTableVariant.horizontalscroll ? (
+        <HorizontalScroll childWidth={tableWidth} testId="horizontal-scroll" aria-labelledby={captionElementId}>
+          {table}
+        </HorizontalScroll>
+      ) : (
+        table
+      )}
+    </TableVariantContext.Provider>
+  );
 };
 
 export default UNSAFE_Table;
