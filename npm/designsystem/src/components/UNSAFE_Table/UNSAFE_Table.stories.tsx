@@ -166,7 +166,7 @@ export const Sizes: Story = {
   render: function DefaultStory(args) {
     return (
       <>
-        <Title>{'Normal'}</Title>
+        <Title appearance={'title3'}>{'Normal'}</Title>
         <UNSAFE_Table size={TableSizes.normal} {...args}>
           <UNSAFE_TableHead>
             <UNSAFE_TableRow>
@@ -188,7 +188,7 @@ export const Sizes: Story = {
           </UNSAFE_TableBody>
         </UNSAFE_Table>
         <Spacer size={'2xl'} />
-        <Title>{'Compact'}</Title>
+        <Title appearance={'title3'}>{'Compact'}</Title>
         <UNSAFE_Table size={TableSizes.compact} {...args}>
           <UNSAFE_TableHead>
             <UNSAFE_TableRow>
@@ -218,7 +218,7 @@ export const Colors: Story = {
   render: function DefaultStory(args) {
     return (
       <>
-        <Title>{'Normal'}</Title>
+        <Title appearance={'title3'}>{'Normal'}</Title>
         <UNSAFE_Table color={TableColors.normal} {...args}>
           <UNSAFE_TableHead>
             <UNSAFE_TableRow>
@@ -240,7 +240,7 @@ export const Colors: Story = {
           </UNSAFE_TableBody>
         </UNSAFE_Table>
         <Spacer size={'2xl'} />
-        <Title>{'Transparent'}</Title>
+        <Title appearance={'title3'}>{'Transparent'}</Title>
         <UNSAFE_Table color={TableColors.transparent} {...args}>
           <UNSAFE_TableHead>
             <UNSAFE_TableRow>
@@ -739,51 +739,6 @@ export const ShowMore: Story = {
   },
 };
 
-export const ServerSideSorting: Story = {
-  render: function ServerSideSortingStory(args) {
-    // Simulerer server-side sortering: consumer eier både sortering og data
-    const [serverData, setServerData] = useState(fastleger);
-    const { sortedData, sortColumnKey, requestSort, getSortProps } = useSort({
-      data: serverData,
-      disableInternalSort: true,
-      onSortChange: (columnKey, sortDirection): void => {
-        const sorted = [...fastleger].sort((a, b) => {
-          const result = String(a[columnKey as keyof Fastlege]).localeCompare(String(b[columnKey as keyof Fastlege]), 'nb', {
-            numeric: true,
-          });
-          return sortDirection === SortDirection.desc ? -result : result;
-        });
-        setServerData(sorted);
-      },
-    });
-
-    return (
-      <>
-        <FilterSort value={sortColumnKey ?? ''} onChange={(e): void => requestSort(e.target.value)}>
-          <option value="navn">{'Navn'}</option>
-          <option value="alder">{'Alder'}</option>
-        </FilterSort>
-        <UNSAFE_Table {...args}>
-          <UNSAFE_TableHead>
-            <UNSAFE_TableRow>
-              <UNSAFE_TableHeadCell {...getSortProps('navn')}>{'Navn'}</UNSAFE_TableHeadCell>
-              <UNSAFE_TableHeadCell {...getSortProps('alder')}>{'Alder'}</UNSAFE_TableHeadCell>
-            </UNSAFE_TableRow>
-          </UNSAFE_TableHead>
-          <UNSAFE_TableBody>
-            {sortedData.map(fastlege => (
-              <UNSAFE_TableRow key={fastlege.id}>
-                <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="Alder">{fastlege.alder}</UNSAFE_TableCell>
-              </UNSAFE_TableRow>
-            ))}
-          </UNSAFE_TableBody>
-        </UNSAFE_Table>
-      </>
-    );
-  },
-};
-
 export const HighlightSearch: Story = {
   render: function HighlightSearchStory(args) {
     const [searchText, setSearchText] = useState('');
@@ -841,6 +796,75 @@ export const EmptyState: Story = {
           <UNSAFE_TableRow>
             <UNSAFE_TableCell colSpan={2}>{'Du har ingen fastleger.'}</UNSAFE_TableCell>
           </UNSAFE_TableRow>
+        </UNSAFE_TableBody>
+      </UNSAFE_Table>
+    );
+  },
+};
+
+export const StackHeadWidth: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'stackHeadWidth styrer bredden på ledetekstkolonnen (dataLabel) i prosent i stack-visning. ' +
+          'Uten stackHeadWidth vokser kolonnen naturlig med innholdet, men brytes ved behov og er aldri smalere enn 30%.',
+      },
+    },
+  },
+  render: function StackHeadWidthStory(args) {
+    const stackConfig = { breakpoint: 'xl', variant: ResponsiveTableVariant.stack } as const;
+
+    return (
+      <>
+        {[20, 40, 60].map(width => (
+          <React.Fragment key={width}>
+            <Title appearance="title3">{`stackHeadWidth: ${width}`}</Title>
+            <UNSAFE_Table {...args} breakpointConfig={stackConfig} stackHeadWidth={width}>
+              <UNSAFE_TableHead>
+                <UNSAFE_TableRow>
+                  <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
+                  <UNSAFE_TableHeadCell>{'Fastlegekontor'}</UNSAFE_TableHeadCell>
+                </UNSAFE_TableRow>
+              </UNSAFE_TableHead>
+              <UNSAFE_TableBody>
+                {fastleger.slice(0, 2).map(fastlege => (
+                  <UNSAFE_TableRow key={fastlege.id}>
+                    <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
+                    <UNSAFE_TableCell dataLabel="Fastlegekontor">{`${fastlege.kontor.navn}, ${fastlege.kontor.adresse}`}</UNSAFE_TableCell>
+                  </UNSAFE_TableRow>
+                ))}
+              </UNSAFE_TableBody>
+            </UNSAFE_Table>
+            <Spacer />
+          </React.Fragment>
+        ))}
+      </>
+    );
+  },
+};
+
+export const WithCustomColumnWidth: Story = {
+  render: function DefaultStory(args) {
+    return (
+      <UNSAFE_Table {...args}>
+        <UNSAFE_TableHead>
+          <UNSAFE_TableRow>
+            <UNSAFE_TableHeadCell width="15rem">{'Navn'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell width="5rem">{'Alder'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell width="20rem">{'Fastlegekontor'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell width="5rem">{'Ledige plasser'}</UNSAFE_TableHeadCell>
+          </UNSAFE_TableRow>
+        </UNSAFE_TableHead>
+        <UNSAFE_TableBody>
+          {fastleger.map(fastlege => (
+            <UNSAFE_TableRow key={fastlege.id}>
+              <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Alder">{fastlege.alder}</UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Fastlegekontor">{fastlege.kontor.navn}</UNSAFE_TableCell>
+              <UNSAFE_TableCell dataLabel="Ledige plasser">{fastlege.ledigePlasser}</UNSAFE_TableCell>
+            </UNSAFE_TableRow>
+          ))}
         </UNSAFE_TableBody>
       </UNSAFE_Table>
     );
@@ -947,29 +971,47 @@ export const CustomSortValue: Story = {
   },
 };
 
-export const WithCustomColumnWidth: Story = {
-  render: function DefaultStory(args) {
+export const ServerSideSorting: Story = {
+  render: function ServerSideSortingStory(args) {
+    // Simulerer server-side sortering: consumer eier både sortering og data
+    const [serverData, setServerData] = useState(fastleger);
+    const { sortedData, sortColumnKey, requestSort, getSortProps } = useSort({
+      data: serverData,
+      disableInternalSort: true,
+      onSortChange: (columnKey, sortDirection): void => {
+        const sorted = [...fastleger].sort((a, b) => {
+          const result = String(a[columnKey as keyof Fastlege]).localeCompare(String(b[columnKey as keyof Fastlege]), 'nb', {
+            numeric: true,
+          });
+          return sortDirection === SortDirection.desc ? -result : result;
+        });
+        setServerData(sorted);
+      },
+    });
+
     return (
-      <UNSAFE_Table {...args}>
-        <UNSAFE_TableHead>
-          <UNSAFE_TableRow>
-            <UNSAFE_TableHeadCell width="15rem">{'Navn'}</UNSAFE_TableHeadCell>
-            <UNSAFE_TableHeadCell width="5rem">{'Alder'}</UNSAFE_TableHeadCell>
-            <UNSAFE_TableHeadCell width="20rem">{'Fastlegekontor'}</UNSAFE_TableHeadCell>
-            <UNSAFE_TableHeadCell width="5rem">{'Ledige plasser'}</UNSAFE_TableHeadCell>
-          </UNSAFE_TableRow>
-        </UNSAFE_TableHead>
-        <UNSAFE_TableBody>
-          {fastleger.map(fastlege => (
-            <UNSAFE_TableRow key={fastlege.id}>
-              <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
-              <UNSAFE_TableCell dataLabel="Alder">{fastlege.alder}</UNSAFE_TableCell>
-              <UNSAFE_TableCell dataLabel="Fastlegekontor">{fastlege.kontor.navn}</UNSAFE_TableCell>
-              <UNSAFE_TableCell dataLabel="Ledige plasser">{fastlege.ledigePlasser}</UNSAFE_TableCell>
+      <>
+        <FilterSort value={sortColumnKey ?? ''} onChange={(e): void => requestSort(e.target.value)}>
+          <option value="navn">{'Navn'}</option>
+          <option value="alder">{'Alder'}</option>
+        </FilterSort>
+        <UNSAFE_Table {...args}>
+          <UNSAFE_TableHead>
+            <UNSAFE_TableRow>
+              <UNSAFE_TableHeadCell {...getSortProps('navn')}>{'Navn'}</UNSAFE_TableHeadCell>
+              <UNSAFE_TableHeadCell {...getSortProps('alder')}>{'Alder'}</UNSAFE_TableHeadCell>
             </UNSAFE_TableRow>
-          ))}
-        </UNSAFE_TableBody>
-      </UNSAFE_Table>
+          </UNSAFE_TableHead>
+          <UNSAFE_TableBody>
+            {sortedData.map(fastlege => (
+              <UNSAFE_TableRow key={fastlege.id}>
+                <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
+                <UNSAFE_TableCell dataLabel="Alder">{fastlege.alder}</UNSAFE_TableCell>
+              </UNSAFE_TableRow>
+            ))}
+          </UNSAFE_TableBody>
+        </UNSAFE_Table>
+      </>
     );
   },
 };

@@ -35,12 +35,12 @@ export interface UNSAFE_TableProps extends Omit<React.ComponentPropsWithoutRef<'
   className?: string;
   /** Header category for styling. Default: normal */
   color?: TableColors;
-  /** Width of the content column in percentage in the stack variant, like Duolist's descriptionWidth. Default: 60 */
-  descriptionWidth?: number;
   /** Unique ID */
   id?: string;
   /** For display with less space. Discouraged to use together with interactive elements. */
   size?: TableSizes;
+  /** Width of the head column (dataLabel) in percentage in the stack variant. When not set, the column follows the widest label in the table, but wraps (minimum 30%) when the content needs the space. */
+  stackHeadWidth?: number;
   /** Id used for testing */
   testId?: string;
   /** Applies zebra stripes to every other row. Default: false */
@@ -54,8 +54,8 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
   children,
   className,
   color,
-  descriptionWidth,
   size = TableSizes.normal,
+  stackHeadWidth,
   testId,
   zebraStripes = false,
   ...rest
@@ -95,12 +95,12 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
   }, [tableWidth, tableIsVisible]);
 
   const tableStyle: React.CSSProperties | undefined =
-    currentConfig?.variant === ResponsiveTableVariant.centeredoverflow || typeof descriptionWidth !== 'undefined'
+    currentConfig?.variant === ResponsiveTableVariant.centeredoverflow || typeof stackHeadWidth !== 'undefined'
       ? {
           ...(currentConfig?.variant === ResponsiveTableVariant.centeredoverflow
             ? getCenteredOverflowTableStyle(parentWidth, tableWidth)
             : undefined),
-          ...(typeof descriptionWidth !== 'undefined' ? { '--table-stack-description-width': descriptionWidth } : undefined),
+          ...(typeof stackHeadWidth !== 'undefined' ? { '--table-stack-columns': `${stackHeadWidth}% minmax(0, 1fr)` } : undefined),
         }
       : undefined;
 

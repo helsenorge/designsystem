@@ -48,22 +48,18 @@ export const UNSAFE_TableExpandedRow = ({
     },
     className
   );
-  const tableCellClass = classNames(styles['table__cell'], className, {
+  const tableCellClass = classNames(styles['table__cell'], styles['table__expanded-row__cell'], className, {
     [styles['table__cell--compact']]: size === TableSizes.compact,
   });
-
-  const containerClass = classNames(styles['table__expanded-row-container']);
 
   return (
     <tr className={tableRowClass} id={id}>
       <td colSpan={numberOfColumns} className={tableCellClass}>
-        <div className={containerClass}>
-          {React.Children.map(children, child => React.isValidElement(child) && React.cloneElement(child))}
-          <Button variant={'borderless'} onClick={toggleClick} aria-expanded={expanded} tabIndex={expanded ? 0 : -1}>
-            {hideDetailsText}
-            <Icon svgIcon={ChevronUp} />
-          </Button>
-        </div>
+        {React.Children.map(children, child => React.isValidElement(child) && React.cloneElement(child))}
+        <Button variant={'borderless'} onClick={toggleClick} aria-expanded={expanded} tabIndex={expanded ? 0 : -1}>
+          {hideDetailsText}
+          <Icon svgIcon={ChevronUp} />
+        </Button>
       </td>
     </tr>
   );

@@ -8,6 +8,7 @@ import type { Props as TableCellProps } from '../UNSAFE_TableCell/UNSAFE_TableCe
 
 import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
 import Button from '../../Button';
+import Duolist, { DuolistGroup } from '../../Duolist';
 import Icon from '../../Icon';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
@@ -62,8 +63,9 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
 }) => {
   const { refObject, isHovered, isActive } = usePseudoClasses<HTMLTableRowElement>();
   const tableRowClass = classNames(
-    styles['table-row'],
+    styles['table__row'],
     {
+      [styles['table__row--transparent']]: color === 'transparent',
       [styles['table__row--expandable']]: expandable,
       [styles['table__row--expanded']]: expanded,
     },
@@ -83,7 +85,6 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
       {expandable === true && (
         <td className={expanderCellClass}>
           <Button
-            size={'large'}
             variant="borderless"
             wrapperClassName={styles['table__expander-button']}
             aria-expanded={expanded}
@@ -141,14 +142,11 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
         toggleClick={(): void => onClick?.()}
         size={size}
       >
-        <dl className={styles['table__expanded-row-details']}>
-          {hiddenCells.map((cell, index) => (
-            <React.Fragment key={cell.props.dataLabel ?? index}>
-              <dt>{cell.props.dataLabel}</dt>
-              <dd>{cell.props.children}</dd>
-            </React.Fragment>
+        <Duolist useCollapsedFromAndBelowBreakpoint={'sm'}>
+          {hiddenCells.map(cell => (
+            <DuolistGroup term={cell.props.dataLabel} description={cell.props.children} />
           ))}
-        </dl>
+        </Duolist>
       </UNSAFE_TableExpandedRow>
     </>
   );

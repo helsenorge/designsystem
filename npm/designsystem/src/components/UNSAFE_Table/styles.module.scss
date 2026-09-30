@@ -5,9 +5,8 @@
 @import '../../scss/breakpoints';
 @import '../../scss/grid';
 
-$table-border-color: var(--color-base-neutral-border-dark-onlight-normal, #7d7c79);
-$table-border: 1px solid $table-border-color;
-$expanded-row-shadow: inset 3px 0 $table-border-color;
+$table-border: 1px solid var(--color-base-neutral-border-dark-onlight-normal, #7d7c79);
+$expanded-row-shadow: inset 3px 0 var(--color-base-neutral-border-dark-onlight-normal, #7d7c79);
 
 .table-caption {
   @include sr.sr-only;
@@ -25,33 +24,51 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
     display: none;
   }
 
-  .table-body,
   .table__head-cell {
     display: block;
   }
 
-  .table-row {
-    display: flow-root;
-    clear: both;
+  // Felles kolonnespor for alle rader: uten stackHeadWidth følger
+  // ledetekstkolonnen den bredeste ledeteksten i hele tabellen, men bare
+  // så langt innholdskolonnen ikke trenger plassen selv — blir det trangt
+  // brytes ledeteksten, og kolonnen er aldri smalere enn 30%
+  .table-body {
+    display: grid;
+    grid-template-columns: var(--table-stack-columns, minmax(30%, max-content) minmax(30%, auto));
+  }
+
+  .table__row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
     padding: 0;
   }
 
   .table__cell {
     position: relative;
-
-    // To kolonner som i Duolist: prosentbredden håndheves (tvinger tekstbryting),
-    // men aldri smalere enn innholdets minste bredde, og raden vokser med innholdet
-    display: grid;
-    grid-template-columns: minmax(min-content, calc((100 - var(--table-stack-description-width, 60)) * 1%)) minmax(min-content, 1fr);
+    grid-column: 1 / -1;
     align-items: baseline;
     box-sizing: border-box;
-    padding: 0.75rem 0 0.75rem 0.75rem;
+    display: block;
+    height: auto;
+    padding: var(--core-space-2xs) var(--core-space-xs);
     float: none;
     clear: both;
     width: 100%;
     border-top: 0;
     border-bottom: 0;
     outline: 0;
+
+    &--labelled {
+      // To kolonner som i Duolist: cellene arver kolonnesporene fra .table-body
+      // slik at ledetekstkolonnen er like bred i alle rader
+      display: grid;
+      grid-template-columns: subgrid;
+    }
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      padding: var(--core-space-xs);
+    }
 
     &--center {
       text-align: left;
@@ -67,25 +84,21 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
 
     // Synlig ledetekst fra dataLabel; ekte tekst i DOM slik at den kan markeres og leses opp
     > .table__cell-label {
+      @include fonts.title4;
+
       display: block;
       box-sizing: border-box;
       padding-right: var(--core-space-xs);
       overflow-wrap: break-word;
-      font-weight: 400;
     }
 
     > .table__cell-content {
       min-width: 0;
       overflow-wrap: break-word;
     }
-
-    // Celler uten ledetekst (og utvidede rader) bruker hele bredden
-    > :only-child {
-      grid-column: 1 / -1;
-    }
   }
 
-  .table-body--zebra > :nth-child(even of .table-row:not(.table__row--expanded)) > .table__cell {
+  .table-body--zebra > :nth-child(even of .table__row:not(.table__row--expanded)) > .table__cell {
     background: var(--color-base-neutral-background-light, #f5f3f3);
   }
 
@@ -103,6 +116,7 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
     display: block;
     float: none;
     clear: both;
+    grid-column: 1 / -1;
     box-sizing: border-box;
     width: 100%;
     min-width: 0;
@@ -155,8 +169,8 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
   }
 
   // Expander-cellen i raden over gir allerede skillelinje; unngå dobbel linje
-  .table__row--expandable + .table-row > .table__cell:first-child,
-  .table__row--expandable + .table__expanded-row + .table-row > .table__cell:first-child {
+  .table__row--expandable + .table__row > .table__cell:first-child,
+  .table__row--expandable + .table__expanded-row + .table__row > .table__cell:first-child {
     border-top: 0;
   }
 
@@ -164,7 +178,9 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
     display: none;
 
     &--expanded {
-      display: flow-root;
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
       border-bottom: $table-border;
 
       > .table__cell:first-child {
@@ -201,7 +217,7 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
     border-top: 0;
   }
 
-  .table-row:last-child .table__cell:last-child {
+  .table__row:last-child .table__cell:last-child {
     border-bottom: $table-border;
   }
 
@@ -245,9 +261,6 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
 
   @include fonts.title4;
 
-  // Fix for firefox hover feil
-  // background-clip: padding-box;
-
   &--transparent {
     background: transparent;
   }
@@ -271,6 +284,7 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
   height: 2.6875rem;
   padding: var(--core-space-2xs) var(--core-space-xs);
   border: 1px solid var(--color-base-neutral-border-normal, #7d7c79);
+  vertical-align: top;
   text-align: left;
 
   &--transparent {
@@ -298,7 +312,7 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
     height: 2.1875rem;
     padding: var(--core-space-3xs);
 
-    @media (min-width: map.get($grid-breakpoints, sm)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       height: 2.375rem;
       padding: var(--core-space-3xs);
     }
@@ -310,11 +324,17 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
   display: none;
 }
 
-.table__cell-expander {
+.table__cell-expander,
+.table__cell-pop-menu {
   position: relative;
-  width: 3.375rem;
-  min-width: 3.375rem;
   padding: 0;
+  width: 2.75rem;
+  min-width: 2.75rem;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    width: 3.375rem;
+    min-width: 3.375rem;
+  }
 }
 
 .table__expander-button {
@@ -365,13 +385,6 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
   }
 }
 
-.table__cell-pop-menu {
-  position: relative;
-  width: 3.375rem;
-  min-width: 3.375rem;
-  padding: 0;
-}
-
 .table__pop-menu {
   position: absolute;
   inset: 0;
@@ -410,6 +423,10 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
 .table__row {
   background: var(--color-action-background-light-normal, #fff);
 
+  &--transparent {
+    background: transparent;
+  }
+
   &--expanded {
     background: var(--color-action-background-light-plus2-normal, #cae7ed);
 
@@ -421,7 +438,7 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
     .table__expander-button:hover,
     .table__expander-trigger:hover,
     .table__pop-menu > button:hover {
-      background: var(--color-action-background-light-onlight-plus2-hover, #afdae3);
+      background: var(--color-action-background-light-plus2-hover, #afdae3);
       box-shadow: $expanded-row-shadow;
     }
 
@@ -440,7 +457,7 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
   z-index: 1;
 }
 
-.table-body--zebra > :nth-child(even of .table-row:not(.table__row--expanded)) {
+.table-body--zebra > :nth-child(even of .table__row:not(.table__row--expanded)) {
   background: var(--color-base-neutral-background-light, #f5f3f3);
 }
 
@@ -477,10 +494,14 @@ $expanded-row-shadow: inset 3px 0 $table-border-color;
   &-container {
     padding: 0.5rem;
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       &--open {
         border-bottom: 1px solid var(--color-base-neutral-border-dark-onlight-normal, #7d7c79);
       }
     }
+  }
+
+  &__cell {
+    padding: var(--core-space-s);
   }
 }

@@ -38,6 +38,7 @@ export const UNSAFE_TableCell: React.FC<Props> = ({
 }) => {
   const tableCellClass = classNames(
     styles['table__cell'],
+    { [styles['table__cell--labelled']]: !!dataLabel },
     { [styles['table__cell--transparent']]: color === TableColors.transparent },
     { [styles['table__cell--compact']]: size === TableSizes.compact },
     { [styles['table__cell--nowrap']]: nowrap },

@@ -90,9 +90,9 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
       expect(screen.getByRole('columnheader', { name: 'Fastlegekontor' })).not.toHaveAttribute('style');
     });
 
-    test('Så settes bredden på innholdskolonnen i stack-visning når descriptionWidth er angitt', (): void => {
+    test('Så settes bredden på ledetekstkolonnen i stack-visning når stackHeadWidth er angitt', (): void => {
       render(
-        <UNSAFE_Table caption="Fastleger i nærheten" descriptionWidth={50} testId="tabell">
+        <UNSAFE_Table caption="Fastleger i nærheten" stackHeadWidth={50} testId="tabell">
           <UNSAFE_TableBody>
             <UNSAFE_TableRow>
               <UNSAFE_TableCell dataLabel="Navn">{'Åse Berg'}</UNSAFE_TableCell>
@@ -101,7 +101,7 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
         </UNSAFE_Table>
       );
 
-      expect(screen.getByTestId('tabell').style.getPropertyValue('--table-stack-description-width')).toBe('50');
+      expect(screen.getByTestId('tabell').style.getPropertyValue('--table-stack-columns')).toBe('50% minmax(0, 1fr)');
     });
 
     test('Så vises zebra-striper på annenhver rad når det er aktivert', (): void => {

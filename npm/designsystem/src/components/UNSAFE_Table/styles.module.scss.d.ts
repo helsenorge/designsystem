@@ -5,6 +5,7 @@ export type Styles = {
   'table__cell--behind-expander': string;
   'table__cell--center': string;
   'table__cell--compact': string;
+  'table__cell--labelled': string;
   'table__cell--nowrap': string;
   'table__cell--right': string;
   'table__cell--transparent': string;
@@ -13,6 +14,7 @@ export type Styles = {
   'table__cell-label': string;
   'table__cell-pop-menu': string;
   'table__expanded-row': string;
+  'table__expanded-row__cell': string;
   'table__expanded-row--expanded': string;
   'table__expanded-row--stack-only': string;
   'table__expanded-row-container': string;
@@ -30,6 +32,7 @@ export type Styles = {
   table__row: string;
   'table__row--expandable': string;
   'table__row--expanded': string;
+  'table__row--transparent': string;
   'table--centeredoverflow-lg': string;
   'table--centeredoverflow-md': string;
   'table--centeredoverflow-sm': string;
@@ -45,7 +48,6 @@ export type Styles = {
   'table-body': string;
   'table-body--zebra': string;
   'table-caption': string;
-  'table-row': string;
 };
 
 export type ClassNames = keyof Styles;
