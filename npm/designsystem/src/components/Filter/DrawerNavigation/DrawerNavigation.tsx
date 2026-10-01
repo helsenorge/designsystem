@@ -196,6 +196,7 @@ function DrawerNavigation({ children, isOpen, initialView, onCloseButton, footer
     <DrawerNavigationContext.Provider value={navigate}>
       <Drawer
         isOpen={isOpen}
+        ariaLabelledBy={titleId}
         onRequestClose={currentView?.onCloseButton ?? onCloseButton}
         footerContent={currentView?.footer ?? footer}
         contentClassName={currentView?.drawerContentClassname}
