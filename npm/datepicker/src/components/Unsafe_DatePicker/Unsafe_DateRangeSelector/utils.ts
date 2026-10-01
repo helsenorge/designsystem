@@ -140,3 +140,8 @@ export const getSelectedRangeLabel = (
   }
   return preset.displayText ?? presetLabels?.[preset.value] ?? preset.value;
 };
+
+const isSameDate = (a?: Date, b?: Date): boolean => a?.getTime() === b?.getTime();
+
+export const isSameRangeValue = (a?: DateRangePreset, b?: DateRangePreset): boolean =>
+  a?.value === b?.value && isSameDate(a?.dateRange.from, b?.dateRange.from) && isSameDate(a?.dateRange.to, b?.dateRange.to);

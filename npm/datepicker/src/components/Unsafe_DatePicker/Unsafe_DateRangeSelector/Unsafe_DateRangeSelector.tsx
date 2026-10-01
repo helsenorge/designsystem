@@ -13,7 +13,7 @@ import { LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
 import Unsafe_DatePicker from '../Unsafe_DatePicker';
 import Unsafe_DateRangePickers from '../Unsafe_DateRangePickers';
 import { getResources } from './resourceHelper';
-import { DateRangePresets, createPresetLabelMap } from './utils';
+import { DateRangePresets, createPresetLabelMap, isSameRangeValue } from './utils';
 
 import styles from './styles.module.scss';
 
@@ -50,9 +50,22 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
 
   const [selectedRadio, setSelectedRadio] = useState(value?.value);
   const [prevValue, setPrevValue] = useState(value);
+  const [lastEmittedValue, setLastEmittedValue] = useState(value);
+  const [datePickersKey, setDatePickersKey] = useState(0);
+
+  const handleChange = (nextValue?: DateRangePreset): void => {
+    setLastEmittedValue(nextValue);
+    onChange?.(nextValue);
+  };
+
   if (value !== prevValue) {
     setPrevValue(value);
     setSelectedRadio(value?.value);
+    const isExternalChange = !isSameRangeValue(value, lastEmittedValue);
+    if (isExternalChange) {
+      setDatePickersKey(key => key + 1);
+    }
+    setLastEmittedValue(value);
   }
   const selectedRange = value?.dateRange ?? DateRangePresets.Custom.dateRange;
 
@@ -70,11 +83,11 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
 
   const emitCustomRange = (from?: Date | null, to?: Date | null): void => {
     if (!from && !to) {
-      onChange?.(undefined);
+      handleChange();
       return;
     }
 
-    onChange?.({
+    handleChange({
       ...customOption,
       value: DateRangePresets.Custom.value,
       dateRange: {
@@ -91,7 +104,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
       return;
     }
 
-    onChange?.(option);
+    handleChange(option);
   };
 
   return (
@@ -116,6 +129,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
         })}
       </div>
       <Unsafe_DateRangePickers
+        key={datePickersKey}
         from={
           <Unsafe_DatePicker
             label={
