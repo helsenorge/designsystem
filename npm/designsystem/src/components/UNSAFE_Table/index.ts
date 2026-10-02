@@ -23,7 +23,7 @@ export { UNSAFE_TableHeadCell } from './UNSAFE_TableHeadCell';
 export type { Props as UNSAFE_TableHeadCellProps } from './UNSAFE_TableHeadCell';
 export { UNSAFE_TableHead } from './UNSAFE_TableHead';
 export type { Props as UNSAFE_TableHeadProps } from './UNSAFE_TableHead';
-export { SortDirection, HeaderCategory, TextAlign, ResponsiveTableVariant, ModeType, defaultConfig, simpleConfig } from '../Table';
+export { SortDirection, HeaderCategory, TextAlign, ResponsiveTableVariant, ModeType, defaultConfig } from '../Table';
 export type { BreakpointConfig } from '../Table';
 
 export default UNSAFE_Table;

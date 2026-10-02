@@ -1,6 +1,5 @@
-import React from 'react';
+import type React from 'react';
 
-import type { TableColors, TableSizes } from './constants';
 import type { BreakpointConfig } from './UNSAFE_Table';
 
 import { ResponsiveTableVariant } from './constants';
@@ -150,34 +149,6 @@ export const getCenteredOverflowTableStyle = (parentWidth: number, tableWidth: n
 
   return { left: `${(parentWidth - tableWidth) / 2 - COLUMN_GUTTER_WIDTH_PX}px` };
 };
-
-/**
- * Map children and inject the `size` and `color` props into element children, but never on React.Fragment.
- * If a Fragment is encountered, its children are mapped and updated, while the Fragment wrapper is preserved.
- */
-export const mapChildren = (
-  children: React.ReactNode,
-  size: TableSizes | undefined,
-  color: TableColors | undefined,
-  zebraStripes?: boolean
-): React.ReactNode =>
-  React.Children.map(children, child => {
-    if (!React.isValidElement(child)) return child;
-    if (child.type === React.Fragment) {
-      const fragmentChildren = (child.props as { children?: React.ReactNode }).children;
-      const mapped = React.Children.map(fragmentChildren, gc =>
-        React.isValidElement<{ size?: TableSizes; color?: TableColors; zebraStripes?: boolean }>(gc)
-          ? React.cloneElement(gc, { size, color, ...(zebraStripes === undefined ? {} : { zebraStripes }) })
-          : gc
-      );
-      return React.cloneElement(child, undefined, mapped);
-    }
-    return React.cloneElement(child as React.ReactElement<{ size?: TableSizes; color?: TableColors; zebraStripes?: boolean }>, {
-      size,
-      color,
-      ...(zebraStripes === undefined ? {} : { zebraStripes }),
-    });
-  });
 
 /**
  * Create a shallow copy of an object with specific keys omitted.

@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+
 import classNames from 'classnames';
 
 import { TableColors, TableSizes, TextAlign } from '../constants';
 import styles from '../styles.module.scss';
+import { TableContext } from '../TableContext';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'td'>, 'style'> {
   /** Label used for small viewport stack */
@@ -12,14 +15,10 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'td'>, 'style
   textAlign?: TextAlign;
   /**  nowrap for white space */
   nowrap?: boolean;
-  /** Header category for styling. Default: normal */
-  color?: TableColors;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the content of the table cell */
   children?: React.ReactNode;
-  /** For display with less space. Discouraged to use together with interactive elements. */
-  size?: TableSizes;
   /** For test purposes */
   testId?: string;
 }
@@ -32,10 +31,9 @@ export const UNSAFE_TableCell: React.FC<Props> = ({
   children,
   className,
   testId,
-  color,
-  size = TableSizes.normal,
   ...rest
 }) => {
+  const { color, size } = useContext(TableContext);
   const tableCellClass = classNames(
     styles['table__cell'],
     { [styles['table__cell--labelled']]: !!dataLabel },

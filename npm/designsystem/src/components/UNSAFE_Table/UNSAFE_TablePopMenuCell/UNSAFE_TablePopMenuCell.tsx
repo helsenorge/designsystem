@@ -6,17 +6,15 @@ import type { PopMenuProps } from '../../PopMenu';
 
 import { ResponsiveTableVariant, TableSizes } from '../constants';
 import styles from '../styles.module.scss';
-import { TableVariantContext } from '../TableVariantContext';
+import { TableContext } from '../TableContext';
 
 export interface UNSAFE_TablePopMenuCellProps {
   /** PopMenu shown inside the cell. Fills the entire cell. */
   children: React.ReactElement<PopMenuProps>;
-  /** For display with less space. */
-  size?: TableSizes;
 }
 
-const UNSAFE_TablePopMenuCell: React.FC<UNSAFE_TablePopMenuCellProps> = ({ children, size = TableSizes.normal }) => {
-  const variant = useContext(TableVariantContext);
+const UNSAFE_TablePopMenuCell: React.FC<UNSAFE_TablePopMenuCellProps> = ({ children }) => {
+  const { variant, size } = useContext(TableContext);
   const cellClass = classNames(styles['table__cell'], styles['table__cell-pop-menu'], {
     [styles['table__cell--compact']]: size === TableSizes.compact,
   });

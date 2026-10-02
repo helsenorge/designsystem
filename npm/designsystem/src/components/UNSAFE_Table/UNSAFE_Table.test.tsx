@@ -118,7 +118,10 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
         </UNSAFE_Table>
       );
 
+      const rows = screen.getAllByRole('row');
       expect(screen.getByRole('rowgroup')).toHaveClass('table-body--zebra');
+      expect(rows[0]).toHaveClass('table__row');
+      expect(rows[1]).toHaveClass('table__row');
     });
   });
 

@@ -2,12 +2,12 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
-import type { TableColors } from './constants';
+import type { TableContextValue } from './TableContext';
 
-import { ResponsiveTableVariant, defaultConfig, TableSizes } from './constants';
+import { ResponsiveTableVariant, defaultConfig, TableColors, TableSizes } from './constants';
 import TableCaption from './TableCaption';
-import { TableVariantContext } from './TableVariantContext';
-import { getBreakpointClass, getCenteredOverflowTableStyle, getCurrentConfig, mapChildren, omitProps } from './utils';
+import { TableContext } from './TableContext';
+import { getBreakpointClass, getCenteredOverflowTableStyle, getCurrentConfig, omitProps } from './utils';
 import { useBreakpoint, type Breakpoint } from '../../hooks/useBreakpoint';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
@@ -108,6 +108,16 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
   const tableClass = classNames(styles.table, breakpointClass, className);
   const domRest = omitProps(rest as Record<string, unknown>, ['breakpoint', 'variant', 'fallbackVariant', 'headerCategory']);
 
+  const tableContext = useMemo<TableContextValue>(
+    () => ({
+      variant: currentConfig?.variant ?? ResponsiveTableVariant.normal,
+      color: color ?? TableColors.normal,
+      size,
+      zebraStripes,
+    }),
+    [currentConfig?.variant, color, size, zebraStripes]
+  );
+
   const table = (
     <table
       className={tableClass}
@@ -118,12 +128,12 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
       {...(domRest as React.ComponentPropsWithoutRef<'table'>)}
     >
       <TableCaption id={captionElementId}>{caption}</TableCaption>
-      {mapChildren(children, size, color, zebraStripes)}
+      {children}
     </table>
   );
 
   return (
-    <TableVariantContext.Provider value={currentConfig?.variant ?? ResponsiveTableVariant.normal}>
+    <TableContext.Provider value={tableContext}>
       {currentConfig?.variant === ResponsiveTableVariant.horizontalscroll ? (
         <HorizontalScroll childWidth={tableWidth} testId="horizontal-scroll" aria-labelledby={captionElementId}>
           {table}
@@ -131,7 +141,7 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
       ) : (
         table
       )}
-    </TableVariantContext.Provider>
+    </TableContext.Provider>
   );
 };
 

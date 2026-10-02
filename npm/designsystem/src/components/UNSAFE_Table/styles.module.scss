@@ -8,6 +8,11 @@
 $table-border: 1px solid var(--color-base-neutral-border-dark-onlight-normal, #7d7c79);
 $expanded-row-shadow: inset 3px 0 var(--color-base-neutral-border-dark-onlight-normal, #7d7c79);
 
+// Zebra-farger samlet på ett sted; hover/active-fargene byttes ut når egne zebra-tokens er på plass
+$zebra-background: var(--color-base-neutral-background-light, #f5f3f3);
+$zebra-cell-hover: var(--color-action-background-light-plus1-hover, #cae7ed);
+$zebra-cell-active: var(--color-action-background-light-plus1-active, #afdae3);
+
 .table-caption {
   @include sr.sr-only;
 }
@@ -98,8 +103,8 @@ $expanded-row-shadow: inset 3px 0 var(--color-base-neutral-border-dark-onlight-n
     }
   }
 
-  .table-body--zebra > :nth-child(even of .table__row:not(.table__row--expanded)) > .table__cell {
-    background: var(--color-base-neutral-background-light, #f5f3f3);
+  .table-body--zebra > .table__row:nth-child(even of .table__row:not(.table__row--expanded)) > .table__cell {
+    background: $zebra-background;
   }
 
   // Celler markert med hideBehindExpander vises i den utvidbare raden i stedet
@@ -341,7 +346,7 @@ $expanded-row-shadow: inset 3px 0 var(--color-base-neutral-border-dark-onlight-n
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   min-width: 0;
   min-height: 0;
@@ -365,6 +370,10 @@ $expanded-row-shadow: inset 3px 0 var(--color-base-neutral-border-dark-onlight-n
   > span:active {
     width: auto;
     background: none;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      margin-top: 0.19rem;
+    }
   }
 }
 
@@ -397,7 +406,7 @@ $expanded-row-shadow: inset 3px 0 var(--color-base-neutral-border-dark-onlight-n
     min-height: 0;
     padding: 0;
     border-radius: 0;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 
     &:hover {
@@ -416,6 +425,10 @@ $expanded-row-shadow: inset 3px 0 var(--color-base-neutral-border-dark-onlight-n
     > span:active {
       width: auto;
       background: none;
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
+        margin-top: 0.19rem;
+      }
     }
   }
 }
@@ -451,14 +464,40 @@ $expanded-row-shadow: inset 3px 0 var(--color-base-neutral-border-dark-onlight-n
   }
 }
 
+// Zebra settes som modifikator på tbody av UNSAFE_TableBody, slik at striping
+// styres fra ett sted i BEM-hierarkiet. Annenhver ikke-ekspanderte rad får
+// stripen; ekspanderte rader holdes utenfor både tellingen og stripingen slik
+// at --expanded-bakgrunnen vinner
+.table-body--zebra {
+  > .table__row:nth-child(even of .table__row:not(.table__row--expanded)) {
+    background: $zebra-background;
+
+    // Eksplisitt cellebakgrunn på expander- og popmenu-cellene slik at
+    // stripede rader kan ha egne hover/active-farger enn hvite rader
+    > .table__cell-expander,
+    > .table__cell-pop-menu,
+    > .table__expander-cell-mobile {
+      background: $zebra-background;
+    }
+
+    .table__expander-button:hover,
+    .table__expander-trigger:hover,
+    .table__pop-menu > button:hover {
+      background: $zebra-cell-hover;
+    }
+
+    .table__expander-button:active,
+    .table__expander-trigger:active,
+    .table__pop-menu > button:active {
+      background: $zebra-cell-active;
+    }
+  }
+}
+
 .table__cell-expander:focus-within,
 .table__cell-pop-menu:focus-within,
 .table__expander-cell-mobile:focus-within {
   z-index: 1;
-}
-
-.table-body--zebra > :nth-child(even of .table__row:not(.table__row--expanded)) {
-  background: var(--color-base-neutral-background-light, #f5f3f3);
 }
 
 .table__expanded-row {

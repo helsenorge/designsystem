@@ -38,19 +38,6 @@ export const defaultConfig: BreakpointConfig[] = [
   {
     breakpoint: 'xl',
     variant: ResponsiveTableVariant.centeredoverflow,
-    fallbackVariant: ResponsiveTableVariant.horizontalscroll,
-  },
-];
-
-export const simpleConfig: BreakpointConfig[] = [
-  {
-    breakpoint: 'xl',
-    variant: ResponsiveTableVariant.centeredoverflow,
-    fallbackVariant: ResponsiveTableVariant.horizontalscroll,
-  },
-  {
-    breakpoint: 'sm',
-    variant: ResponsiveTableVariant.centeredoverflow,
     fallbackVariant: ResponsiveTableVariant.stack,
   },
 ];

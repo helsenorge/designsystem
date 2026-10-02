@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import classNames from 'classnames';
 
@@ -7,6 +7,7 @@ import Icon from '../../Icon';
 import ChevronUp from '../../Icons/ChevronUp';
 import { TableSizes } from '../constants';
 import styles from '../styles.module.scss';
+import { TableContext } from '../TableContext';
 
 export interface Props {
   /** Row is expanded. */
@@ -21,8 +22,6 @@ export interface Props {
   className?: string;
   /** Sets the content of the expanded row.  */
   children: React.ReactNode;
-  /** For display with less space. Discouraged to use together with interactive elements. */
-  size?: TableSizes;
   /** Only display the expanded row in the stack variant. */
   stackOnly?: boolean;
   /** Row id. For use with aria-controls. */
@@ -36,10 +35,10 @@ export const UNSAFE_TableExpandedRow = ({
   toggleClick,
   children,
   className,
-  size = TableSizes.normal,
   stackOnly,
   id,
 }: Props): React.JSX.Element => {
+  const { size } = useContext(TableContext);
   const tableRowClass = classNames(
     styles['table__expanded-row'],
     {

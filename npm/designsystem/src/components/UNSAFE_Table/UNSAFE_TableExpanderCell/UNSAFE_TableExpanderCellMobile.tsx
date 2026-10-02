@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import classNames from 'classnames';
 
 import type { Props } from '../UNSAFE_TableRow/UNSAFE_TableRow';
@@ -8,16 +10,17 @@ import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
 import { TableSizes } from '../constants';
 import styles from '../styles.module.scss';
+import { TableContext } from '../TableContext';
 
-type UNSAFE_TableExpanderCellMobileProps = Pick<Props, 'expanded' | 'onClick' | 'hideDetailsText' | 'showDetailsText' | 'size'>;
+type UNSAFE_TableExpanderCellMobileProps = Pick<Props, 'expanded' | 'onClick' | 'hideDetailsText' | 'showDetailsText'>;
 
 const UNSAFE_TableExpanderCellMobile: React.FC<UNSAFE_TableExpanderCellMobileProps> = ({
   expanded,
   onClick,
   hideDetailsText,
   showDetailsText,
-  size = TableSizes.normal,
 }) => {
+  const { size } = useContext(TableContext);
   const cellClass = classNames(styles.table__cell, styles['table__expander-cell-mobile'], {
     [styles['table__cell--compact']]: size === TableSizes.compact,
   });

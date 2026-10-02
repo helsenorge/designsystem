@@ -12,7 +12,7 @@ import LinkList from '../LinkList';
 import PopMenu from '../PopMenu';
 import Select from '../Select';
 import Spacer from '../Spacer';
-import { defaultConfig, ResponsiveTableVariant, simpleConfig, TableColors, TableSizes } from './constants';
+import { defaultConfig, ResponsiveTableVariant, TableColors, TableSizes } from './constants';
 import Title from '../Title';
 
 import UNSAFE_Table, {
@@ -36,6 +36,7 @@ interface Fastlege {
   kontor: { navn: string; adresse: string };
   ledigePlasser: number;
   spraak: string[];
+  beskrivelse?: string;
 }
 
 const fastleger: Fastlege[] = [
@@ -46,6 +47,8 @@ const fastleger: Fastlege[] = [
     kontor: { navn: 'Curato Røntgen', adresse: 'Karl Johans gate 1' },
     ledigePlasser: 3,
     spraak: ['Norsk', 'Engelsk'],
+    beskrivelse:
+      'Line har lang erfaring med oppfølging av pasienter i alle livsfaser. Hun legger vekt på gode samtaler og tydelige behandlingsplaner.',
   },
   {
     id: 'lege2',
@@ -54,6 +57,8 @@ const fastleger: Fastlege[] = [
     kontor: { navn: 'Aleris Frogner', adresse: 'Frognerveien 10' },
     ledigePlasser: 0,
     spraak: ['Norsk'],
+    beskrivelse:
+      'Hans arbeider særlig med forebyggende helse og kroniske plager. Kontoret har for tiden ingen ledige plasser for nye pasienter.',
   },
   {
     id: 'lege3',
@@ -62,6 +67,7 @@ const fastleger: Fastlege[] = [
     kontor: { navn: 'Best Helse', adresse: 'Storgata 5' },
     ledigePlasser: 12,
     spraak: ['Norsk', 'Tysk'],
+    beskrivelse: 'Åse har bred erfaring fra allmennmedisin og tilbyr oppfølging på norsk og tysk. Hun har god kapasitet for nye pasienter.',
   },
   {
     id: 'lege4',
@@ -70,6 +76,8 @@ const fastleger: Fastlege[] = [
     kontor: { navn: 'Volvat Majorstuen', adresse: 'Bogstadveien 20' },
     ledigePlasser: 7,
     spraak: ['Norsk', 'Engelsk', 'Fransk'],
+    beskrivelse:
+      'Bjørn har jobbet som fastlege i mange år og møter pasienter med ulike behov. Han kan også tilby konsultasjoner på engelsk og fransk.',
   },
   {
     id: 'lege5',
@@ -78,6 +86,7 @@ const fastleger: Fastlege[] = [
     kontor: { navn: 'Legevakten', adresse: 'Storgata 40' },
     ledigePlasser: 1,
     spraak: ['Norsk'],
+    beskrivelse: 'Kari er opptatt av tilgjengelig og helhetlig helsehjelp. Hun har snart kapasitet til å ta imot én ny pasient.',
   },
 ];
 
@@ -278,13 +287,8 @@ export const BreakpointConfigs: Story = {
     const configuredExamples: ConfigExample[] = [
       {
         label: 'Default config',
-        description: 'Standardoppsettet kombinerer centeredoverflow med horizontalscroll som fallback.',
+        description: 'Standardoppsettet kombinerer centeredoverflow med stack som fallback.',
         config: defaultConfig,
-      },
-      {
-        label: 'Simple config',
-        description: 'Samme som default config, men legget til stack visning på sm breakpoint.',
-        config: simpleConfig,
       },
     ];
 
@@ -301,18 +305,17 @@ export const BreakpointConfigs: Story = {
         config: {
           breakpoint: 'xl',
           variant: ResponsiveTableVariant.centeredoverflow,
-          fallbackVariant: ResponsiveTableVariant.horizontalscroll,
         },
         wide: true,
       },
       {
         label: 'Horizontal scroll',
-        description: 'Tabellen med tolv kolonner får horisontal rulling når innholdet ikke får plass (fungerer bare på touch-enheter).',
+        description: 'Tabellen med tolv kolonner får horisontal scroll når innholdet ikke får plass (fungerer bare på touch-enheter).',
         config: {
           breakpoint: 'xl',
           variant: ResponsiveTableVariant.horizontalscroll,
-          fallbackVariant: ResponsiveTableVariant.centeredoverflow,
         },
+        wide: true,
       },
       {
         label: 'Stack',
@@ -465,9 +468,6 @@ export const Sortable: Story = {
 };
 
 export const Expandable: Story = {
-  args: {
-    zebraStripes: true,
-  },
   render: function ExpandableRowsStory(args) {
     const { isExpanded, toggleExpanded } = useTableExpandedRows();
 
@@ -519,9 +519,6 @@ export const Expandable: Story = {
 };
 
 export const WithPopMenu: Story = {
-  args: {
-    zebraStripes: true,
-  },
   render: function ExpandableRowsStory(args) {
     const handleClick = (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>): void => {
       event.preventDefault();
@@ -569,24 +566,22 @@ export const WithPopMenu: Story = {
 };
 
 export const ExpandableWithPopMenu: Story = {
-  args: {
-    zebraStripes: true,
-  },
   render: function ExpandableWithPopMenuStory(args) {
     const { isExpanded, toggleExpanded } = useTableExpandedRows();
     const handleClick = (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>): void => {
       event.preventDefault();
     };
 
-    const numberOfColumns = 4;
+    const numberOfColumns = 5;
 
     return (
-      <UNSAFE_Table {...args} breakpointConfig={{ breakpoint: 'xl', variant: ResponsiveTableVariant.stack }}>
+      <UNSAFE_Table {...args}>
         <UNSAFE_TableHead>
           <UNSAFE_TableRow>
             <UNSAFE_TableHeadCell />
             <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
             <UNSAFE_TableHeadCell>{'Fastlegekontor'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell>{'Beskrivelse'}</UNSAFE_TableHeadCell>
             <UNSAFE_TableHeadCell>{'Valg'}</UNSAFE_TableHeadCell>
           </UNSAFE_TableRow>
         </UNSAFE_TableHead>
@@ -619,6 +614,7 @@ export const ExpandableWithPopMenu: Story = {
                 >
                   <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
                   <UNSAFE_TableCell dataLabel="Fastlegekontor">{fastlege.kontor.navn}</UNSAFE_TableCell>
+                  <UNSAFE_TableCell dataLabel="Beskrivelse">{fastlege.beskrivelse}</UNSAFE_TableCell>
                 </UNSAFE_TableRow>
                 <UNSAFE_TableExpandedRow
                   id={expandedRowId}
@@ -836,7 +832,7 @@ export const StackHeadWidth: Story = {
                 ))}
               </UNSAFE_TableBody>
             </UNSAFE_Table>
-            <Spacer />
+            <Spacer size="xl" />
           </React.Fragment>
         ))}
       </>

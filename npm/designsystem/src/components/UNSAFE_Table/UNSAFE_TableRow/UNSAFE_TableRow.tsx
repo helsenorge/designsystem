@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import classNames from 'classnames';
 
 import type { PopMenuProps } from '../../PopMenu';
-import type { TableColors } from '../constants';
 import type { Props as TableCellProps } from '../UNSAFE_TableCell/UNSAFE_TableCell';
 
 import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
@@ -12,12 +11,12 @@ import Duolist, { DuolistGroup } from '../../Duolist';
 import Icon from '../../Icon';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
-import { TableSizes } from '../constants';
+import { TableColors, TableSizes } from '../constants';
 import styles from '../styles.module.scss';
+import { TableContext } from '../TableContext';
 import UNSAFE_TableExpandedRow from '../UNSAFE_TableExpandedRow/UNSAFE_TableExpandedRow';
 import UNSAFE_TableExpanderCellMobile from '../UNSAFE_TableExpanderCell/UNSAFE_TableExpanderCellMobile';
 import UNSAFE_TablePopMenuCell from '../UNSAFE_TablePopMenuCell/UNSAFE_TablePopMenuCell';
-import { mapChildren } from '../utils';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style'> {
   /** Renders an expander cell as the first cell in the row. Use 'stack' to only enable the expander in the stack variant, e.g. together with hideBehindExpander on cells. */
@@ -34,14 +33,10 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style
   showDetailsText?: string;
   /** Key attribute for row */
   rowKey?: string;
-  /** Header category for styling. Default: normal */
-  color?: TableColors;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the cells of the table row element.  */
   children?: React.ReactNode;
-  /** For display with less space. Discouraged to use together with interactive elements. */
-  size?: TableSizes;
   /** PopMenu rendered in an extra cell as the last cell in the row. Fills the entire cell. Outside the stack variant labelText is hidden and used as aria-label instead. */
   popMenu?: React.ReactElement<PopMenuProps>;
 }
@@ -56,16 +51,15 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
   onClick,
   className,
   children,
-  color,
-  size = TableSizes.normal,
   popMenu,
   ...rest
 }) => {
+  const { color, size } = useContext(TableContext);
   const { refObject, isHovered, isActive } = usePseudoClasses<HTMLTableRowElement>();
   const tableRowClass = classNames(
     styles['table__row'],
     {
-      [styles['table__row--transparent']]: color === 'transparent',
+      [styles['table__row--transparent']]: color === TableColors.transparent,
       [styles['table__row--expandable']]: expandable,
       [styles['table__row--expanded']]: expanded,
     },
@@ -109,15 +103,14 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
           </Button>
         </td>
       )}
-      {mapChildren(children, size, color)}
-      {popMenu && <UNSAFE_TablePopMenuCell size={size}>{popMenu}</UNSAFE_TablePopMenuCell>}
+      {children}
+      {popMenu && <UNSAFE_TablePopMenuCell>{popMenu}</UNSAFE_TablePopMenuCell>}
       {expandable && (
         <UNSAFE_TableExpanderCellMobile
           expanded={expanded}
           onClick={onClick}
           hideDetailsText={hideDetailsText}
           showDetailsText={showDetailsText}
-          size={size}
         />
       )}
     </tr>
@@ -140,7 +133,6 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
         numberOfColumns={numberOfColumns}
         hideDetailsText={hideDetailsText ?? ''}
         toggleClick={(): void => onClick?.()}
-        size={size}
       >
         <Duolist useCollapsedFromAndBelowBreakpoint={'sm'}>
           {hiddenCells.map(cell => (

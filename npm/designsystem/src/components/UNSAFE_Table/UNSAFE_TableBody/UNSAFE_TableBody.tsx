@@ -1,36 +1,30 @@
+import { useContext } from 'react';
+
 import classNames from 'classnames';
 
-import type { TableColors } from '../constants';
-
-import { TableSizes } from '../constants';
 import styles from '../styles.module.scss';
-import { mapChildren } from '../utils';
+import { TableContext } from '../TableContext';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'tbody'>, 'style'> {
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the content of the table body. Use TableRows */
   children?: React.ReactNode;
-  /** Header category for styling. Default: normal */
-  color?: TableColors;
-  /** For display with less space. Discouraged to use together with interactive elements. */
-  size?: TableSizes;
-  /** Applies zebra stripes to every other row. Default: false */
+  /** Applies zebra stripes to every other row. Overrides the value from UNSAFE_Table. */
   zebraStripes?: boolean;
 }
 
-export const UNSAFE_TableBody: React.FC<Props> = ({
-  className,
-  children,
-  color,
-  size = TableSizes.normal,
-  zebraStripes = false,
-  ...rest
-}) => {
-  const tableBodyClasses = classNames(styles['table-body'], { [styles['table-body--zebra']]: zebraStripes }, className);
+export const UNSAFE_TableBody: React.FC<Props> = ({ className, children, zebraStripes, ...rest }) => {
+  const { zebraStripes: inheritedZebraStripes } = useContext(TableContext);
+  const tableBodyClasses = classNames(
+    styles['table-body'],
+    { [styles['table-body--zebra']]: zebraStripes ?? inheritedZebraStripes },
+    className
+  );
+
   return (
     <tbody className={tableBodyClasses} {...rest}>
-      {mapChildren(children, size, color)}
+      {children}
     </tbody>
   );
 };
