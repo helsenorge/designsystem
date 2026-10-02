@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -9,7 +9,6 @@ import TableCaption from './TableCaption';
 import { TableContext } from './TableContext';
 import { getBreakpointClass, getCenteredOverflowTableStyle, getCurrentConfig, omitProps } from './utils';
 import { useBreakpoint, type Breakpoint } from '../../hooks/useBreakpoint';
-import { useIsVisible } from '../../hooks/useIsVisible';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
 import HorizontalScroll from '../HorizontalScroll';
 
@@ -64,9 +63,8 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
 
   const [tableWidth, setTableWidth] = useState<number>(0);
   const [parentWidth, setParentWidth] = useState<number>(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth || window.innerWidth);
   const tableRef = useRef<HTMLTableElement>(null);
-  const tableIsVisible = useIsVisible(tableRef, 0);
   const breakpoint = useBreakpoint();
 
   const currentConfig = useMemo(
@@ -74,25 +72,36 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
     [breakpointConfig, breakpoint, tableWidth, windowWidth]
   );
 
-  useEffect(() => {
-    if (
-      currentConfig?.variant === ResponsiveTableVariant.centeredoverflow ||
-      currentConfig?.variant === ResponsiveTableVariant.horizontalscroll
-    ) {
-      setTableWidth(tableRef.current?.getBoundingClientRect().width ?? 0);
+  useLayoutEffect(() => {
+    const tableElement = tableRef.current;
+    const parentElement = tableElement?.parentElement;
+    if (!tableElement || !parentElement) {
+      return;
     }
-    if (currentConfig?.variant === ResponsiveTableVariant.centeredoverflow) {
-      setParentWidth(tableRef.current?.parentElement?.getBoundingClientRect().width ?? 0);
-    }
-  }, [currentConfig, breakpoint]);
 
-  useLayoutEvent(() => setWindowWidth(window.innerWidth), ['resize'], 100);
+    const measure = (): void => {
+      if (currentConfig?.variant !== ResponsiveTableVariant.stack) {
+        setTableWidth(tableElement.getBoundingClientRect().width);
+      }
+      const parentStyle = getComputedStyle(parentElement);
+      const horizontalSpacing = [
+        parentStyle.paddingLeft,
+        parentStyle.paddingRight,
+        parentStyle.borderLeftWidth,
+        parentStyle.borderRightWidth,
+      ].reduce((total, value) => total + (parseFloat(value) || 0), 0);
+      setParentWidth(Math.max(0, parentElement.getBoundingClientRect().width - horizontalSpacing));
+      setWindowWidth(document.documentElement.clientWidth || window.innerWidth);
+    };
 
-  useEffect(() => {
-    if (tableWidth === 0 && tableIsVisible) {
-      setTableWidth(tableRef.current?.getBoundingClientRect().width ?? 0);
-    }
-  }, [tableWidth, tableIsVisible]);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(tableElement, { box: 'border-box' });
+    observer.observe(parentElement, { box: 'border-box' });
+    return (): void => observer.disconnect();
+  }, [currentConfig?.variant]);
+
+  useLayoutEvent(() => setWindowWidth(document.documentElement.clientWidth || window.innerWidth), ['resize'], 100);
 
   const tableStyle: React.CSSProperties | undefined =
     currentConfig?.variant === ResponsiveTableVariant.centeredoverflow || typeof stackHeadWidth !== 'undefined'

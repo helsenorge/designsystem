@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import type { BreakpointConfig } from './UNSAFE_Table';
 
+import { getCurrentConfig } from './utils';
+import { Breakpoint } from '../../hooks/useBreakpoint';
 import FilterSort from '../Filter/FilterSort';
 import LinkList from '../LinkList';
 import PopMenu from '../PopMenu';
@@ -49,7 +51,69 @@ const SortableExample: React.FC = () => {
 };
 
 describe('Gitt at UNSAFE_Table skal vises', (): void => {
+  test('Så brukes det nærmeste breakpointet uten å endre konfigurasjonslisten', (): void => {
+    const config: BreakpointConfig[] = [
+      { breakpoint: 'xl', variant: 'centeredoverflow' },
+      { breakpoint: 'md', variant: 'horizontalscroll' },
+      { breakpoint: 'sm', variant: 'stack' },
+    ];
+    const originalConfig = [...config];
+
+    expect(getCurrentConfig(config, Breakpoint.md, 401, 400)?.variant).toBe('horizontalscroll');
+    expect(getCurrentConfig(config, Breakpoint.sm, 401, 400)?.variant).toBe('stack');
+    expect(getCurrentConfig(config, Breakpoint.lg, 401, 500)?.variant).toBe('centeredoverflow');
+    expect(config).toEqual(originalConfig);
+  });
+
+  test('Så brukes fallback når tabellen er én piksel bredere enn vinduet', (): void => {
+    const config: BreakpointConfig = { breakpoint: 'xl', variant: 'centeredoverflow', fallbackVariant: 'horizontalscroll' };
+
+    expect(getCurrentConfig(config, Breakpoint.md, 400, 400)?.variant).toBe('centeredoverflow');
+    expect(getCurrentConfig(config, Breakpoint.md, 401, 400)?.variant).toBe('horizontalscroll');
+  });
+
   describe('Når tabellen rendres', (): void => {
+    test('Så sentreres tabellen i innholdsbredden og oppdateres ved én piksel breddeendring', (): void => {
+      const resizeCallbacks: ResizeObserverCallback[] = [];
+      vi.stubGlobal(
+        'ResizeObserver',
+        class {
+          constructor(callback: ResizeObserverCallback) {
+            resizeCallbacks.push(callback);
+          }
+          observe(): void {}
+          disconnect(): void {}
+        }
+      );
+      let measuredTableWidth = 401;
+      const rectSpy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+        return { width: this.tagName === 'TABLE' ? measuredTableWidth : 400 } as DOMRect;
+      });
+
+      try {
+        render(
+          <div style={{ padding: '0 16px', border: '1px solid' }}>
+            <UNSAFE_Table caption="Bred tabell" breakpointConfig={{ breakpoint: 'xl', variant: 'centeredoverflow' }}>
+              <UNSAFE_TableBody>
+                <UNSAFE_TableRow>
+                  <UNSAFE_TableCell>{'Innhold'}</UNSAFE_TableCell>
+                </UNSAFE_TableRow>
+              </UNSAFE_TableBody>
+            </UNSAFE_Table>
+          </div>
+        );
+        const table = screen.getByRole('table', { name: 'Bred tabell' });
+        expect(table).toHaveStyle({ left: '-17.5px' });
+
+        measuredTableWidth = 402;
+        act(() => resizeCallbacks.forEach(callback => callback([], {} as ResizeObserver)));
+        expect(table).toHaveStyle({ left: '-18px' });
+      } finally {
+        rectSpy.mockRestore();
+        vi.unstubAllGlobals();
+      }
+    });
+
     test('Så vises en tabell med caption', (): void => {
       render(
         <UNSAFE_Table caption="Fastleger i nærheten" testId="tabell">

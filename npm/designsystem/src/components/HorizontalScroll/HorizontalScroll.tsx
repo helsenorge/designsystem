@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import type { AriaLabelAttributes } from '../../utils/accessibility';
 
 import { useIsVisible } from '../../hooks/useIsVisible';
-import { useSize } from '../../hooks/useSize';
 import { useStopPropagation } from '../../hooks/usestopPropagation';
 
 import styles from './styles.module.scss';
@@ -23,17 +22,18 @@ interface HorizontalScrollProps {
   testId?: string;
 }
 
-export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttributes> = ({ children, childWidth, testId, ...rest }) => {
+export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttributes> = ({
+  children,
+  testId,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
+}) => {
   const viewportRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const leftIsVisible = useIsVisible(leftRef, 1, { root: viewportRef?.current, rootMargin: ROOT_MARGIN_OFFSET }, true);
   const rightIsVisible = useIsVisible(rightRef, 1, { root: viewportRef?.current, rootMargin: ROOT_MARGIN_OFFSET }, true);
-  const { width: viewPortWidth = 0 } = useSize(viewportRef) || {};
-
-  const isOverflowing = childWidth > viewPortWidth;
-  const viewportClasses = classNames(styles.horizontalscroll__viewport, isOverflowing && styles['horizontalscroll__viewport--overflow']);
-  const hasAriaAttributes = rest['aria-label'] || rest['aria-labelledby'];
+  const hasAriaAttributes = ariaLabel || ariaLabelledBy;
 
   useStopPropagation(viewportRef, ['touchstart', 'touchmove']);
 
@@ -42,11 +42,12 @@ export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttribu
       {/* viewport-diven må ta tabIndex for å løse et annet UU-problem, at div med overflow: scroll må kunne navigeres med keyboard. */}
       {/* Enten aria-label eller aria-labelledbyid må settes */}
       <div
-        className={viewportClasses}
+        className={styles.horizontalscroll__viewport}
         ref={viewportRef}
         tabIndex={hasAriaAttributes ? 0 : undefined}
         role={hasAriaAttributes ? 'region' : undefined}
-        {...rest}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
       >
         <div
           className={classNames(

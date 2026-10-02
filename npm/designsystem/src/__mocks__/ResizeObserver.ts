@@ -12,6 +12,7 @@ class ResizeObserver {
 
 Object.defineProperty(window, 'ResizeObserver', {
   value: ResizeObserver,
+  configurable: true,
 });
 
 export default ResizeObserver;

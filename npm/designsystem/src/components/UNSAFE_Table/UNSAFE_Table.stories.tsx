@@ -315,7 +315,6 @@ export const BreakpointConfigs: Story = {
           breakpoint: 'xl',
           variant: ResponsiveTableVariant.horizontalscroll,
         },
-        wide: true,
       },
       {
         label: 'Stack',

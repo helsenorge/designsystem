@@ -25,12 +25,12 @@ const mapConfigToClass = (config: BreakpointConfig): string =>
   config.variant === 'centeredoverflow' || config.variant === 'stack' ? styles[`table--${config.variant}-${config.breakpoint}`] : '';
 
 /**
- * Sorter konfigurasjon etter breakpoints, fra største til minste
+ * Sorter konfigurasjon etter breakpoints, fra minste til største
  * @param a Konfigurasjon for responsiv oppførsel
  * @param b Konfigurasjon for responsiv oppførsel
  * @returns Sortert liste
  */
-const sortByBreakpointsDescending = (a: BreakpointConfig, b: BreakpointConfig): number =>
+const sortByBreakpointsAscending = (a: BreakpointConfig, b: BreakpointConfig): number =>
   Breakpoint[a.breakpoint] - Breakpoint[b.breakpoint];
 
 /**
@@ -50,9 +50,7 @@ const isValidForCurrentBreakpoint = (config: BreakpointConfig, breakpoint: Break
  */
 const getConfigForBreakpoint = (config: BreakpointConfig | BreakpointConfig[], breakpoint: Breakpoint): BreakpointConfig | undefined => {
   if (Array.isArray(config)) {
-    config.sort(sortByBreakpointsDescending);
-
-    return config.find(x => isValidForCurrentBreakpoint(x, breakpoint));
+    return [...config].sort(sortByBreakpointsAscending).find(x => isValidForCurrentBreakpoint(x, breakpoint));
   } else if (config && isValidForCurrentBreakpoint(config, breakpoint)) {
     return config;
   }
@@ -145,9 +143,7 @@ export const getCenteredOverflowTableStyle = (parentWidth: number, tableWidth: n
     return;
   }
 
-  const COLUMN_GUTTER_WIDTH_PX = 8;
-
-  return { left: `${(parentWidth - tableWidth) / 2 - COLUMN_GUTTER_WIDTH_PX}px` };
+  return { left: `${(parentWidth - tableWidth) / 2}px` };
 };
 
 /**
