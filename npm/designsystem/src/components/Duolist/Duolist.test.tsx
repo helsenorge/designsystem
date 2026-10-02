@@ -49,18 +49,18 @@ describe('Gitt at Duolist skal vises', (): void => {
     });
   });
 
-  describe('Når Duolist vises med border', (): void => {
-    test('Så rendres den med border class på duoList', (): void => {
+  describe('Når Duolist vises uten padding', (): void => {
+    test('Så rendres den med no-padding class', (): void => {
       render(
-        <Duolist testId={'test01'} border="border">
+        <Duolist testId={'test01'} padding={false}>
           <DuolistGroup term={'test term 1'} description={'test description 1'} />
           <DuolistGroup term={'test term 2'} description={'test description 2'} />
         </Duolist>
       );
 
-      const duoList = screen.getByTestId('test01');
+      const duoList = screen.getByTestId('test01').children[0];
 
-      expect(duoList).toHaveClass('duolist-wrapper--border');
+      expect(duoList).toHaveClass('duolist--no-padding');
     });
   });
 
@@ -114,7 +114,7 @@ describe('Gitt at Duolist skal vises', (): void => {
   describe('Når Duolist vises med anchorlink', (): void => {
     test('Så rendres det riktig', (): void => {
       render(
-        <Duolist testId={'test01'} border="border">
+        <Duolist testId={'test01'}>
           <DuolistGroup
             term={'test term 1'}
             description={
@@ -135,11 +135,7 @@ describe('Gitt at Duolist skal vises', (): void => {
   });
   describe('Når Duolist child er null', (): void => {
     test('Så kastes det ikke en feilmelding', (): void => {
-      render(
-        <Duolist testId={'test01'} border="border">
-          {null}
-        </Duolist>
-      );
+      render(<Duolist testId={'test01'}>{null}</Duolist>);
     });
   });
   describe('Når Duolist format er satt til non-formatted', (): void => {

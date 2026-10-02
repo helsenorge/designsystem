@@ -78,27 +78,51 @@
     dt {
       padding-top: spacers.getSpacer(3xs);
       padding-top: spacers.getSpacer(2xs);
+
+      &:first-of-type {
+        border-top: 1px solid var(--color-base-border-onlight);
+      }
     }
 
     dd {
       padding-bottom: spacers.getSpacer(2xs);
       border-bottom: 1px solid var(--color-base-border-onlight);
-
-      &:last-of-type {
-        border-bottom: 0;
-      }
     }
   }
 
   &--line#{&}--not-collapsed {
     dt,
     dd {
-      border-top: 1px solid var(--color-base-border-onlight);
+      border-bottom: 1px solid var(--color-base-border-onlight);
       padding-top: spacers.getSpacer(2xs);
 
-      &:last-of-type {
-        border-bottom: 0.062rem solid var(--color-base-border-onlight);
+      &:first-of-type {
+        border-top: 1px solid var(--color-base-border-onlight);
       }
+    }
+  }
+
+  &--line#{&}--hide-top-line {
+    dt:first-of-type,
+    dd:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  &--line#{&}--hide-bottom-line {
+    dt:last-of-type,
+    dd:last-of-type {
+      border-bottom: 0;
+    }
+  }
+
+  &--no-padding#{&}--collapsed,
+  &--no-padding#{&}--not-collapsed {
+    dt,
+    dd {
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 

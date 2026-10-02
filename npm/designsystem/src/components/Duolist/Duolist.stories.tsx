@@ -96,9 +96,58 @@ export const WithLines: Story = {
   ),
 };
 
-export const WithBorder: Story = {
+export const WithLinesHidden: Story = {
   args: {
-    border: 'border',
+    variant: 'line',
+  },
+  render: args => (
+    <>
+      <Title appearance="title3" htmlMarkup="h3">
+        {'hideLines="top"'}
+      </Title>
+      <Duolist {...args} hideLines="top">
+        <DuolistGroup term={'test term'} description={'kort tekst'} />
+        <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      </Duolist>
+      <br />
+      <Title appearance="title3" htmlMarkup="h3">
+        {'hideLines="bottom"'}
+      </Title>
+      <Duolist {...args} hideLines="bottom">
+        <DuolistGroup term={'test term'} description={'kort tekst'} />
+        <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      </Duolist>
+      <br />
+      <Title appearance="title3" htmlMarkup="h3">
+        {"hideLines={{ desktop: 'top', mobile: 'bottom' }}"}
+      </Title>
+      <Duolist {...args} hideLines={{ desktop: 'top', mobile: 'bottom' }}>
+        <DuolistGroup term={'test term'} description={'kort tekst'} />
+        <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      </Duolist>
+    </>
+  ),
+};
+
+export const WithLinesHiddenResponsive: Story = {
+  args: {
+    variant: 'line',
+    hideLines: { desktop: 'top', mobile: 'bottom' },
+  },
+  render: args => (
+    <Duolist {...args}>
+      <DuolistGroup term={'test term'} description={'kort tekst'} />
+      <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
+      <DuolistGroup term={'test term'} description={'test description'} />
+    </Duolist>
+  ),
+};
+
+export const WithoutPadding: Story = {
+  args: {
+    padding: false,
+    variant: 'line',
   },
   render: args => (
     <Duolist {...args}>

@@ -7,7 +7,10 @@ export type Styles = {
   'duolist__dt--bold': string;
   'duolist__dt--non-formatted': string;
   'duolist--collapsed': string;
+  'duolist--hide-bottom-line': string;
+  'duolist--hide-top-line': string;
   'duolist--line': string;
+  'duolist--no-padding': string;
   'duolist--non-formatted': string;
   'duolist--not-collapsed': string;
   'duolist-wrapper--border': string;
