@@ -11,14 +11,22 @@ import Spacer from '../Spacer';
 import duolistStyles from './styles.module.scss';
 
 export type DuolistVariants = 'normal' | 'line';
-export type BoldColumn = 'first' | 'second' | 'none';
 export type Border = 'no-border' | 'border';
+export type HideLines = 'top' | 'bottom' | 'both';
+
+export interface ResponsiveHideLines {
+  /** Hides lines on desktop (when the list is not collapsed) */
+  desktop?: HideLines;
+  /** Hides lines on mobile (when the list is collapsed, see useCollapsedFromAndBelowBreakpoint) */
+  mobile?: HideLines;
+}
+export type BoldColumn = 'first' | 'second' | 'none';
 export type Formats = 'formatted' | 'non-formatted';
 
 export interface DuolistProps {
   /** Determines which column is bold */
   boldColumn?: BoldColumn;
-  /** Label of the Duolist */
+  /**@deprecated Border around the Duolist */
   border?: Border;
   /** Label of the Duolist */
   label?: React.ReactElement<TitleProps>;
@@ -26,8 +34,13 @@ export interface DuolistProps {
   format?: Formats;
   /** Character separator for non-formatted format */
   separator?: string;
+  /** Turns the built-in padding of the list on/off. Default: true */
+  padding?: boolean;
   /** Sets the visual variant of the Duolist. */
   variant?: DuolistVariants;
+  /** Hides the top line, bottom line or both. Only applies to the 'line' variant.
+   * Accepts a single value for all screen sizes, or an object to configure desktop and mobile (collapsed) separately. */
+  hideLines?: HideLines | ResponsiveHideLines;
   /** Sets the content of the Duolist. */
   children: React.ReactNode;
   /** Adds custom classes to the element. */
@@ -99,7 +112,9 @@ export const Duolist: React.FC<DuolistProps> = props => {
     label,
     format = 'formatted',
     separator,
+    padding = true,
     variant = 'normal',
+    hideLines,
     children,
     className,
     testId,
@@ -112,6 +127,7 @@ export const Duolist: React.FC<DuolistProps> = props => {
   const nonFormatted = format === 'non-formatted';
   const breakpoint = useBreakpoint();
   const useCollapsedMode = useCollapsedFromAndBelowBreakpoint && breakpoint <= Breakpoint[useCollapsedFromAndBelowBreakpoint];
+  const activeHideLines = typeof hideLines === 'object' ? (useCollapsedMode ? hideLines.mobile : hideLines.desktop) : hideLines;
 
   const duolistWrapperClasses = classNames(
     {
@@ -123,6 +139,9 @@ export const Duolist: React.FC<DuolistProps> = props => {
 
   const duolistClasses = classNames(duolistStyles.duolist, {
     [duolistStyles['duolist--line']]: hasLines,
+    [duolistStyles['duolist--hide-top-line']]: hasLines && (activeHideLines === 'top' || activeHideLines === 'both'),
+    [duolistStyles['duolist--hide-bottom-line']]: hasLines && (activeHideLines === 'bottom' || activeHideLines === 'both'),
+    [duolistStyles['duolist--no-padding']]: !padding,
     [duolistStyles['duolist--non-formatted']]: nonFormatted,
     [duolistStyles['duolist--collapsed']]: useCollapsedMode,
     [duolistStyles['duolist--not-collapsed']]: !useCollapsedMode,

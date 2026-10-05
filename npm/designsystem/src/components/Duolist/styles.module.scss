@@ -4,6 +4,7 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/palette' as palette;
 @use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
 
 .duolist-wrapper {
   &--border {
@@ -77,27 +78,51 @@
     dt {
       padding-top: spacers.getSpacer(3xs);
       padding-top: spacers.getSpacer(2xs);
+
+      &:first-of-type {
+        border-top: 1px solid var(--color-base-border-dark);
+      }
     }
 
     dd {
       padding-bottom: spacers.getSpacer(2xs);
       border-bottom: 1px solid var(--color-base-border-dark);
-
-      &:last-of-type {
-        border-bottom: 0;
-      }
     }
   }
 
   &--line#{&}--not-collapsed {
     dt,
     dd {
-      border-top: 1px solid var(--color-base-border-dark);
+      border-bottom: 1px solid var(--color-base-border-dark);
       padding-top: spacers.getSpacer(2xs);
 
-      &:last-of-type {
-        border-bottom: 0.062rem solid var(--color-base-border-dark);
+      &:first-of-type {
+        border-top: 1px solid var(--color-base-border-dark);
       }
+    }
+  }
+
+  &--line#{&}--hide-top-line {
+    dt:first-of-type,
+    dd:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  &--line#{&}--hide-bottom-line {
+    dt:last-of-type,
+    dd:last-of-type {
+      border-bottom: 0;
+    }
+  }
+
+  &--no-padding#{&}--collapsed,
+  &--no-padding#{&}--not-collapsed {
+    dt,
+    dd {
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 

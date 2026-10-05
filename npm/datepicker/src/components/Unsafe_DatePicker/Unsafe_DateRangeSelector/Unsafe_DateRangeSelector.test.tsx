@@ -24,10 +24,12 @@ const testResources = {
 const testDatePickerResources = {
   clearButtonAriaLabel: 'TEST_CLEAR_DATE',
   ariaLabelInputDay: 'TEST_DAY',
+  ariaLabelInputMonth: 'TEST_MONTH',
 };
 
 const CLEAR_LABEL = testDatePickerResources.clearButtonAriaLabel;
 const DAY_LABEL = testDatePickerResources.ariaLabelInputDay;
+const MONTH_LABEL = testDatePickerResources.ariaLabelInputMonth;
 
 const presetOptions = [DateRangePresets.LastMonth, DateRangePresets.Last6Months, DateRangePresets.Last12Months, DateRangePresets.FullYear];
 
@@ -36,6 +38,7 @@ const getRadio = (value: string): HTMLInputElement =>
 
 const getClearButtons = (): HTMLElement[] => screen.getAllByLabelText(CLEAR_LABEL);
 const getDayInputs = (): HTMLInputElement[] => screen.getAllByLabelText(DAY_LABEL) as HTMLInputElement[];
+const getMonthInputs = (): HTMLInputElement[] => screen.getAllByLabelText(MONTH_LABEL) as HTMLInputElement[];
 
 const renderDateRangeSelector = (props: React.ComponentProps<typeof Unsafe_DateRangeSelector>): void => {
   render(
@@ -192,6 +195,49 @@ describe('Gitt at Unsafe_DateRangeSelector skal vises', () => {
       await user.click(clearTo);
 
       expect(handleChange).toHaveBeenLastCalledWith(undefined);
+    });
+  });
+
+  describe('Når verdien nullstilles eksternt etter at en ugyldig dato er skrevet inn', () => {
+    const WrapperWithReset = (): React.ReactNode => {
+      const [value, setValue] = useState<DateRangePreset | undefined>({
+        value: 'custom',
+        dateRange: { from: new Date('2024-01-01'), to: new Date('2024-01-01') },
+      });
+
+      return (
+        <>
+          <button type="button" onClick={() => setValue(undefined)}>
+            {'Nullstill'}
+          </button>
+          <Unsafe_DateRangeSelector
+            resources={testResources}
+            datePickerPropsFrom={{ resources: testDatePickerResources }}
+            datePickerPropsTo={{ resources: testDatePickerResources }}
+            name="periode"
+            options={presetOptions}
+            value={value}
+            onChange={setValue}
+          />
+        </>
+      );
+    };
+
+    it('Så skal begge datepickerne tømmes, også feltet med ugyldig dato', async () => {
+      const user = userEvent.setup();
+      render(<WrapperWithReset />);
+
+      await user.clear(getDayInputs()[1]);
+      await user.type(getDayInputs()[1], '31');
+      await user.clear(getMonthInputs()[1]);
+      await user.type(getMonthInputs()[1], '02');
+      expect(getDayInputs()[1].value).toBe('31');
+
+      await user.click(screen.getByRole('button', { name: 'Nullstill' }));
+
+      expect(getDayInputs()[0].value).toBe('');
+      expect(getDayInputs()[1].value).toBe('');
+      expect(getMonthInputs()[1].value).toBe('');
     });
   });
 
