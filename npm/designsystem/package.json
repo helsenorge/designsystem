@@ -874,7 +874,7 @@
   },
   "peerDependencies": {
     "classnames": "^2.3.2",
-    "motion": "^12.0.0",
+    "motion": "^13.0.0",
     "normalize.css": "^8.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -886,7 +886,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",
-    "motion": "^12.38.0"
+    "motion": "^13.2.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.2",
