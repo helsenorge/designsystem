@@ -1,3 +1,14 @@
+## [15.11.0](https://github.com/helsenorge/designsystem/compare/v15.10.0...v15.11.0) (2026-10-05)
+
+### Features
+
+*  duolist – HideLines og padding prop ([f09c1ec](https://github.com/helsenorge/designsystem/commit/f09c1ecea74b3c3dcb184b02bb38b592eb90696e)), closes [#385226](https://github.com/helsenorge/designsystem/issues/385226)
+
+### Bug Fixes
+
+*  datepicker ugyldig dato nullstilles ([cf3f504](https://github.com/helsenorge/designsystem/commit/cf3f5043a837d1898ec6c7bd37827c27a9ec8ce0)), closes [#386345](https://github.com/helsenorge/designsystem/issues/386345)
+*  drawerNavigationContext manglet ariaLabelledBy ([03b4305](https://github.com/helsenorge/designsystem/commit/03b430556b5e67b903e5d2f52e6df9c5986b019d)), closes [#386518](https://github.com/helsenorge/designsystem/issues/386518)
+
 ## [15.10.0](https://github.com/helsenorge/designsystem/compare/v15.9.0...v15.10.0) (2026-09-23)
 
 ### Features
