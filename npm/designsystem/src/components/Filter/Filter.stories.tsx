@@ -11,7 +11,7 @@ import Globe from '../Icons/Globe';
 import Loader from '../Loader';
 import Panel from '../Panel';
 import PanelList from '../PanelList';
-import RadioButton from '../RadioButton';
+import Radio from '../Radio';
 import Spacer from '../Spacer';
 import StatusDot from '../StatusDot';
 import Table, { TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
@@ -484,7 +484,7 @@ export const LoggOverBrukExample: Story = {
             <div>
               <FormGroup legend={'Velg en'}>
                 {whereOptions.map(opt => (
-                  <RadioButton
+                  <Radio
                     key={opt.value}
                     label={opt.value}
                     name="where"
@@ -794,7 +794,7 @@ export const WithAsyncFiltering: Story = {
             <div>
               <FormGroup legend={'Velg en'}>
                 {whereOptions.map(opt => (
-                  <RadioButton
+                  <Radio
                     key={opt.value}
                     label={opt.value}
                     name="where"
@@ -1450,7 +1450,7 @@ export const SlowsearchExample: Story = {
             <div>
               <FormGroup legend={'Velg en'}>
                 {whereOptions.map(opt => (
-                  <RadioButton
+                  <Radio
                     key={opt.value}
                     label={opt.value}
                     name="where"

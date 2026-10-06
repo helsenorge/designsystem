@@ -63,7 +63,7 @@ export enum FormOnColor {
 }
 
 export enum FormSize {
-  medium = 'medium',
+  normal = 'normal',
   large = 'large',
 }
 
@@ -95,7 +95,6 @@ export enum AnalyticsId {
   HelpDrawer = 'help-drawer',
   HelpExpanderInline = 'help-expander-inline',
   HelpExpanderStandalone = 'help-expander-standalone',
-  HelpTooltip = 'help-tooltip',
   HelpTriggerIcon = 'help-trigger-icon',
   HelpTriggerInline = 'help-trigger-inline',
   HelpTriggerStandalone = 'help-trigger-standalone',
@@ -118,7 +117,7 @@ export enum AnalyticsId {
   PopOver = 'pop-over',
   Portal = 'portal',
   PromoPanel = 'promo-panel',
-  RadioButton = 'radio-button',
+  Radio = 'radio-button',
   Select = 'select',
   SharingStatus = 'sharing-status',
   Slider = 'slider',

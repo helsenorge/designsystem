@@ -3,13 +3,13 @@ export type Styles = {
   modal: string;
   modal__afterTitleChildren: string;
   'modal__call-to-action': string;
-  'modal__call-to-action--large': string;
   'modal__call-to-action--medium': string;
+  'modal__call-to-action--normal': string;
   modal__closeWrapper: string;
   modal__closeWrapper__close: string;
   modal__contentWrapper: string;
-  'modal__contentWrapper__scroll--large': string;
   'modal__contentWrapper__scroll--medium': string;
+  'modal__contentWrapper__scroll--normal': string;
   modal__contentWrapper__title: string;
   modal__description: string;
   modal__iconWrapper: string;
@@ -20,7 +20,6 @@ export type Styles = {
   'modal__title--error': string;
   'modal__title--success': string;
   'modal--error': string;
-  'modal--large': string;
   'modal--medium': string;
   'modal--no-actions': string;
   'modal--normal': string;

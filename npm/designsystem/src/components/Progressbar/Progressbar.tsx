@@ -11,7 +11,7 @@ import styles from './styles.module.scss';
 export interface ProgressbarProps {
   /** The value of the progressbar given in percent. Value between 0 and 100 */
   value: number;
-  /** Size of the progressbar. Default is large */
+  /** Size of the progressbar. Default is normal */
   size?: ProgressbarSize;
   /** Changes the visuals of the ProgressBar. Default is onLight */
   mode?: ProgressBarMode;
@@ -25,7 +25,7 @@ export interface ProgressbarProps {
 
 const Progressbar: React.FC<ProgressbarProps> = ({
   value,
-  size = ProgressbarSize.large,
+  size = ProgressbarSize.normal,
   mode = ProgressBarMode.onlight,
   overlay,
   testId,
@@ -38,7 +38,7 @@ const Progressbar: React.FC<ProgressbarProps> = ({
   value = Math.max(0, Math.min(value, 100));
 
   let width;
-  if (size === ProgressbarSize.large) {
+  if (size === ProgressbarSize.normal) {
     width = 96;
   } else if (size === ProgressbarSize.medium) {
     width = 50;
@@ -113,7 +113,7 @@ const Progressbar: React.FC<ProgressbarProps> = ({
             textAnchor="middle"
             alignmentBaseline="middle"
           >
-            {size === ProgressbarSize.large && valueText}
+            {size === ProgressbarSize.normal && valueText}
           </text>
         </svg>
       </div>

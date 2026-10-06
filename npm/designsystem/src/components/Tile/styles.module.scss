@@ -3,8 +3,6 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/screen-reader' as *;
 @use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
-@import '../../scss/supernova/styles/spacers.css';
 
 .tile {
   // Referanse for grandparent selection i underklassene lenger nede
@@ -19,7 +17,7 @@
   color: var(--core-color-black);
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid var(--color-action-border-onlight);
+  border: 1px solid var(--color-action-border-dark-normal);
   outline: none;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
@@ -50,12 +48,12 @@
 
   &:hover,
   &:active {
-    background-color: var(--color-action-background-ondark-selected);
+    background-color: var(--color-action-background-light-selected);
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 3px var(--color-action-border-onlight-focus);
-    border-color: var(--color-action-border-onlight-focus);
+    box-shadow: 0 0 0 3px var(--color-action-border-dark-focus);
+    border-color: var(--color-action-border-dark-focus);
   }
 
   &--highlighted {
@@ -70,7 +68,7 @@
     }
 
     &:focus-visible {
-      border-color: var(--color-action-border-onlight-focus);
+      border-color: var(--color-action-border-dark-focus);
     }
   }
 

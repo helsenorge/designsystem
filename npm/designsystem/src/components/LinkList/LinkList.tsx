@@ -19,7 +19,7 @@ import { listEditModeWrapperClassnames } from '../ListEditMode/constants';
 
 import LinkListStyles from './styles.module.scss';
 
-export type LinkListSize = 'small' | 'medium' | 'large';
+export type LinkListSize = 'small' | 'normal' | 'large';
 
 export type LinkListStatus = 'none' | 'new';
 
@@ -109,7 +109,7 @@ export const Link: LinkType = (props: LinkProps) => {
     color = 'white',
     icon,
     image,
-    size = 'medium',
+    size = 'normal',
     chevron = false,
     linkRef,
     status = 'none',
@@ -229,7 +229,7 @@ const LinkListComponent: React.FC<LinkListProps> = (props: LinkListProps) => {
     children,
     className = '',
     chevron = false,
-    size = 'medium',
+    size = 'normal',
     color = 'white',
     testId,
     variant = 'line',

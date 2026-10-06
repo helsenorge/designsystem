@@ -22,7 +22,7 @@ const TestDispatcher: React.FC = () => {
   return (
     <div>
       {'Page 1'}
-      <FormGroup error={'heihei'} size="medium" htmlMarkup="div" name={'subject'} testId={'test-id'}>
+      <FormGroup error={'heihei'} size="normal" htmlMarkup="div" name={'subject'} testId={'test-id'}>
         <Input
           {...register('subject')}
           inputId={id}

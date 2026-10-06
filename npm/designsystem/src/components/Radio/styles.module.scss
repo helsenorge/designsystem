@@ -3,19 +3,18 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/breakpoints' as breakpoints;
 @use '../../scss/screen-reader' as *;
-@import '../../scss/supernova/styles/spacers';
 
 $padding-clickable-area-top-bottom: 8px;
 $padding-clickable-area-left: 8px;
 
-.radio-button-errors {
+.radio-errors {
   font-size: font-settings.$font-size-sm;
   font-weight: 600;
   color: palette.$cherry600;
   margin-top: 0;
 }
 
-.radio-button-wrapper {
+.radio-wrapper {
   margin-left: -$padding-clickable-area-left;
 
   &__large {
@@ -40,7 +39,7 @@ $padding-clickable-area-left: 8px;
   }
 }
 
-.radio-button-label {
+.radio-label {
   display: flex;
   align-items: flex-start;
   cursor: pointer;
@@ -71,7 +70,7 @@ $padding-clickable-area-left: 8px;
     }
 
     &:has(input:focus-visible) {
-      border: 1px solid var(--color-action-border-ondark-focus);
+      border: 1px solid var(--color-action-border-light-focus);
     }
 
     &--on-blueberry {
@@ -173,19 +172,19 @@ $padding-clickable-area-left: 8px;
   }
 }
 
-.radio-button {
+.radio {
   @include sr-only;
 }
 
-.radio-button__marker-wrapper {
+.radio__marker-wrapper {
   margin-right: var(--core-space-s);
 }
 
-.radiobutton-sublabel-wrapper {
+.radio-sublabel-wrapper {
   margin-top: -$padding-clickable-area-top-bottom;
   padding-left: calc(2.8rem + $padding-clickable-area-left);
 }
 
-.radiobutton-afterlabelchildren-wrapper {
+.radio-afterlabelchildren-wrapper {
   padding-top: $padding-clickable-area-top-bottom;
 }

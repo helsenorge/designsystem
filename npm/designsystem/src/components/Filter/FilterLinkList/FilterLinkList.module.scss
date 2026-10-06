@@ -1,6 +1,5 @@
 @use 'sass:map';
 @use '../../../scss/breakpoints' as breakpoints;
-@import '../../../scss/supernova/styles/colors.css';
 
 .link-list {
   list-style: none;
@@ -24,10 +23,10 @@
     padding-right: 0;
     min-height: 4rem;
     text-decoration: none;
-    color: var(--color-base-text-onlight);
+    color: var(--color-base-text-dark);
     cursor: pointer;
     width: 100%;
-    background-color: var(--color-base-background-white);
+    background-color: var(--color-base-background-light);
     border: none;
     text-align: left;
     box-sizing: border-box;
@@ -48,7 +47,7 @@
     }
 
     &:focus-visible {
-      outline: 4px solid var(--color-action-border-onlight-focus);
+      outline: 4px solid var(--color-action-border-dark-focus);
       outline-offset: 0; // Override user agent default
       position: relative;
       z-index: 1;

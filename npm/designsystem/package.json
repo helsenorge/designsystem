@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "15.11.0",
+  "version": "16.0.0-beta.2",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -295,12 +295,6 @@
       "require": "./lib/components/HelpTeaser/index.js",
       "default": "./lib/components/HelpTeaser/index.js"
     },
-    "./components/HelpTooltip/HelpTooltip": {
-      "types": "./lib/components/HelpTooltip/HelpTooltip.d.ts",
-      "import": "./lib/components/HelpTooltip/index.js",
-      "require": "./lib/components/HelpTooltip/index.js",
-      "default": "./lib/components/HelpTooltip/index.js"
-    },
     "./components/HelpTriggerIcon/HelpSign": {
       "types": "./lib/components/HelpTriggerIcon/HelpSign.d.ts",
       "import": "./lib/components/HelpTriggerIcon/index.js",
@@ -487,11 +481,11 @@
       "require": "./lib/components/PromoPanel/index.js",
       "default": "./lib/components/PromoPanel/index.js"
     },
-    "./components/RadioButton/RadioButton": {
-      "types": "./lib/components/RadioButton/RadioButton.d.ts",
-      "import": "./lib/components/RadioButton/index.js",
-      "require": "./lib/components/RadioButton/index.js",
-      "default": "./lib/components/RadioButton/index.js"
+    "./components/Radio/Radio": {
+      "types": "./lib/components/Radio/Radio.d.ts",
+      "import": "./lib/components/Radio/index.js",
+      "require": "./lib/components/Radio/index.js",
+      "default": "./lib/components/Radio/index.js"
     },
     "./components/Select/Select": {
       "types": "./lib/components/Select/Select.d.ts",
@@ -880,7 +874,7 @@
   },
   "peerDependencies": {
     "classnames": "^2.3.2",
-    "motion": "^12.0.0",
+    "motion": "^13.0.0",
     "normalize.css": "^8.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -892,7 +886,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",
-    "motion": "^12.38.0"
+    "motion": "^13.2.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.2",

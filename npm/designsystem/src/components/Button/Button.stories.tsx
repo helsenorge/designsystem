@@ -74,7 +74,7 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: ['medium', 'large'],
+      options: ['normal', 'large'],
     },
     variant: {
       control: 'select',
@@ -195,7 +195,7 @@ export const LazyIcons: Story = {
 export const Sizes: Story = {
   render: args => (
     <>
-      <Button size={'medium'} {...args} ref={myRef6} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+      <Button size={'normal'} {...args} ref={myRef6} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         {args.children}
       </Button>
       <br />

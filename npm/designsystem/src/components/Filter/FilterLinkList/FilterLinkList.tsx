@@ -78,7 +78,7 @@ export const Link: LinkType = (props: LinkProps) => {
             <>{children}</>
           )}
         </div>
-        <Icon svgIcon={ChevronRight} isHovered={isHovered} size={IconSize.XSmall} color={'var(--color-action-graphics-onlight)'} />
+        <Icon svgIcon={ChevronRight} isHovered={isHovered} size={IconSize.XSmall} color={'var(--color-action-graphics-dark-normal)'} />
       </button>
     </li>
   );

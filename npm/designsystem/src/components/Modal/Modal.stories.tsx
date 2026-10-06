@@ -36,7 +36,7 @@ const meta = {
   },
   args: {
     variant: ModalVariants.normal,
-    size: ModalSize.large,
+    size: ModalSize.normal,
     title: 'Vil du spise en appelsin?',
     description:
       'Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.',

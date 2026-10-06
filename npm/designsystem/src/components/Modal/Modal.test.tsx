@@ -111,7 +111,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe(`modal modal--${ModalVariants.warning} modal--large`);
+      expect(dialog.className).toBe(`modal modal--${ModalVariants.warning} modal--normal`);
     });
   });
 
@@ -132,19 +132,19 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe(`modal modal--${ModalVariants.error} modal--large`);
+      expect(dialog.className).toBe(`modal modal--${ModalVariants.error} modal--normal`);
     });
   });
 
-  describe(`Når en modal har satt attributt large`, (): void => {
-    it('så skal dialogen ha klassen large', (): void => {
+  describe(`Når en modal har satt attributt normal`, (): void => {
+    it('så skal dialogen ha klassen normal', (): void => {
       const onClose = vi.fn();
       const onSuccess = vi.fn();
 
-      render(<Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" size="large" />);
+      render(<Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" size="normal" />);
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe('modal modal--normal modal--large');
+      expect(dialog.className).toBe('modal modal--normal modal--normal');
     });
   });
 

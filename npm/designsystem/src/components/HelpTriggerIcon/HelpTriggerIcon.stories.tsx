@@ -49,7 +49,7 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: ['inherit', 'medium', 'large', 'xlarge'],
+      options: ['inherit', 'normal', 'large', 'xlarge'],
     },
   },
 } satisfies Meta<typeof HelpTriggerIcon>;
@@ -81,10 +81,10 @@ export const Sizes: Story = {
       <br />
       <br />
       <Title appearance="title3" htmlMarkup="h1">
-        {'Medium'}
+        {'Normal'}
       </Title>
       <p style={{ fontSize: '18px' }}>{'Ad dolor Lorem cupidatat dolor ipsum elit fugiat.'}</p>
-      <HelpTriggerIcon {...args} onClick={action('Trigger clicked!')} size="medium" />
+      <HelpTriggerIcon {...args} onClick={action('Trigger clicked!')} size="normal" />
       <br />
       <br />
       <Title appearance="title3" htmlMarkup="h1">

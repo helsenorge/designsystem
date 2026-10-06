@@ -2,8 +2,6 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/font-mixins' as fonts;
 @use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
-@import '../../scss/supernova/styles/spacers.css';
 
 .popover {
   width: max-content;
@@ -11,7 +9,7 @@
   text-align: start;
   background-color: var(--core-color-white);
   z-index: 3;
-  box-shadow: 0 0 0 1px var(--color-base-border-onlight);
+  box-shadow: 0 0 0 1px var(--color-base-border-dark);
   border-radius: 9px;
   filter: drop-shadow(0 4px 16px rgb(0 0 0 / 30%));
   padding: var(--core-space-s);

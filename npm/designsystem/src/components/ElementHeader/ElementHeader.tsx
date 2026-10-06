@@ -23,7 +23,7 @@ import { mapChildren } from './utils';
 
 import styles from './styles.module.scss';
 
-export type ElementHeaderSize = 'compact' | 'small' | 'medium' | 'large';
+export type ElementHeaderSize = 'compact' | 'small' | 'normal' | 'large';
 export type ParentType = 'linklist' | 'expanderlist';
 
 export interface ElementHeaderType extends React.FC<ElementHeaderProps> {

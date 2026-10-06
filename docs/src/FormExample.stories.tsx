@@ -9,7 +9,7 @@ import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
 import Hospital from '@helsenorge/designsystem-react/components/Icons/Hospital';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import Label from '@helsenorge/designsystem-react/components/Label';
-import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
+import Radio from '@helsenorge/designsystem-react/components/Radio';
 import Select from '@helsenorge/designsystem-react/components/Select';
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
 import Textarea from '@helsenorge/designsystem-react/components/Textarea';
@@ -99,17 +99,17 @@ export const Default: Story = {
             errorTextId="error2"
             formFieldTag={<FormFieldTag level="required-radiobutton-list" />}
           >
-            <RadioButton
+            <Radio
               inputId="positions1"
               label={<Label labelTexts={[{ text: 'Venstre', type: 'normal' }]} />}
               {...register('positions', { required: positionErrorMessage })}
             />
-            <RadioButton
+            <Radio
               inputId="positions2"
               label={<Label labelTexts={[{ text: 'Høyre', type: 'normal' }]} />}
               {...register('positions', { required: positionErrorMessage })}
             />
-            <RadioButton
+            <Radio
               inputId="positions3"
               label={<Label labelTexts={[{ text: 'Midten', type: 'normal' }]} />}
               {...register('positions', { required: positionErrorMessage })}

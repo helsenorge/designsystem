@@ -1,6 +1,5 @@
 @use 'sass:map';
 @use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
 
 $desktop-size: 3rem;
 $mobile-inner-size: 2.375rem;
@@ -54,7 +53,7 @@ $mobile-outer-size: 2.75rem;
     }
 
     :focus-visible > & {
-      outline: 4px solid var(--color-action-border-onlight-focus);
+      outline: 4px solid var(--color-action-border-dark-focus);
       border-radius: 0;
       border: 0;
     }
@@ -69,7 +68,7 @@ $mobile-outer-size: 2.75rem;
       }
 
       :focus-visible > & {
-        outline: 4px solid var(--color-action-border-onlight-focus);
+        outline: 4px solid var(--color-action-border-dark-focus);
         border-radius: 0;
         border: 0;
       }

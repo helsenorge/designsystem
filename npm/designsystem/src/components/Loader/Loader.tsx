@@ -11,7 +11,7 @@ import { uuid } from '../../utils/uuid';
 import loaderStyles from './styles.module.scss';
 
 export type LoaderColors = PaletteNames;
-export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
+export type LoaderSizes = 'tiny' | 'normal' | 'medium' | 'large';
 
 export interface LoaderProps {
   /** Sets the color of the loader. If overlay is used, the color will always be white.  */
@@ -39,7 +39,7 @@ export interface LoaderProps {
 const Loader: React.FC<LoaderProps> = props => {
   const {
     overlay,
-    size = 'small',
+    size = 'normal',
     className = '',
     labelId = uuid(),
     testId,
@@ -61,7 +61,7 @@ const Loader: React.FC<LoaderProps> = props => {
   const [display, setDisplay] = useState(showLoader());
   const hasInitializedRef = useRef(false);
 
-  const isSmall = size === 'small';
+  const isNormal = size === 'normal';
   const isMedium = size === 'medium';
   const isLarge = size === 'large';
 
@@ -75,14 +75,14 @@ const Loader: React.FC<LoaderProps> = props => {
   const loaderClasses = classNames(
     loaderStyles.loader,
     {
-      [loaderStyles['loader--small']]: isSmall,
+      [loaderStyles['loader--normal']]: isNormal,
       [loaderStyles['loader--medium']]: isMedium,
       [loaderStyles['loader--large']]: isLarge,
     },
     className
   );
   const loaderDotClasses = classNames(loaderStyles.loader__dot, {
-    [loaderStyles['loader__dot--small']]: isSmall,
+    [loaderStyles['loader__dot--normal']]: isNormal,
     [loaderStyles['loader__dot--medium']]: isMedium,
     [loaderStyles['loader__dot--large']]: isLarge,
     [loaderStyles['loader__dot--banana']]: color === 'banana',

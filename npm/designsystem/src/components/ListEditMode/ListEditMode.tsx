@@ -58,7 +58,7 @@ export const IconButton = ({
         isHovered={isHovered}
         svgIcon={icon}
         size={IconSize.Small}
-        color={color === 'blue' ? 'var(--color-action-graphics-onlight)' : 'var(--color-destructive-graphics-normal'}
+        color={color === 'blue' ? 'var(--color-action-graphics-dark-normal)' : 'var(--color-destructive-graphics-dark-normal'}
       />
     </button>
   );

@@ -5,7 +5,7 @@ import Checkbox from '../Checkbox';
 import FormLayout from '../FormLayout';
 import Input from '../Input';
 import Label from '../Label';
-import RadioButton from '../RadioButton';
+import Radio from '../Radio';
 import Select from '../Select';
 import Textarea from '../Textarea';
 
@@ -107,9 +107,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så rendres de', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <RadioButton inputId={'Radiobutton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-          <RadioButton inputId={'Radiobutton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-          <RadioButton inputId={'Radiobutton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+          <Radio inputId={'Radiobutton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+          <Radio inputId={'Radiobutton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+          <Radio inputId={'Radiobutton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
         </FormGroup>
       );
 
@@ -150,15 +150,15 @@ describe('Gitt at FormGroup skal vises', (): void => {
         expect(input).toHaveAccessibleDescription('error error!');
       });
     });
-    describe('Når children er RadioButton', (): void => {
-      test('Så er feilmelding knyttet til RadioButton', (): void => {
+    describe('Når children er Radio', (): void => {
+      test('Så er feilmelding knyttet til Radio', (): void => {
         render(
           <FormGroup error={'error error!'}>
-            <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'RadioButton 1' }]} />} />
+            <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
           </FormGroup>
         );
 
-        const input = screen.getByLabelText('RadioButton 1');
+        const input = screen.getByLabelText('Radio 1');
         expect(input).toHaveAccessibleDescription('error error!');
       });
     });

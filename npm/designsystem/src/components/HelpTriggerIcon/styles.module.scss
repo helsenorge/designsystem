@@ -1,15 +1,13 @@
 @use 'sass:map';
 @use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
-@import '../../scss/supernova/styles/spacers.css';
 
-$trigger-medium-size: 1.25rem;
+$trigger-normal-size: 1.25rem;
 $trigger-large-size: 1.5rem;
 $trigger-xl-size: 2rem;
-$trigger-medium-margin: 0.125rem;
+$trigger-normal-margin: 0.125rem;
 $trigger-large-margin: 0.25rem;
 $trigger-xl-margin: 0.25rem;
-$outline-medium-width: 2px;
+$outline-normal-width: 2px;
 $outline-large-width: 2.2px;
 $outline-xl-width: 2.5px;
 $outline-focus-inner-width: 2px;
@@ -69,23 +67,23 @@ $outline-focus-outer-width: 5px;
         $outline-width: clamp(0px, 0.3em, 3px);
 
         inset: calc(-1 * (#{$outline-width}/ 3));
-        box-shadow: inset 0 0 0 #{$outline-width} var(--color-action-border-onlight-focus);
+        box-shadow: inset 0 0 0 #{$outline-width} var(--color-action-border-dark-focus);
         z-index: 1;
       }
     }
   }
 
-  &--medium {
+  &--normal {
     svg {
-      width: $trigger-medium-size;
-      height: $trigger-medium-size;
+      width: $trigger-normal-size;
+      height: $trigger-normal-size;
     }
   }
 
   &--large {
     svg {
-      height: $trigger-medium-size;
-      width: $trigger-medium-size;
+      height: $trigger-normal-size;
+      width: $trigger-normal-size;
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         height: $trigger-large-size;
@@ -94,23 +92,23 @@ $outline-focus-outer-width: 5px;
     }
   }
 
-  &--medium#{&}--is-button {
-    margin: $trigger-medium-margin;
+  &--normal#{&}--is-button {
+    margin: $trigger-normal-margin;
   }
 
   &--large#{&}--is-button {
-    margin: $trigger-medium-margin;
+    margin: $trigger-normal-margin;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       margin: $trigger-large-margin;
     }
   }
 
-  &--medium#{&}--is-button,
+  &--normal#{&}--is-button,
   &--large#{&}--is-button {
     &:focus-visible {
       box-shadow: none;
-      outline: 3px solid var(--color-action-border-onlight-focus);
+      outline: 3px solid var(--color-action-border-dark-focus);
       outline-offset: -2px;
     }
   }
@@ -132,7 +130,7 @@ $outline-focus-outer-width: 5px;
 
     &:focus-visible {
       box-shadow: none;
-      outline: 3.5px solid var(--color-action-border-onlight-focus);
+      outline: 3.5px solid var(--color-action-border-dark-focus);
       outline-offset: -2px;
     }
 
@@ -152,22 +150,22 @@ $outline-focus-outer-width: 5px;
   }
 
   &--strong {
-    background-color: var(--color-help-graphics-normal);
+    background-color: var(--color-help-graphics);
   }
 
   &--strong#{&}--is-button {
     &:hover {
-      background-color: var(--color-help-graphics-verydark);
+      background-color: var(--color-help-graphics-plus2);
     }
 
     &:active {
-      background-color: var(--color-help-graphics-normal);
+      background-color: var(--color-help-graphics);
     }
 
     &:focus-visible {
       box-shadow:
-        0 0 0 #{$outline-focus-inner-width} var(--color-base-graphics-ondark),
-        0 0 0 calc(#{$outline-focus-outer-width}) var(--color-action-border-onlight-focus);
+        0 0 0 #{$outline-focus-inner-width} var(--color-base-graphics-light),
+        0 0 0 calc(#{$outline-focus-outer-width}) var(--color-action-border-dark-focus);
       outline: none;
 
       &::after {

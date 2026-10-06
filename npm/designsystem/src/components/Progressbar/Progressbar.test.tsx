@@ -65,4 +65,12 @@ describe('Gitt at Progressbar skal vises', (): void => {
       expect(progress).toHaveClass('progressbar__sr-only-text');
     });
   });
+
+  describe('Når size er normal', () => {
+    test('Så vises progresjonsteksten i ProgressBar', () => {
+      render(<Progressbar value={10} size={ProgressbarSize.normal} />);
+      const progress = screen.queryAllByText('10%');
+      expect(progress.length).toBe(2);
+    });
+  });
 });

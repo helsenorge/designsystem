@@ -11,7 +11,7 @@ import Checkbox from '../Checkbox';
 import FormFieldTag from '../FormFieldTag';
 import HelpTriggerIcon from '../HelpTriggerIcon';
 import Input from '../Input';
-import RadioButton from '../RadioButton/RadioButton';
+import Radio from '../Radio/Radio';
 import Select from '../Select';
 import Spacer from '../Spacer';
 import StatusDot from '../StatusDot';
@@ -96,7 +96,7 @@ export const AllVariants: Story = {
           aria-describedby={sublabelId2 + ' ' + statusDotId2}
         />
         <Spacer size={'2xl'} />
-        <RadioButton
+        <Radio
           label={
             <Label
               {...args}
@@ -159,7 +159,7 @@ export const ChildrenAfterLabel: Story = {
       <br />
       <Checkbox label={<Label {...args} />} />
       <br />
-      <RadioButton label={<Label {...args} />} />
+      <Radio label={<Label {...args} />} />
     </>
   ),
 };
@@ -180,7 +180,7 @@ export const LabelAsString: Story = {
       <Spacer size={'2xl'} />
       <Checkbox {...rest} label={'Test label'} />
       <Spacer size={'2xl'} />
-      <RadioButton {...rest} label={'Test label'} />
+      <Radio {...rest} label={'Test label'} />
     </>
   ),
 };
@@ -258,7 +258,7 @@ export const WithCorrectAriaAttributes: Story = {
           aria-describedby={formFieldLevelId2 + ' ' + sublabelId2 + ' ' + statusDotId2}
         />
         <Spacer size={'2xl'} />
-        <RadioButton
+        <Radio
           label={
             <Label
               {...args}

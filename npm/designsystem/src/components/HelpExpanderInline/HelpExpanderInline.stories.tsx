@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'HelpExpanderInline tilbyr et felt med kontekstuell informasjon som opptrer mellom andre elementer. I motsetning til HelpBubble og HelpTooltip vises informasjonen direkte i flaten, ikke over som en popup. HelpExpanderInline benyttes for å gi innbygger en utdypet forklaring eller hjelp i slutten av en tekst eller ved siden av et element.',
+          'HelpExpanderInline tilbyr et felt med kontekstuell informasjon som opptrer mellom andre elementer. I motsetning til HelpBubble vises informasjonen direkte i flaten, ikke over som en popup. HelpExpanderInline benyttes for å gi innbygger en utdypet forklaring eller hjelp i slutten av en tekst eller ved siden av et element.',
       },
       page: (): React.JSX.Element => <Docs component={HelpExpanderInline} />,
     },

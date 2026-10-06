@@ -188,7 +188,7 @@ export const Expander: ExpanderType = (props: ExpanderProps) => {
             {renderElementHeader(title, {
               titleHtmlMarkup,
               isHovered: false,
-              size: large ? 'large' : 'medium',
+              size: large ? 'large' : 'normal',
               parentType: 'expanderlist',
               chevronIcon: undefined,
               icon,
@@ -215,7 +215,7 @@ export const Expander: ExpanderType = (props: ExpanderProps) => {
             {renderElementHeader(title, {
               titleHtmlMarkup,
               isHovered: isHovered || isFocused,
-              size: large ? 'large' : 'medium',
+              size: large ? 'large' : 'normal',
               parentType: 'expanderlist',
               chevronIcon: isExpanded ? ChevronUp : ChevronDown,
               icon,

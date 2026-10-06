@@ -14,7 +14,7 @@ import FormLayout from '../FormLayout';
 import Coronavirus from '../Icons/Coronavirus';
 import Input from '../Input/Input';
 import Label, { Sublabel } from '../Label';
-import RadioButton from '../RadioButton/RadioButton';
+import Radio from '../Radio/Radio';
 import Toggle from '../Toggle';
 
 import styles from './formGroup.module.scss';
@@ -28,7 +28,7 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={FormGroup} />,
       description: {
         component:
-          'Et fieldset komponent ment for bruk i forms. Det kan være frittstående eller ligge i et Validation komponent. Dette komponentet wrapper input komponenter som f.eks. Checkbox og RadioButton.',
+          'Et fieldset komponent ment for bruk i forms. Det kan være frittstående eller ligge i et Validation komponent. Dette komponentet wrapper input komponenter som f.eks. Checkbox og Radio.',
       },
     },
   },
@@ -129,7 +129,7 @@ export const CheckboxChildren: Story = {
   ),
 };
 
-export const RadioButtonChildren: Story = {
+export const RadioChildren: Story = {
   render: args => (
     <div
       style={{
@@ -137,38 +137,38 @@ export const RadioButtonChildren: Story = {
       }}
     >
       <FormGroup {...args}>
-        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+        <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
+        <Radio inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
+        <Radio inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
       </FormGroup>
       <Spacer size="m" />
       <FormGroup {...args} name={'gruppe2'}>
-        <RadioButton
-          inputId={'RadioButton4'}
+        <Radio
+          inputId={'Radio4'}
           aria-describedby={'sublabelid04'}
           label={
             <Label
-              labelTexts={[{ text: 'Radiobutton 4' }]}
+              labelTexts={[{ text: 'Radio 4' }]}
               sublabel={<Sublabel id={'sublabelid04'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
             />
           }
         />
-        <RadioButton
-          inputId={'RadioButton5'}
+        <Radio
+          inputId={'Radio5'}
           aria-describedby={'sublabelid05'}
           label={
             <Label
-              labelTexts={[{ text: 'Radiobutton 5' }]}
+              labelTexts={[{ text: 'Radio 5' }]}
               sublabel={<Sublabel id={'sublabelid05'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
             />
           }
         />
-        <RadioButton
-          inputId={'RadioButton6'}
+        <Radio
+          inputId={'Radio6'}
           aria-describedby={'sublabelid06'}
           label={
             <Label
-              labelTexts={[{ text: 'Radiobutton 6' }]}
+              labelTexts={[{ text: 'Radio 6' }]}
               sublabel={<Sublabel id={'sublabelid06'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
             />
           }
@@ -224,9 +224,9 @@ export const DivTagTrue: Story = {
       }}
     >
       <FormGroup htmlMarkup="div" {...args}>
-        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+        <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
+        <Radio inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
+        <Radio inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
       </FormGroup>
     </div>
   ),
@@ -245,15 +245,15 @@ export const CustomErrorWrapperClass: Story = {
         legend={'ErrorWrapperClass gir mulighet til å style ErrorWrapper som ligger rundt form'}
         errorWrapperClassName={styles['error-wrapper-class--with-bottom-margin']}
       >
-        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Legg merke til avstand ned til border' }]} />} />
+        <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
+        <Radio inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
+        <Radio inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Legg merke til avstand ned til border' }]} />} />
       </FormGroup>
       <Spacer size="2xs" />
       <FormGroup htmlMarkup="div" {...args} errorWrapperClassName={styles['error-wrapper-class']}>
-        <RadioButton inputId={'RadioButton4'} label={<Label labelTexts={[{ text: 'Radiobutton 4' }]} />} />
-        <RadioButton inputId={'RadioButton5'} label={<Label labelTexts={[{ text: 'Radiobutton 5' }]} />} />
-        <RadioButton inputId={'RadioButton6'} label={<Label labelTexts={[{ text: 'Med standard avstand ned til border' }]} />} />
+        <Radio inputId={'Radio4'} label={<Label labelTexts={[{ text: 'Radio 4' }]} />} />
+        <Radio inputId={'Radio5'} label={<Label labelTexts={[{ text: 'Radio 5' }]} />} />
+        <Radio inputId={'Radio6'} label={<Label labelTexts={[{ text: 'Med standard avstand ned til border' }]} />} />
       </FormGroup>
     </div>
   ),
@@ -268,9 +268,9 @@ export const FormLayoutChildren: Story = {
     >
       <FormGroup {...args}>
         <FormLayout maxColumns={'two'}>
-          <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-          <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-          <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+          <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
+          <Radio inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
+          <Radio inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
         </FormLayout>
       </FormGroup>
     </div>

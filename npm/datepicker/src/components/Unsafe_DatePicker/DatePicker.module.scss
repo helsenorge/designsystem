@@ -1,13 +1,12 @@
 @use 'sass:map';
 @use '@helsenorge/designsystem-react/scss/font-mixins' as fonts;
 @use '@helsenorge/designsystem-react/scss/breakpoints' as breakpoints;
-@import '@helsenorge/designsystem-react/scss/supernova/styles/colors';
 
 .date-picker {
   --input-height: 2.75rem;
 
   padding-right: 0.25rem;
-  border: 2px solid var(--color-base-border-onlight-emphasized);
+  border: 2px solid var(--color-base-emphasized-border-dark);
   display: inline-flex;
   vertical-align: top;
   height: var(--input-height);
@@ -58,7 +57,7 @@
   }
 
   &:has(:hover) {
-    box-shadow: 0 0 0 1px var(--color-base-border-onlight-emphasized);
+    box-shadow: 0 0 0 1px var(--color-base-emphasized-border-dark);
   }
 
   &:has(:focus-visible):not(.date-picker--clear-button-focused) {
@@ -85,7 +84,7 @@
   }
 
   &__soft-error-text {
-    color: var(--color-notification-text-error);
+    color: var(--color-notification-error-text);
 
     @include fonts.sublabel-subdued;
 
@@ -103,7 +102,7 @@
   &__sublabel {
     @include fonts.sublabel-subdued;
 
-    color: var(--color-base-text-onlight-subdued);
+    color: var(--color-base-subdued-text-dark);
   }
 }
 
@@ -130,7 +129,7 @@
 
   &--error {
     text-decoration: underline;
-    color: var(--color-notification-text-error);
+    color: var(--color-notification-error-text);
   }
 
   &:hover {
@@ -139,7 +138,7 @@
   }
 
   &::placeholder {
-    color: var(--color-placeholder-text-onlight);
+    color: var(--color-placeholder-text-dark);
   }
 }
 
@@ -152,7 +151,7 @@
   background: transparent;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--color-base-border-onlight-emphasized);
+  border: 2px solid var(--color-base-emphasized-border-dark);
   background-color: var(--core-color-white);
   border-left: none;
   padding: 0;
@@ -165,20 +164,20 @@
   }
 
   &:disabled {
-    border: 2px dashed var(--color-disabled-border);
+    border: 2px dashed var(--color-disabled-border-dark);
     border-left: none;
 
     svg {
-      fill: var(--color-disabled-graphics);
+      fill: var(--color-disabled-graphics-dark);
     }
   }
 
   &:hover:not(:disabled) {
     background: var(--core-color-neutral-50);
-    outline: 1px solid var(--color-base-border-onlight-emphasized);
+    outline: 1px solid var(--color-base-emphasized-border-dark);
 
     svg {
-      fill: var(--color-action-graphics-onlight-hover);
+      fill: var(--color-action-graphics-dark-hover);
     }
   }
 
@@ -186,21 +185,21 @@
     background: var(--core-color-neutral-100);
 
     svg {
-      fill: var(--color-action-graphics-emphasized-onlight);
+      fill: var(--color-action-graphics-dark-active);
     }
   }
 
   &:focus-visible:not(:disabled) {
-    outline: 2px solid var(--color-action-border-onlight-focus);
-    border-color: var(--color-action-border-onlight-focus);
+    outline: 2px solid var(--color-action-border-dark-focus);
+    border-color: var(--color-action-border-dark-focus);
 
     // hack to make focus border on left without moving icon
-    box-shadow: -2px 0 0 2px var(--color-action-border-onlight-focus);
+    box-shadow: -2px 0 0 2px var(--color-action-border-dark-focus);
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
   svg {
-    fill: var(--color-action-graphics-onlight);
+    fill: var(--color-action-graphics-dark-normal);
   }
 }
 
@@ -248,7 +247,7 @@
 
     /* stylelint-disable-next-line no-descending-specificity */
     svg {
-      fill: var(--color-action-graphics-onlight-hover);
+      fill: var(--color-action-graphics-dark-hover);
     }
   }
 
@@ -272,7 +271,7 @@
       content: '';
       position: absolute;
       border-radius: 100%;
-      outline: 4px solid var(--color-action-border-onlight-focus);
+      outline: 4px solid var(--color-action-border-dark-focus);
       width: 2rem;
       height: 2rem;
       z-index: 1;
@@ -281,7 +280,7 @@
 
   /* stylelint-disable-next-line no-descending-specificity */
   svg {
-    fill: var(--color-action-graphics-onlight);
+    fill: var(--color-action-graphics-dark-normal);
     z-index: 2;
   }
 }

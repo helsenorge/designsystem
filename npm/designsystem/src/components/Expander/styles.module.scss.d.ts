@@ -18,7 +18,7 @@ export type Styles = {
   'button--large-borderless': string;
   'button--large-non-borderless': string;
   'button--left-icon': string;
-  'button--medium': string;
+  'button--normal': string;
   'button--on-dark': string;
   'button--only-icon': string;
   'button--outline': string;

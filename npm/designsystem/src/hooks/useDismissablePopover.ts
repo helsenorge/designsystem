@@ -36,7 +36,9 @@ export const useDismissablePopover = ({
   const returnFocusOnClose = useReturnFocusOnClose(refs, triggerRef);
 
   useEffect(() => {
-    if (!isOpen || !scrollPopoverIntoView) return;
+    if (!isOpen || !scrollPopoverIntoView) {
+      return;
+    }
 
     const scroll = (): void => {
       const popoverRefs = Array.isArray(popoverRef) ? popoverRef : [popoverRef];
@@ -56,7 +58,9 @@ export const useDismissablePopover = ({
   }, [isOpen, scrollPopoverIntoView]);
 
   const close = (): void => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      return;
+    }
 
     onClose();
     returnFocusOnClose();
@@ -70,7 +74,9 @@ export const useDismissablePopover = ({
     const elements = allElements.filter(el => !allElements.some(other => other !== el && other.contains(el)));
 
     const handleKeyDown = (event: KeyboardEvent): void => {
-      if (!isOpen) return;
+      if (!isOpen) {
+        return;
+      }
 
       if (event.key === KeyboardEventKey.Escape) {
         event.preventDefault();

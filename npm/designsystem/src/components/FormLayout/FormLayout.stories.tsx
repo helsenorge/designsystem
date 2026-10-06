@@ -7,7 +7,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
 import Label, { Sublabel } from '../Label';
 import { FormLayoutColumns } from './constants';
-import RadioButton from '../RadioButton/RadioButton';
+import Radio from '../Radio/Radio';
 import Spacer from '../Spacer';
 
 const meta = {
@@ -19,7 +19,7 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={FormLayout} />,
       description: {
         component:
-          'Et kolonne komponent som kan legges inne i en FormGroup. Det wrapper flere Checkboxer eller Radiobuttons, og lar deg styre kolonne layout',
+          'Et kolonne komponent som kan legges inne i en FormGroup. Det wrapper flere Checkboxer eller Radios, og lar deg styre kolonne layout',
       },
     },
   },
@@ -115,7 +115,7 @@ export const CheckboxChildrenWithSublabel: Story = {
   ),
 };
 
-export const RadioButtonChildren: Story = {
+export const RadioChildren: Story = {
   render: args => (
     <>
       <FormGroup
@@ -124,24 +124,24 @@ export const RadioButtonChildren: Story = {
         name={'radiogroup1'}
       >
         <FormLayout {...args}>
-          <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-          <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-          <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+          <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
+          <Radio inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
+          <Radio inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
         </FormLayout>
       </FormGroup>
       <Spacer size={'m'} />
       <FormGroup legend={'Radio radio hello!'} name={'radiogroup2'}>
         <FormLayout {...args}>
-          <RadioButton inputId={'RadioButton4'} label={<Label labelTexts={[{ text: 'Radiobutton 4' }]} />} />
-          <RadioButton inputId={'RadioButton5'} label={<Label labelTexts={[{ text: 'Radiobutton 5' }]} />} />
-          <RadioButton inputId={'RadioButton6'} label={<Label labelTexts={[{ text: 'Radiobutton 6' }]} />} />
+          <Radio inputId={'Radio4'} label={<Label labelTexts={[{ text: 'Radio 4' }]} />} />
+          <Radio inputId={'Radio5'} label={<Label labelTexts={[{ text: 'Radio 5' }]} />} />
+          <Radio inputId={'Radio6'} label={<Label labelTexts={[{ text: 'Radio 6' }]} />} />
         </FormLayout>
       </FormGroup>
     </>
   ),
 };
 
-export const RadioButtonChildrenWithSublabel: Story = {
+export const RadioChildrenWithSublabel: Story = {
   render: args => (
     <FormGroup
       title={'Her kan du styre maks antall kolonner'}
@@ -149,32 +149,32 @@ export const RadioButtonChildrenWithSublabel: Story = {
       name={'radiogroup3'}
     >
       <FormLayout {...args}>
-        <RadioButton
-          inputId={'RadioButton7'}
+        <Radio
+          inputId={'Radio7'}
           aria-describedby={'sublabelid07'}
           label={
             <Label
-              labelTexts={[{ text: 'Radiobutton 7' }]}
+              labelTexts={[{ text: 'Radio 7' }]}
               sublabel={<Sublabel id={'sublabelid07'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
             />
           }
         />
-        <RadioButton
-          inputId={'RadioButton8'}
+        <Radio
+          inputId={'Radio8'}
           aria-describedby={'sublabelid08'}
           label={
             <Label
-              labelTexts={[{ text: 'Radiobutton 8' }]}
+              labelTexts={[{ text: 'Radio 8' }]}
               sublabel={<Sublabel id={'sublabelid08'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
             />
           }
         />
-        <RadioButton
-          inputId={'RadioButton9'}
+        <Radio
+          inputId={'Radio9'}
           aria-describedby={'sublabelid09'}
           label={
             <Label
-              labelTexts={[{ text: 'Radiobutton 9' }]}
+              labelTexts={[{ text: 'Radio 9' }]}
               sublabel={<Sublabel id={'sublabelid09'} sublabelTexts={[{ text: 'Sublabel text', type: 'subdued' }]} />}
             />
           }

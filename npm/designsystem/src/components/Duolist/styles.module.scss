@@ -80,24 +80,24 @@
       padding-top: spacers.getSpacer(2xs);
 
       &:first-of-type {
-        border-top: 1px solid var(--color-base-border-onlight);
+        border-top: 1px solid var(--color-base-border-dark);
       }
     }
 
     dd {
       padding-bottom: spacers.getSpacer(2xs);
-      border-bottom: 1px solid var(--color-base-border-onlight);
+      border-bottom: 1px solid var(--color-base-border-dark);
     }
   }
 
   &--line#{&}--not-collapsed {
     dt,
     dd {
-      border-bottom: 1px solid var(--color-base-border-onlight);
+      border-bottom: 1px solid var(--color-base-border-dark);
       padding-top: spacers.getSpacer(2xs);
 
       &:first-of-type {
-        border-top: 1px solid var(--color-base-border-onlight);
+        border-top: 1px solid var(--color-base-border-dark);
       }
     }
   }

@@ -7,21 +7,21 @@ exports[`Gitt at en loader skal vises  > Når at en loader rendres  > Så vises 
   >
     <div
       aria-labelledby="test"
-      class="loader loader--small"
+      class="loader loader--normal"
       data-analyticsid="loader"
       role="progressbar"
     >
       <div
-        class="loader__dot loader__dot--small loader__dot--neutral"
+        class="loader__dot loader__dot--normal loader__dot--neutral"
       />
       <div
-        class="loader__dot loader__dot--small loader__dot--neutral"
+        class="loader__dot loader__dot--normal loader__dot--neutral"
       />
       <div
-        class="loader__dot loader__dot--small loader__dot--neutral"
+        class="loader__dot loader__dot--normal loader__dot--neutral"
       />
       <div
-        class="loader__dot loader__dot--small loader__dot--neutral"
+        class="loader__dot loader__dot--normal loader__dot--neutral"
       />
       <span
         class="loader__hidden-text"

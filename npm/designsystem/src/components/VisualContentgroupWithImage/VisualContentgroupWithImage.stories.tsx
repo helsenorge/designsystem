@@ -8,7 +8,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import VisualContentgroupWithImage from './VisualContentgroupWithImage';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
-import RadioButton from '../RadioButton';
+import Radio from '../Radio';
 import Spacer from '../Spacer';
 import Title from '../Title';
 
@@ -79,11 +79,7 @@ export const WithFormElements: Story = {
 
           <FormGroup legend={'Velg ett alternativ'} name={'gruppe1'} aria-labelledby={titleId} aria-describedby={legendId}>
             {mockOptions.map(option => (
-              <RadioButton
-                key={option.value}
-                inputId={option.value}
-                label={<Label labelTexts={[{ text: option.label, type: 'subdued' }]} />}
-              />
+              <Radio key={option.value} inputId={option.value} label={<Label labelTexts={[{ text: option.label, type: 'subdued' }]} />} />
             ))}
           </FormGroup>
         </div>
