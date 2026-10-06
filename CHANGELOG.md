@@ -2,18 +2,13 @@
 
 ### Features
 
-- active state på button og tatt i bruk tokens
-  ([539bc30](https://github.com/helsenorge/designsystem/commit/539bc3099e0fba008615685dbe5f9d4a5dba557e)), closes
-  [#384693](https://github.com/helsenorge/designsystem/issues/384693)
-- nye tokens ([abf4f4f](https://github.com/helsenorge/designsystem/commit/abf4f4f2c4f79c7b4a66176d3df06113ad1ec25e)), closes
-  [#384693](https://github.com/helsenorge/designsystem/issues/384693)
-- tar i bruk motion 13 ([54c0c4e](https://github.com/helsenorge/designsystem/commit/54c0c4e24631fdf1b15733f07fcf26c76c219477)), closes
-  [#386827](https://github.com/helsenorge/designsystem/issues/386827)
+*  active state på button og tatt i bruk tokens ([539bc30](https://github.com/helsenorge/designsystem/commit/539bc3099e0fba008615685dbe5f9d4a5dba557e)), closes [#384693](https://github.com/helsenorge/designsystem/issues/384693)
+*  nye tokens ([abf4f4f](https://github.com/helsenorge/designsystem/commit/abf4f4f2c4f79c7b4a66176d3df06113ad1ec25e)), closes [#384693](https://github.com/helsenorge/designsystem/issues/384693)
+*  tar i bruk motion 13 ([54c0c4e](https://github.com/helsenorge/designsystem/commit/54c0c4e24631fdf1b15733f07fcf26c76c219477)), closes [#386827](https://github.com/helsenorge/designsystem/issues/386827)
 
 ### Bug Fixes
 
-- disabled button tokens ([20f9f6a](https://github.com/helsenorge/designsystem/commit/20f9f6ac61b78f2c1a0fe0e23bc1494901009c42)), closes
-  [#384693](https://github.com/helsenorge/designsystem/issues/384693)
+*  disabled button tokens ([20f9f6a](https://github.com/helsenorge/designsystem/commit/20f9f6ac61b78f2c1a0fe0e23bc1494901009c42)), closes [#384693](https://github.com/helsenorge/designsystem/issues/384693)
 
 ## [16.0.0-beta.1](https://github.com/helsenorge/designsystem/compare/v16.0.0-beta.0...v16.0.0-beta.1) (2026-09-07)
 
