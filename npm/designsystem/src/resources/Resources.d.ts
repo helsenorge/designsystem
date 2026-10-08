@@ -200,4 +200,11 @@ export type HNDesignsystemChip = {
   removeAriaLabel: string;
 };
 
+export type HNDesignsystemTable = {
+  /**
+   * Vis mer
+   */
+  showMoreButton: string;
+};
+
 /* eslint:enable */
