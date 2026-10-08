@@ -1,3 +1,6 @@
 {
-  "showMoreButton": "Vis mer"
+  "showMoreButton": "Vis mer",
+  "menuHeadCell": "Valg",
+  "expandRowButton": "Vis detaljer",
+  "collapseRowButton": "Skjul detaljer"
 }

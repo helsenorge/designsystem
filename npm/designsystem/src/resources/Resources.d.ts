@@ -205,6 +205,18 @@ export type HNDesignsystemTable = {
    * Vis mer
    */
   showMoreButton: string;
+  /**
+   * Valg
+   */
+  menuHeadCell: string;
+  /**
+   * Vis detaljer
+   */
+  expandRowButton: string;
+  /**
+   * Skjul detaljer
+   */
+  collapseRowButton: string;
 };
 
 /* eslint:enable */
