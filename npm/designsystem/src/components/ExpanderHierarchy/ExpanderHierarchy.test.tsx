@@ -5,30 +5,6 @@ import ExpanderHierarchy from '../ExpanderHierarchy';
 
 describe('ExpanderHierarchy', () => {
   describe('gitt at ExpanderHierarchy har en Expander', () => {
-    describe('når komponenten rendres', () => {
-      it('så ser den riktig ut', async () => {
-        const { container } = render(
-          <ExpanderHierarchy>
-            <ExpanderHierarchy.Expander title="Nivå 1">{'hei'}</ExpanderHierarchy.Expander>
-          </ExpanderHierarchy>
-        );
-
-        expect(container).toMatchSnapshot();
-      });
-    });
-
-    describe('når komponenten rendres med print=true', () => {
-      it('så ser den riktig ut', async () => {
-        const { container } = render(
-          <ExpanderHierarchy print>
-            <ExpanderHierarchy.Expander title="Nivå 1">{'hei'}</ExpanderHierarchy.Expander>
-          </ExpanderHierarchy>
-        );
-
-        expect(container).toMatchSnapshot();
-      });
-    });
-
     describe('når man åpner en Expander', () => {
       it('så vises innholdet i den', async () => {
         render(

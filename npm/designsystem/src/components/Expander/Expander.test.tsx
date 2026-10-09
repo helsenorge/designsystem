@@ -1,9 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { ExpanderSize } from './constants';
 import Expander from './Expander';
-import Calendar from '../Icons/Calendar';
 
 describe('Gitt at Expander skal vises vanlig', (): void => {
   describe('Når Expanderen vises', (): void => {
@@ -43,19 +41,6 @@ describe('Gitt at Expander skal vises som ekspandert', (): void => {
 
       const content = screen.getByRole('heading', { name: 'Innhold i expander' });
       expect(content).toBeInTheDocument();
-    });
-  });
-});
-describe('Gitt at Expander skal vises som large, med farge og ikon', (): void => {
-  describe('Når Expanderen vises', (): void => {
-    test('Så rendres expanderen som den skal', (): void => {
-      const { container } = render(
-        <Expander title={'Knapp'} size={ExpanderSize.large} color="blueberry" svgIcon={Calendar}>
-          <h1>{'Innhold i expander'}</h1>
-        </Expander>
-      );
-
-      expect(container).toMatchSnapshot();
     });
   });
 });

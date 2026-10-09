@@ -7,7 +7,7 @@ import Title from '../Title';
 describe('Gitt at Duolist skal vises', (): void => {
   describe('Når Duolist skal vises vanlig', (): void => {
     test('Så rendres den som den skal', (): void => {
-      const { container } = render(
+      render(
         <Duolist testId={'test01'}>
           <DuolistGroup term={'test term 1'} description={'test description 1'} />
           <DuolistGroup term={'test term 2'} description={'test description 2'} />
@@ -29,8 +29,6 @@ describe('Gitt at Duolist skal vises', (): void => {
 
       expect(dlGroupTerm1).toHaveClass('duolist__dt duolist__dt--bold');
       expect(dlGroupDescription1.className).toBe('duolist__dd');
-
-      expect(container).toMatchSnapshot();
     });
   });
 

@@ -21,7 +21,7 @@ const TabPanel: React.FC<TabPanelProps> = props => {
   });
 
   return (
-    <div ref={ref} className={tabPanelClasses} style={style}>
+    <div ref={ref} className={tabPanelClasses} style={style} data-overflow-boundary>
       <div>{children}</div>
     </div>
   );

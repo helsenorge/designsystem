@@ -34,7 +34,7 @@ export default defineConfig({
         'src/resources/**/*.{ts,json}',
         'src/*.{ts,tsx}',
       ],
-      exclude: ['**/__snapshots__/**', '**/*.stories.*', '**/*.test.*'],
+      exclude: ['**/*.stories.*', '**/*.test.*'],
     }),
   ],
   build: {

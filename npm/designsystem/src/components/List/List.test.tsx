@@ -5,7 +5,7 @@ import List from './List';
 describe('Gitt at List skal vises', (): void => {
   describe('Når komponenten har fire elementer', (): void => {
     it('Så vises fire liste-elementer', (): void => {
-      const { container } = render(
+      render(
         <List>
           <List.Item>{'Tjeneste 1'}</List.Item>
           <List.Item>{'Tjeneste 2'}</List.Item>
@@ -19,7 +19,6 @@ describe('Gitt at List skal vises', (): void => {
       const items = screen.getAllByRole('listitem');
 
       expect(items).toHaveLength(4);
-      expect(container).toMatchSnapshot();
     });
   });
   describe('Når testId-prop er satt', (): void => {

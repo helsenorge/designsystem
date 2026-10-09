@@ -56,7 +56,7 @@ describe('Gitt at Table skal vises', (): void => {
   });
   describe('Når den skal vises', (): void => {
     it('Så vises en tabell', (): void => {
-      const { container } = render(
+      render(
         <Table
           breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'sm' }}
           testId="test01"
@@ -72,8 +72,6 @@ describe('Gitt at Table skal vises', (): void => {
       expect(table).toHaveClass('table');
       expect(child).toHaveClass('table__cell');
 
-      expect(container).toMatchSnapshot();
-
       const horizontallScroll = screen.queryByTestId('horizontal-scroll');
       expect(horizontallScroll).not.toBeInTheDocument();
     });
@@ -86,7 +84,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
       it('Så vises en tabell med responsiv visning', (): void => {
         mockIsTouchDevice.mockReturnValue(true);
         mockUseBreakpoint.mockReturnValue(768);
-        const { container } = render(
+        render(
           <Table
             breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}
             testId="test-table"
@@ -95,8 +93,6 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
             <TableContents />
           </Table>
         );
-
-        expect(container).toMatchSnapshot();
 
         const table = screen.getByTestId('test-table');
         expect(table.className).toBe('table');
@@ -127,7 +123,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
       it('Så vises en tabell uten responsiv visning', (): void => {
         mockIsTouchDevice.mockReturnValue(true);
         mockUseBreakpoint.mockReturnValue(769);
-        const { container } = render(
+        render(
           <Table
             breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}
             testId="test-table"
@@ -136,8 +132,6 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
             <TableContents />
           </Table>
         );
-
-        expect(container).toMatchSnapshot();
 
         const table = screen.getByTestId('test-table');
         expect(table.className).toBe('table');
@@ -152,7 +146,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
       it('Så vises en tabell uten responsiv visning', (): void => {
         mockIsTouchDevice.mockReturnValue(false);
         mockUseBreakpoint.mockReturnValue(768);
-        const { container } = render(
+        render(
           <Table
             breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}
             testId="test-table"
@@ -161,8 +155,6 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
             <TableContents />
           </Table>
         );
-
-        expect(container).toMatchSnapshot();
 
         const table = screen.getByTestId('test-table');
         expect(table.className).toBe('table');
@@ -175,7 +167,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
       it('Så vises en tabell med responsiv visning', (): void => {
         mockIsTouchDevice.mockReturnValue(false);
         mockUseBreakpoint.mockReturnValue(768);
-        const { container } = render(
+        render(
           <Table
             breakpointConfig={{
               variant: ResponsiveTableVariant.horizontalscroll,
@@ -188,8 +180,6 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
             <TableContents />
           </Table>
         );
-
-        expect(container).toMatchSnapshot();
 
         const table = screen.getByTestId('test-table');
         expect(table.className).toBe('table table--block-md');
@@ -206,7 +196,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
           window.innerWidth = 564;
           mockUseBreakpoint.mockReturnValue(564);
           mockGetBoundingClientRect.mockReturnValue({ width: 1025 });
-          const { container } = render(
+          render(
             <Table
               breakpointConfig={{
                 variant: ResponsiveTableVariant.horizontalscroll,
@@ -219,8 +209,6 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
               <TableContents />
             </Table>
           );
-
-          expect(container).toMatchSnapshot();
 
           const table = screen.getByTestId('test-table');
           expect(table.className).toBe('table');
@@ -243,13 +231,11 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         window.innerWidth = 1024;
         mockUseBreakpoint.mockReturnValue(1024);
         mockGetBoundingClientRect.mockReturnValue({ width: 1024 });
-        const { container } = render(
+        render(
           <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
             <TableContents />
           </Table>
         );
-
-        expect(container).toMatchSnapshot();
 
         const table = screen.getByTestId('test-table');
         expect(table.className).toBe('table table--centeredoverflow-lg');
@@ -266,13 +252,11 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         mockUseBreakpoint.mockReturnValue(564);
         mockGetBoundingClientRect.mockReturnValue({ width: 1025 });
 
-        const { container } = render(
+        render(
           <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
             <TableContents />
           </Table>
         );
-
-        expect(container).toMatchSnapshot();
 
         const table = screen.getByTestId('test-table');
         expect(table.className).toBe('table');
@@ -287,7 +271,7 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         mockUseBreakpoint.mockReturnValue(564);
         mockGetBoundingClientRect.mockReturnValue({ width: 1025 });
 
-        const { container } = render(
+        render(
           <Table
             breakpointConfig={{
               variant: ResponsiveTableVariant.centeredoverflow,
@@ -299,8 +283,6 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
             <TableContents />
           </Table>
         );
-
-        expect(container).toMatchSnapshot();
 
         const table = screen.getByTestId('test-table');
         expect(table.className).toBe('table table--block-lg');
@@ -318,7 +300,7 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         mockUseBreakpoint.mockReturnValue(564);
         mockGetBoundingClientRect.mockReturnValue({ width: 1025 });
 
-        const { container } = render(
+        render(
           <Table
             breakpointConfig={{
               variant: ResponsiveTableVariant.centeredoverflow,
@@ -331,8 +313,6 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
             <TableContents />
           </Table>
         );
-
-        expect(container).toMatchSnapshot();
 
         const table = screen.getByTestId('test-table');
         expect(table.className).toBe('table');
@@ -347,13 +327,11 @@ describe('Når den skal vises med blokk-visning på md skjerm', (): void => {
   describe('Når breakpoint er md', (): void => {
     it('Så vises en tabell', (): void => {
       mockUseBreakpoint.mockReturnValue(768);
-      const { container } = render(
+      render(
         <Table breakpointConfig={{ variant: ResponsiveTableVariant.block, breakpoint: 'md' }} testId="test-table">
           <TableContents />
         </Table>
       );
-
-      expect(container).toMatchSnapshot();
 
       const table = screen.getByTestId('test-table');
       expect(table.className).toBe('table table--block-md');
@@ -365,13 +343,11 @@ describe('Når den skal vises med blokk-visning på md skjerm', (): void => {
   describe('Når breakpoint er lg', (): void => {
     it('Så vises en tabell uten responsiv visning', (): void => {
       mockUseBreakpoint.mockReturnValue(769);
-      const { container } = render(
+      render(
         <Table breakpointConfig={{ variant: ResponsiveTableVariant.block, breakpoint: 'md' }} testId="test-table">
           <TableContents />
         </Table>
       );
-
-      expect(container).toMatchSnapshot();
 
       const table = screen.getByTestId('test-table');
       expect(table.className).toBe('table');

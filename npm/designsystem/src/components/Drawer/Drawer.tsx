@@ -303,6 +303,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
               className={classNames(styles['drawer__content__children'], {
                 [styles['drawer__content__children--padding-extra']]: paddingSize === 'extra',
               })}
+              data-overflow-boundary
             >
               {children}
             </div>

@@ -29,6 +29,10 @@ export interface PopMenuProps {
   popOverClassName?: string;
   /** Adds custom classes to the element. */
   popMenuClassName?: string;
+  /** Adds custom classes to the trigger button element. */
+  triggerClassName?: string;
+  /** Adds custom classes to the trigger button's inner content element. */
+  triggerContentClassName?: string;
   /** @deprecated Changes responsive design for the trigger buttons. */
   popMenuVariant?: PopMenuVariant;
   /** Sets the data-testid attribute for the button that opens. */
@@ -58,6 +62,8 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
     children,
     popOverClassName,
     popMenuClassName,
+    triggerClassName,
+    triggerContentClassName,
     openButtonTestId,
     closeButtonTestId,
     popOverTestId,
@@ -139,6 +145,8 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
         ref={triggerButtonRef}
         ariaLabel={isOpen ? closeButtonAriaLabel : openButtonAriaLabel}
         testId={isOpen ? closeButtonTestId : openButtonTestId}
+        wrapperClassName={triggerClassName}
+        className={triggerContentClassName}
       >
         {labelText && labelTextPosition == PopMenuLabelPosition.left && <span>{labelText}</span>}
         {isOpen ? closeIcon : openIcon}

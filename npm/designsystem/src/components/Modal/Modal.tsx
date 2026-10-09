@@ -217,7 +217,7 @@ const Modal: React.FC<ModalProps> = props => {
                   </Title>
                   {props.afterTitleChildren && <div className={styles['modal__afterTitleChildren']}>{props.afterTitleChildren}</div>}
                 </div>
-                {props.children && <div>{props.children}</div>}
+                {props.children && <div data-overflow-boundary>{props.children}</div>}
                 {!props.children && <p className={styles.modal__description}>{props.description}</p>}
                 <div ref={bottomContent} />
               </div>

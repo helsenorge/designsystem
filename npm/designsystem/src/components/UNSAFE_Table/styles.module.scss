@@ -1,0 +1,613 @@
+@use 'sass:map';
+@use '../../scss/font-settings' as font-settings;
+@use '../../scss/font-mixins' as fonts;
+@use '../../scss/screen-reader' as sr;
+@import '../../scss/breakpoints';
+@import '../../scss/grid';
+
+$table-border: 1px solid var(--color-base-neutral-border-normal);
+$expanded-row-shadow: inset 3px 0 var(--color-base-neutral-border-normal);
+$zebra-background: var(--color-base-neutral-background-light);
+$zebra-cell-hover: var(--color-action-background-light-plus1-hover);
+$zebra-cell-active: var(--color-action-background-light-plus1-active);
+
+.table-caption {
+  @include sr.sr-only;
+}
+
+.table__cell {
+  @include fonts.table-cell;
+
+  height: 2.6875rem;
+  padding: var(--core-space-2xs) var(--core-space-xs);
+  border: 0 solid var(--color-base-neutral-border-normal);
+  border-width: 1px 0 0 1px;
+  vertical-align: top;
+  text-align: left;
+
+  &--transparent {
+    background: transparent;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--nowrap {
+    white-space: nowrap;
+  }
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    height: 2.6875rem;
+    padding: var(--core-space-s);
+  }
+
+  &--compact {
+    height: 1.75rem;
+    padding: var(--core-space-3xs);
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      height: 2.375rem;
+      padding: var(--core-space-3xs);
+    }
+  }
+}
+
+// På cellen, innenfor kantlinjen, slik at den er like bred som skyggen på expander-knappen i raden over
+.table__expanded-row--expanded > .table__cell {
+  box-shadow: $expanded-row-shadow;
+}
+
+// Krymper Button sitt indre element slik at Button sin egen fokusmarkering legger seg rundt knappen og ikke hele cellen.
+@mixin table-button-content-reset {
+  width: auto;
+  background: none;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    margin-top: 0.19rem;
+  }
+}
+
+@mixin table-button-content-no-hover-fill {
+  &:hover,
+  &:active {
+    background: none;
+  }
+}
+
+@mixin centeredoverflow {
+  position: relative;
+}
+
+@mixin stack {
+  display: block;
+  clear: both;
+  border-width: 0;
+
+  .table__head {
+    display: none;
+  }
+
+  .table__head-cell {
+    display: block;
+  }
+
+  .table-body {
+    display: grid;
+    grid-template-columns: var(--table-stack-columns, minmax(30%, max-content) minmax(30%, auto));
+  }
+
+  .table__row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    padding: 0;
+  }
+
+  .table__cell {
+    position: relative;
+    grid-column: 1 / -1;
+    align-items: baseline;
+    box-sizing: border-box;
+    display: block;
+    height: auto;
+    padding: var(--core-space-2xs) var(--core-space-xs);
+    float: none;
+    clear: both;
+    width: 100%;
+    border-width: 0 1px;
+    outline: 0;
+
+    &:first-of-type {
+      padding-block-start: var(--core-space-xs);
+    }
+
+    &:last-of-type {
+      padding-block-end: var(--core-space-xs);
+    }
+
+    &--labelled {
+      // To kolonner som i Duolist: cellene arver kolonnesporene fra .table-body
+      // slik at ledetekstkolonnen er like bred i alle rader
+      display: grid;
+      grid-template-columns: subgrid;
+    }
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      padding: var(--core-space-xs);
+    }
+
+    &--compact {
+      padding-block: var(--core-space-3xs);
+
+      &:first-of-type {
+        padding-block-start: var(--core-space-2xs);
+      }
+
+      &:last-of-type {
+        padding-block-end: var(--core-space-2xs);
+      }
+    }
+
+    &--center {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: left;
+    }
+
+    &:not(.expandable-container) {
+      font-weight: 400;
+    }
+
+    > .table__cell-label {
+      @include fonts.table-header-stack;
+
+      display: block;
+      box-sizing: border-box;
+      padding-right: var(--core-space-xs);
+      overflow-wrap: break-word;
+    }
+
+    > .table__cell-content {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+  }
+
+  // Celler markert med hideBehindExpander vises i den utvidbare raden i stedet
+  .table__cell--behind-expander {
+    display: none;
+  }
+
+  .table__cell-expander {
+    display: none;
+  }
+
+  .table__expander-cell-mobile,
+  .table__cell-pop-menu {
+    display: block;
+    float: none;
+    clear: both;
+    grid-column: 1 / -1;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .table__expander-cell-mobile {
+    height: auto;
+    border-bottom: $table-border;
+
+    &--expanded {
+      border-bottom: 0;
+    }
+
+    .table__expander-trigger {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .table__cell-pop-menu {
+    height: auto;
+
+    .table__pop-menu {
+      position: static;
+      display: flex;
+
+      .table__pop-menu__trigger {
+        height: auto;
+        justify-content: flex-start;
+      }
+
+      .table__pop-menu__content {
+        width: 100%;
+      }
+    }
+  }
+
+  .table__expanded-row > .table__cell {
+    height: auto;
+    text-align: left;
+    padding: 0.75rem;
+  }
+
+  .table__row--expanded > .table__cell {
+    border-left: $table-border;
+    box-shadow: $expanded-row-shadow;
+  }
+
+  .table__expanded-row--expanded {
+    box-shadow: none;
+
+    > .table__cell {
+      border-left: $table-border;
+      box-shadow: $expanded-row-shadow;
+    }
+  }
+
+  .table__cell:first-child {
+    border-top: $table-border;
+  }
+
+  .table__expanded-row {
+    display: none;
+
+    &--expanded {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+      border-bottom: $table-border;
+
+      > .table__cell:first-child {
+        border-top: 0;
+      }
+    }
+  }
+
+  .table__row:last-child .table__cell:last-child {
+    border-bottom: $table-border;
+  }
+
+  .table__row--expandable + .table__row > .table__cell:first-child {
+    border-top: 0;
+  }
+
+  .table__row--expanded .table__expander-trigger,
+  .table__row--expanded .table__cell-pop-menu > .table__pop-menu .table__pop-menu__trigger {
+    box-shadow: $expanded-row-shadow;
+  }
+
+  // UNSAFE_TableDetail i utvidet rad: samme kolonnebredder som resten av tabellen
+  .table__expanded-row > td.table__expanded-row__cell:has(> .table__detail) {
+    display: grid;
+    grid-template-columns: subgrid;
+    padding: 0;
+
+    > .table__cell {
+      border: 0;
+    }
+
+    > :not(.table__detail, button) {
+      grid-column: 1 / -1;
+
+      // Innholdet skal ikke påvirke kolonnebreddene som resten av tabellen bruker
+      contain: inline-size;
+      padding: 0 0.75rem;
+    }
+
+    > button {
+      grid-column: 1 / -1;
+      justify-self: start;
+      margin: 0 var(--core-space-xs);
+
+      &:last-child {
+        margin: var(--core-space-xs);
+      }
+    }
+  }
+
+  .table__row--expandable + .table__expanded-row + .table__row > .table__cell:first-child {
+    border-top: 0;
+  }
+
+  .table-body > .table__row--expandable:first-child {
+    border-top: $table-border;
+  }
+
+  .table-body > .table__row--expandable:first-child > .table__cell:first-child {
+    border-top: 0;
+  }
+
+  .table-body--zebra > .table__row:nth-child(even of .table__row:not(.table__row--expanded)) > .table__cell {
+    background: $zebra-background;
+  }
+
+  select {
+    max-width: 100%;
+  }
+}
+
+.table {
+  width: 100%;
+
+  // Separate i stedet for collapse: sammenslåtte borders deles i halve piksler og kan bli 2px på enkelte skjermer
+  border-collapse: separate;
+  border-spacing: 0;
+
+  // Høyre og nederste linje tegnes av tabellen, så de ikke avhenger av hvilken celle som er sist
+  border: 0 solid var(--color-base-neutral-border-normal);
+  border-width: 0 1px 1px 0;
+
+  @each $breakpoint in map.keys($grid-breakpoints) {
+    &--centeredoverflow-#{$breakpoint} {
+      @include media-breakpoint-down($breakpoint) {
+        @include centeredoverflow;
+      }
+    }
+
+    &--stack-#{$breakpoint} {
+      @include media-breakpoint-down($breakpoint) {
+        @include stack;
+      }
+    }
+  }
+
+  &__expander-cell-mobile {
+    position: relative;
+    display: none;
+  }
+}
+
+.table__head-cell {
+  height: 2.6875rem;
+  padding: var(--core-space-2xs) var(--core-space-xs);
+  background: var(--color-base-neutral-background-light);
+  border: 0 solid var(--color-base-neutral-border-normal);
+  border-width: 1px 0 0 1px;
+  text-align: left;
+  vertical-align: bottom;
+
+  @include fonts.table-header;
+
+  &--transparent {
+    background: transparent;
+  }
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    height: 2.6875rem;
+    padding: var(--core-space-s);
+  }
+
+  &--compact {
+    height: 1.75rem;
+    padding: var(--core-space-3xs);
+    vertical-align: top;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      height: 2.6875rem;
+    }
+  }
+}
+
+.table__cell-label {
+  display: none;
+}
+
+.table__cell-expander,
+.table__cell-pop-menu {
+  position: relative;
+  padding: 0;
+  width: 2.75rem;
+  min-width: 2.75rem;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    width: 3.375rem;
+    min-width: 3.375rem;
+  }
+}
+
+.table__expander-button {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-action-background-light-hover);
+  }
+
+  &:active {
+    background: var(--color-action-background-light-active);
+  }
+}
+
+.table__expander-button__content {
+  @include table-button-content-reset;
+  @include table-button-content-no-hover-fill;
+}
+
+.table__expander-trigger {
+  &:hover {
+    background: var(--color-action-background-light-hover);
+  }
+
+  &:active {
+    background: var(--color-action-background-light-active);
+  }
+}
+
+.table__expander-trigger__content {
+  background: none;
+
+  @include table-button-content-no-hover-fill;
+}
+
+.table__pop-menu {
+  position: absolute;
+  inset: 0;
+
+  // Trekkerknappen skal fylle hele cellen, overstyrer Button-stilene
+  .table__pop-menu__trigger {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border-radius: 0;
+    align-items: flex-start;
+    justify-content: center;
+
+    &:hover {
+      background: var(--color-action-background-light-hover);
+      box-shadow: none;
+    }
+
+    &:active {
+      background: var(--color-action-background-light-active);
+    }
+  }
+
+  .table__pop-menu__content {
+    @include table-button-content-reset;
+  }
+}
+
+.table__row {
+  background: var(--color-action-background-light-normal);
+
+  &--transparent {
+    background: transparent;
+  }
+
+  &--expanded {
+    background: var(--color-action-background-light-plus2-normal);
+
+    .table__expander-button,
+    .table__expander-trigger {
+      box-shadow: $expanded-row-shadow;
+    }
+
+    .table__expander-button:hover,
+    .table__expander-trigger:hover {
+      background: var(--color-action-background-light-plus2-hover);
+      box-shadow: $expanded-row-shadow;
+    }
+
+    .table__expander-button:active,
+    .table__expander-trigger:active {
+      background: var(--color-action-background-light-plus2-active);
+      box-shadow: $expanded-row-shadow;
+    }
+
+    .table__pop-menu .table__pop-menu__trigger:hover {
+      background: var(--color-action-background-light-plus2-hover);
+    }
+
+    .table__pop-menu .table__pop-menu__trigger:active {
+      background: var(--color-action-background-light-plus2-active);
+    }
+  }
+}
+
+.table__cell-expander:focus-within,
+.table__cell-pop-menu:focus-within,
+.table__expander-cell-mobile:focus-within {
+  z-index: 1;
+}
+
+.table-body--zebra {
+  > .table__row:nth-child(even of .table__row:not(.table__row--expanded)) {
+    background: $zebra-background;
+
+    > .table__cell-expander,
+    > .table__cell-pop-menu,
+    > .table__expander-cell-mobile {
+      background: $zebra-background;
+    }
+
+    .table__expander-button:hover,
+    .table__expander-trigger:hover,
+    .table__pop-menu .table__pop-menu__trigger:hover {
+      background: $zebra-cell-hover;
+    }
+
+    .table__expander-button:active,
+    .table__expander-trigger:active,
+    .table__pop-menu .table__pop-menu__trigger:active {
+      background: $zebra-cell-active;
+    }
+  }
+}
+
+// Vises kun i stack-visning
+.table__detail {
+  display: none;
+}
+
+.table__expanded-row {
+  display: none;
+
+  &--expanded {
+    display: table-row;
+    background: var(--color-base-blueberry-background-light);
+  }
+
+  // Skjul-knappen ligger alltid på egen linje, også når innholdet inneholder knapper
+  &__cell > button:last-child {
+    display: flex;
+    width: fit-content;
+    margin-top: var(--core-space-xs);
+  }
+
+  // Kolonner bak expander vises i selve raden utenfor stack-visning
+  &--stack-only {
+    display: none;
+  }
+
+  &-details {
+    margin: 0;
+
+    dt {
+      font-weight: 600;
+    }
+
+    dd {
+      margin: 0 0 var(--core-space-2xs);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &-container {
+    padding: 0.5rem;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      &--open {
+        border-bottom: 1px solid var(--color-base-neutral-border-normal);
+      }
+    }
+  }
+
+  &__cell {
+    padding: var(--core-space-s);
+  }
+}

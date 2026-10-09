@@ -12,7 +12,7 @@ import '../../__mocks__/uuid';
 
 describe('Gitt ExpanderList blir rendret', (): void => {
   describe('Når det er tre expandere og accordion er false', (): void => {
-    it('Sjekk at ExpanderList sitt snapshot matcher', (): void => {
+    it('Sjekk at ExpanderList vises', (): void => {
       const { container } = render(
         <ExpanderList accordion={false} childPadding={true} color={'blueberry'}>
           <ExpanderList.Expander title="Title 1">{'Text 1'}</ExpanderList.Expander>

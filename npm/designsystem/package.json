@@ -843,7 +843,52 @@
     "./scss/reset": "./scss/_reset.scss",
     "./scss/screen-reader": "./scss/_screen-reader.scss",
     "./scss/spacers": "./scss/_spacers.scss",
-    "./scss/visual-form": "./scss/_visual-form.scss"
+    "./scss/visual-form": "./scss/_visual-form.scss",
+    "./components/Drawer/DrawerBackButton": {
+      "types": "./lib/components/Drawer/DrawerBackButton.d.ts",
+      "import": "./lib/components/Drawer/index.js",
+      "require": "./lib/components/Drawer/index.js",
+      "default": "./lib/components/Drawer/index.js"
+    },
+    "./components/Drawer/DrawerHeaderContent": {
+      "types": "./lib/components/Drawer/DrawerHeaderContent.d.ts",
+      "import": "./lib/components/Drawer/index.js",
+      "require": "./lib/components/Drawer/index.js",
+      "default": "./lib/components/Drawer/index.js"
+    },
+    "./components/UNSAFE_Table/TableCaption": {
+      "types": "./lib/components/UNSAFE_Table/TableCaption.d.ts",
+      "import": "./lib/components/UNSAFE_Table/index.js",
+      "require": "./lib/components/UNSAFE_Table/index.js",
+      "default": "./lib/components/UNSAFE_Table/index.js"
+    },
+    "./components/UNSAFE_Table/TableContext": {
+      "types": "./lib/components/UNSAFE_Table/TableContext.d.ts",
+      "import": "./lib/components/UNSAFE_Table/index.js",
+      "require": "./lib/components/UNSAFE_Table/index.js",
+      "default": "./lib/components/UNSAFE_Table/index.js"
+    },
+    "./components/UNSAFE_Table/UNSAFE_Table": {
+      "types": "./lib/components/UNSAFE_Table/UNSAFE_Table.d.ts"
+    },
+    "./components/UNSAFE_Table/constants": {
+      "types": "./lib/components/UNSAFE_Table/constants.d.ts"
+    },
+    "./components/UNSAFE_Table/useTableExpandedRows": {
+      "types": "./lib/components/UNSAFE_Table/useTableExpandedRows.d.ts"
+    },
+    "./components/UNSAFE_Table/useTableShowMore": {
+      "types": "./lib/components/UNSAFE_Table/useTableShowMore.d.ts"
+    },
+    "./components/UNSAFE_Table/utils": {
+      "types": "./lib/components/UNSAFE_Table/utils.d.ts"
+    },
+    "./components/VisualContentgroupWithImage/VisualContentgroupWithImage": {
+      "types": "./lib/components/VisualContentgroupWithImage/VisualContentgroupWithImage.d.ts",
+      "import": "./lib/components/VisualContentgroupWithImage/index.js",
+      "require": "./lib/components/VisualContentgroupWithImage/index.js",
+      "default": "./lib/components/VisualContentgroupWithImage/index.js"
+    }
   },
   "scripts": {
     "start": "storybook dev -p 3000",
@@ -861,6 +906,7 @@
     "generate:illustrationnames": "node __scripts__/generateIllustrationNames.mjs",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\" --nameFormat none --exportType default --includePaths node_modules ../../node_modules",
     "generate:scssexports": "node __scripts__/gen-scss-exports.mjs",
+    "generate:deepexports": "node __scripts__/gen-deep-exports.mjs",
     "eslint": "eslint \"src/**/*.{ts,tsx}\"",
     "eslint:fix": "npm run eslint -- --fix",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",

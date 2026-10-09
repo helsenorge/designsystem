@@ -53,7 +53,7 @@ const Expander: React.FC<ExpanderProps> = ({
       <ExpanderButton htmlMarkup={htmlMarkup} level={level} print={print} expanded={expanded} onExpand={onExpand} testId={testId}>
         {title}
       </ExpanderButton>
-      <div className={contentClasses}>
+      <div className={contentClasses} data-overflow-boundary>
         {React.Children.map(children, child =>
           isComponent<ExpanderHierarchyProps>(child, ExpanderHierarchy)
             ? React.cloneElement(child, { htmlMarkup: getHeadingTag(htmlMarkup), level: level + 1, print })

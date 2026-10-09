@@ -81,6 +81,14 @@ import designsystemtypography from './scss/typography.scss'
   @include fonts.table-cell;
 }
 
+.table-header {
+  @include fonts.table-header;
+}
+
+.table-header-stack {
+  @include fonts.table-header-stack;
+}
+
 .strong {
   font-size: font-settings.$font-size-sm;
   line-height: font-settings.$lineheight-size-sm;

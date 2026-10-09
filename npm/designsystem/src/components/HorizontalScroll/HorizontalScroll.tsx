@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import type { AriaLabelAttributes } from '../../utils/accessibility';
 
 import { useIsVisible } from '../../hooks/useIsVisible';
-import { useSize } from '../../hooks/useSize';
 import { useStopPropagation } from '../../hooks/usestopPropagation';
 
 import styles from './styles.module.scss';
@@ -15,25 +14,22 @@ const ROOT_MARGIN_OFFSET = '3px';
 
 interface HorizontalScrollProps {
   children?: React.ReactNode;
-  /**
-   * Bredden på elementet som potensielt vil scrolle horisontalt i px
-   */
-  childWidth: number;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
-export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttributes> = ({ children, childWidth, testId, ...rest }) => {
-  const viewportRef = useRef<HTMLDivElement>(null);
+export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttributes> = ({
+  children,
+  testId,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
+}) => {
+  const viewportRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const leftIsVisible = useIsVisible(leftRef, 1, { root: viewportRef?.current, rootMargin: ROOT_MARGIN_OFFSET }, true);
   const rightIsVisible = useIsVisible(rightRef, 1, { root: viewportRef?.current, rootMargin: ROOT_MARGIN_OFFSET }, true);
-  const { width: viewPortWidth = 0 } = useSize(viewportRef) || {};
-
-  const isOverflowing = childWidth > viewPortWidth;
-  const viewportClasses = classNames(styles.horizontalscroll__viewport, isOverflowing && styles['horizontalscroll__viewport--overflow']);
-  const hasAriaAttributes = rest['aria-label'] || rest['aria-labelledby'];
+  const hasAriaAttributes = ariaLabel || ariaLabelledBy;
 
   useStopPropagation(viewportRef, ['touchstart', 'touchmove']);
 
@@ -41,12 +37,14 @@ export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttribu
     <div className={styles.horizontalscroll} data-testid={testId}>
       {/* viewport-diven må ta tabIndex for å løse et annet UU-problem, at div med overflow: scroll må kunne navigeres med keyboard. */}
       {/* Enten aria-label eller aria-labelledbyid må settes */}
-      <div
-        className={viewportClasses}
+      <section
+        className={styles.horizontalscroll__viewport}
         ref={viewportRef}
+        // Scrollbart område må kunne nås med tastatur. Seksjonen har navn (og dermed region-rolle) når tabIndex settes
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={hasAriaAttributes ? 0 : undefined}
-        role={hasAriaAttributes ? 'region' : undefined}
-        {...rest}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
       >
         <div
           className={classNames(
@@ -65,7 +63,7 @@ export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttribu
         <div ref={leftRef} />
         {children}
         <div ref={rightRef} />
-      </div>
+      </section>
     </div>
   );
 };

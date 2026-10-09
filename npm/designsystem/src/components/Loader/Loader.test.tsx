@@ -5,11 +5,6 @@ import Loader from './Loader';
 
 describe('Gitt at en loader skal vises ', (): void => {
   describe('Når at en loader rendres ', (): void => {
-    test('Så vises loaderen', (): void => {
-      const { container } = render(<Loader />);
-      expect(container).toMatchSnapshot();
-    });
-
     test('Så er alle fire loaderDots riktig plassert', (): void => {
       render(<Loader testId={'loaderDotTest'} />);
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');

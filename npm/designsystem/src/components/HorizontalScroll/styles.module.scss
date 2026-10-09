@@ -14,14 +14,11 @@ $gradient:
 
   &__viewport {
     display: flex;
+    overflow: auto hidden;
 
     &:focus-visible {
       outline: spacers.getSpacer(4xs) solid palette.$black;
       outline-offset: -1px;
-    }
-
-    &--overflow {
-      overflow: auto hidden;
     }
   }
 

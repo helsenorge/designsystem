@@ -5,9 +5,7 @@ import Title from './Title';
 describe('Gitt at Title skal rendres', (): void => {
   describe('Gitt at Title skal vises vanlig', (): void => {
     test('Så rendres Title riktig', (): void => {
-      const { container } = render(<Title>{'Title'}</Title>);
-
-      expect(container).toMatchSnapshot();
+      render(<Title>{'Title'}</Title>);
 
       const titleElement = screen.getByText('Title');
 

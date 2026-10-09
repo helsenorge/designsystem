@@ -1,0 +1,29 @@
+export { TableCaption } from './TableCaption';
+
+export * from './UNSAFE_Table';
+export * from './TableCaption';
+export * from './useTableExpandedRows';
+export * from './useTableShowMore';
+
+// Re-eksporter useSort slik at UNSAFE_Table kan brukes som ett samlet API
+export * from '../../hooks/useSort';
+
+// Re-eksporter Table-primitivene slik at UNSAFE_Table kan brukes som ett samlet API
+export { UNSAFE_TableRow } from './UNSAFE_TableRow';
+export type { Props as UNSAFE_TableRowProps } from './UNSAFE_TableRow';
+export { UNSAFE_TableCell } from './UNSAFE_TableCell';
+export type { Props as UNSAFE_TableCellProps } from './UNSAFE_TableCell';
+export { UNSAFE_TableExpandedRow } from './UNSAFE_TableExpandedRow';
+export type { Props as UNSAFE_TableExpandedRowProps } from './UNSAFE_TableExpandedRow';
+export { UNSAFE_TableDetail } from './UNSAFE_TableDetail';
+export type { Props as UNSAFE_TableDetailProps } from './UNSAFE_TableDetail';
+export { UNSAFE_TableBody } from './UNSAFE_TableBody';
+export type { Props as UNSAFE_TableBodyProps } from './UNSAFE_TableBody';
+export { UNSAFE_TableHeadCell } from './UNSAFE_TableHeadCell';
+export type { Props as UNSAFE_TableHeadCellProps } from './UNSAFE_TableHeadCell';
+export { UNSAFE_TableHead } from './UNSAFE_TableHead';
+export type { Props as UNSAFE_TableHeadProps } from './UNSAFE_TableHead';
+export { SortDirection, TableColors, TableSizes, TextAlign, ResponsiveTableVariant, defaultConfig } from './constants';
+export type { BreakpointConfig } from './UNSAFE_Table';
+
+export { UNSAFE_Table as default } from './UNSAFE_Table';

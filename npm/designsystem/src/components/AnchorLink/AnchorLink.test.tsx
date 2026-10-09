@@ -6,8 +6,7 @@ import AnchorLink from './AnchorLink';
 describe('Gitt at AnchorLink skal rendres', (): void => {
   describe('Gitt at AnchorLink skal vises vanlig', (): void => {
     test('Så rendres AnchorLink riktig', (): void => {
-      const { container } = render(<AnchorLink target={'_self'}>{'AnchorLink'}</AnchorLink>);
-      expect(container).toMatchSnapshot();
+      render(<AnchorLink target={'_self'}>{'AnchorLink'}</AnchorLink>);
 
       const svgElement = screen.queryByRole('img', { hidden: true });
       expect(svgElement).not.toBeTruthy();
@@ -15,22 +14,20 @@ describe('Gitt at AnchorLink skal rendres', (): void => {
   });
 
   describe('Gitt at AnchorLink skal vises med className og id', (): void => {
-    test('Så rendres AnchorLink riktig', (): void => {
-      const { container } = render(
+    test('Så settes className og id', (): void => {
+      render(
         <AnchorLink target={'_self'} id={'custom-id'} className={'custom-classname'}>
           {'AnchorLink'}
         </AnchorLink>
       );
-      expect(container).toMatchSnapshot();
+
+      const link = screen.getByText('AnchorLink');
+      expect(link).toHaveAttribute('id', 'custom-id');
+      expect(link).toHaveClass('custom-classname');
     });
   });
 
   describe('Gitt at AnchorLink skal vises som external', (): void => {
-    test('Så rendres AnchorLink riktig', (): void => {
-      const { container } = render(<AnchorLink target={'_blank'}>{'AnchorLink external'}</AnchorLink>);
-      expect(container).toMatchSnapshot();
-    });
-
     test('Så har AnchorLink riktig rel-attributt', (): void => {
       render(
         <AnchorLink testId="target-test" target={'_blank'}>

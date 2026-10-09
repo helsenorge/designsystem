@@ -83,6 +83,14 @@ export const TableCell: Story = {
   render: args => <div className={designsystemtypography['table-cell']}>{args.tekst}</div>,
 };
 
+export const TableHeader: Story = {
+  render: args => <div className={designsystemtypography['table-header']}>{args.tekst}</div>,
+};
+
+export const TableHeaderStack: Story = {
+  render: args => <div className={designsystemtypography['table-header-stack']}>{args.tekst}</div>,
+};
+
 export const Strong: Story = {
   render: args => <div className={designsystemtypography.strong}>{args.tekst}</div>,
 };

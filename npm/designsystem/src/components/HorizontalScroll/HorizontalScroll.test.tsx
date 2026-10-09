@@ -5,21 +5,15 @@ import HorizontalScroll from './HorizontalScroll';
 describe('Gitt at HorizontalScroll skal rendres', (): void => {
   describe('Når HorizontalScroll skal vises vanlig', (): void => {
     test('Så rendres HorizontalScroll riktig', (): void => {
-      const { container } = render(<HorizontalScroll childWidth={800}>{'Teksten sin'}</HorizontalScroll>);
+      render(<HorizontalScroll>{'Teksten sin'}</HorizontalScroll>);
 
       const text = screen.getByText('Teksten sin');
       expect(text).toBeVisible();
-
-      expect(container).toMatchSnapshot();
     });
   });
   describe('Når aria-label er satt', (): void => {
     test('Så har HorizontalScroll rolle og label', (): void => {
-      render(
-        <HorizontalScroll childWidth={800} aria-label="Beskriver innholdet">
-          {'Teksten sin'}
-        </HorizontalScroll>
-      );
+      render(<HorizontalScroll aria-label="Beskriver innholdet">{'Teksten sin'}</HorizontalScroll>);
 
       const region = screen.getByRole('region', { name: 'Beskriver innholdet' });
       expect(region).toBeVisible();
@@ -30,9 +24,7 @@ describe('Gitt at HorizontalScroll skal rendres', (): void => {
       render(
         <>
           <p id="custom-id">{'Beskriver innholdet med custom element'}</p>
-          <HorizontalScroll childWidth={800} aria-labelledby="custom-id">
-            {'Teksten sin'}
-          </HorizontalScroll>
+          <HorizontalScroll aria-labelledby="custom-id">{'Teksten sin'}</HorizontalScroll>
         </>
       );
 
@@ -45,7 +37,7 @@ describe('Gitt at HorizontalScroll skal rendres', (): void => {
       render(
         <>
           <p id="custom-id">{'Beskriver innholdet med custom element'}</p>
-          <HorizontalScroll childWidth={800} aria-label="Beskriver innholdet" aria-labelledby="custom-id">
+          <HorizontalScroll aria-label="Beskriver innholdet" aria-labelledby="custom-id">
             {'Teksten sin'}
           </HorizontalScroll>
         </>

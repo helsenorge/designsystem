@@ -456,6 +456,7 @@
     padding: 0;
     display: none;
     grid-area: content;
+    min-width: 0;
     padding-left: var(--statusmarker-left-space);
 
     @media print {

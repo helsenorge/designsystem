@@ -176,7 +176,9 @@ const Expander: React.FC<ExpanderProps> = props => {
 
     return (
       <div className={leftBorderClassName}>
-        <div className={contentClassName}>{children}</div>
+        <div className={contentClassName} data-overflow-boundary>
+          {children}
+        </div>
       </div>
     );
   };

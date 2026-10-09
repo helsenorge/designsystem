@@ -111,7 +111,7 @@ export const Table: React.FC<Props> = ({
 
   if (currentConfig?.variant === ResponsiveTableVariant.horizontalscroll) {
     return (
-      <HorizontalScroll childWidth={tableWidth} testId="horizontal-scroll" {...ariaLabelAttributes}>
+      <HorizontalScroll testId="horizontal-scroll" {...ariaLabelAttributes}>
         {table}
       </HorizontalScroll>
     );

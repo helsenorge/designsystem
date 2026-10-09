@@ -15,15 +15,7 @@ const createEntries = (entryList, entry) => {
   return entryList;
 };
 
-export const alwaysIgnore = [
-  '**/__snapshots__/**/*',
-  '**/*.stories.tsx',
-  '**/*.test.tsx',
-  '**/*.scss',
-  '**/*.scss.d.ts',
-  '**/*.d.ts',
-  '**/utils/**/*',
-];
+export const alwaysIgnore = ['**/*.stories.tsx', '**/*.test.tsx', '**/*.scss', '**/*.scss.d.ts', '**/*.d.ts', '**/utils/**/*'];
 
 const components = globSync(`src/components/**/index.{ts,tsx}`, { ignore: alwaysIgnore });
 

@@ -169,7 +169,7 @@ export const Expander: ExpanderType = (props: ExpanderProps) => {
     });
 
     return (
-      <div className={mainContentClasses} data-state={isExpanded ? 'open' : 'closed'}>
+      <div className={mainContentClasses} data-state={isExpanded ? 'open' : 'closed'} data-overflow-boundary>
         <Highlighter searchText={highlightText}>{children}</Highlighter>
       </div>
     );

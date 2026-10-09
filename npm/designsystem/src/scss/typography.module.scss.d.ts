@@ -21,6 +21,8 @@ export type Styles = {
   sublabel: string;
   'sublabel-subdued': string;
   'table-cell': string;
+  'table-header': string;
+  'table-header-stack': string;
   'text-list': string;
   'title-feature': string;
   title1: string;
