@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 
@@ -7,7 +8,6 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import UNSAFE_Table, {
   UNSAFE_TableBody,
   UNSAFE_TableCell,
-  UNSAFE_TableExpandedRow,
   UNSAFE_TableHead,
   UNSAFE_TableHeadCell,
   UNSAFE_TableRow,
@@ -84,35 +84,30 @@ export const ByttFastlegeResultater: Story = {
               const expandedRowId = `fastlege-detaljer-${resultat.id}`;
 
               return (
-                <React.Fragment key={resultat.id}>
-                  <UNSAFE_TableRow
-                    expandable
-                    expanded={expanded}
-                    expandableRowId={expandedRowId}
-                    onClick={(): void => toggleExpanded(resultat.id)}
-                    hideDetailsText="Skjul detaljer"
-                    showDetailsText="Vis detaljer"
-                  >
-                    <UNSAFE_TableCell dataLabel="Fastlege">{resultat.erVikar ? 'Vikar' : resultat.fastlege}</UNSAFE_TableCell>
-                    <UNSAFE_TableCell dataLabel="Ledige plasser">{resultat.ledigePlasser}</UNSAFE_TableCell>
-                    <UNSAFE_TableCell dataLabel="Antall på venteliste">{resultat.antallPaVenteliste}</UNSAFE_TableCell>
-                    {erInnlogget && (
-                      <UNSAFE_TableCell dataLabel="">
-                        <Button variant="borderless" disabled={resultat.ledigePlasser === 0}>
-                          {'Bytt fastlege'}
-                        </Button>
-                      </UNSAFE_TableCell>
-                    )}
-                  </UNSAFE_TableRow>
-                  <UNSAFE_TableExpandedRow
-                    id={expandedRowId}
-                    expanded={expanded}
-                    hideDetailsText="Skjul detaljer"
-                    toggleClick={(): void => toggleExpanded(resultat.id)}
-                  >
-                    <p>{`${resultat.legekontor}. ${resultat.ledigePlasser > 0 ? `${resultat.ledigePlasser} ledige plasser.` : 'Ingen ledige plasser, men du kan sette deg på venteliste.'}`}</p>
-                  </UNSAFE_TableExpandedRow>
-                </React.Fragment>
+                <UNSAFE_TableRow
+                  key={resultat.id}
+                  expanded={expanded}
+                  expandableRowId={expandedRowId}
+                  onClick={(): void => toggleExpanded(resultat.id)}
+                  hideDetailsText="Skjul detaljer"
+                  showDetailsText="Vis detaljer"
+                  expandedContent={
+                    <>
+                      <p>{`${resultat.legekontor}. ${resultat.ledigePlasser > 0 ? `${resultat.ledigePlasser} ledige plasser.` : 'Ingen ledige plasser, men du kan sette deg på venteliste.'}`}</p>
+                    </>
+                  }
+                >
+                  <UNSAFE_TableCell>{resultat.erVikar ? 'Vikar' : resultat.fastlege}</UNSAFE_TableCell>
+                  <UNSAFE_TableCell>{resultat.ledigePlasser}</UNSAFE_TableCell>
+                  <UNSAFE_TableCell>{resultat.antallPaVenteliste}</UNSAFE_TableCell>
+                  {erInnlogget && (
+                    <UNSAFE_TableCell>
+                      <Button variant="borderless" disabled={resultat.ledigePlasser === 0}>
+                        {'Bytt fastlege'}
+                      </Button>
+                    </UNSAFE_TableCell>
+                  )}
+                </UNSAFE_TableRow>
               );
             })}
           </UNSAFE_TableBody>

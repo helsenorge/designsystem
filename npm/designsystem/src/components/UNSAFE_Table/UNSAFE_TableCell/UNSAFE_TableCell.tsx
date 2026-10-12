@@ -3,13 +3,11 @@ import { useContext } from 'react';
 import classNames from 'classnames';
 
 import { TableColors, TableSizes, TextAlign } from '../constants';
-import StackLabelledContent from '../StackLabelledContent';
+import StackedCellContent from '../StackedCellContent';
 import styles from '../styles.module.scss';
-import { TableContext } from '../TableContext';
+import { CellHeadingContext, TableContext } from '../TableContext';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'td'>, 'style'> {
-  /** Label used for small viewport stack */
-  dataLabel?: string;
   /**  text align in cell */
   textAlign?: TextAlign;
   /**  nowrap for white space */
@@ -22,19 +20,12 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'td'>, 'style
   testId?: string;
 }
 
-export const UNSAFE_TableCell: React.FC<Props> = ({
-  nowrap = false,
-  textAlign = TextAlign.left,
-  dataLabel,
-  children,
-  className,
-  testId,
-  ...rest
-}) => {
+export const UNSAFE_TableCell: React.FC<Props> = ({ nowrap = false, textAlign = TextAlign.left, children, className, testId, ...rest }) => {
   const { color, size } = useContext(TableContext);
+  const heading = useContext(CellHeadingContext);
   const tableCellClass = classNames(
     styles['table__cell'],
-    { [styles['table__cell--labelled']]: !!dataLabel },
+    { [styles['table__cell--stacked']]: !!heading },
     { [styles['table__cell--transparent']]: color === TableColors.transparent },
     { [styles['table__cell--compact']]: size === TableSizes.compact },
     { [styles['table__cell--nowrap']]: nowrap },
@@ -44,8 +35,8 @@ export const UNSAFE_TableCell: React.FC<Props> = ({
   );
 
   return (
-    <td className={tableCellClass} data-label={dataLabel} data-testid={testId} {...rest}>
-      <StackLabelledContent label={dataLabel}>{children}</StackLabelledContent>
+    <td className={tableCellClass} data-testid={testId} {...rest}>
+      <StackedCellContent headingText={heading}>{children}</StackedCellContent>
     </td>
   );
 };

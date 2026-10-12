@@ -91,9 +91,9 @@ export const BehandlingerTable: Story = {
           <UNSAFE_TableBody>
             {sortedData.map(sted => (
               <UNSAFE_TableRow key={sted.id}>
-                <UNSAFE_TableCell dataLabel="Behandlingssted">{sted.navn}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{sted.navn}</UNSAFE_TableCell>
                 {ventetidstyper.map(type => (
-                  <UNSAFE_TableCell key={type} dataLabel={`Ventetid ${type.toLowerCase()}`}>
+                  <UNSAFE_TableCell key={type}>
                     {sted.ventetider[type] !== undefined ? `${sted.ventetider[type]} dager` : '–'}
                   </UNSAFE_TableCell>
                 ))}

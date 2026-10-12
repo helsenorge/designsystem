@@ -12,15 +12,16 @@ import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
 import { ResponsiveTableVariant, TableColors, TableSizes } from '../constants';
 import styles from '../styles.module.scss';
-import { TableContext } from '../TableContext';
+import { CellHeadingContext, TableContext } from '../TableContext';
+import UNSAFE_TableCell from '../UNSAFE_TableCell/UNSAFE_TableCell';
 import UNSAFE_TableDetail from '../UNSAFE_TableDetail/UNSAFE_TableDetail';
 import UNSAFE_TableExpandedRow from '../UNSAFE_TableExpandedRow/UNSAFE_TableExpandedRow';
 import UNSAFE_TableExpanderCellMobile from '../UNSAFE_TableExpanderCell/UNSAFE_TableExpanderCellMobile';
 import UNSAFE_TablePopMenuCell from '../UNSAFE_TablePopMenuCell/UNSAFE_TablePopMenuCell';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style'> {
-  /** Renders an expander cell as the first cell in the row. Use 'stack' to only enable the expander in the stack variant. This is the default when a head cell has hideBehindExpander, with the hidden columns shown in an automatic expanded row. With expandable={true} and hideBehindExpander, render the hidden columns with UNSAFE_TableDetail inside your own UNSAFE_TableExpandedRow. */
-  expandable?: boolean | 'stack';
+  /** Content to be rendered in an expandable row. Make sure to add an empty TableHeadCell to the beginning of the Table. This content renders below the column content with hideBehindExpander set in the stack variant. */
+  expandedContent?: React.ReactNode;
   /** Sets if expanded row is expanded */
   expanded?: boolean;
   /** Id of the expanded row this row controls. For use with aria-controls on the expander button. */
@@ -42,7 +43,7 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style
 export const UNSAFE_TableRow: React.FC<Props> = ({
   hideDetailsText,
   showDetailsText,
-  expandable: expandableProp,
+  expandedContent,
   expanded,
   expandableRowId,
   onClick,
@@ -51,10 +52,8 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
   popMenu,
   ...rest
 }) => {
-  const { color, size, hiddenColumns, variant } = useContext(TableContext);
-  // Kolonner med hideBehindExpander gir automatisk en expander i stack-varianten
-  const expandable = expandableProp ?? (hiddenColumns.length > 0 ? 'stack' : undefined);
-  // expandable="stack" har ingen expander utenfor stack-varianten, så raden skal ikke se utvidet ut der
+  const { color, size, hiddenColumns, headingTexts, variant } = useContext(TableContext);
+  const expandable = expandedContent ? true : hiddenColumns.length > 0 ? 'stack' : undefined;
   const isExpandedVisible = !!expanded && (expandable !== 'stack' || variant === ResponsiveTableVariant.stack);
   const { refObject, isHovered, isActive } = usePseudoClasses<HTMLTableRowElement>();
   const tableRowClass = classNames(
@@ -71,17 +70,33 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
     [styles['table__cell--compact']]: size === TableSizes.compact,
   });
 
-  // Med expandable={true} har hodet en tom celle først for expanderen, som radens celler ikke har
+  // Tar hensyn til en hidden expander cell for visning i normal variant
   const indexOffset = expandable === true ? 1 : 0;
   const isHidden = (index: number): boolean => hiddenColumns.includes(index + indexOffset);
 
-  const cells = React.Children.toArray(children).map((child, index) =>
-    React.isValidElement<TableCellProps>(child) && isHidden(index)
-      ? React.cloneElement(child, { className: classNames(child.props.className, styles['table__cell--behind-expander']) })
-      : child
+  // Gir hver celle teksten fra kolonnens headText, som vises foran innholdet i stack-varianten
+  const withHeading = (child: React.ReactNode, index: number): React.ReactNode =>
+    React.isValidElement(child) && child.type === UNSAFE_TableCell ? (
+      <CellHeadingContext.Provider key={child.key} value={headingTexts[index + indexOffset] ?? ''}>
+        {child}
+      </CellHeadingContext.Provider>
+    ) : (
+      child
+    );
+
+  const childArray = React.Children.toArray(children);
+  const cells = childArray.map((child, index) =>
+    withHeading(
+      React.isValidElement<TableCellProps>(child) && isHidden(index)
+        ? React.cloneElement(child, { className: classNames(child.props.className, styles['table__cell--behind-expander']) })
+        : child,
+      index
+    )
   );
-  const hiddenCells = React.Children.toArray(children).filter(
-    (child, index): child is React.ReactElement<TableCellProps> => React.isValidElement<TableCellProps>(child) && isHidden(index)
+  const hiddenCells = childArray.flatMap((child, index) =>
+    React.isValidElement<TableCellProps>(child) && isHidden(index)
+      ? [{ cell: child, heading: headingTexts[index + indexOffset] ?? '' }]
+      : []
   );
 
   const row = (
@@ -95,11 +110,7 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
             aria-expanded={expanded}
             aria-controls={expandableRowId}
             ariaLabel={expanded ? hideDetailsText : showDetailsText}
-            onClick={(e): void => {
-              // Unngå dobbel toggling via raden
-              e?.stopPropagation();
-              onClick?.();
-            }}
+            onClick={onClick}
           >
             <Icon
               color={
@@ -128,8 +139,8 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
     </tr>
   );
 
-  // Med expandable={true} rendrer forbruker selv UNSAFE_TableDetail i sin egen UNSAFE_TableExpandedRow
-  if (expandable !== 'stack' || hiddenCells.length === 0) {
+  const hasAutomaticExpandedRow = !!expandable && (!!expandedContent || hiddenCells.length > 0);
+  if (!hasAutomaticExpandedRow) {
     return row;
   }
 
@@ -138,17 +149,18 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
       {row}
       <UNSAFE_TableExpandedRow
         key="expanded-row"
-        stackOnly
+        stackOnly={!expandedContent}
         id={expandableRowId}
         expanded={!!expanded}
         hideDetailsText={hideDetailsText ?? ''}
         toggleClick={(): void => onClick?.()}
       >
-        {hiddenCells.map((cell, index) => (
-          <UNSAFE_TableDetail key={cell.key ?? index} label={cell.props.dataLabel ?? ''}>
+        {hiddenCells.map(({ cell, heading }, index) => (
+          <UNSAFE_TableDetail key={cell.key ?? index} headingText={heading}>
             {cell.props.children}
           </UNSAFE_TableDetail>
         ))}
+        {expandedContent}
       </UNSAFE_TableExpandedRow>
     </>
   );

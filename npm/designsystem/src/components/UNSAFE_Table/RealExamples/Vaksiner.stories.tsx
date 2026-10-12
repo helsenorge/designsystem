@@ -71,8 +71,8 @@ export const VaksinerTabell: Story = {
             <UNSAFE_TableBody>
               {vaksiner.map(vaksine => (
                 <UNSAFE_TableRow key={vaksine.id}>
-                  <UNSAFE_TableCell dataLabel="Vaksine">{visEngelskNavn ? vaksine.navnEngelsk : vaksine.navn}</UNSAFE_TableCell>
-                  <UNSAFE_TableCell dataLabel="Dato">{vaksine.dato}</UNSAFE_TableCell>
+                  <UNSAFE_TableCell>{visEngelskNavn ? vaksine.navnEngelsk : vaksine.navn}</UNSAFE_TableCell>
+                  <UNSAFE_TableCell>{vaksine.dato}</UNSAFE_TableCell>
                 </UNSAFE_TableRow>
               ))}
             </UNSAFE_TableBody>

@@ -90,9 +90,9 @@ export const DokumentDelingLogg: Story = {
         <UNSAFE_TableBody>
           {sortertData.map(rad => (
             <UNSAFE_TableRow key={rad.id}>
-              <UNSAFE_TableCell dataLabel="Når">{rad.naar}</UNSAFE_TableCell>
-              <UNSAFE_TableCell dataLabel="Hvem">{rad.hvem}</UNSAFE_TableCell>
-              <UNSAFE_TableCell dataLabel="Hva">{rad.hva}</UNSAFE_TableCell>
+              <UNSAFE_TableCell>{rad.naar}</UNSAFE_TableCell>
+              <UNSAFE_TableCell>{rad.hvem}</UNSAFE_TableCell>
+              <UNSAFE_TableCell>{rad.hva}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
           ))}
         </UNSAFE_TableBody>

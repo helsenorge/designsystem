@@ -76,16 +76,10 @@ export const EgenandelstakTabell: Story = {
           <UNSAFE_TableBody>
             {rader.map(rad => (
               <UNSAFE_TableRow key={rad.id}>
-                <UNSAFE_TableCell dataLabel="Dato">{rad.dato}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="Egenandel">{rad.egenandel}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="Beløp" textAlign={TextAlign.right}>
-                  {rad.belop}
-                </UNSAFE_TableCell>
-                {harUtbetalt && (
-                  <UNSAFE_TableCell dataLabel="Utbetalingsbeløp" textAlign={TextAlign.right}>
-                    {rad.utbetalingsbelop}
-                  </UNSAFE_TableCell>
-                )}
+                <UNSAFE_TableCell>{rad.dato}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{rad.egenandel}</UNSAFE_TableCell>
+                <UNSAFE_TableCell textAlign={TextAlign.right}>{rad.belop}</UNSAFE_TableCell>
+                {harUtbetalt && <UNSAFE_TableCell textAlign={TextAlign.right}>{rad.utbetalingsbelop}</UNSAFE_TableCell>}
               </UNSAFE_TableRow>
             ))}
           </UNSAFE_TableBody>

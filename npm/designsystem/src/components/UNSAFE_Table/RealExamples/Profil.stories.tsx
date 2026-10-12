@@ -71,10 +71,10 @@ export const AktiveInnlogginger: Story = {
           <UNSAFE_TableBody>
             {innlogginger.map(innlogging => (
               <UNSAFE_TableRow key={innlogging.id}>
-                <UNSAFE_TableCell dataLabel="Hvor">{innlogging.hvor}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="Enhet">{innlogging.enhet}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="Innlogget">{innlogging.innloggetDato}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="">
+                <UNSAFE_TableCell>{innlogging.hvor}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{innlogging.enhet}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{innlogging.innloggetDato}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>
                   <Button variant="borderless" onClick={(): void => setValgtInnlogging(innlogging)}>
                     {'Logg ut'}
                   </Button>

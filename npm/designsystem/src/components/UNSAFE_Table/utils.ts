@@ -192,3 +192,30 @@ export const getHiddenColumns = (children: React.ReactNode): number[] => {
     React.isValidElement<TableHeadCellProps>(cell) && cell.props.hideBehindExpander ? [index] : []
   );
 };
+
+const getTextContent = (node: React.ReactNode): string => {
+  if (typeof node === 'string' || typeof node === 'number') {
+    return String(node);
+  }
+  if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
+    return getTextContent(node.props.children);
+  }
+  return React.Children.toArray(node).map(getTextContent).join('');
+};
+
+/**
+ * Finn teksten i hver kolonne i første rad i UNSAFE_TableHead. Brukes som overskrift i cellene i stack-varianten.
+ * @param children Innholdet i UNSAFE_Table
+ * @returns Overskrift per kolonneindeks, tom streng for kolonner uten tekst
+ */
+export const getColumnHeadingTexts = (children: React.ReactNode): string[] => {
+  const head = React.Children.toArray(children).find(
+    (child): child is React.ReactElement<{ children?: React.ReactNode }> => React.isValidElement(child) && child.type === UNSAFE_TableHead
+  );
+  const headRow = React.Children.toArray(head?.props.children).find(React.isValidElement) as
+    React.ReactElement<{ children?: React.ReactNode }> | undefined;
+
+  return React.Children.toArray(headRow?.props.children).map(cell =>
+    React.isValidElement<TableHeadCellProps>(cell) ? getTextContent(cell.props.children).trim() : ''
+  );
+};

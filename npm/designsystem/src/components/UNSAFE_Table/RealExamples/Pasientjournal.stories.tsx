@@ -73,10 +73,10 @@ export const TilgangsloggDetaljer: Story = {
           <UNSAFE_TableBody>
             {visibleData.map((tilgang, index) => (
               <UNSAFE_TableRow key={tilgang.id}>
-                <UNSAFE_TableCell dataLabel="Tidspunkt">{tilgang.tidspunkt}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="Dokument">{tilgang.dokument}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="Dokumenttilhørighet">{tilgang.dokumenttilhorighet}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="">
+                <UNSAFE_TableCell>{tilgang.tidspunkt}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{tilgang.dokument}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{tilgang.dokumenttilhorighet}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>
                   <Button variant="borderless" ref={index === newRowsStartIndex ? firstNewRowRef : undefined}>
                     {'Se dokument'}
                   </Button>

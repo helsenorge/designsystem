@@ -16,7 +16,7 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'th'>, 'style
   children?: React.ReactNode;
   /** Sets the width of the column, e.g. '10rem', '25%' or a number of pixels. Ignored in the stack variant. */
   width?: string | number;
-  /** In the stack variant, hides the cells of this column and shows dataLabel + content in an automatically rendered UNSAFE_TableExpandedRow. Requires expandable on the rows. */
+  /** In the stack variant, hides the cells of this column and shows the column heading + content in an automatically rendered expanded row. */
   hideBehindExpander?: boolean;
 }
 

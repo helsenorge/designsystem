@@ -13,6 +13,8 @@ export interface TableContextValue {
   zebraStripes: boolean;
   /** Indexes of the columns marked with hideBehindExpander on their UNSAFE_TableHeadCell. */
   hiddenColumns: number[];
+  /** Text of each column's UNSAFE_TableHeadCell, used as the default heading of cells in the stack variant. */
+  headingTexts: string[];
 }
 
 /** Table-wide configuration provided by UNSAFE_Table. */
@@ -22,4 +24,8 @@ export const TableContext = createContext<TableContextValue>({
   size: TableSizes.normal,
   zebraStripes: false,
   hiddenColumns: [],
+  headingTexts: [],
 });
+
+/** Heading of the column a cell belongs to. Provided per cell by UNSAFE_TableRow. */
+export const CellHeadingContext = createContext<string>('');

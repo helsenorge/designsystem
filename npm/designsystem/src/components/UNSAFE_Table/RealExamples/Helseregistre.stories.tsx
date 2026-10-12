@@ -68,7 +68,7 @@ type Story = StoryObj<typeof UNSAFE_Table>;
 export const InnsynTabell: Story = {
   render: function InnsynTabellStory(args) {
     return (
-      <UNSAFE_Table {...args} breakpointConfig={{ breakpoint: 'md', variant: ResponsiveTableVariant.stack }}>
+      <UNSAFE_Table {...args} breakpointConfig={{ breakpoint: 'xs', variant: ResponsiveTableVariant.stack }}>
         <UNSAFE_TableHead>
           <UNSAFE_TableRow>
             <UNSAFE_TableHeadCell>{'Register'}</UNSAFE_TableHeadCell>
@@ -80,11 +80,9 @@ export const InnsynTabell: Story = {
         <UNSAFE_TableBody>
           {utsnitt.map(u => (
             <UNSAFE_TableRow key={u.id}>
-              <UNSAFE_TableCell dataLabel="Register">{u.register}</UNSAFE_TableCell>
-              {kolonner.map(([id, navn]) => (
-                <UNSAFE_TableCell key={id} dataLabel={navn}>
-                  {u.felter.find(felt => felt.id === id)?.verdi ?? '–'}
-                </UNSAFE_TableCell>
+              <UNSAFE_TableCell>{u.register}</UNSAFE_TableCell>
+              {kolonner.map(([id]) => (
+                <UNSAFE_TableCell key={id}>{u.felter.find(felt => felt.id === id)?.verdi ?? '–'}</UNSAFE_TableCell>
               ))}
             </UNSAFE_TableRow>
           ))}

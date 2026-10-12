@@ -9,6 +9,7 @@ import TableCaption from './TableCaption';
 import { TableContext } from './TableContext';
 import {
   getAvailableWidth,
+  getColumnHeadingTexts,
   getHiddenColumns,
   getBreakpointClass,
   getCenteredOverflowTableStyle,
@@ -46,7 +47,7 @@ export interface UNSAFE_TableProps extends Omit<React.ComponentPropsWithoutRef<'
   id?: string;
   /** For display with less space. Discouraged to use together with interactive elements. */
   size?: TableSizes;
-  /** Width of the head column (dataLabel) in percentage in the stack variant. When not set, the column follows the widest label in the table, but wraps (minimum 30%) when the content needs the space. */
+  /** Width of the head column in percentage in the stack variant. When not set, the column follows the widest heading in the table, but wraps (minimum 30%) when the content needs the space. */
   stackHeadWidth?: number;
   /** Id used for testing */
   testId?: string;
@@ -124,6 +125,7 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
   const domRest = omitProps(rest as Record<string, unknown>, ['breakpoint', 'variant', 'fallbackVariant', 'headerCategory']);
 
   const hiddenColumns = useMemo(() => getHiddenColumns(children), [children]);
+  const headings = useMemo(() => getColumnHeadingTexts(children), [children]);
 
   const tableContext = useMemo<TableContextValue>(
     () => ({
@@ -132,8 +134,9 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
       size,
       zebraStripes,
       hiddenColumns,
+      headingTexts: headings,
     }),
-    [currentConfig?.variant, color, size, zebraStripes, hiddenColumns]
+    [currentConfig?.variant, color, size, zebraStripes, hiddenColumns, headings]
   );
 
   const table = (

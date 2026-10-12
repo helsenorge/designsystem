@@ -58,8 +58,8 @@ export const Donorkort: Story = {
           {kontaktpersoner.length > 0 ? (
             kontaktpersoner.map(person => (
               <UNSAFE_TableRow key={person.id}>
-                <UNSAFE_TableCell dataLabel="Navn">{person.navn}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="">
+                <UNSAFE_TableCell>{person.navn}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>
                   <Button variant="borderless" onClick={(): void => fjernKontaktperson(person.id)}>
                     {'Fjern'}
                   </Button>

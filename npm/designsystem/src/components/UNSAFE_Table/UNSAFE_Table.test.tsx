@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-
 import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -19,8 +17,6 @@ import UNSAFE_Table, {
   TextAlign,
   UNSAFE_TableBody,
   UNSAFE_TableCell,
-  UNSAFE_TableDetail,
-  UNSAFE_TableExpandedRow,
   UNSAFE_TableHead,
   UNSAFE_TableHeadCell,
   UNSAFE_TableRow,
@@ -58,8 +54,8 @@ const SortableExample: React.FC = () => {
         <UNSAFE_TableBody>
           {sortedData.map(fastlege => (
             <UNSAFE_TableRow key={fastlege.navn}>
-              <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
-              <UNSAFE_TableCell dataLabel="Alder">{fastlege.alder}</UNSAFE_TableCell>
+              <UNSAFE_TableCell>{fastlege.navn}</UNSAFE_TableCell>
+              <UNSAFE_TableCell>{fastlege.alder}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
           ))}
         </UNSAFE_TableBody>
@@ -184,7 +180,7 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
         <UNSAFE_Table caption="Fastleger i nærheten" stackHeadWidth={50} testId="tabell">
           <UNSAFE_TableBody>
             <UNSAFE_TableRow>
-              <UNSAFE_TableCell dataLabel="Navn">{'Åse Berg'}</UNSAFE_TableCell>
+              <UNSAFE_TableCell>{'Åse Berg'}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
           </UNSAFE_TableBody>
         </UNSAFE_Table>
@@ -276,7 +272,7 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
   });
 
   describe('Når kolonner skal skjules bak expander i stack-visning', (): void => {
-    const renderWithHiddenColumns = (expandable?: boolean | 'stack'): void => {
+    const renderWithHiddenColumns = (expandedContent?: React.ReactNode): void => {
       render(
         <UNSAFE_Table caption="Fastleger i nærheten" breakpointConfig={{ breakpoint: 'xl', variant: 'stack' }}>
           <UNSAFE_TableHead>
@@ -286,11 +282,9 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
             </UNSAFE_TableRow>
           </UNSAFE_TableHead>
           <UNSAFE_TableBody>
-            <UNSAFE_TableRow expandable={expandable} showDetailsText="Vis detaljer" hideDetailsText="Skjul detaljer">
-              <UNSAFE_TableCell dataLabel="Navn">{'Hans Nilsen'}</UNSAFE_TableCell>
-              <UNSAFE_TableCell dataLabel="Alder" testId="alder-celle">
-                {38}
-              </UNSAFE_TableCell>
+            <UNSAFE_TableRow expandedContent={expandedContent} showDetailsText="Vis detaljer" hideDetailsText="Skjul detaljer">
+              <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
+              <UNSAFE_TableCell testId="alder-celle">{38}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
           </UNSAFE_TableBody>
         </UNSAFE_Table>
@@ -298,19 +292,46 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
     };
 
     test('Så markeres cellene i kolonnen med hideBehindExpander slik at den kun vises når raden er utvidet', (): void => {
-      renderWithHiddenColumns('stack');
+      renderWithHiddenColumns();
 
       expect(screen.getByTestId('alder-celle')).toHaveClass('table__cell--behind-expander');
     });
 
     test('Så vises innholdet i en vanlig utvidbar rad', (): void => {
-      renderWithHiddenColumns('stack');
+      renderWithHiddenColumns();
 
       const expandedRow = document.querySelector('.table__expanded-row');
       expect(expandedRow).toHaveClass('table__expanded-row--stack-only');
       expect(expandedRow).toHaveTextContent('Alder');
       expect(expandedRow).toHaveTextContent('38');
       expect(expandedRow).toHaveTextContent('Skjul detaljer');
+    });
+
+    test('Så vises skjulte kolonner og expandedContent i samme automatiske rad, i alle varianter', (): void => {
+      render(
+        <UNSAFE_Table caption="Fastleger" breakpointConfig={{ breakpoint: 'xl', variant: 'normal' }}>
+          <UNSAFE_TableHead>
+            <UNSAFE_TableRow>
+              <UNSAFE_TableHeadCell />
+              <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
+              <UNSAFE_TableHeadCell hideBehindExpander>{'Alder'}</UNSAFE_TableHeadCell>
+            </UNSAFE_TableRow>
+          </UNSAFE_TableHead>
+          <UNSAFE_TableBody>
+            <UNSAFE_TableRow expandedContent={<p>{'Ekstra innhold'}</p>} showDetailsText="Vis detaljer" hideDetailsText="Skjul detaljer">
+              <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
+              <UNSAFE_TableCell>{38}</UNSAFE_TableCell>
+            </UNSAFE_TableRow>
+          </UNSAFE_TableBody>
+        </UNSAFE_Table>
+      );
+
+      const expandedRow = document.querySelector('.table__expanded-row');
+      expect(expandedRow).not.toHaveClass('table__expanded-row--stack-only');
+      expect(expandedRow).toHaveTextContent('Alder');
+      expect(expandedRow).toHaveTextContent('38');
+      expect(expandedRow).toHaveTextContent('Ekstra innhold');
+      expect(screen.getAllByRole('button', { name: 'Vis detaljer' })).toHaveLength(2);
     });
 
     test('Så rendres kun stack-expanderen som standard når en kolonne har hideBehindExpander', (): void => {
@@ -322,26 +343,31 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
       expect(buttons[0].closest('td')).toHaveClass('table__expander-cell-mobile');
     });
 
-    test('Så ser ikke raden utvidet ut utenfor stack-varianten når expandable er "stack"', (): void => {
+    test('Så ser ikke raden utvidet ut utenfor stack-varianten når den kun har skjulte kolonner', (): void => {
       const renderRow = (variant: 'stack' | 'normal'): HTMLElement => {
         const { container } = render(
           <UNSAFE_Table caption="Fastleger" breakpointConfig={{ breakpoint: 'xl', variant }}>
+            <UNSAFE_TableHead>
+              <UNSAFE_TableRow>
+                <UNSAFE_TableHeadCell hideBehindExpander>{'Navn'}</UNSAFE_TableHeadCell>
+              </UNSAFE_TableRow>
+            </UNSAFE_TableHead>
             <UNSAFE_TableBody>
-              <UNSAFE_TableRow expandable="stack" expanded>
+              <UNSAFE_TableRow expanded>
                 <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
               </UNSAFE_TableRow>
             </UNSAFE_TableBody>
           </UNSAFE_Table>
         );
-        return container.querySelector('.table__row') as HTMLElement;
+        return container.querySelector('tbody .table__row') as HTMLElement;
       };
 
       expect(renderRow('stack')).toHaveClass('table__row--expanded');
       expect(renderRow('normal')).not.toHaveClass('table__row--expanded');
     });
 
-    test('Så rendres begge expandere når expandable er true', (): void => {
-      renderWithHiddenColumns(true);
+    test('Så rendres begge expandere når raden har expandedContent', (): void => {
+      renderWithHiddenColumns('Innhold');
 
       expect(screen.getAllByRole('button', { name: 'Vis detaljer' })).toHaveLength(2);
     });
@@ -457,9 +483,7 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
           </UNSAFE_TableHead>
           <UNSAFE_TableBody>
             <UNSAFE_TableRow>
-              <UNSAFE_TableCell testId="celle" dataLabel="Navn">
-                {'Hans Nilsen'}
-              </UNSAFE_TableCell>
+              <UNSAFE_TableCell testId="celle">{'Hans Nilsen'}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
           </UNSAFE_TableBody>
         </UNSAFE_Table>
@@ -506,24 +530,29 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
   });
 
   describe('Når UNSAFE_TableCell har valg', (): void => {
-    test('Så settes ledetekst som data-label og vises i stack-visning', (): void => {
+    test('Så hentes overskriften fra kolonnen i hodet og vises i stack-visning', (): void => {
       render(
         <UNSAFE_Table caption="Fastleger">
+          <UNSAFE_TableHead>
+            <UNSAFE_TableRow>
+              <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
+              <UNSAFE_TableHeadCell>{''}</UNSAFE_TableHeadCell>
+            </UNSAFE_TableRow>
+          </UNSAFE_TableHead>
           <UNSAFE_TableBody>
             <UNSAFE_TableRow>
-              <UNSAFE_TableCell dataLabel="Navn" testId="celle">
-                {'Hans Nilsen'}
-              </UNSAFE_TableCell>
+              <UNSAFE_TableCell testId="celle">{'Hans Nilsen'}</UNSAFE_TableCell>
+              <UNSAFE_TableCell testId="uten-overskrift">{'Handling'}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
           </UNSAFE_TableBody>
         </UNSAFE_Table>
       );
 
       const cell = screen.getByTestId('celle');
-      expect(cell).toHaveAttribute('data-label', 'Navn');
-      expect(cell).toHaveClass('table__cell--labelled');
+      expect(cell).toHaveClass('table__cell--stacked');
       expect(cell).toHaveTextContent('Navn');
       expect(cell).toHaveTextContent('Hans Nilsen');
+      expect(screen.getByTestId('uten-overskrift')).not.toHaveClass('table__cell--stacked');
     });
 
     test('Så brukes klasser for tekstjustering og nowrap', (): void => {
@@ -600,36 +629,26 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
       return (
         <UNSAFE_Table caption="Fastleger" breakpointConfig={{ breakpoint: 'xl', variant: 'normal' }}>
           <UNSAFE_TableHead>
-            <UNSAFE_TableRow expandable>
+            <UNSAFE_TableRow>
+              <UNSAFE_TableHeadCell />
               <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
               <UNSAFE_TableHeadCell>{'Alder'}</UNSAFE_TableHeadCell>
             </UNSAFE_TableRow>
           </UNSAFE_TableHead>
           <UNSAFE_TableBody>
             {data.map(fastlege => (
-              <Fragment key={fastlege.navn}>
-                <UNSAFE_TableRow
-                  expandable
-                  expanded={isExpanded(fastlege.navn)}
-                  expandableRowId={`detaljer-${fastlege.navn}`}
-                  showDetailsText="Vis detaljer"
-                  hideDetailsText="Skjul detaljer"
-                  onClick={(): void => toggleExpanded(fastlege.navn)}
-                >
-                  <UNSAFE_TableCell>{fastlege.navn}</UNSAFE_TableCell>
-                  <UNSAFE_TableCell>{fastlege.alder}</UNSAFE_TableCell>
-                </UNSAFE_TableRow>
-                <UNSAFE_TableExpandedRow
-                  id={`detaljer-${fastlege.navn}`}
-                  expanded={isExpanded(fastlege.navn)}
-                  hideDetailsText="Skjul detaljer"
-                  toggleClick={(): void => toggleExpanded(fastlege.navn)}
-                >
-                  <UNSAFE_TableDetail label="Adresse" testId={`detalj-${fastlege.navn}`}>
-                    {'Storgata 1'}
-                  </UNSAFE_TableDetail>
-                </UNSAFE_TableExpandedRow>
-              </Fragment>
+              <UNSAFE_TableRow
+                key={fastlege.navn}
+                expanded={isExpanded(fastlege.navn)}
+                expandableRowId={`detaljer-${fastlege.navn}`}
+                showDetailsText="Vis detaljer"
+                hideDetailsText="Skjul detaljer"
+                onClick={(): void => toggleExpanded(fastlege.navn)}
+                expandedContent={<div data-testid={`detalj-${fastlege.navn}`}>{'Adresse Storgata 1'}</div>}
+              >
+                <UNSAFE_TableCell>{fastlege.navn}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{fastlege.alder}</UNSAFE_TableCell>
+              </UNSAFE_TableRow>
             ))}
           </UNSAFE_TableBody>
         </UNSAFE_Table>
@@ -678,41 +697,22 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
       expect(cell).toHaveAttribute('colspan', '4');
     });
 
-    test('Så kan en ekspandert rad kun vises i stack-varianten', (): void => {
+    test('Så kalles onClick når knappen i den ekspanderte raden klikkes', async (): Promise<void> => {
+      const onClick = vi.fn();
       render(
         <UNSAFE_Table caption="Fastleger">
           <UNSAFE_TableBody>
-            <UNSAFE_TableRow>
+            <UNSAFE_TableRow expanded onClick={onClick} hideDetailsText="Skjul detaljer" expandedContent={'Innhold'}>
               <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
-            <UNSAFE_TableExpandedRow stackOnly expanded hideDetailsText="Skjul" toggleClick={vi.fn()} id="kun-stack">
-              {'Innhold'}
-            </UNSAFE_TableExpandedRow>
           </UNSAFE_TableBody>
         </UNSAFE_Table>
       );
+      const expandedRow = document.querySelector('.table__expanded-row') as HTMLElement;
 
-      expect(document.getElementById('kun-stack')).toHaveClass('table__expanded-row--stack-only', 'table__expanded-row--expanded');
-    });
+      await userEvent.click(within(expandedRow).getByRole('button', { name: 'Skjul detaljer' }));
 
-    test('Så kalles toggleClick når knappen i den ekspanderte raden klikkes', async (): Promise<void> => {
-      const toggleClick = vi.fn();
-      render(
-        <UNSAFE_Table caption="Fastleger">
-          <UNSAFE_TableBody>
-            <UNSAFE_TableRow>
-              <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
-            </UNSAFE_TableRow>
-            <UNSAFE_TableExpandedRow expanded hideDetailsText="Skjul detaljer" toggleClick={toggleClick}>
-              {'Innhold'}
-            </UNSAFE_TableExpandedRow>
-          </UNSAFE_TableBody>
-        </UNSAFE_Table>
-      );
-
-      await userEvent.click(screen.getByRole('button', { name: 'Skjul detaljer' }));
-
-      expect(toggleClick).toHaveBeenCalledTimes(1);
+      expect(onClick).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -735,8 +735,8 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
                 showDetailsText="Vis detaljer"
                 hideDetailsText="Skjul detaljer"
               >
-                <UNSAFE_TableCell dataLabel="Navn">{'Hans Nilsen'}</UNSAFE_TableCell>
-                <UNSAFE_TableCell dataLabel="Alder">{38}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{38}</UNSAFE_TableCell>
               </UNSAFE_TableRow>
             </UNSAFE_TableBody>
           </UNSAFE_Table>

@@ -5,13 +5,13 @@ export type Styles = {
   'table__cell--behind-expander': string;
   'table__cell--center': string;
   'table__cell--compact': string;
-  'table__cell--labelled': string;
   'table__cell--nowrap': string;
   'table__cell--right': string;
+  'table__cell--stacked': string;
   'table__cell--transparent': string;
   'table__cell-content': string;
   'table__cell-expander': string;
-  'table__cell-label': string;
+  'table__cell-heading-text': string;
   'table__cell-pop-menu': string;
   table__detail: string;
   'table__expanded-row': string;

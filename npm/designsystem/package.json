@@ -888,6 +888,12 @@
       "import": "./lib/components/VisualContentgroupWithImage/index.js",
       "require": "./lib/components/VisualContentgroupWithImage/index.js",
       "default": "./lib/components/VisualContentgroupWithImage/index.js"
+    },
+    "./components/UNSAFE_Table/StackLabelledContent": {
+      "types": "./lib/components/UNSAFE_Table/StackLabelledContent.d.ts",
+      "import": "./lib/components/UNSAFE_Table/index.js",
+      "require": "./lib/components/UNSAFE_Table/index.js",
+      "default": "./lib/components/UNSAFE_Table/index.js"
     }
   },
   "scripts": {

@@ -131,15 +131,15 @@ const FastlegeTable: React.FC<UNSAFE_TableProps> = args => (
     <UNSAFE_TableBody>
       {fastleger.map(fastlege => (
         <UNSAFE_TableRow key={fastlege.id}>
-          <UNSAFE_TableCell dataLabel="Navn">{fastlege.navn}</UNSAFE_TableCell>
-          <UNSAFE_TableCell dataLabel="Alder">{fastlege.alder}</UNSAFE_TableCell>
-          <UNSAFE_TableCell dataLabel="Fastlegekontor">{fastlege.kontor.navn}</UNSAFE_TableCell>
-          <UNSAFE_TableCell dataLabel="Ledige plasser">{fastlege.ledigePlasser}</UNSAFE_TableCell>
-          <UNSAFE_TableCell dataLabel="Telefon">{fastlege.telefon}</UNSAFE_TableCell>
-          <UNSAFE_TableCell dataLabel="Språk">{fastlege.sprak}</UNSAFE_TableCell>
-          <UNSAFE_TableCell dataLabel="Ventetid (uker)">{fastlege.ventetid}</UNSAFE_TableCell>
-          <UNSAFE_TableCell dataLabel="Åpningstid">{fastlege.apningstid}</UNSAFE_TableCell>
-          <UNSAFE_TableCell dataLabel="Poststed">{fastlege.poststed}</UNSAFE_TableCell>
+          <UNSAFE_TableCell>{fastlege.navn}</UNSAFE_TableCell>
+          <UNSAFE_TableCell>{fastlege.alder}</UNSAFE_TableCell>
+          <UNSAFE_TableCell>{fastlege.kontor.navn}</UNSAFE_TableCell>
+          <UNSAFE_TableCell>{fastlege.ledigePlasser}</UNSAFE_TableCell>
+          <UNSAFE_TableCell>{fastlege.telefon}</UNSAFE_TableCell>
+          <UNSAFE_TableCell>{fastlege.sprak}</UNSAFE_TableCell>
+          <UNSAFE_TableCell>{fastlege.ventetid}</UNSAFE_TableCell>
+          <UNSAFE_TableCell>{fastlege.apningstid}</UNSAFE_TableCell>
+          <UNSAFE_TableCell>{fastlege.poststed}</UNSAFE_TableCell>
         </UNSAFE_TableRow>
       ))}
     </UNSAFE_TableBody>

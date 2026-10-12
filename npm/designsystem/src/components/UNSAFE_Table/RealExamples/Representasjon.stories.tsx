@@ -109,13 +109,13 @@ export const HistoriskeFullmakter: Story = {
               <UNSAFE_TableBody>
                 {historiskeFullmakter.map(fullmakt => (
                   <UNSAFE_TableRow key={fullmakt.id}>
-                    <UNSAFE_TableCell dataLabel="Navn">{fullmakt.navn}</UNSAFE_TableCell>
-                    <UNSAFE_TableCell dataLabel="Fødselsnummer">{fullmakt.fnr}</UNSAFE_TableCell>
-                    <UNSAFE_TableCell dataLabel="Opprettet">{fullmakt.opprettet}</UNSAFE_TableCell>
-                    <UNSAFE_TableCell dataLabel="Avsluttet">{fullmakt.avsluttet}</UNSAFE_TableCell>
-                    <UNSAFE_TableCell dataLabel="Virkeområde">{fullmakt.virkeomrade}</UNSAFE_TableCell>
-                    <UNSAFE_TableCell dataLabel="Type fullmakt">{fullmakt.typeFullmakt}</UNSAFE_TableCell>
-                    <UNSAFE_TableCell dataLabel="Tjenesteområder">{fullmakt.tjenesteomrader}</UNSAFE_TableCell>
+                    <UNSAFE_TableCell>{fullmakt.navn}</UNSAFE_TableCell>
+                    <UNSAFE_TableCell>{fullmakt.fnr}</UNSAFE_TableCell>
+                    <UNSAFE_TableCell>{fullmakt.opprettet}</UNSAFE_TableCell>
+                    <UNSAFE_TableCell>{fullmakt.avsluttet}</UNSAFE_TableCell>
+                    <UNSAFE_TableCell>{fullmakt.virkeomrade}</UNSAFE_TableCell>
+                    <UNSAFE_TableCell>{fullmakt.typeFullmakt}</UNSAFE_TableCell>
+                    <UNSAFE_TableCell>{fullmakt.tjenesteomrader}</UNSAFE_TableCell>
                   </UNSAFE_TableRow>
                 ))}
               </UNSAFE_TableBody>

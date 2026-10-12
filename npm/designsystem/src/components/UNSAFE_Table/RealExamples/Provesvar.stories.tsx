@@ -64,9 +64,9 @@ export const Historikk: Story = {
         <UNSAFE_TableBody>
           {provesvar.map(svar => (
             <UNSAFE_TableRow key={svar.id}>
-              <UNSAFE_TableCell dataLabel="Analyse">{svar.analysenavn}</UNSAFE_TableCell>
-              <UNSAFE_TableCell dataLabel="Dato">{svar.dato}</UNSAFE_TableCell>
-              <UNSAFE_TableCell dataLabel="Resultat">
+              <UNSAFE_TableCell>{svar.analysenavn}</UNSAFE_TableCell>
+              <UNSAFE_TableCell>{svar.dato}</UNSAFE_TableCell>
+              <UNSAFE_TableCell>
                 {svar.resultat}
                 {svar.avvik && (
                   <>
@@ -75,7 +75,7 @@ export const Historikk: Story = {
                   </>
                 )}
               </UNSAFE_TableCell>
-              {skalViseReferanseomrade && <UNSAFE_TableCell dataLabel="Referanseområde">{svar.referanseomrade ?? '–'}</UNSAFE_TableCell>}
+              {skalViseReferanseomrade && <UNSAFE_TableCell>{svar.referanseomrade ?? '–'}</UNSAFE_TableCell>}
             </UNSAFE_TableRow>
           ))}
         </UNSAFE_TableBody>

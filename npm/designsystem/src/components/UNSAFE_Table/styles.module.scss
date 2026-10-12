@@ -122,19 +122,19 @@ $zebra-cell-active: var(--color-action-background-light-plus1-active);
     border-width: 0 1px;
     outline: 0;
 
-    &:first-of-type {
-      padding-block-start: var(--core-space-xs);
-    }
-
-    &:last-of-type {
-      padding-block-end: var(--core-space-xs);
-    }
-
-    &--labelled {
-      // To kolonner som i Duolist: cellene arver kolonnesporene fra .table-body
+    &--stacked {
+      // Arver kolonnesporene fra .table-body
       // slik at ledetekstkolonnen er like bred i alle rader
       display: grid;
       grid-template-columns: subgrid;
+
+      &:nth-child(1 of .table__cell--stacked) {
+        padding-block-start: var(--core-space-xs);
+      }
+
+      &:nth-last-child(1 of .table__cell--stacked) {
+        padding-block-end: var(--core-space-xs);
+      }
     }
 
     @media (min-width: map.get($grid-breakpoints, md)) {
@@ -144,11 +144,11 @@ $zebra-cell-active: var(--color-action-background-light-plus1-active);
     &--compact {
       padding-block: var(--core-space-3xs);
 
-      &:first-of-type {
+      &:nth-child(1 of .table__cell--compact) {
         padding-block-start: var(--core-space-2xs);
       }
 
-      &:last-of-type {
+      &:nth-last-child(1 of .table__cell--compact) {
         padding-block-end: var(--core-space-2xs);
       }
     }
@@ -165,7 +165,7 @@ $zebra-cell-active: var(--color-action-background-light-plus1-active);
       font-weight: 400;
     }
 
-    > .table__cell-label {
+    > .table__cell-heading-text {
       @include fonts.table-header-stack;
 
       display: block;
@@ -399,7 +399,7 @@ $zebra-cell-active: var(--color-action-background-light-plus1-active);
   }
 }
 
-.table__cell-label {
+.table__cell-heading-text {
   display: none;
 }
 
