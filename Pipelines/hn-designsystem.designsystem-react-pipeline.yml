@@ -146,6 +146,9 @@ stages:
               customCommand: 'run eslint'
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
+          # Run shared pre-build tasks
+          - template: Templates/Build/pre-build.yml@templates
+
           # build
           - task: Npm@1
             displayName: build
