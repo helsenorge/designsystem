@@ -89,8 +89,6 @@ export const ByttFastlegeResultater: Story = {
                   expanded={expanded}
                   expandableRowId={expandedRowId}
                   onClick={(): void => toggleExpanded(resultat.id)}
-                  hideDetailsText="Skjul detaljer"
-                  showDetailsText="Vis detaljer"
                   expandedContent={
                     <>
                       <p>{`${resultat.legekontor}. ${resultat.ledigePlasser > 0 ? `${resultat.ledigePlasser} ledige plasser.` : 'Ingen ledige plasser, men du kan sette deg på venteliste.'}`}</p>

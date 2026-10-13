@@ -12,8 +12,6 @@ import { TableContext } from '../TableContext';
 export interface Props {
   /** Row is expanded. */
   expanded: boolean;
-  /** Text for hide button. */
-  hideDetailsText: string;
   /** When hide button inside expanded row is clicked. */
   toggleClick: () => void;
   /** Adds custom classes to the element. */
@@ -26,16 +24,8 @@ export interface Props {
   id?: string;
 }
 
-export const UNSAFE_TableExpandedRow = ({
-  expanded,
-  hideDetailsText,
-  toggleClick,
-  children,
-  className,
-  stackOnly,
-  id,
-}: Props): React.JSX.Element => {
-  const { size } = useContext(TableContext);
+export const UNSAFE_TableExpandedRow = ({ expanded, toggleClick, children, className, stackOnly, id }: Props): React.JSX.Element => {
+  const { size, resources } = useContext(TableContext);
   const rowRef = useRef<HTMLTableRowElement>(null);
   const [colSpan, setColSpan] = useState(1);
 
@@ -66,7 +56,7 @@ export const UNSAFE_TableExpandedRow = ({
       <td colSpan={colSpan} className={tableCellClass}>
         {React.Children.map(children, child => React.isValidElement(child) && React.cloneElement(child))}
         <Button variant={'borderless'} onClick={toggleClick} aria-expanded={expanded} tabIndex={expanded ? 0 : -1}>
-          {hideDetailsText}
+          {resources.collapseRowButton}
           <Icon svgIcon={ChevronUp} />
         </Button>
       </td>

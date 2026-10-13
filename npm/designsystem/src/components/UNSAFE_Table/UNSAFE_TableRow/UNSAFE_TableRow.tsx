@@ -28,10 +28,6 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style
   expandableRowId?: string;
   /** When hide/show button for expanded row is clicked. */
   onClick?: () => void;
-  /** Text for expanded row hide button. */
-  hideDetailsText?: string;
-  /** Text for expanded row show button. */
-  showDetailsText?: string;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the cells of the table row element.  */
@@ -41,8 +37,6 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style
 }
 
 export const UNSAFE_TableRow: React.FC<Props> = ({
-  hideDetailsText,
-  showDetailsText,
   expandedContent,
   expanded,
   expandableRowId,
@@ -52,7 +46,7 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
   popMenu,
   ...rest
 }) => {
-  const { color, size, hiddenColumns, headingTexts, variant } = useContext(TableContext);
+  const { color, size, hiddenColumns, headingTexts, variant, resources } = useContext(TableContext);
   const expandable = expandedContent ? true : hiddenColumns.length > 0 ? 'stack' : undefined;
   const isExpandedVisible = !!expanded && (expandable !== 'stack' || variant === ResponsiveTableVariant.stack);
   const { refObject, isHovered, isActive } = usePseudoClasses<HTMLTableRowElement>();
@@ -109,7 +103,7 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
             className={styles['table__expander-button__content']}
             aria-expanded={expanded}
             aria-controls={expandableRowId}
-            ariaLabel={expanded ? hideDetailsText : showDetailsText}
+            ariaLabel={expanded ? resources.collapseRowButton : resources.expandRowButton}
             onClick={onClick}
           >
             <Icon
@@ -127,15 +121,7 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
       )}
       {cells}
       {popMenu && <UNSAFE_TablePopMenuCell>{popMenu}</UNSAFE_TablePopMenuCell>}
-      {expandable && (
-        <UNSAFE_TableExpanderCellMobile
-          expanded={expanded}
-          onClick={onClick}
-          hideDetailsText={hideDetailsText}
-          showDetailsText={showDetailsText}
-          expandableRowId={expandableRowId}
-        />
-      )}
+      {expandable && <UNSAFE_TableExpanderCellMobile expanded={expanded} onClick={onClick} expandableRowId={expandableRowId} />}
     </tr>
   );
 
@@ -152,7 +138,6 @@ export const UNSAFE_TableRow: React.FC<Props> = ({
         stackOnly={!expandedContent}
         id={expandableRowId}
         expanded={!!expanded}
-        hideDetailsText={hideDetailsText ?? ''}
         toggleClick={(): void => onClick?.()}
       >
         {hiddenCells.map(({ cell, heading }, index) => (

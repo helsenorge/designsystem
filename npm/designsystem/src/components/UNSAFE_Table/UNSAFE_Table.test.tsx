@@ -282,7 +282,7 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
             </UNSAFE_TableRow>
           </UNSAFE_TableHead>
           <UNSAFE_TableBody>
-            <UNSAFE_TableRow expandedContent={expandedContent} showDetailsText="Vis detaljer" hideDetailsText="Skjul detaljer">
+            <UNSAFE_TableRow expandedContent={expandedContent}>
               <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
               <UNSAFE_TableCell testId="alder-celle">{38}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
@@ -318,7 +318,7 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
             </UNSAFE_TableRow>
           </UNSAFE_TableHead>
           <UNSAFE_TableBody>
-            <UNSAFE_TableRow expandedContent={<p>{'Ekstra innhold'}</p>} showDetailsText="Vis detaljer" hideDetailsText="Skjul detaljer">
+            <UNSAFE_TableRow expandedContent={<p>{'Ekstra innhold'}</p>}>
               <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
               <UNSAFE_TableCell>{38}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
@@ -641,8 +641,6 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
                 key={fastlege.navn}
                 expanded={isExpanded(fastlege.navn)}
                 expandableRowId={`detaljer-${fastlege.navn}`}
-                showDetailsText="Vis detaljer"
-                hideDetailsText="Skjul detaljer"
                 onClick={(): void => toggleExpanded(fastlege.navn)}
                 expandedContent={<div data-testid={`detalj-${fastlege.navn}`}>{'Adresse Storgata 1'}</div>}
               >
@@ -702,7 +700,7 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
       render(
         <UNSAFE_Table caption="Fastleger">
           <UNSAFE_TableBody>
-            <UNSAFE_TableRow expanded onClick={onClick} hideDetailsText="Skjul detaljer" expandedContent={'Innhold'}>
+            <UNSAFE_TableRow expanded onClick={onClick} expandedContent={'Innhold'}>
               <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
             </UNSAFE_TableRow>
           </UNSAFE_TableBody>
@@ -729,12 +727,7 @@ describe('Gitt at UNSAFE_Table skal vises', (): void => {
               </UNSAFE_TableRow>
             </UNSAFE_TableHead>
             <UNSAFE_TableBody>
-              <UNSAFE_TableRow
-                expanded={isExpanded('rad')}
-                onClick={(): void => toggleExpanded('rad')}
-                showDetailsText="Vis detaljer"
-                hideDetailsText="Skjul detaljer"
-              >
+              <UNSAFE_TableRow expanded={isExpanded('rad')} onClick={(): void => toggleExpanded('rad')}>
                 <UNSAFE_TableCell>{'Hans Nilsen'}</UNSAFE_TableCell>
                 <UNSAFE_TableCell>{38}</UNSAFE_TableCell>
               </UNSAFE_TableRow>

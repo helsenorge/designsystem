@@ -3,8 +3,10 @@ import { useId, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import type { TableContextValue } from './TableContext';
+import type { HNDesignsystemTable } from '../../resources/Resources';
 
 import { ResponsiveTableVariant, defaultConfig, TableColors, TableSizes } from './constants';
+import { getResources } from './resourceHelper';
 import TableCaption from './TableCaption';
 import { TableContext } from './TableContext';
 import {
@@ -16,7 +18,9 @@ import {
   getCurrentConfig,
   omitProps,
 } from './utils';
+import { LanguageLocales } from '../../constants';
 import { useBreakpoint, type Breakpoint } from '../../hooks/useBreakpoint';
+import { useLanguage } from '../../hooks/useLanguage';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
 import { useSynchronousResizeObserver } from '../../hooks/useSynchronousResizeObserver';
 import HorizontalScroll from '../HorizontalScroll';
@@ -45,6 +49,8 @@ export interface UNSAFE_TableProps extends Omit<React.ComponentPropsWithoutRef<'
   color?: TableColors;
   /** Unique ID */
   id?: string;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemTable>;
   /** For display with less space. Discouraged to use together with interactive elements. */
   size?: TableSizes;
   /** Width of the head column in percentage in the stack variant. When not set, the column follows the widest heading in the table, but wraps (minimum 30%) when the content needs the space. */
@@ -58,10 +64,11 @@ export interface UNSAFE_TableProps extends Omit<React.ComponentPropsWithoutRef<'
 export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
   breakpointConfig = defaultConfig,
   caption,
-  id,
   children,
   className,
   color,
+  id,
+  resources,
   size = TableSizes.normal,
   stackHeadWidth,
   testId,
@@ -75,6 +82,13 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
   const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth || window.innerWidth);
   const tableRef = useRef<HTMLTableElement>(null);
   const breakpoint = useBreakpoint();
+
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+  const mergedResources: HNDesignsystemTable = {
+    ...defaultResources,
+    ...resources,
+  };
 
   const currentConfig = useMemo(
     () => getCurrentConfig(breakpointConfig, breakpoint, tableWidth, windowWidth),
@@ -125,7 +139,7 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
   const domRest = omitProps(rest as Record<string, unknown>, ['breakpoint', 'variant', 'fallbackVariant', 'headerCategory']);
 
   const hiddenColumns = useMemo(() => getHiddenColumns(children), [children]);
-  const headings = useMemo(() => getColumnHeadingTexts(children), [children]);
+  const headingTexts = useMemo(() => getColumnHeadingTexts(children), [children]);
 
   const tableContext = useMemo<TableContextValue>(
     () => ({
@@ -134,9 +148,10 @@ export const UNSAFE_Table: React.FC<UNSAFE_TableProps> = ({
       size,
       zebraStripes,
       hiddenColumns,
-      headingTexts: headings,
+      headingTexts,
+      resources: mergedResources,
     }),
-    [currentConfig?.variant, color, size, zebraStripes, hiddenColumns, headings]
+    [currentConfig?.variant, color, size, zebraStripes, hiddenColumns, headingTexts]
   );
 
   const table = (

@@ -12,16 +12,10 @@ import { TableSizes } from '../constants';
 import styles from '../styles.module.scss';
 import { TableContext } from '../TableContext';
 
-type UNSAFE_TableExpanderCellMobileProps = Pick<Props, 'expanded' | 'onClick' | 'hideDetailsText' | 'showDetailsText' | 'expandableRowId'>;
+type UNSAFE_TableExpanderCellMobileProps = Pick<Props, 'expanded' | 'onClick' | 'expandableRowId'>;
 
-const UNSAFE_TableExpanderCellMobile: React.FC<UNSAFE_TableExpanderCellMobileProps> = ({
-  expanded,
-  onClick,
-  hideDetailsText,
-  showDetailsText,
-  expandableRowId,
-}) => {
-  const { size } = useContext(TableContext);
+const UNSAFE_TableExpanderCellMobile: React.FC<UNSAFE_TableExpanderCellMobileProps> = ({ expanded, onClick, expandableRowId }) => {
+  const { size, resources } = useContext(TableContext);
   const cellClass = classNames(styles.table__cell, styles['table__expander-cell-mobile'], {
     [styles['table__cell--compact']]: size === TableSizes.compact,
   });
@@ -36,7 +30,7 @@ const UNSAFE_TableExpanderCellMobile: React.FC<UNSAFE_TableExpanderCellMobilePro
         wrapperClassName={styles['table__expander-trigger']}
         className={styles['table__expander-trigger__content']}
       >
-        <Icon svgIcon={expanded ? ChevronUp : ChevronDown} /> {expanded ? hideDetailsText : showDetailsText}
+        <Icon svgIcon={expanded ? ChevronUp : ChevronDown} /> {expanded ? resources.collapseRowButton : resources.expandRowButton}
       </Button>
     </td>
   );

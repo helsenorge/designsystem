@@ -4,6 +4,8 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
+import { LanguageLocales } from '../../constants';
+import { useLanguage } from '../../hooks/useLanguage';
 import Button from '../Button';
 import FilterSort from '../Filter/FilterSort';
 import Highlighter from '../Highlighter';
@@ -15,6 +17,7 @@ import Spacer from '../Spacer';
 import StatusDot from '../StatusDot';
 import { defaultConfig, ResponsiveTableVariant, TableColors, TableSizes } from './constants';
 import Title from '../Title';
+import { getResources } from './resourceHelper';
 
 import UNSAFE_Table, {
   SortDirection,
@@ -479,8 +482,6 @@ export const Expandable: Story = {
                 expanded={expanded}
                 expandableRowId={expandedRowId}
                 onClick={(): void => toggleExpanded(fastlege.id)}
-                hideDetailsText="Skjul detaljer"
-                showDetailsText="Vis detaljer"
                 expandedContent={
                   <>
                     <p>{`${fastlege.kontor.navn}, ${fastlege.kontor.adresse}. Språk: ${fastlege.spraak.join(', ')}`}</p>
@@ -504,13 +505,16 @@ export const WithPopMenu: Story = {
       event.preventDefault();
     };
 
+    const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+    const resources = getResources(language);
+
     return (
       <UNSAFE_Table {...args}>
         <UNSAFE_TableHead>
           <UNSAFE_TableRow>
             <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
             <UNSAFE_TableHeadCell>{'Fastlegekontor'}</UNSAFE_TableHeadCell>
-            <UNSAFE_TableHeadCell>{'Valg'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell>{resources.menuHeadCell}</UNSAFE_TableHeadCell>
           </UNSAFE_TableRow>
         </UNSAFE_TableHead>
         <UNSAFE_TableBody>
@@ -518,8 +522,6 @@ export const WithPopMenu: Story = {
             return (
               <UNSAFE_TableRow
                 key={fastlege.id}
-                hideDetailsText="Skjul detaljer"
-                showDetailsText="Vis detaljer"
                 popMenu={
                   <PopMenu labelText={'Flere valg'}>
                     <LinkList chevron={false}>
@@ -551,6 +553,9 @@ export const ExpandableWithPopMenu: Story = {
       event.preventDefault();
     };
 
+    const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+    const resources = getResources(language);
+
     return (
       <UNSAFE_Table {...args}>
         <UNSAFE_TableHead>
@@ -559,7 +564,7 @@ export const ExpandableWithPopMenu: Story = {
             <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
             <UNSAFE_TableHeadCell>{'Fastlegekontor'}</UNSAFE_TableHeadCell>
             <UNSAFE_TableHeadCell>{'Beskrivelse'}</UNSAFE_TableHeadCell>
-            <UNSAFE_TableHeadCell>{'Valg'}</UNSAFE_TableHeadCell>
+            <UNSAFE_TableHeadCell>{resources.menuHeadCell}</UNSAFE_TableHeadCell>
           </UNSAFE_TableRow>
         </UNSAFE_TableHead>
         <UNSAFE_TableBody>
@@ -573,8 +578,6 @@ export const ExpandableWithPopMenu: Story = {
                 expanded={expanded}
                 expandableRowId={expandedRowId}
                 onClick={(): void => toggleExpanded(fastlege.id)}
-                hideDetailsText="Skjul detaljer"
-                showDetailsText="Vis detaljer"
                 popMenu={
                   <PopMenu labelText={'Flere valg'}>
                     <LinkList chevron={false}>
@@ -616,7 +619,7 @@ export const ColumnsBehindExpander: Story = {
     const { isExpanded, toggleExpanded } = useTableExpandedRows();
 
     return (
-      <UNSAFE_Table {...args} breakpointConfig={{ breakpoint: 'md', variant: ResponsiveTableVariant.stack }}>
+      <UNSAFE_Table {...args}>
         <UNSAFE_TableHead>
           <UNSAFE_TableRow>
             <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
@@ -628,13 +631,7 @@ export const ColumnsBehindExpander: Story = {
         </UNSAFE_TableHead>
         <UNSAFE_TableBody>
           {fastleger.map(fastlege => (
-            <UNSAFE_TableRow
-              key={fastlege.id}
-              expanded={isExpanded(fastlege.id)}
-              onClick={(): void => toggleExpanded(fastlege.id)}
-              hideDetailsText="Skjul detaljer"
-              showDetailsText="Vis detaljer"
-            >
+            <UNSAFE_TableRow key={fastlege.id} expanded={isExpanded(fastlege.id)} onClick={(): void => toggleExpanded(fastlege.id)}>
               <UNSAFE_TableCell>{fastlege.navn}</UNSAFE_TableCell>
               <UNSAFE_TableCell>{fastlege.alder}</UNSAFE_TableCell>
               <UNSAFE_TableCell>{fastlege.kontor.navn}</UNSAFE_TableCell>
@@ -662,7 +659,7 @@ export const ColumnsBehindExpanderWithExpandedContent: Story = {
     const { isExpanded, toggleExpanded } = useTableExpandedRows();
 
     return (
-      <UNSAFE_Table {...args} breakpointConfig={{ breakpoint: 'md', variant: ResponsiveTableVariant.stack }}>
+      <UNSAFE_Table {...args}>
         <UNSAFE_TableHead>
           <UNSAFE_TableRow>
             <UNSAFE_TableHeadCell />
@@ -682,8 +679,6 @@ export const ColumnsBehindExpanderWithExpandedContent: Story = {
                 expanded={expanded}
                 expandableRowId={`detaljer-skjulte-${fastlege.id}`}
                 onClick={(): void => toggleExpanded(fastlege.id)}
-                hideDetailsText="Skjul detaljer"
-                showDetailsText="Vis detaljer"
                 expandedContent={
                   <>
                     <p>{`${fastlege.kontor.navn}, ${fastlege.kontor.adresse}. Språk: ${fastlege.spraak.join(', ')}`}</p>
@@ -716,6 +711,9 @@ export const ShowMore: Story = {
       data: sortedData,
       pageSize: 2,
     });
+
+    const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+    const resources = getResources(language);
 
     return (
       <>
@@ -750,7 +748,7 @@ export const ShowMore: Story = {
           <>
             <Spacer size="s" />
             <Button variant="outline" onClick={showMore}>
-              {'Vis mer'}
+              {resources.showMoreButton}
             </Button>
           </>
         )}
@@ -854,13 +852,7 @@ export const StackHeadWidth: Story = {
                   const rowKey = `${width}-${fastlege.id}`;
 
                   return (
-                    <UNSAFE_TableRow
-                      key={fastlege.id}
-                      expanded={isExpanded(rowKey)}
-                      onClick={(): void => toggleExpanded(rowKey)}
-                      hideDetailsText="Skjul detaljer"
-                      showDetailsText="Vis detaljer"
-                    >
+                    <UNSAFE_TableRow key={fastlege.id} expanded={isExpanded(rowKey)} onClick={(): void => toggleExpanded(rowKey)}>
                       <UNSAFE_TableCell>{fastlege.navn}</UNSAFE_TableCell>
                       <UNSAFE_TableCell>{`${fastlege.kontor.navn}, ${fastlege.kontor.adresse}`}</UNSAFE_TableCell>
                       <UNSAFE_TableCell>{fastlege.alder}</UNSAFE_TableCell>

@@ -2,7 +2,7 @@ import { act, renderHook, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { useTableShowMore } from './useTableShowMore';
-
+import nbNO from '../../resources/HN.Designsystem.Table.nb-NO.json';
 const data = ['a', 'b', 'c', 'd', 'e'];
 
 describe('Gitt at useTableShowMore brukes', (): void => {
@@ -84,7 +84,7 @@ describe('Gitt at useTableShowMore brukes', (): void => {
               </li>
             ))}
           </ul>
-          {hasMore && <button onClick={showMore}>{'Vis mer'}</button>}
+          {hasMore && <button onClick={showMore}>{nbNO.showMoreButton}</button>}
         </div>
       );
     };
@@ -92,9 +92,9 @@ describe('Gitt at useTableShowMore brukes', (): void => {
     test('Så flyttes fokus til første nye rad', async (): Promise<void> => {
       render(<ShowMoreExample />);
 
-      await userEvent.click(screen.getByRole('button', { name: 'Vis mer' }));
+      await userEvent.click(screen.getByRole('button', { name: nbNO.showMoreButton }));
 
-      expect(screen.queryByRole('button', { name: 'Vis mer' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: nbNO.showMoreButton })).not.toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'd' })).toHaveFocus();
     });
   });
