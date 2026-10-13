@@ -43,8 +43,8 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
   const localizedResources = { ...defaultResources, ...resources };
   const mergedResources: HNDesignsystemUnsafe_DateRangeSelector & Record<string, string> = {
     ...localizedResources,
-    startDateLabel: datePickerPropsTo?.label?.toString() || resources?.startDateLabel || defaultResources.startDateLabel,
-    endDateLabel: datePickerPropsFrom?.label?.toString() || resources?.endDateLabel || defaultResources.endDateLabel,
+    startDateLabel: datePickerPropsFrom?.label?.toString() || resources?.startDateLabel || defaultResources.startDateLabel,
+    endDateLabel: datePickerPropsTo?.label?.toString() || resources?.endDateLabel || defaultResources.endDateLabel,
     ...createPresetLabelMap(language, resources),
   };
 
@@ -134,6 +134,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
           <Unsafe_DatePicker
             label={
               <Label
+                labelId="label-startdato"
                 labelTexts={[{ text: mergedResources.startDateLabel }]}
                 sublabel={<Sublabel sublabelTexts={[{ text: mergedResources.dateSublabel, type: 'subdued' }]} id={'sublabel-startdato'} />}
               />
@@ -153,6 +154,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
           <Unsafe_DatePicker
             label={
               <Label
+                labelId="label-sluttdato"
                 labelTexts={[{ text: mergedResources.endDateLabel }]}
                 sublabel={<Sublabel sublabelTexts={[{ text: mergedResources.dateSublabel, type: 'subdued' }]} id={'sublabel-sluttdato'} />}
               />

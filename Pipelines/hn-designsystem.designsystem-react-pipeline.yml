@@ -25,8 +25,6 @@ variables:
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
     value: .
-  - name: packages_directory
-    value: npm
   - name: sonarqube_endpoint
     value: 'https://sonarqube.int-hn.nhn.no'
   - name: HUSKY
@@ -47,22 +45,9 @@ stages:
             inputs:
               SonarQube: $(sonarqube_endpoint)
               scannerMode: 'CLI'
-              cliProjectKey: $(project_name)
-              cliProjectName: $(project_name)
-              configMode: manual
-              extraProperties: |
-                sonar.sources=$(packages_directory)/
-                sonar.tests=$(packages_directory)/
-                sonar.test.inclusions=$(packages_directory)/**/*.test.tsx
-                sonar.exclusions=**/*.test.tsx,**/*.stories.tsx
-                sonar.coverage.exclusions=**/__*__/**/*,**/*.config.js,**/*.config.ts,**/*.stories.tsx,**/Icons/*.tsx,**/Illustrations/*.tsx,**/Icons/*.ts,**/Illustrations/*.ts,**/components/*/index.ts,**/components/*/*/index.ts
-                sonar.javascript.lcov.reportPaths=$(working_directory)/coverage/lcov.info
-                sonar.typescript.tsconfigPath=$(working_directory)/tsconfig-sonarqube.json
-                sonar.issue.ignore.multicriteria=scssImportAfterUse,unsafePascalCase
-                sonar.issue.ignore.multicriteria.scssImportAfterUse.ruleKey=css:S8778
-                sonar.issue.ignore.multicriteria.scssImportAfterUse.resourceKey=**/*.scss
-                sonar.issue.ignore.multicriteria.unsafePascalCase.ruleKey=typescript:S6770
-                sonar.issue.ignore.multicriteria.unsafePascalCase.resourceKey=**/components/UNSAFE_Table/**/*.tsx
+              # All analysis settings live in sonar-project.properties at the repo root
+              #File = sonar-project.properties file at Root. Dont rename
+              configMode: file
 
           # Install node version
           - task: NodeTool@0
