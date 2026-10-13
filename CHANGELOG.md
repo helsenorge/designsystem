@@ -1,3 +1,15 @@
+## [16.1.0](https://github.com/helsenorge/designsystem/compare/v16.0.0...v16.1.0) (2026-10-13)
+
+### Features
+
+*  ny komponent unsafe table ([8135e02](https://github.com/helsenorge/designsystem/commit/8135e024e9f26c70d8062f36acec3e4cde730206)), closes [#377504](https://github.com/helsenorge/designsystem/issues/377504) [#383283](https://github.com/helsenorge/designsystem/issues/383283) [#387276](https://github.com/helsenorge/designsystem/issues/387276)
+* **unsafe_table:**  lagt til resources prop ([c933cad](https://github.com/helsenorge/designsystem/commit/c933cadc43e1ce35b437db23084319f67c961892)), closes [#387372](https://github.com/helsenorge/designsystem/issues/387372)
+
+### Bug Fixes
+
+* **dateRangeSelector:**  sluttdato leses opp som sluttdato ([6b730aa](https://github.com/helsenorge/designsystem/commit/6b730aa9318875c5901eb6c557d5f7b0194a6346)), closes [#386339](https://github.com/helsenorge/designsystem/issues/386339)
+* **duolist:**  margin fjernet på prop ([adc027f](https://github.com/helsenorge/designsystem/commit/adc027f3c141013d394ab8be7c98c94e86b6ddd1)), closes [#387188](https://github.com/helsenorge/designsystem/issues/387188)
+
 ## [16.0.0](https://github.com/helsenorge/designsystem/compare/v16.0.0-beta.2...v16.0.0) (2026-10-06)
 
 ### Reverts
