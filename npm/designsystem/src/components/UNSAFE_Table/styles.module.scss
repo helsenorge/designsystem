@@ -144,11 +144,11 @@ $zebra-cell-active: var(--color-action-background-light-plus1-active);
     &--compact {
       padding-block: var(--core-space-3xs);
 
-      &:nth-child(1 of .table__cell--compact) {
+      &:nth-child(1 of .table__cell--compact):not(.table__cell-pop-menu, .table__expander-cell-mobile) {
         padding-block-start: var(--core-space-2xs);
       }
 
-      &:nth-last-child(1 of .table__cell--compact) {
+      &:nth-last-child(1 of .table__cell--compact):not(.table__cell-pop-menu, .table__expander-cell-mobile) {
         padding-block-end: var(--core-space-2xs);
       }
     }
@@ -413,6 +413,14 @@ $zebra-cell-active: var(--color-action-background-light-plus1-active);
   @media (min-width: map.get($grid-breakpoints, md)) {
     width: 3.375rem;
     min-width: 3.375rem;
+  }
+
+  &:where(.table__cell--compact) {
+    height: 2.75rem;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      height: 2.75rem;
+    }
   }
 }
 
