@@ -14,9 +14,12 @@ import UNSAFE_Table, {
   useTableExpandedRows,
   useTableShowMore,
 } from '../';
+import { LanguageLocales } from '../../../constants';
+import { useLanguage } from '../../../hooks/useLanguage';
 import Button from '../../Button';
 import Spacer from '../../Spacer';
 import Toggle from '../../Toggle';
+import { getResources } from '../resourceHelper';
 
 interface Resultat {
   id: string;
@@ -63,6 +66,8 @@ export const ByttFastlegeResultater: Story = {
     const [erInnlogget, setErInnlogget] = useState(true);
     const { isExpanded, toggleExpanded } = useTableExpandedRows();
     const { visibleData, hasMore, showMore } = useTableShowMore({ data: resultater, pageSize: 2 });
+    const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+    const resources = getResources(language);
 
     return (
       <>
@@ -114,7 +119,7 @@ export const ByttFastlegeResultater: Story = {
           <>
             <Spacer size="s" />
             <Button variant="outline" onClick={showMore}>
-              {'Vis flere fastleger'}
+              {resources.showMoreButton}
             </Button>
           </>
         )}

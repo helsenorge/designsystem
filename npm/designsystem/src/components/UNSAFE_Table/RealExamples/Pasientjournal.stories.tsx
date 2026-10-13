@@ -12,8 +12,11 @@ import UNSAFE_Table, {
   UNSAFE_TableRow,
   useTableShowMore,
 } from '../';
+import { LanguageLocales } from '../../../constants';
+import { useLanguage } from '../../../hooks/useLanguage';
 import Button from '../../Button';
 import Spacer from '../../Spacer';
+import { getResources } from '../resourceHelper';
 
 interface Tilgang {
   id: string;
@@ -59,6 +62,9 @@ export const TilgangsloggDetaljer: Story = {
       pageSize: 3,
     });
 
+    const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+    const resources = getResources(language);
+
     return (
       <>
         <UNSAFE_Table {...args}>
@@ -89,7 +95,7 @@ export const TilgangsloggDetaljer: Story = {
           <>
             <Spacer size="s" />
             <Button variant="outline" onClick={showMore}>
-              {'Vis flere'}
+              {resources.showMoreButton}
             </Button>
           </>
         )}
