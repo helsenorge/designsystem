@@ -117,13 +117,9 @@
     }
   }
 
-  &--no-padding#{&}--collapsed,
-  &--no-padding#{&}--not-collapsed {
-    dt,
-    dd {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
+  &--no-padding {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   &--non-formatted {
