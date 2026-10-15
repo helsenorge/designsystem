@@ -11,6 +11,8 @@ import Icon from '../Icon';
 import Dog from '../Icons/Dog';
 import VerticalDots from '../Icons/VerticalDots';
 import LazyIcon from '../LazyIcon';
+import Spacer from '../Spacer';
+import Title from '../Title';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Button',
@@ -332,17 +334,34 @@ export const Ellipsis: Story = {
   ),
 };
 
-export const UURightArrow: Story = {
+export const InlineArrows: Story = {
+  args: {
+    children: 'Button med inline arrow',
+    variant: 'borderless',
+  },
   render: args => (
-    <Button
-      {...args}
-      variant="borderless"
-      arrow="accessibility-character"
-      onBlur={action('Button blurred')}
-      onClick={action('Button clicked')}
-    >
-      {'Button'}
-    </Button>
+    <>
+      <Title htmlMarkup="h2" appearance={'title3'}>
+        {'inline-accessible-right'}
+      </Title>
+      <Button arrow="inline-accessible-right" {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+        {args.children}
+      </Button>
+      <Spacer />
+      <Title htmlMarkup="h2" appearance={'title3'}>
+        {'inline-accessible-up'}
+      </Title>
+      <Button arrow="inline-accessible-up" {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+        {args.children}
+      </Button>
+      <Spacer />
+      <Title htmlMarkup="h2" appearance={'title3'}>
+        {'inline-accessible-down'}
+      </Title>
+      <Button arrow="inline-accessible-down" {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+        {args.children}
+      </Button>
+    </>
   ),
 };
 
@@ -375,7 +394,7 @@ export const Borderless: Story = {
       <br />
       <br />
       <Button {...args} arrow="accessibility-character" onBlur={action('Button blurred')} onClick={action('Button clicked')}>
-        {'Button'}
+        {args.children}
       </Button>
     </>
   ),
@@ -411,7 +430,7 @@ export const BorderlessLarge: Story = {
       <br />
       <br />
       <Button {...args} arrow="accessibility-character" onBlur={action('Button blurred')} onClick={action('Button clicked')}>
-        {'Button'}
+        {args.children}
       </Button>
     </>
   ),

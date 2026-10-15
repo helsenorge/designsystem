@@ -6,7 +6,6 @@ export type Styles = {
   'button__left-icon': string;
   'button__only-icon': string;
   'button__right-icon': string;
-  'button__right-unicode-arrow': string;
   button__text: string;
   'button__text--centered': string;
   'button__text--ellipsis': string;

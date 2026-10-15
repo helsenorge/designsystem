@@ -463,10 +463,6 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     }
   }
 
-  &__right-unicode-arrow {
-    white-space: pre;
-  }
-
   /* stylelint-disable-next-line */
   &--outline &__text,
   &--borderless &__text {

@@ -18,7 +18,8 @@ export type ButtonVariant = 'fill' | 'outline' | 'borderless';
 export type ButtonSize = 'normal' | 'large';
 export type ButtonOnColor = 'onlight' | 'ondark';
 export type ButtonTags = 'button' | 'a';
-export type ButtonArrows = 'icon' | 'accessibility-character';
+export type ButtonArrows =
+  'icon' | 'inline-accessible-right' | 'inline-accessible-up' | 'inline-accessible-down' | 'accessibility-character';
 export type ButtonTextPosition = 'left' | 'centered';
 
 export interface ButtonProps extends Omit<HTMLButtonProps, 'onClick' | 'type'>, Omit<HTMLAnchorProps, 'onClick'>, AriaAttributes {
@@ -147,9 +148,22 @@ const Button: React.FC<ButtonProps> = props => {
   const borderlessVariant = variant === 'borderless';
   const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, isMobile);
   const hasArrow = arrow === 'icon' && !borderlessVariant;
+  const hasAccessibilityArrow =
+    arrow !== undefined && arrow !== 'icon' && !fluid && !leftIcon && !rightIcon && !hasArrow && borderlessVariant;
   const large = size === 'large' && !destructive;
   const largeBorderless = large && borderlessVariant;
-  const hasUURightArrow = arrow === 'accessibility-character' && !fluid && !leftIcon && !rightIcon && !hasArrow && borderlessVariant;
+
+  const getAccessibilityArrow = (): string | null => {
+    const nonBreakSpace = '\u00A0\u00A0';
+
+    if (arrow === 'accessibility-character' || arrow === 'inline-accessible-right') {
+      return nonBreakSpace + '→';
+    } else if (arrow === 'inline-accessible-up') {
+      return nonBreakSpace + '↑';
+    } else {
+      return nonBreakSpace + '↓';
+    }
+  };
   const rest = { ...restProps };
 
   const buttonWrapperClasses = classNames(
@@ -210,7 +224,16 @@ const Button: React.FC<ButtonProps> = props => {
             <span className={buttonStyles['diagonal__line']} />
           </span>
         )}
-        <span>{onlyIcon ? ariaLabel : restChildren}</span>
+        <span>
+          {onlyIcon ? (
+            ariaLabel
+          ) : (
+            <>
+              {restChildren}
+              {hasAccessibilityArrow && getAccessibilityArrow()}
+            </>
+          )}
+        </span>
       </span>
     );
   };
@@ -229,11 +252,6 @@ const Button: React.FC<ButtonProps> = props => {
               classNames(buttonStyles['button__arrow'], { [buttonStyles['button__arrow--both-icons']]: bothIcons })
             )
           : renderIcon(rightIcon, iconSize, buttonStyles['button__right-icon'])}
-        {hasUURightArrow && (
-          <span style={{ color: iconColor }} className={buttonStyles['button__right-unicode-arrow']} aria-hidden>
-            {'  →'}
-          </span>
-        )}
       </span>
     );
   };

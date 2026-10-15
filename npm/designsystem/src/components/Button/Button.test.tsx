@@ -370,28 +370,29 @@ describe('Gitt at button skal vises', (): void => {
       expect(button).toHaveAttribute('type', 'submit');
     });
   });
-  describe('Når Button har type arrow er satt til accessibility-character', (): void => {
-    test('Så får den → character lagt til', (): void => {
+  describe('Når Button har arrow som inline-tegn', (): void => {
+    test.each([
+      ['accessibility-character', '→'],
+      ['inline-accessible-right', '→'],
+      ['inline-accessible-up', '↑'],
+      ['inline-accessible-down', '↓'],
+    ] as const)('Så får arrow=%s tegnet %s lagt til som en del av teksten', (arrow, character): void => {
       render(
-        <Button testId={'knapp'} arrow="accessibility-character" variant="borderless">
+        <Button testId={'knapp'} arrow={arrow} variant="borderless">
           {'Tekst'}
         </Button>
       );
 
-      const buttonArrow = screen.getByText('→');
-
-      expect(buttonArrow).toBeInTheDocument();
+      expect(screen.getByTestId('knapp').textContent).toBe(`Tekst\u00A0\u00A0${character}`);
     });
-    test('Så er → skjult for skjermlesere', (): void => {
+    test('Så er tegnet en del av knappens tilgjengelige navn', (): void => {
       render(
-        <Button testId={'knapp'} arrow="accessibility-character" variant="borderless">
+        <Button arrow="inline-accessible-right" variant="borderless">
           {'Tekst'}
         </Button>
       );
 
-      const buttonArrow = screen.getByRole('button', { name: 'Tekst' });
-
-      expect(buttonArrow).toBeVisible();
+      expect(screen.getByRole('button', { name: /^Tekst\s+→$/ })).toBeVisible();
     });
   });
   describe('Når Button har type arrow er satt til accessibility-character og button props som ikke støtter det', (): void => {
@@ -414,9 +415,9 @@ describe('Gitt at button skal vises', (): void => {
         </>
       );
 
-      const buttonArrow = screen.queryByText('→');
-
-      expect(buttonArrow).not.toBeInTheDocument();
+      screen.getAllByTestId('knapp').forEach(button => {
+        expect(button).not.toHaveTextContent('→');
+      });
     });
   });
 });
