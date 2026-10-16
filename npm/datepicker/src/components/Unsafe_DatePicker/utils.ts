@@ -9,3 +9,6 @@ export const parseDateSegments = (value: string | undefined): { dd: string; mm: 
 
 /** Combine `dd`, `mm`, `yyyy` segments back into a `dd.mm.yyyy` string. Returns `''` when all segments are empty. */
 export const combineDateSegments = (dd: string, mm: string, yyyy: string): string => (dd || mm || yyyy ? `${dd}.${mm}.${yyyy}` : '');
+
+/** Compare two dates by timestamp. Returns true when both are undefined, false when only one is. */
+export const isSameDate = (a?: Date, b?: Date): boolean => a?.getTime() === b?.getTime();

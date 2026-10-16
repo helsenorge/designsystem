@@ -4,6 +4,7 @@ import { isBefore, startOfDay } from 'date-fns';
 
 import type { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
 
+import { isSameDate } from './utils';
 import { isValidRange } from './validate';
 
 import styles from './DateRangePickers.module.scss';
@@ -23,6 +24,17 @@ const Unsafe_DateRangePickers: React.FC<DateRangePickersProps> = props => {
 
   const [fromDate, setFromDate] = useState<Date | undefined>(from.props.value ?? undefined);
   const [toDate, setToDate] = useState<Date | undefined>(to.props.value ?? undefined);
+  const [prevFromValue, setPrevFromValue] = useState<Date | undefined>(from.props.value ?? undefined);
+  const [prevToValue, setPrevToValue] = useState<Date | undefined>(to.props.value ?? undefined);
+
+  if (!isSameDate(from.props.value ?? undefined, prevFromValue)) {
+    setPrevFromValue(from.props.value ?? undefined);
+    setFromDate(from.props.value ?? undefined);
+  }
+  if (!isSameDate(to.props.value ?? undefined, prevToValue)) {
+    setPrevToValue(to.props.value ?? undefined);
+    setToDate(to.props.value ?? undefined);
+  }
 
   const handleFromChange = (date: Date | null): void => {
     const normalized = date ?? undefined;
