@@ -1,3 +1,5 @@
 {
-  "showMoreButton": "Vis meir"
+  "showMoreButton": "Vis meir",
+  "expandRowButton": "Vis detaljar",
+  "collapseRowButton": "Skjul detaljar"
 }

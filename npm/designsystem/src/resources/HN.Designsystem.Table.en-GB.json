@@ -1,3 +1,5 @@
 {
-  "showMoreButton": "Show more"
+  "showMoreButton": "Show more",
+  "expandRowButton": "Show details",
+  "collapseRowButton": "Hide details"
 }
