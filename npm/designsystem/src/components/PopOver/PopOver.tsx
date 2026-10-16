@@ -80,7 +80,7 @@ const PopOver: React.FC<PopOverProps> = props => {
   const placementProp = placement ?? (variant === PopOverVariant.positionabove ? 'top' : 'bottom');
 
   const arrowRef = useRef(null);
-  const { refs, floatingStyles, context, middlewareData } = useFloating({
+  const { refs, floatingStyles, context } = useFloating({
     middleware: [offset(10), flip(), shift({ padding: 8 }), hide(), arrow({ element: arrowRef })],
     placement: placementProp,
     whileElementsMounted: autoUpdate,
@@ -94,8 +94,6 @@ const PopOver: React.FC<PopOverProps> = props => {
 
   const { getFloatingProps } = useInteractions([click, dismiss]);
 
-  const isVisible = show && !middlewareData.hide?.referenceHidden;
-
   const mergedRef = useMergeRefs<HTMLElement | SVGSVGElement>([refs.setFloating, ref]);
 
   return (
@@ -103,7 +101,7 @@ const PopOver: React.FC<PopOverProps> = props => {
       <div
         id={id}
         ref={mergedRef}
-        style={{ ...floatingStyles, visibility: isVisible ? 'visible' : 'hidden', zIndex: zIndex }}
+        style={{ ...floatingStyles, visibility: show ? 'visible' : 'hidden', zIndex: zIndex }}
         className={classNames(styles.popover, className)}
         {...getFloatingProps()}
         role={role}
