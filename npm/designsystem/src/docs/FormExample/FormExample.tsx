@@ -202,7 +202,7 @@ export const FormExample = (props: FormExampleProps): React.JSX.Element => {
       );
     } else if (exampleType === FormExampleVariants.checkbox) {
       return color();
-    } else if (exampleType === FormExampleVariants.radiobutton) {
+    } else if (exampleType === FormExampleVariants.radio) {
       return position();
     } else if (exampleType === FormExampleVariants.textarea) {
       return story();

@@ -1,9 +1,11 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 
 import Radio from './Radio';
 import { FormOnColor, FormSize } from '../../constants';
+import FormFieldTag from '../FormFieldTag';
 import FormGroup from '../FormGroup';
-import Label from '../Label';
+import Label, { Sublabel } from '../Label';
+import StatusDot from '../StatusDot';
 
 describe('Gitt at Radio skal vises', (): void => {
   describe('Når Radio rendres', (): void => {
@@ -84,6 +86,33 @@ describe('Gitt at Radio skal vises', (): void => {
 
       expect(input1).toHaveProperty('checked', false);
       expect(input2).toHaveProperty('checked', true);
+    });
+  });
+
+  describe('Når Radio har sublabel, statusDot og formFieldTag', (): void => {
+    test('Så rendres de inne i label-elementet og klikk på dem velger radioen', (): void => {
+      render(
+        <Radio
+          size={FormSize.large}
+          label={
+            <Label
+              labelTexts={[{ text: 'Radio1' }]}
+              sublabel={<Sublabel id="radio-sublabel" sublabelTexts={[{ text: 'Sublabel tekst' }]} />}
+              statusDot={<StatusDot text="Statusdot tekst" variant="active" />}
+              formFieldTag={<FormFieldTag level="optional" />}
+            />
+          }
+        />
+      );
+
+      const input = screen.getByRole('radio');
+      const label = input.closest('label') as HTMLElement;
+      expect(within(label).getByText('Sublabel tekst')).toBeInTheDocument();
+      expect(within(label).getByText('Statusdot tekst')).toBeInTheDocument();
+      expect(within(label).getByText('Valgfritt')).toBeInTheDocument();
+
+      fireEvent.click(screen.getByText('Sublabel tekst'));
+      expect(input).toHaveProperty('checked', true);
     });
   });
 

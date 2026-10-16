@@ -124,8 +124,6 @@ export const Radio: React.FC<RadioProps> = props => {
           inputId: inputId,
           onColor: onColor as FormOnColor,
           labelClassName: radioLabelClasses,
-          sublabelWrapperClassName: radioStyles['radio-sublabel-wrapper'],
-          large: isLarge,
           afterLabelChildrenClassName: radioStyles['radio-afterlabelchildren-wrapper'],
         })}
       </div>

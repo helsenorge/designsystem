@@ -4,6 +4,7 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/screen-reader' as *;
 @use '../../scss/breakpoints' as breakpoints;
+@use '../Label/styles.module' as label;
 
 $padding-clickable-area-top-bottom: 7px;
 $padding-clickable-area-left: 8px;
@@ -131,6 +132,10 @@ $padding-clickable-area-left: 8px;
       }
     }
 
+    &--checked:not(#{&}--on-invalid, #{&}--disabled) {
+      @include label.on-dark-tokens;
+    }
+
     &--checked#{&}--focus {
       color: palette.$blueberry900;
       background-color: palette.$blueberry500;
@@ -192,11 +197,6 @@ $padding-clickable-area-left: 8px;
   &:focus-visible {
     outline: none;
   }
-}
-
-.checkbox-sublabel-wrapper {
-  margin-top: -$padding-clickable-area-top-bottom;
-  padding-left: calc(2.8rem + $padding-clickable-area-left);
 }
 
 .checkbox-afterlabelchildren-wrapper {

@@ -58,7 +58,6 @@ interface RenderLabelAsParentProps {
   labelClassName?: string;
   labelTextClassName?: string;
   sublabelWrapperClassName?: string;
-  large?: boolean;
   markup?: LabelTags;
   afterLabelChildrenClassName?: string;
 }
@@ -75,8 +74,9 @@ export const renderLabelAsParent = (props: RenderLabelAsParentProps): React.Reac
             labelTextClassName: props.labelTextClassName,
             htmlMarkup: props.markup || 'label',
             sublabelWrapperClassName: props.sublabelWrapperClassName,
-            sublabel: props.large ? undefined : props.label.props.sublabel,
-            statusDot: props.large ? undefined : props.label.props.statusDot,
+            sublabelInsideLabel: true,
+            sublabel: props.label.props.sublabel,
+            statusDot: props.label.props.statusDot,
             afterLabelChildrenClassName: props.afterLabelChildrenClassName,
           })
         : typeof props.label === 'string' && (
@@ -88,6 +88,7 @@ export const renderLabelAsParent = (props: RenderLabelAsParentProps): React.Reac
               labelClassName={props.labelClassName}
               labelTextClassName={props.labelTextClassName}
               sublabelWrapperClassName={props.sublabelWrapperClassName}
+              sublabelInsideLabel
               afterLabelChildrenClassName={props.afterLabelChildrenClassName}
             >
               {props.children}

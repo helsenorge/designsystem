@@ -107,9 +107,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så rendres de', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <Radio inputId={'Radiobutton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-          <Radio inputId={'Radiobutton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-          <Radio inputId={'Radiobutton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+          <Radio inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
+          <Radio inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
+          <Radio inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
         </FormGroup>
       );
 

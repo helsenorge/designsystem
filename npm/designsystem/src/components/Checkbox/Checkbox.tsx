@@ -148,8 +148,6 @@ export const Checkbox: React.FC<CheckboxProps> = props => {
           onColor: onColor as FormOnColor,
           labelClassName: checkboxLabelClasses,
           labelTextClassName: labelTextClasses,
-          sublabelWrapperClassName: checkboxStyles['checkbox-sublabel-wrapper'],
-          large: large,
           afterLabelChildrenClassName: checkboxStyles['checkbox-afterlabelchildren-wrapper'],
         })}
       </div>

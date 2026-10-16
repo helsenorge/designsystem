@@ -1,8 +1,10 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 
 import Checkbox from './Checkbox';
 import { FormOnColor, FormSize } from '../../constants';
-import Label from '../Label';
+import FormFieldTag from '../FormFieldTag';
+import Label, { Sublabel } from '../Label';
+import StatusDot from '../StatusDot';
 
 describe('Gitt at Checkbox skal vises', (): void => {
   describe('Når Checkbox rendres', (): void => {
@@ -56,6 +58,33 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       const label = screen.getByTestId('check-label');
       expect(label?.className).toBe('checkbox-label checkbox-label--large checkbox-label__large--on-white');
+    });
+  });
+
+  describe('Når Checkbox har sublabel, statusDot og formFieldTag', (): void => {
+    test('Så rendres de inne i label-elementet og klikk på dem krysser av checkboxen', (): void => {
+      render(
+        <Checkbox
+          size={FormSize.large}
+          label={
+            <Label
+              labelTexts={[{ text: 'Check me out!' }]}
+              sublabel={<Sublabel id="checkbox-sublabel" sublabelTexts={[{ text: 'Sublabel tekst' }]} />}
+              statusDot={<StatusDot text="Statusdot tekst" variant="active" />}
+              formFieldTag={<FormFieldTag level="optional" />}
+            />
+          }
+        />
+      );
+
+      const input = screen.getByRole('checkbox');
+      const label = input.closest('label') as HTMLElement;
+      expect(within(label).getByText('Sublabel tekst')).toBeInTheDocument();
+      expect(within(label).getByText('Statusdot tekst')).toBeInTheDocument();
+      expect(within(label).getByText('Valgfritt')).toBeInTheDocument();
+
+      fireEvent.click(screen.getByText('Sublabel tekst'));
+      expect(input).toBeChecked();
     });
   });
 

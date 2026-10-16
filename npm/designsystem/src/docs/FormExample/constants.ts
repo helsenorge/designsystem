@@ -1,7 +1,7 @@
 export enum FormExampleVariants {
   formgroup = 'formgroup',
   checkbox = 'checkbox',
-  radiobutton = 'radiobutton',
+  radio = 'radio',
   textarea = 'textarea',
   input = 'input',
   select = 'select',

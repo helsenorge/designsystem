@@ -3,6 +3,7 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/breakpoints' as breakpoints;
 @use '../../scss/screen-reader' as *;
+@use '../Label/styles.module' as label;
 
 $padding-clickable-area-top-bottom: 8px;
 $padding-clickable-area-left: 8px;
@@ -145,11 +146,15 @@ $padding-clickable-area-left: 8px;
 
   &__large:has(input:checked) {
     background-color: palette.$blueberry500;
-    color: palette.$white;
+    color: var(--color-base-text-ondark);
 
     &:hover {
       background-color: palette.$blueberry600;
     }
+  }
+
+  &__large:has(input:checked):not(#{&}__large--invalid, #{&}__large--disabled) {
+    @include label.on-dark-tokens;
   }
 
   &__large#{&}__large--disabled {
@@ -178,11 +183,6 @@ $padding-clickable-area-left: 8px;
 
 .radio__marker-wrapper {
   margin-right: var(--core-space-s);
-}
-
-.radio-sublabel-wrapper {
-  margin-top: -$padding-clickable-area-top-bottom;
-  padding-left: calc(2.8rem + $padding-clickable-area-left);
 }
 
 .radio-afterlabelchildren-wrapper {

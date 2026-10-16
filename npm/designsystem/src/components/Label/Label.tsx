@@ -57,6 +57,8 @@ export interface LabelProps {
   testId?: string;
   /** Gives a custom classname to the afterLabelChildren wrapper. Used in checkbox and radiobutton */
   afterLabelChildrenClassName?: string;
+  /** Renders formFieldTag, sublabel and statusDot inside the label element, underneath the label texts. Used by Checkbox and Radio. */
+  sublabelInsideLabel?: boolean;
 }
 
 const Label: FunctionComponent<LabelProps> = ({
@@ -76,6 +78,7 @@ const Label: FunctionComponent<LabelProps> = ({
   sublabelWrapperClassName,
   testId,
   afterLabelChildrenClassName,
+  sublabelInsideLabel,
 }) => {
   const hasChildren = children && typeof children !== 'undefined';
   const labelWrapperClasses = cn(styles['label-wrapper'], { [styles['label-wrapper--no-bottom-margin']]: hasChildren }, className);
@@ -105,35 +108,41 @@ const Label: FunctionComponent<LabelProps> = ({
   };
   const CustomTag = htmlMarkup;
 
+  const renderSublabels = (): React.ReactNode =>
+    (sublabel || statusDot || formFieldTag) && (
+      <div className={sublabelWrapperClassName}>
+        {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
+        {sublabel &&
+          isComponent<SublabelProps>(sublabel, Sublabel) &&
+          React.cloneElement(sublabel, {
+            onColor: onColor as FormOnColor,
+          })}
+        {statusDot && isComponent<StatusDotProps>(statusDot, StatusDot) && (
+          <>
+            <Spacer size={'3xs'} />
+            {React.cloneElement(statusDot, {
+              onColor: onColor === FormOnColor.ondark ? 'ondark' : 'onwhite',
+            })}
+          </>
+        )}
+      </div>
+    );
+
   return (
     <div className={labelWrapperClasses}>
       <div className={mainLabelWrapperClasses}>
         <CustomTag className={labelClassName} id={labelId} htmlFor={htmlFor} data-testid={testId} data-analyticsid={AnalyticsId.Label}>
           <span className={styles['label-content-wrapper']}>
             {children}
-            <span className={styles.label__texts}>{mapLabels()}</span>
+            <span className={styles.label__texts}>
+              {mapLabels()}
+              {sublabelInsideLabel && renderSublabels()}
+            </span>
           </span>
         </CustomTag>
         {afterLabelChildren && <div className={afterLabelChildrenClasses}>{afterLabelChildren}</div>}
       </div>
-      {(sublabel || statusDot || formFieldTag) && (
-        <div className={sublabelWrapperClassName}>
-          {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
-          {sublabel &&
-            isComponent<SublabelProps>(sublabel, Sublabel) &&
-            React.cloneElement(sublabel, {
-              onColor: onColor as FormOnColor,
-            })}
-          {statusDot && isComponent<StatusDotProps>(statusDot, StatusDot) && (
-            <>
-              <Spacer size={'3xs'} />
-              {React.cloneElement(statusDot, {
-                onColor: onColor === FormOnColor.ondark ? 'ondark' : 'onwhite',
-              })}
-            </>
-          )}
-        </div>
-      )}
+      {!sublabelInsideLabel && renderSublabels()}
     </div>
   );
 };

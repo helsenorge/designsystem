@@ -158,9 +158,9 @@ export const Checkbox: Story = {
   render: args => <FormExample {...args} />,
 };
 
-export const Radiobutton: Story = {
+export const Radio: Story = {
   args: {
-    exampleType: FormExampleVariants.radiobutton,
+    exampleType: FormExampleVariants.radio,
   },
   render: args => <FormExample {...args} />,
 };

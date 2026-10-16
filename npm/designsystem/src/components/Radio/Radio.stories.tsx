@@ -7,8 +7,10 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import Radio from './Radio';
 import { FormOnColor, FormSize } from '../../constants';
 import { getColor } from '../../theme/currys';
+import FormFieldTag from '../FormFieldTag';
 import FormGroup from '../FormGroup';
 import Label, { Sublabel } from '../Label';
+import StatusDot from '../StatusDot';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Radio',
@@ -81,11 +83,40 @@ export const AllColors: Story = {
 };
 
 export const Large: Story = {
-  args: { size: 'large', label: <Label labelTexts={[{ text: 'Valg' }]} />, onColor: 'onwhite' },
+  args: { size: 'large', label: 'Large radio label', onColor: 'onwhite' },
   render: args => (
-    <FormGroup legend={'Large'} name="radio1" onColor={args.onColor} size={'large'}>
-      <Radio {...args} />
-      <Radio {...args} />
+    <FormGroup legend={'Large'} name="radio1" onColor={args.onColor} size={args.size}>
+      <Radio {...args} label={<Label labelTexts={[{ text: args.label as string }]} />} />
+      <Radio
+        {...args}
+        label={
+          <Label
+            labelTexts={[{ text: args.label as string, type: 'normal' }]}
+            formFieldTag={<FormFieldTag level={'required-field'} />}
+            sublabel={
+              <Sublabel
+                id="sublabel-testid2"
+                sublabelTexts={[
+                  { text: 'This is a normal sublabel', type: 'normal' },
+                  { text: 'This is a subdued sublabel', type: 'subdued' },
+                ]}
+              />
+            }
+          />
+        }
+      />
+      <Radio
+        {...args}
+        defaultChecked
+        label={
+          <Label
+            labelTexts={[{ text: args.label as string, type: 'normal' }]}
+            sublabel={<Sublabel id="sublabel-testid3" sublabelTexts={[{ text: 'This is a normal sublabel', type: 'normal' }]} />}
+            formFieldTag={<FormFieldTag level="optional" />}
+            statusDot={<StatusDot variant="active" text="Statusdot" />}
+          />
+        }
+      />
     </FormGroup>
   ),
 };
@@ -160,7 +191,25 @@ export const DifferentLabels: Story = {
         label={
           <Label
             labelTexts={[{ text: args.label as string, type: 'normal' }]}
-            sublabel={<Sublabel id="sublabel-testid2" sublabelTexts={[{ text: 'This is a normal sublabel', type: 'normal' }]} />}
+            sublabel={
+              <Sublabel
+                id="sublabel-testid2"
+                sublabelTexts={[
+                  { text: 'This is a normal sublabel', type: 'normal' },
+                  { text: 'This is a subdued sublabel', type: 'subdued' },
+                ]}
+              />
+            }
+          />
+        }
+      />
+      <Radio
+        {...args}
+        label={
+          <Label
+            labelTexts={[{ text: args.label as string, type: 'normal' }]}
+            sublabel={<Sublabel id="sublabel-testid3" sublabelTexts={[{ text: 'This is a normal sublabel', type: 'normal' }]} />}
+            statusDot={<StatusDot variant="active" text="Statusdot" />}
           />
         }
       />

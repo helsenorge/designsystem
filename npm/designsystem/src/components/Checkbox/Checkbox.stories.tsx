@@ -4,8 +4,12 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Checkbox from './Checkbox';
 import { FormOnColor, FormSize } from '../../constants';
+import { getColor } from '../../theme/currys';
+import FormFieldTag from '../FormFieldTag';
+import FormGroup from '../FormGroup';
 import { Sublabel } from '../Label';
 import Label from '../Label/Label';
+import StatusDot from '../StatusDot';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Checkbox',
@@ -67,8 +71,26 @@ export const DifferentLabels: Story = {
         {...args}
         label={
           <Label
-            sublabel={<Sublabel id="sublabel-testid2" sublabelTexts={[{ text: 'This is a normal sublabel', type: 'normal' }]} />}
             labelTexts={[{ text: args.label as string, type: 'normal' }]}
+            sublabel={
+              <Sublabel
+                id="sublabel-testid2"
+                sublabelTexts={[
+                  { text: 'This is a normal sublabel', type: 'normal' },
+                  { text: 'This is a subdued sublabel', type: 'subdued' },
+                ]}
+              />
+            }
+          />
+        }
+      />
+      <Checkbox
+        {...args}
+        label={
+          <Label
+            labelTexts={[{ text: args.label as string, type: 'normal' }]}
+            sublabel={<Sublabel id="sublabel-testid3" sublabelTexts={[{ text: 'This is a normal sublabel', type: 'normal' }]} />}
+            statusDot={<StatusDot variant="active" text="Statusdot" />}
           />
         }
       />
@@ -87,12 +109,65 @@ export const AllColors: Story = {
 };
 
 export const Large: Story = {
+  args: { size: 'large', label: 'Large checkbox label', onColor: 'onwhite' },
   render: args => (
-    <div style={{ backgroundColor: '#EAE7E7', display: 'block', marginTop: '1rem', padding: '1rem' }}>
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} size="large" onColor="onwhite" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} size="large" onColor="ongrey" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} size="large" onColor="oninvalid" />
-    </div>
+    <FormGroup legend={'Large'} onColor={args.onColor} size={args.size}>
+      <Checkbox {...args} label={<Label labelTexts={[{ text: args.label as string }]} />} />
+      <Checkbox
+        {...args}
+        label={
+          <Label
+            labelTexts={[{ text: args.label as string, type: 'normal' }]}
+            formFieldTag={<FormFieldTag level={'required-field'} />}
+            sublabel={
+              <Sublabel
+                id="sublabel-testid2"
+                sublabelTexts={[
+                  { text: 'This is a normal sublabel', type: 'normal' },
+                  { text: 'This is a subdued sublabel', type: 'subdued' },
+                ]}
+              />
+            }
+          />
+        }
+      />
+      <Checkbox
+        {...args}
+        checked
+        label={
+          <Label
+            labelTexts={[{ text: args.label as string, type: 'normal' }]}
+            sublabel={<Sublabel id="sublabel-testid3" sublabelTexts={[{ text: 'This is a normal sublabel', type: 'normal' }]} />}
+            formFieldTag={<FormFieldTag level="optional" />}
+            statusDot={<StatusDot variant="active" text="Statusdot" />}
+          />
+        }
+      />
+    </FormGroup>
+  ),
+};
+
+export const LargeEveryColor: Story = {
+  render: args => (
+    <>
+      <FormGroup legend={'onwhite'} onColor={'onwhite'} size={'large'}>
+        <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} />
+        <Checkbox {...args} checked label={<Label labelTexts={[{ text: 'onwhite - checked' }]} />} />
+      </FormGroup>
+      <FormGroup legend={'ongrey'} onColor={'ongrey'} size={'large'}>
+        <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} />
+        <Checkbox {...args} checked label={<Label labelTexts={[{ text: 'ongrey - checked' }]} />} />
+      </FormGroup>
+      <div style={{ background: getColor('blueberry', 500), padding: '2rem' }}>
+        <FormGroup legend={'ondark'} onColor={'ondark'} size={'large'}>
+          <Checkbox {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} />
+          <Checkbox {...args} checked label={<Label labelTexts={[{ text: 'ondark - checked' }]} />} />
+        </FormGroup>
+      </div>
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} size={'large'} onColor={'oninvalid'} />
+      <Checkbox {...args} checked label={<Label labelTexts={[{ text: 'oninvalid - checked' }]} />} size={'large'} onColor={'oninvalid'} />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} size={'large'} onColor={'onwhite'} disabled />
+    </>
   ),
 };
 

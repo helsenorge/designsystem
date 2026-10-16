@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 
 import type { LabelText } from './Label';
 
 import Label from './Label';
 import { Sublabel } from './SubLabel';
 import { FormOnColor } from '../../constants';
+import FormFieldTag from '../FormFieldTag';
 import Input from '../Input';
 import StatusDot from '../StatusDot';
 
@@ -114,6 +115,42 @@ describe('Gitt at Label skal vises', (): void => {
       const input = screen.getByRole('textbox');
       expect(label).toHaveAttribute('for', 'input-testid');
       expect(input).toHaveAttribute('aria-describedby', sublabelId);
+    });
+  });
+
+  describe('Når sublabelInsideLabel er satt', (): void => {
+    test('Så rendres formFieldTag, sublabel og statusDot inne i label-elementet', (): void => {
+      render(
+        <Label
+          labelTexts={[{ text: 'normal label' }]}
+          sublabel={<Sublabel id="sublabel-testid" sublabelTexts={[{ text: 'normal sublabel' }]} />}
+          statusDot={<StatusDot text={'Statusdot text'} variant={'alert'} />}
+          formFieldTag={<FormFieldTag level="optional" />}
+          sublabelInsideLabel
+          testId="test-label"
+        />
+      );
+
+      const label = screen.getByTestId('test-label');
+      expect(within(label).getByText('normal sublabel')).toBeInTheDocument();
+      expect(within(label).getByText('Statusdot text')).toBeInTheDocument();
+      expect(within(label).getByText('Valgfritt')).toBeInTheDocument();
+    });
+
+    test('Så rendres sublabel utenfor label-elementet når prop ikke er satt', (): void => {
+      render(
+        <Label
+          labelTexts={[{ text: 'normal label' }]}
+          sublabel={<Sublabel id="sublabel-testid" sublabelTexts={[{ text: 'normal sublabel' }]} />}
+          statusDot={<StatusDot text={'Statusdot text'} variant={'alert'} />}
+          testId="test-label"
+        />
+      );
+
+      const label = screen.getByTestId('test-label');
+      expect(within(label).queryByText('normal sublabel')).not.toBeInTheDocument();
+      expect(within(label).queryByText('Statusdot text')).not.toBeInTheDocument();
+      expect(screen.getByText('normal sublabel')).toBeInTheDocument();
     });
   });
 
