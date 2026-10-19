@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../../scss/breakpoints' as breakpoints;
 
 .header-content {
@@ -18,7 +19,15 @@
     align-self: flex-start;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 0.5rem;
+    margin: var(--core-space-2xs) 0 0 var(--core-space-3xs);
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, xs)) {
+      margin-left: var(--core-space-2xs);
+    }
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      margin-left: var(--core-space-xs);
+    }
 
     &--centered {
       position: relative;

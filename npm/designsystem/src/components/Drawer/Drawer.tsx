@@ -6,6 +6,7 @@ import { AnimatePresence, useAnimate, usePresence } from 'motion/react';
 import type { HNDesignsystemDrawer } from '../../resources/Resources';
 import type { TitleTags } from '../Title';
 
+import DrawerHeaderContent from './DrawerHeaderContent';
 import { getResources } from './resourceHelper';
 import { AnalyticsId, KeyboardEventKey, LanguageLocales, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
@@ -20,7 +21,6 @@ import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
-import DrawerHeaderContent from './DrawerHeaderContent';
 
 import styles from './styles.module.scss';
 

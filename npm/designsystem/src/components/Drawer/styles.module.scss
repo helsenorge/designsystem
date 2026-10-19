@@ -81,10 +81,14 @@
     }
 
     &--padding-extra {
-      padding: var(--core-space-xs) var(--core-space-xs) var(--core-space-xs) var(--core-space-s);
+      padding: var(--core-space-xs) var(--core-space-4xs) var(--core-space-xs) var(--core-space-4xs);
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, xs)) {
+        padding: var(--core-space-2xs);
+      }
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-        padding: var(--core-space-xs) var(--core-space-xs) var(--core-space-xs) var(--core-space-m);
+        padding: var(--core-space-xs);
       }
     }
 
