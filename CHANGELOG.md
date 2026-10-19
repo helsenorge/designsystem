@@ -1,3 +1,15 @@
+## [16.2.0](https://github.com/helsenorge/designsystem/compare/v16.1.0...v16.2.0) (2026-10-19)
+
+### Features
+
+* **button:**  arrow prop har fått inline accessible arrow up og down ([d9fbb3f](https://github.com/helsenorge/designsystem/commit/d9fbb3f552f8fa64a91deed23940354602aad940)), closes [#372257](https://github.com/helsenorge/designsystem/issues/372257)
+* **label:**  size large støtter sublabel og statusdot ([1dbf3b4](https://github.com/helsenorge/designsystem/commit/1dbf3b4e7b66686ae538065576a01873a81e213d)), closes [#385962](https://github.com/helsenorge/designsystem/issues/385962)
+
+### Bug Fixes
+
+*  popovers skal ikke skjules når trigger er utenfor skjermen ([70eba3a](https://github.com/helsenorge/designsystem/commit/70eba3a3d245c8693f39fd82e91abcc8f022fe74)), closes [#386662](https://github.com/helsenorge/designsystem/issues/386662)
+* **filter:**  justert spacing i headercontent ([c359c8c](https://github.com/helsenorge/designsystem/commit/c359c8c1bd1c4744d10daedb2da269b248c2d4b9)), closes [#384688](https://github.com/helsenorge/designsystem/issues/384688)
+
 ## [16.1.0](https://github.com/helsenorge/designsystem/compare/v16.0.0...v16.1.0) (2026-10-13)
 
 ### Features
