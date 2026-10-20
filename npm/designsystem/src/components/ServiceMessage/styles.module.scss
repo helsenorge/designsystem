@@ -231,9 +231,12 @@
     margin-left: calc(var(--core-space-xs) * -1);
     gap: var(--core-space-xs);
 
-    &:hover,
+    &:hover {
+      background-color: var(--color-action-background-transparent-onlight-hover);
+    }
+
     &:active {
-      background-color: rgb(88 170 187 / 10%);
+      background-color: var(--color-action-background-transparent-onlight-active);
     }
 
     &:focus-visible {
