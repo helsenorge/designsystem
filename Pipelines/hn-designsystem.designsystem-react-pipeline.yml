@@ -228,7 +228,17 @@ stages:
       - job:
         displayName: 'Copy to Github'
         steps:
+          - checkout: self
+            fetchDepth: 0
+          # Intern deploy-kode (helsenorge.css) skal ikke ut på den offentlige GitHub-kopien
           - bash: |
+              pip install --user git-filter-repo
+              export PATH="$HOME/.local/bin:$PATH"
+              git clone --no-local --mirror . $(Agent.TempDirectory)/github-copy
+              cd $(Agent.TempDirectory)/github-copy
+              git filter-repo --invert-paths \
+                  --path deploy/helsenorge-css \
+                  --path Pipelines/hn-designsystem.helsenorge-css-pipeline.yml
               git push --prune https://$(Github.PAT)@github.com/helsenorge/designsystem \
                   +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
-            displayName: 'Copy to Github'
+            displayName: 'Copy to Github (uten intern deploy-kode)'

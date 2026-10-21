@@ -1,0 +1,58 @@
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: HN-AzureDevopsPipelines
+
+# Push til master bygger og pusher image. Gitops (faktisk deploy) styres av parameteren updateGitops.
+# Manuell kjøring fra andre branches bygger kun et test-image (tag med prefiks test-) og rører aldri gitops.
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - npm/designsystem/src/scss
+      - npm/designsystem/src/fonts
+      - deploy/helsenorge-css
+      - Pipelines/hn-designsystem.helsenorge-css-pipeline.yml
+
+pr: none
+
+parameters:
+  - name: updateGitops
+    displayName: Oppdater gitops (deploy). Slå på først når Plattform har satt opp mottaker.
+    type: boolean
+    default: false
+
+pool:
+  name: Helsenorge_LinuxScaleSetAgents
+
+variables:
+  - name: area_name
+    value: corefrontend # TODO (Plattform): bekreft area i gitops
+  - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+      - name: image_tag
+        value: $(Build.BuildNumber) # TODO (Plattform): tag-strategi uten versjonering
+  - ${{ else }}:
+      - name: image_tag
+        value: test-$(Build.BuildNumber)
+
+stages:
+  - stage: Containers
+    displayName: Build and Push containers
+    jobs:
+      - template: Templates/Docker/build-and-push-containers-job.yml@templates
+        parameters:
+          containers:
+            # TODO (Plattform): eget image eller sammen med corefrontend/static?
+            - containerRepository: helsenorge/designsystem/helsenorge-css
+              dockerFile: deploy/helsenorge-css/Dockerfile
+              tag: ${{ variables.image_tag }}
+
+  - ${{ if and(eq(parameters.updateGitops, true), eq(variables['Build.SourceBranch'], 'refs/heads/master')) }}:
+      - template: Templates/Gitops/area_version_update/version-update-to-gitops-repo-job.yml@templates
+        parameters:
+          build_version: ${{ variables.image_tag }}
+          version_to_set: '.helsenorge-css.image.tag' # TODO (Plattform): key i gitops values
+          area: '$(area_name)'

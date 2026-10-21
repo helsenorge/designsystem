@@ -1,0 +1,11 @@
+{
+  "name": "@helsenorge/helsenorge-css",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Bygger og deployer helsenorge.css til static-domenet. Publiseres ikke til npm.",
+  "type": "module",
+  "scripts": {
+    "build": "vite build --base /core && node scripts/postbuild.mjs",
+    "clean": "rimraf dist"
+  }
+}
