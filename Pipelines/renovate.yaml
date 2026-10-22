@@ -1,0 +1,30 @@
+resources:
+  repositories:
+    - repository: templates # internt navn på repo, brukes i referanser
+      type: git # type repo (les mer i dokumentasjon)
+      name: HN-AzureDevopsPipelines # Navn på repo som inneholder templates
+
+schedules:
+  - cron: '0 3 * * *'
+    displayName: Every day at 3am (UTC)
+    branches:
+      include:
+        - master
+    always: true
+
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  name: Helsenorge_LinuxScaleSetAgents
+
+stages:
+  - stage: Renovate
+    displayName: Renovate dependencies
+    jobs:
+      - template: Templates/Renovate/renovate-repo.yml@templates
+        parameters:
+          repo_name: HN-Designsystem
+          workitem_id: 388121
