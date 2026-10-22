@@ -6,8 +6,6 @@
 @import '../../scss/grid';
 
 .highlightpanel {
-  $colors: 'neutral', 'blueberry', 'cherry';
-
   // fluid skal ha bakgrunnsfarge på den ytre containeren
   padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
 
@@ -24,11 +22,19 @@
     flex-direction: row !important;
   }
 
-  @each $color in $colors {
-    &--#{$color} {
-      background-color: var(--color-base-background-#{$color});
-      border: 1px solid var(--color-base-border-#{$color});
-    }
+  &--cherry {
+    background-color: var(--color-base-cherry-background-light);
+    border: 1px solid var(--color-base-cherry-border-light);
+  }
+
+  &--blueberry {
+    background-color: var(--color-base-blueberry-background-light);
+    border: 1px solid var(--color-base-blueberry-border-light);
+  }
+
+  &--neutral {
+    background-color: var(--color-base-neutral-background-light);
+    border: 1px solid var(--color-base-neutral-border-light);
   }
 
   &--white {
