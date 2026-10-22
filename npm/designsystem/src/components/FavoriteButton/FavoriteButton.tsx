@@ -11,7 +11,6 @@ import { AnalyticsId, LanguageLocales } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useLanguage } from '../../hooks/useLanguage';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { isMutableRefObject } from '../../utils/refs';
 
 import styles from './styles.module.scss';
 
@@ -36,7 +35,7 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = (props: FavoriteBut
   const { checked, id, onClick, resources, tabIndex, testId, ref, ...other } = props;
 
   const buttonWrapperClasses = classNames(styles.favoritebutton);
-  const { refObject, isHovered, isActive } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject, isHovered, isActive } = usePseudoClasses<HTMLButtonElement>(ref);
   const breakpoint = useBreakpoint();
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);

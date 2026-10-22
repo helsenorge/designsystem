@@ -35,13 +35,10 @@ export const AsChildSlot: React.FC<AsChildSlotProps> = props => {
   const childElement = React.Children.toArray(children).filter(React.isValidElement)[0] as React.ReactElement | undefined;
   const nodeRef = React.useRef<HTMLElement | null>(null);
   const childPropsRef = (childElement as unknown as { props?: { ref?: React.Ref<HTMLElement> } })?.props?.ref;
-  const mergedRef = mergeRefs<HTMLElement>([
-    (node): void => {
-      nodeRef.current = node;
-    },
-    childPropsRef,
-    elementRef,
-  ]);
+  const mergedRef = (node: HTMLElement | null): void => {
+    nodeRef.current = node;
+    mergeRefs<HTMLElement>([childPropsRef, elementRef])(node);
+  };
 
   const childProps =
     (childElement?.props as Partial<React.DOMAttributes<HTMLElement>> &

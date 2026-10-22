@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   autoUpdate,
@@ -79,14 +79,15 @@ const PopOver: React.FC<PopOverProps> = props => {
 
   const placementProp = placement ?? (variant === PopOverVariant.positionabove ? 'top' : 'bottom');
 
-  const arrowRef = useRef(null);
+  const [arrowElement, setArrowElement] = useState<SVGSVGElement | null>(null);
   const { refs, floatingStyles, context } = useFloating({
-    middleware: [offset(10), flip(), shift({ padding: 8 }), hide(), arrow({ element: arrowRef })],
+    middleware: [offset(10), flip(), shift({ padding: 8 }), hide(), arrow({ element: arrowElement })],
     placement: placementProp,
     whileElementsMounted: autoUpdate,
-    elements: {
-      reference: controllerRef.current,
-    },
+  });
+
+  useEffect(() => {
+    refs.setReference(controllerRef.current);
   });
 
   const click = useClick(context);
@@ -111,7 +112,7 @@ const PopOver: React.FC<PopOverProps> = props => {
       >
         {children}
         <FloatingArrow
-          ref={arrowRef}
+          ref={setArrowElement}
           className={styles['popover__arrow']}
           context={context}
           fill={'var(--core-color-white)'}

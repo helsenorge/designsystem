@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react';
-import React, { useEffect, useRef, useId } from 'react';
+import React, { useEffect, useRef, useId, useState } from 'react';
 
-import { autoUpdate, offset, shift, size, useFloating, flip } from '@floating-ui/react';
+import { autoUpdate, offset, shift, size, useFloating, useMergeRefs, flip } from '@floating-ui/react';
 import classNames from 'classnames';
 import { clamp } from 'motion/react';
 
@@ -91,7 +91,8 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
-  const childrenRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
+  const [childRefs] = useState(() => React.Children.map(children, () => React.createRef<HTMLElement>()));
+  const childrenRefList = useRef(childRefs);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const { isHovered } = usePseudoClasses<HTMLButtonElement | null>(buttonRef);
   const openedByKeyboard = useRef<boolean>(false);
@@ -168,6 +169,8 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     toggleIsOpen();
   };
 
+  const buttonMergedRef = useMergeRefs([buttonRef, refs.setReference]);
+  const floatingRef = useMergeRefs([refs.setFloating]);
   const handleClose = useDismissablePopover({ popoverRef: dropdownRef, triggerRef: buttonRef, isOpen, onClose: toggleIsOpen });
 
   useEffect(() => {
@@ -235,13 +238,13 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
 
     return (
       <li className={listItemClasses} id={`${optionIdPrefix}-${index}`}>
-        {React.isValidElement(element) && childrenRefList.current && childrenRefList.current[index]
+        {React.isValidElement(element) && childRefs && childRefs[index]
           ? ((): React.ReactElement => {
               if (isMultiSelect && isComponent<CheckboxProps>(element, Checkbox)) {
                 const label = element.props.label;
                 if (React.isValidElement(label) && isComponent<LabelProps>(label, Label)) {
                   return React.cloneElement(element, {
-                    ref: mergeRefs([element.props.ref, childrenRefList.current[index]]),
+                    ref: mergeRefs([element.props.ref, childRefs[index]]),
                     label: React.cloneElement(label, {
                       labelClassName: classNames((label.props as LabelProps)?.labelClassName, styles['dropdown__multiselect-item']),
                     }),
@@ -250,7 +253,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
               }
 
               return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
-                ref: mergeRefs([element.props.ref, childrenRefList.current[index]]),
+                ref: mergeRefs([element.props.ref, childRefs[index]]),
               });
             })()
           : child}
@@ -264,7 +267,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         type="button"
         onClick={(): false | void => handleOpen(false)}
         className={toggleClasses}
-        ref={mergeRefs([buttonRef, refs.setReference])}
+        ref={buttonMergedRef}
         data-testid={testId}
         data-analyticsid={AnalyticsId.Dropdown}
         disabled={disabled}
@@ -301,7 +304,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         key={dropdownMinWidth ?? 'auto'}
         id={contentId}
         className={contentClasses}
-        ref={refs.setFloating}
+        ref={floatingRef}
         style={{
           ...floatingStyles,
           zIndex: zIndex,

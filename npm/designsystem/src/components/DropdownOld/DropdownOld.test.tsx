@@ -1,3 +1,5 @@
+import { createRef } from 'react';
+
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -223,6 +225,20 @@ describe('Gitt at DropdownOld skal vises vanlig', (): void => {
       // Klikk på knappen igjen for å lukke
       await userEvent.click(button);
       expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+  });
+
+  describe('Når et child har egen ref', (): void => {
+    test('Så får dens egen ref fortsatt elementet', async (): Promise<void> => {
+      const childRef = createRef<HTMLButtonElement>();
+      render(
+        <DropdownOld label="Ta et valg" placeholder="Knapp">
+          <button ref={childRef}>{'Innhold'}</button>
+        </DropdownOld>
+      );
+      await userEvent.click(screen.getByRole('button', { name: 'Knapp' }));
+
+      expect(childRef.current).toBe(screen.getByRole('button', { name: 'Innhold' }));
     });
   });
 });

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -24,11 +24,16 @@ export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttribu
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
 }) => {
-  const viewportRef = useRef<HTMLElement>(null);
+  const viewportRef = useRef<HTMLElement | null>(null);
+  const [viewport, setViewport] = useState<HTMLElement | null>(null);
+  const setViewportRef = useCallback((node: HTMLElement | null): void => {
+    viewportRef.current = node;
+    setViewport(node);
+  }, []);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
-  const leftIsVisible = useIsVisible(leftRef, 1, { root: viewportRef?.current, rootMargin: ROOT_MARGIN_OFFSET }, true);
-  const rightIsVisible = useIsVisible(rightRef, 1, { root: viewportRef?.current, rootMargin: ROOT_MARGIN_OFFSET }, true);
+  const leftIsVisible = useIsVisible(leftRef, 1, { root: viewport, rootMargin: ROOT_MARGIN_OFFSET }, true);
+  const rightIsVisible = useIsVisible(rightRef, 1, { root: viewport, rootMargin: ROOT_MARGIN_OFFSET }, true);
   const hasAriaAttributes = ariaLabel || ariaLabelledBy;
 
   useStopPropagation(viewportRef, ['touchstart', 'touchmove']);
@@ -39,7 +44,7 @@ export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttribu
       {/* Enten aria-label eller aria-labelledbyid må settes */}
       <section
         className={styles.horizontalscroll__viewport}
-        ref={viewportRef}
+        ref={setViewportRef}
         // Scrollbart område må kunne nås med tastatur. Seksjonen har navn (og dermed region-rolle) når tabIndex settes
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={hasAriaAttributes ? 0 : undefined}

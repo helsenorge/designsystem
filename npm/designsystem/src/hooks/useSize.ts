@@ -10,6 +10,12 @@ import { useEffect, useRef, useState } from 'react';
 export const useSize = (ref?: React.RefObject<HTMLElement | null>): DOMRect | undefined => {
   const ticking = useRef(false);
   const [size, setSize] = useState<DOMRect>();
+  const [element, setElement] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setElement(ref?.current ?? null);
+  });
+
   useEffect(() => {
     const resizeObserver = new ResizeObserver(entries => {
       if (!ticking.current) {
@@ -20,17 +26,13 @@ export const useSize = (ref?: React.RefObject<HTMLElement | null>): DOMRect | un
       }
       ticking.current = true;
     });
-    if (ref?.current) {
-      resizeObserver.observe(ref?.current);
+    if (element) {
+      resizeObserver.observe(element);
     }
     return (): void => {
-      if (ref?.current) {
-        resizeObserver.unobserve(ref.current);
-      } else {
-        resizeObserver.disconnect();
-      }
+      resizeObserver.disconnect();
     };
-  }, [ref?.current]);
+  }, [element]);
 
   return size;
 };

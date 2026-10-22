@@ -103,5 +103,48 @@ describe('Gitt at AsChildSlot skal vises', () => {
 
       expect(childRef.current).toBeInstanceOf(HTMLElement);
     });
+
+    test('Så settes både elementRef og child-ref til samme element', () => {
+      const childRef = React.createRef<HTMLButtonElement>();
+      const elementRef = React.createRef<HTMLElement>();
+
+      render(
+        <AsChildSlot elementRef={elementRef}>
+          <button data-testid="child" ref={childRef} />
+        </AsChildSlot>
+      );
+
+      const child = screen.getByTestId('child');
+      expect(childRef.current).toBe(child);
+      expect(elementRef.current).toBe(child);
+    });
+
+    test('Så støttes callback-refs, og de nullstilles ved unmount', () => {
+      const elementRef = vi.fn();
+      const { unmount } = render(
+        <AsChildSlot elementRef={elementRef}>
+          <button data-testid="child" />
+        </AsChildSlot>
+      );
+
+      expect(elementRef).toHaveBeenCalledWith(screen.getByTestId('child'));
+      unmount();
+      expect(elementRef).toHaveBeenLastCalledWith(null);
+    });
+
+    test('Så fungerer click() via imperative handle også når elementRef er satt', () => {
+      const handleClick = vi.fn();
+      const ref = React.createRef<AsChildSlotHandle>();
+      const elementRef = React.createRef<HTMLElement>();
+
+      render(
+        <AsChildSlot ref={ref} elementRef={elementRef}>
+          <button onClick={handleClick} />
+        </AsChildSlot>
+      );
+
+      ref.current?.click();
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    });
   });
 });

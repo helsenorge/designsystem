@@ -381,6 +381,50 @@ describe('Gitt at en modal skal vises ', (): void => {
   });
 });
 
+describe('Gitt at innholdet i en modal kan være scrollbart', (): void => {
+  const mockSize = (scrollHeight: number, clientHeight: number): void => {
+    vi.spyOn(HTMLElement.prototype, 'scrollHeight', 'get').mockReturnValue(scrollHeight);
+    vi.spyOn(HTMLElement.prototype, 'clientHeight', 'get').mockReturnValue(clientHeight);
+  };
+
+  afterEach((): void => {
+    vi.restoreAllMocks();
+  });
+
+  describe('Når innholdet er høyere enn modalen', (): void => {
+    it('Så blir innholdet en tastaturtilgjengelig region med label', (): void => {
+      mockSize(500, 200);
+      render(<Modal title="test" ariaLabel="Modalinnhold" />);
+
+      const region = screen.getByRole('region', { name: 'Modalinnhold' });
+      expect(region).toHaveAttribute('tabindex', '0');
+    });
+
+    it('Så oppdateres regionen når en ny render gjør innholdet scrollbart', (): void => {
+      mockSize(100, 200);
+      const { rerender } = render(<Modal title="test" ariaLabel="Modalinnhold" />);
+      expect(screen.queryByRole('region')).not.toBeInTheDocument();
+
+      mockSize(500, 200);
+      rerender(
+        <Modal title="test" ariaLabel="Modalinnhold">
+          {'Mer innhold'}
+        </Modal>
+      );
+      expect(screen.getByRole('region', { name: 'Modalinnhold' })).toBeInTheDocument();
+    });
+  });
+
+  describe('Når innholdet får plass i modalen', (): void => {
+    it('Så er innholdet ikke en region og kan ikke fokuseres', (): void => {
+      mockSize(200, 200);
+      render(<Modal title="test" ariaLabel="Modalinnhold" />);
+
+      expect(screen.queryByRole('region')).not.toBeInTheDocument();
+    });
+  });
+});
+
 describe('Gitt at en modal skal vises som printable ', (): void => {
   it('Så skal modalen wrappes med Portal', (): void => {
     const onClose = vi.fn();

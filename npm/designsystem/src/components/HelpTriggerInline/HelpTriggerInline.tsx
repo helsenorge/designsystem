@@ -5,7 +5,7 @@ import type { HelpTriggerWeights } from '../HelpTriggerIcon';
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { isMutableRefObject, mergeRefs } from '../../utils/refs';
+import { mergeRefs } from '../../utils/refs';
 import { HelpTriggerIconInternal } from '../HelpTriggerIcon';
 
 import styles from './styles.module.scss';
@@ -44,7 +44,7 @@ const HelpTriggerInline: React.FC<HelpTriggerInlineProps> = props => {
   const { ariaLabel, ariaLabelledById, children, className, testId, weight = 'normal', ref, ...rest } = props;
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
   const helpTriggerInlineStyles = classNames(styles['help-trigger-inline'], className);
-  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref);
 
   return (
     <button

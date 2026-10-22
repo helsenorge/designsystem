@@ -4,7 +4,7 @@ import HelpSign from './HelpSign';
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { isMutableRefObject, mergeRefs } from '../../utils/refs';
+import { mergeRefs } from '../../utils/refs';
 
 import styles from './styles.module.scss';
 
@@ -78,7 +78,7 @@ export const HelpTriggerIconInternal: React.FC<HelpTriggerIconInternalProps> = p
     ...buttonRest
   } = props;
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
-  const { refObject, isHovered: interalIsHovered } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject, isHovered: interalIsHovered } = usePseudoClasses<HTMLButtonElement>(ref);
   const helpIcon = <HelpSign color={getIconColor(interalIsHovered || isHovered, weight)} size={size} weight={weight} />;
   const isButton = htmlMarkup === 'button';
   const iconClasses = classNames(

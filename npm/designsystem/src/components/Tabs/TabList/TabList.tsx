@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -28,7 +28,8 @@ const TabList: React.FC<TabListProps> = props => {
 
   const listRef = useRef<HTMLUListElement>(null);
 
-  const tabRefs = useRef(React.Children.map(children, () => React.createRef<HTMLButtonElement>()) || []);
+  const [tabRefList] = useState(() => React.Children.map(children, () => React.createRef<HTMLButtonElement>()) || []);
+  const tabRefs = useRef(tabRefList);
   useRovingFocus(onTabListClick, tabRefs, listRef, true);
 
   const tablistClasses = classNames(styles['tab-list'], styles[`tab-list--${onColor}`]);
@@ -43,8 +44,8 @@ const TabList: React.FC<TabListProps> = props => {
         return 'var(--color-base-neutral-background-light)';
     }
   };
-  const firstTab = tabRefs.current && tabRefs.current[0];
-  const lastTab = tabRefs.current && tabRefs.current[tabRefs.current.length - 1];
+  const firstTab = tabRefList[0];
+  const lastTab = tabRefList[tabRefList.length - 1];
 
   const firstTabVisible = useIsVisible(firstTab);
   const lastTabVisible = useIsVisible(lastTab);

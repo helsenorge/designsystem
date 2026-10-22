@@ -4,7 +4,7 @@ import { AnalyticsId, IconSize } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { isMutableRefObject, mergeRefs } from '../../utils/refs';
+import { mergeRefs } from '../../utils/refs';
 import HelpDetails from '../HelpDetails/HelpDetails';
 import HelpTriggerStandalone from '../HelpTriggerStandalone';
 import Icon from '../Icon';
@@ -55,7 +55,7 @@ const HelpExpanderStandalone: React.FC<HelpExpanderStandaloneProps> = props => {
   } = props;
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
   const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
-  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref);
 
   return (
     <div className={className} data-testid={testId} data-analyticsid={AnalyticsId.HelpExpanderStandalone}>

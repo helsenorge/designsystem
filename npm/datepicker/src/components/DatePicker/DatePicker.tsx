@@ -20,7 +20,7 @@ import { useLanguage } from '@helsenorge/designsystem-react/hooks/useLanguage';
 import { useOutsideEvent } from '@helsenorge/designsystem-react/hooks/useOutsideEvent';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
 import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
-import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
+import { mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
 import DatePickerPopup from './DatePickerPopup';
 import { getResources } from './resourceHelper';
@@ -155,7 +155,7 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const inputContainerRef = useRef<HTMLDivElement>(null);
   const datepickerWrapperRef = useRef<HTMLDivElement>(null);
-  const { refObject } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject } = usePseudoClasses<HTMLInputElement>(ref);
   const mergedRefs = mergeRefs([ref, refObject]);
   const isTyping = useRef<boolean>(false);
 

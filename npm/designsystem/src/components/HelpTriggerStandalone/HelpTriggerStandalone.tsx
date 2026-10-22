@@ -6,7 +6,7 @@ import { AnalyticsId } from '../../constants';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { isMutableRefObject, mergeRefs } from '../../utils/refs';
+import { mergeRefs } from '../../utils/refs';
 import { HelpTriggerIconInternal } from '../HelpTriggerIcon';
 
 import styles from './styles.module.scss';
@@ -46,7 +46,7 @@ const HelpTriggerStandalone: React.FC<HelpTriggerStandaloneProps> = props => {
   const isMobile = useIsMobileBreakpoint();
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
   const helpTriggerStandaloneStyles = classNames(styles['help-trigger-standalone'], className);
-  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref);
 
   return (
     <button

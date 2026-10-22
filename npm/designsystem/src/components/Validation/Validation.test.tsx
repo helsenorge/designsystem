@@ -21,6 +21,21 @@ describe('Gitt at Validation skal vises', () => {
     });
   });
 
+  describe('Når Validation får testId, className og ref', () => {
+    test('Så settes de på wrapperen', () => {
+      const ref = { current: null as HTMLDivElement | null };
+      render(
+        <Validation testId="validation" className="min-klasse" ref={ref}>
+          <p>{'Barn'}</p>
+        </Validation>
+      );
+
+      const wrapper = screen.getByTestId('validation');
+      expect(wrapper).toHaveClass('min-klasse');
+      expect(ref.current).toBe(wrapper);
+    });
+  });
+
   describe('Når Validation har errorTitle og errors', () => {
     test('Så vises oppsummering av feil i en status', () => {
       render(<Validation errorTitle="Du må fikse dette:" errors={{ feil1: { message: 'For lang tekst' } }} />);

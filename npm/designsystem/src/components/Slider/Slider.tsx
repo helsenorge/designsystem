@@ -11,7 +11,7 @@ import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useSize } from '../../hooks/useSize';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { isMutableRefObject, mergeRefs } from '../../utils/refs';
+import { mergeRefs } from '../../utils/refs';
 import ErrorWrapper from '../ErrorWrapper';
 import Title from '../Title';
 
@@ -126,7 +126,7 @@ export const Slider: React.FC<SliderProps> = props => {
   const labelLeftId = 'label-' + baseId;
   const labelRightId = 'label-right-' + baseId;
   const trackRef = useRef<HTMLDivElement>(null);
-  const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(ref);
   const mergedRefs = mergeRefs([ref, refObject]);
 
   const { width: trackWidth } = useSize(trackRef) || { width: 0 };

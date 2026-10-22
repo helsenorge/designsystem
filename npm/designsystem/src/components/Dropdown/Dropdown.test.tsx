@@ -1,3 +1,5 @@
+import { createRef } from 'react';
+
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -210,6 +212,53 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       // Klikk på knappen igjen for å lukke
       await userEvent.click(button);
       expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+  });
+
+  describe('Når barn har egen ref', (): void => {
+    test('Så får barnets egen ref fortsatt elementet', async (): Promise<void> => {
+      const checkboxRef = createRef<HTMLInputElement>();
+      render(
+        <Dropdown triggerText="Knapp">
+          <Checkbox inputId="cb-1" label="Valg A" ref={checkboxRef} />
+          <Checkbox inputId="cb-2" label="Valg B" />
+        </Dropdown>
+      );
+      await userEvent.click(screen.getByRole('button', { name: 'Knapp' }));
+
+      expect(checkboxRef.current).toBe(screen.getByLabelText('Valg A'));
+    });
+
+    test('Så kan man navigere mellom flervalg med tastaturet', async (): Promise<void> => {
+      render(
+        <Dropdown triggerText="Knapp">
+          <Checkbox inputId="cb-1" label="Valg A" />
+          <Checkbox inputId="cb-2" label="Valg B" />
+        </Dropdown>
+      );
+      await userEvent.click(screen.getByRole('button', { name: 'Knapp' }));
+      await userEvent.keyboard('{home}');
+      expect(screen.getByLabelText('Valg A')).toHaveFocus();
+
+      await userEvent.keyboard('{arrowdown}');
+      expect(screen.getByLabelText('Valg B')).toHaveFocus();
+    });
+  });
+
+  describe('Når Dropdown åpnes', (): void => {
+    test('Så går fokus tilbake til knappen ved lukking', async (): Promise<void> => {
+      render(
+        <Dropdown triggerText="Knapp" testId="dd">
+          <Dropdown.SingleSelectItem text="Valg 1" value="v1" />
+        </Dropdown>
+      );
+      const button = screen.getByTestId('dd');
+      await userEvent.click(button);
+
+      expect(screen.getByRole('button', { name: 'Valg 1' })).toBeVisible();
+
+      await userEvent.keyboard('{escape}');
+      expect(button).toHaveFocus();
     });
   });
 });

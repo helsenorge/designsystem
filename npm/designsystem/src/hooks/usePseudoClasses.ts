@@ -1,5 +1,7 @@
-import type { RefObject } from 'react';
+import type { Ref, RefObject } from 'react';
 import { useRef, useEffect, useState } from 'react';
+
+import { isMutableRefObject } from '../utils/refs';
 
 /**
  * Få vite når et element hovres over eller mottar fokus.
@@ -7,10 +9,10 @@ import { useRef, useEffect, useState } from 'react';
  * @returns Objekt med ref og om objekt er hovered/focused
  */
 export const usePseudoClasses = <T extends HTMLElement | SVGElement | null>(
-  ref?: RefObject<T> | null
+  ref?: Ref<T> | null
 ): { refObject: RefObject<T | null>; isHovered: boolean; isFocused: boolean; isActive: boolean } => {
   const internalRef = useRef<T | null>(null);
-  const refObject = ref ?? internalRef;
+  const refObject = isMutableRefObject(ref) ? ref : internalRef;
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isActive, setIsActive] = useState(false);

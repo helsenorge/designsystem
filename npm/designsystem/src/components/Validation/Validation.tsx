@@ -44,6 +44,7 @@ interface ValidationProps {
 }
 
 export const Validation: React.FC<ValidationProps> = (props: ValidationProps) => {
+  const { ref, testId, className, children, errorTitle, errors, visuallyHiddenSummary } = props;
   const validationErrorClass = styles['validation__error-wrapper'];
 
   const cloneFormElement = <T extends ErrorWrapperClassNameProps>(child: React.ReactElement<T>): React.ReactElement<T> => {
@@ -79,10 +80,10 @@ export const Validation: React.FC<ValidationProps> = (props: ValidationProps) =>
 
   return (
     <>
-      <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={props.className} ref={props.ref}>
-        {React.Children.map(props.children, (child: React.ReactNode) => renderChild(child))}
+      <div data-testid={testId} data-analyticsid={AnalyticsId.Validation} className={className} ref={ref}>
+        {React.Children.map(children, (child: React.ReactNode) => renderChild(child))}
       </div>
-      <ValidationSummary errorTitle={props.errorTitle} errors={props.errors} visuallyHidden={props.visuallyHiddenSummary} />
+      <ValidationSummary errorTitle={errorTitle} errors={errors} visuallyHidden={visuallyHiddenSummary} />
     </>
   );
 };

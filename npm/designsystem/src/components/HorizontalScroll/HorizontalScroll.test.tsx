@@ -1,6 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import HorizontalScroll from './HorizontalScroll';
+import * as useIsVisibleModule from '../../hooks/useIsVisible';
+
+const useIsVisibleSpy = vi.spyOn(useIsVisibleModule, 'useIsVisible');
 
 describe('Gitt at HorizontalScroll skal rendres', (): void => {
   describe('Når HorizontalScroll skal vises vanlig', (): void => {
@@ -45,6 +49,34 @@ describe('Gitt at HorizontalScroll skal rendres', (): void => {
 
       const region = screen.getByRole('region', { name: 'Beskriver innholdet med custom element' });
       expect(region).toBeVisible();
+    });
+  });
+
+  describe('Når synlighet observeres', (): void => {
+    test('Så brukes scroll-containeren som root', (): void => {
+      useIsVisibleSpy.mockClear();
+      render(<HorizontalScroll aria-label="Område">{'Teksten sin'}</HorizontalScroll>);
+
+      const viewport = screen.getByRole('region', { name: 'Område' });
+
+      const lastCallOptions = useIsVisibleSpy.mock.calls.at(-1)?.[2];
+      expect(lastCallOptions?.root).toBe(viewport);
+    });
+  });
+
+  describe('Når bruker berører scroll-området', (): void => {
+    test('Så propageres ikke touch-events til foreldre', (): void => {
+      const parentHandler = vi.fn();
+      render(
+        <div onTouchMove={parentHandler} onTouchStart={parentHandler}>
+          <HorizontalScroll aria-label="Område">{'Teksten sin'}</HorizontalScroll>
+        </div>
+      );
+
+      const viewport = screen.getByRole('region', { name: 'Område' });
+      fireEvent.touchStart(viewport);
+      fireEvent.touchMove(viewport);
+      expect(parentHandler).not.toHaveBeenCalled();
     });
   });
 });

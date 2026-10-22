@@ -1,4 +1,7 @@
+import type { RefObject } from 'react';
 import { useEffect, useRef } from 'react';
+
+const useCurrentValue = <T>(ref: RefObject<T>): T => ref.current;
 
 /**
  * Brukes f.eks. i forbindelse med useState for å kunne sammenlikne ny verdi med gammel.
@@ -12,5 +15,5 @@ export const usePrevious = <T>(value: T): T | null => {
     ref.current = value;
   }, [value]);
 
-  return ref.current;
+  return useCurrentValue(ref);
 };

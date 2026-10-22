@@ -122,7 +122,12 @@ const Modal: React.FC<ModalProps> = props => {
   const topContentVisible = useIsVisible(topContent);
   const bottomContent = React.useRef<HTMLDivElement>(null);
   const bottomContentVisible = useIsVisible(bottomContent);
-  const contentIsScrollable = modalContentRef.current && modalContentRef.current.scrollHeight > modalContentRef.current.clientHeight;
+  const [contentIsScrollable, setContentIsScrollable] = React.useState(false);
+
+  React.useLayoutEffect(() => {
+    const content = modalContentRef.current;
+    setContentIsScrollable(!!content && content.scrollHeight > content.clientHeight);
+  });
   useReturnFocusOnUnmount(dialogRef);
 
   function handleKeyboardEvent(e: KeyboardEvent): void {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useId } from 'react';
+import React, { useEffect, useRef, useId, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -82,7 +82,8 @@ const DropdownOld: React.FC<DropdownOldProps> = props => {
   const { refObject: buttonRef, isHovered } = usePseudoClasses<HTMLButtonElement>();
   const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
-  const inputRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
+  const [inputRefs] = useState(() => React.Children.map(children, () => React.createRef<HTMLElement>()));
+  const inputRefList = useRef(inputRefs);
   const labelId = useId();
   const toggleLabelId = useId();
   const optionIdPrefix = useId();
@@ -184,9 +185,9 @@ const DropdownOld: React.FC<DropdownOldProps> = props => {
 
     return (
       <li className={styles.dropdown__input} id={`${optionIdPrefix}-${index}`}>
-        {React.isValidElement(element) && inputRefList.current && inputRefList.current[index]
+        {React.isValidElement(element) && inputRefs && inputRefs[index]
           ? React.cloneElement(element, {
-              ref: mergeRefs([element.props.ref, inputRefList.current[index]]),
+              ref: mergeRefs([element.props.ref, inputRefs[index]]),
             })
           : child}
       </li>

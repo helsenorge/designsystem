@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import type { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
-import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
+import { mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
 import styles from './styles.module.scss';
 
@@ -67,7 +67,7 @@ export const DateTime: React.FC<DateTimeProps> = props => {
   const [inputValue, setInputValue] = useState<number | string | undefined>(
     typeof value !== 'undefined' ? formatAsTwoDigits(value) : undefined
   );
-  const { refObject } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject } = usePseudoClasses<HTMLInputElement>(ref);
   const mergedRefs = mergeRefs([ref, refObject]);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { arrow, FloatingArrow, autoUpdate, useFloating, offset, size } from '@floating-ui/react';
+import { arrow, FloatingArrow, autoUpdate, useFloating, useMergeRefs, offset, size } from '@floating-ui/react';
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
@@ -20,14 +20,14 @@ export interface HelpDetailsProps {
 }
 const HelpDetails: React.FC<HelpDetailsProps> = props => {
   const { children, controllerRef, testId, ref } = props;
-  const arrowRef = useRef(null);
+  const [arrowElement, setArrowElement] = useState<SVGSVGElement | null>(null);
   const [bubbleMinWidth, setBubbleMinWidth] = React.useState<number | null>(null);
   const [arrowYOffsetValue, setArrowYOffsetValue] = useState<number>();
 
   const { refs, context, floatingStyles } = useFloating({
     middleware: [
       offset(arrowYOffsetValue),
-      controllerRef && arrow({ element: arrowRef }),
+      controllerRef && arrow({ element: arrowElement }),
       size({
         apply({ rects }) {
           // Vi setter minimum bredde på bubble basert på controllerRef sin x posisjon og halve bredden
@@ -44,9 +44,12 @@ const HelpDetails: React.FC<HelpDetailsProps> = props => {
     ],
     placement: 'bottom',
     whileElementsMounted: autoUpdate,
-    elements: {
-      reference: controllerRef?.current,
-    },
+  });
+
+  const floatingRef = useMergeRefs([refs.setFloating]);
+
+  useEffect(() => {
+    refs.setReference(controllerRef?.current ?? null);
   });
 
   const helpDetailsClasses = classNames(
@@ -62,10 +65,10 @@ const HelpDetails: React.FC<HelpDetailsProps> = props => {
       ref={ref}
       style={{ minWidth: bubbleMinWidth ? `${bubbleMinWidth + BUBBLE_WIDTH_OFFSET}px` : undefined }}
     >
-      <div style={floatingStyles} ref={refs.setFloating}>
+      <div style={floatingStyles} ref={floatingRef}>
         {controllerRef && typeof arrowYOffsetValue !== 'undefined' && (
           <FloatingArrow
-            ref={arrowRef}
+            ref={setArrowElement}
             context={context}
             fill={'var(--core-color-plum-50)'}
             stroke={'var(--core-color-plum-400)'}

@@ -9,7 +9,7 @@ import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import { isMutableRefObject, mergeRefs } from '../../utils/refs';
+import { mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import { getLabelText, renderLabelAsParent } from '../Label/utils';
@@ -75,7 +75,7 @@ export const Checkbox: React.FC<CheckboxProps> = props => {
   const onInvalid = error || onColor === FormOnColor.oninvalid;
   const onDark = onColor === FormOnColor.ondark;
   const large = size === FormSize.large;
-  const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(ref);
   const mergedRefs = mergeRefs([ref, refObject]);
 
   const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {

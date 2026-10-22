@@ -6,11 +6,8 @@ import { useRovingFocus } from './useRovingFocus';
 
 const UseRovingFocusExample: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const refArray = useRef<Array<React.RefObject<HTMLButtonElement | null>>>([
-    useRef<HTMLButtonElement>(null),
-    useRef<HTMLButtonElement>(null),
-    useRef<HTMLButtonElement>(null),
-  ]);
+  const [buttonRefs] = useState(() => Array.from({ length: 3 }, () => React.createRef<HTMLButtonElement | null>()));
+  const refArray = useRef<Array<React.RefObject<HTMLButtonElement | null>>>(buttonRefs);
   const containerRef = useRef<HTMLDivElement>(null);
   const leftRightNavigation = false;
 
@@ -19,7 +16,7 @@ const UseRovingFocusExample: React.FC = () => {
   return (
     <div ref={containerRef}>
       <div>{'Focused button:' + activeIndex}</div>
-      {refArray.current.map((ref, index) => (
+      {buttonRefs.map((ref, index) => (
         <button key={index} ref={ref}>
           {'Button ' + index}
         </button>
@@ -88,7 +85,7 @@ const WithLeftRightNavigationRender: React.FC = () => {
   return (
     <div ref={containerRef}>
       <div>{'Focused button:' + activeIndex}</div>
-      {refArray.current.map((ref, index) => (
+      {buttonRefs.map((ref, index) => (
         <button key={index} ref={ref}>
           {'Button ' + index}
         </button>
