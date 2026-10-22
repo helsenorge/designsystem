@@ -13,7 +13,7 @@
   padding: var(--core-space-2xs) var(--core-space-2xs) var(--core-space-xs);
   flex-direction: column;
   justify-content: center;
-  background-color: var(--core-color-white);
+  background-color: var(--color-action-background-light-normal);
   color: var(--core-color-black);
   text-decoration: none;
   cursor: pointer;
@@ -46,12 +46,17 @@
     flex-shrink: 0;
   }
 
-  &:hover,
-  &:active {
-    background-color: var(--color-action-background-light-selected);
+  &:hover {
+    background-color: var(--color-action-background-light-plus1-hover);
   }
 
-  &:focus-visible {
+  &:active {
+    background-color: var(--color-action-background-light-plus1-active);
+  }
+
+  &:focus-visible,
+  &:focus-visible:hover {
+    background-color: var(--color-action-background-light-normal);
     box-shadow: 0 0 0 3px var(--color-action-border-dark-focus);
     border-color: var(--color-action-border-dark-focus);
   }
