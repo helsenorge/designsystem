@@ -18,8 +18,7 @@ export type ButtonVariant = 'fill' | 'outline' | 'borderless';
 export type ButtonSize = 'normal' | 'large';
 export type ButtonOnColor = 'onlight' | 'ondark';
 export type ButtonTags = 'button' | 'a';
-export type ButtonArrows =
-  'icon' | 'inline-accessible-right' | 'inline-accessible-up' | 'inline-accessible-down' | 'accessibility-character';
+export type ButtonArrows = 'icon' | 'inline-accessible-right' | 'inline-accessible-up' | 'inline-accessible-down';
 export type ButtonTextPosition = 'left' | 'centered';
 
 export interface ButtonProps extends Omit<HTMLButtonProps, 'onClick' | 'type'>, Omit<HTMLAnchorProps, 'onClick'>, AriaAttributes {
@@ -156,7 +155,7 @@ const Button: React.FC<ButtonProps> = props => {
   const getAccessibilityArrow = (): string | null => {
     const nonBreakSpace = '\u00A0\u00A0';
 
-    if (arrow === 'accessibility-character' || arrow === 'inline-accessible-right') {
+    if (arrow === 'inline-accessible-right') {
       return nonBreakSpace + '→';
     } else if (arrow === 'inline-accessible-up') {
       return nonBreakSpace + '↑';
