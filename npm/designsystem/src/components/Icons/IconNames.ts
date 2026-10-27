@@ -303,6 +303,7 @@ export const IconList = [
   'Sort',
   'SortDown',
   'SortUp',
+  'Sparkle',
   'SpeechBubble',
   'Spray',
   'StarFill',

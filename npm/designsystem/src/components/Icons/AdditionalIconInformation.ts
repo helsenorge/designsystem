@@ -358,4 +358,5 @@ export default {
   personcommunication: { alternativeName: '', categories: 'Generisk' },
   persondocument: { alternativeName: '', categories: 'Generisk' },
   yesno: { alternativeName: '', categories: 'Generisk' },
+  sparkle: { alternativeName: '', categories: '' },
 };
