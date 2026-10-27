@@ -151,12 +151,6 @@
       "require": "./lib/components/Dropdown/index.js",
       "default": "./lib/components/Dropdown/index.js"
     },
-    "./components/DropdownOld/DropdownOld": {
-      "types": "./lib/components/DropdownOld/DropdownOld.d.ts",
-      "import": "./lib/components/DropdownOld/index.js",
-      "require": "./lib/components/DropdownOld/index.js",
-      "default": "./lib/components/DropdownOld/index.js"
-    },
     "./components/Duolist/Duolist": {
       "types": "./lib/components/Duolist/Duolist.d.ts",
       "import": "./lib/components/Duolist/index.js",
@@ -670,9 +664,6 @@
     "./components/Dropdown/resourceHelper": {
       "types": "./lib/components/Dropdown/resourceHelper.d.ts"
     },
-    "./components/DropdownOld/resourceHelper": {
-      "types": "./lib/components/DropdownOld/resourceHelper.d.ts"
-    },
     "./components/ExpanderHierarchy/utils": {
       "types": "./lib/components/ExpanderHierarchy/utils.d.ts"
     },
@@ -720,9 +711,6 @@
     },
     "./components/Chip/resourceHelper": {
       "types": "./lib/components/Chip/resourceHelper.d.ts"
-    },
-    "./components/DropdownOld/constants": {
-      "types": "./lib/components/DropdownOld/constants.d.ts"
     },
     "./components/ElementHeader/utils": {
       "types": "./lib/components/ElementHeader/utils.d.ts"
