@@ -6,7 +6,7 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import DateInputInternal from './DateInputInternal';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/_Internal/DateInputInternal',
+  title: '@helsenorge/datepicker/DatePicker/_Internal/DateInputInternal',
   component: DateInputInternal,
   args: {
     legendId: 'date-picker-legend',

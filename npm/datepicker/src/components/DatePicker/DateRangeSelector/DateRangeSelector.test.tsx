@@ -7,7 +7,7 @@ import '@testing-library/jest-dom';
 
 import type { DateRangePreset } from './constants';
 
-import Unsafe_DateRangeSelector from './Unsafe_DateRangeSelector';
+import DateRangeSelector from './DateRangeSelector';
 import { DateRangePresets } from './utils';
 
 const testResources = {
@@ -40,9 +40,9 @@ const getClearButtons = (): HTMLElement[] => screen.getAllByLabelText(CLEAR_LABE
 const getDayInputs = (): HTMLInputElement[] => screen.getAllByLabelText(DAY_LABEL) as HTMLInputElement[];
 const getMonthInputs = (): HTMLInputElement[] => screen.getAllByLabelText(MONTH_LABEL) as HTMLInputElement[];
 
-const renderDateRangeSelector = (props: React.ComponentProps<typeof Unsafe_DateRangeSelector>): void => {
+const renderDateRangeSelector = (props: React.ComponentProps<typeof DateRangeSelector>): void => {
   render(
-    <Unsafe_DateRangeSelector
+    <DateRangeSelector
       resources={testResources}
       datePickerPropsFrom={{ resources: testDatePickerResources }}
       datePickerPropsTo={{ resources: testDatePickerResources }}
@@ -53,7 +53,7 @@ const renderDateRangeSelector = (props: React.ComponentProps<typeof Unsafe_DateR
 
 const getPadded = (value: number): string => value.toString().padStart(2, '0');
 
-describe('Gitt at Unsafe_DateRangeSelector skal vises', () => {
+describe('Gitt at DateRangeSelector skal vises', () => {
   describe('Når en preset-radio velges', () => {
     it('Så skal onChange kalles med preset-objektet', async () => {
       const handleChange = vi.fn();
@@ -81,7 +81,7 @@ describe('Gitt at Unsafe_DateRangeSelector skal vises', () => {
       };
 
       render(
-        <Unsafe_DateRangeSelector
+        <DateRangeSelector
           resources={testResources}
           datePickerPropsFrom={{ resources: testDatePickerResources }}
           datePickerPropsTo={{ resources: testDatePickerResources }}
@@ -132,7 +132,7 @@ describe('Gitt at Unsafe_DateRangeSelector skal vises', () => {
         const [value, setValue] = useState<DateRangePreset | undefined>(DateRangePresets.Last12Months);
 
         return (
-          <Unsafe_DateRangeSelector
+          <DateRangeSelector
             resources={testResources}
             datePickerPropsFrom={{ resources: testDatePickerResources }}
             datePickerPropsTo={{ resources: testDatePickerResources }}
@@ -174,7 +174,7 @@ describe('Gitt at Unsafe_DateRangeSelector skal vises', () => {
         });
 
         return (
-          <Unsafe_DateRangeSelector
+          <DateRangeSelector
             resources={testResources}
             datePickerPropsFrom={{ resources: testDatePickerResources }}
             datePickerPropsTo={{ resources: testDatePickerResources }}
@@ -210,7 +210,7 @@ describe('Gitt at Unsafe_DateRangeSelector skal vises', () => {
           <button type="button" onClick={() => setValue(undefined)}>
             {'Nullstill'}
           </button>
-          <Unsafe_DateRangeSelector
+          <DateRangeSelector
             resources={testResources}
             datePickerPropsFrom={{ resources: testDatePickerResources }}
             datePickerPropsTo={{ resources: testDatePickerResources }}
@@ -249,7 +249,7 @@ describe('Gitt at Unsafe_DateRangeSelector skal vises', () => {
         const [value, setValue] = useState<DateRangePreset | undefined>(DateRangePresets.LastMonth);
 
         return (
-          <Unsafe_DateRangeSelector
+          <DateRangeSelector
             resources={testResources}
             datePickerPropsFrom={{ resources: testDatePickerResources }}
             datePickerPropsTo={{ resources: testDatePickerResources }}

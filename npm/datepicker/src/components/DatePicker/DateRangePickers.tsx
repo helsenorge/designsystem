@@ -2,7 +2,7 @@ import { cloneElement, isValidElement, useState } from 'react';
 
 import { isBefore, startOfDay } from 'date-fns';
 
-import type { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
+import type { DatePickerProps } from './DatePicker';
 
 import { isSameDate } from './utils';
 import { isValidRange } from './validate';
@@ -12,14 +12,14 @@ import styles from './DateRangePickers.module.scss';
 //@todo: utvide denne til å ta inn ISODatePicker også
 export interface DateRangePickersProps {
   /** The 'from' date. Must be DateInput */
-  from: React.ReactElement<Unsafe_DatePickerProps>;
+  from: React.ReactElement<DatePickerProps>;
   /** The 'to' date. Must be DateInput */
-  to: React.ReactElement<Unsafe_DatePickerProps>;
+  to: React.ReactElement<DatePickerProps>;
   /** Callback when the date range changes with validation result */
   onRangeChange?: (from: Date | undefined | null, to: Date | undefined | null, isValid: boolean) => void;
 }
 
-const Unsafe_DateRangePickers: React.FC<DateRangePickersProps> = props => {
+const DateRangePickers: React.FC<DateRangePickersProps> = props => {
   const { from, to, onRangeChange } = props;
 
   const [fromDate, setFromDate] = useState<Date | undefined>(from.props.value ?? undefined);
@@ -75,7 +75,7 @@ const Unsafe_DateRangePickers: React.FC<DateRangePickersProps> = props => {
     : undefined;
 
   // Clone the from DateInput with additional props
-  const enhancedFrom = isValidElement<Unsafe_DatePickerProps>(from)
+  const enhancedFrom = isValidElement<DatePickerProps>(from)
     ? cloneElement(from, {
         ...from.props,
         onChange: handleFromChange,
@@ -90,7 +90,7 @@ const Unsafe_DateRangePickers: React.FC<DateRangePickersProps> = props => {
     : from;
 
   // Clone the to DateInput with additional props
-  const enhancedTo = isValidElement<Unsafe_DatePickerProps>(to)
+  const enhancedTo = isValidElement<DatePickerProps>(to)
     ? cloneElement(to, {
         ...to.props,
         onChange: handleToChange,
@@ -112,4 +112,4 @@ const Unsafe_DateRangePickers: React.FC<DateRangePickersProps> = props => {
   );
 };
 
-export default Unsafe_DateRangePickers;
+export default DateRangePickers;

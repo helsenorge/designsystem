@@ -6,13 +6,13 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 
-import Unsafe_DateRangePickers from './Unsafe_DateRangePickers';
+import DateRangePickers from './DateRangePickers';
 
-import Unsafe_DatePicker from './index';
+import DatePicker from './index';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_DateRangePickers',
-  component: Unsafe_DateRangePickers,
+  title: '@helsenorge/datepicker/DatePicker/DateRangePickers',
+  component: DateRangePickers,
   argTypes: {
     from: { control: 'object' },
     to: { control: 'object' },
@@ -22,7 +22,7 @@ const meta = {
     to: <></>,
     onRangeChange: undefined,
   },
-} satisfies Meta<typeof Unsafe_DateRangePickers>;
+} satisfies Meta<typeof DateRangePickers>;
 
 export default meta;
 
@@ -35,7 +35,7 @@ export const Default: Story = {
     const [errorText, setErrorText] = useState<string | undefined>();
 
     const fromComponent = (
-      <Unsafe_DatePicker
+      <DatePicker
         id="from-date"
         aria-describedby="sublabel-from"
         label={
@@ -54,7 +54,7 @@ export const Default: Story = {
       />
     );
     const toComponent = (
-      <Unsafe_DatePicker
+      <DatePicker
         id="to-date"
         aria-describedby="sublabel-to"
         label={
@@ -84,7 +84,7 @@ export const Default: Story = {
     };
     return (
       <>
-        <Unsafe_DateRangePickers from={fromComponent} to={toComponent} onRangeChange={handleRangeChange} />
+        <DateRangePickers from={fromComponent} to={toComponent} onRangeChange={handleRangeChange} />
         <span>
           {from?.toString()}
           {'-'}

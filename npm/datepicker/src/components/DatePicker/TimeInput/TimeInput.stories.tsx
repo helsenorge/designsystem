@@ -4,12 +4,12 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 
-import Unsafe_DatePicker from '../Unsafe_DatePicker';
-import Unsafe_TimeInput from './Unsafe_TimeInput';
+import DatePicker from '../DatePicker';
+import TimeInput from './TimeInput';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_TimeInput',
-  component: Unsafe_TimeInput,
+  title: '@helsenorge/datepicker/DatePicker/TimeInput',
+  component: TimeInput,
   args: {
     withClearButton: true,
     label: (
@@ -31,7 +31,7 @@ const meta = {
     ['aria-describedby']: { control: 'text' },
     ['aria-labelledby']: { control: 'text' },
   },
-} satisfies Meta<typeof Unsafe_TimeInput>;
+} satisfies Meta<typeof TimeInput>;
 
 export default meta;
 
@@ -40,7 +40,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => {
     const [value, setValue] = useState<string | undefined>();
-    return <Unsafe_TimeInput {...args} value={value} onChange={setValue} />;
+    return <TimeInput {...args} value={value} onChange={setValue} />;
   },
 };
 
@@ -49,7 +49,7 @@ export const WithDefaultValue: Story = {
     const [value, setValue] = useState<string | undefined>('12:31');
     return (
       <>
-        <Unsafe_TimeInput {...args} value={value} onChange={value => setValue(value)} />
+        <TimeInput {...args} value={value} onChange={value => setValue(value)} />
         <br />
         <span>{'Value: ' + value}</span>
       </>
@@ -63,8 +63,8 @@ export const BesideDate: Story = {
     const [time, setTime] = useState<string | undefined>('12:31');
     return (
       <div style={{ display: 'flex', alignItems: 'start', gap: '0.2rem' }}>
-        <Unsafe_TimeInput {...args} value={time} onChange={value => setTime(value)} />
-        <Unsafe_DatePicker
+        <TimeInput {...args} value={time} onChange={value => setTime(value)} />
+        <DatePicker
           value={date}
           onChange={setDate}
           aria-labelledby="sublabel"

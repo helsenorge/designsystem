@@ -34,13 +34,13 @@ import TagList from '@helsenorge/designsystem-react/components/TagList';
 import Toggle from '@helsenorge/designsystem-react/components/Toggle';
 import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
 
-import Unsafe_DateRangeSelector from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector';
-import type { DateRangePreset } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/constants';
+import DateRangeSelector from '@helsenorge/datepicker/components/DatePicker/DateRangeSelector';
+import type { DateRangePreset } from '@helsenorge/datepicker/components/DatePicker/DateRangeSelector/constants';
 import {
   DateRangePresets,
   getSelectedRangeLabel,
   createPresetLabelMap,
-} from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils';
+} from '@helsenorge/datepicker/components/DatePicker/DateRangeSelector/utils';
 import { LanguageLocales } from '@helsenorge/designsystem-react';
 
 const meta: Meta = {
@@ -516,7 +516,7 @@ export const DokumenterExample: Story = {
           <FilterDrawer.View id="periode" title={dokumentFilterLabels.dateRange} onReset={() => filter.removeFilter('dateRange')}>
             <div>
               <FormGroup legend={'Velg periode'}>
-                <Unsafe_DateRangeSelector
+                <DateRangeSelector
                   name="periode"
                   options={dateRangeOptions}
                   value={filter.filters.dateRange}

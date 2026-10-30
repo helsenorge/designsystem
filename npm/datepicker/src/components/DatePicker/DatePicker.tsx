@@ -1,423 +1,286 @@
-import { useState, useRef, useEffect } from 'react';
+import { cloneElement, useImperativeHandle, useRef, useState } from 'react';
 
+import {
+  autoUpdate,
+  flip,
+  FloatingFocusManager,
+  offset,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from '@floating-ui/react';
+import classNames from 'classnames';
 import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 
-import type { DatePickerAriaLabels } from './DatePickerPopup';
-import type { HNDesignsystemDatePicker } from '../../resources/Resources';
-import type { Locale } from 'date-fns';
-import type { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
+import type { HNDesignsystemUnsafe_DatePicker } from '../../resources/Resources';
 
-import Button from '@helsenorge/designsystem-react/components/Button';
-import type { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import ErrorWrapper from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
-import Input from '@helsenorge/designsystem-react/components/Input';
-import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
-import { KeyboardEventKey, LanguageLocales, ZIndex } from '@helsenorge/designsystem-react/constants';
-import { useKeyboardEvent } from '@helsenorge/designsystem-react/hooks/useKeyboardEvent';
-import { useLanguage } from '@helsenorge/designsystem-react/hooks/useLanguage';
-import { useOutsideEvent } from '@helsenorge/designsystem-react/hooks/useOutsideEvent';
-import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
-import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
+import Label, { type LabelProps } from '@helsenorge/designsystem-react/components/Label';
+import { isComponent } from '@helsenorge/designsystem-react/utils/component';
 import { mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
-import DatePickerPopup from './DatePickerPopup';
+import { IconSize, LanguageLocales, useDismissablePopover, useLanguage, useToggle } from '@helsenorge/designsystem-react';
+
+import BaseDayPicker, { type BaseDayPickerProps } from './BaseDayPicker/BaseDayPicker';
+import DateInputInternal, { type DateInputInternalHandle } from './DateInputInternal';
 import { getResources } from './resourceHelper';
 
-import styles from './styles.module.scss';
+import styles from './DatePicker.module.scss';
 
-export type DateFormat = 'dd.MM.yyyy';
+export type DayPickerVariants = 'popover' | 'inline';
 
-export interface DatePickerProps
-  extends
-    ErrorWrapperClassNameProps,
-    Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
-    Pick<DayPickerProps, 'dir' | 'initialFocus'> {
-  /** Setter labels for popup på desktop visning */
-  ariaLabels?: DatePickerAriaLabels;
-  /** Adds custom classes to the element. */
-  className?: string;
-  /** @deprecated Sets aria-label on the button that opens the datepicker dialogue */
-  dateButtonAriaLabel?: string;
-  /** Sets the format of the date - only applies for desktop use. Native mobile date fields base their formats on the device */
-  dateFormat?: DateFormat;
-  /** Sets the date of the component */
-  dateValue?: Date;
-  /** Sets the current month */
-  defaultMonth?: Date;
-  /** Disables the datepicker */
-  disabled?: boolean;
-  /** Disables the days in the datepicker */
-  disableDays?: Date[];
-  /** Disables weekends in the datepicker */
-  disableWeekends?: boolean;
-  /** Activates Error style for the input */
-  error?: boolean;
-  /** Error text to show above the component */
-  errorText?: string;
-  /** Error text id */
-  errorTextId?: string;
-  /** Content to be rendered in the footer of the datepicker popup */
-  footerContent?: React.ReactNode;
+export interface DatePickerProps extends Omit<BaseDayPickerProps, 'selectedDate' | 'onDateChange'> {
+  /** Currently given date. `null` and `undefined` are both treated as "no value". */
+  value?: Date | null;
+  /** Callback for change on the given date. Emits `null` when the field is cleared. */
+  onChange?: (value: Date | null) => void;
+  /** Callback for bluring the input field. Emits `null` when blurred while empty. */
+  onBlur?: (value: Date | null) => void;
   /** Label of the input */
   label?: React.ReactNode;
-  /** Input element id */
-  inputId?: string;
-  /** Sets the locale of the datepicker */
-  locale?: Locale;
-  /** Maximum date allowed to be selected */
-  maxDate?: Date;
-  /** Minimum date allowed to be selected */
-  minDate?: Date;
-  /** onChange callback triggered by change in chosen date */
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
-    date?: Date | string
-  ) => void;
-  /** Only use this to trigger validation. Callback triggered by change in chosen date via the datepicker popup */
-  onDatePopupClosed?: (date: Date | string | undefined) => void;
-  /** Resources for component */
-  resources?: Partial<HNDesignsystemDatePicker>;
-  /** Sets the data-testid attribute. */
-  testId?: string;
-  /** Determines the placement of the DatePicker popup. Default: automatic positioning. */
-  variant?: keyof typeof PopOverVariant;
-  /** Overrides the default z-index of DatePicker */
-  zIndex?: number;
-  /** Ref that is passed to the component */
-  ref?: React.Ref<HTMLInputElement | null>;
+  /** Id of the input field, for connecting labels */
+  id?: string;
+  /** Error text for the input field */
+  errorText?: string;
+  /** Wether or not to shw a clear button when there is content in the input */
+  withClearButton?: boolean;
+  /** Sets aria-describedby on the input, for connecting labels */
+  ['aria-describedby']?: string;
+  /** Sets aria-labelledby on the input, for connecting labels */
+  ['aria-labelledby']?: string;
+  /** Ref exposing an imperative handle (e.g. `focus()`) for the input field */
+  ref?: React.Ref<DatePickerHandle>;
+  /** Selects the visual variant of the daypicker. */
+  variant?: DayPickerVariants;
 }
 
-export const DatePicker: React.FC<DatePickerProps> = props => {
-  const {
-    className,
-    dateButtonAriaLabel,
-    dateFormat = 'dd.MM.yyyy',
-    dateValue,
-    defaultMonth,
-    dir,
-    disabled,
-    disableDays = [],
-    disableWeekends,
-    error,
-    errorText,
-    errorTextId,
-    errorWrapperClassName,
-    footerContent,
-    label,
-    ariaLabels,
-    inputId,
-    locale = nb,
-    maxDate,
-    minDate,
-    onBlur,
-    onChange,
-    onDatePopupClosed,
-    testId,
-    resources,
-    autoComplete = 'off',
-    variant = PopOverVariant.positionautomatic,
-    zIndex = ZIndex.PopOver,
-    ref,
-    ...rest
-  } = props;
-  const [dateState, setDateState] = useState<Date | undefined>(dateValue);
-  const [inputValue, setInputValue] = useState<string>(dateState ? format(dateState, dateFormat) : '');
-  const [month, setMonth] = useState<Date | undefined>(defaultMonth);
-  const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
-  const [returnInputFocus, setReturnInputFocus] = useState<boolean>(false);
+export interface DatePickerHandle {
+  focus: () => void;
+}
+
+const DatePicker = ({
+  value: valueProp,
+  onChange,
+  onBlur,
+  label,
+  id,
+  errorText,
+  withClearButton = true,
+  ['aria-describedby']: ariaDescribedBy,
+  ['aria-labelledby']: ariaLabelledBy,
+  resources,
+  ref,
+  variant = 'popover',
+  ...baseDayPickerProps
+}: DatePickerProps): React.ReactNode => {
+  // Normalize null and undefined to a single internal representation.
+  const value = valueProp ?? undefined;
+  const dateToString = (date: Date | undefined): string => {
+    if (!isValid(date) || !date) {
+      return '';
+    }
+    return format(date, 'P', { locale: nb });
+  };
+  const [dateString, setDateString] = useState<string>(dateToString(value) || '');
+  const [dateDate, setDateDate] = useState<Date | undefined>(value || undefined);
+  const [softErrorText, setSoftErrorText] = useState<string>('');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const calendarButtonRef = useRef<HTMLButtonElement>(null);
+  const dateInputInternalRef = useRef<DateInputInternalHandle>(null);
+
+  useImperativeHandle(ref, () => ({
+    focus: (): void => dateInputInternalRef.current?.focus(),
+  }));
+
+  // Track the last value we emitted so we can distinguish our own updates from external ones.
+  // Important when consumers (e.g. react-hook-form) echo back the previous value because they
+  // substitute a defaultValue when our onChange emits `undefined`.
+  const lastSentValueTime = useRef<number | undefined>(value?.getTime());
+
+  // Sync internal state when external value changes (works for both controlled and uncontrolled use).
+  // Skip sync when the new value matches what we just emitted — otherwise consumer echo-back wipes local edits.
+  const [prevValueTime, setPrevValueTime] = useState<number | undefined>(value?.getTime());
+  const currentValueTime = value?.getTime();
+  if (currentValueTime !== prevValueTime) {
+    setPrevValueTime(currentValueTime);
+    if (currentValueTime !== lastSentValueTime.current) {
+      setDateString(dateToString(value) || '');
+      setDateDate(value || undefined);
+      lastSentValueTime.current = currentValueTime;
+    }
+  }
+
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
 
-  const mergedResources: HNDesignsystemDatePicker = {
+  const mergedResources: HNDesignsystemUnsafe_DatePicker = {
     ...defaultResources,
     ...resources,
-    dateButtonAriaLabel: dateButtonAriaLabel || resources?.dateButtonAriaLabel || defaultResources.dateButtonAriaLabel,
-  };
-  const popupAriaLabels: DatePickerAriaLabels = {
-    dayButtonBase: ariaLabels?.dayButtonBase || mergedResources.dayButtonBase,
-    dayButtonToday: ariaLabels?.dayButtonToday || mergedResources.dayButtonToday,
-    dayButtonSelected: ariaLabels?.dayButtonSelected || mergedResources.dayButtonSelected,
-    nextMonth: ariaLabels?.nextMonth || mergedResources.nextMonth,
-    previousMonth: ariaLabels?.previousMonth || mergedResources.previousMonth,
-    monthDropdown: ariaLabels?.monthDropdown || mergedResources.monthDropdown,
-    yearDropdown: ariaLabels?.yearDropdown || mergedResources.yearDropdown,
   };
 
-  const weekendMatcher: DayOfWeek = {
-    dayOfWeek: [0, 6],
-  };
-  const disabledDays = disableWeekends
-    ? [...disableDays, weekendMatcher, ...(minDate ? [{ before: minDate }] : []), ...(maxDate ? [{ after: maxDate }] : [])]
-    : [...disableDays, ...(minDate ? [{ before: minDate }] : []), ...(maxDate ? [{ after: maxDate }] : [])];
-
-  const inputWrapperRef = useRef<HTMLDivElement>(null);
-  const inputContainerRef = useRef<HTMLDivElement>(null);
-  const datepickerWrapperRef = useRef<HTMLDivElement>(null);
-  const { refObject } = usePseudoClasses<HTMLInputElement>(ref);
-  const mergedRefs = mergeRefs([ref, refObject]);
-  const isTyping = useRef<boolean>(false);
-
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  useOutsideEvent(
-    [inputContainerRef, datepickerWrapperRef],
-    (e: any) => {
-      if (
-        inputContainerRef.current &&
-        datepickerWrapperRef.current &&
-        !e?.composedPath().includes(inputContainerRef.current) &&
-        !e?.composedPath().includes(datepickerWrapperRef.current)
-      ) {
-        setDatePickerOpen(false);
-      }
+  const { value: isPopupOpen, toggleValue: toggleIsPopupOpen } = useToggle(false);
+  const { refs, floatingStyles, context, middlewareData } = useFloating({
+    placement: 'bottom-start',
+    middleware: [offset(8), flip(), shift({ mainAxis: false, padding: 8 })],
+    whileElementsMounted: autoUpdate,
+    elements: {
+      reference: containerRef.current,
     },
-    ['mousedown', 'focusin', 'blur']
-  );
-  /* eslint-enable @typescript-eslint/no-explicit-any */
+    strategy: 'fixed',
+  });
+  const dayPickerPopupRef = useRef<HTMLDivElement>(null);
+  const click = useClick(context);
+  const dismiss = useDismiss(context);
 
-  useEffect(() => {
-    if (isValid(dateValue)) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setInputValue(dateValue ? format(dateValue, dateFormat) : '');
-      setDateState(dateValue);
-      setMonth(dateValue);
-    } else {
-      setInputValue('');
-      setDateState(undefined);
-      setMonth(undefined);
-    }
-  }, [dateValue, dateFormat]);
+  const { getFloatingProps } = useInteractions([click, dismiss]);
+  const isVisible = isPopupOpen && !middlewareData.hide?.referenceHidden;
 
-  useEffect(() => {
-    if (returnInputFocus && refObject.current) {
-      refObject.current.focus();
-    }
-  }, [returnInputFocus]);
-
-  const handleEscapeKeyDown = (): void => {
-    if (refObject?.current) refObject.current.focus();
-    setDatePickerOpen(false);
+  const setFocusToCalendarButton = (): void => {
+    calendarButtonRef.current?.focus();
   };
 
-  useKeyboardEvent(datepickerWrapperRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
-  useKeyboardEvent(inputWrapperRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, inputFormat: string): void => {
-    setInputValue(event.currentTarget.value);
-    const newDate = parse(event.currentTarget.value, inputFormat, new Date());
-
-    if (isValid(newDate)) {
-      setDateState(newDate);
-      setMonth(newDate);
-    } else {
-      setDateState(undefined);
-    }
-
-    if (onChange) onChange(event, event.currentTarget.value);
-  };
-
-  const handleInputFocus = (): void => {
-    if (!returnInputFocus) {
-      setDatePickerOpen(true);
-    } else {
-      setReturnInputFocus(false);
-    }
-  };
-
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  const handleSingleDatePickerSelect: PropsSingle['onSelect'] = (
-    date: Date | undefined,
-    _selectedDay: Date,
-    _activeModifiers: Modifiers,
-    e: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
-  ): void => {
-    setReturnInputFocus(true);
-
+  const handleDayPickerSelect = (date: Date | undefined): void => {
     if (!date) {
-      setDatePickerOpen(false);
-      return;
-    }
-
-    setDateState(date);
-
-    if (refObject.current) {
-      setInputValue(format(date, dateFormat));
-      setDatePickerOpen(false);
-    }
-
-    if (onChange) onChange(e, date);
-
-    triggerSyntheticInputEvents(refObject, format(date, dateFormat), date);
-
-    if (onDatePopupClosed) onDatePopupClosed(date);
-  };
-
-  // We do this to make sure selecting from the DatePickerPopup triggers the onChange events properly, and works with react-hook-form
-  const triggerSyntheticInputEvents = (
-    inputRef: React.RefObject<HTMLInputElement | null>,
-    value: string,
-    date: Date,
-    _onChange?: (event: React.ChangeEvent<HTMLInputElement>, date: Date) => void
-  ): void => {
-    if (inputRef.current) {
-      inputRef.current.value = value;
-
-      const inputEvent = new Event('change', { bubbles: true });
-
-      // Since the event is synthetic we have to add the target for webcomponents to not throw an error
-      Object.defineProperty(inputEvent, 'target', {
-        value: inputRef.current,
-        writable: false,
-        enumerable: true,
-        configurable: true,
-      });
-
-      Object.defineProperty(inputEvent, 'currentTarget', {
-        value: inputRef.current,
-        writable: false,
-        enumerable: true,
-        configurable: true,
-      });
-
-      inputRef.current.dispatchEvent(inputEvent);
-
+      setDateString('');
+      setDateDate(undefined);
+      lastSentValueTime.current = undefined;
       if (onChange) {
-        onChange(inputEvent as unknown as React.ChangeEvent<HTMLInputElement>, date);
+        onChange(null);
+      }
+    } else {
+      setDateDate(date);
+      const formattedDate = format(date, 'P', { locale: nb });
+      setDateString(formattedDate);
+      lastSentValueTime.current = date.getTime();
+      if (onChange) {
+        onChange(date);
+      }
+      if (isPopupOpen) {
+        toggleIsPopupOpen();
+      }
+
+      onBlur?.(date);
+      setFocusToCalendarButton();
+    }
+  };
+
+  useDismissablePopover({
+    popoverRef: [containerRef, dayPickerPopupRef],
+    triggerRef: calendarButtonRef,
+    isOpen: isPopupOpen,
+    scrollPopoverIntoView: true,
+    onClose: () => {
+      toggleIsPopupOpen();
+      onBlur?.(dateDate ?? null);
+    },
+  });
+
+  const handleInputChange = (date: string): void => {
+    setDateString(date);
+
+    const isCompleteDate = /^\d{2}\.\d{2}\.\d{4}$/.test(date);
+    let parsedDate: Date | undefined = undefined;
+
+    if (isCompleteDate) {
+      const parsed = parse(date, 'P', new Date(), { locale: nb });
+      if (isValid(parsed)) {
+        parsedDate = parsed;
       }
     }
+
+    setDateDate(parsedDate);
+    lastSentValueTime.current = parsedDate?.getTime();
+    onChange?.(parsedDate ?? null);
   };
 
-  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement, Element>): void => {
-    // We don't trigger the native onBlur event if the user select via the datepicker and the onDatePopupClosed callback is used (usually to trigger validation manually)
-    if (!datePickerOpen && (typeof onDatePopupClosed === 'undefined' || isTyping.current)) {
-      if (onBlur) onBlur(e);
-    }
-
-    isTyping.current = false;
+  const handleBlur = (date: string): void => {
+    const parsedDate = parse(date, 'P', new Date(), { locale: nb });
+    onBlur?.(isValid(parsedDate) ? parsedDate : null);
   };
 
-  const handleButtonClick = (
-    e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null | undefined
-  ): void => {
-    e?.stopPropagation();
-    setDatePickerOpen(!datePickerOpen);
+  const labelGivenAsPropIsValidLabelComponent = isComponent<LabelProps>(label, Label);
+  const legend =
+    label && labelGivenAsPropIsValidLabelComponent
+      ? cloneElement(label, { htmlMarkup: 'legend', labelId: label.props.labelId || 'date-legend' })
+      : null;
+  const legendId = labelGivenAsPropIsValidLabelComponent && label.props.labelId ? label.props.labelId : 'date-legend';
+  const popupId = isPopupOpen ? 'calendar-popup' : undefined;
+
+  const renderBaseDayPicker = (): React.ReactNode => {
+    return (
+      <BaseDayPicker {...baseDayPickerProps} resources={mergedResources} selectedDate={dateDate} onDateChange={handleDayPickerSelect} />
+    );
   };
-
-  // This differentiates between typing in the input field and selecting a date from the datepicker, especially on native mobile date fields
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent): void => {
-      if (!['Escape', 'Enter', 'Tab'].includes(e.key)) {
-        isTyping.current = true;
-        setDatePickerOpen(false);
-      }
-    };
-
-    const inputElement = refObject.current;
-    if (inputElement) {
-      inputElement.addEventListener('keydown', handleKeyDown);
-    }
-
-    return (): void => {
-      if (inputElement) {
-        inputElement.removeEventListener('keydown', handleKeyDown);
-      }
-    };
-  }, [refObject]);
-
-  const handleMobileInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    handleInputChange(e, 'yyyy-MM-dd');
-
-    if (!isTyping.current) {
-      if (onDatePopupClosed) onDatePopupClosed(dateState);
-    }
-  };
-
-  const renderMobile = (
-    <Input
-      disabled={disabled}
-      error={error}
-      errorText={errorText}
-      errorTextId={errorTextId}
-      inputId={inputId}
-      label={label}
-      max={maxDate ? format(maxDate, 'yyyy-MM-dd') : ''}
-      min={minDate ? format(minDate, 'yyyy-MM-dd') : ''}
-      type="date"
-      ref={mergedRefs}
-      value={dateState ? format(dateState, 'yyyy-MM-dd') : ''}
-      width={14}
-      {...rest}
-      onBlur={handleInputBlur}
-      onChange={handleMobileInputChange}
-      autoComplete={autoComplete ? autoComplete : undefined}
-    />
-  );
-
-  const renderDesktop = (
-    <>
-      <div>
-        <Input
-          errorWrapperClassName={errorWrapperClassName}
-          disabled={disabled}
-          error={error}
-          errorText={errorText}
-          errorTextId={errorTextId}
-          inputId={inputId}
-          inputContainerRef={inputContainerRef}
-          inputWrapperRef={inputWrapperRef}
-          label={label}
-          onFocus={handleInputFocus}
-          type="text"
-          ref={mergedRefs}
-          value={inputValue}
-          width={12}
-          {...rest}
-          onBlur={handleInputBlur}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(e, 'yyyy-MM-dd')}
-          rightOfInput={
-            <Button
-              disabled={disabled}
-              ariaLabel={dateButtonAriaLabel ?? 'Velg dato'}
-              onClick={handleButtonClick}
-              tabIndex={datePickerOpen ? -1 : 0}
-              variant={'borderless'}
-              wrapperClassName={styles['date-button']}
-              className={styles['date-button__inner']}
-            >
-              <Icon color={'black'} svgIcon={Calendar} />
-            </Button>
-          }
-          autoComplete={autoComplete ? autoComplete : undefined}
-        />
-      </div>
-      {datePickerOpen && !disabled && (
-        <DatePickerPopup
-          dir={dir}
-          disabled={disabledDays}
-          datepickerWrapperRef={datepickerWrapperRef}
-          footer={footerContent}
-          startMonth={minDate}
-          endMonth={maxDate}
-          inputRef={refObject}
-          locale={locale}
-          month={month}
-          selected={dateState}
-          onSelect={handleSingleDatePickerSelect}
-          onMonthChange={setMonth}
-          variant={variant}
-          zIndex={zIndex}
-          ariaLabels={popupAriaLabels}
-        />
-      )}
-    </>
-  );
 
   return (
-    <div className={className} data-testid={testId}>
-      {isMobileUA() ? renderMobile : renderDesktop}
-    </div>
+    <ErrorWrapper errorText={errorText}>
+      <fieldset className={styles['date-field']} aria-labelledby={legendId}>
+        {legend}
+        <div className={styles['date-field__input-button-container']} ref={containerRef}>
+          <DateInputInternal
+            ref={dateInputInternalRef}
+            inputId={id}
+            aria-describedby={ariaDescribedBy}
+            aria-labelledby={ariaLabelledBy}
+            value={dateString}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            legendId={legendId}
+            setErrorText={setSoftErrorText}
+            withClearButton={withClearButton}
+            resources={mergedResources}
+          />
+          <button
+            type="button"
+            ref={calendarButtonRef}
+            onClick={toggleIsPopupOpen}
+            aria-label={mergedResources.calendarButtonAriaLabel}
+            aria-controls={popupId}
+            aria-expanded={isPopupOpen}
+            className={styles['calendar-button']}
+          >
+            <Icon svgIcon={Calendar} size={IconSize.XSmall} />
+          </button>
+        </div>
+        <div
+          className={classNames(styles['date-field__soft-error-text'], {
+            [styles['date-field__soft-error-text--visible']]: softErrorText,
+          })}
+          role="status"
+        >
+          {softErrorText}
+        </div>
+      </fieldset>
+      {isPopupOpen && (
+        <>
+          {variant === 'popover' ? (
+            // returnFocus=false: Escape og datovalg setter fokus eksplisitt; Tab/klikk ut skal ikke stjele fokus tilbake
+            <FloatingFocusManager context={context} modal={false} returnFocus={false}>
+              <div
+                id={popupId}
+                ref={mergeRefs([refs.setFloating, dayPickerPopupRef])}
+                style={{ ...floatingStyles, visibility: isVisible ? 'visible' : 'hidden', zIndex: 10000 }}
+                {...getFloatingProps()}
+              >
+                {renderBaseDayPicker()}
+              </div>
+            </FloatingFocusManager>
+          ) : (
+            <div ref={dayPickerPopupRef} className={styles['inline-daypicker']}>
+              {renderBaseDayPicker()}
+            </div>
+          )}
+        </>
+      )}
+    </ErrorWrapper>
   );
 };
+
+DatePicker.displayName = 'DateInput';
 
 export default DatePicker;

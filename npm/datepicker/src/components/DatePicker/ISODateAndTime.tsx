@@ -1,17 +1,17 @@
 import { formatISO, isValid } from 'date-fns';
 
-import type { Unsafe_DateAndTimeProps } from './Unsafe_DateAndTime';
+import type { DateAndTimeProps } from './DateAndTime';
 
-import Unsafe_DateAndTime from './Unsafe_DateAndTime';
+import DateAndTime from './DateAndTime';
 
-export interface ISODateAndTimeProps extends Omit<Unsafe_DateAndTimeProps, 'value' | 'onChange'> {
+export interface ISODateAndTimeProps extends Omit<DateAndTimeProps, 'value' | 'onChange'> {
   /** Currently given date and time, given as ISO string */
   value?: string;
   /** Callback for change in the given date and time as ISO string. Emits an empty string when the field is cleared. */
   onChange?: (dateTimeValue: string) => void;
 }
 
-const Unsafe_ISODateAndTime = ({ value, onChange, ...baseDateAndTimeProps }: ISODateAndTimeProps): React.ReactNode => {
+const ISODateAndTime = ({ value, onChange, ...baseDateAndTimeProps }: ISODateAndTimeProps): React.ReactNode => {
   const isoToDate = (iso: string | undefined): Date | undefined => {
     if (!iso) {
       return undefined;
@@ -36,7 +36,7 @@ const Unsafe_ISODateAndTime = ({ value, onChange, ...baseDateAndTimeProps }: ISO
     onChange?.(dateToIso(newDate ?? undefined));
   };
 
-  return <Unsafe_DateAndTime {...baseDateAndTimeProps} value={isoToDate(value)} onChange={handleChange} />;
+  return <DateAndTime {...baseDateAndTimeProps} value={isoToDate(value)} onChange={handleChange} />;
 };
 
-export default Unsafe_ISODateAndTime;
+export default ISODateAndTime;

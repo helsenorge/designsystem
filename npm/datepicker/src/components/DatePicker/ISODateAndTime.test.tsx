@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import { render, screen } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 
 import '@testing-library/jest-dom';
 
-import Unsafe_ISODateAndTime from './Unsafe_ISODateAndTime';
+import ISODateAndTime from './ISODateAndTime';
 
 const DD_LABEL = 'Dag';
 const MM_LABEL = 'Måned';
@@ -36,26 +36,26 @@ const expectInputs = (dd: string, mm: string, yyyy: string, hh: string, min: str
   expect(i.min.value).toBe(min);
 };
 
-describe('Gitt at Unsafe_ISODateAndTime skal vises', () => {
+describe('Gitt at ISODateAndTime skal vises', () => {
   describe('Når komponenten rendres med en ISO-string som verdi', () => {
     it('Så skal alle fem segmenter vise initiell verdi', () => {
-      render(<Unsafe_ISODateAndTime value="2026-01-15T10:30" onChange={vi.fn()} />);
+      render(<ISODateAndTime value="2026-01-15T10:30" onChange={vi.fn()} />);
       expectInputs('15', '01', '2026', '10', '30');
     });
 
     it('Så skal alle segmenter oppdateres når ekstern verdi endres', () => {
-      const { rerender } = render(<Unsafe_ISODateAndTime value="2026-01-15T10:30" onChange={vi.fn()} />);
-      rerender(<Unsafe_ISODateAndTime value="2026-12-24T18:45" onChange={vi.fn()} />);
+      const { rerender } = render(<ISODateAndTime value="2026-01-15T10:30" onChange={vi.fn()} />);
+      rerender(<ISODateAndTime value="2026-12-24T18:45" onChange={vi.fn()} />);
       expectInputs('24', '12', '2026', '18', '45');
     });
 
     it('Så skal alle segmenter være tomme når verdien er en ugyldig ISO-string', () => {
-      render(<Unsafe_ISODateAndTime value="ikke-en-dato" onChange={vi.fn()} />);
+      render(<ISODateAndTime value="ikke-en-dato" onChange={vi.fn()} />);
       expectInputs('', '', '', '', '');
     });
 
     it('Så skal alle segmenter være tomme når verdien er tom string', () => {
-      render(<Unsafe_ISODateAndTime value="" onChange={vi.fn()} />);
+      render(<ISODateAndTime value="" onChange={vi.fn()} />);
       expectInputs('', '', '', '', '');
     });
   });
@@ -67,7 +67,7 @@ describe('Gitt at Unsafe_ISODateAndTime skal vises', () => {
       const Wrapper = (): React.ReactNode => {
         const [value, setValue] = useState('');
         return (
-          <Unsafe_ISODateAndTime
+          <ISODateAndTime
             value={value}
             onChange={(newValue): void => {
               setValue(newValue);
@@ -94,7 +94,7 @@ describe('Gitt at Unsafe_ISODateAndTime skal vises', () => {
   describe('Når brukeren endrer klokkeslettet på en eksisterende verdi', () => {
     it('Så skal onChange kalles med oppdatert ISO-string', async () => {
       const onChange = vi.fn();
-      render(<Unsafe_ISODateAndTime value="2026-01-15T10:30" onChange={onChange} />);
+      render(<ISODateAndTime value="2026-01-15T10:30" onChange={onChange} />);
       const i = getInputs();
 
       await userEvent.clear(i.hh);
@@ -108,7 +108,7 @@ describe('Gitt at Unsafe_ISODateAndTime skal vises', () => {
   describe('Når datoen tømmes', () => {
     it('Så skal onChange kalles med tom string', async () => {
       const onChange = vi.fn();
-      render(<Unsafe_ISODateAndTime value="2026-01-15T10:30" onChange={onChange} />);
+      render(<ISODateAndTime value="2026-01-15T10:30" onChange={onChange} />);
       const i = getInputs();
 
       await userEvent.clear(i.dd);
@@ -121,7 +121,7 @@ describe('Gitt at Unsafe_ISODateAndTime skal vises', () => {
 
   describe('Når errorText er satt', () => {
     it('Så skal feilmeldingen vises', () => {
-      render(<Unsafe_ISODateAndTime errorText="Du må velge en dato" onChange={vi.fn()} />);
+      render(<ISODateAndTime errorText="Du må velge en dato" onChange={vi.fn()} />);
       expect(screen.getByText('Du må velge en dato')).toBeVisible();
     });
   });

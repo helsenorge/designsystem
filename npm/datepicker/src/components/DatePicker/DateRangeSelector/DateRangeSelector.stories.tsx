@@ -10,18 +10,18 @@ import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
 
 import { LanguageLocales } from '@helsenorge/designsystem-react';
 
-import Unsafe_DateRangeSelector from './Unsafe_DateRangeSelector';
+import DateRangeSelector from './DateRangeSelector';
 import { DateRangePresets } from './utils';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_DateRangeSelector',
-  component: Unsafe_DateRangeSelector,
+  title: '@helsenorge/datepicker/DatePicker/DateRangeSelector',
+  component: DateRangeSelector,
   args: {
     name: 'rangepicker-custom',
     options: [],
     value: DateRangePresets.Last12Months,
   },
-} satisfies Meta<typeof Unsafe_DateRangeSelector>;
+} satisfies Meta<typeof DateRangeSelector>;
 
 export default meta;
 
@@ -32,7 +32,7 @@ export const Default: Story = {
     const [value, setValue] = useState<DateRangePreset | undefined>(DateRangePresets.Last12Months);
 
     return (
-      <Unsafe_DateRangeSelector
+      <DateRangeSelector
         {...args}
         options={[
           DateRangePresets.LastMonth,
@@ -56,7 +56,7 @@ export const WithPrintedState: Story = {
 
     return (
       <>
-        <Unsafe_DateRangeSelector
+        <DateRangeSelector
           {...args}
           options={[
             DateRangePresets.LastMonth,
@@ -90,7 +90,7 @@ export const CustomProps: Story = {
     const [value, setValue] = useState<DateRangePreset | undefined>(DateRangePresets.Last12Months);
 
     return (
-      <Unsafe_DateRangeSelector
+      <DateRangeSelector
         {...args}
         options={[
           DateRangePresets.LastMonth,
@@ -140,7 +140,7 @@ export const WithLanguageProvider: Story = {
           </Dropdown.SingleSelectItem>
         </Dropdown>
         <Spacer />
-        <Unsafe_DateRangeSelector
+        <DateRangeSelector
           {...args}
           options={[
             DateRangePresets.LastMonth,

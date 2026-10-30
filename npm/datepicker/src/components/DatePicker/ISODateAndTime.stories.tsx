@@ -4,11 +4,11 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 
-import Unsafe_ISODateAndTime from './Unsafe_ISODateAndTime';
+import ISODateAndTime from './ISODateAndTime';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_ISODateAndTime',
-  component: Unsafe_ISODateAndTime,
+  title: '@helsenorge/datepicker/DatePicker/ISODateAndTime',
+  component: ISODateAndTime,
   args: {
     datepickerProps: {
       label: (
@@ -37,7 +37,7 @@ const meta = {
     value: { control: false },
     onChange: { control: false },
   },
-} satisfies Meta<typeof Unsafe_ISODateAndTime>;
+} satisfies Meta<typeof ISODateAndTime>;
 
 export default meta;
 
@@ -48,7 +48,7 @@ export const Default: Story = {
     const [value, setValue] = useState<string>('');
     return (
       <>
-        <Unsafe_ISODateAndTime {...args} value={value} onChange={value => setValue(value)} />
+        <ISODateAndTime {...args} value={value} onChange={value => setValue(value)} />
         <br />
         <span>{'Value: ' + value}</span>
       </>
@@ -61,7 +61,7 @@ export const WithInitialValue: Story = {
     const [value, setValue] = useState<string>('2026-01-15T10:30:00');
     return (
       <>
-        <Unsafe_ISODateAndTime {...args} value={value} onChange={value => setValue(value)} />
+        <ISODateAndTime {...args} value={value} onChange={value => setValue(value)} />
         <br />
         <span>{'Value: ' + value}</span>
       </>

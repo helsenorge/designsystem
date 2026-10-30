@@ -12,7 +12,7 @@ import { isComponent } from '@helsenorge/designsystem-react/utils/component';
 import TimeInputInternal from './TimeInputInternal';
 import styles from '../DatePicker.module.scss';
 
-export interface Unsafe_TimeInputProps {
+export interface TimeInputProps {
   /** Currently given time, in format hh:mm */
   value?: string;
   /** Label of the input */
@@ -35,7 +35,7 @@ export interface Unsafe_TimeInputProps {
   ['aria-labelledby']?: string;
 }
 
-const Unsafe_TimeInput = ({
+const TimeInput = ({
   value,
   onChange,
   onBlur,
@@ -46,7 +46,7 @@ const Unsafe_TimeInput = ({
   withClearButton = true,
   ['aria-describedby']: ariaDescribedBy,
   ['aria-labelledby']: ariaLabelledBy,
-}: Unsafe_TimeInputProps): React.ReactNode => {
+}: TimeInputProps): React.ReactNode => {
   const [softErrorText, setSoftErrorText] = useState<string>('');
 
   const labelGivenAsPropIsValidLabelComponent = isComponent<LabelProps>(label, Label);
@@ -82,4 +82,4 @@ const Unsafe_TimeInput = ({
   );
 };
 
-export default Unsafe_TimeInput;
+export default TimeInput;

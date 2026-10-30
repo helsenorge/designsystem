@@ -3,17 +3,17 @@ import { useState } from 'react';
 
 import { enGB, nb, nn, se } from 'date-fns/locale';
 
-import type { Unsafe_DatePickerStandaloneProps } from './index';
+import type { DatePickerStandaloneProps } from './index';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 import type { Modifiers } from 'react-day-picker';
 
 import Title from '@helsenorge/designsystem-react/components/Title';
 
-import { Unsafe_DatePickerStandalone } from './index';
+import { DatePickerStandalone } from './index';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_DatePickerStandalone',
-  component: Unsafe_DatePickerStandalone,
+  title: '@helsenorge/datepicker/DatePicker/DatePickerStandalone',
+  component: DatePickerStandalone,
   args: {},
   argTypes: {
     selectedDate: { control: 'date' },
@@ -33,7 +33,7 @@ const meta = {
     fixedWeeks: { control: 'boolean' },
     labelsForCalendar: { control: 'object' },
   },
-} satisfies Meta<Unsafe_DatePickerStandaloneProps>;
+} satisfies Meta<DatePickerStandaloneProps>;
 
 export default meta;
 
@@ -42,7 +42,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => {
     const [value, setValue] = useState<Date | undefined>();
-    return <Unsafe_DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />;
+    return <DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />;
   },
 };
 
@@ -51,7 +51,7 @@ export const StandaloneValue: Story = {
     const [value, setValue] = useState<Date | undefined>();
     return (
       <>
-        <Unsafe_DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />
+        <DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />
         <br />
         <span>{'Value: ' + value}</span>
       </>
@@ -64,7 +64,7 @@ export const WithDefaultValue: Story = {
     const [value, setValue] = useState<Date | undefined>(new Date());
     return (
       <>
-        <Unsafe_DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />
+        <DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />
         <br />
         <span>{'Value: ' + value}</span>
       </>
@@ -92,7 +92,7 @@ export const ModifiersExample: Story = {
 
     return (
       <>
-        <Unsafe_DatePickerStandalone
+        <DatePickerStandalone
           {...args}
           selectedDate={value}
           onDateChange={setValue}
@@ -120,16 +120,16 @@ export const Locales: Story = {
     return (
       <div>
         <Title>{'Norsk bokmål'}</Title>
-        <Unsafe_DatePickerStandalone {...args} localeForCalendar={nb} />
+        <DatePickerStandalone {...args} localeForCalendar={nb} />
         <br />
         <Title>{'Norsk nynorsk'}</Title>
-        <Unsafe_DatePickerStandalone {...args} localeForCalendar={nn} />
+        <DatePickerStandalone {...args} localeForCalendar={nn} />
         <br />
         <Title>{'Engelsk'}</Title>
-        <Unsafe_DatePickerStandalone {...args} localeForCalendar={enGB} />
+        <DatePickerStandalone {...args} localeForCalendar={enGB} />
         <br />
         <Title>{'Samisk'}</Title>
-        <Unsafe_DatePickerStandalone {...args} localeForCalendar={se} />
+        <DatePickerStandalone {...args} localeForCalendar={se} />
       </div>
     );
   },
@@ -155,7 +155,7 @@ export const AriaLabels: Story = {
       source: {
         language: 'tsx',
         code: `
-<Unsafe_DatePickerStandalone 
+<DatePickerStandalone 
   labelsForCalendar={
     labelDayButton: (date: Date, modifiers: Modifiers) =>
       \`Dato \${date.toISOString()} \${modifiers?.selected ? ', er valgt' : ', ikke valgt'}\`,
@@ -172,7 +172,7 @@ export const AriaLabels: Story = {
     },
   },
   render: args => {
-    return <Unsafe_DatePickerStandalone {...args} />;
+    return <DatePickerStandalone {...args} />;
   },
 };
 
@@ -180,6 +180,6 @@ export const DefaultMonth: Story = {
   args: { defaultMonth: new Date(2020, 2) },
   render: args => {
     const [value, setValue] = useState<Date | undefined>();
-    return <Unsafe_DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />;
+    return <DatePickerStandalone {...args} selectedDate={value} onDateChange={setValue} />;
   },
 };

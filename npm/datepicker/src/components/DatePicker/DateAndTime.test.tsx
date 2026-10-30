@@ -1,12 +1,11 @@
-import { render, screen, act } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
-
-import '@testing-library/jest-dom';
 import { useState } from 'react';
 
+import { render, screen, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 import { Controller, useForm } from 'react-hook-form';
 
-import Unsafe_DateAndTime from './Unsafe_DateAndTime';
+import DateAndTime from './DateAndTime';
 
 const DD_LABEL = 'Dag';
 const MM_LABEL = 'Måned';
@@ -38,22 +37,22 @@ const expectInputs = (dd: string, mm: string, yyyy: string, hh: string, min: str
   expect(i.min.value).toBe(min);
 };
 
-describe('Gitt at Unsafe_DateAndTime skal vises', () => {
+describe('Gitt at DateAndTime skal vises', () => {
   describe('Når komponenten er kontrollert og rendres med en verdi', () => {
     it('Så skal alle fem segmenter vise initiell verdi', () => {
-      render(<Unsafe_DateAndTime value={new Date('2026-01-15T10:30')} onChange={vi.fn()} />);
+      render(<DateAndTime value={new Date('2026-01-15T10:30')} onChange={vi.fn()} />);
       expectInputs('15', '01', '2026', '10', '30');
     });
 
     it('Så skal alle segmenter oppdateres når ekstern verdi endres', () => {
-      const { rerender } = render(<Unsafe_DateAndTime value={new Date('2026-01-15T10:30')} onChange={vi.fn()} />);
-      rerender(<Unsafe_DateAndTime value={new Date('2026-12-24T18:45')} onChange={vi.fn()} />);
+      const { rerender } = render(<DateAndTime value={new Date('2026-01-15T10:30')} onChange={vi.fn()} />);
+      rerender(<DateAndTime value={new Date('2026-12-24T18:45')} onChange={vi.fn()} />);
       expectInputs('24', '12', '2026', '18', '45');
     });
 
     it('Så skal alle segmenter tømmes når ekstern verdi blir undefined', () => {
-      const { rerender } = render(<Unsafe_DateAndTime value={new Date('2026-01-15T10:30')} onChange={vi.fn()} />);
-      rerender(<Unsafe_DateAndTime value={undefined} onChange={vi.fn()} />);
+      const { rerender } = render(<DateAndTime value={new Date('2026-01-15T10:30')} onChange={vi.fn()} />);
+      rerender(<DateAndTime value={undefined} onChange={vi.fn()} />);
       expectInputs('', '', '', '', '');
     });
   });
@@ -65,7 +64,7 @@ describe('Gitt at Unsafe_DateAndTime skal vises', () => {
       const Wrapper = (): React.ReactNode => {
         const [value, setValue] = useState<Date | null | undefined>(new Date('2026-01-15T10:30'));
         return (
-          <Unsafe_DateAndTime
+          <DateAndTime
             value={value}
             onChange={next => {
               setValue(next);
@@ -91,7 +90,7 @@ describe('Gitt at Unsafe_DateAndTime skal vises', () => {
       const user = userEvent.setup();
       const Wrapper = (): React.ReactNode => {
         const [value, setValue] = useState<Date | null | undefined>(new Date('2026-01-15T10:00'));
-        return <Unsafe_DateAndTime value={value} onChange={setValue} />;
+        return <DateAndTime value={value} onChange={setValue} />;
       };
       render(<Wrapper />);
 
@@ -122,7 +121,7 @@ describe('Gitt at Unsafe_DateAndTime skal vises', () => {
         <Controller
           name="avtale"
           control={control}
-          render={({ field }) => <Unsafe_DateAndTime value={field.value ?? undefined} onChange={val => field.onChange(val ?? null)} />}
+          render={({ field }) => <DateAndTime value={field.value ?? undefined} onChange={val => field.onChange(val ?? null)} />}
         />
       );
     };

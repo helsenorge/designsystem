@@ -22,10 +22,10 @@ export default [
   },
 
   {
-    // These components intentionally keep their UNSAFE_/Unsafe_ prefix to signal risky APIs
-    files: ['**/components/UNSAFE_Table/**/*.tsx', '**/components/Unsafe_DatePicker/**/*.tsx'],
+    // These components intentionally keep their UNSAFE_ prefix to signal risky APIs
+    files: ['**/components/UNSAFE_Table/**/*.tsx'],
     rules: {
-      'react/jsx-pascal-case': ['error', { ignore: ['UNSAFE_*', 'Unsafe_*'] }],
+      'react/jsx-pascal-case': ['error', { ignore: ['UNSAFE_*'] }],
     },
   },
   {

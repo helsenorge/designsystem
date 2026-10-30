@@ -33,13 +33,13 @@
       "types": "./lib/components/*/index.d.ts",
       "import": "./lib/components/*/index.js"
     },
-    "./components/Unsafe_DatePicker/BaseDayPicker/utils": {
-      "types": "./lib/components/Unsafe_DatePicker/BaseDayPicker/utils.d.ts",
-      "import": "./lib/components/Unsafe_DatePicker/BaseDayPicker/utils.js"
+    "./components/DatePicker/BaseDayPicker/utils": {
+      "types": "./lib/components/DatePicker/BaseDayPicker/utils.d.ts",
+      "import": "./lib/components/DatePicker/BaseDayPicker/utils.js"
     },
-    "./components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils": {
-      "types": "./lib/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils.d.ts",
-      "import": "./lib/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils.js"
+    "./components/DatePicker/DateRangeSelector/utils": {
+      "types": "./lib/components/DatePicker/DateRangeSelector/utils.d.ts",
+      "import": "./lib/components/DatePicker/DateRangeSelector/utils.js"
     },
     "./__mocks__/*": {
       "types": "./lib/__mocks__/*.d.ts",

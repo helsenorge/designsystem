@@ -3,12 +3,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { format, isSameDay } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import {
-  // CalendarDay,
-  DayPicker,
-  MonthGrid,
-  useDayPicker,
-} from 'react-day-picker';
+import { DayPicker, MonthGrid, useDayPicker } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import type { HNDesignsystemUnsafe_DatePicker } from '../../../resources/Resources';
@@ -22,8 +17,6 @@ import { LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
 
 import { CustomCaptionLabel, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CustomComponents';
 import { getResources } from '../resourceHelper';
-
-// import { matchesDayObjectMatcher } from './utils';
 
 import customstyles from './BaseDayPicker.module.scss';
 
@@ -128,7 +121,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
 
   // Handle DayButton click for popover and selection
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleDayButtonClick = (day: any, modifiers: Modifiers) => {
+  const handleDayButtonClick = (day: any, modifiers: Modifiers): void => {
     if (modifiers.selected) {
       onDateChange?.(undefined);
     } else if (!modifiers.disabled) {

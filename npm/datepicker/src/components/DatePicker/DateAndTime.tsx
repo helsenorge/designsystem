@@ -4,12 +4,12 @@ import { isValid } from 'date-fns';
 
 import ErrorWrapper from '@helsenorge/designsystem-react/components/ErrorWrapper';
 
-import Unsafe_TimeInput, { type Unsafe_TimeInputProps } from './TimeInput/Unsafe_TimeInput';
-import Unsafe_DatePicker, { type Unsafe_DatePickerProps } from './Unsafe_DatePicker';
+import DatePicker, { type DatePickerProps } from './DatePicker';
+import TimeInput, { type TimeInputProps } from './TimeInput/TimeInput';
 
-import styles from './Unsafe_DateAndTime.module.scss';
+import styles from './DateAndTime.module.scss';
 
-export interface Unsafe_DateAndTimeProps {
+export interface DateAndTimeProps {
   /** Currently given date. `null` and `undefined` are both treated as "no value". */
   value?: Date | null;
   /** Callback for change on the given date. Emits `null` when the field is cleared. */
@@ -19,9 +19,9 @@ export interface Unsafe_DateAndTimeProps {
   /** Errortext for validation errors */
   errorText?: string;
   /** Props sent to the DatePicker */
-  datepickerProps?: Omit<Unsafe_DatePickerProps, 'value' | 'onChange'>;
+  datepickerProps?: Omit<DatePickerProps, 'value' | 'onChange'>;
   /** Props sent to TimeInput */
-  timeInputProps?: Omit<Unsafe_TimeInputProps, 'value' | 'onChange'>;
+  timeInputProps?: Omit<TimeInputProps, 'value' | 'onChange'>;
 }
 
 const toTimeString = (date: Date | undefined): string | undefined => {
@@ -70,14 +70,14 @@ const mergeDateAndTime = (date: Date | undefined, time: string | undefined): Dat
   return merged;
 };
 
-const Unsafe_DateAndTime = ({
+const DateAndTime = ({
   value: valueProp,
   onChange,
   legend,
   errorText,
   datepickerProps,
   timeInputProps,
-}: Unsafe_DateAndTimeProps): React.ReactNode => {
+}: DateAndTimeProps): React.ReactNode => {
   // Normalize null and undefined to a single internal representation.
   const value = valueProp ?? undefined;
   // Date is fully controlled from value prop
@@ -132,10 +132,10 @@ const Unsafe_DateAndTime = ({
         {legend}
         <div className={styles['date-and-time__fields']}>
           <div className={styles['date-and-time__date-field']}>
-            <Unsafe_DatePicker {...datepickerProps} value={internalDate} onChange={handleDateChange} />
+            <DatePicker {...datepickerProps} value={internalDate} onChange={handleDateChange} />
           </div>
           <div className={styles['date-and-time__time-field']}>
-            <Unsafe_TimeInput {...timeInputProps} value={internalTime} onChange={handleTimeChange} />
+            <TimeInput {...timeInputProps} value={internalTime} onChange={handleTimeChange} />
           </div>
         </div>
       </fieldset>
@@ -143,4 +143,4 @@ const Unsafe_DateAndTime = ({
   );
 };
 
-export default Unsafe_DateAndTime;
+export default DateAndTime;

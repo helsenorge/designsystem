@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-import type { Unsafe_DatePickerHandle } from './Unsafe_DatePicker';
+import type { DatePickerHandle } from './DatePicker';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
@@ -8,11 +8,11 @@ import FormFieldTag from '@helsenorge/designsystem-react/components/FormFieldTag
 import FormGroup from '@helsenorge/designsystem-react/components/FormGroup/FormGroup';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 
-import Unsafe_DateAndTime from './Unsafe_DateAndTime';
+import DateAndTime from './DateAndTime';
 
 const meta = {
-  title: '@helsenorge/datepicker/Unsafe_DatePicker/Unsafe_DateAndTime',
-  component: Unsafe_DateAndTime,
+  title: '@helsenorge/datepicker/DatePicker/DateAndTime',
+  component: DateAndTime,
   args: {
     // legend: <Label htmlMarkup="legend" labelId="custom-datetime-legend" labelTexts={[{ text: 'Dato for reise' }]} />,
     datepickerProps: {
@@ -44,7 +44,7 @@ const meta = {
     legend: { control: 'object', description: 'Legend for labelling both fields ' },
     errorText: { control: 'text', description: 'Errortext for validation errors ' },
   },
-} satisfies Meta<typeof Unsafe_DateAndTime>;
+} satisfies Meta<typeof DateAndTime>;
 
 export default meta;
 
@@ -55,7 +55,7 @@ export const Default: Story = {
     const [value, setValue] = useState<Date | null | undefined>();
     return (
       <>
-        <Unsafe_DateAndTime {...args} value={value} onChange={value => setValue(value)} />
+        <DateAndTime {...args} value={value} onChange={value => setValue(value)} />
         <br />
         <span>{'Value: ' + value}</span>
       </>
@@ -68,7 +68,7 @@ export const WithFormGroup: Story = {
     const [value, setValue] = useState<Date | null | undefined>();
     return (
       <FormGroup legend="Reisen startet" legendId="formgroup-legend-id">
-        <Unsafe_DateAndTime
+        <DateAndTime
           {...args}
           value={value}
           onChange={value => setValue(value)}
@@ -103,12 +103,12 @@ export const WithFormGroup: Story = {
 export const WithImperativeFocus: Story = {
   render: args => {
     const [value, setValue] = useState<Date | null | undefined>();
-    const datePickerRef = useRef<Unsafe_DatePickerHandle>(null);
+    const datePickerRef = useRef<DatePickerHandle>(null);
     return (
       <>
         <Button onClick={() => datePickerRef.current?.focus()}>{'Sett fokus i datofeltet'}</Button>
         <br />
-        <Unsafe_DateAndTime
+        <DateAndTime
           {...args}
           value={value}
           onChange={value => setValue(value)}

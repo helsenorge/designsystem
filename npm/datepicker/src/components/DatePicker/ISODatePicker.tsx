@@ -1,17 +1,17 @@
 import { formatISO, isValid } from 'date-fns';
 
-import type { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
+import type { DatePickerProps } from './DatePicker';
 
-import Unsafe_DatePicker from './Unsafe_DatePicker';
+import DatePicker from './DatePicker';
 
-export interface ISODateInputProps extends Omit<Unsafe_DatePickerProps, 'value' | 'onChange'> {
+export interface ISODateInputProps extends Omit<DatePickerProps, 'value' | 'onChange'> {
   /** Currently given date, given as ISO string  */
   value?: string;
   /** Callback for change in the given date as ISO string */
   onChange?: (dateValue: string) => void;
 }
 
-const Unsafe_ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODateInputProps): React.ReactNode => {
+const ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODateInputProps): React.ReactNode => {
   const isoToDate = (iso: string | undefined): Date | undefined => {
     if (!iso) {
       return undefined;
@@ -36,7 +36,7 @@ const Unsafe_ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODat
     onChange?.(dateToIso(newDate ?? undefined));
   };
 
-  return <Unsafe_DatePicker {...baseDateInputProps} value={isoToDate(value)} onChange={handleDateChange} />;
+  return <DatePicker {...baseDateInputProps} value={isoToDate(value)} onChange={handleDateChange} />;
 };
 
-export default Unsafe_ISODatePicker;
+export default ISODatePicker;

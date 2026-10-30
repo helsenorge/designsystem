@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import type { Unsafe_DatePickerProps } from '../Unsafe_DatePicker';
+import type { DatePickerProps } from '../DatePicker';
 import type { DateRangePreset, ReadableRangeOption } from './constants';
 import type { HNDesignsystemUnsafe_DateRangeSelector } from '../../../resources/Resources';
 
@@ -10,14 +10,14 @@ import { Radio } from '@helsenorge/designsystem-react/components/Radio';
 
 import { LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
 
-import Unsafe_DatePicker from '../Unsafe_DatePicker';
-import Unsafe_DateRangePickers from '../Unsafe_DateRangePickers';
+import DatePicker from '../DatePicker';
+import DateRangePickers from '../DateRangePickers';
 import { getResources } from './resourceHelper';
 import { DateRangePresets, createPresetLabelMap, isSameRangeValue } from './utils';
 
 import styles from './styles.module.scss';
 
-export interface Unsafe_DateRangeSelectorProps {
+export interface DateRangeSelectorProps {
   /** Name for the radiobuttongroup */
   name: string;
   /** Options for radiobuttongroup */
@@ -29,14 +29,14 @@ export interface Unsafe_DateRangeSelectorProps {
   /** Optional extra props for the built-in custom radio option */
   customRadioProps?: Omit<RadioProps, 'checked' | 'onChange' | 'value' | 'label'>;
   /** Extra props for the 'from' date picker */
-  datePickerPropsFrom?: Omit<Unsafe_DatePickerProps, 'value' | 'onChange'>;
+  datePickerPropsFrom?: Omit<DatePickerProps, 'value' | 'onChange'>;
   /** Extra props for the 'to' date picker */
-  datePickerPropsTo?: Omit<Unsafe_DatePickerProps, 'value' | 'onChange'>;
+  datePickerPropsTo?: Omit<DatePickerProps, 'value' | 'onChange'>;
   /** Resources for the component */
   resources?: Partial<HNDesignsystemUnsafe_DateRangeSelector>;
 }
 
-const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props => {
+const DateRangeSelector: React.FC<DateRangeSelectorProps> = props => {
   const { name, options, value, onChange, customRadioProps, datePickerPropsFrom, datePickerPropsTo, resources } = props;
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
@@ -128,10 +128,10 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
           );
         })}
       </div>
-      <Unsafe_DateRangePickers
+      <DateRangePickers
         key={datePickersKey}
         from={
-          <Unsafe_DatePicker
+          <DatePicker
             label={
               <Label
                 labelId="label-startdato"
@@ -151,7 +151,7 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
           />
         }
         to={
-          <Unsafe_DatePicker
+          <DatePicker
             label={
               <Label
                 labelId="label-sluttdato"
@@ -175,4 +175,4 @@ const Unsafe_DateRangeSelector: React.FC<Unsafe_DateRangeSelectorProps> = props 
   );
 };
 
-export default Unsafe_DateRangeSelector;
+export default DateRangeSelector;

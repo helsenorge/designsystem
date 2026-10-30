@@ -1,13 +1,11 @@
 import { useState } from 'react';
 
 import { render, screen, act } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
-
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-
 import { Controller, useForm } from 'react-hook-form';
 
-import Unsafe_TimeInput from './Unsafe_TimeInput';
+import TimeInput from './TimeInput';
 
 const HH_LABEL = 'Time';
 const MM_LABEL = 'Minutt';
@@ -18,10 +16,10 @@ const getInputs = (): { hh: HTMLInputElement; mm: HTMLInputElement } => ({
   mm: screen.getByLabelText(MM_LABEL) as HTMLInputElement,
 });
 
-describe('Gitt at Unsafe_TimeInput skal vises', () => {
+describe('Gitt at TimeInput skal vises', () => {
   describe('Når komponenten er kontrollert og rendres med en verdi', () => {
     it('Så skal segmentene vise initiell verdi', () => {
-      render(<Unsafe_TimeInput value="10:30" onChange={vi.fn()} />);
+      render(<TimeInput value="10:30" onChange={vi.fn()} />);
       const { hh, mm } = getInputs();
       expect(hh.value).toBe('10');
       expect(mm.value).toBe('30');
@@ -30,7 +28,7 @@ describe('Gitt at Unsafe_TimeInput skal vises', () => {
     it('Så skal onChange trigges når man skriver i et segment', async () => {
       const handleChange = vi.fn();
       const user = userEvent.setup();
-      render(<Unsafe_TimeInput value="" onChange={handleChange} />);
+      render(<TimeInput value="" onChange={handleChange} />);
 
       await user.type(screen.getByLabelText(HH_LABEL), '12');
       // Expect at least one call ending in '12:'
@@ -39,26 +37,26 @@ describe('Gitt at Unsafe_TimeInput skal vises', () => {
     });
 
     it('Så skal segmentene synkroniseres når ekstern verdi endres', () => {
-      const { rerender } = render(<Unsafe_TimeInput value="10:30" onChange={vi.fn()} />);
+      const { rerender } = render(<TimeInput value="10:30" onChange={vi.fn()} />);
       expect(getInputs().hh.value).toBe('10');
 
-      rerender(<Unsafe_TimeInput value="18:45" onChange={vi.fn()} />);
+      rerender(<TimeInput value="18:45" onChange={vi.fn()} />);
       const { hh, mm } = getInputs();
       expect(hh.value).toBe('18');
       expect(mm.value).toBe('45');
     });
 
     it('Så skal segmentene tømmes når ekstern verdi blir tom streng', () => {
-      const { rerender } = render(<Unsafe_TimeInput value="10:30" onChange={vi.fn()} />);
-      rerender(<Unsafe_TimeInput value="" onChange={vi.fn()} />);
+      const { rerender } = render(<TimeInput value="10:30" onChange={vi.fn()} />);
+      rerender(<TimeInput value="" onChange={vi.fn()} />);
       const { hh, mm } = getInputs();
       expect(hh.value).toBe('');
       expect(mm.value).toBe('');
     });
 
     it('Så skal segmentene tømmes når ekstern verdi blir undefined', () => {
-      const { rerender } = render(<Unsafe_TimeInput value="10:30" onChange={vi.fn()} />);
-      rerender(<Unsafe_TimeInput value={undefined} onChange={vi.fn()} />);
+      const { rerender } = render(<TimeInput value="10:30" onChange={vi.fn()} />);
+      rerender(<TimeInput value={undefined} onChange={vi.fn()} />);
       const { hh, mm } = getInputs();
       expect(hh.value).toBe('');
       expect(mm.value).toBe('');
@@ -72,7 +70,7 @@ describe('Gitt at Unsafe_TimeInput skal vises', () => {
       const Wrapper = (): React.ReactNode => {
         const [value, setValue] = useState<string | undefined>('10:30');
         return (
-          <Unsafe_TimeInput
+          <TimeInput
             value={value}
             onChange={next => {
               setValue(next);
@@ -94,7 +92,7 @@ describe('Gitt at Unsafe_TimeInput skal vises', () => {
   describe('Når komponenten er ukontrollert', () => {
     it('Så skal brukeren kunne skrive uten at forelder sender verdi tilbake', async () => {
       const user = userEvent.setup();
-      render(<Unsafe_TimeInput />);
+      render(<TimeInput />);
 
       await user.type(screen.getByLabelText(HH_LABEL), '09');
       expect(getInputs().hh.value).toBe('09');
@@ -117,7 +115,7 @@ describe('Gitt at Unsafe_TimeInput skal vises', () => {
         <Controller
           name="tid"
           control={control}
-          render={({ field }) => <Unsafe_TimeInput value={field.value ?? undefined} onChange={field.onChange} />}
+          render={({ field }) => <TimeInput value={field.value ?? undefined} onChange={field.onChange} />}
         />
       );
     };
