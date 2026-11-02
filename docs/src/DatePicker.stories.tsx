@@ -9,15 +9,10 @@ import Input from '@helsenorge/designsystem-react/components/Input';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
 
-import Unsafe_DatePicker, {
-  Unsafe_DateAndTime,
-  Unsafe_ISODateAndTime,
-  Unsafe_ISODatePicker,
-  Unsafe_TimeInput,
-} from '@helsenorge/datepicker/components/Unsafe_DatePicker';
+import DatePicker, { DateAndTime, ISODateAndTime, ISODatePicker, TimeInput } from '@helsenorge/datepicker/components/DatePicker';
 
 const meta: Meta = {
-  title: 'Documentation/Examples/NewDatePicker',
+  title: 'Documentation/Examples/DatePicker',
   parameters: {
     docs: {
       description: {
@@ -78,7 +73,7 @@ export const DateWithRHForm: Story = {
             validate: value => validateDate(value),
           }}
           render={({ field }) => (
-            <Unsafe_DatePicker
+            <DatePicker
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
               value={field.value}
@@ -116,7 +111,7 @@ export const DateWithRHFormSetValue: Story = {
           name="avtale"
           control={control}
           render={({ field }) => (
-            <Unsafe_DatePicker
+            <DatePicker
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
               value={field.value}
@@ -163,7 +158,7 @@ export const DateAndTimeWithRHFormSetValue: Story = {
           name="avtale"
           control={control}
           render={({ field }) => (
-            <Unsafe_DateAndTime
+            <DateAndTime
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
               value={field.value}
@@ -211,7 +206,7 @@ export const TimeInputWithRHFormSetValue: Story = {
           name="tid"
           control={control}
           render={({ field }) => (
-            <Unsafe_TimeInput
+            <TimeInput
               {...args}
               errorText={errors?.tid ? (errors?.tid?.message as string) : undefined}
               value={field.value ?? undefined}
@@ -272,7 +267,7 @@ export const DateAndTimeWithRHForm: Story = {
             validate: value => validateDate(value),
           }}
           render={({ field }) => (
-            <Unsafe_DateAndTime
+            <DateAndTime
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
               value={field.value}
@@ -331,7 +326,7 @@ return (
         validate: value => validateDate(value),
       }}
       render={({ field }) => (
-        <Unsafe_ISODatePicker
+        <ISODatePicker
           {...args}
           errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
           value={field.value ?? undefined}
@@ -384,7 +379,7 @@ return (
             validate: value => validateDate(value),
           }}
           render={({ field }) => (
-            <Unsafe_ISODatePicker
+            <ISODatePicker
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
               value={field.value ?? undefined}
@@ -442,7 +437,7 @@ return (
         validate: value => validateDate(value),
       }}
       render={({ field }) => (
-        <Unsafe_ISODateAndTime
+        <ISODateAndTime
           {...args}
           errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
           value={field.value ?? undefined}
@@ -496,7 +491,7 @@ return (
             validate: value => validateDate(value),
           }}
           render={({ field }) => (
-            <Unsafe_ISODateAndTime
+            <ISODateAndTime
               {...args}
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
               value={field.value ?? undefined}
@@ -555,7 +550,7 @@ return (
         validate: value => validateDate(value),
       }}
       render={({ field }) => (
-        <Unsafe_ISODatePicker
+        <ISODatePicker
           {...args}
           errorText={errors?.reiseDate ? (errors?.reiseDate?.message as string) : undefined}
           value={field.value ?? undefined}
@@ -575,7 +570,7 @@ return (
       name="reiseTid"
       control={control}
       render={({ field }) => (
-        <Unsafe_TimeInput
+        <TimeInput
           {...args}
           errorText={errors?.reiseTid ? (errors?.reiseTid?.message as string) : undefined}
           value={field.value ?? undefined}
@@ -636,7 +631,7 @@ return (
             validate: value => validateDate(value),
           }}
           render={({ field }) => (
-            <Unsafe_ISODatePicker
+            <ISODatePicker
               {...args}
               errorText={errors?.reiseDate ? (errors?.reiseDate?.message as string) : undefined}
               value={field.value ?? undefined}
@@ -656,7 +651,7 @@ return (
           name="reiseTid"
           control={control}
           render={({ field }) => (
-            <Unsafe_TimeInput
+            <TimeInput
               {...args}
               errorText={errors?.reiseTid ? (errors?.reiseTid?.message as string) : undefined}
               value={field.value ?? undefined}
@@ -726,7 +721,7 @@ export const MultipleFields: Story = {
               validate: value => validateDate(value),
             }}
             render={({ field }) => (
-              <Unsafe_DatePicker
+              <DatePicker
                 {...args}
                 errorText={errors?.birthday?.message as string}
                 value={field.value}
@@ -785,7 +780,7 @@ export const WithTanstackForm: Story = {
         <form.Field
           name="avtale"
           children={field => (
-            <Unsafe_ISODatePicker
+            <ISODatePicker
               {...args}
               withClearButton
               value={field.state.value}

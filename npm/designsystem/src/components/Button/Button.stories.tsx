@@ -68,7 +68,7 @@ const meta = {
     },
     arrow: {
       control: 'select',
-      options: ['icon', 'accessibility-character'],
+      options: ['icon', 'inline-accessible-right', 'inline-accessible-up', 'inline-accessible-down'],
     },
     concept: {
       control: 'select',
@@ -393,7 +393,7 @@ export const Borderless: Story = {
       </Button>
       <br />
       <br />
-      <Button {...args} arrow="accessibility-character" onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+      <Button {...args} arrow="inline-accessible-right" onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         {args.children}
       </Button>
     </>
@@ -429,7 +429,7 @@ export const BorderlessLarge: Story = {
       </Button>
       <br />
       <br />
-      <Button {...args} arrow="accessibility-character" onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+      <Button {...args} arrow="inline-accessible-right" onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         {args.children}
       </Button>
     </>

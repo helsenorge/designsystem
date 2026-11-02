@@ -372,7 +372,6 @@ describe('Gitt at button skal vises', (): void => {
   });
   describe('Når Button har arrow som inline-tegn', (): void => {
     test.each([
-      ['accessibility-character', '→'],
       ['inline-accessible-right', '→'],
       ['inline-accessible-up', '↑'],
       ['inline-accessible-down', '↓'],
@@ -395,20 +394,20 @@ describe('Gitt at button skal vises', (): void => {
       expect(screen.getByRole('button', { name: /^Tekst\s+→$/ })).toBeVisible();
     });
   });
-  describe('Når Button har type arrow er satt til accessibility-character og button props som ikke støtter det', (): void => {
+  describe('Når Button har type arrow er satt til inline-accessible-right og button props som ikke støtter det', (): void => {
     test('Så får den ikke → character lagt til', (): void => {
       render(
         <>
-          <Button testId={'knapp'} arrow="accessibility-character" variant="outline">
+          <Button testId={'knapp'} arrow="inline-accessible-right" variant="outline">
             {'Tekst'}
           </Button>
-          <Button testId={'knapp'} arrow="accessibility-character">
+          <Button testId={'knapp'} arrow="inline-accessible-right">
             {'Tekst'}
           </Button>
-          <Button testId={'knapp'} arrow="accessibility-character" fluid>
+          <Button testId={'knapp'} arrow="inline-accessible-right" fluid>
             {'Tekst'}
           </Button>
-          <Button testId={'knapp'} arrow="accessibility-character">
+          <Button testId={'knapp'} arrow="inline-accessible-right">
             <Icon svgIcon={Check} />
             {'Tekst'}
           </Button>

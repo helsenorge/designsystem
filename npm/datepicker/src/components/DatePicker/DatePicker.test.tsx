@@ -1,327 +1,310 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
+import { useRef, useState } from 'react';
+
+import { render, screen, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { parse } from 'date-fns';
-import { ar } from 'date-fns/locale';
+import { Controller, useForm } from 'react-hook-form';
 
-import DatePicker from './DatePicker';
-import DateTime from './DateTime';
-import DateTimePickerWrapper from './DateTimePickerWrapper';
-import { validateDisabledDates, validateMinMaxDate, validateMinTimeMaxTime } from './validate-utils';
+import DatePicker, { type DatePickerHandle } from './DatePicker';
 
-describe('Gitt at DatePicker skal vises', (): void => {
-  describe('Når DatePicker rendres', () => {
-    it('Så skal datofomatet settes', () => {
-      render(<DatePicker label={'Velg dato'} dateFormat="dd.MM.yyyy" />);
-      const input = screen.getByLabelText('Velg dato') as HTMLInputElement;
-      fireEvent.change(input, { target: { value: '01.01.2022' } });
-      expect(input.value).toBe('01.01.2022');
+const DD_LABEL = 'Dag';
+const MM_LABEL = 'Måned';
+const YYYY_LABEL = 'År';
+const CLEAR_LABEL = 'Nullstill dato';
+const CALENDAR_BUTTON_LABEL = 'Åpne datovelger';
+
+const getInputs = (): { dd: HTMLInputElement; mm: HTMLInputElement; yyyy: HTMLInputElement } => ({
+  dd: screen.getByLabelText(DD_LABEL) as HTMLInputElement,
+  mm: screen.getByLabelText(MM_LABEL) as HTMLInputElement,
+  yyyy: screen.getByLabelText(YYYY_LABEL) as HTMLInputElement,
+});
+
+const expectInputs = (dd: string, mm: string, yyyy: string): void => {
+  const inputs = getInputs();
+  expect(inputs.dd.value).toBe(dd);
+  expect(inputs.mm.value).toBe(mm);
+  expect(inputs.yyyy.value).toBe(yyyy);
+};
+
+describe('Gitt at DatePicker skal vises', () => {
+  describe('Når komponenten er kontrollert og rendres med en verdi', () => {
+    it('Så skal segmentene vise initiell verdi', () => {
+      render(<DatePicker value={new Date('2026-01-15')} onChange={vi.fn()} />);
+      expectInputs('15', '01', '2026');
     });
 
-    it('Så skal disableDays vises riktig i datovelgeren', () => {
-      render(<DatePicker label={'Velg dato'} disableDays={[new Date('2022-01-01'), new Date('2022-01-02')]} />);
-      const input = screen.getByLabelText('Velg dato') as HTMLInputElement;
-      fireEvent.click(input);
-      expect(screen.queryByText('1')).toBeNull();
-      expect(screen.queryByText('2')).toBeNull();
-    });
-
-    it('Så skal disableWeekends vises riktig i datovelgeren', () => {
-      render(<DatePicker label={'Velg dato'} disableWeekends />);
-      const input = screen.getByLabelText('Velg dato') as HTMLInputElement;
-      fireEvent.click(input);
-      expect(screen.queryByText('lørdag')).toBeNull();
-      expect(screen.queryByText('søndag')).toBeNull();
-    });
-
-    it('Så skal errorText vises riktig', () => {
-      render(<DatePicker label="Velg dato" inputId="datepicker" errorText="Vennligst velg en gyldig dato" />);
-
-      const datePicker = screen.getByLabelText('Velg dato');
-
-      expect(datePicker).toHaveAccessibleDescription('Vennligst velg en gyldig dato');
-    });
-
-    it('Så skal label vises riktig', () => {
-      render(<DatePicker label="Dato" />);
-      expect(screen.getByLabelText('Dato')).toBeInTheDocument();
-    });
-
-    it('Så skal maxDate sette datobegrensningen riktig', () => {
-      render(<DatePicker label={'Velg dato'} maxDate={new Date('2022-01-01')} />);
-      const input = screen.getByLabelText('Velg dato') as HTMLInputElement;
-      fireEvent.change(input, { target: { value: '02.01.2022' } });
-      fireEvent.blur(input);
-      expect(input.value).toBe('02.01.2022');
-    });
-
-    it('Så skal minDate sette datobegrensningen riktig', () => {
-      render(<DatePicker label={'Velg dato'} minDate={new Date('2022-01-02')} />);
-      const input = screen.getByLabelText('Velg dato') as HTMLInputElement;
-      fireEvent.change(input, { target: { value: '01.01.2022' } });
-      fireEvent.blur(input);
-      expect(input.value).toBe('01.01.2022');
-    });
-
-    it('Så skal onChange trigges ved datoendring', () => {
+    it('Så skal onChange kalles med en parsed Date når en komplett dato skrives inn', async () => {
       const handleChange = vi.fn();
-      render(<DatePicker label={'Velg dato'} onChange={handleChange} />);
-      const input = screen.getByLabelText('Velg dato') as HTMLInputElement;
-      fireEvent.change(input, { target: { value: '01.01.2022' } });
-      expect(handleChange).toHaveBeenCalledTimes(1);
+      const user = userEvent.setup();
+      render(<DatePicker value={undefined} onChange={handleChange} />);
+
+      await user.type(screen.getByLabelText(DD_LABEL), '15');
+      await user.type(screen.getByLabelText(MM_LABEL), '01');
+      await user.type(screen.getByLabelText(YYYY_LABEL), '2026');
+
+      const lastCall = handleChange.mock.calls.at(-1)?.[0] as Date | undefined;
+      expect(lastCall).toBeInstanceOf(Date);
+      expect(lastCall?.getFullYear()).toBe(2026);
+      expect(lastCall?.getMonth()).toBe(0);
+      expect(lastCall?.getDate()).toBe(15);
     });
 
-    describe('Når autocomplete ikke er satt', (): void => {
-      test('Så er autocomplete=off', (): void => {
-        render(<DatePicker label={'Velg dato'} />);
+    it('Så skal segmentene synkroniseres når ekstern verdi endres', () => {
+      const { rerender } = render(<DatePicker value={new Date('2026-01-15')} onChange={vi.fn()} />);
+      expectInputs('15', '01', '2026');
 
-        const input = screen.getByLabelText('Velg dato');
-
-        expect(input).toHaveAttribute('autocomplete', 'off');
-      });
+      rerender(<DatePicker value={new Date('2026-12-24')} onChange={vi.fn()} />);
+      expectInputs('24', '12', '2026');
     });
 
-    describe('Når autocomplete er satt', (): void => {
-      test('Så er autocomplete riktig verdi', (): void => {
-        render(<DatePicker label={'Velg dato'} autoComplete="bday" />);
-
-        const input = screen.getByLabelText('Velg dato');
-
-        expect(input).toHaveAttribute('autocomplete', 'bday');
-      });
-    });
-
-    describe('Når locale er satt', (): void => {
-      test('Så er tekst på riktig språk', async () => {
-        render(<DatePicker label={'Velg dato'} locale={ar} />);
-
-        const input = screen.getByLabelText('Velg dato') as HTMLInputElement;
-        await userEvent.click(input);
-
-        const day = screen.queryByText('سبت');
-
-        expect(day).toBeInTheDocument();
-      });
+    it('Så skal segmentene tømmes når ekstern verdi blir undefined', () => {
+      const { rerender } = render(<DatePicker value={new Date('2026-01-15')} onChange={vi.fn()} />);
+      rerender(<DatePicker value={undefined} onChange={vi.fn()} />);
+      expectInputs('', '', '');
     });
   });
-  describe('Når DateTime rendres', () => {
-    it('Så skal label vises riktig', () => {
-      render(<DateTime label={'Select date and time'} timeUnit={'hours'} />);
-      const input = screen.getByLabelText('Select date and time') as HTMLInputElement;
-      expect(input).toBeInTheDocument();
-    });
 
-    it('Så skal formatet til input alltid ha to tall', () => {
-      render(<DateTime label={'Time'} timeUnit="minutes" />);
-      const input = screen.getByLabelText('Time') as HTMLInputElement;
-      fireEvent.change(input, { target: { value: '1' } });
-
-      expect(input.value).toBe('1');
-      fireEvent.blur(input);
-      expect(input.value).toBe('01');
-    });
-
-    it('Så skal onChange kalles når input endres', () => {
+  describe('Når brukeren klikker på nullstill-knappen', () => {
+    it('Så skal onChange kalles med undefined og inputene tømmes', async () => {
       const handleChange = vi.fn();
-      render(<DateTime label={'Time'} timeUnit="hours" onChange={handleChange} />);
-      const input = screen.getByLabelText('Time') as HTMLInputElement;
-      fireEvent.change(input, { target: { value: '12' } });
-      expect(handleChange).toHaveBeenCalledTimes(1);
+      const user = userEvent.setup();
+      const Wrapper = (): React.ReactNode => {
+        const [value, setValue] = useState<Date | null | undefined>(new Date('2026-01-15'));
+        return (
+          <DatePicker
+            value={value}
+            onChange={next => {
+              setValue(next);
+              handleChange(next);
+            }}
+          />
+        );
+      };
+      render(<Wrapper />);
+
+      await user.click(screen.getByLabelText(CLEAR_LABEL));
+
+      expect(handleChange).toHaveBeenLastCalledWith(null);
+      expectInputs('', '', '');
+    });
+  });
+
+  describe('Når en soft-feil vises og brukeren velger en gyldig dato i datovelgeren', () => {
+    const DAY_SOFT_ERROR = 'Dag må være et tall mellom 01 og 31';
+
+    it('Så skal soft-feilen fjernes (regresjonstest for at popup-valg validerer på nytt)', async () => {
+      const user = userEvent.setup();
+      render(<DatePicker value={undefined} onChange={vi.fn()} />);
+
+      // Skriv en ugyldig dag for å trigge soft-feil
+      await user.type(screen.getByLabelText(DD_LABEL), '32');
+      expect(screen.getByText(DAY_SOFT_ERROR)).toBeInTheDocument();
+
+      // Velg en gyldig dato i datovelger-popupen
+      await user.click(screen.getByLabelText(CALENDAR_BUTTON_LABEL));
+      await user.click(screen.getByRole('button', { name: /^I dag,/i }));
+
+      expect(screen.queryByText(DAY_SOFT_ERROR)).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Når ekstern verdi endres flere ganger (regresjonstest for echo-back guard)', () => {
+    it('Så skal segmentene tømmes etter sekvens: tøm → sett Date → sett undefined', () => {
+      const { rerender } = render(<DatePicker value={undefined} onChange={vi.fn()} />);
+
+      // 1. Start cleared
+      expectInputs('', '', '');
+
+      // 2. External setValue with a Date should populate segments
+      rerender(<DatePicker value={new Date('2026-12-24')} onChange={vi.fn()} />);
+      expectInputs('24', '12', '2026');
+
+      // 3. External setValue with undefined should clear (this used to fail because
+      //    lastSentValueTime stayed `undefined` after the initial clear, treating the
+      //    new `undefined` as our own echo).
+      rerender(<DatePicker value={undefined} onChange={vi.fn()} />);
+      expectInputs('', '', '');
+    });
+  });
+
+  describe('Når komponenten brukes med react-hook-form', () => {
+    type FormValues = { avtale: Date | null };
+
+    const RHFHarness = ({
+      defaultValues,
+      onMounted,
+    }: {
+      defaultValues: Partial<FormValues>;
+      onMounted: (api: { setValue: (name: 'avtale', value: Date | null) => void }) => void;
+    }): React.ReactNode => {
+      const { control, setValue } = useForm<FormValues>({ defaultValues });
+      onMounted({ setValue });
+      return (
+        <Controller
+          name="avtale"
+          control={control}
+          render={({ field }) => <DatePicker value={field.value ?? undefined} onChange={val => field.onChange(val ?? null)} />}
+        />
+      );
+    };
+
+    it('Så skal initiell verdi hentes fra defaultValues', () => {
+      render(<RHFHarness defaultValues={{ avtale: new Date('2026-01-15') }} onMounted={() => undefined} />);
+      expectInputs('15', '01', '2026');
     });
 
-    it('Så skal onBlur kalles når input mister fokus', () => {
+    it('Så skal segmentene oppdateres når setValue kalles eksternt med en ny Date', () => {
+      let api: { setValue: (name: 'avtale', value: Date | null) => void } = { setValue: () => undefined };
+      render(<RHFHarness defaultValues={{ avtale: new Date('2026-01-15') }} onMounted={a => (api = a)} />);
+
+      act(() => {
+        api.setValue('avtale', new Date('2026-12-24'));
+      });
+
+      expectInputs('24', '12', '2026');
+    });
+
+    it('Så skal segmentene tømmes når setValue kalles med null (uten å falle tilbake til defaultValue)', () => {
+      let api: { setValue: (name: 'avtale', value: Date | null) => void } = { setValue: () => undefined };
+      render(<RHFHarness defaultValues={{ avtale: new Date('2026-01-15') }} onMounted={a => (api = a)} />);
+
+      act(() => {
+        api.setValue('avtale', null);
+      });
+
+      expectInputs('', '', '');
+    });
+
+    it('Så skal nullstill-knappen tømme uten å falle tilbake til defaultValue (når forbruker mapper undefined → null)', async () => {
+      const user = userEvent.setup();
+      render(<RHFHarness defaultValues={{ avtale: new Date('2026-01-15') }} onMounted={() => undefined} />);
+
+      await user.click(screen.getByLabelText(CLEAR_LABEL));
+
+      expectInputs('', '', '');
+    });
+  });
+
+  describe('Når onBlur er satt', () => {
+    it('Så skal onBlur kalles med en parsed Date når brukeren forlater feltet etter å ha skrevet en komplett dato', async () => {
       const handleBlur = vi.fn();
-      render(<DateTime label={'Time'} timeUnit="hours" onBlur={handleBlur} />);
-      const input = screen.getByLabelText('Time') as HTMLInputElement;
-      fireEvent.focus(input);
-      fireEvent.blur(input);
-      expect(handleBlur).toHaveBeenCalledTimes(1);
-    });
-
-    it('Så skal disabled propen sette input feltet som disabled', () => {
-      render(<DateTime label={'Time'} timeUnit="minutes" disabled />);
-      const input = screen.getByLabelText('Time') as HTMLInputElement;
-      expect(input).toBeDisabled();
-    });
-
-    it('Så skal error meldingen vises riktig', () => {
-      render(<DateTime timeUnit="hours" error label="Time" inputId="datetime" errorText="Invalid date and time" />);
-
-      const dateTime = screen.getByLabelText('Time');
-
-      expect(dateTime).toHaveAccessibleDescription('Invalid date and time');
-    });
-
-    it('Så skal value settes riktig', () => {
-      render(<DateTime timeUnit="hours" label="Time" value={12} />);
-
-      const time = screen.getByDisplayValue(12);
-
-      expect(time).toBeInTheDocument();
-    });
-
-    it('Så skal defaultValue settes riktig', () => {
-      render(<DateTime timeUnit="hours" label="Time" defaultValue={12} />);
-
-      const time = screen.getByDisplayValue(12);
-
-      expect(time).toBeInTheDocument();
-    });
-  });
-
-  describe('Når autocomplete ikke er satt', (): void => {
-    test('Så er autocomplete=off', (): void => {
-      render(<DateTime timeUnit="hours" label={'Velg klokkeslett'} />);
-
-      const input = screen.getByLabelText('Velg klokkeslett');
-
-      expect(input).toHaveAttribute('autocomplete', 'off');
-    });
-  });
-
-  describe('Når autocomplete er satt', (): void => {
-    test('Så er autocomplete riktig verdi', (): void => {
-      render(<DateTime timeUnit="hours" label={'Velg klokkeslett'} autoComplete="custom" />);
-
-      const input = screen.getByLabelText('Velg klokkeslett');
-
-      expect(input).toHaveAttribute('autocomplete', 'custom');
-    });
-  });
-  describe('Når DateTimePickerWrapper rendres', () => {
-    it('Så skal DateTimePickerWrapper children rendres riktig', () => {
+      const user = userEvent.setup();
       render(
-        <DateTimePickerWrapper>
-          <DatePicker label="Date" />
-          <DateTime label="Time" timeUnit="hours" />
-        </DateTimePickerWrapper>
+        <>
+          <DatePicker value={undefined} onChange={vi.fn()} onBlur={handleBlur} />
+          <button type="button">{'Annet element'}</button>
+        </>
       );
 
-      const datePicker = screen.getByLabelText('Date');
-      const dateTime = screen.getByLabelText('Time');
-      expect(datePicker).toBeInTheDocument();
-      expect(dateTime).toBeInTheDocument();
+      await user.type(screen.getByLabelText(DD_LABEL), '15');
+      await user.type(screen.getByLabelText(MM_LABEL), '01');
+      await user.type(screen.getByLabelText(YYYY_LABEL), '2026');
+      await user.click(screen.getByRole('button', { name: 'Annet element' }));
+
+      const lastCall = handleBlur.mock.calls.at(-1)?.[0] as Date | null | undefined;
+      expect(lastCall).toBeInstanceOf(Date);
+      expect((lastCall as Date).getFullYear()).toBe(2026);
+      expect((lastCall as Date).getMonth()).toBe(0);
+      expect((lastCall as Date).getDate()).toBe(15);
     });
-    it('Så skal DateTimePickerWrapper children rendres riktig med error tekst og styling', () => {
+
+    it('Så skal onBlur kalles med null når brukeren forlater et tomt felt', async () => {
+      const handleBlur = vi.fn();
+      const user = userEvent.setup();
       render(
-        <DateTimePickerWrapper errorText="Some error">
-          <DatePicker label="Date" inputId="datepicker" />
-          <DateTime label="Time" inputId="datetime" timeUnit="hours" />
-        </DateTimePickerWrapper>
+        <>
+          <DatePicker value={undefined} onChange={vi.fn()} onBlur={handleBlur} />
+          <button type="button">{'Annet element'}</button>
+        </>
       );
 
-      const datePicker = screen.getByLabelText('Date');
-      const dateTime = screen.getByLabelText('Time');
+      await user.click(screen.getByLabelText(DD_LABEL));
+      await user.click(screen.getByRole('button', { name: 'Annet element' }));
 
-      expect(datePicker).toHaveAccessibleDescription('Some error');
-      expect(dateTime).toHaveAccessibleDescription('Some error');
+      expect(handleBlur).toHaveBeenLastCalledWith(null);
+    });
+
+    it('Så skal onBlur ikke kalles når brukeren tabber mellom dd, mm og yyyy-segmentene', async () => {
+      const handleBlur = vi.fn();
+      const user = userEvent.setup();
+      render(<DatePicker value={undefined} onChange={vi.fn()} onBlur={handleBlur} />);
+
+      await user.click(screen.getByLabelText(DD_LABEL));
+      await user.tab();
+      await user.tab();
+
+      expect(handleBlur).not.toHaveBeenCalled();
+    });
+
+    it('Så skal onBlur kalles med valgt dato når brukeren velger en dag i popup', async () => {
+      const handleBlur = vi.fn();
+      const user = userEvent.setup();
+      render(<DatePicker value={new Date('2026-01-15')} onChange={vi.fn()} onBlur={handleBlur} />);
+
+      await user.click(screen.getByLabelText(CALENDAR_BUTTON_LABEL));
+      await user.click(screen.getByRole('button', { name: /20\.\s*januar/i }));
+
+      const lastCall = handleBlur.mock.calls.at(-1)?.[0] as Date | null | undefined;
+      expect(lastCall).toBeInstanceOf(Date);
+      expect((lastCall as Date).getFullYear()).toBe(2026);
+      expect((lastCall as Date).getMonth()).toBe(0);
+      expect((lastCall as Date).getDate()).toBe(20);
+    });
+
+    it('Så skal onBlur kalles når popup lukkes med Escape', async () => {
+      const handleBlur = vi.fn();
+      const user = userEvent.setup();
+      render(<DatePicker value={new Date('2026-01-15')} onChange={vi.fn()} onBlur={handleBlur} />);
+
+      await user.click(screen.getByLabelText(CALENDAR_BUTTON_LABEL));
+      await user.keyboard('{Escape}');
+
+      expect(handleBlur).toHaveBeenCalled();
+      const lastCall = handleBlur.mock.calls.at(-1)?.[0] as Date | null | undefined;
+      expect(lastCall).toBeInstanceOf(Date);
+      expect((lastCall as Date).getDate()).toBe(15);
     });
   });
-});
-describe('Gitt at validateMinMax kalles', () => {
-  const currentDate = '15.11.2023';
-  const futureDate = '16.11.2023';
-  const pastDate = '13.11.2023';
-  const pastDate2 = '14.11.2023';
-  const formatString = 'dd.MM.yyyy';
 
-  const parsedFutureDate = parse(futureDate, formatString, new Date());
-  const parsedPastDate = parse(pastDate, formatString, new Date());
-  const parsedPastDate2 = parse(pastDate2, formatString, new Date());
-  describe('Når validateMinMax feiler', () => {
-    it('Så skal feilmelding returneres', () => {
-      const validateResult1 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedFutureDate);
-      const validateResult2 = validateMinMaxDate(currentDate, 'Feil', undefined, undefined, parsedPastDate);
-      const validateResult3 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedPastDate, parsedPastDate2);
+  describe('Når man bruker ref.focus()', () => {
+    const RefHarness = ({ value }: { value?: Date | null }): React.ReactNode => {
+      const ref = useRef<DatePickerHandle>(null);
+      return (
+        <>
+          <button type="button" onClick={() => ref.current?.focus()}>
+            {'Fokuser'}
+          </button>
+          <DatePicker ref={ref} value={value} onChange={vi.fn()} />
+        </>
+      );
+    };
 
-      expect(validateResult1).toBe('Feil');
-      expect(validateResult2).toBe('Feil');
-      expect(validateResult3).toBe('Feil');
+    it('Så skal fokus settes på dag-segmentet når feltet er tomt', async () => {
+      const user = userEvent.setup();
+      render(<RefHarness />);
+
+      await user.click(screen.getByRole('button', { name: 'Fokuser' }));
+
+      expect(getInputs().dd).toHaveFocus();
     });
-  });
-  describe('Når validateMinMax validerer riktig', () => {
-    it('Så skal true returneres', () => {
-      const validateResult1 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedPastDate);
-      const validateResult2 = validateMinMaxDate(currentDate, 'Feil', undefined, undefined, parsedFutureDate);
-      const validateResult3 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedPastDate, parsedFutureDate);
-      const validateSameDayResult1 = validateMinMaxDate(pastDate, 'Feil', undefined, parsedPastDate);
-      const validateSameDayResult2 = validateMinMaxDate(pastDate, 'Feil', undefined, undefined, parsedPastDate);
-      const validateSameDayResult3 = validateMinMaxDate(pastDate, 'Feil', undefined, parsedPastDate, parsedFutureDate);
 
-      expect(validateResult1).toBe(true);
-      expect(validateResult2).toBe(true);
-      expect(validateResult3).toBe(true);
-      expect(validateSameDayResult1).toBe(true);
-      expect(validateSameDayResult2).toBe(true);
-      expect(validateSameDayResult3).toBe(true);
+    it('Så skal fokus settes på første tomme segment når noen segmenter allerede er fylt ut', async () => {
+      const user = userEvent.setup();
+      render(<RefHarness />);
+
+      await user.type(getInputs().dd, '15');
+      await user.click(screen.getByRole('button', { name: 'Fokuser' }));
+
+      expect(getInputs().mm).toHaveFocus();
     });
-  });
-  describe('Når validateMinMax får inn dato på feil format', () => {
-    it('Så skal riktig feilmelding returneres', () => {
-      const validateResult1 = validateMinMaxDate('Ikke en dato', 'Ikke denne meldingen', 'Feil format', parsedPastDate);
-      const validateResult2 = validateMinMaxDate('Ikke en dato', 'Ikke denne meldingen', 'Feil format', undefined, parsedFutureDate);
-      const validateResult3 = validateMinMaxDate('Ikke en dato', 'Ikke denne meldingen', 'Feil format', parsedPastDate, parsedFutureDate);
 
-      expect(validateResult1).toBe('Feil format');
-      expect(validateResult2).toBe('Feil format');
-      expect(validateResult3).toBe('Feil format');
-    });
-  });
-});
-describe('Gitt at validateDisabledDates kalles', () => {
-  const currentDate = '15.11.2023';
-  const nextDayDate = '16.11.2023';
-  const formatString = 'dd.MM.yyyy';
+    it('Så skal fokus settes på år-segmentet når alle segmenter er fylt ut, i tråd med klikk på gruppen', async () => {
+      const user = userEvent.setup();
+      render(<RefHarness value={new Date('2026-01-15')} />);
 
-  const parsedCurrentDate = parse(currentDate, formatString, new Date());
-  const parsedNextDayDate = parse(nextDayDate, formatString, new Date());
-  describe('Når validateDisabledDates feiler', () => {
-    it('Så skal feilmelding returneres', () => {
-      const validateResult1 = validateDisabledDates(currentDate, [parsedCurrentDate], 'Feil');
+      await user.click(screen.getByRole('button', { name: 'Fokuser' }));
 
-      expect(validateResult1).toBe('Feil');
-    });
-  });
-  describe('Når validateDisabledDates validerer riktig', () => {
-    it('Så skal true returneres', () => {
-      const validateResult1 = validateDisabledDates(currentDate, [parsedNextDayDate], 'Feil');
-
-      expect(validateResult1).toBe(true);
-    });
-  });
-  describe('Når validateDisabledDates får inn feil format', () => {
-    it('Så skal feilmelding returneres', () => {
-      const validateResult1 = validateDisabledDates('ikke en dato', [parsedCurrentDate], 'Datoen er ikke gyldig', 'Feil format');
-
-      expect(validateResult1).toBe('Feil format');
-    });
-  });
-});
-describe('Gitt at validateMinTimeMaxTime kalles', () => {
-  const currentTime = { hour: 10, minute: 10 };
-  const futureTime = { hour: 11, minute: 10 };
-  const pastTime1 = { hour: 8, minute: 10 };
-  const pastTime2 = { hour: 9, minute: 10 };
-  describe('Når validateMinTimeMaxTime feiler', () => {
-    it('Så skal feilmelding returneres', () => {
-      const validateResult1 = validateMinTimeMaxTime(currentTime, 'Feil', futureTime);
-      const validateResult2 = validateMinTimeMaxTime(currentTime, 'Feil', undefined, pastTime1);
-      const validateResult3 = validateMinTimeMaxTime(currentTime, 'Feil', pastTime1, pastTime2);
-
-      expect(validateResult1).toBe('Feil');
-      expect(validateResult2).toBe('Feil');
-      expect(validateResult3).toBe('Feil');
-    });
-  });
-  describe('Når validateMinTimeMaxTime validerer riktig', () => {
-    it('Så skal true returneres', () => {
-      const validateResult1 = validateMinTimeMaxTime(currentTime, 'Feil', pastTime1);
-      const validateResult2 = validateMinTimeMaxTime(currentTime, 'Feil', undefined, futureTime);
-      const validateResult3 = validateMinTimeMaxTime(currentTime, 'Feil', pastTime1, futureTime);
-
-      expect(validateResult1).toBe(true);
-      expect(validateResult2).toBe(true);
-      expect(validateResult3).toBe(true);
+      expect(getInputs().yyyy).toHaveFocus();
     });
   });
 });

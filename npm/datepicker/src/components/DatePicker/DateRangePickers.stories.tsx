@@ -1,0 +1,96 @@
+import { useState } from 'react';
+
+import { nb } from 'date-fns/locale';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
+
+import DateRangePickers from './DateRangePickers';
+
+import DatePicker from './index';
+
+const meta = {
+  title: '@helsenorge/datepicker/DatePicker/DateRangePickers',
+  component: DateRangePickers,
+  argTypes: {
+    from: { control: 'object' },
+    to: { control: 'object' },
+  },
+  args: {
+    from: <></>,
+    to: <></>,
+    onRangeChange: undefined,
+  },
+} satisfies Meta<typeof DateRangePickers>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: () => {
+    const [from, setFrom] = useState<Date | null | undefined>(new Date());
+    const [to, setTo] = useState<Date | null | undefined>();
+    const [errorText, setErrorText] = useState<string | undefined>();
+
+    const fromComponent = (
+      <DatePicker
+        id="from-date"
+        aria-describedby="sublabel-from"
+        label={
+          <Label
+            htmlFor="from-date"
+            labelTexts={[{ text: 'Fra' }]}
+            sublabel={<Sublabel id="sublabel-from" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
+          />
+        }
+        errorText={errorText}
+        value={from}
+        onChange={date => {
+          setFrom(date);
+        }}
+        localeForCalendar={nb}
+      />
+    );
+    const toComponent = (
+      <DatePicker
+        id="to-date"
+        aria-describedby="sublabel-to"
+        label={
+          <Label
+            htmlFor="to-date"
+            labelTexts={[{ text: 'Til' }]}
+            sublabel={<Sublabel id="sublabel-to" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
+          />
+        }
+        errorText={errorText}
+        value={to}
+        onChange={date => {
+          setTo(date);
+        }}
+        localeForCalendar={nb}
+      />
+    );
+
+    const handleRangeChange = (from: Date | undefined | null, to: Date | undefined | null, isValid: boolean): void => {
+      setFrom(from);
+      setTo(to);
+      if (!isValid) {
+        setErrorText('Ugyldig datointervall');
+      } else {
+        setErrorText('');
+      }
+    };
+    return (
+      <>
+        <DateRangePickers from={fromComponent} to={toComponent} onRangeChange={handleRangeChange} />
+        <span>
+          {from?.toString()}
+          {'-'}
+          {to?.toString()}
+        </span>
+      </>
+    );
+  },
+};

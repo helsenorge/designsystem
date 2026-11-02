@@ -1,0 +1,115 @@
+import { cloneElement, isValidElement, useState } from 'react';
+
+import { isBefore, startOfDay } from 'date-fns';
+
+import type { DatePickerProps } from './DatePicker';
+
+import { isSameDate } from './utils';
+import { isValidRange } from './validate';
+
+import styles from './DateRangePickers.module.scss';
+
+//@todo: utvide denne til å ta inn ISODatePicker også
+export interface DateRangePickersProps {
+  /** The 'from' date. Must be DateInput */
+  from: React.ReactElement<DatePickerProps>;
+  /** The 'to' date. Must be DateInput */
+  to: React.ReactElement<DatePickerProps>;
+  /** Callback when the date range changes with validation result */
+  onRangeChange?: (from: Date | undefined | null, to: Date | undefined | null, isValid: boolean) => void;
+}
+
+const DateRangePickers: React.FC<DateRangePickersProps> = props => {
+  const { from, to, onRangeChange } = props;
+
+  const [fromDate, setFromDate] = useState<Date | undefined>(from.props.value ?? undefined);
+  const [toDate, setToDate] = useState<Date | undefined>(to.props.value ?? undefined);
+  const [prevFromValue, setPrevFromValue] = useState<Date | undefined>(from.props.value ?? undefined);
+  const [prevToValue, setPrevToValue] = useState<Date | undefined>(to.props.value ?? undefined);
+
+  if (!isSameDate(from.props.value ?? undefined, prevFromValue)) {
+    setPrevFromValue(from.props.value ?? undefined);
+    setFromDate(from.props.value ?? undefined);
+  }
+  if (!isSameDate(to.props.value ?? undefined, prevToValue)) {
+    setPrevToValue(to.props.value ?? undefined);
+    setToDate(to.props.value ?? undefined);
+  }
+
+  const handleFromChange = (date: Date | null): void => {
+    const normalized = date ?? undefined;
+    setFromDate(normalized);
+    const valid = isValidRange(normalized, toDate);
+    if (from.props.onChange) {
+      from.props.onChange(date);
+    }
+    if (onRangeChange) {
+      onRangeChange(normalized, toDate, valid);
+    }
+  };
+
+  const handleToChange = (date: Date | null): void => {
+    const normalized = date ?? undefined;
+    setToDate(normalized);
+    const valid = isValidRange(fromDate, normalized); // @todo: gjøre noe mer her?
+    if (to.props.onChange) {
+      to.props.onChange(date);
+    }
+    if (onRangeChange) {
+      onRangeChange(fromDate, normalized, valid);
+    }
+  };
+
+  // Create a matcher function to disable dates before the from date in the 'to' picker
+  const disableDatesBeforeFrom = fromDate
+    ? (date: Date): boolean => {
+        return isBefore(startOfDay(date), startOfDay(fromDate));
+      }
+    : undefined;
+
+  // Create a matcher function to disable dates after the to date in the 'from' picker
+  const disableDatesAfterTo = toDate
+    ? (date: Date): boolean => {
+        return isBefore(startOfDay(toDate), startOfDay(date));
+      }
+    : undefined;
+
+  // Clone the from DateInput with additional props
+  const enhancedFrom = isValidElement<DatePickerProps>(from)
+    ? cloneElement(from, {
+        ...from.props,
+        onChange: handleFromChange,
+        modifiers: {
+          ...from.props.modifiers,
+          disabled: [
+            ...(Array.isArray(from.props.modifiers?.disabled) ? from.props.modifiers.disabled : []),
+            ...(disableDatesAfterTo ? [disableDatesAfterTo] : []),
+          ].filter(Boolean),
+        },
+      })
+    : from;
+
+  // Clone the to DateInput with additional props
+  const enhancedTo = isValidElement<DatePickerProps>(to)
+    ? cloneElement(to, {
+        ...to.props,
+        onChange: handleToChange,
+        modifiers: {
+          ...to.props.modifiers,
+          disabled: [
+            ...(Array.isArray(to.props.modifiers?.disabled) ? to.props.modifiers.disabled : []),
+            ...(disableDatesBeforeFrom ? [disableDatesBeforeFrom] : []),
+          ].filter(Boolean),
+        },
+      })
+    : to;
+
+  return (
+    <div className={styles['range-date-pickers']}>
+      {enhancedFrom}
+      {enhancedTo}
+    </div>
+  );
+};
+
+export default DateRangePickers;
