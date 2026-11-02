@@ -359,4 +359,5 @@ export default {
   persondocument: { alternativeName: '', categories: 'Generisk' },
   yesno: { alternativeName: '', categories: 'Generisk' },
   sparkle: { alternativeName: '', categories: '' },
+  subcategory: { alternativeName: '', categories: '' },
 };

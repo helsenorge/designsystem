@@ -312,6 +312,7 @@ export const IconList = [
   'StickyNote',
   'StickyNotes',
   'Stopwatch',
+  'Subcategory',
   'Sun',
   'SupportingPerson',
   'Surgery',
