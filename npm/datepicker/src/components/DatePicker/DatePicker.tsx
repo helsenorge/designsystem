@@ -298,7 +298,7 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
   };
 
   const handleButtonClick = (
-    e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null | undefined
+    e?: React.MouseEvent<HTMLElement, MouseEvent> | React.SyntheticEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null | undefined
   ): void => {
     e?.stopPropagation();
     setDatePickerOpen(!datePickerOpen);
