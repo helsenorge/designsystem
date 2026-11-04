@@ -4,13 +4,6 @@
  *
  * This file is for typings support only, it will not supply the actual text, you will still need to download the correct culture spesific .resx file.
  */
-export type HNDesignsystemDropdown = {
-  /**
-   * Lukk
-   */
-  closeText: string;
-};
-
 export type HNDesignsystemPanel = {
   /**
    * Se detaljer
@@ -85,13 +78,13 @@ export type HNDesignsystemTabs = {
 
 export type HNDesignsystemDrawer = {
   /**
-   * Gå tilbake
-   */
-  ariaLabelBackButton: string;
-  /**
    * Lukk
    */
   ariaLabelCloseBtn: string;
+  /**
+   * Gå tilbake
+   */
+  ariaLabelBackButton: string;
 };
 
 export type HNDesignsystemFormFieldTag = {

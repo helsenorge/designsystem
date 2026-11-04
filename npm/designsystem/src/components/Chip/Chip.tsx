@@ -10,7 +10,11 @@ import X from '../Icons/X';
 
 import styles from './styles.module.scss';
 
+type ChipCases = 'uppercase' | 'astyped';
+
 export interface ChipProps {
+  /** Sets the text case of the chip */
+  textCase?: ChipCases;
   /** Sets the text of the chip */
   children: string;
   /** Wether or not to have a close button */
@@ -30,7 +34,17 @@ export interface ChipProps {
 }
 
 const Chip: React.FC<ChipProps> = props => {
-  const { children, onChipClick, onCloseClick, chipButtonProps, closeButtonProps, testId, withCloseButton = true, resources } = props;
+  const {
+    textCase = 'uppercase',
+    children,
+    onChipClick,
+    onCloseClick,
+    chipButtonProps,
+    closeButtonProps,
+    testId,
+    withCloseButton = true,
+    resources,
+  } = props;
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
   const mergedResources: HNDesignsystemChip = {
@@ -51,6 +65,7 @@ const Chip: React.FC<ChipProps> = props => {
       >
         <span
           className={classNames(styles['chip__chip__inner'], {
+            [styles['chip__chip__inner--uppercase']]: textCase === 'uppercase',
             [styles['chip__chip__inner--without-close']]: !withCloseButton,
           })}
         >
