@@ -1,8 +1,8 @@
 import replace from '@rollup/plugin-replace';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { visualizer } from 'rollup-plugin-visualizer';
+import dts from 'unplugin-dts/vite';
 import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
 
 import { entries } from './__scripts__/entries';
 
@@ -11,10 +11,9 @@ const OUTPUT_DIRECTORY = 'lib';
 export default defineConfig({
   plugins: [
     dts({
-      outDir: 'lib',
+      outDirs: 'lib',
       entryRoot: 'src',
       insertTypesEntry: false,
-      rollupTypes: false,
       copyDtsFiles: true,
       compilerOptions: {
         rootDir: 'src',

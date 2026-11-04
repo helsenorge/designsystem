@@ -1,6 +1,6 @@
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import dts from 'unplugin-dts/vite';
 import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
 
 const OUTPUT_DIRECTORY = 'lib';
 
