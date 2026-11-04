@@ -1,62 +1,37 @@
+import { useContext } from 'react';
+
 import classNames from 'classnames';
 
-import Icon, { IconSize } from '../../Icon';
-import ArrowDown from '../../Icons/ArrowDown';
-import ArrowUp from '../../Icons/ArrowUp';
-import { ModeType, SortDirection } from '../constants';
-import tableStyles from '../styles.module.scss';
+import { TableSizes, SortDirection, TableColors } from '../constants';
+import styles from '../styles.module.scss';
+import { TableContext } from '../TableContext';
+import { omitProps } from '../utils';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'th'>, 'style'> {
-  /** Sets if column for head cell should be sortable*/
-  sortable?: boolean;
   /** Sort direction  */
   sortDir?: SortDirection;
-  /** Function that is called when clicked */
-  onClick?: () => void;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the content of the td element.  */
   children?: React.ReactNode;
-  /** For display with less space. Discouraged to use together with interactive elements. */
-  mode?: ModeType;
+  /** Sets the width of the column, e.g. '10rem', '25%' or a number of pixels. Ignored in the stack variant. */
+  width?: string | number;
+  /** In the stack variant, hides the cells of this column and shows the column heading + content in an automatically rendered expanded row. */
+  hideBehindExpander?: boolean;
 }
 
-export const TableHeadCell: React.FC<Props> = ({
-  sortable,
-  onClick,
-  className,
-  children,
-  sortDir,
-  mode = ModeType.normal,
-  scope = 'col',
-  ...rest
-}) => {
-  const tableHeadCellDefaultClass = classNames(tableStyles['table__head-cell'], className, {
-    [tableStyles['table__head-cell--compact']]: mode === ModeType.compact,
+export const TableHeadCell: React.FC<Props> = ({ className, children, sortDir, scope = 'col', width, ...rest }) => {
+  const { color, size } = useContext(TableContext);
+  const tableHeadCellDefaultClass = classNames(styles['table__head-cell'], className, {
+    [styles['table__head-cell--transparent']]: color === TableColors.transparent,
+    [styles['table__head-cell--compact']]: size === TableSizes.compact,
   });
 
-  if (!sortable && !children) {
-    return <td className={tableHeadCellDefaultClass}></td>;
-  }
-
-  if (!sortable) {
-    return (
-      <th scope={scope} className={tableHeadCellDefaultClass} {...rest}>
-        {children}
-      </th>
-    );
-  }
-
-  const sortableClasses = classNames(tableHeadCellDefaultClass, tableStyles['table__head-cell--sortable'], className);
-
-  const renderSortIcon = (): React.JSX.Element | undefined =>
-    sortDir && (
-      <div className={tableStyles['table__head-cell-sort-icon-wrapper']}>
-        <Icon svgIcon={sortDir == SortDirection.asc ? ArrowDown : ArrowUp} size={IconSize.XXSmall} />
-      </div>
-    );
-
   const getSortDirection = (): React.AriaAttributes['aria-sort'] => {
+    if (sortDir === undefined) {
+      return undefined;
+    }
+
     switch (sortDir) {
       case SortDirection.asc:
         return 'ascending';
@@ -65,12 +40,21 @@ export const TableHeadCell: React.FC<Props> = ({
     }
   };
 
+  const style = width !== undefined ? { width } : undefined;
+
+  if (!children) {
+    return <td className={tableHeadCellDefaultClass} style={style} />;
+  }
+
   return (
-    <th scope={scope} className={sortableClasses} aria-sort={getSortDirection()} {...rest}>
-      <button type="button" onClick={onClick} className={tableStyles['table__sort-button']} aria-pressed={sortDir ? !!sortDir : undefined}>
-        {renderSortIcon()}
-        {children}
-      </button>
+    <th
+      scope={scope}
+      className={tableHeadCellDefaultClass}
+      style={style}
+      aria-sort={getSortDirection()}
+      {...(omitProps(rest, ['hideBehindExpander']) as React.ComponentPropsWithoutRef<'th'>)}
+    >
+      {children}
     </th>
   );
 };

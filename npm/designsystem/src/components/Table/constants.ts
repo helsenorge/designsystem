@@ -5,10 +5,9 @@ export enum SortDirection {
   desc = 'desc',
 }
 
-export enum HeaderCategory {
+export enum TableColors {
   normal = 'normal',
   transparent = 'transparent',
-  sortable = 'sortable',
 }
 
 export enum TextAlign {
@@ -16,39 +15,29 @@ export enum TextAlign {
   center = 'center',
   right = 'right',
 }
-
+// normal
+// stack
+// centeredoverflow
+// horizontalscroll
 export enum ResponsiveTableVariant {
-  /** No handling responsive behaviour. Default. */
-  none = 'none',
+  /** Normal table grid */
+  normal = 'normal',
+  /** Collapse to two columns. */
+  stack = 'stack',
   /** Overflow parent container to the left and right while remaining centered horizontally. */
   centeredoverflow = 'centeredoverflow',
   /** Show horizontal scrollbar when table is too big for the screen. */
   horizontalscroll = 'horizontalscroll',
-  /** Collapse to two columns. */
-  block = 'block',
 }
-export enum ModeType {
-  compact = 'compact',
+export enum TableSizes {
   normal = 'normal',
+  compact = 'compact',
 }
 
 export const defaultConfig: BreakpointConfig[] = [
   {
     breakpoint: 'xl',
     variant: ResponsiveTableVariant.centeredoverflow,
-    fallbackVariant: ResponsiveTableVariant.horizontalscroll,
-  },
-];
-
-export const simpleConfig: BreakpointConfig[] = [
-  {
-    breakpoint: 'xl',
-    variant: ResponsiveTableVariant.centeredoverflow,
-    fallbackVariant: ResponsiveTableVariant.horizontalscroll,
-  },
-  {
-    breakpoint: 'sm',
-    variant: ResponsiveTableVariant.centeredoverflow,
-    fallbackVariant: ResponsiveTableVariant.block,
+    fallbackVariant: ResponsiveTableVariant.stack,
   },
 ];

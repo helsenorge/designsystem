@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 
 import { useSort, type SortKey } from './useSort';
-import { SortDirection } from '../components/UNSAFE_Table/constants';
+import { SortDirection } from '../components/Table/constants';
 
 interface Rad {
   navn: string;

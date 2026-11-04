@@ -565,11 +565,11 @@
       "require": "./lib/components/StickyNote/index.js",
       "default": "./lib/components/StickyNote/index.js"
     },
-    "./components/Table/Table": {
-      "types": "./lib/components/Table/Table.d.ts",
-      "import": "./lib/components/Table/index.js",
-      "require": "./lib/components/Table/index.js",
-      "default": "./lib/components/Table/index.js"
+    "./components/TableOld/TableOld": {
+      "types": "./lib/components/TableOld/TableOld.d.ts",
+      "import": "./lib/components/TableOld/index.js",
+      "require": "./lib/components/TableOld/index.js",
+      "default": "./lib/components/TableOld/index.js"
     },
     "./components/Tabs/Tab": {
       "types": "./lib/components/Tabs/Tab.d.ts",
@@ -697,8 +697,8 @@
     "./components/Stepper/utils": {
       "types": "./lib/components/Stepper/utils.d.ts"
     },
-    "./components/Table/utils": {
-      "types": "./lib/components/Table/utils.d.ts"
+    "./components/TableOld/utils": {
+      "types": "./lib/components/TableOld/utils.d.ts"
     },
     "./components/Tabs/resourceHelper": {
       "types": "./lib/components/Tabs/resourceHelper.d.ts"
@@ -778,8 +778,8 @@
     "./components/StatusDot/constants": {
       "types": "./lib/components/StatusDot/constants.d.ts"
     },
-    "./components/Table/constants": {
-      "types": "./lib/components/Table/constants.d.ts"
+    "./components/TableOld/constants": {
+      "types": "./lib/components/TableOld/constants.d.ts"
     },
     "./components/Tag/constants": {
       "types": "./lib/components/Tag/constants.d.ts"
@@ -844,32 +844,32 @@
       "require": "./lib/components/Drawer/index.js",
       "default": "./lib/components/Drawer/index.js"
     },
-    "./components/UNSAFE_Table/TableCaption": {
-      "types": "./lib/components/UNSAFE_Table/TableCaption.d.ts",
-      "import": "./lib/components/UNSAFE_Table/index.js",
-      "require": "./lib/components/UNSAFE_Table/index.js",
-      "default": "./lib/components/UNSAFE_Table/index.js"
+    "./components/Table/TableCaption": {
+      "types": "./lib/components/Table/TableCaption.d.ts",
+      "import": "./lib/components/Table/index.js",
+      "require": "./lib/components/Table/index.js",
+      "default": "./lib/components/Table/index.js"
     },
-    "./components/UNSAFE_Table/TableContext": {
-      "types": "./lib/components/UNSAFE_Table/TableContext.d.ts",
-      "import": "./lib/components/UNSAFE_Table/index.js",
-      "require": "./lib/components/UNSAFE_Table/index.js",
-      "default": "./lib/components/UNSAFE_Table/index.js"
+    "./components/Table/TableContext": {
+      "types": "./lib/components/Table/TableContext.d.ts",
+      "import": "./lib/components/Table/index.js",
+      "require": "./lib/components/Table/index.js",
+      "default": "./lib/components/Table/index.js"
     },
-    "./components/UNSAFE_Table/UNSAFE_Table": {
-      "types": "./lib/components/UNSAFE_Table/UNSAFE_Table.d.ts"
+    "./components/Table/Table": {
+      "types": "./lib/components/Table/Table.d.ts"
     },
-    "./components/UNSAFE_Table/constants": {
-      "types": "./lib/components/UNSAFE_Table/constants.d.ts"
+    "./components/Table/constants": {
+      "types": "./lib/components/Table/constants.d.ts"
     },
-    "./components/UNSAFE_Table/useTableExpandedRows": {
-      "types": "./lib/components/UNSAFE_Table/useTableExpandedRows.d.ts"
+    "./components/Table/useTableExpandedRows": {
+      "types": "./lib/components/Table/useTableExpandedRows.d.ts"
     },
-    "./components/UNSAFE_Table/useTableShowMore": {
-      "types": "./lib/components/UNSAFE_Table/useTableShowMore.d.ts"
+    "./components/Table/useTableShowMore": {
+      "types": "./lib/components/Table/useTableShowMore.d.ts"
     },
-    "./components/UNSAFE_Table/utils": {
-      "types": "./lib/components/UNSAFE_Table/utils.d.ts"
+    "./components/Table/utils": {
+      "types": "./lib/components/Table/utils.d.ts"
     },
     "./components/VisualContentgroupWithImage/VisualContentgroupWithImage": {
       "types": "./lib/components/VisualContentgroupWithImage/VisualContentgroupWithImage.d.ts",
@@ -877,11 +877,11 @@
       "require": "./lib/components/VisualContentgroupWithImage/index.js",
       "default": "./lib/components/VisualContentgroupWithImage/index.js"
     },
-    "./components/UNSAFE_Table/StackLabelledContent": {
-      "types": "./lib/components/UNSAFE_Table/StackLabelledContent.d.ts",
-      "import": "./lib/components/UNSAFE_Table/index.js",
-      "require": "./lib/components/UNSAFE_Table/index.js",
-      "default": "./lib/components/UNSAFE_Table/index.js"
+    "./components/Table/StackLabelledContent": {
+      "types": "./lib/components/Table/StackLabelledContent.d.ts",
+      "import": "./lib/components/Table/index.js",
+      "require": "./lib/components/Table/index.js",
+      "default": "./lib/components/Table/index.js"
     }
   },
   "scripts": {

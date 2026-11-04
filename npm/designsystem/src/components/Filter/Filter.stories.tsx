@@ -509,7 +509,7 @@ export const LoggOverBrukExample: Story = {
           </FilterDrawer.View>
         </FilterDrawer>
         {filtered.length > 0 ? (
-          <Table>
+          <Table caption="Eksempeltabell">
             <TableHead>
               <TableRow>
                 <TableHeadCell>{'Når'}</TableHeadCell>
@@ -926,7 +926,7 @@ export const WithAsyncFiltering: Story = {
         {isLoading ? (
           <Loader />
         ) : filtered.length > 0 ? (
-          <Table>
+          <Table caption="Eksempeltabell">
             <TableHead>
               <TableRow>
                 <TableHeadCell>{'Når'}</TableHeadCell>
@@ -1591,7 +1591,7 @@ export const SlowsearchExample: Story = {
           </FilterDrawer.View>
         </FilterDrawer>
         {filteredData.length > 0 ? (
-          <Table>
+          <Table caption="Eksempeltabell">
             <TableHead>
               <TableRow>
                 <TableHeadCell>{'Når'}</TableHeadCell>

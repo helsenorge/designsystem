@@ -2,13 +2,17 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
+import { PopMenuLabelPosition, PopMenuVariant } from './constants';
 import { PopMenu } from './PopMenu';
+import { LanguageLocales } from '../../constants';
 import longLoremText from '../../utils/loremtext';
 import { LinkList } from '../LinkList';
-import Table, { HeaderCategory, ResponsiveTableVariant, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
-import { PopMenuLabelPosition, PopMenuVariant } from './constants';
+import Table, { ResponsiveTableVariant, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
+import { getResources } from '../Table/resourceHelper';
 
 import styles from './story.module.scss';
+
+const menuHeadCell = getResources(LanguageLocales.NORWEGIAN).menuHeadCell;
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/PopMenu',
@@ -189,41 +193,40 @@ export const HorizontalScroll: Story = {
     return (
       <>
         <p>{longLoremText}</p>
-        <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}>
-          <TableHead category={HeaderCategory.normal}>
+        <Table caption="Eksempeltabell" breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}>
+          <TableHead>
             <TableRow key="head">
               <TableHeadCell>{'Fastlege'}</TableHeadCell>
               <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
               <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
               <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
+              <TableHeadCell>{menuHeadCell}</TableHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
-              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
-              <TableCell dataLabel="ledige">{'1'}</TableCell>
-              <TableCell dataLabel="antall">
-                <PopMenu {...args} />
-              </TableCell>
+            <TableRow popMenu={<PopMenu {...args} />}>
+              <TableCell>{'Line Danser'}</TableCell>
+              <TableCell>{'Røtvedt'}</TableCell>
+              <TableCell>{'1'}</TableCell>
+              <TableCell>{'200'}</TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
-              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
-              <TableCell dataLabel="ledige">{'1'}</TableCell>
-              <TableCell dataLabel="antall">{'200'}</TableCell>
+            <TableRow popMenu={<PopMenu {...args} />}>
+              <TableCell>{'Line Danser'}</TableCell>
+              <TableCell>{'Røtvedt'}</TableCell>
+              <TableCell>{'1'}</TableCell>
+              <TableCell>{'200'}</TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
-              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
-              <TableCell dataLabel="ledige">{'1'}</TableCell>
-              <TableCell dataLabel="antall">{'200'}</TableCell>
+            <TableRow popMenu={<PopMenu {...args} />}>
+              <TableCell>{'Line Danser'}</TableCell>
+              <TableCell>{'Røtvedt'}</TableCell>
+              <TableCell>{'1'}</TableCell>
+              <TableCell>{'200'}</TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
-              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
-              <TableCell dataLabel="ledige">{'1'}</TableCell>
-              <TableCell dataLabel="antall">{'200'}</TableCell>
+            <TableRow popMenu={<PopMenu {...args} />}>
+              <TableCell>{'Line Danser'}</TableCell>
+              <TableCell>{'Røtvedt'}</TableCell>
+              <TableCell>{'1'}</TableCell>
+              <TableCell>{'200'}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -255,8 +258,8 @@ export const CenteredOverflow: Story = {
         <div className="row">
           <div className="col-8 offset-2">
             <p>{longLoremText}</p>
-            <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'xl' }}>
-              <TableHead category={HeaderCategory.normal}>
+            <Table caption="Eksempeltabell" breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'xl' }}>
+              <TableHead>
                 <TableRow key="head">
                   <TableHeadCell>{'Fastlege'}</TableHeadCell>
                   <TableHeadCell>{'Alder'}</TableHeadCell>
@@ -265,51 +268,45 @@ export const CenteredOverflow: Story = {
                   <TableHeadCell>{'Adresse'}</TableHeadCell>
                   <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
                   <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
-                  <TableHeadCell>{'Handlinger'}</TableHeadCell>
+                  <TableHeadCell>{menuHeadCell}</TableHeadCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow>
-                  <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
-                  <TableCell dataLabel="Alder">{'35 år'}</TableCell>
-                  <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
-                  <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
-                  <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
-                  <TableCell dataLabel="Handlinger">
-                    <PopMenu {...args} />
-                  </TableCell>
+                <TableRow popMenu={<PopMenu {...args} />}>
+                  <TableCell>{'Line Danser'}</TableCell>
+                  <TableCell>{'35 år'}</TableCell>
+                  <TableCell>{'Kvinne'}</TableCell>
+                  <TableCell>{'Regnbuen Legekontor'}</TableCell>
+                  <TableCell>{'Vestre Kjennervei 2B'}</TableCell>
+                  <TableCell>{'0 av 1000'}</TableCell>
+                  <TableCell>{'53'}</TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
-                  <TableCell dataLabel="Alder">{'35 år'}</TableCell>
-                  <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
-                  <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
-                  <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
-                  <TableCell dataLabel="Handlinger">{''}</TableCell>
+                <TableRow popMenu={<PopMenu {...args} />}>
+                  <TableCell>{'Line Danser'}</TableCell>
+                  <TableCell>{'35 år'}</TableCell>
+                  <TableCell>{'Kvinne'}</TableCell>
+                  <TableCell>{'Regnbuen Legekontor'}</TableCell>
+                  <TableCell>{'Vestre Kjennervei 2B'}</TableCell>
+                  <TableCell>{'0 av 1000'}</TableCell>
+                  <TableCell>{'53'}</TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
-                  <TableCell dataLabel="Alder">{'35 år'}</TableCell>
-                  <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
-                  <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
-                  <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
-                  <TableCell dataLabel="Handlinger">{''}</TableCell>
+                <TableRow popMenu={<PopMenu {...args} />}>
+                  <TableCell>{'Line Danser'}</TableCell>
+                  <TableCell>{'35 år'}</TableCell>
+                  <TableCell>{'Kvinne'}</TableCell>
+                  <TableCell>{'Regnbuen Legekontor'}</TableCell>
+                  <TableCell>{'Vestre Kjennervei 2B'}</TableCell>
+                  <TableCell>{'0 av 1000'}</TableCell>
+                  <TableCell>{'53'}</TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
-                  <TableCell dataLabel="Alder">{'35 år'}</TableCell>
-                  <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
-                  <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
-                  <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
-                  <TableCell dataLabel="Handlinger">{''}</TableCell>
+                <TableRow popMenu={<PopMenu {...args} />}>
+                  <TableCell>{'Line Danser'}</TableCell>
+                  <TableCell>{'35 år'}</TableCell>
+                  <TableCell>{'Kvinne'}</TableCell>
+                  <TableCell>{'Regnbuen Legekontor'}</TableCell>
+                  <TableCell>{'Vestre Kjennervei 2B'}</TableCell>
+                  <TableCell>{'0 av 1000'}</TableCell>
+                  <TableCell>{'53'}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

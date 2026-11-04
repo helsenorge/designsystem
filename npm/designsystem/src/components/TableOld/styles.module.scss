@@ -1,0 +1,318 @@
+// Kan fjernes når konvensjonen for BEM er tillatt.
+/* stylelint-disable selector-class-pattern */
+@use 'sass:map';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/palette' as palette;
+@use '../../scss/font-settings' as font-settings;
+@import '../../scss/breakpoints';
+@import '../../scss/grid';
+
+/* fix outline for Safari */
+table .table-body .table-row {
+  outline: 3px solid transparent;
+}
+
+@mixin centeredoverflow {
+  position: relative;
+}
+
+@mixin block {
+  display: block;
+  clear: both;
+
+  .table__head {
+    display: none;
+  }
+
+  .table-body,
+  .table-row,
+  .table__head-cell,
+  .table__cell {
+    display: block;
+  }
+
+  .table__cell-expander {
+    display: none;
+  }
+
+  .table-row {
+    clear: both;
+  }
+
+  select {
+    max-width: 100%;
+  }
+
+  .table__cell {
+    position: relative;
+    padding: 0.75rem 0 0.75rem 40%;
+    float: left;
+    clear: both;
+    width: 100%;
+    border-top: 0;
+    border-bottom: 0;
+    outline: 0;
+
+    &--center {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: left;
+    }
+
+    &:not(.expandable-container) {
+      font-weight: 400;
+    }
+
+    /* Get data from the td-tag attribute "data-label" and use this to populate :before content */
+    &::before {
+      content: attr(data-label);
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 60%;
+      padding-right: spacers.$spacer;
+      white-space: normal;
+      display: block;
+      float: left;
+      overflow-wrap: break-word;
+      margin-left: -67%;
+      padding-left: 0.75rem;
+      font-weight: 400;
+    }
+  }
+
+  .table__expander-cell-mobile {
+    padding-left: 0.75rem;
+    border-bottom: 1px solid palette.$neutral500;
+
+    &--expanded {
+      border-bottom: 0;
+    }
+  }
+
+  .table__expanded-row > .table__cell {
+    text-align: left;
+    padding: 0.75rem;
+  }
+
+  .table__cell:first-child {
+    border-collapse: collapse;
+    border-top: 1px solid palette.$neutral500;
+  }
+
+  .table__expanded-row {
+    display: none;
+
+    &--expanded {
+      display: block;
+    }
+
+    > .table__cell:first-child {
+      border-top: 0;
+    }
+  }
+
+  .table__row--expandable {
+    .table__cell:nth-child(2) {
+      border-collapse: collapse;
+      border-top: 1px solid palette.$neutral500;
+    }
+
+    &:focus-within {
+      outline: none;
+    }
+  }
+
+  .table-row:last-child .table__cell:last-child {
+    border-bottom: 1px solid palette.$neutral500;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  @each $breakpoint in map.keys($grid-breakpoints) {
+    &--centeredoverflow-#{$breakpoint} {
+      @include media-breakpoint-down($breakpoint) {
+        @include centeredoverflow;
+      }
+    }
+    &--block-#{$breakpoint} {
+      @include media-breakpoint-down($breakpoint) {
+        @include block;
+      }
+    }
+  }
+
+  &__expander-cell-mobile {
+    display: none;
+  }
+}
+
+.table__head {
+  background: palette.$blueberry50;
+
+  &--normal {
+    background: palette.$neutral50;
+  }
+
+  &--transparent {
+    background: transparent;
+  }
+
+  &--sortable {
+    background: palette.$blueberry50;
+  }
+
+  @media (min-width: map.get($grid-breakpoints, lg)) {
+    height: 6.125rem;
+  }
+
+  &--compact {
+    height: unset;
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
+      height: unset;
+    }
+  }
+}
+
+.table__head-cell {
+  // Fix for firefox hover feil
+  background-clip: padding-box;
+  height: 3.625rem;
+  font-size: font-settings.$font-size-sm;
+  line-height: font-settings.$lineheight-size-xs;
+  text-align: left;
+  vertical-align: bottom;
+  font-weight: 700;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid palette.$neutral500;
+
+  &--sortable {
+    position: relative;
+  }
+
+  &--sortable:hover {
+    background-color: palette.$blueberry100;
+    cursor: pointer;
+  }
+
+  &--sortable:focus-within {
+    outline: 3px solid palette.$black;
+    outline-offset: -3px;
+  }
+
+  @media (min-width: map.get($grid-breakpoints, lg)) {
+    padding: 1rem;
+    height: 5.5rem;
+    font-size: font-settings.$font-size-md;
+    line-height: font-settings.$lineheight-size-sm;
+    font-weight: 700;
+  }
+
+  &--compact {
+    padding: spacers.getSpacer(2xs) spacers.getSpacer(3xs) spacers.getSpacer(4xs);
+    line-height: 18px;
+    font-size: 14px;
+    height: unset;
+
+    @media (min-width: map.get($grid-breakpoints, sm)) {
+      padding: spacers.getSpacer(s) spacers.getSpacer(3xs) spacers.getSpacer(3xs);
+      line-height: 20px;
+      font-size: font-settings.$font-size-xs;
+      height: unset;
+    }
+  }
+}
+
+.table__head-cell-sort-icon-wrapper {
+  min-height: 2rem;
+}
+
+.table__cell {
+  height: 2, 375;
+  font-size: font-settings.$font-size-xs;
+  line-height: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border: 1px solid palette.$neutral500;
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--nowrap {
+    white-space: nowrap;
+  }
+
+  @media (min-width: map.get($grid-breakpoints, lg)) {
+    padding: 1rem;
+    height: 3.625rem;
+    font-size: font-settings.$font-size-sm;
+    line-height: 1.75rem;
+  }
+
+  &--compact {
+    padding: spacers.getSpacer(4xs) spacers.getSpacer(3xs);
+    font-size: 14px;
+
+    @media (min-width: map.get($grid-breakpoints, sm)) {
+      padding: spacers.getSpacer(3xs);
+      font-size: font-settings.$font-size-xs;
+    }
+  }
+}
+
+.table__cell-expander {
+  text-align: center;
+  width: min-content;
+  padding: 0 spacers.getSpacer(3xs);
+  vertical-align: middle;
+}
+
+.table__row--expandable {
+  &--selected {
+    background: palette.$neutral100;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background: palette.$blueberry50;
+  }
+}
+
+.table__expanded-row {
+  display: none;
+
+  &--expanded {
+    display: table-row;
+  }
+
+  &-container {
+    padding: 0.5rem;
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
+      &--open {
+        border-bottom: 1px solid palette.$neutral100;
+      }
+    }
+  }
+}
+
+.table__sort-button {
+  all: unset;
+
+  &::after {
+    inset: 0;
+    content: '';
+    position: absolute;
+  }
+}

@@ -1,9 +1,10 @@
 import React from 'react';
 
-import type { ModeType } from './constants';
 import type { BreakpointConfig } from './Table';
+import type { Props as TableHeadCellProps } from './TableHeadCell/TableHeadCell';
 
 import { ResponsiveTableVariant } from './constants';
+import TableHead from './TableHead/TableHead';
 import { Breakpoint } from '../../hooks/useBreakpoint';
 import { isTouchDevice } from '../../utils/device';
 
@@ -15,7 +16,7 @@ import styles from './styles.module.scss';
  * @returns true om breakpoint bruker CSS
  */
 const configUsesCss = (config: BreakpointConfig): boolean =>
-  config.variant === ResponsiveTableVariant.centeredoverflow || config.variant === ResponsiveTableVariant.block;
+  config.variant === ResponsiveTableVariant.centeredoverflow || config.variant === ResponsiveTableVariant.stack;
 
 /**
  * Lag klassenavn for CSS-config
@@ -23,15 +24,15 @@ const configUsesCss = (config: BreakpointConfig): boolean =>
  * @returns CSS-klassenavn
  */
 const mapConfigToClass = (config: BreakpointConfig): string =>
-  config.variant === 'centeredoverflow' || config.variant === 'block' ? styles[`table--${config.variant}-${config.breakpoint}`] : '';
+  config.variant === 'centeredoverflow' || config.variant === 'stack' ? styles[`table--${config.variant}-${config.breakpoint}`] : '';
 
 /**
- * Sorter konfigurasjon etter breakpoints, fra største til minste
+ * Sorter konfigurasjon etter breakpoints, fra minste til største
  * @param a Konfigurasjon for responsiv oppførsel
  * @param b Konfigurasjon for responsiv oppførsel
  * @returns Sortert liste
  */
-const sortByBreakpointsDescending = (a: BreakpointConfig, b: BreakpointConfig): number =>
+const sortByBreakpointsAscending = (a: BreakpointConfig, b: BreakpointConfig): number =>
   Breakpoint[a.breakpoint] - Breakpoint[b.breakpoint];
 
 /**
@@ -51,9 +52,7 @@ const isValidForCurrentBreakpoint = (config: BreakpointConfig, breakpoint: Break
  */
 const getConfigForBreakpoint = (config: BreakpointConfig | BreakpointConfig[], breakpoint: Breakpoint): BreakpointConfig | undefined => {
   if (Array.isArray(config)) {
-    config.sort(sortByBreakpointsDescending);
-
-    return config.find(x => isValidForCurrentBreakpoint(x, breakpoint));
+    return [...config].sort(sortByBreakpointsAscending).find(x => isValidForCurrentBreakpoint(x, breakpoint));
   } else if (config && isValidForCurrentBreakpoint(config, breakpoint)) {
     return config;
   }
@@ -75,29 +74,24 @@ export const getCurrentConfig = (
   const breakpointConfig = getConfigForBreakpoint(config, breakpoint);
   const canUseHorizontalScroll = isTouchDevice();
   const canUseCenteredOverflow = tableWidth <= windowWidth;
+  const needsFallback =
+    !canUseCenteredOverflow &&
+    (breakpointConfig?.variant === ResponsiveTableVariant.normal || breakpointConfig?.variant === ResponsiveTableVariant.centeredoverflow);
 
   if (!breakpointConfig) {
     return;
   }
 
-  if (
-    breakpointConfig.variant === ResponsiveTableVariant.centeredoverflow &&
-    !canUseCenteredOverflow &&
-    breakpointConfig.fallbackVariant === ResponsiveTableVariant.horizontalscroll
-  ) {
+  if (needsFallback && breakpointConfig.fallbackVariant === ResponsiveTableVariant.horizontalscroll) {
     return {
-      variant: canUseHorizontalScroll ? ResponsiveTableVariant.horizontalscroll : ResponsiveTableVariant.none,
+      variant: canUseHorizontalScroll ? ResponsiveTableVariant.horizontalscroll : ResponsiveTableVariant.normal,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
 
-  if (
-    breakpointConfig.variant === ResponsiveTableVariant.centeredoverflow &&
-    !canUseCenteredOverflow &&
-    breakpointConfig.fallbackVariant !== ResponsiveTableVariant.centeredoverflow
-  ) {
+  if (needsFallback && breakpointConfig.fallbackVariant !== breakpointConfig.variant) {
     return {
-      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.none,
+      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.normal,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
@@ -108,7 +102,7 @@ export const getCurrentConfig = (
     breakpointConfig.fallbackVariant === ResponsiveTableVariant.centeredoverflow
   ) {
     return {
-      variant: canUseCenteredOverflow ? ResponsiveTableVariant.centeredoverflow : ResponsiveTableVariant.none,
+      variant: canUseCenteredOverflow ? ResponsiveTableVariant.centeredoverflow : ResponsiveTableVariant.normal,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
@@ -119,12 +113,34 @@ export const getCurrentConfig = (
     breakpointConfig.fallbackVariant !== ResponsiveTableVariant.horizontalscroll
   ) {
     return {
-      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.none,
+      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.normal,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
 
   return breakpointConfig;
+};
+
+/** Attributt som overordnede komponenter setter for å si at tabeller inni ikke skal flyte utenfor dem. */
+const OVERFLOW_BOUNDARY_SELECTOR = '[data-overflow-boundary]';
+
+/**
+ * Finn bredden tabellen kan bruke. Innholdsbredden til nærmeste overordnede element merket med data-overflow-boundary,
+ * eller skjermbredden om ingen er merket.
+ * @param element Elementet det søkes fra, vanligvis tabellens overordnede element
+ * @returns Tilgjengelig bredde i px
+ */
+export const getAvailableWidth = (element: HTMLElement): number => {
+  const boundary = element.closest<HTMLElement>(OVERFLOW_BOUNDARY_SELECTOR);
+  if (!boundary) {
+    return document.documentElement.clientWidth || window.innerWidth;
+  }
+  const style = getComputedStyle(boundary);
+  const spacing = [style.paddingLeft, style.paddingRight, style.borderLeftWidth, style.borderRightWidth].reduce(
+    (total, value) => total + (Number.parseFloat(value) || 0),
+    0
+  );
+  return Math.max(0, boundary.getBoundingClientRect().width - spacing);
 };
 
 /**
@@ -146,27 +162,8 @@ export const getCenteredOverflowTableStyle = (parentWidth: number, tableWidth: n
     return;
   }
 
-  const COLUMN_GUTTER_WIDTH_PX = 8;
-
-  return { left: `${(parentWidth - tableWidth) / 2 - COLUMN_GUTTER_WIDTH_PX}px` };
+  return { left: `${(parentWidth - tableWidth) / 2}px` };
 };
-
-/**
- * Map children and inject the `mode` prop into element children, but never on React.Fragment.
- * If a Fragment is encountered, its children are mapped and updated, while the Fragment wrapper is preserved.
- */
-export const mapChildrenWithMode = (children: React.ReactNode, mode: ModeType | undefined): React.ReactNode =>
-  React.Children.map(children, child => {
-    if (!React.isValidElement(child)) return child;
-    if (child.type === React.Fragment) {
-      const fragmentChildren = (child.props as { children?: React.ReactNode }).children;
-      const mapped = React.Children.map(fragmentChildren, gc =>
-        React.isValidElement<{ mode?: ModeType }>(gc) ? React.cloneElement(gc, { mode }) : gc
-      );
-      return React.cloneElement(child, undefined, mapped);
-    }
-    return React.cloneElement(child as React.ReactElement<{ mode?: ModeType }>, { mode });
-  });
 
 /**
  * Create a shallow copy of an object with specific keys omitted.
@@ -177,4 +174,48 @@ export const omitProps = <T extends Record<PropertyKey, unknown>>(obj: T, keys: 
     delete clone[k];
   }
   return clone;
+};
+
+/**
+ * Finn indeksene til kolonnene som er markert med hideBehindExpander i første rad i TableHead.
+ * @param children Innholdet i Table
+ * @returns Kolonneindekser som skjules bak expander i stack-varianten
+ */
+export const getHiddenColumns = (children: React.ReactNode): number[] => {
+  const head = React.Children.toArray(children).find(
+    (child): child is React.ReactElement<{ children?: React.ReactNode }> => React.isValidElement(child) && child.type === TableHead
+  );
+  const headRow = React.Children.toArray(head?.props.children).find(React.isValidElement) as
+    React.ReactElement<{ children?: React.ReactNode }> | undefined;
+
+  return React.Children.toArray(headRow?.props.children).flatMap((cell, index) =>
+    React.isValidElement<TableHeadCellProps>(cell) && cell.props.hideBehindExpander ? [index] : []
+  );
+};
+
+const getTextContent = (node: React.ReactNode): string => {
+  if (typeof node === 'string' || typeof node === 'number') {
+    return String(node);
+  }
+  if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
+    return getTextContent(node.props.children);
+  }
+  return React.Children.toArray(node).map(getTextContent).join('');
+};
+
+/**
+ * Finn teksten i hver kolonne i første rad i TableHead. Brukes som overskrift i cellene i stack-varianten.
+ * @param children Innholdet i Table
+ * @returns Overskrift per kolonneindeks, tom streng for kolonner uten tekst
+ */
+export const getColumnHeadingTexts = (children: React.ReactNode): string[] => {
+  const head = React.Children.toArray(children).find(
+    (child): child is React.ReactElement<{ children?: React.ReactNode }> => React.isValidElement(child) && child.type === TableHead
+  );
+  const headRow = React.Children.toArray(head?.props.children).find(React.isValidElement) as
+    React.ReactElement<{ children?: React.ReactNode }> | undefined;
+
+  return React.Children.toArray(headRow?.props.children).map(cell =>
+    React.isValidElement<TableHeadCellProps>(cell) ? getTextContent(cell.props.children).trim() : ''
+  );
 };

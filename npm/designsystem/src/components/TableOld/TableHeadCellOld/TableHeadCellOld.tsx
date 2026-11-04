@@ -1,0 +1,78 @@
+import classNames from 'classnames';
+
+import Icon, { IconSize } from '../../Icon';
+import ArrowDown from '../../Icons/ArrowDown';
+import ArrowUp from '../../Icons/ArrowUp';
+import { ModeTypeOld, SortDirectionOld } from '../constants';
+import tableStyles from '../styles.module.scss';
+
+export interface TableHeadCellPropsOld extends Omit<React.ComponentPropsWithoutRef<'th'>, 'style'> {
+  /** Sets if column for head cell should be sortable*/
+  sortable?: boolean;
+  /** Sort direction  */
+  sortDir?: SortDirectionOld;
+  /** Function that is called when clicked */
+  onClick?: () => void;
+  /** Adds custom classes to the element. */
+  className?: string;
+  /** Sets the content of the td element.  */
+  children?: React.ReactNode;
+  /** For display with less space. Discouraged to use together with interactive elements. */
+  mode?: ModeTypeOld;
+}
+
+export const TableHeadCellOld: React.FC<TableHeadCellPropsOld> = ({
+  sortable,
+  onClick,
+  className,
+  children,
+  sortDir,
+  mode = ModeTypeOld.normal,
+  scope = 'col',
+  ...rest
+}) => {
+  const tableHeadCellDefaultClass = classNames(tableStyles['table__head-cell'], className, {
+    [tableStyles['table__head-cell--compact']]: mode === ModeTypeOld.compact,
+  });
+
+  if (!sortable && !children) {
+    return <td className={tableHeadCellDefaultClass}></td>;
+  }
+
+  if (!sortable) {
+    return (
+      <th scope={scope} className={tableHeadCellDefaultClass} {...rest}>
+        {children}
+      </th>
+    );
+  }
+
+  const sortableClasses = classNames(tableHeadCellDefaultClass, tableStyles['table__head-cell--sortable'], className);
+
+  const renderSortIcon = (): React.JSX.Element | undefined =>
+    sortDir && (
+      <div className={tableStyles['table__head-cell-sort-icon-wrapper']}>
+        <Icon svgIcon={sortDir == SortDirectionOld.asc ? ArrowDown : ArrowUp} size={IconSize.XXSmall} />
+      </div>
+    );
+
+  const getSortDirection = (): React.AriaAttributes['aria-sort'] => {
+    switch (sortDir) {
+      case SortDirectionOld.asc:
+        return 'ascending';
+      case SortDirectionOld.desc:
+        return 'descending';
+    }
+  };
+
+  return (
+    <th scope={scope} className={sortableClasses} aria-sort={getSortDirection()} {...rest}>
+      <button type="button" onClick={onClick} className={tableStyles['table__sort-button']} aria-pressed={sortDir ? !!sortDir : undefined}>
+        {renderSortIcon()}
+        {children}
+      </button>
+    </th>
+  );
+};
+
+export default TableHeadCellOld;

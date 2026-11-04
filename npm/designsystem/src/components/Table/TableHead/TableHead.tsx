@@ -1,36 +1,28 @@
+import { useContext, useMemo } from 'react';
+
 import classNames from 'classnames';
 
-import { HeaderCategory, ModeType } from '../constants';
-import tableStyles from '../styles.module.scss';
-import { mapChildrenWithMode } from '../utils';
+import styles from '../styles.module.scss';
+import { TableContext } from '../TableContext';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'thead'>, 'style'> {
-  /** Header category for styling. Default: normal */
-  category?: HeaderCategory;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the content of the thead. Add table rows  */
   children: React.ReactNode;
-  /** For display with less space. Discouraged to use together with interactive elements. */
-  mode?: ModeType;
 }
 
-export const TableHead: React.FC<Props> = ({ category = HeaderCategory.normal, className, children, mode, ...rest }) => {
-  const tableHeadClass = classNames(
-    tableStyles['table__head'],
-    {
-      [tableStyles['table__head--normal']]: category === HeaderCategory.normal,
-      [tableStyles['table__head--transparent']]: category === HeaderCategory.transparent,
-      [tableStyles['table__head--sortable']]: category == HeaderCategory.sortable,
-      [tableStyles['table__head--compact']]: mode == ModeType.compact,
-    },
-    className
-  );
+export const TableHead: React.FC<Props> = ({ children, className, ...rest }) => {
+  const tableContext = useContext(TableContext);
+  // Radene i hodet skal ikke skjule kolonner eller få expander
+  const headContext = useMemo(() => ({ ...tableContext, hiddenColumns: [] }), [tableContext]);
 
   return (
-    <thead className={tableHeadClass} {...rest}>
-      {mapChildrenWithMode(children, mode)}
-    </thead>
+    <TableContext.Provider value={headContext}>
+      <thead className={classNames(styles.table__head, className)} {...rest}>
+        {children}
+      </thead>
+    </TableContext.Provider>
   );
 };
 

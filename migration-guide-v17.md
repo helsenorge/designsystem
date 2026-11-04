@@ -212,3 +212,125 @@ Migrer fra DropdownOld til Dropdown.
 4. I PR-beskrivelsen: lim inn liste over endrede filer, eller skriv
    "DropdownOld ikke i bruk" hvis ingen treff.
 ```
+
+## Gammel Table heter nå `TableOld` — `UNSAFE_Table` heter nå `Table`
+
+Den gamle `Table` i `@helsenorge/designsystem-react` er omdøpt til `TableOld`, og alle eksporter fra den har fått `Old` som suffiks.
+`UNSAFE_Table` har samtidig fått navnet `Table` og er den nye hovedkomponenten. Alle `UNSAFE_`-prefikser er fjernet fra komponenter, typer
+og under-stier. `TableOld` er ment som en overgang og vil bli fjernet i en senere versjon.
+
+**Gammel Table → TableOld**
+
+| Før                                                                                                           | Etter                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `Table`, `TableBody`, `TableCell`, `TableHead`, `TableHeadCell`, `TableRow`                                   | `TableOld`, `TableBodyOld`, `TableCellOld`, `TableHeadOld`, `TableHeadCellOld`, `TableRowOld`                                |
+| `TableExpandedRow`, `TableExpanderCell`                                                                       | `TableExpandedRowOld`, `TableExpanderCellOld`                                                                                |
+| `Props` (per komponent), `BreakpointConfig`                                                                   | `TablePropsOld`, `TableBodyPropsOld`, `TableCellPropsOld` osv., `BreakpointConfigOld`                                        |
+| `SortDirection`, `HeaderCategory`, `TextAlign`, `ResponsiveTableVariant`, `ModeType`                          | `SortDirectionOld`, `HeaderCategoryOld`, `TextAlignOld`, `ResponsiveTableVariantOld`, `ModeTypeOld`                          |
+| `defaultConfig`, `simpleConfig`                                                                               | `defaultConfigOld`, `simpleConfigOld`                                                                                        |
+| `getCurrentConfig`, `getBreakpointClass`, `getCenteredOverflowTableStyle`, `mapChildrenWithMode`, `omitProps` | `getCurrentConfigOld`, `getBreakpointClassOld`, `getCenteredOverflowTableStyleOld`, `mapChildrenWithModeOld`, `omitPropsOld` |
+
+**UNSAFE_Table → Table**
+
+| Før                                                                                                   | Etter                                                                                      |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `UNSAFE_Table` (+ `UNSAFE_TableProps`)                                                                | `Table` (+ `TableProps`)                                                                   |
+| `UNSAFE_TableHead`, `UNSAFE_TableBody`, `UNSAFE_TableRow`, `UNSAFE_TableHeadCell`, `UNSAFE_TableCell` | `TableHead`, `TableBody`, `TableRow`, `TableHeadCell`, `TableCell` (+ tilhørende `*Props`) |
+
+Import-stier:
+
+```tsx
+// Gammel Table, før
+import Table, {
+  TableHead,
+  TableRow,
+  TableHeadCell,
+  TableBody,
+  TableCell,
+  HeaderCategory,
+} from '@helsenorge/designsystem-react/components/Table';
+// Gammel Table, etter
+import TableOld, {
+  TableHeadOld,
+  TableRowOld,
+  TableHeadCellOld,
+  TableBodyOld,
+  TableCellOld,
+  HeaderCategoryOld,
+} from '@helsenorge/designsystem-react/components/TableOld';
+
+// UNSAFE_Table, før
+import UNSAFE_Table, { UNSAFE_TableRow } from '@helsenorge/designsystem-react/components/UNSAFE_Table';
+// UNSAFE_Table, etter
+import Table, { TableRow } from '@helsenorge/designsystem-react/components/Table';
+```
+
+Sub-path-eksportene er flyttet tilsvarende: `components/Table/Table`, `components/Table/utils` og `components/Table/constants` (gammel) er
+nå `components/TableOld/TableOld`, `components/TableOld/utils` og `components/TableOld/constants`. `components/UNSAFE_Table/*`
+(`UNSAFE_Table`, `constants`, `utils`, `useTableExpandedRows`, `useTableShowMore`, `TableCaption`, `TableContext`) er flyttet til
+`components/Table/*` (`Table`, `constants`, osv.).
+
+**Viktig:** Kode som fortsatt bruker den gamle `Table` kan ikke bare beholde navnet — `Table` er nå den nye komponenten, og API-et er ikke
+1:1. Den raskeste, trygge migreringen er å bytte til `TableOld`. På sikt bør man gå over til nye `Table`, som blant annet krever `caption`,
+har fjernet `dataLabel` på celler, `category` på `TableHead` og `mode`, og bruker `expandedContent`/`expandableRowId`/`popMenu` på
+`TableRow` (se `TableProps` i `node_modules/@helsenorge/designsystem-react/lib/components/Table/Table.d.ts`).
+
+### Agent-prompt
+
+```
+Migrer Table-bruk til v17 av @helsenorge/designsystem-react.
+
+1. Sjekk om kodebasen bruker affiserte API-er:
+   Søk i TypeScript/TSX-filer (inkludert *.stories.tsx, tester, snapshots og
+   SCSS) etter:
+   - import-stier som starter med
+     '@helsenorge/designsystem-react/components/Table' (gammel Table) eller
+     '@helsenorge/designsystem-react/components/UNSAFE_Table'
+   - JSX-bruk og typer for Table, TableHead, TableBody, TableRow,
+     TableHeadCell, TableCell, TableExpandedRow, TableExpanderCell,
+     samt SortDirection, HeaderCategory, TextAlign, ResponsiveTableVariant,
+     ModeType, defaultConfig, simpleConfig, BreakpointConfig og
+     tilhørende Props-typer importert fra disse stiene
+   - identifikatorer som starter med 'UNSAFE_Table'
+   Hvis ingen treff: hopp over dette steget og noter i PR-beskrivelsen at
+   Table ikke er i bruk.
+
+2. Skill mellom to tilfeller i hvert treff:
+   a) Treff som importerer fra '.../components/UNSAFE_Table' (eller bruker
+      UNSAFE_Table*-navn): fjern 'UNSAFE_'-prefikset fra komponent- og
+      typenavn (UNSAFE_Table→Table, UNSAFE_TableRow→TableRow,
+      UNSAFE_TableProps→TableProps osv.) og endre import-stien til
+      '.../components/Table' (gjelder også /constants, /utils, /Table,
+      /TableCaption, /TableContext, /useTableExpandedRows og
+      /useTableShowMore). Hvis eslint-konfig har regler som ignorerer
+      'UNSAFE_*' for react/jsx-pascal-case kun for Table, kan de fjernes.
+   b) Treff som importerer fra '.../components/Table' og bruker den GAMLE
+      API-en (f.eks. dataLabel på TableCell, category på TableHead, mode,
+      HeaderCategory, ModeType, rowKey/expandable på TableRow): bytt til
+      TableOld ved å endre import-stien til '.../components/TableOld' og
+      legge til 'Old' på slutten av alle navn (Table→TableOld,
+      TableRow→TableRowOld, TableHeadCell→TableHeadCellOld,
+      SortDirection→SortDirectionOld, HeaderCategory→HeaderCategoryOld,
+      defaultConfig→defaultConfigOld, Props-typer →TablePropsOld osv.).
+      Les eksporterte navn i
+      node_modules/@helsenorge/designsystem-react/lib/components/TableOld/index.d.ts
+      — ikke gjett. Ikke bytt til ny Table uten å ha lest
+      Table.d.ts og vurdert API-forskjellene (caption er påkrevd, dataLabel
+      og category er fjernet, ekspandering skjer via expandedContent og
+      expandableRowId på TableRow).
+   Merk: samme import-sti '.../components/Table' betyr nå ny Table, så
+   sjekk hvert treff mot hvilket API det faktisk bruker.
+
+3. Oppdater tester, stories og snapshots som refererer til de omdøpte
+   navnene.
+
+4. Verifiser:
+   - Les scripts-feltet i package.json og finn riktig navn på typecheck-,
+     test- og evt. storybook-build-scriptene. Kjør dem.
+   - Hvis prosjektet har visual regression (Chromatic e.l.) og du byttet
+     fra gammel Table til ny Table, oppdater baselines.
+
+5. I PR-beskrivelsen: lim inn liste over endrede filer, noter hvilke
+   steder som er midlertidig flyttet til TableOld, og list hva som ikke
+   var i bruk.
+```

@@ -5,13 +5,13 @@ import { Docs } from 'frankenstein-build-tools';
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import PopOver from './PopOver';
+import { PopOverVariant } from './utils';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
-import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant, HeaderCategory } from '../Table';
-import { PopOverVariant } from './utils';
+import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant } from '../Table';
 
 const meta = {
   title: '@helsenorge/designsystem-react/_Internal/PopOver',
@@ -122,8 +122,8 @@ export const HorizontalScroll: Story = {
     return (
       <>
         <p>{longLoremText}</p>
-        <Table breakpointConfig={{ breakpoint: 'xl', variant: ResponsiveTableVariant.horizontalscroll }}>
-          <TableHead category={HeaderCategory.normal}>
+        <Table caption="Eksempeltabell" breakpointConfig={{ breakpoint: 'xl', variant: ResponsiveTableVariant.horizontalscroll }}>
+          <TableHead>
             <TableRow key="head">
               <TableHeadCell>{'Fastlege'}</TableHeadCell>
               <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
@@ -133,10 +133,10 @@ export const HorizontalScroll: Story = {
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
-              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
-              <TableCell dataLabel="ledige">{'1'}</TableCell>
-              <TableCell dataLabel="antall">
+              <TableCell>{'Line Danser'}</TableCell>
+              <TableCell>{'Røtvedt'}</TableCell>
+              <TableCell>{'1'}</TableCell>
+              <TableCell>
                 <Icon ref={controllerRef} svgIcon={HelpSign} />
                 <PopOver {...args} controllerRef={controllerRef}>
                   <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
@@ -144,22 +144,22 @@ export const HorizontalScroll: Story = {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
-              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
-              <TableCell dataLabel="ledige">{'1'}</TableCell>
-              <TableCell dataLabel="antall">{'200'}</TableCell>
+              <TableCell>{'Line Danser'}</TableCell>
+              <TableCell>{'Røtvedt'}</TableCell>
+              <TableCell>{'1'}</TableCell>
+              <TableCell>{'200'}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
-              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
-              <TableCell dataLabel="ledige">{'1'}</TableCell>
-              <TableCell dataLabel="antall">{'200'}</TableCell>
+              <TableCell>{'Line Danser'}</TableCell>
+              <TableCell>{'Røtvedt'}</TableCell>
+              <TableCell>{'1'}</TableCell>
+              <TableCell>{'200'}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
-              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
-              <TableCell dataLabel="ledige">{'1'}</TableCell>
-              <TableCell dataLabel="antall">{'200'}</TableCell>
+              <TableCell>{'Line Danser'}</TableCell>
+              <TableCell>{'Røtvedt'}</TableCell>
+              <TableCell>{'1'}</TableCell>
+              <TableCell>{'200'}</TableCell>
             </TableRow>
           </TableBody>
         </Table>

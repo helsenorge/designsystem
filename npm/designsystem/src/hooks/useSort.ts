@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import { SortDirection } from '../components/UNSAFE_Table/constants';
+import { SortDirection } from '../components/Table/constants';
 
 /** Values that should never be treated as "an object to sort one level deeper into" */
 type SortLeaf =

@@ -1,64 +1,153 @@
+import React, { useContext } from 'react';
+
 import classNames from 'classnames';
 
-import { ModeType } from '../constants';
-import tableStyles from '../styles.module.scss';
+import type { PopMenuProps } from '../../PopMenu';
+import type { Props as TableCellProps } from '../TableCell/TableCell';
+
+import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
+import Button from '../../Button';
+import Icon from '../../Icon';
+import ChevronDown from '../../Icons/ChevronDown';
+import ChevronUp from '../../Icons/ChevronUp';
+import { ResponsiveTableVariant, TableColors, TableSizes } from '../constants';
+import styles from '../styles.module.scss';
+import TableCell from '../TableCell/TableCell';
+import { CellHeadingContext, TableContext } from '../TableContext';
+import TableDetail from '../TableDetail/TableDetail';
+import TableExpandedRow from '../TableExpandedRow/TableExpandedRow';
 import TableExpanderCellMobile from '../TableExpanderCell/TableExpanderCellMobile';
-import { mapChildrenWithMode } from '../utils';
+import TablePopMenuCell from '../TablePopMenuCell/TablePopMenuCell';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style'> {
-  /** Sets if expanded row can be expanded */
-  expandable?: boolean;
+  /** Content to be rendered in an expandable row. Make sure to add an empty TableHeadCell to the beginning of the Table. This content renders below the column content with hideBehindExpander set in the stack variant. */
+  expandedContent?: React.ReactNode;
   /** Sets if expanded row is expanded */
   expanded?: boolean;
+  /** Id of the expanded row this row controls. For use with aria-controls on the expander button. */
+  expandableRowId?: string;
   /** When hide/show button for expanded row is clicked. */
   onClick?: () => void;
-  /** Text for expanded row hide button. */
-  hideDetailsText?: string;
-  /** Text for expanded row show button. */
-  showDetailsText?: string;
-  /** Key attribute for row */
-  rowKey?: string;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the cells of the table row element.  */
   children?: React.ReactNode;
-  /** For display with less space. Discouraged to use together with interactive elements. */
-  mode?: ModeType;
+  /** PopMenu rendered in an extra cell as the last cell in the row. Fills the entire cell. Outside the stack variant labelText is hidden and used as aria-label instead. */
+  popMenu?: React.ReactElement<PopMenuProps>;
 }
 
 export const TableRow: React.FC<Props> = ({
-  rowKey,
-  hideDetailsText,
-  showDetailsText,
-  expandable,
+  expandedContent,
   expanded,
+  expandableRowId,
   onClick,
   className,
   children,
-  mode = ModeType.normal,
+  popMenu,
   ...rest
 }) => {
+  const { color, size, hiddenColumns, headingTexts, variant, resources } = useContext(TableContext);
+  const expandable = expandedContent ? true : hiddenColumns.length > 0 ? 'stack' : undefined;
+  const isExpandedVisible = !!expanded && (expandable !== 'stack' || variant === ResponsiveTableVariant.stack);
+  const { refObject, isHovered, isActive } = usePseudoClasses<HTMLTableRowElement>();
   const tableRowClass = classNames(
-    tableStyles['table-row'],
+    styles['table__row'],
     {
-      [tableStyles['table__row--expandable']]: expandable,
+      [styles['table__row--transparent']]: color === TableColors.transparent,
+      [styles['table__row--expandable']]: expandable,
+      [styles['table__row--expanded']]: isExpandedVisible,
     },
     className
   );
 
-  return (
-    <tr className={tableRowClass} onClick={onClick} key={rowKey} {...rest}>
-      {mapChildrenWithMode(children, mode)}
-      {expandable && (
-        <TableExpanderCellMobile
-          expanded={expanded}
-          onClick={onClick}
-          hideDetailsText={hideDetailsText}
-          showDetailsText={showDetailsText}
-          mode={mode}
-        />
+  const expanderCellClass = classNames(styles['table__cell'], styles['table__cell-expander'], {
+    [styles['table__cell--compact']]: size === TableSizes.compact,
+  });
+
+  // Tar hensyn til en hidden expander cell for visning i normal variant
+  const indexOffset = expandable === true ? 1 : 0;
+  const isHidden = (index: number): boolean => hiddenColumns.includes(index + indexOffset);
+
+  // Gir hver celle teksten fra kolonnens headText, som vises foran innholdet i stack-varianten
+  const withHeading = (child: React.ReactNode, index: number): React.ReactNode =>
+    React.isValidElement(child) && child.type === TableCell ? (
+      <CellHeadingContext.Provider key={child.key} value={headingTexts[index + indexOffset] ?? ''}>
+        {child}
+      </CellHeadingContext.Provider>
+    ) : (
+      child
+    );
+
+  const childArray = React.Children.toArray(children);
+  const cells = childArray.map((child, index) =>
+    withHeading(
+      React.isValidElement<TableCellProps>(child) && isHidden(index)
+        ? React.cloneElement(child, { className: classNames(child.props.className, styles['table__cell--behind-expander']) })
+        : child,
+      index
+    )
+  );
+  const hiddenCells = childArray.flatMap((child, index) =>
+    React.isValidElement<TableCellProps>(child) && isHidden(index)
+      ? [{ cell: child, heading: headingTexts[index + indexOffset] ?? '' }]
+      : []
+  );
+
+  const row = (
+    <tr key="row" className={tableRowClass} {...rest} ref={refObject}>
+      {expandable === true && (
+        <td className={expanderCellClass}>
+          <Button
+            variant="borderless"
+            wrapperClassName={styles['table__expander-button']}
+            className={styles['table__expander-button__content']}
+            aria-expanded={expanded}
+            aria-controls={expandableRowId}
+            ariaLabel={expanded ? resources.collapseRowButton : resources.expandRowButton}
+            onClick={onClick}
+          >
+            <Icon
+              color={
+                isActive
+                  ? 'var(--color-action-graphics-dark-active)'
+                  : isHovered
+                    ? 'var(--color-action-graphics-dark-hover)'
+                    : 'var(--color-action-graphics-dark-normal)'
+              }
+              svgIcon={expanded ? ChevronUp : ChevronDown}
+            />
+          </Button>
+        </td>
       )}
+      {cells}
+      {popMenu && <TablePopMenuCell>{popMenu}</TablePopMenuCell>}
+      {expandable && <TableExpanderCellMobile expanded={expanded} onClick={onClick} expandableRowId={expandableRowId} />}
     </tr>
+  );
+
+  const hasAutomaticExpandedRow = !!expandable && (!!expandedContent || hiddenCells.length > 0);
+  if (!hasAutomaticExpandedRow) {
+    return row;
+  }
+
+  return (
+    <>
+      {row}
+      <TableExpandedRow
+        key="expanded-row"
+        stackOnly={!expandedContent}
+        id={expandableRowId}
+        expanded={!!expanded}
+        toggleClick={(): void => onClick?.()}
+      >
+        {hiddenCells.map(({ cell, heading }, index) => (
+          <TableDetail key={cell.key ?? index} headingText={heading}>
+            {cell.props.children}
+          </TableDetail>
+        ))}
+        {expandedContent}
+      </TableExpandedRow>
+    </>
   );
 };
 

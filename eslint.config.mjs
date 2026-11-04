@@ -22,13 +22,6 @@ export default [
   },
 
   {
-    // These components intentionally keep their UNSAFE_ prefix to signal risky APIs
-    files: ['**/components/UNSAFE_Table/**/*.tsx'],
-    rules: {
-      'react/jsx-pascal-case': ['error', { ignore: ['UNSAFE_*'] }],
-    },
-  },
-  {
     files: ['**/*.stories.tsx', '**/*.test.tsx'],
     rules: {
       'react/jsx-no-literals': 'warn',

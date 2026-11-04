@@ -1,16 +1,28 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useId, useMemo, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
-import type { Breakpoint } from '../../hooks/useBreakpoint';
+import type { TableContextValue } from './TableContext';
+import type { HNDesignsystemTable } from '../../resources/Resources';
 
-import { defaultConfig, ModeType, ResponsiveTableVariant } from './constants';
-import { getCurrentConfig, getBreakpointClass, getCenteredOverflowTableStyle, mapChildrenWithMode, omitProps } from './utils';
-import { AnalyticsId } from '../../constants';
-import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { useIsVisible } from '../../hooks/useIsVisible';
+import { ResponsiveTableVariant, defaultConfig, TableColors, TableSizes } from './constants';
+import { getResources } from './resourceHelper';
+import TableCaption from './TableCaption';
+import { TableContext } from './TableContext';
+import {
+  getAvailableWidth,
+  getColumnHeadingTexts,
+  getHiddenColumns,
+  getBreakpointClass,
+  getCenteredOverflowTableStyle,
+  getCurrentConfig,
+  omitProps,
+} from './utils';
+import { LanguageLocales } from '../../constants';
+import { useBreakpoint, type Breakpoint } from '../../hooks/useBreakpoint';
+import { useLanguage } from '../../hooks/useLanguage';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
-import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { useSynchronousResizeObserver } from '../../hooks/useSynchronousResizeObserver';
 import HorizontalScroll from '../HorizontalScroll';
 
 import styles from './styles.module.scss';
@@ -24,100 +36,142 @@ export interface BreakpointConfig {
   fallbackVariant?: keyof typeof ResponsiveTableVariant;
 }
 
-export interface Props extends Omit<React.ComponentPropsWithoutRef<'table'>, 'style'> {
-  /** Unique ID */
-  id?: string;
-  /** Id used for testing */
-  testId?: string;
+export interface TableProps extends Omit<React.ComponentPropsWithoutRef<'table'>, 'style'> {
   /** Customize how the table behaves on various screen widths */
   breakpointConfig?: BreakpointConfig | BreakpointConfig[];
-  /** Adds custom classes to the element. */
-  className?: string;
+  /** Description of the table for screen readers. Rendered as a visually hidden caption and used to label the scroll container. */
+  caption: string;
   /** Sets the content of the table. Use TableHead and TableBody */
   children: React.ReactNode;
+  /** Adds custom classes to the element. */
+  className?: string;
+  /** Header category for styling. Default: normal */
+  color?: TableColors;
+  /** Unique ID */
+  id?: string;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemTable>;
   /** For display with less space. Discouraged to use together with interactive elements. */
-  mode?: ModeType;
-  /** Sets aria-label of the horizontal scroll container. scrollAriaLabel or scrollAriaLabelledById MUST be set if horizontal scrolling is enabled! */
-  scrollAriaLabel?: string;
-  /** Sets aria-labelledby of the horizontal scroll container. scrollAriaLabel or scrollAriaLabelledById MUST be set if horizontal scrolling is enabled! */
-  scrollAriaLabelledById?: string;
+  size?: TableSizes;
+  /** Width of the head column in percentage in the stack variant. When not set, the column follows the widest heading in the table, but wraps (minimum 30%) when the content needs the space. */
+  stackHeadWidth?: number;
+  /** Id used for testing */
+  testId?: string;
+  /** Applies zebra stripes to every other row. Default: false */
+  zebraStripes?: boolean;
 }
 
-export const Table: React.FC<Props> = ({
-  id,
-  testId,
-  className,
-  children,
+export const Table: React.FC<TableProps> = ({
   breakpointConfig = defaultConfig,
-  mode = ModeType.normal,
-  scrollAriaLabel,
-  scrollAriaLabelledById,
+  caption,
+  children,
+  className,
+  color,
+  id,
+  resources,
+  size = TableSizes.normal,
+  stackHeadWidth,
+  testId,
+  zebraStripes = false,
   ...rest
 }) => {
+  const captionElementId = useId();
+
   const [tableWidth, setTableWidth] = useState<number>(0);
   const [parentWidth, setParentWidth] = useState<number>(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth || window.innerWidth);
   const tableRef = useRef<HTMLTableElement>(null);
-  const tableIsVisible = useIsVisible(tableRef, 0);
   const breakpoint = useBreakpoint();
+
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+  const mergedResources: HNDesignsystemTable = {
+    ...defaultResources,
+    ...resources,
+  };
 
   const currentConfig = useMemo(
     () => getCurrentConfig(breakpointConfig, breakpoint, tableWidth, windowWidth),
     [breakpointConfig, breakpoint, tableWidth, windowWidth]
   );
 
-  useEffect(() => {
-    if (
-      currentConfig?.variant === ResponsiveTableVariant.centeredoverflow ||
-      currentConfig?.variant === ResponsiveTableVariant.horizontalscroll
-    ) {
-      setTableWidth(tableRef.current?.getBoundingClientRect().width ?? 0);
-    }
-    if (currentConfig?.variant === ResponsiveTableVariant.centeredoverflow) {
-      setParentWidth(tableRef.current?.parentElement?.getBoundingClientRect().width ?? 0);
-    }
-  }, [currentConfig, breakpoint]);
+  useSynchronousResizeObserver(
+    tableRef,
+    (tableElement, parentElement) => {
+      if (currentConfig?.variant !== ResponsiveTableVariant.stack) {
+        setTableWidth(tableElement.getBoundingClientRect().width);
+      }
+      const parentStyle = getComputedStyle(parentElement);
+      const horizontalSpacing = [
+        parentStyle.paddingLeft,
+        parentStyle.paddingRight,
+        parentStyle.borderLeftWidth,
+        parentStyle.borderRightWidth,
+      ].reduce((total, value) => total + (Number.parseFloat(value) || 0), 0);
+      setParentWidth(Math.max(0, parentElement.getBoundingClientRect().width - horizontalSpacing));
+      setWindowWidth(getAvailableWidth(parentElement));
+    },
+    [currentConfig?.variant]
+  );
 
-  useLayoutEvent(() => setWindowWidth(window.innerWidth), ['resize'], 100);
+  useLayoutEvent(
+    () => {
+      if (tableRef.current?.parentElement) {
+        setWindowWidth(getAvailableWidth(tableRef.current.parentElement));
+      }
+    },
+    ['resize'],
+    100
+  );
 
-  useEffect(() => {
-    if (tableWidth === 0 && tableIsVisible) {
-      setTableWidth(tableRef.current?.getBoundingClientRect().width ?? 0);
-    }
-  }, [tableWidth, tableIsVisible]);
-
-  const tableStyle =
-    currentConfig?.variant === ResponsiveTableVariant.centeredoverflow ? getCenteredOverflowTableStyle(parentWidth, tableWidth) : undefined;
+  const tableStyle: React.CSSProperties | undefined =
+    currentConfig?.variant === ResponsiveTableVariant.centeredoverflow || stackHeadWidth !== undefined
+      ? {
+          ...(currentConfig?.variant === ResponsiveTableVariant.centeredoverflow
+            ? getCenteredOverflowTableStyle(parentWidth, tableWidth)
+            : undefined),
+          ...(stackHeadWidth !== undefined ? { '--table-stack-columns': `${stackHeadWidth}% minmax(0, 1fr)` } : undefined),
+        }
+      : undefined;
 
   const breakpointClass = getBreakpointClass(currentConfig);
   const tableClass = classNames(styles.table, breakpointClass, className);
   const domRest = omitProps(rest as Record<string, unknown>, ['breakpoint', 'variant', 'fallbackVariant', 'headerCategory']);
 
+  const hiddenColumns = useMemo(() => getHiddenColumns(children), [children]);
+  const headingTexts = useMemo(() => getColumnHeadingTexts(children), [children]);
+
+  const tableContext = useMemo<TableContextValue>(
+    () => ({
+      variant: currentConfig?.variant ?? ResponsiveTableVariant.normal,
+      color: color ?? TableColors.normal,
+      size,
+      zebraStripes,
+      hiddenColumns,
+      headingTexts,
+      resources: mergedResources,
+    }),
+    [currentConfig?.variant, color, size, zebraStripes, hiddenColumns, headingTexts]
+  );
+
   const table = (
-    <table
-      className={tableClass}
-      id={id}
-      data-testid={testId}
-      data-analyticsid={AnalyticsId.Table}
-      ref={tableRef}
-      style={tableStyle}
-      {...(domRest as React.ComponentPropsWithoutRef<'table'>)}
-    >
-      {mapChildrenWithMode(children, mode)}
+    <table className={tableClass} id={id} data-testid={testId} ref={tableRef} style={tableStyle} {...domRest}>
+      <TableCaption id={captionElementId}>{caption}</TableCaption>
+      {children}
     </table>
   );
 
-  const ariaLabelAttributes = getAriaLabelAttributes({ label: scrollAriaLabel, id: scrollAriaLabelledById });
-
-  if (currentConfig?.variant === ResponsiveTableVariant.horizontalscroll) {
-    return (
-      <HorizontalScroll testId="horizontal-scroll" {...ariaLabelAttributes}>
-        {table}
-      </HorizontalScroll>
-    );
-  }
-
-  return table;
+  return (
+    <TableContext.Provider value={tableContext}>
+      {currentConfig?.variant === ResponsiveTableVariant.horizontalscroll ? (
+        <HorizontalScroll testId="horizontal-scroll" aria-labelledby={captionElementId}>
+          {table}
+        </HorizontalScroll>
+      ) : (
+        table
+      )}
+    </TableContext.Provider>
+  );
 };
 
 export default Table;
