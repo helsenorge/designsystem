@@ -6,18 +6,21 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import { LanguageLocales } from '../../constants';
 import { useLanguage } from '../../hooks/useLanguage';
+import LanguageProvider from '../../utils/language';
 import Button from '../Button';
+import Dropdown from '../Dropdown';
+import { defaultConfig, ResponsiveTableVariant, TableColors, TableSizes } from './constants';
+import { getResources } from './resourceHelper';
 import FilterSort from '../Filter/FilterSort';
 import Highlighter from '../Highlighter';
+import Globe from '../Icons/Globe';
 import Input from '../Input';
 import LinkList from '../LinkList';
 import PopMenu from '../PopMenu';
 import Select from '../Select';
 import Spacer from '../Spacer';
 import StatusDot from '../StatusDot';
-import { defaultConfig, ResponsiveTableVariant, TableColors, TableSizes } from './constants';
 import Title from '../Title';
-import { getResources } from './resourceHelper';
 
 import UNSAFE_Table, {
   SortDirection,
@@ -753,6 +756,75 @@ export const ShowMore: Story = {
           </>
         )}
       </>
+    );
+  },
+};
+
+export const WithLanguageProvider: Story = {
+  render: function WithLanguageProviderStory(args) {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+    const { isExpanded, toggleExpanded } = useTableExpandedRows();
+    const { visibleData, hasMore, showMore } = useTableShowMore<Fastlege, HTMLButtonElement>({ data: fastleger, pageSize: 2 });
+    const resources = getResources(language);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Dropdown svgIcon={Globe} triggerText="Velg språk">
+          <Dropdown.SingleSelectItem text={'English'} asChild defaultSelected>
+            <button onClick={(): void => setLanguage(LanguageLocales.ENGLISH)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Sámi'} asChild>
+            <button onClick={(): void => setLanguage(LanguageLocales.SAMI_NORTHERN)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Nynorsk'} asChild>
+            <button onClick={(): void => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Bokmål'} asChild>
+            <button onClick={(): void => setLanguage(LanguageLocales.NORWEGIAN)} />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+        <Spacer />
+        <UNSAFE_Table {...args}>
+          <UNSAFE_TableHead>
+            <UNSAFE_TableRow>
+              <UNSAFE_TableHeadCell />
+              <UNSAFE_TableHeadCell>{'Navn'}</UNSAFE_TableHeadCell>
+              <UNSAFE_TableHeadCell>{'Fastlegekontor'}</UNSAFE_TableHeadCell>
+              <UNSAFE_TableHeadCell>{resources.menuHeadCell}</UNSAFE_TableHeadCell>
+            </UNSAFE_TableRow>
+          </UNSAFE_TableHead>
+          <UNSAFE_TableBody>
+            {visibleData.map(fastlege => (
+              <UNSAFE_TableRow
+                key={fastlege.id}
+                expanded={isExpanded(fastlege.id)}
+                expandableRowId={`sprak-${fastlege.id}`}
+                onClick={(): void => toggleExpanded(fastlege.id)}
+                popMenu={
+                  <PopMenu labelText={'Flere valg'}>
+                    <LinkList chevron={false}>
+                      <LinkList.Link href="#">{'Rediger'}</LinkList.Link>
+                      <LinkList.Link href="#">{'Fjern'}</LinkList.Link>
+                    </LinkList>
+                  </PopMenu>
+                }
+                expandedContent={<p>{`${fastlege.kontor.navn}, ${fastlege.kontor.adresse}`}</p>}
+              >
+                <UNSAFE_TableCell>{fastlege.navn}</UNSAFE_TableCell>
+                <UNSAFE_TableCell>{fastlege.kontor.navn}</UNSAFE_TableCell>
+              </UNSAFE_TableRow>
+            ))}
+          </UNSAFE_TableBody>
+        </UNSAFE_Table>
+        {hasMore && (
+          <>
+            <Spacer size="s" />
+            <Button variant="outline" onClick={showMore}>
+              {resources.showMoreButton}
+            </Button>
+          </>
+        )}
+      </LanguageProvider>
     );
   },
 };
