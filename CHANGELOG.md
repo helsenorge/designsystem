@@ -1,3 +1,17 @@
+## [16.3.0](https://github.com/helsenorge/designsystem/compare/v16.2.0...v16.3.0) (2026-11-05)
+
+### Features
+
+*  nytt ikon sparkle ([a97e35f](https://github.com/helsenorge/designsystem/commit/a97e35fa101c57697506798500b50c05e9bc1cda)), closes [#388341](https://github.com/helsenorge/designsystem/issues/388341)
+*  nytt ikon subcategory ([5123cd0](https://github.com/helsenorge/designsystem/commit/5123cd04db3bb2ef23de5dd2ae7c441af1f6a531)), closes [#388992](https://github.com/helsenorge/designsystem/issues/388992)
+* **chip:**  textcase prop lagt til ([dd8ee32](https://github.com/helsenorge/designsystem/commit/dd8ee32cffccc9ad1610e1c2e2899642083fea93)), closes [#388344](https://github.com/helsenorge/designsystem/issues/388344)
+* **unsafe_table:**  har nå engelsk samisk og nynorske tekster ([bf2aa5a](https://github.com/helsenorge/designsystem/commit/bf2aa5a3b663e958293f226f840d7048bbcd1039)), closes [#387372](https://github.com/helsenorge/designsystem/issues/387372)
+
+### Bug Fixes
+
+* **checkbox:**  44px klikkflate ([196b9a0](https://github.com/helsenorge/designsystem/commit/196b9a070aeaaa1a70ec207900e13710de3ab7db)), closes [#383436](https://github.com/helsenorge/designsystem/issues/383436)
+* **datepicker:**  daterangeselector ([4b12c0c](https://github.com/helsenorge/designsystem/commit/4b12c0c2fdf31c70d823ce9174066f20a456ff43)), closes [#386342](https://github.com/helsenorge/designsystem/issues/386342)
+
 ## [16.2.0](https://github.com/helsenorge/designsystem/compare/v16.1.0...v16.2.0) (2026-10-19)
 
 ### Features
