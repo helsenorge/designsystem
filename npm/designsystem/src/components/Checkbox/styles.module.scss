@@ -6,7 +6,7 @@
 @use '../../scss/breakpoints' as breakpoints;
 @use '../Label/styles.module' as label;
 
-$padding-clickable-area-top-bottom: 7px;
+$padding-clickable-area-top-bottom: 8px;
 $padding-clickable-area-left: 8px;
 
 .checkbox-errors {
@@ -191,6 +191,9 @@ $padding-clickable-area-left: 8px;
   @include sr-only;
 
   &__marker-wrapper {
+    display: flex;
+    align-items: center;
+    height: font-settings.$lineheight-size-sm;
     margin-right: spacers.getSpacer(s);
   }
 
