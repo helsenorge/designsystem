@@ -1485,6 +1485,7 @@ export const SlowsearchExample: Story = {
     type LoggFilterType = {
       who: string[];
       where: Clients;
+      fritekst: string;
     };
 
     const whoOptions = [
@@ -1514,15 +1515,20 @@ export const SlowsearchExample: Story = {
         return values.some(v => (v === 'you' && item.isYou) || (v === 'others' && !item.isYou));
       },
       where: (item, value) => value === 'Alle' || item.where === value,
+      fritekst: matchFilter.textSearch<Logginnslag>(
+        item => item.who,
+        item => item.what,
+        item => item.where
+      ),
     };
 
     const [filteredData, setFilteredData] = useState(dokumentMockData);
+    const [searchValue, setSearchValue] = useState('');
 
-    const runFilter = () => {
-      const filtered = filterItems(dokumentMockData, filter.filters, filterMatchers);
-      setFilteredData(filtered);
+    const runFilter = (fritekst = searchValue): void => {
+      setFilteredData(filterItems(dokumentMockData, { ...filter.filters, fritekst: fritekst || undefined }, filterMatchers));
     };
-    const logginnslagFilterLabels: Record<keyof LoggFilterType, string> = {
+    const logginnslagFilterLabels: Record<'who' | 'where', string> = {
       who: 'Hvem',
       where: 'Hvor',
     };
@@ -1538,6 +1544,19 @@ export const SlowsearchExample: Story = {
               onChipClick: key => drawer.open(key as LogginnslagFilterViews),
               onOverflowChipClick: () => drawer.open(),
             })}
+          />
+          <FilterSearch
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && runFilter()}
+            buttonProps={{ onClick: () => runFilter() }}
+            clearButtonProps={{
+              onClick: () => {
+                setSearchValue('');
+                runFilter('');
+              },
+            }}
+            withSearchButton
           />
           <FilterResultCountAndSortWrapper resultCount={`${filteredData.length} logginnslag`} />
         </FilterStateWrapper>
