@@ -85,13 +85,13 @@ export type HNDesignsystemTabs = {
 
 export type HNDesignsystemDrawer = {
   /**
-   * Gå tilbake
-   */
-  ariaLabelBackButton: string;
-  /**
    * Lukk
    */
   ariaLabelCloseBtn: string;
+  /**
+   * Gå tilbake
+   */
+  ariaLabelBackButton: string;
 };
 
 export type HNDesignsystemFormFieldTag = {

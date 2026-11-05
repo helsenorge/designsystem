@@ -79,6 +79,20 @@ export const WithLanguageProvider: Story = {
   },
 };
 
+export const TextCases: Story = {
+  render: args => (
+    <>
+      <Chip {...args} textCase="uppercase">
+        {'Uppercase'}
+      </Chip>
+      <Spacer />
+      <Chip {...args} textCase="astyped">
+        {'As typed'}
+      </Chip>
+    </>
+  ),
+};
+
 export const WithBreakingText: Story = {
   args: {
     children: 'Lang tekst her som fort går over flere linjer hvis man zoomer eller har veldig liten skjerm',
