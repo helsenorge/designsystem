@@ -1,3 +1,12 @@
+## [17.0.0-beta.0](https://github.com/helsenorge/designsystem/compare/v16.2.0...v17.0.0-beta.0) (2026-11-04)
+
+### Features
+
+* **button:**  accessibility-character valg er fjernet fra arrow prop ([5428d94](https://github.com/helsenorge/designsystem/commit/5428d94054de4a7bf0a23fc06284cf1362fd0df3)), closes [#387735](https://github.com/helsenorge/designsystem/issues/387735)
+* **datepicker:**  slett gamle datepicker og rename den nye ([67ade7b](https://github.com/helsenorge/designsystem/commit/67ade7bd854d538b03f0646951a10636ac0df92a)), closes [#386222](https://github.com/helsenorge/designsystem/issues/386222)
+* **table:**  gammel table heter tableold og ny heter table ([d5a8ded](https://github.com/helsenorge/designsystem/commit/d5a8ded1b16a50b6aa54031083fa8f706e48b3f5)), closes [#388821](https://github.com/helsenorge/designsystem/issues/388821)
+
+
 ## [16.2.0](https://github.com/helsenorge/designsystem/compare/v16.1.0...v16.2.0) (2026-10-19)
 
 ### Features
