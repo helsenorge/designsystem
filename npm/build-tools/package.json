@@ -22,14 +22,14 @@
   },
   "main": "./lib/index.js",
   "module": "./lib/index.js",
-  "types": "./lib/src/index.d.ts",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": {
-      "types": "./lib/src/index.d.ts",
+      "types": "./lib/index.d.ts",
       "import": "./lib/index.js"
     },
     "./vite": {
-      "types": "./lib/src/vite/copy.d.ts",
+      "types": "./lib/vite/copy.d.ts",
       "import": "./lib/vite.js"
     }
   },
@@ -47,6 +47,6 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "~6.0.3",
     "vite": "^8.0.11",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^5.0.0"
   }
 }

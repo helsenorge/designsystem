@@ -12,10 +12,9 @@ export default defineConfig({
   plugins: [
     // Ensure .d.ts for all entries land in lib/
     dts({
-      outDir: OUTPUT_DIRECTORY,
+      outDirs: OUTPUT_DIRECTORY,
       entryRoot: 'src',
       insertTypesEntry: false,
-      rollupTypes: false,
       copyDtsFiles: true,
       compilerOptions: {
         rootDir: 'src',
