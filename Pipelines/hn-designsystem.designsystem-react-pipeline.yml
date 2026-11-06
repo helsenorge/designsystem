@@ -116,14 +116,6 @@ stages:
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
           - task: Npm@1
-            displayName: stylelint
-            inputs:
-              command: custom
-              workingDir: $(working_directory)
-              customCommand: 'run stylelint'
-            condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
-
-          - task: Npm@1
             displayName: eslint
             inputs:
               command: custom
@@ -141,6 +133,16 @@ stages:
               command: custom
               workingDir: $(working_directory)
               customCommand: 'run build'
+
+          # stylelint kjøres etter build fordi design-tokens som stylelint slår opp
+          # (@helsenorge/designsystem-react/scss) peker inn i lib/ og først finnes etter bygging
+          - task: Npm@1
+            displayName: stylelint
+            inputs:
+              command: custom
+              workingDir: $(working_directory)
+              customCommand: 'run stylelint'
+            condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
           - template: Templates/Build/post-build-frontend.yml@templates
             parameters:

@@ -30,6 +30,7 @@
 
   @each $color in $colors {
     &--#{$color} {
+      /* stylelint-disable-next-line no-unknown-custom-properties -- interpolert tokennavn kan ikke slås opp av stylelint */
       background: linear-gradient(var(--color-base-background-#{$color}), #0000);
       pointer-events: none;
     }

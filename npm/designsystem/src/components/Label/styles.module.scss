@@ -7,7 +7,7 @@
 
 // Re-maps text and status dot tokens so sublabel and statusDot stay readable on the dark background of a checked large Radio/Checkbox.
 @mixin on-dark-tokens {
-  --color-base-subdued-text-dark: var(--color-base-text-ondark);
+  --color-base-subdued-text-dark: var(--color-base-text-light);
   --component-statusdot-graphics-kiwi-onlight: var(--component-statusdot-graphics-kiwi-ondark);
   --component-statusdot-graphics-banana-onlight: var(--component-statusdot-graphics-banana-ondark);
   --component-statusdot-graphics-cherry-onlight: var(--component-statusdot-graphics-cherry-ondark);

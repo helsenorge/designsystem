@@ -22,6 +22,7 @@
 }
 
 .form-layout-child {
+  /* stylelint-disable-next-line no-unknown-custom-properties */
   min-width: var(--min-col-width);
   flex-basis: calc(100% - var(--column-gap));
 
