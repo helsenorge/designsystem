@@ -9,36 +9,43 @@
 
 :root {
 
-  /* Hovedtittel H1 */
-  --desktop-h1-title1: 600 3rem/120% "Source Sans Pro";
-
   /* Sekundærtittel H2 */
   --desktop-h2-title2: 600 2rem/120% "Source Sans Pro";
+  --desktop-legend: 600 1.5rem/130% "Source Sans Pro";
+  --desktop-label: 600 1.25rem/130% "Source Sans Pro";
+  --desktop-sublabel-subdued: 400 1.125rem/130% "Source Sans 3";
+
+  /* <label> */
+  --mobile-sublabel-subdued: 400 1rem/120% "Source Sans 3";
 
   /* Tertiærtittel H3 */
   --desktop-h3-title3: 600 1.625rem/120% "Source Sans Pro";
+
+  /* Hovedtittel H1 */
+  --desktop-h1-title1: 600 3rem/120% "Source Sans Pro";
   --desktop-h4-title4: 600 1.375rem/130% "Source Sans Pro";
   --desktop-h5-title5: 700 1.125rem/140% "Source Sans Pro";
+  --desktop-h6-title6: 600 1.125rem/140% "Source Sans Pro";
   --desktop-preamble: 400 1.5rem/130% "Source Sans Pro";
-  --desktop-legend: 600 1.5rem/130% "Source Sans Pro";
-  --desktop-label: 600 1.25rem/130% "Source Sans Pro";
+  --desktop-label-subdued: 400 1.25rem/130% "Source Sans Pro";
+  --desktop-sublabel: 600 1.125rem/130% "Source Sans 3";
   --desktop-body: 400 1.25rem/150% "Source Sans Pro";
-
-  /* Display of condensed textual data, such as metadata or information that is useful, but perhaps not essential for the use of a service. */
-  --desktop-compact-data: 400 1.125rem/140% "Source Sans Pro";
-
-  /* Tekst i tabellceller. Mer kompakt enn brødtekst (body) */
-  --desktop-tablecell: 400 1.125rem/130% "Source Sans Pro";
   --desktop-body-strong: 600 1.25rem/150% "Source Sans Pro";
 
-  /* Text inside input-fields, textarea fields and numeric steppers, etc. Not to be used as the Label for Radiogroup or Checkbox - use Label. */
-  --desktop-form-input: 400 1.25rem/140% "Source Sans Pro";
+  /* Display of condensed textual data, such as metadata or information that is useful, but perhaps not essential for the use of a service. Har større linjeavstand enn TableCell fordi CompactData kan benyttes ved lengre tekstlinjer og uten tilstøtende celler. */
+  --desktop-compact-data: 400 1.125rem/140% "Source Sans Pro";
+
+  /* Tekst i tabellceller. Mer kompakt enn brødtekst (body). Mindre linjeavstand enn Compact Data fordi celler ofte forkorter tekstlengde og har behov for en mer kompakt tekst enn Compact Data som kan brukes i lengre tekstlinjer */
+  --desktop-table-cell: 400 1.125rem/130% "Source Sans Pro";
 
   /* Bildetekst - plasseres nedenfor bilde eller figur */
   --desktop-image-caption: 400 1rem/150% "Source Sans Pro";
 
   /* Supply copyright information for images */
   --desktop-image-credit: 400 0.75rem/130% "Source Sans Pro";
+
+  /* Text inside input-fields, textarea fields and numeric steppers, etc. Not to be used as the Label for Radiogroup or Checkbox - use Label. */
+  --desktop-form-input: 400 1.25rem/140% "Source Sans Pro";
 
   /* Vis status/tidskoder - lav linjehøyde for kompakt visning */
   --desktop-status-time-stamp-time: 400 1.125rem/110% "Source Sans Pro";
@@ -52,34 +59,42 @@
   /* Tertiærtittel H3 */
   --mobile-h3-title3: 600 1.375rem/136% "Source Sans Pro";
   --mobile-h4-title4: 600 1.25rem/130% "Source Sans Pro";
+  --mobile-h5-title5: 700 1rem/140% "Source Sans Pro";
+  --mobile-h6-title6: 600 1rem/140% "Source Sans Pro";
   --mobile-preamble: 400 1.25rem/130% "Source Sans Pro";
-  --mobile-legend: 600 1.125rem/130% "Source Sans Pro";
+  --mobile-sublabel: 600 1rem/120% "Source Sans 3";
+
+  /* Til bruk i TableHeader når tabell ikke er stacked */
+  --desktop-table-header: 600 1.25rem/130% "Source Sans Pro";
+
+  /* Til bruk i TableHeader når tabell er stacked (verdier vises parvis horisontalt) */
+  --desktop-table-header-stack: 600 1.125rem/130% "Source Sans Pro";
+
+  /* Til bruk i TableHeader når tabell ikke er stacked */
+  --mobile-table-header: 600 1.125rem/120% "Source Sans Pro";
+  --mobile-legend: 600 1.25rem/130% "Source Sans Pro";
+  --mobile-legend-deprecated: 600 1.125rem/130% "Source Sans Pro";
   --mobile-label: 600 1.125rem/120% "Source Sans Pro";
+  --mobile-label-subdued: 400 1.125rem/120% "Source Sans Pro";
   --mobile-body: 400 1.125rem/150% "Source Sans Pro";
+  --mobile-body-strong: 600 1.125rem/150% "Source Sans Pro";
 
-  /* Tekst i tabellceller. Mer kompakt enn brødtekst (body) */
-  --mobile-tablecell: 400 1.125rem/128% "Source Sans Pro";
+  /* Display of condensed textual data, such as metadata or information that is useful, but perhaps not essential for the use of a service. Har større linjeavstand enn TableCell fordi CompactData kan benyttes ved lengre tekstlinjer og uten tilstøtende celler. */
+  --mobile-compact-data: 400 1rem/150% "Source Sans Pro";
 
-  /* Text in Input and Textarea - widgets */
-  --mobile-form-input: 400 1.125rem/150% "Source Sans Pro";
+  /* Tekst i tabellceller. Mer kompakt enn brødtekst (body). Mindre linjeavstand enn Compact Data fordi celler ofte forkorter tekstlengde og har behov for en mer kompakt tekst enn Compact Data som kan brukes i lengre tekstlinjer */
+  --mobile-table-cell: 400 1rem/128% "Source Sans Pro";
+
+  /* Til bruk i TableHeader når tabell er stacked (verdier vises parvis horisontalt) */
+  --mobile-table-header-stack: 600 1rem/128% "Source Sans Pro";
   --mobile-image-caption: 400 1rem/150% "Source Sans Pro";
   --mobile-image-credit: 400 0.75rem/133% "Source Sans Pro";
 
+  /* Text in Input and Textarea - widgets */
+  --mobile-form-input: 400 1.125rem/150% "Source Sans Pro";
+
   /* Vis status/tidskoder - lav linjehøyde for kompakt visning */
   --mobile-status-time-stamp-time: 400 1rem/110% "Source Sans Pro";
-  --mobile-h5-title5: 700 1rem/140% "Source Sans Pro";
-  --desktop-h6-title6: 600 1.125rem/140% "Source Sans Pro";
-  --desktop-label-subdued: 400 1.25rem/130% "Source Sans Pro";
-  --desktop-sublabel: 600 1.125rem/130% "Source Sans 3";
-  --desktop-sublabel-subdued: 400 1.125rem/130% "Source Sans 3";
-  --mobile-h6-title6: 600 1rem/140% "Source Sans Pro";
-  --mobile-label-subdued: 400 1.125rem/120% "Source Sans Pro";
-  --mobile-sublabel: 600 1rem/120% "Source Sans 3";
-
-  /* <label> */
-  --mobile-sublabel-subdued: 400 1rem/120% "Source Sans 3";
-  --mobile-body-strong: 600 1.125rem/150% "Source Sans Pro";
-  --mobile-compact-data: 400 1rem/150% "Source Sans Pro";
 
   /* Name-value pairs as rendered by an HTML <DT>-tag */
   --desktop-definitionlist-type: 600 1.25rem/130% "Source Sans Pro";

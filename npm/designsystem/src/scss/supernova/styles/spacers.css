@@ -8,7 +8,6 @@
  */
 
 :root {
-  --core-space-4xs: 0.125rem;
   --core-space-3xs: 0.25rem;
   --core-space-2xs: 0.5rem;
   --core-space-xs: 0.75rem;
@@ -19,6 +18,7 @@
   --core-space-2xl: 4rem;
   --core-space-3xl: 5rem;
   --core-space-4xl: 6rem;
-  --core-space-5xl: 7rem;
   --core-space-6xl: 8rem;
+  --core-space-5xl: 7rem;
+  --core-space-4xs: 0.125rem;
 }
