@@ -1,3 +1,14 @@
+## [16.4.0](https://github.com/helsenorge/designsystem/compare/v16.3.0...v16.4.0) (2026-11-11)
+
+### Features
+
+* **icon:**  nytt ikon trashcaninline ([bc61f0a](https://github.com/helsenorge/designsystem/commit/bc61f0a071504109e4def2f24cc34aac9005f338)), closes [#388339](https://github.com/helsenorge/designsystem/issues/388339)
+* **illustration:**  nye illustrasjoner healthinformation og technicalaids ([5d5d18e](https://github.com/helsenorge/designsystem/commit/5d5d18ef78447e6b872b438fd6ce7ab88615710a)), closes [#389532](https://github.com/helsenorge/designsystem/issues/389532)
+
+### Bug Fixes
+
+*  komponenter bruker ikke lenger legacytokens ([b15de7d](https://github.com/helsenorge/designsystem/commit/b15de7df94d1a582b555ba6988124b0e564ce612)), closes [#384626](https://github.com/helsenorge/designsystem/issues/384626)
+
 ## [16.3.0](https://github.com/helsenorge/designsystem/compare/v16.2.0...v16.3.0) (2026-11-05)
 
 ### Features
