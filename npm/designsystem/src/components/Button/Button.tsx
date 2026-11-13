@@ -48,7 +48,7 @@ export interface ButtonProps extends Omit<HTMLButtonProps, 'onClick' | 'type'>, 
   onBlur?: () => void;
   /** Function that is called when clicked */
   onClick?: (
-    e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null
+    e?: React.MouseEvent<HTMLElement, MouseEvent> | React.SyntheticEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null
   ) => void;
   /** Changes the button colors for different backgrounds. (Large not available in borderless variant) */
   size?: ButtonSize;
