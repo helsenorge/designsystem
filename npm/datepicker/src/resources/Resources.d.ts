@@ -187,6 +187,14 @@ export type HNDesignsystemUnsafe_DateRangeSelector = {
    * Nullstilt periode/dato
    */
   resetPeriodLabel: string;
+  /**
+   * Før: {0}
+   */
+  beforeDateLabel: string;
+  /**
+   * Etter: {0}
+   */
+  afterDateLabel: string;
 };
 
 /* eslint:enable */

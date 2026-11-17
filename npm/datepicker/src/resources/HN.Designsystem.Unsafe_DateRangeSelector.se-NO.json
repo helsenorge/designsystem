@@ -7,5 +7,7 @@
   "nextMonthsLabel": "Boahtte {0} mánut",
   "nextMonthLabel": "Boahtte mánnu",
   "customPeriodLabel": "Iešmearriduvvon áigodat/dáhton",
-  "resetPeriodLabel": "Ruovttuluottabiddjon áigodat/dáhton"
+  "resetPeriodLabel": "Ruovttuluottabiddjon áigodat/dáhton",
+  "beforeDateLabel": "Før: {0}",
+  "afterDateLabel": "Etter: {0}"
 }
