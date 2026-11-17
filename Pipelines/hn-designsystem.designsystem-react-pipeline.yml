@@ -213,11 +213,9 @@ stages:
           - script: |
               node scripts/sendSlackMessage.ts
             displayName: 'Send melding til Slack'
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
+            condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'))
             env:
-              SLACK_WEBHOOK_URL: $(SlackWebhookUrl)
+              SLACK_WEBHOOK_URL: $(TestSlackWebhookUrl)
               REPO_NAME: $(Build.Repository.Name)
 
   # Copy to Github

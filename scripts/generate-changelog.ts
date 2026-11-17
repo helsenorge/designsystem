@@ -23,6 +23,8 @@ generator
       // Støtte for formatet Azure DevOps bruker som default når pull requests fullføres
       headerPattern: /(?:\(Merged PR \d+: \))?([a-zA-Z]+)(?:\(([\w$.\-*\s]*)\))?!?:(.*)/,
       headerCorrespondence: ['type', 'scope', 'subject'],
+      // Azure DevOps skriver "Related work items: #123" i commit-meldingen
+      referenceActions: ['Related work items:'],
     }
   )
   // Generer kun den nyeste seksjonen og legg den øverst i filen – eksisterende historikk røres aldri.
