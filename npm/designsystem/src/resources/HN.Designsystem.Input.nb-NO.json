@@ -1,3 +1,4 @@
 {
-  "characters": "tegn"
+  "characters": "tegn",
+  "characterText": "Du kan skrive maks {0} tegn"
 }

@@ -144,6 +144,10 @@ export type HNDesignsystemInput = {
    * tegn
    */
   characters: string;
+  /**
+   * Du kan skrive maks {0} tegn
+   */
+  characterText: string;
 };
 
 export type HNDesignsystemFilter = {
