@@ -11,10 +11,9 @@ const OUTPUT_DIRECTORY = 'lib';
 export default defineConfig({
   plugins: [
     dts({
-      outDir: OUTPUT_DIRECTORY,
+      outDirs: OUTPUT_DIRECTORY,
       entryRoot: 'src',
       insertTypesEntry: false,
-      rollupTypes: false,
       copyDtsFiles: true,
       compilerOptions: {
         rootDir: 'src',

@@ -75,10 +75,10 @@
   "devDependencies": {
     "@commitlint/cli": "^20.5.3",
     "@commitlint/config-conventional": "^20.5.3",
-    "@helsenorge/eslint-config": "^39.0.1",
+    "@helsenorge/eslint-config": "^40.2.0",
     "conventional-changelog": "^7.2.1",
     "conventional-changelog-conventionalcommits": "^9.3.1",
-    "eslint-plugin-storybook": "10.6.1",
+    "eslint-plugin-storybook": "10.6.2",
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
     "lint-staged": "^17.0.2",

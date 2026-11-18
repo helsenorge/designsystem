@@ -334,6 +334,7 @@ export const IconList = [
   'Train',
   'Transplantation',
   'TrashCan',
+  'TrashcanInline',
   'TravelRoute',
   'TreatmentAids',
   'TriangleX',

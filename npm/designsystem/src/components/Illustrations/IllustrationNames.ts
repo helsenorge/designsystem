@@ -8,12 +8,14 @@ export const IllustrationList = [
   'FacialRecognitionFingerprint',
   'GiveBabyFood',
   'HealthcarePersonnel',
+  'HealthInformation',
   'MoveAway',
   'ReadLetters',
   'SkinToSkin',
   'Stork',
   'Stroller',
   'Support2',
+  'TechnicalAids',
   'Thinking',
 ] as const;
 
@@ -31,12 +33,14 @@ export const IllustrationSizeList: Record<IllustrationName, IllustrationSize> = 
   FacialRecognitionFingerprint: { medium: 'FacialRecognitionFingerprintMedium' },
   GiveBabyFood: { medium: 'GiveBabyFoodMedium' },
   HealthcarePersonnel: { small: 'HealthcarePersonnelSmall', medium: 'HealthcarePersonnelMedium' },
+  HealthInformation: { medium: 'HealthInformationMedium' },
   MoveAway: { medium: 'MoveAwayMedium' },
   ReadLetters: { medium: 'ReadLettersMedium' },
   SkinToSkin: { medium: 'SkinToSkinMedium' },
   Stork: { medium: 'StorkMedium' },
   Stroller: { medium: 'StrollerMedium' },
   Support2: { medium: 'Support2Medium' },
+  TechnicalAids: { medium: 'TechnicalAidsMedium' },
   Thinking: { medium: 'ThinkingMedium' },
 };
 

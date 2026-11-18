@@ -13,6 +13,7 @@
 
   @each $color in $colors {
     &#{$tab-panel}--#{$color} {
+      /* stylelint-disable-next-line no-unknown-custom-properties -- interpolert tokennavn kan ikke slås opp av stylelint */
       background-color: var(--color-base-background-#{$color});
     }
   }

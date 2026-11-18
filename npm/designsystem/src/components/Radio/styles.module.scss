@@ -146,7 +146,7 @@ $padding-clickable-area-left: 8px;
 
   &__large:has(input:checked) {
     background-color: palette.$blueberry500;
-    color: var(--color-base-text-ondark);
+    color: var(--color-base-text-light);
 
     &:hover {
       background-color: palette.$blueberry600;

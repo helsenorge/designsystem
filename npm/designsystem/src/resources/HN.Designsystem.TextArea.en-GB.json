@@ -1,3 +1,4 @@
 {
-  "characters": "characters"
+  "characters": "characters",
+  "characterText": "You can enter up to {0} characters"
 }

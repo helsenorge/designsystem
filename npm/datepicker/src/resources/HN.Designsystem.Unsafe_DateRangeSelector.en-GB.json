@@ -7,5 +7,7 @@
   "nextMonthsLabel": "Next {0} months",
   "nextMonthLabel": "Next month",
   "customPeriodLabel": "Custom period/date",
-  "resetPeriodLabel": "Reset period/date"
+  "resetPeriodLabel": "Reset period/date",
+  "beforeDateLabel": "Før: {0}",
+  "afterDateLabel": "Etter: {0}"
 }

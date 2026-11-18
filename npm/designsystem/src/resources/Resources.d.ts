@@ -130,6 +130,10 @@ export type HNDesignsystemTextArea = {
    * tegn
    */
   characters: string;
+  /**
+   * Du kan skrive maks {0}  tegn
+   */
+  characterText: string;
 };
 
 export type HNDesignsystemLinkList = {
@@ -144,6 +148,10 @@ export type HNDesignsystemInput = {
    * tegn
    */
   characters: string;
+  /**
+   * Du kan skrive maks {0} tegn
+   */
+  characterText: string;
 };
 
 export type HNDesignsystemFilter = {

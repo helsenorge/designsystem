@@ -43,6 +43,7 @@
 
   @each $color in $colors {
     .tab-list__tab--selected#{$tab-list}__tab--#{$color} {
+      /* stylelint-disable-next-line no-unknown-custom-properties -- interpolert tokennavn kan ikke slås opp av stylelint */
       background-color: var(--color-base-background-#{$color});
     }
   }

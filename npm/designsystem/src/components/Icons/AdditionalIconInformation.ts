@@ -358,6 +358,7 @@ export default {
   personcommunication: { alternativeName: '', categories: 'Generisk' },
   persondocument: { alternativeName: '', categories: 'Generisk' },
   yesno: { alternativeName: '', categories: 'Generisk' },
-  sparkle: { alternativeName: '', categories: '' },
-  subcategory: { alternativeName: '', categories: '' },
+  sparkle: { alternativeName: '', categories: 'System, Generisk' },
+  subcategory: { alternativeName: '', categories: 'Generisk' },
+  trashcaninline: { alternativeName: '', categories: 'System, Generisk' },
 };

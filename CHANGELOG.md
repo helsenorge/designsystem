@@ -2,80 +2,167 @@
 
 ### Features
 
-* **button:**  accessibility-character valg er fjernet fra arrow prop ([5428d94](https://github.com/helsenorge/designsystem/commit/5428d94054de4a7bf0a23fc06284cf1362fd0df3)), closes [#387735](https://github.com/helsenorge/designsystem/issues/387735)
-* **datepicker:**  slett gamle datepicker og rename den nye ([67ade7b](https://github.com/helsenorge/designsystem/commit/67ade7bd854d538b03f0646951a10636ac0df92a)), closes [#386222](https://github.com/helsenorge/designsystem/issues/386222)
-* **table:**  gammel table heter tableold og ny heter table ([d5a8ded](https://github.com/helsenorge/designsystem/commit/d5a8ded1b16a50b6aa54031083fa8f706e48b3f5)), closes [#388821](https://github.com/helsenorge/designsystem/issues/388821)
+- **button:** accessibility-character valg er fjernet fra arrow prop
+  ([5428d94](https://github.com/helsenorge/designsystem/commit/5428d94054de4a7bf0a23fc06284cf1362fd0df3)), closes
+  [#387735](https://github.com/helsenorge/designsystem/issues/387735)
+- **datepicker:** slett gamle datepicker og rename den nye
+  ([67ade7b](https://github.com/helsenorge/designsystem/commit/67ade7bd854d538b03f0646951a10636ac0df92a)), closes
+  [#386222](https://github.com/helsenorge/designsystem/issues/386222)
+- **table:** gammel table heter tableold og ny heter table
+  ([d5a8ded](https://github.com/helsenorge/designsystem/commit/d5a8ded1b16a50b6aa54031083fa8f706e48b3f5)), closes
+  [#388821](https://github.com/helsenorge/designsystem/issues/388821)
 
+## [16.4.0](https://github.com/helsenorge/designsystem/compare/v16.3.0...v16.4.0) (2026-11-11)
+
+### Features
+
+- **icon:** nytt ikon trashcaninline
+  ([bc61f0a](https://github.com/helsenorge/designsystem/commit/bc61f0a071504109e4def2f24cc34aac9005f338)), closes
+  [#388339](https://github.com/helsenorge/designsystem/issues/388339)
+- **illustration:** nye illustrasjoner healthinformation og technicalaids
+  ([5d5d18e](https://github.com/helsenorge/designsystem/commit/5d5d18ef78447e6b872b438fd6ce7ab88615710a)), closes
+  [#389532](https://github.com/helsenorge/designsystem/issues/389532)
+
+### Bug Fixes
+
+- komponenter bruker ikke lenger legacytokens
+  ([b15de7d](https://github.com/helsenorge/designsystem/commit/b15de7df94d1a582b555ba6988124b0e564ce612)), closes
+  [#384626](https://github.com/helsenorge/designsystem/issues/384626)
+
+## [16.3.0](https://github.com/helsenorge/designsystem/compare/v16.2.0...v16.3.0) (2026-11-05)
+
+### Features
+
+- nytt ikon sparkle ([a97e35f](https://github.com/helsenorge/designsystem/commit/a97e35fa101c57697506798500b50c05e9bc1cda)), closes
+  [#388341](https://github.com/helsenorge/designsystem/issues/388341)
+- nytt ikon subcategory ([5123cd0](https://github.com/helsenorge/designsystem/commit/5123cd04db3bb2ef23de5dd2ae7c441af1f6a531)), closes
+  [#388992](https://github.com/helsenorge/designsystem/issues/388992)
+- **chip:** textcase prop lagt til ([dd8ee32](https://github.com/helsenorge/designsystem/commit/dd8ee32cffccc9ad1610e1c2e2899642083fea93)),
+  closes [#388344](https://github.com/helsenorge/designsystem/issues/388344)
+- **unsafe_table:** har nå engelsk samisk og nynorske tekster
+  ([bf2aa5a](https://github.com/helsenorge/designsystem/commit/bf2aa5a3b663e958293f226f840d7048bbcd1039)), closes
+  [#387372](https://github.com/helsenorge/designsystem/issues/387372)
+
+### Bug Fixes
+
+- **checkbox:** 44px klikkflate ([196b9a0](https://github.com/helsenorge/designsystem/commit/196b9a070aeaaa1a70ec207900e13710de3ab7db)),
+  closes [#383436](https://github.com/helsenorge/designsystem/issues/383436)
+- **datepicker:** daterangeselector ([4b12c0c](https://github.com/helsenorge/designsystem/commit/4b12c0c2fdf31c70d823ce9174066f20a456ff43)),
+  closes [#386342](https://github.com/helsenorge/designsystem/issues/386342)
 
 ## [16.2.0](https://github.com/helsenorge/designsystem/compare/v16.1.0...v16.2.0) (2026-10-19)
 
 ### Features
 
-* **button:**  arrow prop har fått inline accessible arrow up og down ([d9fbb3f](https://github.com/helsenorge/designsystem/commit/d9fbb3f552f8fa64a91deed23940354602aad940)), closes [#372257](https://github.com/helsenorge/designsystem/issues/372257)
-* **label:**  size large støtter sublabel og statusdot ([1dbf3b4](https://github.com/helsenorge/designsystem/commit/1dbf3b4e7b66686ae538065576a01873a81e213d)), closes [#385962](https://github.com/helsenorge/designsystem/issues/385962)
+- **button:** arrow prop har fått inline accessible arrow up og down
+  ([d9fbb3f](https://github.com/helsenorge/designsystem/commit/d9fbb3f552f8fa64a91deed23940354602aad940)), closes
+  [#372257](https://github.com/helsenorge/designsystem/issues/372257)
+- **label:** size large støtter sublabel og statusdot
+  ([1dbf3b4](https://github.com/helsenorge/designsystem/commit/1dbf3b4e7b66686ae538065576a01873a81e213d)), closes
+  [#385962](https://github.com/helsenorge/designsystem/issues/385962)
 
 ### Bug Fixes
 
-*  popovers skal ikke skjules når trigger er utenfor skjermen ([70eba3a](https://github.com/helsenorge/designsystem/commit/70eba3a3d245c8693f39fd82e91abcc8f022fe74)), closes [#386662](https://github.com/helsenorge/designsystem/issues/386662)
-* **filter:**  justert spacing i headercontent ([c359c8c](https://github.com/helsenorge/designsystem/commit/c359c8c1bd1c4744d10daedb2da269b248c2d4b9)), closes [#384688](https://github.com/helsenorge/designsystem/issues/384688)
+- popovers skal ikke skjules når trigger er utenfor skjermen
+  ([70eba3a](https://github.com/helsenorge/designsystem/commit/70eba3a3d245c8693f39fd82e91abcc8f022fe74)), closes
+  [#386662](https://github.com/helsenorge/designsystem/issues/386662)
+- **filter:** justert spacing i headercontent
+  ([c359c8c](https://github.com/helsenorge/designsystem/commit/c359c8c1bd1c4744d10daedb2da269b248c2d4b9)), closes
+  [#384688](https://github.com/helsenorge/designsystem/issues/384688)
 
 ## [16.1.0](https://github.com/helsenorge/designsystem/compare/v16.0.0...v16.1.0) (2026-10-13)
 
 ### Features
 
-*  ny komponent unsafe table ([8135e02](https://github.com/helsenorge/designsystem/commit/8135e024e9f26c70d8062f36acec3e4cde730206)), closes [#377504](https://github.com/helsenorge/designsystem/issues/377504) [#383283](https://github.com/helsenorge/designsystem/issues/383283) [#387276](https://github.com/helsenorge/designsystem/issues/387276)
-* **unsafe_table:**  lagt til resources prop ([c933cad](https://github.com/helsenorge/designsystem/commit/c933cadc43e1ce35b437db23084319f67c961892)), closes [#387372](https://github.com/helsenorge/designsystem/issues/387372)
+- ny komponent unsafe table ([8135e02](https://github.com/helsenorge/designsystem/commit/8135e024e9f26c70d8062f36acec3e4cde730206)), closes
+  [#377504](https://github.com/helsenorge/designsystem/issues/377504) [#383283](https://github.com/helsenorge/designsystem/issues/383283)
+  [#387276](https://github.com/helsenorge/designsystem/issues/387276)
+- **unsafe_table:** lagt til resources prop
+  ([c933cad](https://github.com/helsenorge/designsystem/commit/c933cadc43e1ce35b437db23084319f67c961892)), closes
+  [#387372](https://github.com/helsenorge/designsystem/issues/387372)
 
 ### Bug Fixes
 
-* **dateRangeSelector:**  sluttdato leses opp som sluttdato ([6b730aa](https://github.com/helsenorge/designsystem/commit/6b730aa9318875c5901eb6c557d5f7b0194a6346)), closes [#386339](https://github.com/helsenorge/designsystem/issues/386339)
-* **duolist:**  margin fjernet på prop ([adc027f](https://github.com/helsenorge/designsystem/commit/adc027f3c141013d394ab8be7c98c94e86b6ddd1)), closes [#387188](https://github.com/helsenorge/designsystem/issues/387188)
+- **dateRangeSelector:** sluttdato leses opp som sluttdato
+  ([6b730aa](https://github.com/helsenorge/designsystem/commit/6b730aa9318875c5901eb6c557d5f7b0194a6346)), closes
+  [#386339](https://github.com/helsenorge/designsystem/issues/386339)
+- **duolist:** margin fjernet på prop
+  ([adc027f](https://github.com/helsenorge/designsystem/commit/adc027f3c141013d394ab8be7c98c94e86b6ddd1)), closes
+  [#387188](https://github.com/helsenorge/designsystem/issues/387188)
 
 ## [16.0.0](https://github.com/helsenorge/designsystem/compare/v16.0.0-beta.2...v16.0.0) (2026-10-06)
 
 ### Reverts
 
-*  merge master" ([546bd00](https://github.com/helsenorge/designsystem/commit/546bd0054ce1bb147f8127ea41ea29c53850de93))
+- merge master" ([546bd00](https://github.com/helsenorge/designsystem/commit/546bd0054ce1bb147f8127ea41ea29c53850de93))
 
 ## [15.11.0](https://github.com/helsenorge/designsystem/compare/v15.10.0...v15.11.0) (2026-10-05)
 
 ### Features
 
-*  duolist – HideLines og padding prop ([f09c1ec](https://github.com/helsenorge/designsystem/commit/f09c1ecea74b3c3dcb184b02bb38b592eb90696e)), closes [#385226](https://github.com/helsenorge/designsystem/issues/385226)
+- duolist – HideLines og padding prop
+  ([f09c1ec](https://github.com/helsenorge/designsystem/commit/f09c1ecea74b3c3dcb184b02bb38b592eb90696e)), closes
+  [#385226](https://github.com/helsenorge/designsystem/issues/385226)
 
 ### Bug Fixes
 
-*  datepicker ugyldig dato nullstilles ([cf3f504](https://github.com/helsenorge/designsystem/commit/cf3f5043a837d1898ec6c7bd37827c27a9ec8ce0)), closes [#386345](https://github.com/helsenorge/designsystem/issues/386345)
-*  drawerNavigationContext manglet ariaLabelledBy ([03b4305](https://github.com/helsenorge/designsystem/commit/03b430556b5e67b903e5d2f52e6df9c5986b019d)), closes [#386518](https://github.com/helsenorge/designsystem/issues/386518)
+- datepicker ugyldig dato nullstilles
+  ([cf3f504](https://github.com/helsenorge/designsystem/commit/cf3f5043a837d1898ec6c7bd37827c27a9ec8ce0)), closes
+  [#386345](https://github.com/helsenorge/designsystem/issues/386345)
+- drawerNavigationContext manglet ariaLabelledBy
+  ([03b4305](https://github.com/helsenorge/designsystem/commit/03b430556b5e67b903e5d2f52e6df9c5986b019d)), closes
+  [#386518](https://github.com/helsenorge/designsystem/issues/386518)
 
 ## [15.10.0](https://github.com/helsenorge/designsystem/compare/v16.0.0-beta.1...v15.10.0) (2026-09-23)
 
 ### Features
 
-*  moveaway illustration ([48807fb](https://github.com/helsenorge/designsystem/commit/48807fb6f78d783955519fddf632b70e5b2abe31)), closes [#386004](https://github.com/helsenorge/designsystem/issues/386004)
-* **datepicker:**  popover har scrollintoview ([a31a4e6](https://github.com/helsenorge/designsystem/commit/a31a4e6953ac4d107a840c66d77a915e44abc569)), closes [#385992](https://github.com/helsenorge/designsystem/issues/385992)
+- moveaway illustration ([48807fb](https://github.com/helsenorge/designsystem/commit/48807fb6f78d783955519fddf632b70e5b2abe31)), closes
+  [#386004](https://github.com/helsenorge/designsystem/issues/386004)
+- **datepicker:** popover har scrollintoview
+  ([a31a4e6](https://github.com/helsenorge/designsystem/commit/a31a4e6953ac4d107a840c66d77a915e44abc569)), closes
+  [#385992](https://github.com/helsenorge/designsystem/issues/385992)
 
 ### Bug Fixes
 
-*  cursor pointer on tabs ([7b3c6d1](https://github.com/helsenorge/designsystem/commit/7b3c6d13a386cca0a52f4a15246ea9f432f9f48c)), closes [#385911](https://github.com/helsenorge/designsystem/issues/385911)
-*  no outline color on moveaway ([c34ed21](https://github.com/helsenorge/designsystem/commit/c34ed2183da3878fab1f4f73bebad1aaaf2ce771)), closes [#386004](https://github.com/helsenorge/designsystem/issues/386004)
-*  popovers lukkes ved klikk på scrollbar ([3a87c7a](https://github.com/helsenorge/designsystem/commit/3a87c7a6492ecc5c1ad05f790ff2ac6b2e95be68)), closes [#385970](https://github.com/helsenorge/designsystem/issues/385970)
-* **button:**  ellipsis fungerer igjen ([dd76173](https://github.com/helsenorge/designsystem/commit/dd76173331d34604c3673164ddf2d8e413a64d45)), closes [#386067](https://github.com/helsenorge/designsystem/issues/386067)
-* **button:**  ondark borderless hover får riktig farge ([4d92ad7](https://github.com/helsenorge/designsystem/commit/4d92ad7c378d41cfaf2459ae5abf59fa1278aba1)), closes [#384693](https://github.com/helsenorge/designsystem/issues/384693)
-* **filter:**  filterlinklist chip vokser ikke i høyden ([616eb59](https://github.com/helsenorge/designsystem/commit/616eb590960853ac0469545ffb8178de5d44edc3)), closes [#385420](https://github.com/helsenorge/designsystem/issues/385420)
+- cursor pointer on tabs ([7b3c6d1](https://github.com/helsenorge/designsystem/commit/7b3c6d13a386cca0a52f4a15246ea9f432f9f48c)), closes
+  [#385911](https://github.com/helsenorge/designsystem/issues/385911)
+- no outline color on moveaway ([c34ed21](https://github.com/helsenorge/designsystem/commit/c34ed2183da3878fab1f4f73bebad1aaaf2ce771)),
+  closes [#386004](https://github.com/helsenorge/designsystem/issues/386004)
+- popovers lukkes ved klikk på scrollbar
+  ([3a87c7a](https://github.com/helsenorge/designsystem/commit/3a87c7a6492ecc5c1ad05f790ff2ac6b2e95be68)), closes
+  [#385970](https://github.com/helsenorge/designsystem/issues/385970)
+- **button:** ellipsis fungerer igjen
+  ([dd76173](https://github.com/helsenorge/designsystem/commit/dd76173331d34604c3673164ddf2d8e413a64d45)), closes
+  [#386067](https://github.com/helsenorge/designsystem/issues/386067)
+- **button:** ondark borderless hover får riktig farge
+  ([4d92ad7](https://github.com/helsenorge/designsystem/commit/4d92ad7c378d41cfaf2459ae5abf59fa1278aba1)), closes
+  [#384693](https://github.com/helsenorge/designsystem/issues/384693)
+- **filter:** filterlinklist chip vokser ikke i høyden
+  ([616eb59](https://github.com/helsenorge/designsystem/commit/616eb590960853ac0469545ffb8178de5d44edc3)), closes
+  [#385420](https://github.com/helsenorge/designsystem/issues/385420)
 
 ## [15.9.0](https://github.com/helsenorge/designsystem/compare/v16.0.0-beta.0...v15.9.0) (2026-09-04)
 
 ### Features
 
-*  nytt ikon yesno ([530f709](https://github.com/helsenorge/designsystem/commit/530f7093f4789e2f98b9f67db204cbc841b3139c)), closes [#384449](https://github.com/helsenorge/designsystem/issues/384449)
+- nytt ikon yesno ([530f709](https://github.com/helsenorge/designsystem/commit/530f7093f4789e2f98b9f67db204cbc841b3139c)), closes
+  [#384449](https://github.com/helsenorge/designsystem/issues/384449)
 
 ### Bug Fixes
 
-*  correct icon path for HistoryDocument ([eea9a4b](https://github.com/helsenorge/designsystem/commit/eea9a4b5c39ed0ff9a5e7cfa988d7ef85193d445)), closes [#383478](https://github.com/helsenorge/designsystem/issues/383478)
-*  linklist respekterer size overstyring ([e04ff31](https://github.com/helsenorge/designsystem/commit/e04ff31f89810b59f66ac4c37fd9b289660ec685)), closes [#351264](https://github.com/helsenorge/designsystem/issues/351264)
-*  newComponent script sonar warning fix ([fc56c82](https://github.com/helsenorge/designsystem/commit/fc56c82a6a567588066a1e112da24322fe2523b2)), closes [#383169](https://github.com/helsenorge/designsystem/issues/383169)
-* **expanderlist:**  props settes i story ([86712a5](https://github.com/helsenorge/designsystem/commit/86712a58ced56755b37fc81cd94fd3150449cf4f)), closes [#382634](https://github.com/helsenorge/designsystem/issues/382634)
+- correct icon path for HistoryDocument
+  ([eea9a4b](https://github.com/helsenorge/designsystem/commit/eea9a4b5c39ed0ff9a5e7cfa988d7ef85193d445)), closes
+  [#383478](https://github.com/helsenorge/designsystem/issues/383478)
+- linklist respekterer size overstyring
+  ([e04ff31](https://github.com/helsenorge/designsystem/commit/e04ff31f89810b59f66ac4c37fd9b289660ec685)), closes
+  [#351264](https://github.com/helsenorge/designsystem/issues/351264)
+- newComponent script sonar warning fix
+  ([fc56c82](https://github.com/helsenorge/designsystem/commit/fc56c82a6a567588066a1e112da24322fe2523b2)), closes
+  [#383169](https://github.com/helsenorge/designsystem/issues/383169)
+- **expanderlist:** props settes i story
+  ([86712a5](https://github.com/helsenorge/designsystem/commit/86712a58ced56755b37fc81cd94fd3150449cf4f)), closes
+  [#382634](https://github.com/helsenorge/designsystem/issues/382634)
 
 ## [16.0.0-beta.2](https://github.com/helsenorge/designsystem/compare/v16.0.0-beta.1...v16.0.0-beta.2) (2026-10-05)
 
