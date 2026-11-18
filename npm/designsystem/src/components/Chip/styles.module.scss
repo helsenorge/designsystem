@@ -29,8 +29,8 @@
       box-sizing: border-box;
       min-height: 1.375rem;
       line-height: 1.25rem;
-      background-color: var(--core-color-blueberry-50);
-      border: 1px solid var(--core-color-blueberry-500);
+      background-color: var(--color-action-background-light-plus1-normal);
+      border: 1px solid var(--color-action-border-dark-normal);
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         min-height: 1.75rem;
@@ -38,12 +38,12 @@
 
       .chip__chip:hover &,
       .chip__close:hover & {
-        background-color: var(--core-color-blueberry-100);
+        background-color: var(--color-action-background-light-plus1-hover);
       }
 
       .chip__chip:active &,
       .chip__close:active & {
-        background-color: var(--core-color-blueberry-200);
+        background-color: var(--color-action-background-light-plus1-active);
       }
 
       .chip__chip:focus-visible &,
@@ -61,11 +61,16 @@
       padding-top: 0.125rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--core-color-blueberry-800);
+      color: var(--color-action-text-dark-normal);
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         padding-top: 0.25rem;
         font-size: 1rem;
+      }
+
+      .chip__chip:hover &,
+      .chip__chip:active & {
+        color: var(--color-action-text-dark-active);
       }
 
       &--without-close {
