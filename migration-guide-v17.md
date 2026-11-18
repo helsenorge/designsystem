@@ -29,8 +29,22 @@
 >
 > 5. Etter godkjenning: oppdater versjonsnumre i package.json og kjør
 >    npm install. Løs eventuelle peer dependency-konflikter (særlig mot
->    react@^19, motion, normalize.css, og andre @helsenorge-pakker).
+>    react@^19, motion@^14, normalize.css, og andre @helsenorge-pakker).
 >    Ikke gå videre til neste steg før npm install er vellykket.
+>
+>    Kjent konflikt: @helsenorge/eslint-config@40.x har peer dependency
+>    '@helsenorge/designsystem-react@^16' og gir ERESOLVE mot v17. Ikke
+>    bump eslint-config på egen hånd. Presenter konflikten for brukeren
+>    og foreslå enten en versjon av eslint-config som støtter v17 (hvis
+>    publisert på npmjs — sjekk med npm view @helsenorge/eslint-config
+>    dist-tags), eller en midlertidig, avgrenset override i package.json:
+>      "overrides": {
+>        "@helsenorge/eslint-config": {
+>          "@helsenorge/designsystem-react": "$@helsenorge/designsystem-react"
+>        }
+>      }
+>    ($-referansen peker på versjonen i prosjektets egne dependencies.)
+>    Ikke bruk --force eller --legacy-peer-deps.
 > ```
 >
 > **Steg 1 og utover:** Gå gjennom alle seksjoner i rekkefølge. For hver seksjon: følg instruksene i agent-prompten nøyaktig. Start alltid
@@ -87,9 +101,10 @@ Erstatt arrow="accessibility-character" på Button med arrow="inline-accessible-
 ## Gammel DatePicker er fjernet — `Unsafe_DatePicker` heter nå `DatePicker`
 
 Den gamle `DatePicker` i `@helsenorge/datepicker` er slettet, sammen med `DateTime`, `DateTimePickerWrapper`, `validate-utils`, typene
-`DateFormat`/`DatePickerProps` (gammel variant) og ressurstypen `HNDesignsystemDatePicker`. Den nye datovelgeren, som tidligere het
-`Unsafe_DatePicker`, har fått navnet `DatePicker` og overtar import-stien `@helsenorge/datepicker/components/DatePicker`. Alle
-`Unsafe_`-prefikser er fjernet fra komponenter, typer og under-stier.
+`DateFormat`/`DatePickerProps` (gammel variant) og ressursfilene `HN.Designsystem.DatePicker.*.json`. Ressurstypen
+`HNDesignsystemDatePicker` finnes fortsatt (den brukes av `TimeInput`). Den nye datovelgeren, som tidligere het `Unsafe_DatePicker`, har
+fått navnet `DatePicker` og overtar import-stien `@helsenorge/datepicker/components/DatePicker`. Alle `Unsafe_`-prefikser er fjernet fra
+komponenter, typer og under-stier.
 
 | Før                                                       | Etter                                       |
 | --------------------------------------------------------- | ------------------------------------------- |
@@ -137,8 +152,9 @@ Migrer datepicker-bruk til v17 av @helsenorge/datepicker.
      Unsafe_DatePickerStandalone, Unsafe_DateRangeSelector og tilhørende
      *Props/*Handle-typer (JSX-bruk, typer, refs og spread-props)
    - import fra '@helsenorge/datepicker/components/DatePicker' (gammel
-     DatePicker), samt DateTime, DateTimePickerWrapper, DateFormat,
-     validate-utils og typen HNDesignsystemDatePicker
+     DatePicker), samt DateTime, DateTimePickerWrapper, DateFormat
+     og validate-utils (typen HNDesignsystemDatePicker er IKKE fjernet
+     og trenger ingen endring)
    Hvis ingen treff: hopp over dette steget og noter i PR-beskrivelsen at
    datepicker ikke er i bruk.
 
@@ -333,4 +349,89 @@ Migrer Table-bruk til v17 av @helsenorge/designsystem-react.
 5. I PR-beskrivelsen: lim inn liste over endrede filer, noter hvilke
    steder som er midlertidig flyttet til TableOld, og list hva som ikke
    var i bruk.
+```
+
+## `onClick` på Button og AnchorLink bruker `React.SyntheticEvent` i stedet for `React.FormEvent`
+
+Event-typen til `onClick` på `Button` og typen `AnchorLinkOnClickEvent` har byttet ut `React.FormEvent<unknown>` med
+`React.SyntheticEvent<unknown>`. `FormEvent` er markert som deprecated i `@types/react` 19.2. Typene er strukturelt like, så eksisterende
+kode skal fortsatt kompilere — men handlere som eksplisitt er typet med `React.FormEvent` bør oppdateres for å unngå deprecation-advarsler.
+
+```tsx
+// Før
+const handleClick = (e?: React.MouseEvent<HTMLElement> | React.FormEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null) => {};
+
+// Etter
+const handleClick = (
+  e?: React.MouseEvent<HTMLElement> | React.SyntheticEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null
+) => {};
+```
+
+### Agent-prompt
+
+```
+Oppdater event-typer for onClick på Button og AnchorLink.
+
+1. Sjekk om kodebasen er berørt:
+   Søk i TypeScript/TSX-filer etter 'FormEvent' (f.eks. React.FormEvent
+   eller FormEvent importert fra 'react') i handlere som sendes til
+   onClick på Button eller AnchorLink, og etter typen
+   'AnchorLinkOnClickEvent' importert fra
+   '@helsenorge/designsystem-react/components/AnchorLink'.
+   Hvis ingen treff som er knyttet til Button/AnchorLink: hopp over og
+   noter i PR-beskrivelsen at endringen ikke er relevant.
+
+2. For hvert treff knyttet til Button/AnchorLink:
+   - Bytt React.FormEvent<...> med React.SyntheticEvent<...> i typen til
+     handleren.
+   - Ikke endre FormEvent-bruk som gjelder andre elementer (f.eks.
+     onSubmit på <form> eller onChange på input) i dette steget.
+   - Ved tvil: les typene i
+     node_modules/@helsenorge/designsystem-react/lib/components/Button/Button.d.ts
+     og .../AnchorLink/AnchorLink.d.ts.
+
+3. Verifiser:
+   - Les scripts-feltet i package.json og kjør typecheck- og test-
+     scriptene i dette prosjektet. Ingen visuelle endringer forventes.
+
+4. I PR-beskrivelsen: list endrede filer, eller skriv "FormEvent ikke
+   brukt mot Button/AnchorLink" hvis ingen treff.
+```
+
+## `motion` er oppgradert til v14
+
+`@helsenorge/designsystem-react` er avhengig av `motion@^14` (tidligere `^13`), både som dependency og som valgfri peer dependency. Ifølge
+[motion sin changelog](https://github.com/motiondivision/motion/blob/main/CHANGELOG.md) fjerner v14 bare interne API-er som ble gjeninnført
+for kompatibilitet i 13.5.1. Den offentlige API-en er ellers uendret. Prosjekter som selv har `motion@^13` i `package.json` må oppgradere
+til `^14` for å unngå peer dependency-konflikt og dupliserte kopier av motion i bundlen.
+
+### Agent-prompt
+
+```
+Oppgrader motion til v14.
+
+1. Sjekk om kodebasen er berørt:
+   Søk etter '"motion"' og '"framer-motion"' i package.json (dependencies,
+   devDependencies, peerDependencies og overrides/resolutions).
+   Hvis motion ikke står i package.json: hopp over og noter i
+   PR-beskrivelsen at motion ikke er en direkte avhengighet.
+
+2. Hvis motion står med en versjon lavere enn 14:
+   - Oppdater versjonen til ^14.0.0 og kjør npm install.
+   - Søk i TypeScript/TSX-filer etter imports fra 'motion', 'motion/react',
+     'motion/react-m', 'motion-dom', 'motion-utils' og 'framer-motion'.
+     Hvis noen importerer udokumenterte/interne API-er (f.eks. direkte fra
+     'motion-dom' eller 'motion-utils'), verifiser at de fortsatt finnes
+     i node_modules — ikke gjett.
+   - Hvis framer-motion brukes direkte, vurder å flytte til 'motion/react'
+     og nevn det i PR-beskrivelsen i stedet for å gjøre det i samme PR.
+
+3. Verifiser:
+   - Les scripts-feltet i package.json og kjør typecheck-, test- og evt.
+     storybook-build-scriptene.
+   - Hvis prosjektet har visual regression (Chromatic e.l.), kjør den og
+     bekreft at animasjoner ikke gir uventet diff.
+
+4. I PR-beskrivelsen: noter gammel og ny motion-versjon, eller skriv
+   "motion ikke direkte avhengighet" hvis ingen treff.
 ```
