@@ -1,3 +1,23 @@
+## [17.0.0-beta.1](https://github.com/helsenorge/designsystem/compare/v16.4.0...v17.0.0-beta.1) (2026-11-18)
+
+### Features
+
+*  oppdater til motion 14 ([8c1f710](https://github.com/helsenorge/designsystem/commit/8c1f710fb02186ecf672eacaed095c6db56c62a0)), closes [#390461](https://github.com/helsenorge/designsystem/issues/390461)
+* **chip:**  chip tokens ([1ff868a](https://github.com/helsenorge/designsystem/commit/1ff868ac27c47f9a18b40bf0d8de5cef1cb88ebf)), closes [#385235](https://github.com/helsenorge/designsystem/issues/385235)
+
+### Bug Fixes
+
+*  vitest configloader warning ([d6c6258](https://github.com/helsenorge/designsystem/commit/d6c6258529ef38f6cc8a3a9272bf9aa0f35a6a47)), closes [#383139](https://github.com/helsenorge/designsystem/issues/383139)
+* **anchorlink:**  formevent to syntheticevent ([e476db3](https://github.com/helsenorge/designsystem/commit/e476db32f772106fccb9ad5836d3da5424fd09a5)), closes [#382610](https://github.com/helsenorge/designsystem/issues/382610)
+
+## [17.0.0-beta.0](https://github.com/helsenorge/designsystem/compare/v16.2.0...v17.0.0-beta.0) (2026-11-05)
+
+### Features
+
+* **button:**  accessibility-character valg er fjernet fra arrow prop ([5428d94](https://github.com/helsenorge/designsystem/commit/5428d94054de4a7bf0a23fc06284cf1362fd0df3)), closes [#387735](https://github.com/helsenorge/designsystem/issues/387735)
+* **datepicker:**  slett gamle datepicker og rename den nye ([67ade7b](https://github.com/helsenorge/designsystem/commit/67ade7bd854d538b03f0646951a10636ac0df92a)), closes [#386222](https://github.com/helsenorge/designsystem/issues/386222)
+* **table:**  gammel table heter tableold og ny heter table ([d5a8ded](https://github.com/helsenorge/designsystem/commit/d5a8ded1b16a50b6aa54031083fa8f706e48b3f5)), closes [#388821](https://github.com/helsenorge/designsystem/issues/388821)
+
 ## [17.0.0-beta.0](https://github.com/helsenorge/designsystem/compare/v16.2.0...v17.0.0-beta.0) (2026-11-04)
 
 ### Features

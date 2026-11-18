@@ -91,7 +91,7 @@
     "@types/react": "19.3.0",
     "glob": "^13.0.1",
     "@helsenorge/eslint-config": {
-      "@helsenorge/designsystem-react": "^17.0.0-beta.0"
+      "@helsenorge/designsystem-react": "^17.0.0-beta"
     }
   },
   "engines": {
