@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import { createFormHook as createTanstackFormHook, createFormHookContexts as createTanstackFormHookContexts } from '@tanstack/react-form';
 import { isAfter, isBefore, isValid } from 'date-fns';
 import { Controller as RHFController, useForm as useRHForm } from 'react-hook-form';
@@ -5,16 +7,25 @@ import { Controller as RHFController, useForm as useRHForm } from 'react-hook-fo
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import FormFieldTag from '@helsenorge/designsystem-react/components/FormFieldTag';
+import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
+import type { ValidationErrors } from '@helsenorge/designsystem-react/components/Validation/types';
 
 import Unsafe_DatePicker, {
   Unsafe_DateAndTime,
+  type Unsafe_DatePickerHandle,
   Unsafe_ISODateAndTime,
   Unsafe_ISODatePicker,
   Unsafe_TimeInput,
 } from '@helsenorge/datepicker/components/Unsafe_DatePicker';
+import Unsafe_DateRangeSelector from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector';
+import type {
+  DateRangePreset,
+  ReadableRangeOption,
+} from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/constants';
+import { DateRangePresets } from '@helsenorge/datepicker/components/Unsafe_DatePicker/Unsafe_DateRangeSelector/utils';
 
 const meta: Meta = {
   title: 'Documentation/Examples/NewDatePicker',
@@ -735,6 +746,95 @@ export const MultipleFields: Story = {
               />
             )}
           />
+          <br />
+          <button type="submit">{'Submit'}</button>
+        </Validation>
+      </form>
+    );
+  },
+};
+
+export const DateRangeSelectorWithRHForm: Story = {
+  render: () => {
+    type FormValues = { periode?: DateRangePreset };
+
+    const firstRadioRef = useRef<HTMLInputElement>(null);
+    const fromRef = useRef<Unsafe_DatePickerHandle>(null);
+    const toRef = useRef<Unsafe_DatePickerHandle>(null);
+
+    const {
+      control,
+      handleSubmit,
+      formState: { errors },
+    } = useRHForm<FormValues>({
+      mode: 'onSubmit',
+      reValidateMode: 'onChange',
+    });
+
+    const onSubmit = (data: FormValues): void => {
+      console.log('register submit: ', data);
+    };
+
+    const isCustom = (value?: DateRangePreset): boolean => value?.value === DateRangePresets.Custom.value;
+
+    const options: ReadableRangeOption[] = [
+      { ...DateRangePresets.LastMonth, radioButtonProps: { ref: firstRadioRef } },
+      DateRangePresets.Last6Months,
+      DateRangePresets.Last12Months,
+    ];
+
+    const periodeError = errors.periode;
+    const fromError = periodeError?.type === 'fromDate' ? periodeError.message : undefined;
+    const toError = periodeError?.type === 'toDate' || periodeError?.type === 'range' ? periodeError.message : undefined;
+    const groupError = periodeError && !fromError && !toError ? periodeError.message : undefined;
+
+    const focusTarget = fromError ? fromRef : toError ? toRef : firstRadioRef;
+    const summaryErrors: ValidationErrors = periodeError
+      ? { periode: { message: periodeError.message, ref: { focus: (): void => focusTarget.current?.focus() } } }
+      : {};
+
+    return (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={summaryErrors}>
+          <FormGroup legend="Velg periode" error={groupError}>
+            <RHFController
+              name="periode"
+              control={control}
+              rules={{
+                validate: {
+                  required: value => !!value || 'Velg en periode, eller fyll inn fra-dato og/eller til-dato',
+                  fromDate: value => {
+                    const from = value?.dateRange.from;
+                    if (!isCustom(value) || !from) return true;
+                    if (!isValid(from)) return 'Fra-dato må være på formatet dd.mm.åååå';
+                    if (isAfter(from, new Date())) return 'Fra-dato kan ikke være i fremtiden';
+                    return true;
+                  },
+                  toDate: value => {
+                    const to = value?.dateRange.to;
+                    if (!isCustom(value) || !to) return true;
+                    if (!isValid(to)) return 'Til-dato må være på formatet dd.mm.åååå';
+                    return true;
+                  },
+                  range: value => {
+                    if (!isCustom(value)) return true;
+                    const { from, to } = value?.dateRange ?? {};
+                    return !from || !to || !isBefore(to, from) || 'Til-dato kan ikke være før fra-dato';
+                  },
+                },
+              }}
+              render={({ field }) => (
+                <Unsafe_DateRangeSelector
+                  name={field.name}
+                  options={options}
+                  value={field.value}
+                  onChange={field.onChange}
+                  datePickerPropsFrom={{ ref: fromRef, errorText: fromError }}
+                  datePickerPropsTo={{ ref: toRef, errorText: toError }}
+                />
+              )}
+            />
+          </FormGroup>
           <br />
           <button type="submit">{'Submit'}</button>
         </Validation>
