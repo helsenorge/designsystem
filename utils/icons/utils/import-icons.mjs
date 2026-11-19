@@ -17,7 +17,8 @@
  *   1. Leter gjennom mappen og finner alle SVG-filer (hopper over PNGs-mapper).
  *   2. Leser navnet på hver fil for å finne ikonnavn, størrelse (S/XS/XXS) og variant (Normal/Hover).
  *   3. Åpner SVG-filen, fjerner <svg>-taggen rundt innholdet og fjerner alle fill="#000".
- *      (fill-rule og clip-rule beholdes.)
+ *      Attributter med bindestrek gjøres om til camelCase for React (fill-rule -> fillRule,
+ *      clip-rule -> clipRule osv.). aria-* og data-* beholdes som de er.
  *   4. Lager en ny fil per ikon i npm/designsystem/src/components/Icons/<Navn>.tsx.
  *      S_Normal -> small, S_Hover -> smallHover, XS_Normal -> xSmall, XS_Hover -> xSmallHover.
  *   5. Kjører prettier på de nye filene, så de får riktig formatering.
@@ -75,10 +76,16 @@ const findSvgFiles = dir => {
 const extractSvgContent = svg => {
   const match = svg.match(/<svg[^>]*>([\s\S]*)<\/svg>/i);
   if (!match) return null;
-  return match[1]
-    .replace(/\s*fill="#000(?:000)?"/gi, '') // fjern kun fill="#000" / fill="#000000"
-    .trim();
+  return toJsxAttributes(
+    match[1].replace(/\s*fill="#000(?:000)?"/gi, '') // fjern kun fill="#000" / fill="#000000"
+  ).trim();
 };
+
+// React krever camelCase for SVG-attributter (fill-rule -> fillRule). aria-* og data-* skal beholdes.
+const toJsxAttributes = content =>
+  content.replace(/(\s)([a-z]+(?:-[a-z]+)+)(?==)/g, (attr, space, name) =>
+    /^(aria|data)-/.test(name) ? attr : space + name.replace(/-([a-z])/g, (_, char) => char.toUpperCase())
+  );
 
 const buildComponent = (name, variants) => {
   const constants = Object.entries(VARIANTS)
