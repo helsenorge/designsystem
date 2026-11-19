@@ -36,4 +36,34 @@ describe('Gitt at List skal vises', (): void => {
       expect(list).toBeVisible();
     });
   });
+  describe('Når nummerert liste har start, reversed og value', (): void => {
+    it('Så sendes start og reversed til <ol> og value til <li>', (): void => {
+      render(
+        <List variant="numbered" start={3} reversed>
+          <List.Item value={7}>{'sju'}</List.Item>
+          <List.Item>{'seks'}</List.Item>
+        </List>
+      );
+
+      const list = screen.getByRole('list');
+      expect(list.tagName).toBe('OL');
+      expect(list).toHaveAttribute('start', '3');
+      expect(list).toHaveAttribute('reversed');
+      expect(screen.getAllByRole('listitem')[0]).toHaveAttribute('value', '7');
+    });
+  });
+  describe('Når punktliste har start og reversed', (): void => {
+    it('Så settes ikke start og reversed på <ul>', (): void => {
+      render(
+        <List variant="bullet" start={3} reversed>
+          <List.Item>{'tre'}</List.Item>
+        </List>
+      );
+
+      const list = screen.getByRole('list');
+      expect(list.tagName).toBe('UL');
+      expect(list).not.toHaveAttribute('start');
+      expect(list).not.toHaveAttribute('reversed');
+    });
+  });
 });

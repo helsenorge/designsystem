@@ -282,3 +282,29 @@ React:
     </List>
   ),
 };
+
+export const NumberedWithStart: Story = {
+  render: () => (
+    <>
+      <List variant="numbered">
+        <List.Item>{'en'}</List.Item>
+        <List.Item>{'to'}</List.Item>
+      </List>
+      <p>{'Et avsnitt som bryter listen.'}</p>
+      <List variant="numbered" start={3}>
+        <List.Item>{'tre'}</List.Item>
+        <List.Item>{'fire'}</List.Item>
+      </List>
+      <p>{'Reversed og value:'}</p>
+      <List variant="alphabetical" reversed>
+        <List.Item>{'c'}</List.Item>
+        <List.Item>{'b'}</List.Item>
+        <List.Item>{'a'}</List.Item>
+      </List>
+      <List variant="numbered">
+        <List.Item value={7}>{'sju'}</List.Item>
+        <List.Item>{'åtte'}</List.Item>
+      </List>
+    </>
+  ),
+};
