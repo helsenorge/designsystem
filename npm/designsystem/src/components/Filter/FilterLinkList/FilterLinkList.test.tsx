@@ -108,6 +108,20 @@ describe('Gitt at FilterLinkList.Link har chips', (): void => {
       expect(screen.getByText('Chip 3')).toBeVisible();
     });
   });
+
+  describe('Når chipsGroupAriaLabel er satt', (): void => {
+    test('Så settes aria-label kun på chips-listen og ikke på knappen', (): void => {
+      render(
+        <FilterLinkList>
+          <FilterLinkList.Link title={'Filter'} chips={['Chip 1']} chipsGroupAriaLabel={'Aktive filtre'} onClick={vi.fn()} />
+        </FilterLinkList>
+      );
+
+      expect(screen.getByRole('list', { name: 'Aktive filtre' })).toBeVisible();
+      expect(screen.getByRole('button')).not.toHaveAttribute('chipsGroupAriaLabel');
+      expect(screen.getByRole('button')).not.toHaveAttribute('chipsgrouparialabel');
+    });
+  });
 });
 
 describe('Gitt at FilterLinkList.Link har onClick-handler', (): void => {

@@ -51,7 +51,7 @@ export type LinkProps = Modify<
 >;
 
 export const Link: LinkType = (props: LinkProps) => {
-  const { children, title, chips, className = '', linkRef, testId, ref, ...restProps } = props;
+  const { children, title, chips, chipsGroupAriaLabel, className = '', linkRef, testId, ref, ...restProps } = props;
   const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | null>(linkRef);
 
   const liClasses = cn(styles['link-list__item']);
@@ -65,7 +65,7 @@ export const Link: LinkType = (props: LinkProps) => {
             <>
               <span>{title}</span>
               {chips && chips.length > 0 && (
-                <ul className={styles['link-list__chip-list']} aria-label={props.chipsGroupAriaLabel}>
+                <ul className={styles['link-list__chip-list']} aria-label={chipsGroupAriaLabel}>
                   {chips.map(chip => (
                     <li className={styles['link-list__chip']} key={chip}>
                       {chip}
