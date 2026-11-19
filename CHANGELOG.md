@@ -1,3 +1,10 @@
+## [16.5.0](https://github.com/helsenorge/designsystem/compare/v16.4.0...v16.5.0) (2026-11-19)
+
+### Features
+
+* **chip:**  chip tokens ([1ff868a](https://github.com/helsenorge/designsystem/commit/1ff868ac27c47f9a18b40bf0d8de5cef1cb88ebf)), closes [#385235](https://github.com/helsenorge/designsystem/issues/385235)
+* **list:**  start reversed og value props lagt til ([af887a9](https://github.com/helsenorge/designsystem/commit/af887a915ada71ab284d9bca0a1a8d48828f0cf5)), closes [#390481](https://github.com/helsenorge/designsystem/issues/390481)
+
 ## [16.4.0](https://github.com/helsenorge/designsystem/compare/v16.3.0...v16.4.0) (2026-11-11)
 
 ### Features
