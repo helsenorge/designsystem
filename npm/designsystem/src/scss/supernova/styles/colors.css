@@ -259,8 +259,6 @@
   --color-notification-warning-background-active: #f9ea9f;
   --color-notification-success-background-hover: #c2edd6;
   --color-notification-success-background-active: #9de2bf;
-  --color-lightbox-background-transparent-ondark-hover: #00000026;
-  --color-lightbox-background-transparent-ondark-hoverselected: #000000bf;
   --component-lightbox-background-transparent-ondark-hover: #00000026;
   --component-lightbox-background-transparent-ondark-hoverselected: #000000bf;
 
@@ -312,16 +310,51 @@
   --color-action-background-transparent-onlight-plus1-normal: #126f8721;
   --color-action-background-transparent-onlight-plus1-plus1: #126f872b;
   --color-action-background-transparent-onlight-plus1-active: #126f874d;
-  --color-action-background-light-onlight-normal: #ffffff;
   --brand-color-blueberry-verydark: #06596c;
   --color-disabled-text-light: #d6d4d3;
   --color-disabled-text-dark: #62625f;
-  --color-action-background-light-onlight-active: #cae7ed;
-  --color-action-background-light-onlight-hover: #e4f7f9;
   --color-action-background-light-plus2-normal: #cae7ed;
   --color-action-background-light-plus2-hover: #afdae3;
   --color-action-background-light-plus2-active: #7abecc;
   --color-action-background-dark-hover: #126f87;
   --color-action-background-dark-active: #08667c;
   --color-action-border-light-active: #cae7ed;
+  --brand-color-cherry-mediumlight: #eec0a5;
+  --color-action-neutral-background-light-normal: #ffffff;
+  --color-action-neutral-background-light-plus1-normal: #f5f3f3;
+  --color-action-neutral-background-light-hover: #f5f3f3;
+  --color-action-neutral-background-light-active: #eae7e7;
+  --color-action-neutral-background-light-plus1-hover: #eae7e7;
+  --color-action-neutral-background-light-plus1-active: #d6d4d3;
+  --color-destructive-background-light-plus2-normal: #f7e1d2;
+  --color-destructive-background-light-plus2-hover: #eec0a5;
+  --color-destructive-background-light-plus2-active: #e39376;
+  --color-action-neutral-background-light-plus2-normal: #eae7e7;
+  --color-action-neutral-background-light-plus2-hover: #d6d4d3;
+  --color-action-neutral-background-light-plus2-active: #bdbab9;
+  --color-action-graphics-dark-plus1-normal: #126f87;
+  --color-action-graphics-dark-plus1-hover: #08667c;
+  --color-action-graphics-dark-plus2-normal: #08667c;
+  --color-action-graphics-dark-plus1-active: #06596c;
+  --color-action-graphics-dark-plus2-hover: #06596c;
+  --color-action-graphics-dark-plus2-active: #084350;
+  --color-action-cherry-background-light-normal: #ffffff;
+  --color-action-cherry-background-light-hover: #fff2ea;
+  --color-action-cherry-background-light-plus1-normal: #fff2ea;
+  --color-action-cherry-background-light-plus1-hover: #f7e1d2;
+  --color-action-cherry-background-light-plus2-normal: #f7e1d2;
+  --color-action-cherry-background-light-plus1-active: #eec0a5;
+  --color-action-cherry-background-light-plus2-hover: #eec0a5;
+  --color-action-cherry-background-light-plus2-active: #e39376;
+  --color-action-cherry-graphics-dark-normal: #c83521;
+  --color-action-cherry-graphics-dark-hover: #b62e1c;
+  --color-action-cherry-graphics-dark-active: #a31f0e;
+  --color-action-cherry-background-light-active: #f7e1d2;
+  --color-action-background-dark-plus1-normal: #126f87;
+  --color-action-neutral-graphics-dark-plus2-normal: #62625f;
+  --color-action-neutral-graphics-dark-plus2-hover: #474745;
+  --color-action-neutral-graphics-dark-plus2-active: #2b2c2b;
+
+  /* Highlighting the background behind text-matches for in page search */
+  --component-texthightlight-background: #fffa92;
 }
