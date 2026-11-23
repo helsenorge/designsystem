@@ -1,3 +1,10 @@
+## [16.5.1](https://github.com/helsenorge/designsystem/compare/v16.5.0...v16.5.1) (2026-11-23)
+
+### Bug Fixes
+
+*  ikoner og illustrasjoner clippath og fillrule format ([5c6be8b](https://github.com/helsenorge/designsystem/commit/5c6be8b5ec8b5f83fe223cf1faa57d4018d43f42)), closes [#389533](https://github.com/helsenorge/designsystem/issues/389533)
+* **filter:**  chipsgrouparealabel prop ble plassert feil på button ([d75043e](https://github.com/helsenorge/designsystem/commit/d75043e89e299c322daf6e61b88f83e86ec6a7a9)), closes [#385108](https://github.com/helsenorge/designsystem/issues/385108)
+
 ## [16.5.0](https://github.com/helsenorge/designsystem/compare/v16.4.0...v16.5.0) (2026-11-19)
 
 ### Features
